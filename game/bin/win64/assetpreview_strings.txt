@@ -17047,7 +17047,6 @@ kX?setBlue@QColor@@QEAAXH@Z
 k\v?event@QTextEdit@@MEAA_NPEAVQEvent@@@Z
 keep_colliders
 keep_vertices_in_memory
-key_type
 key_value_text
 keychain_markup_preview
 keyframe

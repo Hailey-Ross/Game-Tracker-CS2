@@ -108,7 +108,7 @@
 			name = "ClientPrecacheRegistry_server"
 			group = "GameSessionManifest_server"
 			source_file = "src/game/server/client.cpp"
-			source_line = 376
+			source_line = 391
 			resources = null
 		},
 		{

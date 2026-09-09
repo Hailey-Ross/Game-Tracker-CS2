@@ -1069,6 +1069,12 @@ cl_debug_round_stat_submission false (developmentonly clientdll)
 cl_debugviewangle false (developmentonly clientdll)
 	Plots view angles yaw at various stages of the frame/tick in Tracy.
 
+cl_decryptdata_key "" (release)
+	Key to decrypt encrypted GOTV messages
+
+cl_decryptdata_key_pub "" (release)
+	Key to decrypt public encrypted GOTV messages
+
 cl_demo_predict 1 (clientdll release)
 	Enable 'TrueView' when watching a demo, which attempts to recreate the client's experience more accurately.  0=disable, 1=only if demo version match, 2=always
 
@@ -10953,6 +10959,12 @@ tv_enable_delta_frames true (release)
 tv_enable_dynamic false (notify release)
 	When enabled, changes in tv_enable convars cause immediate startup or shutdown of hltv server
 
+tv_encryptdata_key "" (release)
+	When set to a valid key communication messages will be encrypted for GOTV
+
+tv_encryptdata_key_pub "" (release)
+	When set to a valid key public communication messages will be encrypted for GOTV
+
 tv_extended_logging false (developmentonly defensive)
 	<no description>
 
@@ -11070,6 +11082,9 @@ tv_relaypassword "" (protected notify dontrecord release)
 tv_relayradio false (gamedll release)
 	Relay team radio commands to TV: 0=off, 1=on
 
+tv_relaytextchat 1 (gamedll release)
+	Relay text chat data to GOTV: 0=off, 1=say, 2=say+say_team
+
 tv_relayvoice true (release)
 	Relay voice data: 0=off, 1=on
 
@@ -11078,9 +11093,6 @@ tv_secret_code true (developmentonly defensive)
 
 tv_secure_bypass false (release)
 	Bypass secure challenge on TV port
-
-tv_show_allchat true (gamedll release)
-	<no description>
 
 tv_spectator_port_offset 0 (clientdll release)
 	<no description>

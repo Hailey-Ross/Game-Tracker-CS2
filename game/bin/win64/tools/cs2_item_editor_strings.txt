@@ -4378,7 +4378,6 @@ $\n\tword_list
 ?userType@QVariant@@QEBAHXZ
 ?valueToKeys@QMetaEnum@@QEBA?AVQByteArray@@H@Z
 @#?write@QTableWidgetItem@@UEBAXAEAVQDataStream@@@Z
-@08N
 @HPX`hvp
 @\n\fSingleObject
 @\n\vserver_type
@@ -5690,7 +5689,6 @@ Outliner
 OverlayProjectionDirection
 P08@J
 P08J0
-P08N
 P?isValid@QColor@@QEBA_NXZ
 P?isValid@QTextCharFormat@@QEBA_NXZ
 P?itemData@QStandardItemModel@@UEBA?AV?$QMap@HVQVariant@@@@AEBVQModelIndex@@@Z
@@ -7117,8 +7115,6 @@ choices
 choose_team
 chooseteam
 choreoanchorclass
-cl_decryptdata_key
-cl_decryptdata_key_pub
 clan_id
 class_token_id
 class_usage_for_output
@@ -8055,7 +8051,6 @@ overrideclass
 owcaseid
 owner_only
 owns_polymorphic_data
-p08@H^
 pButton
 pCurrentFocusWidget
 pData

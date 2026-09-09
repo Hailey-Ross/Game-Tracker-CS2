@@ -1596,6 +1596,7 @@ CCSBot
 CCSCustomHudLayout
 CCSCustomHudLayoutState
 CCSCustomHudLayout_API
+CCSCustomPlayerCamera
 CCSGO_EndOfMatchLineupEnd
 CCSGO_EndOfMatchLineupEndpoint
 CCSGO_EndOfMatchLineupStart
@@ -3250,8 +3251,8 @@ CS_UM_RoundBackupFilenames
 CS_UM_RoundEndReportData
 CS_UM_Rumble
 CS_UM_SSUI
-CS_UM_SayText
-CS_UM_SayText2
+CS_UM_SayText2_CSGOLegacy
+CS_UM_SayText_CSGOLegacy
 CS_UM_ScoreLeaderboardData
 CS_UM_SendAudio
 CS_UM_SendLastKillerDamageToClient
@@ -3265,10 +3266,10 @@ CS_UM_ShootInfo
 CS_UM_ShowMenu
 CS_UM_StopSpectatorMode
 CS_UM_SurvivalStats
-CS_UM_TextMsg
+CS_UM_TextMsg_CSGOLegacy
 CS_UM_Train
 CS_UM_UpdateScreenHealthBar
-CS_UM_UpdateTeamMoney
+CS_UM_UpdateTeamMoney_CSGOLegacy
 CS_UM_VGUIMenu
 CS_UM_VoiceMask
 CS_UM_VoteFailed
@@ -3671,6 +3672,10 @@ CTwoBoneIKUpdateNode
 CURSOR_ADD_TAG
 CURSOR_REMOVE_TAG
 CURSOR_RETIRED
+CUSTOM_CAMERA_MODE_CONTROLLED
+CUSTOM_CAMERA_MODE_CONTROLLED_POSITION
+CUSTOM_CAMERA_MODE_DISABLED
+CUSTOM_CAMERA_MODE_FOLLOW_POSITION
 CUnaryUpdateNode
 CVAudioNodeBaseDesc
 CVControlNodeBaseDesc
@@ -4936,6 +4941,7 @@ Custom Duration
 Custom Shader
 Custom death handshake to set when this damage level is destroyed.
 Custom downsample based on Jimenez14, (default enabled, higher quality, decreases bloom aliasing further)
+CustomCameraMode_t
 Cycle Condition
 Cycle Control
 Cycle Control Clip
@@ -7685,6 +7691,8 @@ Keep this many old copies in history of autosaves and quicksaves.
 Key
 Key Type
 Key for when posting to vac related webapis.
+Key to decrypt encrypted GOTV messages
+Key to decrypt public encrypted GOTV messages
 KeyGroup_t
 Keyed Floats
 Keyed Midi
@@ -10650,6 +10658,7 @@ RelativeToOriginalRootMotion
 RelativeToSkeleton
 Relay proxies retry connection after network timeout
 Relay team radio commands to TV: 0=off, 1=on
+Relay text chat data to GOTV: 0=off, 1=say, 2=say+say_team
 Relay voice data: 0=off, 1=on
 Release Time (seconds)
 Release time (ms)
@@ -13754,6 +13763,8 @@ When selecting an area under nav_edit, allow area marked as blocked.
 When set to 1, and that player's team is set to respawn, they will respawn in waves. If set to 2, teams will respawn when the whole team is dead.
 When set to 1, counter-terrorists will respawn after dying.
 When set to 1, terrorists will respawn after dying.
+When set to a valid key communication messages will be encrypted for GOTV
+When set to a valid key public communication messages will be encrypted for GOTV
 When set to non-0, a sound effect is played during Killer Replay
 When set to true, disables audio being silenced while the death cam fades out.
 When set will save streams info file for diagnostics
@@ -14611,6 +14622,8 @@ cl_debugoverlay_dashboard
 cl_debugoverlay_hide_imgui
 cl_debugoverlay_toggle
 cl_debugviewangle
+cl_decryptdata_key
+cl_decryptdata_key_pub
 cl_demo_predict
 cl_demo_steadycam_blendframes
 cl_demo_steadycam_deflection
@@ -19330,6 +19343,7 @@ m_bClientSideOnly
 m_bClientSideRagdoll
 m_bClientSpawnGroup
 m_bClientside
+m_bClipCameraOffset
 m_bClosedLoop
 m_bCollapseToForcePoint
 m_bCommentaryEnabledMidGame
@@ -19630,6 +19644,7 @@ m_bFloodFillAttribute
 m_bFog
 m_bFogEnable
 m_bFollowConstraintsInitialized
+m_bFollowEyes
 m_bFollowNamedValue
 m_bFollowPlayerAcrossTeleport
 m_bFollowReferences
@@ -19898,7 +19913,6 @@ m_bIsClosedLoop
 m_bIsContinuousEnabled
 m_bIsControlInput
 m_bIsControlOutput
-m_bIsControllingAngles
 m_bIsDefusing
 m_bIsDisableTag
 m_bIsDisabled
@@ -20196,6 +20210,7 @@ m_bNormalizedOutput
 m_bNotPickable
 m_bNotSolidToWorld
 m_bNumBasedOnParticleCount
+m_bObservable
 m_bOffset
 m_bOffsetExistingPos
 m_bOffsetInLocalSpace
@@ -21828,6 +21843,7 @@ m_flCTSpawnPointUsedTime
 m_flCTTimeOutRemaining
 m_flCalculationInterval
 m_flCameraBias
+m_flCameraOffsetReturnStrength
 m_flCameraSpeed
 m_flCapOffsetAmount
 m_flCapRoundness
@@ -25212,6 +25228,7 @@ m_nCTsAliveAtFreezetimeEnd
 m_nCacheField
 m_nCallInfoIndex
 m_nCameraJointIndex
+m_nCameraMode
 m_nCapsuleLightBehavior
 m_nCapsuleLightBehavior == PARTICLE_LIGHT_BEHAVIOR_FOLLOW_DIRECTION || m_nCapsuleLightBehavior == PARTICLE_LIGHT_BEHAVIOR_ROPE
 m_nCapsuleLightBehavior == PARTICLE_LIGHT_BEHAVIOR_FOLLOW_DIRECTION || m_nCapsuleLightBehavior == PARTICLE_LIGHT_BEHAVIOR_TRAILS
@@ -28199,6 +28216,7 @@ m_vecCPs
 m_vecCSSClasses
 m_vecCachedRenderMaxs
 m_vecCachedRenderMins
+m_vecCameraOffset
 m_vecCenter
 m_vecClassNames
 m_vecClientAngles
@@ -28258,6 +28276,7 @@ m_vecFinalDest
 m_vecFinishAngles
 m_vecFinishOrigin
 m_vecFollowMoverCouplerRange
+m_vecFollowOffset
 m_vecForce
 m_vecForceAtMaxDist
 m_vecForceAtMinDist
@@ -32188,6 +32207,7 @@ svc_ClassInfo
 svc_ClearAllStringTables
 svc_CmdKeyValues
 svc_CreateStringTable
+svc_EncryptedData
 svc_FlattenedSerializer
 svc_FullFrameSplit
 svc_GetCvarValue
@@ -32393,6 +32413,8 @@ tv_enable
 tv_enable1
 tv_enable_delta_frames
 tv_enable_dynamic
+tv_encryptdata_key
+tv_encryptdata_key_pub
 tv_extended_logging
 tv_grouprelaydatareliable
 tv_grouprelaydataunreliable
@@ -32437,11 +32459,11 @@ tv_relay_rate
 tv_relay_secret_code
 tv_relaypassword
 tv_relayradio
+tv_relaytextchat
 tv_relayvoice
 tv_retry
 tv_secret_code
 tv_secure_bypass
-tv_show_allchat
 tv_spectator_port_offset
 tv_status
 tv_stop

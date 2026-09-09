@@ -21298,9 +21298,9 @@ $prefix_element$
 11nN
 12'0
 1280x720
+12:07:52
 12v)
 14 (default)
-15:19:22
 15\tr\
 16-byte data pool
 1:1: Tokens : ( PLUS | MINUS | MUL | DIV | COMMA | LPAREN | RPAREN | EQUALS | PERCENT | INT | FLOAT | ID | ML_COMMENT | SL_COMMENT | NL | WS );
@@ -21711,7 +21711,6 @@ $prefix_element$
 @%s_lookFrame_0
 @%s_lookFrame_1
 @%s_lookFrame_2
-@08N
 @0pp
 @:0UB
 @:PUB
@@ -31850,7 +31849,6 @@ P-384
 P-521
 P08@J0P=
 P08J@
-P08N
 P1\t98"
 P20P=
 P5[1
@@ -41668,7 +41666,6 @@ key_enc_algor
 key_name_strip_prefix
 key_path
 key_subkey
-key_type
 key_value_text
 keyblob header parse error
 keyblob too short
@@ -43816,7 +43813,6 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
-p08@H^
 p20P=
 p2{l
 p4Z3

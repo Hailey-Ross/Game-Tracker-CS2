@@ -14203,7 +14203,6 @@ joint_parent
 joints
 keep_colliders
 keep_vertices_in_memory
-key_type
 key_value_text
 keychain_markup_preview
 keyframe

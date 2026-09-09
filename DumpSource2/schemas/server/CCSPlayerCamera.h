@@ -1,6 +1,3 @@
-class CCSPlayerCamera : public CBaseEntity
+class CCSPlayerCamera : public CCSCustomPlayerCamera
 {
-	CHandle< CCSPlayerPawnBase > m_hPawn;
-	bool m_bEnabled;
-	bool m_bIsControllingAngles;
 };

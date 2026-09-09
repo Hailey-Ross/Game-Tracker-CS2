@@ -7737,7 +7737,6 @@ keyUsage
 key_data
 key_enc_algor
 key_id
-key_type
 keyblob header parse error
 keyblob too short
 keyfunc

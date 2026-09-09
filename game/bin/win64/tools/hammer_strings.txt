@@ -40366,7 +40366,6 @@ keyIdentifier
 keyInfo
 keyUsage
 key_enc_algor
-key_type
 key_value_text
 keyblob header parse error
 keyblob too short

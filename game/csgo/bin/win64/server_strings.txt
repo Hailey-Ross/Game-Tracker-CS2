@@ -1159,6 +1159,7 @@ $tH@T\tI
 %Gdnv
 %I64i
 %\n CS_UM_ProcessSpottedEntityUpdate
+%\n CS_UM_UpdateTeamMoney_CSGOLegacy
 %\n k_EGCMsgAccountPhoneNumberChange
 %\n k_EGCMsgGCAccountVacStatusChange
 %\n k_EMsgGCDeliverGiftResponseGiver
@@ -1368,7 +1369,6 @@ $tH@T\tI
 %s:  %s WRITE %s in CEntity2SaveRestore::EntityPatchWrite\n
 %s:  %s WRITE DirectoryClear( %s, %s )\n
 %s:  %s WRITE DirectoryCopy Append( %s [%u] )\n
-%s:  %s WRITE DirectoryCopy( %s, %p )\n
 %s:  %s WRITE DirectoryExtract( %s, %s )\n
 %s:  %s WRITE KV3 TO %s in CEntity2SaveRestore::EntityDataWrite\n
 %s:  %s WRITE Queue AsyncWrite(%s) in CEntity2SaveRestore::EntityPatchWrite\n
@@ -1924,6 +1924,7 @@ $tH@T\tI
 (delay: number)
 (enabled: boolean)
 (fS{ggRcjh
+(followConfig: CameraFollowConfig)
 (from angle, to angle, time) - Spherical lerp of angle from->to based on time
 (hInflictor, hAttacker, flDamage) - Allocate a damageinfo object, used as an argument to TakeDamage(). Call DestroyDamageInfo( hInfo ) to free the object.
 (h`H1pqA
@@ -1937,6 +1938,7 @@ $tH@T\tI
 (int iIndex, int iPoint, VectorWS vOrigin, Vector vecForward ) - Set the origin and forward direction for a control on a particle effect
 (int index, bool bDestroyImmediately) - Destroy a particle, if bDestroyImmediately destroy it without playing end caps.
 (jvg;
+(mode: CustomCameraMode)
 (mode: number)
 (modelName:string)
 (moveType: CSMoveType)
@@ -2014,6 +2016,7 @@ $tH@T\tI
 *** COMPILE ERROR ***
 *** PANIC ***\n
 *** Test failure: "%s"
+***** TOO MANY NODES ADDED. SKIPPING. *****
 ******************************************************************\n
 ******************************************************************\nGRAPH PARAMETERS FOR: %s \n
 *,vJEd
@@ -3057,6 +3060,7 @@ $tH@T\tI
 .?AV?$CEntitySpawner@VCBaseEntity@@@@
 .?AV?$CEntitySpawner@VCBaseModelEntity@@@@
 .?AV?$CEntitySpawner@VCBeam@@@@
+.?AV?$CEntitySpawner@VCCSCustomPlayerCamera@@@@
 .?AV?$CEntitySpawner@VCCSObserverPawn@@@@
 .?AV?$CEntitySpawner@VCCSPlayerCamera@@@@
 .?AV?$CEntitySpawner@VCCSPlayerController@@@@
@@ -3097,6 +3101,7 @@ $tH@T\tI
 .?AV?$CEntitySpawnerBase@VCBaseEntity@@@@
 .?AV?$CEntitySpawnerBase@VCBaseModelEntity@@@@
 .?AV?$CEntitySpawnerBase@VCBeam@@@@
+.?AV?$CEntitySpawnerBase@VCCSCustomPlayerCamera@@@@
 .?AV?$CEntitySpawnerBase@VCCSObserverPawn@@@@
 .?AV?$CEntitySpawnerBase@VCCSPlayerCamera@@@@
 .?AV?$CEntitySpawnerBase@VCCSPlayerController@@@@
@@ -3489,6 +3494,7 @@ $tH@T\tI
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hEffectEntity@1@@@
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hEndPoint@CRopeKeyframe@@@@
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hEntAttached@CEntityFlame@@@@
+.?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hFollowEntity@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hGroundEntity@1@@@
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hObserverTarget@CPlayer_ObserverServices@@@@
 .?AV?$CNetworkHandleBase@VCBaseEntity@@VNetworkVar_m_hOwnerEntity@1@@@
@@ -3517,7 +3523,7 @@ $tH@T\tI
 .?AV?$CNetworkHandleBase@VCCSPlayerPawn@@VNetworkVar_m_hPlayerPawn@CCSPlayerController@@@@
 .?AV?$CNetworkHandleBase@VCCSPlayerPawn@@VNetworkVar_m_hPrevOwner@CCSWeaponBase@@@@
 .?AV?$CNetworkHandleBase@VCCSPlayerPawn@@VNetworkVar_m_leader@CChicken@@@@
-.?AV?$CNetworkHandleBase@VCCSPlayerPawnBase@@VNetworkVar_m_hPawn@CCSPlayerCamera@@@@
+.?AV?$CNetworkHandleBase@VCCSPlayerPawnBase@@VNetworkVar_m_hPawn@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkHandleBase@VCCSWeaponBase@@VNetworkVar_m_hSwitchToWeaponAfterThrow@CBaseCSGrenade@@@@
 .?AV?$CNetworkHandleBase@VCColorCorrection@@VNetworkVar_m_hColorCorrectionCtrl@CPlayer_CameraServices@@@@
 .?AV?$CNetworkHandleBase@VCFogController@@VNetworkVar_m_hCtrl@fogplayerparams_t@@@@
@@ -4034,6 +4040,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flBrightnessScale@CEnvSky@@@@
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flBrightnessScale@CLightComponent@@@@
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flCTTimeOutRemaining@CCSGameRules@@@@
+.?AV?$CNetworkVarBase@MVNetworkVar_m_flCameraOffsetReturnStrength@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flCapsuleLength@CLightComponent@@@@
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flCapsuleRadius@CCollisionProperty@@@@
 .?AV?$CNetworkVarBase@MVNetworkVar_m_flColorTemperature@CBarnLight@@@@
@@ -4585,6 +4592,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@W4CSPlayerBlockingUseAction_t@@VNetworkVar_m_iBlockingUseActionInProgress@CCSPlayerPawn@@@@
 .?AV?$CNetworkVarBase@W4CSPlayerState@@VNetworkVar_m_iPlayerState@CCSPlayerPawnBase@@@@
 .?AV?$CNetworkVarBase@W4CSWeaponMode@@VNetworkVar_m_weaponMode@CCSWeaponBase@@@@
+.?AV?$CNetworkVarBase@W4CustomCameraMode_t@@VNetworkVar_m_nCameraMode@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkVarBase@W4DoorState_t@@VNetworkVar_m_eDoorState@CBasePropDoor@@@@
 .?AV?$CNetworkVarBase@W4EKillTypes_t@@VNetworkVar_m_killType@CDamageRecord@@@@
 .?AV?$CNetworkVarBase@W4EntityDissolveType_t@@VNetworkVar_m_nDissolveType@CEntityDissolve@@@@
@@ -4677,6 +4685,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bClientClothCreationSuppressed@CModelState@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bClientSide@CColorCorrection@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bClientSideRagdoll@CBaseEntity@@@@
+.?AV?$CNetworkVarBase@_NVNetworkVar_m_bClipCameraOffset@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bCollapseToForcePoint@CTriggerPhysics@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bConstrainBetweenEndpoints@CRopeKeyframe@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bContactShadow@CBarnLight@@@@
@@ -4701,7 +4710,6 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnableIndirect@CEnvVolumetricFogController@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CBarnLight@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CBaseClientUIEntity@@@@
-.?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CCSPlayerCamera@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CColorCorrection@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CEnvSky@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bEnabled@CFuncMonitor@@@@
@@ -4723,6 +4731,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bFlashing@CGlowProperty@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bFlicker@CLightComponent@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bFogEnable@CPointCamera@@@@
+.?AV?$CNetworkVarBase@_NVNetworkVar_m_bFollowEyes@CCSCustomPlayerCamera@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bFollowPlayerAcrossTeleport@CPointClientUIWorldPanel@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bForceShadowsEnabled@CBarnLight@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bFreezePeriod@CCSGameRules@@@@
@@ -4762,7 +4771,6 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bInspectPending@CCSWeaponBase@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bInspectShouldLoop@CCSWeaponBase@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bIsBuyMenuOpen@CCSPlayerPawn@@@@
-.?AV?$CNetworkVarBase@_NVNetworkVar_m_bIsControllingAngles@CCSPlayerCamera@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bIsDefusing@CCSPlayerPawn@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bIsDroppingItems@CCSGameRules@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bIsEnabled@CGradientFog@@@@
@@ -4816,6 +4824,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bNoRamp@CParticleSystem@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bNoSave@CParticleSystem@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bNoSky@CPointCamera@@@@
+.?AV?$CNetworkVarBase@_NVNetworkVar_m_bObservable@CCSCustomHudLayout@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bOldJumpPressed@CCSPlayerLegacyJump@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bOnlyRenderToTexture@CPointClientUIWorldPanel@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bOpaque@CPointClientUIWorldPanel@@@@
@@ -4910,6 +4919,8 @@ $tH@T\tI
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vCapsuleCenter2@CCollisionProperty@@V1@@@
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vInitialVelocity@CBaseCSGrenadeProjectile@@V1@@@
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecBaseVelocity@CBaseEntity@@V1@@@
+.?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecCameraOffset@CCSCustomPlayerCamera@@V1@@@
+.?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecFollowOffset@CCSCustomPlayerCamera@@V1@@@
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecForce@CBaseAnimGraph@@V1@@@
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecLadderDir@CFuncLadder@@V1@@@
 .?AV?$CNetworkVectorBase@V?$Vec3D@M@@VNetworkVar_m_vecLeft@CPlayerSprayDecal@@V1@@@
@@ -5871,6 +5882,7 @@ $tH@T\tI
 .?AVCCSChickenManager@@
 .?AVCCSCustomHudLayout@@
 .?AVCCSCustomHudLayoutState@@
+.?AVCCSCustomPlayerCamera@@
 .?AVCCSEntitySpotting@@
 .?AVCCSEventLog@@
 .?AVCCSFatDemoRecorder@@
@@ -8401,6 +8413,7 @@ $tH@T\tI
 .?AW4CSPlayerBlockingUseAction_t@@
 .?AW4CSPlayerState@@
 .?AW4CSWeaponMode@@
+.?AW4CustomCameraMode_t@@
 .?AW4DoorState_t@@
 .?AW4EHudPanelClassStatus_t@@
 .?AW4EKillTypes_t@@
@@ -8905,7 +8918,6 @@ $tH@T\tI
 0pp@5tqE?|sO541
 0tU+xc:
 0x%s
-0xvU
 0|2;#GameUI_Retake_Card_BackInAFlash,1,1,weapon_ump45,grenade0|2;#GameUI_Retake_Card_AllIn,1,1,weapon_galilar|1;#GameUI_Retake_Card_BoomBox,1,1,weapon_mac10,grenade2,grenade1|1;#GameUI_Retake_Card_SetThemFree,1,1,weapon_ssg08,grenade0
 0|2;#GameUI_Retake_Card_BlindFire,1,0,weapon_elite,grenade0|2;#GameUI_Retake_Card_QueOta,0,0,weapon_deagle|1;#GameUI_Retake_Card_SmokeScreen,0,0,weapon_p250,grenade1|1;#GameUI_Retake_Card_TecTecBoom,0,0,weapon_tec9,grenade2
 0|2;#GameUI_Retake_Card_OlReliable,1,1,rifle1,grenade0|1;#GameUI_Retake_Card_SmokeShow,1,1,rifle1,grenade1|1;#GameUI_Retake_Card_HotShot,1,1,rifle1,grenade3|1;#GameUI_Retake_Card_EyeSpy,1,1,weapon_sg556,grenade2
@@ -8988,6 +9000,7 @@ $tH@T\tI
 2\n.eRollType
 2\n\nline_items
 2\rlhp
+2\vp4
 2^pV
 2a"l
 2bT~
@@ -9045,6 +9058,7 @@ $tH@T\tI
 3|rN>
 4)#bH
 4)m1
+4+$PuQ
 474E4U4W4c4i4m4
 4<Td
 4@AA
@@ -9067,7 +9081,6 @@ $tH@T\tI
 4\vU44
 4a\v6;
 4f h
-4t\ng
 4tpD
 4zj@1;IJ
 4|2;#GameUI_Retake_Card_LightEmUp,1,1,rifle1,grenade0|2;#GameUI_Retake_Card_Kobe,1,1,rifle1,grenade2|1;#GameUI_Retake_Card_1g,1,1,rifle1,grenade3|1;#GameUI_Retake_Card_DisappearingAct,1,1,rifle1,grenade1|1;#GameUI_Retake_Card_EyesOnTarget,1,1,weapon_aug
@@ -9116,18 +9129,13 @@ $tH@T\tI
 6%vi
 6,2K
 6-zeZ
-609[
 62$|S)6f
 64CK\vH
 666666666666666666666666666666666666666666666666\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\ssl\s3_enc.c
-6666666666666666`
+6666666666666666unusual
 67-s
 6H,N
 6O|T%
-6P3[
-6PE[
-6PO[
-6PS[
 6Qd=
 6\n1k_EGCItemCustomizationNotification_CasketContents
 6\n1k_EGCItemCustomizationNotification_ExtractSticker
@@ -9151,6 +9159,7 @@ $tH@T\tI
 6lkc
 6myY;
 6pA[
+6pw[
 6qo~
 6r-m_v
 6r1ij
@@ -9198,8 +9207,6 @@ $tH@T\tI
 8??SetInternalFieldCount@ObjectTemplate@v8@@QEAAXH@Z
 8?PerformMicrotaskCheckpoint@Isolate@v8@@QEAAXXZ
 8A6j
-8F06[
-8F@5[
 8GZS
 8SIffK5W
 8TZvrv<
@@ -9396,6 +9403,7 @@ $tH@T\tI
 >p00<
 >yhP
 >ztq
+?%s:  %s WRITE DirectoryCopy( %s, %p )\n
 ?33s?
 ??0CFunction@v8@@QEAA@PEBXPEBVCFunctionInfo@1@@Z
 ??0CFunctionInfo@v8@@QEAA@AEBVCTypeInfo@1@IPEBV21@W4Int64Representation@01@@Z
@@ -9442,9 +9450,7 @@ $tH@T\tI
 ?HAI\t81\t9dcG'
 ?HP4
 ?HasCaught@TryCatch@v8@@QEBA_NXZ
-?How much we scale physics impacts against the ragdoll.
 ?No data
-?SaveRestoreIO
 ?VBH;
 ?\n:k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse
 ?\n:k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions
@@ -9459,21 +9465,22 @@ $tH@T\tI
 ?gwL
 ?jOb
 ?m_Stops
+?ragdollelement_t
 ?srJO
 ?tya
 ?uWS
+?vHingeAxis
 ?x29
 @!@%@+@1@?@C@E@]@a@g@m@
-@08NT
 @0pp
 @333
 @333?
 @33s@
-@6PG[
 @?SlowGetAlignedPointerFromInternalField@Object@v8@@AEAAPEAXH@Z
 @Aff
 @BH]f
 @BoneSetup
+@CCSObserverPawn_API
 @HPX`hv
 @MfKZ
 @Pgl
@@ -9490,8 +9497,10 @@ $tH@T\tI
 @dKb]
 @fff>fff>fff>fff>
 @i1V
-@m_bIsPlayingPreIdle
+@m_flGotHostageTalkTimer
+@m_iszSceneFile
 @n2w
+@noteam
 @player_start_teleport_destination
 @workshop
 A CT bot doesn't know what to do while the bomb is planted!\n
@@ -9502,7 +9511,6 @@ A string associated with this Cursor, to use later for remote Kill or Wait reque
 A uniform random number generator.
 A!A3A5A;A?AYAeAkAwA{A
 A%N_A
-A***** TOO MANY NODES ADDED. SKIPPING. *****
 A,uw"
 A.00h
 A2VPD
@@ -9512,7 +9520,6 @@ A<fP
 A>x8
 A@d0I
 AA Compromise
-AA:P@
 AABB
 AABBDirection
 AACompromise
@@ -9872,6 +9879,7 @@ AmmoCount/%s
 AmmoCount/current
 Amplitude
 An RR_Concept couldn't find its string in the symbol table!\n
+Anav_obstruction_draw_change
 Anchor
 Anchor Actor
 Anchor Is External
@@ -10074,6 +10082,8 @@ BAsyncSend
 BAsyncSendProto
 BC (default)
 BCBtActionMoveTo
+BCCSCustomHudLayoutState
+BDelay player slowdown when damaged by # ticks to reduce misprediction effects
 BEOS_BIND_FUNC
 BEOS_BIND_VAR
 BEOS_LOAD
@@ -10292,7 +10302,6 @@ Begin_Bomb_Defuse_With_Kit
 Begin_Bomb_Defuse_Without_Kit
 BendLineOfSight
 Bh;+j
-BhEntityParent
 Big Number part of OpenSSL 1.0.2j  26 Sep 2016
 BigShot
 Bindings for CBaseAnimGraphDestructibleParts_GraphController\n
@@ -10320,7 +10329,6 @@ Bloodlvl3
 Bloodlvl4
 Bloodlvl5
 Bloodlvl6
-Bm_nCashStackValue
 BoX5
 Body Component Scriptdesc
 BodyGameSystem
@@ -10377,7 +10385,6 @@ BreakableContentsType
 Breakables
 Breaks in the debugger
 Bs'n
-Bsv_runcmds
 Bu 5
 Buffer too small
 BuildCacheSubscribed(CEconAccountSeasonalOperationGS)
@@ -11171,6 +11178,7 @@ CEntityScriptFramework
 CEntitySpawner<class CBaseEntity>::Spawn
 CEntitySpawner<class CBaseModelEntity>::Spawn
 CEntitySpawner<class CBeam>::Spawn
+CEntitySpawner<class CCSCustomPlayerCamera>::Spawn
 CEntitySpawner<class CCSObserverPawn>::Spawn
 CEntitySpawner<class CCSPlayerCamera>::Spawn
 CEntitySpawner<class CCSPlayerController>::Spawn
@@ -11923,6 +11931,8 @@ CONNECTED_TO_NAV_LINK_IN
 CONNECTED_TO_NAV_LINK_OUT
 CONN_CTRL
 CONN_STATE
+CONTROLLED
+CONTROLLED_POSITION
 COPY_EMAIL
 COPY_ISSUER
 CPBQ
@@ -12450,7 +12460,7 @@ CSoundscapeSystem::Init:  Manifest '%s' with bogus file type '%s', expecting 'fi
 CSource1LegacyGameEventGameSystem
 CSource2GameClients::StartHLTVServer: game event %s not found.\n
 CSource2GameEntities::CheckEntities: %d ents\n
-CSource2GameEntities::CheckTransmit(), C:\buildworker\csgo_rel_win64\build\src\game\server\gameinterface.cpp:3135
+CSource2GameEntities::CheckTransmit(), C:\buildworker\csgo_rel_win64\build\src\game\server\gameinterface.cpp:3221
 CSource2Server::ApplyGameSettings game settings payload received:\n
 CSource2Server::GameFrame
 CSource2Server::GameServerSteamAPIActivated()\n
@@ -13346,6 +13356,7 @@ Cursors Allowed To Run Parallel
 Cursors Allowed To Wait
 Custom time span %d
 CustomBuy
+CustomCameraMode
 CustomCharacter
 CustomGameEventManager
 CustomHudLayout
@@ -13359,6 +13370,7 @@ CustomOutput6
 CustomOutput7
 CustomOutput8
 CustomOutput9
+CustomPlayerCamera
 D"bu
 D#D)D;D?DEDKDQDSDYDeDoD
 D(n%6
@@ -14603,6 +14615,7 @@ FLASHBANG: %0.2f \n
 FLYGRAVITY
 FN|p
 FOLLOW
+FOLLOW_POSITION
 FORCE_DEATH
 FORCE_NOT_USED
 FORM
@@ -15276,6 +15289,7 @@ GetController() : Returns the controller for this pawn
 GetCounter
 GetCurrentGraphTimingInfo
 GetCursorInfo
+GetCustomCamera
 GetDamage
 GetDamageCustom
 GetDamageForce
@@ -15333,6 +15347,7 @@ GetMaxClipAmmo
 GetMaxHealth
 GetMaxOutputDelay
 GetMaxReserveAmmo
+GetMode
 GetModelName
 GetModelScale
 GetMoneyEarnedForNextRound
@@ -15389,6 +15404,7 @@ GetPlantFinishTime
 GetPlantStartTime
 GetPlantTime
 GetPlanter
+GetPlayer
 GetPlayerController
 GetPlayerLimits:  default maxplayers must be >= 1 (%i)
 GetPlayerLimits:  max players limited to %i
@@ -15550,6 +15566,7 @@ HARD
 HAS_LADDERS
 HB@T\tJ
 HBJ\nTRF
+HBnpcsolve_path_lookahead_const
 HDR Color Scale: %0.3f
 HEAD
 HEAD 
@@ -17173,7 +17190,9 @@ Method %s.%s invoked with incorrect 'this' value.
 Method %s.%s invoked with unrecognized 'this' value.
 Method %s.%s requires %d argument(s), %s.
 Method CSPlayerPawn.GetCamera failed to spawn a cs_player_camera.\n
+Method CSPlayerPawn.GetCustomCamera failed to spawn a custom_player_camera.\n
 Method CSPlayerPawn.SetHasHelmet cannot be called with `true` while armor value is 0.\n
+Method CustomPlayerCamera.SetFollowConfig invoked with bad followEntity value.\n
 Method Entity.Move invoked with bad newValues value.\n
 Method Entity.SetMoveType cannot be called with CSMoveType.INVALID. It is invalid...\n
 Method Entity.TakeDamage invoked with bad damage value.\n
@@ -18156,11 +18175,9 @@ P-256
 P-384
 P-521
 P08@J
-P08J
-P08NT
+P08J }
 P1\t98"
 P5[1
-P6@O[
 P@33
 PAGN_4
 PANIC
@@ -18758,7 +18775,6 @@ Pushing linear hard!\n
 Pushing rotation hard!\n
 PutClientInServer: no info_player_logo on level\n
 PutClientInServer: no info_player_start on level\n
-PxvU
 P|iC\r
 Q*hd
 Q/xtJ2
@@ -18963,6 +18979,7 @@ RSA_verify_ASN1_OCTET_STRING
 RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
 RTime32
+R\fp4
 R\r1>Vp
 R\vp!y
 R]Di
@@ -19571,6 +19588,7 @@ SaveImportant
 SaveJob
 SaveRestore
 SaveRestoreDataVersion001
+SaveRestoreIO
 SaveRestoreIOFiltered
 SaveRestoreSyncIO
 Saved to '%s' steam cloud\n
@@ -19872,6 +19890,7 @@ SegmentCount
 Select All
 Select None
 SelectAreaWithinRadius
+SelectOnObservableRecipientsFilter
 Selected %d areas.\n
 Selected %d hostage positions '
 Selected Attribute Types
@@ -20187,6 +20206,7 @@ SetFogStartDistance
 SetFogStartHeight
 SetFogStrength
 SetFogVerticalExponent
+SetFollowConfig
 SetForce
 SetForwardVector
 SetFrequency
@@ -20259,6 +20279,7 @@ SetMinExposure
 SetMinHitpointsThreshold
 SetMinLimit
 SetMinSuspensionOffset
+SetMode
 SetModel
 SetModelScale
 SetMotorTargetAngle
@@ -20465,7 +20486,6 @@ Simulated GC communications failure is not active.\n
 Sine of angle. Input in radians, output in radians
 SingleItemDescription
 SinglePlayerSharedMemory001
-SingleSlotOnlyRecipientsFilter
 Skill
 Skill: %d%%
 Skin
@@ -21917,9 +21937,7 @@ X\n\vLoadoutItem
 X\tQo
 X`hr
 Xd3h
-Xf@8[
 XfJ7
-Xf`9[
 XjfR
 XpProgressData
 XqgA+
@@ -22279,8 +22297,6 @@ Z~wl
 \f]ne3
 \fdhWTh
 \fiaR
-\fp\vPxvU
-\fp\v`xvU
 \ful2
 \fy&3Gl
 \l:ArR
@@ -22592,8 +22608,6 @@ Z~wl
 \n\rCS_UM_BarTime
 \n\rCS_UM_HudText
 \n\rCS_UM_KillCam
-\n\rCS_UM_SayText
-\n\rCS_UM_TextMsg
 \n\rEM_PlayJingle
 \n\rEWT_Equipment
 \n\rMLPlayerState
@@ -22916,6 +22930,7 @@ Z~wl
 \n\vteam_invite
 \n\vteam_number
 \n\vteam_scores
+\n\vtextallchat
 \n\vticket_data
 \n\vtime_cached
 \n\vtime_played
@@ -23028,7 +23043,6 @@ Z~wl
 \v\vTSG
 \vj0k
 \vjC7
-\vpxvU
 ] Done (%.2f seconds)
 ]1h=bfz
 ]FhSD}
@@ -23106,8 +23120,6 @@ _xU`u
 _}eOk
 `28)fk
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
-`6PH[
-`6pJ[
 `:zQF
 `D$daM-l
 `DZG
@@ -23120,7 +23132,6 @@ _}eOk
 `fPw.\vM
 `h9T~
 `o_je
-`xvU
 `yNT
 a null shared library handle was used
 a trigger_changelevel doesn't have a map
@@ -23138,7 +23149,6 @@ a:typeparam
 a;Tg
 a@XZ
 aA0k
-aBvT
 aD/x
 aDSS
 aECDH
@@ -24248,6 +24258,8 @@ camellia-256-ofb
 camellia128
 camellia192
 camellia256
+cameraOffset
+cameraOffsetReturnStrength
 camera_path_add\n
 camera_path_clear_all\n
 camera_path_delete\n
@@ -24300,7 +24312,6 @@ cast5-cbc
 cast5-cfb
 cast5-ecb
 cast5-ofb
-caster
 castshadows
 casual
 catchup
@@ -24415,8 +24426,6 @@ cipher parameter initialisation error
 cipher table src error
 cisc
 citadel_snd_opvar_set_obb
-cl_decryptdata_key
-cl_decryptdata_key_pub
 cl_imgui_set_selection %i
 cl_interp backtrack
 cl_soundscape_flush\n
@@ -24458,6 +24467,7 @@ clientid
 clientmessages.proto
 clientmessages.proto">\n
 climbable
+clipCameraOffset
 clip_3D_skybox_near_to_world_far
 clip_3D_skybox_near_to_world_far_offset
 clip_is_public
@@ -24839,6 +24849,7 @@ customOutputValue
 custom_game_state_1
 custom_hud
 custom_hud_layout
+custom_player_camera
 custom_sound
 custom_type
 customcubemaptexture
@@ -26305,6 +26316,10 @@ fogstart
 fogstartheight
 fogstrength
 fogverticalexponent
+followConfig
+followEntity
+followEyes
+followOffset
 follow_attachment
 follow_center
 follow_customorigin
@@ -26724,6 +26739,7 @@ hEntity to follow, string BoneOrAttachName
 hEntityA
 hEntityB
 hEntityCharacter
+hEntityParent
 hF\rDz
 hFaceEntity
 hFcg
@@ -29146,7 +29162,6 @@ not_for_rentals
 notarget OFF\n
 notarget ON\n
 note
-noteam
 noticeNumbers
 noticenos
 noticeref
@@ -29159,7 +29174,6 @@ notifyforcemintime_z
 notmostrecent
 notsolid
 nova
-np5[
 npc_ability_name
 npc_select %i
 npc_vehicle
@@ -29232,6 +29246,7 @@ objective_data
 objects_modified
 objsign
 obs_mode
+observable
 observable_listeners
 observable_scope
 observer
@@ -29425,14 +29440,13 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
-p08@H^T
-p0jpU
 p250
 p2{l
 p4Z3
 p5Z3
 p5\nL,
 p618
+p6pQ[
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
 p@0pqE5tsO?|1
 pActivator
@@ -30245,7 +30259,6 @@ pvk data too short
 pvk too short
 pvs_modify_entity
 pvsplayer
-pxvU
 pzKD)
 q not prime
 q&A\nn
@@ -30305,6 +30318,7 @@ rX&O0
 rZ1VwGf5
 rZPM
 r\vDi
+r\vp4
 rad2deg
 radio.go
 radio.letsgo
@@ -32398,7 +32412,6 @@ tournament_team_id
 tournament_teams
 tournamentinfo
 tpBasis
-tp\nP
 tq}a
 trace
 traceHitboxes
@@ -32700,7 +32713,6 @@ unused (weapon_smg2) 22
 unused 15
 unused 19
 unused_breakmodelsnottomake
-unusual
 unusuals
 unweighted
 unwrap error
@@ -32814,7 +32826,6 @@ vDirection
 vEndPos
 vF'l
 vForward
-vHingeAxis
 vOrigin
 vPoint
 vPoint1

@@ -18,10 +18,11 @@
   version used : %u.%u\n
  !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
  %dms faster than direct ping of %dms
- (08@HPX`j
+ (08@HPX`j0
  (08@HPXb
- (08@HPZ
+ (08@HPZ0
  (08@HR
+ (08@J0
  (0X`hpz
  - keeping around as cacheable shared connection
  [+add recip %d]
@@ -258,18 +259,23 @@
 0 bit issue, spot 2
 0 bit issue, spot 3
 0 bit issue, spot 4
-08@HR
+08@HR0
 08@J
-0v(J
-2\vp\fH
+08B0
+0vHN
+2\vp,L
+2\vp4;
 7;eZ
+8@J0
 ::Storage_t
 <classname> <fieldname>:  spew why field was excluded from networking for classname.
-@08N(J
-@60R
-@60T
-@HPX`hv0d
-@HV@r
+@08NHN
+@6PV
+@6PX
+@HPX`hvPh
+@HV`v
+@fHN
+@nHN
 Accepting Steam Net connection %s\n
 AckSeqNum
 Activates/deactivates net message validation
@@ -671,9 +677,9 @@ Order,'From','To',Bits\n
 OutSeqNumAck
 Overrides IP for multihomed hosts
 P08@J
-P08J
-P08N(J
-P6`R
+P08JP
+P08NHN
+P6`b
 PACKET_STATUS_DROPPED
 PACKET_STATUS_INVALID
 PACKET_STATUS_NORMAL
@@ -731,7 +737,7 @@ QueueCallback( %s ) '%s' using value type (%s) on struct field, ignoring!\n
 QueueChange
 QueueReplayCompatFieldChange( %s ): can't place MNetworkReplayCompatField callback on a fully fake struct (e.g., a pointed to component or object), game code should move callback on entity %d to a C_BaseEntity derived class!\n
 QueueTimeMS
-R\vp\fH
+R\vp,L
 RadianEuler
 ReadFields
 Recv
@@ -861,8 +867,7 @@ VectorWS
 WriteFields
 WriteToBuffer Message %s is not initialized! Probably missing required fields!\n
 Writing %d bits for path %s of serializer %s entity %d, this will fail to parse\n
-X`hr
-Xfpv
+X`hr0
 [ Net Message Info: %s ]\n
 [%s] Queued message count %d exceeds limit of %s=%d.  Allowing due to engine_frametime_warnings_enable=false\n
 [%s] high frame misdelivery %.1f%%, %d/%d of %d frames dropped/reordered, %.0fms ping, %.0fms peak jitter\n
@@ -886,11 +891,12 @@ Xfpv
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t
 \vInSeqNum
 \vMsgTick
-`6PT
-`6PU
-`6PV
-`6pO
-aBv(J
+`6pX
+`6pY
+`6pZ
+`fHN
+`nHN
+aBvHN
 activated
 added
 aggegated
@@ -1074,7 +1080,8 @@ out-of-order
 outgoing_data_bytespersecond
 outgoing_sequence
 outgoing_sequence_start
-p08@H^(J
+p08@H^HN
+p>HN
 p\rP\f0!h
 packet_status
 parallel
@@ -1083,7 +1090,7 @@ pending data
 pmInfoDest.m_pFlattenedSerializer
 pmInfoDest.m_unPolymorphicTypeId == pmInfoSource.m_unPolymorphicTypeId
 pmInfoSource.m_pFlattenedSerializer
-pn(J
+pnHN
 pointer field
 polymorphic
 polymorphic [forced]
