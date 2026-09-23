@@ -38957,7 +38957,7 @@
 			name = ""
 			group = "GameStartup"
 			source_file = "src/game/client/cstrike15/panorama/csgo_crosshair.cpp"
-			source_line = 217
+			source_line = 222
 			resources = 
 			[
 				resource_name:"materials/dev/csgo_crosshair.vmat",

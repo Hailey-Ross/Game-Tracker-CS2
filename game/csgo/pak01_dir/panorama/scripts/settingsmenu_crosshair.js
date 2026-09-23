@@ -102,6 +102,12 @@ var SettingsMenuCrosshairSettings;
             $("#XhairDynamicSpreadDist").visible = true;
             $("#XhairDynamicSpreadDistSeparator").visible = true;
         }
+        else if (nStyle == 8) {
+            $("#XhairCenterDot").visible = true;
+            $("#XhairCenterDotSeparator").visible = true;
+            $("#XhairGap").visible = true;
+            $("#XhairGapSeparator").visible = true;
+        }
         $("#CrosshairEditorPreview").SetHasClass("dynamic-crosshair", nStyle === 0 || nStyle === 1 || nStyle === 2 || nStyle === 6);
         let obsCrosshairs = parseInt(GameInterfaceAPI.GetSettingString('cl_show_observer_crosshair'));
         let showObserverBotSetting = (obsCrosshairs === 2);
@@ -158,7 +164,7 @@ var SettingsMenuCrosshairSettings;
             }
         }
     }
-    const k_arrNewCrosshairStyles = [3, 6, 0, 1, 7];
+    const k_arrNewCrosshairStyles = [3, 6, 0, 1, 7, 8];
     const k_arrTaggedCrosshairSettings = [
         { id: 'XhairStyle', loc_name: '#GameUI_CrosshairStyle', tag: 'new', loc_tooltip: '#GameUI_CrosshairUpdated_Style' },
         { id: 'XhairColorPicker', loc_name: '#GameUI_CrosshairColor', tag: 'updated', loc_tooltip: '#GameUI_CrosshairUpdated_Info' },

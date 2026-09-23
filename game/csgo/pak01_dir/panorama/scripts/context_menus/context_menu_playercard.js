@@ -94,7 +94,7 @@ var ContextmenuPlayerCard;
             icon: 'pet_book',
             AvailableForItem: (id) => {
                 return !GameStateAPI.IsLocalPlayerPlayingMatch() && _IsSelf(id) &&
-                    (InventoryAPI.GetPetItemID() !== '' || _RetiredPetBookKeys().length > 0);
+                    (_HatchedPetItemID() !== '' || _RetiredPetBookKeys().length > 0);
             },
             OnSelected: () => _ShowPetBookMenu(),
         },
@@ -352,6 +352,11 @@ var ContextmenuPlayerCard;
     function _IsSelf(id) {
         return id === MyPersonaAPI.GetXuid();
     }
+    function _HatchedPetItemID() {
+        const strLivePet = InventoryAPI.GetPetItemID();
+        const nStage = strLivePet === '' ? 0 : Number(InventoryAPI.GetItemAttributeValue(strLivePet, '{uint32}upgrade level'));
+        return nStage > 0 ? strLivePet : '';
+    }
     function _RetiredPetBookKeys() {
         const strLivePet = InventoryAPI.GetPetItemID();
         const strLivePrefix = strLivePet === '' ? '' : '_p' + strLivePet + '_x';
@@ -371,7 +376,7 @@ var ContextmenuPlayerCard;
     function _ShowPetBookMenu() {
         const elPanel = $.GetContextPanel();
         const items = [];
-        if (InventoryAPI.GetPetItemID() !== '') {
+        if (_HatchedPetItemID() !== '') {
             items.push({ label: _LivePetBookLabel(elPanel), jsCallback: _OpenLivePetBook });
         }
         _RetiredPetBookKeys().forEach((strCloudKey, nIndex) => {

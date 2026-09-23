@@ -56,7 +56,7 @@ var PetPhotoLibrary;
     function LoadFromDisk(strPetKey) {
         _m_strPetKey = strPetKey;
         const aFiles = (strPetKey === '') ? [] :
-            GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(strPetKey) + '/*.png', 'USRLOCAL');
+            GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(strPetKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL');
         aFiles.sort();
         aFiles.reverse();
         _m_aFiles = aFiles;

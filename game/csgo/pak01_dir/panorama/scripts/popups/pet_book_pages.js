@@ -197,8 +197,8 @@ var PetBookPages;
         if (_m_strBookKey === '') {
             return [];
         }
-        return GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(_m_strBookKey) + '/*.png', 'USRLOCAL')
-            .concat(GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*.png', 'USRLOCAL'));
+        return GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(_m_strBookKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL')
+            .concat(GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL'));
     }
     function _BuildShown() {
         const aPhotos = _AllPhotos();
@@ -250,7 +250,7 @@ var PetBookPages;
         if (_m_strBookKey === '') {
             return;
         }
-        GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*.png', 'USRLOCAL').forEach(strFileName => {
+        GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL').forEach(strFileName => {
             const place = PetPhotoTag.PlaceOf(strFileName);
             if (!place || place.slot === PetPhotoTag.SLOT_UNPLACED) {
                 return;
@@ -298,10 +298,10 @@ var PetBookPages;
         if (_m_strBookKey === '') {
             return;
         }
-        const aBook = GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*.png', 'USRLOCAL');
+        const aBook = GameInterfaceAPI.FindFiles(PetPhotoTag.BookFolder(_m_strBookKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL');
         const inBook = {};
         aBook.forEach(strFileName => { inBook[PetPhotoTag.CaptureMS(strFileName)] = true; });
-        GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(_m_strBookKey) + '/*.png', 'USRLOCAL').forEach(strFileName => {
+        GameInterfaceAPI.FindFiles(PetPhotoTag.LibraryFolder(_m_strBookKey) + '/*' + PetPhotoTag.EXT, 'USRLOCAL').forEach(strFileName => {
             if (inBook[PetPhotoTag.CaptureMS(strFileName)]) {
                 GameInterfaceAPI.DeletePetPhoto(_m_strBookKey, strFileName);
             }

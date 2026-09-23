@@ -446,8 +446,7 @@
 08@J
 08BPb
 0x%4.4x 
-2\vpd
-2\vpdl
+2\vpl
 3?New@Number@v8@@SA?AV?$Local@VNumber@v8@@@2@PEAVIsolate@2@N@Z
 3?New@Object@v8@@SA?AV?$Local@VObject@v8@@@2@PEAVIsolate@2@@Z
 5butt
@@ -493,7 +492,6 @@
 ?GetName@Function@v8@@QEBA?AV?$Local@VValue@v8@@@2@XZ
 ?GlobalizeReference@api_internal@v8@@YAPEA_KPEAVIsolate@internal@2@_K@Z
 ?HasCaught@TryCatch@v8@@QEBA_NXZ
-@08N,
 @2Pb
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @DebugIndividualStyle
@@ -1117,7 +1115,6 @@ Option_%d
 OverMaxPips
 P08@J
 P08J 
-P08N,
 P2Pb
 PageDown
 PageLeft
@@ -1192,7 +1189,7 @@ PropertySection
 PropertyTransitionEnd
 RBLegend
 RT_txt
-R\fpd
+R\vpl
 RadioBox
 RadioButton
 RadioSelected
@@ -1607,8 +1604,8 @@ WindowOffScreen
 WindowOnScreen
 WindowShown
 Wrapper
+WriteCompositionLayerJPEG
 WriteCompositionLayerPNG
-WriteCompositionLayerPNGScaled
 XInputPad
 X`hrPb
 Y_txt
@@ -1626,7 +1623,6 @@ Y_txt
 `bPb
 `dPb
 a3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@PEAV?$Local@VValue@v8@@@2@_K@Z
-aBv,
 about:blank
 activation
 activation_change_fail
@@ -2130,7 +2126,6 @@ orange
 orangered
 orchid
 otherPanelID, eventToFire
-p08@H^,
 p2Pb
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
 padding
@@ -2212,7 +2207,6 @@ pre-transform-rotate2d
 pre-transform-scale2d
 program
 purple
-r\vpd
 radial
 radial( 
 rebeccapurple

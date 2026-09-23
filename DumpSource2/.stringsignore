@@ -4739,7 +4739,7 @@ Crosshair color, red component
 Crosshair follows the weapon's predicted recoil (aim punch)
 Crosshair opacity. 0 = fully transparent, 255 = fully opaque
 Crosshair shown when observing a bot. 0 = show your crosshair, 1 = show your crosshair only when the bot can be taken over (otherwise default), 2 = always show the default crosshair
-Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
+Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad, 8 = Static Square. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
 Crouch
 Crouch height
 Crouch height of navigating agent capsules if enabled.
@@ -5274,7 +5274,7 @@ Dpad Right
 Dpad Up
 Draw Text
 Draw a bbox\n\tArguments:  minx miny miny maxx maxy maxz <lifetime = 10.0> <r g b a>\n
-Draw a black outline around the crosshair for better visibility
+Draw a black outline around the crosshair for better visibility. 0 = No outline, 1 = Full outline, 2 = Half outline
 Draw a dot at the center of the crosshair
 Draw a line between a rendered joint and its parent.
 Draw alien blood

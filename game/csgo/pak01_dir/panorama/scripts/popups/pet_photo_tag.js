@@ -2,6 +2,7 @@
 /// <reference path="../csgo.d.ts" />
 var PetPhotoTag;
 (function (PetPhotoTag) {
+    PetPhotoTag.EXT = '.jpg';
     PetPhotoTag.FILTERS = [
         { id: 0, name: 'normal' },
         { id: 1, name: 'bw' },
@@ -159,7 +160,7 @@ var PetPhotoTag;
     PetPhotoTag.Compose = Compose;
     function Parse(strFileName) {
         const fields = {};
-        const aTokens = strFileName.replace('.png', '').split('_');
+        const aTokens = strFileName.replace(PetPhotoTag.EXT, '').split('_');
         for (let i = 2; i < aTokens.length; i++) {
             if (aTokens[i].length > 1) {
                 fields[aTokens[i].charAt(0)] = aTokens[i].substring(1);
@@ -168,7 +169,7 @@ var PetPhotoTag;
         return fields;
     }
     function CaptureMS(strFileName) {
-        return strFileName.replace('.png', '').split('_')[1] || '';
+        return strFileName.replace(PetPhotoTag.EXT, '').split('_')[1] || '';
     }
     PetPhotoTag.CaptureMS = CaptureMS;
     function Aspect(strFileName) {
@@ -235,18 +236,18 @@ var PetPhotoTag;
     }
     PetPhotoTag.WithFrame = WithFrame;
     function _Stem(strFileName) {
-        const aTokens = strFileName.replace('.png', '').split('_');
+        const aTokens = strFileName.replace(PetPhotoTag.EXT, '').split('_');
         const aFields = aTokens.filter((strToken, i) => i >= 2 && PLACE_LETTERS.indexOf(strToken.charAt(0)) < 0);
         return aFields.length === 0 ? aTokens[1] : aTokens[1] + '_' + aFields.join('_');
     }
     function RollName(strFileName) {
-        return 'pet_' + _Stem(strFileName) + '.png';
+        return 'pet_' + _Stem(strFileName) + PetPhotoTag.EXT;
     }
     PetPhotoTag.RollName = RollName;
     function BookName(strFileName, place, frame) {
         return 'book_' + _Stem(strFileName) +
             '_k' + place.page + '_y' + place.layout + '_l' + place.slot +
-            _FrameFields(frame === undefined ? PetPhotoTag.FRAME_DEFAULT : frame) + '.png';
+            _FrameFields(frame === undefined ? PetPhotoTag.FRAME_DEFAULT : frame) + PetPhotoTag.EXT;
     }
     PetPhotoTag.BookName = BookName;
     function _LetterIndex() {

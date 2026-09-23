@@ -126,11 +126,10 @@
  (%lu = 0x%lx)\n
  (%u = 0x%x)\n
  (+%d more due to usercommand delivery)
- (08@HPX`jp
+ (08@HPX`j 
  (08@HPXb
- (08@HPZp
+ (08@HPZ 
  (08@HR
- (08@Jp
  (0X`hpz
  (DEFAULT)
  (Dirty Animation)
@@ -152,7 +151,7 @@
  <-- Arg '%s'
  <-- Retval '%s'
  <b>@import</b> 
- A8h
+ A8x
  ACTIVE GROUP
  C_PhysPropClientside::Spawn: SetupPhysicsAsModel() failed for %s.\n
  FLK
@@ -301,7 +300,6 @@
 "4\n CUserMessageLagCompensationError
 "4\n!CMsgGCCStrike15_v2_BetaEnrollment
 "5\n"CMsgGCCStrike15_v2_MatchmakingStop
-"5pI
 "7\n!CMsgGCToGCIsTrustedServerResponse
 "7\n&CMsgGCUserTrackTimePlayedConsecutively
 "8\n!CMsgGCToGCBroadcastConsoleCommand
@@ -2601,6 +2599,7 @@ $taser_charge
 &'&)&5&;&?&K&S&Y&e&i&o&{&
 &(optional) Filter by privacy settings.
 &0000
+&30R
 &4?NewFromTwoByte@String@v8@@SA?AV?$MaybeLocal@VString@v8@@@2@PEAVIsolate@2@PEBGW4NewStringType@2@H@Z
 &8@Cb
 &<*kk<*kk<*kk<*kk<mo
@@ -2699,6 +2698,7 @@ $taser_charge
 (.CPlayer_SetPerFriendPreferences_Request
 (0'yX
 (0x%08X)'??'
+(40~O
 (5Me
 (5jP
 (ACTIVE)
@@ -2998,6 +2998,7 @@ $taser_charge
 ).CPlayer_GetPerFriendPreferences_Response"M
 ).CPlayer_SetCommunityPreferences_Response"+
 ).CPlayer_SetPerFriendPreferences_Response"G
+)24(V
 )4?NewFromUtf8@String@v8@@SA?AV?$MaybeLocal@VString@v8@@@2@PEAVIsolate@2@PEBDW4NewStringType@2@H@Z
 )A service for accessing Steam player dataB
 )App Id this file is being published FROM.
@@ -3166,7 +3167,6 @@ $taser_charge
 ,?IsUint32@Value@v8@@QEBA_NXZ
 ,ARu@y6
 ,I?Value@Number@v8@@QEBANXZ
-,N`4xF
 ,Reason=
 ,Service for dealing with user-submitted logsB
 ,ShfPQ
@@ -3183,7 +3183,9 @@ $taser_charge
 ,\n\nsv_interp0
 ,\n\nsv_interp1
 ,\n\vvictim_slot
+,]p30S
 ,ar_monastery
+,d;4HV
 ,fQM(
 ,h11]
 ,hmQ#
@@ -3191,7 +3193,7 @@ $taser_charge
 ,kj8\te
 ,name:
 ,oYR
-,sK3`B
+,sK3
 ,section=
 ,value:
 - "%s" = "%.2f"\n
@@ -11148,6 +11150,7 @@ $taser_charge
 .yAu[7
 /'/)/A/E/K/M/Q/W/o/u/}/
 /2x1
+/3PR
 /5dJ
 /?appid=%u
 /Ede_balkan
@@ -11205,11 +11208,12 @@ $taser_charge
 0123456789ABCDEF#
 02V8[
 05=k
-08@HRp
+08@HR 
 08@J
-08Bp
+08B 
 08bX
 09,h
+0:0q#
 0;Q5[
 0<cz
 0M2~@p
@@ -11239,7 +11243,6 @@ $taser_charge
 0e\r8
 0pp@5tqE?|sO541
 0tU+xc:
-0v4Q
 0x%4.4x 
 0x%X
 0x%X 
@@ -11467,7 +11470,6 @@ $taser_charge
 2026-06-24
 2026-07-01
 2048
-20k#
 20t\f
 20x9
 2117-ILZV-2837
@@ -11485,6 +11487,7 @@ $taser_charge
 2Array of text tags to apply to the published file.
 2I y)
 2If true, return vote data in the returned details.
+2PJ$
 2Set of published file Ids to retrieve details for.
 2Tm=#
 2Uiwp"9
@@ -11509,8 +11512,6 @@ $taser_charge
 2\n\nline_items
 2\n\vpreferences
 2\rlhp
-2\vp(T
-2\vpt^
 2^pV
 2a"l
 2bT~
@@ -11600,6 +11601,7 @@ $taser_charge
 4tpD
 4zj@1;IJ
 4|2;#GameUI_Retake_Card_LightEmUp,1,1,rifle1,grenade0|2;#GameUI_Retake_Card_Kobe,1,1,rifle1,grenade2|1;#GameUI_Retake_Card_1g,1,1,rifle1,grenade3|1;#GameUI_Retake_Card_DisappearingAct,1,1,rifle1,grenade1|1;#GameUI_Retake_Card_EyesOnTarget,1,1,weapon_aug
+4~3`S
 5'0v2ZP
 5(EWorkshopFileType) Type of Workshop file to publish.
 5(Optional) The number of results, per page to return.
@@ -11650,6 +11652,7 @@ $taser_charge
 6-zeZ
 6144
 62$|S)6f
+648V
 64CK\vH
 666666666666666666666666666666666666666666666666\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\ssl\s3_enc.c
 6666666666666666C:\buildworker\csgo_rel_win64\build\src\common\opensslwrapper.cpp
@@ -11730,17 +11733,14 @@ $taser_charge
 8192
 8285-YOAZ-6049
 82\n:XPH
-83 B
+83pR
 851Pe
 8835-KLXV-0292
 8<pl
 8= zp
-8@Jp
 8A6j
-8B3@B
 8C:\buildworker\csgo_rel_win64\build\src\panorama\layout\stylepropertyfactory.cpp
 8Client ID for which to count the number of issued tokens"
-8F s
 8GZS
 8Gets the list of nicknames this user has for other users
 8If set, remove from ignore/block list instead of adding "\\n
@@ -11833,14 +11833,14 @@ $taser_charge
 :eaI
 :gN(dq
 :mIR
-:m_deathDepth
+:m_pos
 :w4v
 ;!;#;-;9;E;S;Y;_;q;{;
 ;"lY7
 ;5jNf
 ;83\v\nHBJ7
 ;<}\v<}\v<}\v<}\vC_TonemapController2
-;I4(F
+;I4xV
 ;LGEW
 ;Qo0
 ;Subtitles and Captions
@@ -11934,7 +11934,6 @@ $taser_charge
 <weapon>
 =!=-=3=7=?=C=o=s=u=y={=
 =&sf9
-=30B
 == %d Entities Dumped\n
 == PulseGraphDef ==\n
 == false\n
@@ -12016,7 +12015,6 @@ $taser_charge
 ?NmFrameSnapEventMode_t
 ?ParseEXRHeaderFromMemory() failed! Error message: %s\n
 ?Sep 21 2026
-?Source1LegacyListenEvents_t
 ?The most recent last-played time the client already knows about"
 ?VBH;
 ?\n:k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse
@@ -12024,6 +12022,7 @@ $taser_charge
 ?\n;GAME_PARTICLE_MANAGER_EVENT_CHANGE_CONTROL_POINT_ATTACHMENT
 ?\n;GAME_PARTICLE_MANAGER_EVENT_SET_SCENE_OBJECT_TINT_AND_DESAT
 ?\nnexttoken
+?\r4PU
 ?d86L
 ?dt]X
 ?expf
@@ -12032,6 +12031,7 @@ $taser_charge
 ?gwL
 ?jOb
 ?m_vecSummaries
+?realtime_passthrough
 ?referer=csgo_client&steamID=%llu
 ?rendering
 ?srJO
@@ -12039,15 +12039,15 @@ $taser_charge
 ?uWS
 ?x29
 @!@%@+@1@?@C@E@]@a@g@m@
-@08N4Q
 @0pp
-@6p5
+@4XV
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @@CNmFloatCurveEvent
 @BH]f
 @DebugIndividualStyle
 @Determines recharge time for taser. -1 = disabled.
-@HPX`hv`V
+@HPX`hv
+@HV`v
 @Integer overflow in %s
 @MfKZ
 @Pgl
@@ -12065,7 +12065,6 @@ $taser_charge
 @\n\vserver_type
 @cl_aggregate_particles
 @dKb]
-@f4Q
 @fff>fff>fff>fff>
 @ffffff
 @i1V
@@ -12076,7 +12075,6 @@ $taser_charge
 @keyframes 
 @keyframes '%s'\r\n{\r\n
 @n2w
-@n4Q
 @workshop
 @zDSteamUnifiedMessages
 A random value [0.0, 1.0] used to make sure entities are not all in sync
@@ -13199,7 +13197,6 @@ Bounce.Shrapnel
 Bounce.Wood
 Box%d
 BoxAngles
-Bpi#
 Breach
 BreakCreateParticle
 BreakPiece
@@ -15323,7 +15320,7 @@ CSGO Vanity Capture
 CSGO Vanity Overlay View
 CSGO game instructor
 CSGO-
-CSGO-frCAy-PRXin-PY8Kj-wDTUo-TWAwO
+CSGO-y9Qw8-sCzPb-jORFu-ov6L8-GwMXL
 CSGOApplyLowLatencyVSyncRecommendation
 CSGOApplyVideoSettings
 CSGOAspectRatioSelectionChanged
@@ -17083,6 +17080,7 @@ D2I_RSA_NET_2
 D2I_X509
 D2I_X509_CINF
 D2Lb!
+D4hV
 D4tp
 D514p
 D@D/lcO+hcK
@@ -18496,7 +18494,6 @@ F+Zb
 F,mZq
 F/o4
 F2M+
-F3PB
 F6tr
 F7!z
 F9q'
@@ -21296,7 +21293,7 @@ LOG_MESSAGE
 LONG
 LONG_C2I
 LPVIndex
-LS&\nK8
+LS&\nK
 LT[N
 LT_txt
 LXKQ
@@ -21555,7 +21552,6 @@ Lunacy
 M'Ezb
 M-laO
 M0 E
-M48F
 MASK:
 MATCH-
 MATCHSTATS\t%s, round %d, value %d\n
@@ -22780,14 +22776,11 @@ P-256
 P-384
 P-521
 P08@J
-P08J
-P08N4Q
+P08J@
 P1\t98"
 P2P Voice
 P2P ping to "%s". Timed out after %.2fms\n
-P3pB
 P5[1
-P6 L
 PAGN_4
 PANORAMA_LAYOUTFILE
 PARALYZE
@@ -23518,7 +23511,6 @@ Playsoundscape %s:Unknown command %s\n
 Please specify 0 or 1 with the -stream Parameter\n
 Pm8A?
 PmR"H?
-Pn4Q
 Point entity.
 PointsAnim
 Policy Qualifier CPS
@@ -23996,12 +23988,9 @@ RT %dx%d %s %s : %d Bytes\n
 RT_txt
 RTime32
 RULESHERE
-R\fp(T
 R\n\rincludekvtags
 R\r1>Vp
 R\vp!y
-R\vplA
-R\vpt^
 R]Di
 R_T5Y
 Rad2 Deg
@@ -25838,6 +25827,7 @@ Soundscape[%d]: %s\n
 Source
 Source1LegacyGameEventList_t
 Source1LegacyGameEvent_t
+Source1LegacyListenEvents_t
 Source2 HTML
 Source2EntitySystem
 Source2EntitySystemDeallocator
@@ -27379,7 +27369,6 @@ W'6S`
 W2Q=
 W3fp
 W3i+,
-W4XF
 W>peSp>9
 WAITING FOR VSCRIPT DEBUGGER CONNECTION -- '-vscriptdebug' was provided on the command line.\n
 WARNING: Attempted to send a steamworks gamestats row when the steamworks interface was not available!
@@ -27644,8 +27633,8 @@ Wrapper class over g_pDebugOverlay instance
 WrgoI
 Write Cached Pose
 Write error at scanline %lu
+WriteCompositionLayerJPEG
 WriteCompositionLayerPNG
-WriteCompositionLayerPNGScaled
 WriteSmokeDepth
 WriteSteamRemoteStorageFileAsync failed due to missing ISteamRemoteStorage pointer!\n
 WriteSteamRemoteStorageFileAsync( "%s" ) -> at %.3f\n
@@ -27822,10 +27811,8 @@ X\n\tTeamStats
 X\n\vFantasyTeam
 X\n\vLoadoutItem
 X\tQo
-X`hrp
+X`hr 
 Xd3h
-Xf v
-Xf@w
 XfJ7
 XjfR
 XpDataJSO
@@ -27925,7 +27912,6 @@ Zigzag
 Zipping %s (%d files)\n
 ZjLS
 Zod6
-Zpi#
 Zpwz
 Z~wl
 [               ]
@@ -27972,7 +27958,6 @@ Z~wl
 [-1] -> empty
 [-1] -> gsn(empty)
 [-1] -> gsn(null)
-[4hF
 [Additional text in debugoverlay_dashboard]
 [BREAK]
 [CC Log %s]: d: %f, ls: %f, %s\n
@@ -28169,7 +28154,6 @@ Z~wl
 \n2CMsgGCCStrike15_v2_MatchmakingGC2ClientSearchStats
 \n3CMsgGCCStrike15_v2_ServerNotificationForUserPenalty
 \n3CPlayer_GetMutualFriendsForIncomingInvites_Response
-\n3XA
 \n5a=Z
 \n7CMsgGCCStrike15_v2_MatchmakingServerReservationResponse
 \n:82H
@@ -28179,7 +28163,6 @@ Z~wl
 \nFinished generating SSTs (%.1f seconds)\n\n
 \nGameTick_t
 \nLOADOUT ACTION BATCH #%i\n
-\nPlA
 \nScratch RT Allocations:\n
 \nSimulating Entities:\n\n
 \n\fBPE_Teleport
@@ -28831,7 +28814,6 @@ Z~wl
 \rjwB\t
 \roKK
 \rrCj
-\rsaving_enabled
 \rusercmd.proto"\\n
 \sG7tPD
 \t Round is in freeze time.\n
@@ -29012,6 +28994,7 @@ Z~wl
 \ttqE5
 \t}BzJ88
 \v#\v)\v-\v?\vG\vQ\vW\v]\ve\vo\v{\v
+\v5pY
 \vBCeA
 \vGt5
 \vHCK/
@@ -29021,7 +29004,6 @@ Z~wl
 \v\vTSG
 \vj0k
 \vjC7
-\vplA
 ]1h=bfz
 ]FhSD}
 ]GT7]
@@ -29130,6 +29112,7 @@ _xU`u
 _}eOk
 `28)fk
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
+`43`R
 `:zQF
 `D$daM-l
 `DZG
@@ -29138,13 +29121,11 @@ _}eOk
 `ITS
 `VX:H
 `\n\rvector_values
-`\rP\f0lA
 `anonymous-namespace'::DynamicLockHelper<struct `anonymous namespace'::SmokeConstantBuffer_t>::Lock
 `anonymous-namespace'::DynamicLockHelper<struct `anonymous namespace'::SmokeLightProbeVolumeData_t>::Lock
-`f4Q
 `fPw.\vM
 `h9T~
-`n4Q
+`ht0~O
 `o_je
 `yNT
 a null shared library handle was used
@@ -29164,7 +29145,6 @@ a:typeparam
 a;Tg
 a@XZ
 aA0k
-aBv4Q
 aD/x
 aDSS
 aECDH
@@ -29962,6 +29942,7 @@ bIsPlayingHighlights
 bJ*h
 bLocalize
 bN.l
+bPJ$
 bPb:L7X)
 bSh&+
 bSkillgroupDataReady
@@ -35198,6 +35179,7 @@ k+Aq
 k/sn
 k0>Z,
 k26C*
+k3 S
 k8\vD
 k8fo
 k8xA
@@ -35710,7 +35692,7 @@ lowprecisionuv1
 luminaire_anisotropy
 luminaire_shape
 luminaire_size
-lvR4HF
+lvR4
 m&9W
 m*Zu
 m249
@@ -37556,7 +37538,6 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
-p08@H^4Q
 p250
 p2p_ping could not convert "%s" to a CPeerToPeerAddress\n
 p2p_ping could not ping "%s" because they are an unknown peer\n
@@ -37567,8 +37548,6 @@ p4Z3
 p5Z3
 p5\nL,
 p618
-p6pj
-p>4Q
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
 p@0pqE5tsO?|1
 pBuffer != nullptr
@@ -38229,7 +38208,6 @@ playtime
 playtime_2weeks
 playtime_forever
 plum
-pn4Q
 point
 point arithmetic failure
 point at infinity
@@ -38639,11 +38617,9 @@ rVal
 rX&O0
 rZ1VwGf5
 rZPM
-r\fplA
 r\n\vstart_index
 r\vDi
 r\vp!K
-r\vp(T
 r_2PassBuildDraw 0
 r_2PassBuildDraw 1
 r_csm_fast_path 0
@@ -38728,7 +38704,6 @@ read_game_titledata
 readdir
 ready
 readyformatch
-realtime_passthrough
 reason for which the panel is shown
 reason(%lu)
 reason_code
@@ -40566,6 +40541,7 @@ t(ydU
 t+RW
 t0;?ZlP*m
 t2U 
+t3@S
 t4O_
 t80z
 tA`KO/3G!\n7h=
@@ -42496,6 +42472,7 @@ y#y&Jb
 y-offset
 y0JY
 y2Cu
+y3PS
 y;w9
 y>?SetAccessor@ObjectTemplate@v8@@QEAAXV?$Local@VString@v8@@@2@P6AX0AEBV?$PropertyCallbackInfo@VValue@v8@@@2@@ZP6AX0V?$Local@VValue@v8@@@2@AEBV?$PropertyCallbackInfo@X@2@@Z3W4AccessControl@2@W4PropertyAttribute@2@W4SideEffectType@2@8@Z
 y?iLa
@@ -42555,7 +42532,6 @@ zoom_in_sound
 zoom_out_sound
 zoom_sensitivity_ratio_mouse
 zoomwithuiscale
-zpi#
 zxNIjo
 zz2K
 { "limit": %d, "selected": %s, "choices": [  %s  { "limit": 0, "label": "#SFUI_Settings_Volatile_Limit_Unlimited" }  ] }

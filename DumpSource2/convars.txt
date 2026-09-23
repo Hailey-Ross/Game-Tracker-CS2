@@ -940,8 +940,8 @@ cl_connectionretrytime_p2p 20 (release)
 cl_cq_min_queue 0 (userinfo)
 	Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
 
-cl_crosshair_drawoutline true (clientdll archive per_user)
-	Draw a black outline around the crosshair for better visibility
+cl_crosshair_drawoutline 1 (min: 0, max: 2, clientdll archive per_user)
+	Draw a black outline around the crosshair for better visibility. 0 = No outline, 1 = Full outline, 2 = Half outline
 
 cl_crosshair_dynamic_maxdist_splitratio 1 (min: 0, max: 1, clientdll archive per_user)
 	Style 2 only: how the bar length is divided between inner and outer bars once split. inner = cl_crosshairsize * (1 - ratio), outer = cl_crosshairsize * ratio. [0 - 1]
@@ -1003,8 +1003,8 @@ cl_crosshairdot false (clientdll archive per_user)
 cl_crosshairsize 3.9 (clientdll hidden archive per_user)
 	<no description>
 
-cl_crosshairstyle 7 (min: 0, max: 7, clientdll archive per_user)
-	Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
+cl_crosshairstyle 7 (min: 0, max: 8, clientdll archive per_user)
+	Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad, 8 = Static Square. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
 
 cl_crosshairthickness 0.6 (clientdll hidden archive per_user)
 	<no description>

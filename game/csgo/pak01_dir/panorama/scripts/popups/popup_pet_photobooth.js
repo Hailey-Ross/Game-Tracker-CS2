@@ -215,6 +215,7 @@ var PopupPetPhotoBooth;
             _MakeHeadwearButtons();
             _m_cp.FindChildInLayoutFile('id-pet-sticker-search')
                 .SetPanelEvent('ontextentrychange', UpdateStickerList);
+            $.RegisterEventHandler('CSGOInventoryItemLoaded', _m_cp.FindChildInLayoutFile('id-pet-sticker-item-list'), _RefreshStickerTile);
             _m_cp.FindChildTraverse('id-photo-team-ct').checked = true;
             _m_currentStage = _SetupStageMap();
             _MakePoseButtons();
@@ -668,6 +669,7 @@ var PopupPetPhotoBooth;
     const CAPTURE_VERIFY_SEC = .2;
     const CAPTURE_TRIES = 4;
     const PHOTO_MAX_LONG_EDGE = 1200;
+    const PHOTO_JPEG_QUALITY = 95;
     const COUNTDOWN_SEC = 3;
     function _BTimerMode() { return _m_cp.FindChildInLayoutFile('id-pet-take-picture').checked; }
     function _SetShutterEnabled(bEnabled) {
@@ -713,20 +715,20 @@ var PopupPetPhotoBooth;
     }
     function _WritePhoto() {
         _m_captureJob = undefined;
-        const strFileName = 'pet_' + Date.now() + _PhotoMetaTag() + '.png';
+        const strFileName = 'pet_' + Date.now() + _PhotoMetaTag() + PetPhotoTag.EXT;
         _m_lastSavedPhoto = strFileName;
-        _WriteLayerPNG(strFileName);
+        _WriteLayerJPEG(strFileName);
         _m_cp.FindChildInLayoutFile('id-pet-white').TriggerClass('photo-flash');
         UiToolkitAPI.PlaySoundEvent('Chicken.Camera.Shoot');
         _EndCapture();
         _m_verifyJob = $.Schedule(CAPTURE_VERIFY_SEC, () => { _VerifyPhoto(strFileName, 1); });
     }
-    function _WriteLayerPNG(strFileName) {
+    function _WriteLayerJPEG(strFileName) {
         const strPath = GameInterfaceAPI.PreparePetPhoto(_m_petId, strFileName);
         if (!strPath) {
             return;
         }
-        _m_elCaptured.WriteCompositionLayerPNGScaled(strPath, 'USRLOCAL', PHOTO_MAX_LONG_EDGE);
+        _m_elCaptured.WriteCompositionLayerJPEG(strPath, 'USRLOCAL', PHOTO_MAX_LONG_EDGE, PHOTO_JPEG_QUALITY);
     }
     function _VerifyPhoto(strFileName, nTry) {
         _m_verifyJob = undefined;
@@ -735,7 +737,7 @@ var PopupPetPhotoBooth;
             return;
         }
         if (nTry < CAPTURE_TRIES) {
-            _WriteLayerPNG(strFileName);
+            _WriteLayerJPEG(strFileName);
             _m_verifyJob = $.Schedule(CAPTURE_VERIFY_SEC, () => { _VerifyPhoto(strFileName, nTry + 1); });
             return;
         }
@@ -1189,22 +1191,40 @@ var PopupPetPhotoBooth;
         });
         elPanel.FireEntityInput('post_vanity', 'Disable');
     }
+    const STICKER_LIST_FILTER = 'item_definition:sticker';
+    const MAX_PLACED_STICKERS = 10;
+    const STICKER_DROP_JITTER = 120;
+    const _m_placedStickerIds = new Set();
     function UpdateStickerList() {
         const elList = _m_cp.FindChildInLayoutFile('id-pet-sticker-item-list');
         const elSearch = _m_cp.FindChildInLayoutFile('id-pet-sticker-search');
-        $.DispatchEvent('SetInventoryFilter', elList, 'inv_graphic_art', 'sticker', 'any', 'inv_sort_age', '', elSearch.text);
+        $.DispatchEvent('SetInventoryFilter', elList, 'inv_graphic_art', 'sticker', 'any', 'inv_sort_age', STICKER_LIST_FILTER, elSearch.text);
     }
     function _StickerCount() {
         const elList = _m_cp.FindChildInLayoutFile('id-pet-sticker-item-list');
-        $.DispatchEvent('SetInventoryFilter', elList, 'inv_graphic_art', 'sticker', 'any', 'inv_sort_age', '', '');
+        $.DispatchEvent('SetInventoryFilter', elList, 'inv_graphic_art', 'sticker', 'any', 'inv_sort_age', STICKER_LIST_FILTER, '');
         return elList.count;
+    }
+    function _RefreshStickerTile(elTile) {
+        const itemId = elTile.GetAttributeString('itemid', '0');
+        elTile.enabled = !_m_placedStickerIds.has(itemId) && _m_placedStickerIds.size < MAX_PLACED_STICKERS;
+    }
+    function _RefreshStickerTiles() {
+        _m_cp.FindChildInLayoutFile('id-pet-sticker-item-list')
+            .FindChildrenWithClassTraverse('item-tile').forEach(_RefreshStickerTile);
     }
     let zIndex = 0;
     function OnItemTileActivated(elPanel, itemId) {
+        if (_m_placedStickerIds.has(itemId) || _m_placedStickerIds.size >= MAX_PLACED_STICKERS) {
+            return;
+        }
+        _m_placedStickerIds.add(itemId);
+        _RefreshStickerTiles();
         CloseSettings();
         const elParent = _m_cp.FindChildInLayoutFile('id-pet-sticker-layer');
         const elDragPanel = $.CreatePanel('DragPanel', elParent, 'id-drag-panel-' + itemId);
         elDragPanel.style.zIndex = ++zIndex + ';';
+        elDragPanel.SetDragPosition(Math.random() * STICKER_DROP_JITTER, Math.random() * STICKER_DROP_JITTER);
         const elSticker = $.CreatePanel('Panel', elParent, 'id-sticker-panel-' + itemId, { class: 'placed-sticker-container' });
         elSticker.BLoadLayoutSnippet('sticker');
         const elImage = elSticker.FindChildInLayoutFile('sticker');
@@ -1227,7 +1247,9 @@ var PopupPetPhotoBooth;
             elImage.style.width = elScaleSlider.value + 'px;';
         });
         elSticker.FindChildInLayoutFile('id-sticker-remove').SetPanelEvent('onactivate', () => {
+            _m_placedStickerIds.delete(itemId);
             elDragPanel.DeleteAsync(0);
+            _RefreshStickerTiles();
         });
         elSticker.SetParent(elDragPanel);
     }

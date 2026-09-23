@@ -40,9 +40,9 @@ shaders/vfx/csgo_copy_rt_pc_50_features.vcs CRC:002ab9cbd1 size:1634
 shaders/vfx/csgo_copy_rt_pc_50_ps.vcs CRC:0002c85682 size:1966
 shaders/vfx/csgo_copy_rt_pc_50_vs.vcs CRC:00ee25ddb3 size:1919
 shaders/vfx/csgo_crosshair.ini CRC:0000000000 size:0
-shaders/vfx/csgo_crosshair_pc_50_features.vcs CRC:009e362591 size:1330
-shaders/vfx/csgo_crosshair_pc_50_ps.vcs CRC:00aa4c9857 size:2832
-shaders/vfx/csgo_crosshair_pc_50_vs.vcs CRC:007932f5c2 size:1353
+shaders/vfx/csgo_crosshair_pc_50_features.vcs CRC:001fe27aa0 size:1330
+shaders/vfx/csgo_crosshair_pc_50_ps.vcs CRC:0088cf3fd9 size:3294
+shaders/vfx/csgo_crosshair_pc_50_vs.vcs CRC:003c808a64 size:1353
 shaders/vfx/csgo_customglove_preview.ini CRC:0000000000 size:0
 shaders/vfx/csgo_customglove_preview_pc_50_features.vcs CRC:0074c4801b size:9714
 shaders/vfx/csgo_customglove_preview_pc_50_ps.vcs CRC:00e1382803 size:66324
