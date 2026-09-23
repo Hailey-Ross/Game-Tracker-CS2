@@ -3,13 +3,10 @@
 /// <reference path="common/async.ts" />
 /// <reference path="mock_adapter.ts" />
 /// <reference path="match_stakes.ts" />
-/// <reference path="honor_icon.ts" />
+$.LogChannel('p.teamintro', "LV_OFF");
 var TeamIntroMenu;
 (function (TeamIntroMenu) {
-    function _msg(msg) {
-    }
     async function _StartTeamIntro() {
-        _msg('_StartTeamIntro');
         const type = MockAdapter.GetPlayerCompetitiveRankType(GameStateAPI.GetLocalPlayerXuid());
         const elMenu = $.GetContextPanel();
         elMenu.SetHasClass('premier', type === 'Premier');
@@ -143,12 +140,18 @@ var TeamIntroMenu;
         const elIcon = $("#TeamIntroIcon");
         const elHalfLabel = $("#TeamIntroHalfLabel");
         const elTeamLabel = $("#TeamIntroTeamLabel");
-        if (nOvertime > 0) {
-            elHalfLabel.SetDialogVariableInt("overtime_num", nOvertime);
-            elHalfLabel.SetLocString(bFirstHalf ? "#team-intro-overtime-1st-half:f" : "#team-intro-overtime-2nd-half:f");
+        if (timeData.has_halftime) {
+            elHalfLabel.RemoveClass('collapse');
+            if (nOvertime > 0) {
+                elHalfLabel.SetDialogVariableInt("overtime_num", nOvertime);
+                elHalfLabel.SetLocString(bFirstHalf ? "#team-intro-overtime-1st-half:f" : "#team-intro-overtime-2nd-half:f");
+            }
+            else {
+                elHalfLabel.SetLocString(bFirstHalf ? "#team-intro-1st-half" : "#team-intro-2nd-half");
+            }
         }
         else {
-            elHalfLabel.SetLocString(bFirstHalf ? "#team-intro-1st-half" : "#team-intro-2nd-half");
+            elHalfLabel.AddClass('collapse');
         }
         switch (nTeamNumber) {
             case 2:

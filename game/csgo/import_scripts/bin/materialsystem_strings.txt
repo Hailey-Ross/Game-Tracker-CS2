@@ -651,6 +651,7 @@ Forcing queued mode off!\n
 Freeing optimal read buffer of %d bytes @ 0x%p\n
 G&iC
 G8D>
+GAMECONSOLE
 GPU<1
 GPU<2
 GPU<3
@@ -910,6 +911,7 @@ WmS|
 World textures
 WriteMiniDump
 X2CQ
+X360
 X4I+
 X@EventSystem001
 XL3Z

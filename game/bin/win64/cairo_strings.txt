@@ -75,6 +75,7 @@ Oblique
 PIXMAN_DISABLE
 Pixman bug: unknown image type\n
 RSDS{\v
+Regular
 Roman
 SATURATE
 SCREEN

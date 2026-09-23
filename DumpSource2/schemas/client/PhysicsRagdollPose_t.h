@@ -1,13 +1,13 @@
 // MGetKV3ClassDefaults = {
 //	"_class": "PhysicsRagdollPose_t",
-//	"m_Transforms":
+//	"m_RelativeTransforms":
 //	[
 //	],
 //	"m_hOwner": null
 //}
 class PhysicsRagdollPose_t
 {
-	C_NetworkUtlVectorBase< CTransform > m_Transforms;
+	C_NetworkUtlVectorBase< CTransform > m_RelativeTransforms;
 	CHandle< C_BaseEntity > m_hOwner;
 	// MNotSaved
 	bool m_bSetFromDebugHistory;

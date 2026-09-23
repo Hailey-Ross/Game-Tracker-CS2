@@ -20,6 +20,7 @@ var EOM_Characters;
             case 'cooperative':
             case 'casual':
             case 'teamdm':
+            case 'rush':
                 return 'snippet-eom-chars__layout--classic';
             case 'training':
             case 'deathmatch':
@@ -72,6 +73,14 @@ var EOM_Characters;
                     m_bNoGimmeAccolades = false;
                     break;
                 }
+            case 'rush':
+                {
+                    let listCT = _CollectPlayersOfTeam('CT').slice(0, 3);
+                    let listT = _CollectPlayersOfTeam('TERRORIST').slice(0, 3);
+                    arrPlayerList = listCT.concat(listT);
+                    m_bNoGimmeAccolades = false;
+                    break;
+                }
             case 'competitive':
             case 'casual':
             case 'cooperative':
@@ -110,6 +119,8 @@ var EOM_Characters;
                 return 4;
             case 'competitive':
                 return 5;
+            case 'rush':
+                return 6;
             case 'casual':
             case 'teamdm':
                 return 5;
@@ -210,6 +221,7 @@ var EOM_Characters;
                 let sGlovesItemId = '';
                 let sWeaponItemId = '';
                 let cheer = '';
+                let sPetItemId = '';
                 if ('items' in oPlayer) {
                     let agentItem = oPlayer['items'].filter(oItem => ItemInfo.IsCharacter(oItem['itemid']))[0];
                     if (agentItem) {
@@ -227,6 +239,11 @@ var EOM_Characters;
                     if (weaponItem) {
                         sWeaponItemId = weaponItem['itemid'];
                     }
+                    let items = oPlayer['items'];
+                    let petItem = oPlayer['items'].filter(oItem => ItemInfo.IsPet(oItem['itemid']))[0];
+                    if (petItem) {
+                        sPetItemId = petItem['itemid'];
+                    }
                 }
                 if (oPlayer === _m_localPlayer)
                     cheer = localPlayerCheer;
@@ -234,7 +251,7 @@ var EOM_Characters;
                     cheer = '';
                 cheerSet.add(cheer);
                 let label = oPlayer['xuid'];
-                $.GetContextPanel().AddPlayer(index, label, sAgentItemId, sGlovesItemId, sWeaponItemId, cheer);
+                $.GetContextPanel().AddPlayer(index, label, sAgentItemId, sGlovesItemId, sWeaponItemId, cheer, sPetItemId);
             }
         });
         _CreatePlayerStatCards(arrPlayerList, gapIndex, m_bNoGimmeAccolades);
@@ -355,6 +372,7 @@ var EOM_Characters;
             case 'ffadm':
             case 'casual':
             case 'teamdm':
+            case 'rush':
             default:
                 break;
         }

@@ -8,4 +8,5 @@ class C_CSGO_TeamPreviewCharacterPosition : public C_BaseEntity
 	C_EconItemView m_agentItem;
 	C_EconItemView m_glovesItem;
 	C_EconItemView m_weaponItem;
+	C_EconItemView m_petItem;
 };

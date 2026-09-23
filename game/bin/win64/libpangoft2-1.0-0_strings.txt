@@ -672,6 +672,7 @@ Pattern
 PostScript (post) table missing
 RAN OUT OF ROOM
 RSDSC
+Regular
 RemoveFontMemResourceEx
 SANITIZE
 SERIALIZE
@@ -689,7 +690,6 @@ Serif
 SetDefaultDllDirectories
 SetEnvironmentVariableA
 SetFileInformationByHandleW
-SetThreadStackGuarantee
 SetThreadpoolTimer
 SetThreadpoolWait
 The PangoFc font map this font is associated with (Since: 1.26)
@@ -1157,7 +1157,6 @@ svbaswlbmvbamwlb
 swlb
 syllable
 tcjc
-thai
 tini
 tiniidemaniflosigilr
 tkun

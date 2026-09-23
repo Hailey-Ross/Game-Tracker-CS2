@@ -1,3 +1,0 @@
-class CEnvHudHint_API
-{
-};

@@ -37,6 +37,19 @@ var TooltipPlayerXp;
                 newTile.SetDialogVariable('time-to-week-rollover', (secRemaining > 0) ? FormatText.SecondsToSignificantTimeString(secRemaining) : '');
                 newTile.AddClass('tooltip-player-xp__subtitle');
                 newTile.text = $.Localize("#tooltip_xp_bonus_" + bonusesArray[i], newTile);
+                if (bonusesArray[i] == '2') {
+                    const petId = InventoryAPI.GetPetItemID();
+                    const nStage = petId ? Number(InventoryAPI.GetItemAttributeValue(petId, '{uint32}upgrade level')) : 0;
+                    if (nStage > 0 && !!petId) {
+                        const rtFoodExp = Number(InventoryAPI.GetItemAttributeValue(petId, '{uint32}pet food expiration date'));
+                        const rtPetUpgr = Number(InventoryAPI.GetItemAttributeValue(petId, '{uint32}pet next upgrade date'));
+                        if (rtFoodExp && rtPetUpgr && (rtFoodExp < rtPetUpgr)) {
+                            let newTile = $.CreatePanel("Label", $("#JsTooltipXpBonuses"), 'JsTooltipBonus' + i, { html: true });
+                            newTile.AddClass('tooltip-player-xp__subtitle');
+                            newTile.text = $.Localize("#tooltip_xp_bonus_pet_feed", newTile);
+                        }
+                    }
+                }
             }
             let xpTrailTimeRemaining = MyPersonaAPI.GetXpTrailTimeRemaining();
             if (xpTrailTimeRemaining > 0) {

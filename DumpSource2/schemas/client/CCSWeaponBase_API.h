@@ -1,3 +1,0 @@
-class CCSWeaponBase_API
-{
-};

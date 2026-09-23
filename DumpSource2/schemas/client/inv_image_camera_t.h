@@ -5,7 +5,8 @@
 //		0.000000,
 //		0.000000
 //	],
-//	"fov": 45.000000,
+//	"fov_h": 0.000000,
+//	"fov_v": 45.000000,
 //	"znear": 4.000000,
 //	"zfar": 1000.000000,
 //	"target":
@@ -27,10 +28,14 @@ class inv_image_camera_t
 	// MPropertyFriendlyName = "Angle"
 	// MCustomFGDMetadata = "{ reset_to_default_icon = true }"
 	QAngle angle;
-	// MPropertyFriendlyName = "FOV"
+	// MPropertyFriendlyName = "Horizontal FOV"
 	// MCustomFGDMetadata = "{ reset_to_default_icon = true }"
 	// MPropertyAttributeRange = "0 360"
-	float32 fov;
+	float32 fov_h;
+	// MPropertyFriendlyName = "Vertical FOV"
+	// MCustomFGDMetadata = "{ reset_to_default_icon = true }"
+	// MPropertyAttributeRange = "0 360"
+	float32 fov_v;
 	// MPropertyFriendlyName = "Z Near"
 	// MCustomFGDMetadata = "{ reset_to_default_icon = true }"
 	// MPropertyAttributeRange = "0 1000"

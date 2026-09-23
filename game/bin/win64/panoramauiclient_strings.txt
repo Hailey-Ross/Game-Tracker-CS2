@@ -1,8 +1,9 @@
- !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
- (08@HPX`j
+ !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$h'$
+ (08@HPX`jPb
  (08@HPXb
- (08@HPZ
+ (08@HPZPb
  (08@HR
+ (08@JPb
  (0X`hpz
  <b>@import</b> 
  cubic-bezier( %1.3f, %1.3f, %1.3f, %1.3f ) 
@@ -108,7 +109,6 @@
 'size' cue-setting must have percentage (%) value
 'vertical' cue-setting already used
 'vertical' setting must have a value of either 'lr' or 'rl'
-((https?|ftp|file)://|www\.)([^<]*)
 (I?Value@External@v8@@QEBAPEAXXZ
 (IImageSource)
 (memory)
@@ -442,23 +442,25 @@
 .PEAVIVideoPlayer@@
 .PEA_N
 .PEBVILocalizationString@panorama@@
-08@HR
+08@HRPb
 08@J
-0:Pj
-0vt8
+08BPb
 0x%4.4x 
-2\vp$E
+2\vpd
+2\vpdl
 3?New@Number@v8@@SA?AV?$Local@VNumber@v8@@@2@PEAVIsolate@2@N@Z
 3?New@Object@v8@@SA?AV?$Local@VObject@v8@@@2@PEAVIsolate@2@@Z
 5butt
 6?NumberValue@Value@v8@@QEBA?AV?$Maybe@N@2@V?$Local@VContext@v8@@@2@@Z
+8@JPb
+8BPb
 8C:\buildworker\csgo_rel_win64\build\src\panorama\layout\stylepropertyfactory.cpp
-8Qa'
+8\nPb
 :context->%p->%s:\n
 :context->null->UIEngine Global:\n
 << LIST TRUNCATED >>
 << Unconverted type %d >>
-<a href="\1\3">\1\3</a>
+<a href="
 <span class="%s"> %s="</span>
 <span class="%s"> address="</span>
 <span class="%s"> context="</span>
@@ -468,7 +470,7 @@
 <span class="%s">%p</span>
 <span class="%s">%s</span>
 <span class="%s">0x%x</span>
->paneleventsource
+>\tV_atanf
 ??0HandleScope@v8@@QEAA@PEAVIsolate@1@@Z
 ??0TryCatch@v8@@QEAA@PEAVIsolate@1@@Z
 ??0Utf8Value@String@v8@@QEAA@PEAVIsolate@2@V?$Local@VValue@v8@@@2@@Z
@@ -483,6 +485,7 @@
 ?Enter@Isolate@v8@@QEAAXXZ
 ?Exit@Context@v8@@QEAAXXZ
 ?Exit@Isolate@v8@@QEAAXXZ
+?FileOpenDialogOpen
 ?For@Symbol@v8@@SA?AV?$Local@VSymbol@v8@@@2@PEAVIsolate@2@V?$Local@VString@v8@@@2@@Z
 ?FromJustIsNothing@api_internal@v8@@YAXXZ
 ?Get@Object@v8@@QEAA?AV?$MaybeLocal@VValue@v8@@@2@V?$Local@VContext@v8@@@2@I@Z
@@ -490,13 +493,13 @@
 ?GetName@Function@v8@@QEBA?AV?$Local@VValue@v8@@@2@XZ
 ?GlobalizeReference@api_internal@v8@@YAPEA_KPEAVIsolate@internal@2@_K@Z
 ?HasCaught@TryCatch@v8@@QEBA_NXZ
-@08Nt8
+@08N,
+@2Pb
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @DebugIndividualStyle
 @HPX`hv
 @keyframes 
 @keyframes '%s'\r\n{\r\n
-@nt8
 @panorama_streaming_load_local_images
 ABXY
 APIN_txt
@@ -653,6 +656,7 @@ CarouselNavSetSelectedIndex
 CarouselTitle
 CenterColumn
 CheckChildrenScrolledIntoView
+Children
 CircularProgressBar
 CircularProgressBarBG
 CircularProgressBarFG
@@ -783,6 +787,7 @@ Desired Layout Width
 Destructing
 DevInfo
 DialogVariablesHeader
+Dimensions
 Directory
 DisableNav
 DismissAllContextMenus
@@ -842,6 +847,7 @@ ErrorBox
 ErrorMessage
 ExecuteSteamURL
 F?ToString@Value@v8@@QEBA?AV?$MaybeLocal@VString@v8@@@2@V?$Local@VContext@v8@@@2@@Z
+F\nPb
 Failed to load expected config file "%s"\n
 Failed to load opacity mask for panel '%s'
 Failed to parse and set new panel event for %s="%s"\n
@@ -857,7 +863,6 @@ FileOpenDialogFilesSelected
 FileOpenDialogFilterChanged
 FileOpenDialogFolderUp
 FileOpenDialogFullPathChanged
-FileOpenDialogOpen
 FileOpenDialogSelectFile
 FileOpenDialogSortByColumn
 FileRow
@@ -960,7 +965,6 @@ HeaderName
 HeaderSize
 HeaderType
 Hidden
-Highlight
 Hit Test
 Hit Test Children
 Horizontal
@@ -970,7 +974,6 @@ HorizontalSplitter
 HtmlUserAgent
 IND)ind)"
 IUIEngine::RegisterCustomFontPath
-I\tV_isbreakablewspace32
 If 'loop = true', how many times to loop before stopping. -1 == infinite
 If >= 0, drags longer than this distance will suppress mouse click events (e.g. onactivate of embedded panels)
 If set, how many frames in the sprite sheet. Default assumes every space in image is filled.
@@ -1113,9 +1116,9 @@ OpenText
 Option_%d
 OverMaxPips
 P08@J
-P08J0
-P08Nt8
-P\tV_isvalidhex
+P08J 
+P08N,
+P2Pb
 PageDown
 PageLeft
 PagePanelDown
@@ -1154,6 +1157,7 @@ PanoramaUIEngine setup failed\n
 PanoramaVideoPlayer
 ParentWithProperties
 Picked
+PjPb
 PlaceholderText
 Play
 PlayAnimatedImageStripAnimation
@@ -1188,7 +1192,7 @@ PropertySection
 PropertyTransitionEnd
 RBLegend
 RT_txt
-R\vp$E
+R\fpd
 RadioBox
 RadioButton
 RadioSelected
@@ -1228,7 +1232,6 @@ RightArrowVisible
 RightLegend
 RightMouseScrollRegion
 RightOfFocus%d
-S\tV_iswcntrl
 Saved log to '%s'\n
 Scale for the pinch zoom gesture.
 Scroll the panel down by one line.
@@ -1241,10 +1244,8 @@ Scroll the panel up by one line.
 Scroll the panel up by one page.
 Scroll this panel to the bottom.
 Scroll this panel to the top.
-ScrollBar
 ScrollDown
 ScrollFlickTimeout
-ScrollInertiaTimeout
 ScrollLeft
 ScrollPanelDown
 ScrollPanelIntoView
@@ -1479,7 +1480,6 @@ Switch which class the panel has for a given attribute slot. Allows easily chang
 SwitchClass
 SwitchStyle
 SystemInputLanguageChanged
-T\tV_iswdigit
 Tab Index
 TabBackward
 TabButton
@@ -1598,7 +1598,6 @@ Visible
 VolumeControl
 VolumeSliderPopup
 VolumeSliderValueChanged
-W\tV_iswspace
 WebBrowser
 WebVTT Parse Error %d: %s:%u:%u - %s.\n
 WindowGotFocus
@@ -1609,21 +1608,25 @@ WindowOnScreen
 WindowShown
 Wrapper
 WriteCompositionLayerPNG
+WriteCompositionLayerPNGScaled
 XInputPad
-X`hr
+X`hrPb
 Y_txt
+[ScrollBar
 [object@%p]
-\tV_atanf
+\n_V_AppendSlash
+\n_V_strcspn
+\tV_UTF8ToUTF32
+\tV_iswspace
 \tV_strupper_fast
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_AppendSlash
-\t_V_strcspn
+`2Pb
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
 `F?ToLocalEmpty@api_internal@v8@@YAXXZ
-`ft8
-`nt8
+`bPb
+`dPb
 a3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@PEAV?$Local@VValue@v8@@@2@_K@Z
-aBvt8
+aBv,
 about:blank
 activation
 activation_change_fail
@@ -1716,7 +1719,6 @@ border-width
 bottom
 bottomright
 box-shadow
-brazilian
 brown
 buffer-async
 buffer-sync
@@ -1918,6 +1920,7 @@ gray
 green
 greenyellow
 grey
+hYS$
 hardlight
 has-tooltip-target-position
 hasNotches
@@ -1976,7 +1979,6 @@ keyboard
 khaki
 lang
 lastactivate
-latam
 lavender
 lavenderblush
 lawngreen
@@ -2128,10 +2130,9 @@ orange
 orangered
 orchid
 otherPanelID, eventToFire
-p08@H^t8
+p08@H^,
+p2Pb
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
-p>t8
-pFP' 
 padding
 padding-bottom
 padding-left
@@ -2145,6 +2146,7 @@ palevioletred
 panel
 panel-background://
 panel://
+paneleventsource
 panels-visible
 paneltype
 panorama/browser/webkit.css
@@ -2191,6 +2193,7 @@ paragraph-spacing
 parent-relative
 parentdisabled
 pass-through
+pbPb
 peachpuff
 perspective
 perspective-origin
@@ -2202,15 +2205,14 @@ placeholder
 playback_speed
 playback_volume
 plum
-pnt8
 point
 popuplinks
-portuguese
 powderblue
 pre-transform-rotate2d
 pre-transform-scale2d
 program
 purple
+r\vpd
 radial
 radial( 
 rebeccapurple
@@ -2237,11 +2239,8 @@ row-resize
 royalblue
 ruby
 s-resize
+s\tV_isbreakablewspace32
 saddlebrown
-safe-area-inset-bottom
-safe-area-inset-left
-safe-area-inset-right
-safe-area-inset-top
 salmon
 sandybrown
 saturation
@@ -2285,7 +2284,6 @@ solid
 sound-out
 spacerperiod
 spacersize
-spanish
 springgreen
 square
 squish
@@ -2335,7 +2333,6 @@ sw-resize
 tabid
 tabindex
 targetid
-tchinese
 teal
 text-align
 text-decoration
@@ -2437,6 +2434,7 @@ vscroll
 vsnd_files
 vsvg
 w-resize
+w8#5
 wash-color
 webp
 webvtt-cue end-time must have value greater than start-time
@@ -2451,6 +2449,7 @@ world-blur
 wrap
 wraparound
 wrappedhtmlid
+www.
 x-offset
 y-offset
 y>?SetAccessor@ObjectTemplate@v8@@QEAAXV?$Local@VString@v8@@@2@P6AX0AEBV?$PropertyCallbackInfo@VValue@v8@@@2@@ZP6AX0V?$Local@VValue@v8@@@2@AEBV?$PropertyCallbackInfo@X@2@@Z3W4AccessControl@2@W4PropertyAttribute@2@W4SideEffectType@2@8@Z
@@ -2458,11 +2457,14 @@ yellow
 yellowgreen
 z-index
 z-offset
+z\tV_isvalidhex
 zoom-in
 zoom-out
 zoomwithuiscale
 |F?ToObject@Value@v8@@QEBA?AV?$MaybeLocal@VObject@v8@@@2@V?$Local@VContext@v8@@@2@@Z
 }3?New@FunctionTemplate@v8@@SA?AV?$Local@VFunctionTemplate@v8@@@2@PEAVIsolate@2@P6AXAEBV?$FunctionCallbackInfo@VValue@v8@@@2@@ZV?$Local@VValue@v8@@@2@V?$Local@VSignature@v8@@@2@HW4ConstructorBehavior@2@W4SideEffectType@2@PEBVCFunction@2@GGG@Z
+}\tV_iswcntrl
 ~CMoviePlayer
 ~CPanel2D
 ~CPanel2D - destroy members
+~\tV_iswdigit

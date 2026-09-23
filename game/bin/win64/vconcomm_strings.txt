@@ -72,8 +72,8 @@ VConsole client connection from %d.%d.%d.%d\n
 VConsole2
 Waiting For VConsole To Connect...\n
 Xbox VDP is not supported on this platform.
+\n_V_StringAfterPrefixCaseSensitive
 \t%s@%d.%d.%d.%d, connected: %s\n
-\t_V_StringAfterPrefixCaseSensitive
 arg%d
 arg0
 commandline

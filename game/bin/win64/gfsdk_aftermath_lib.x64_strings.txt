@@ -16,6 +16,7 @@
   The error occurred while parsing the regular expression: '
   This option category has no options.\n
   Total Execution Time: %5.4f seconds (%5.4f wall clock)\n
+ (08@JP
  (default: 
  (from end)]::
  (instance 
@@ -1156,7 +1157,6 @@ Aliased
 AliasedPointer
 AliasedPointerEXT
 Aligned
-Alignment
 AlignmentId
 All instructions are consumed
 AllocateNodePayloadsAMDX
@@ -1437,6 +1437,7 @@ CompositeConstructContinuedINTEL
 CompositeConstructReplicateEXT
 CompositeExtract
 CompositeInsert
+Compute
 ComputeAssembler
 ComputeDerivativeGroupLinearKHR
 ComputeDerivativeGroupLinearNV
@@ -3894,7 +3895,6 @@ RT_INTERNAL_FUNC_LABEL
 RT_INTERNAL_FUNC_TYPE
 RUNE
 R\fpt
-R\vpt
 R]Fe
 Radians
 Ran out of stack space trying to match the regular expression.
@@ -4026,7 +4026,6 @@ RestrictPointerEXT
 RestrictType
 Result is a null pointer
 RetainEvent
-Return
 ReturnValue
 Rg16
 Rg16Snorm

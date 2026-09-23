@@ -146,11 +146,13 @@
 !pAssetB->HasFileInLocation( ASSET_LOCATION_GAME )
 !pBaseWavThenLeafMP3->HasFileInLocation( ASSET_LOCATION_GAME )
 !pBaseWavThenLeafMP3_Second->HasFileInLocation( ASSET_LOCATION_GAME )
+!pConsumerAsset->HasFileInLocation( ASSET_LOCATION_GAME )
 !pContentOnlyMP3->HasFileInLocation( ASSET_LOCATION_GAME )
 !pContentOnlyWAV->HasFileInLocation( ASSET_LOCATION_GAME )
 !pGameOnly->HasFileInLocation( ASSET_LOCATION_CONTENT )
 !pMP3ThenWAV_First->HasFileInLocation( ASSET_LOCATION_GAME )
 !pMP3ThenWAV_Second->HasFileInLocation( ASSET_LOCATION_GAME )
+!pProducerAsset->HasFileInLocation( ASSET_LOCATION_GAME )
 !pWAVThenMP3_First->HasFileInLocation( ASSET_LOCATION_GAME )
 !pWAVThenMP3_Second->HasFileInLocation( ASSET_LOCATION_GAME )
 !s8p
@@ -270,7 +272,6 @@ $prefix_element$
 %E5u(
 %Gdnv
 %I64i
-%\tV_expd
 %aIwV
 %bw+s
 %d.%d.%d.%d/%d.%d.%d.%d
@@ -504,7 +505,6 @@ $prefix_element$
 -DBF
 -U`5K
 -\6G5
--\tV_fgets
 -filterassetfiles missing filename\n
 -filterassetfiles unable to open '%s'\n
 -l34
@@ -729,6 +729,7 @@ $prefix_element$
 .?AV?$_Ref_count@UResourceAssetTypeDependenciesContext_t@@@std@@
 .?AV?$_Ref_count_obj2@VCAsyncLoadResourceHeaderPromise@@@std@@
 .?AV?$_Ref_count_obj2@VCInMemoryLoadResourceHeaderPromise@@@std@@
+.?AVAllocator@psd@@
 .?AVCAllAssetsWorkingSet@@
 .?AVCAsset@@
 .?AVCAssetDir@@
@@ -820,6 +821,7 @@ $prefix_element$
 .?AVCMapAssetType@@
 .?AVCMapAssetTypeInfo@@
 .?AVCProceduralWorkingSet@@
+.?AVCPsdBufferFile@@
 .?AVCResourceAsset@@
 .?AVCResourceAssetType@@
 .?AVCResourceAssetTypeInfo@@
@@ -840,6 +842,7 @@ $prefix_element$
 .?AVCVDataAutoTagger@@
 .?AVCVMMDAssetType@@
 .?AVCVMMDAssetTypeInfo@@
+.?AVFile@psd@@
 .?AVFindByTypeVisitor@@
 .?AVIAsset@@
 .?AVIAssetDir@@
@@ -869,6 +872,8 @@ $prefix_element$
 .?AVIUndoElement@@
 .?AVIVDataResourceListener@@
 .?AVIWorkingSet@@
+.?AVMallocAllocator@psd@@
+.?AVbad_optional_access@std@@
 .HCK\v
 .Q.Ol
 .\crypto\asn1\a_bitstr.c
@@ -1135,6 +1140,7 @@ $prefix_element$
 .text$
 .vmat
 .vtest_c
+.vtestdep_c
 .x7B
 .yAu[7
 /'/)/A/E/K/M/Q/W/o/u/}/
@@ -1148,6 +1154,8 @@ $prefix_element$
 /usr/local/ssl/lib/engines
 /usr/local/ssl/private
 /zt1
+0,k5
+00G5
 0123456789
 02V8[
 05=k
@@ -1178,6 +1186,7 @@ $prefix_element$
 1GNK
 1H@H
 1L$1
+1\f%1t
 1\v5#d
 1b4Ef
 1f\t3Qg^y
@@ -1204,7 +1213,7 @@ $prefix_element$
 2\fWQx
 2\nP!E
 2\rlhp
-2\vpT
+2\vp,k5
 2^pV
 2a"l
 2bT~
@@ -1380,6 +1389,7 @@ $prefix_element$
 ;83\v\nHBJ7
 ;LGEW
 ;Qo0
+;\tV_atan2d
 ;`Fzc
 ;bwP*
 ;xsK
@@ -1457,6 +1467,7 @@ $prefix_element$
 @\f1OJ
 @child_asset
 @dKb]
+@fused_asset
 @i1V
 @inherited_asset
 @n2w
@@ -1747,6 +1758,7 @@ Assetsystem cannot start: %s\n
 Assetsystem resource replacement buffer
 Assetsystem skipping reload of %d resources - no resourcesystem!\n
 Assigning replacement buffer to '%s' with parent '%s'\n
+At least one out-of-date dependency
 At least one out-of-date dependency: %s (%s)
 At least one out-of-date dependency: content_wav_then_mp3_compile_test.vtest_alt1 (file CRC changed
 At least one out-of-date dependency: content_wav_then_mp3_compile_test.vtest_alt2 (file CRC changed
@@ -1897,6 +1909,7 @@ B\vp\nP
 B`4I
 Bad boolean\n
 Bad code word
+Bad optional access
 Bad test root path ID '%s'
 Bad time value
 BadFaxLines
@@ -1925,7 +1938,6 @@ BlackLevelDeltaV
 BlackLevelRepeatDim
 BlockingReloadCompileReplacementBufferAndChildren
 BoX5
-Bp|I
 BrowInV
 Bs'n
 Bu 5
@@ -2003,8 +2015,9 @@ CAssetSystem::HandleFileChange[%s]: %s\n
 CAssetSystem::InitializeAssetSystem
 CAssetSystem::NotifyResourceStatusChange( %s ) - %s\n
 CAssetSystem::ProcessFileChanges unable to acquire the file change suspension cross-process mutex.
+CAssetSystem::Test_PostRecompileResourceAsset
 CAssetSystem::Test_PreRecompileResourceAsset
-CAssetSystem::UpdateAllAssetFileCRCs(), C:\buildworker\csgo_rel_win64\build\src\assetsystem\assetsystem.cpp:4454
+CAssetSystem::UpdateAllAssetFileCRCs(), C:\buildworker\csgo_rel_win64\build\src\assetsystem\assetsystem.cpp:4452
 CAssetSystemTest::RunTests
 CAssetSystemTestSetup::DiscardInMemoryReplacement
 CAssetSystemTestSetup::EnsureAssetIsUpToDate
@@ -2413,6 +2426,7 @@ Cov_DetermineCompileState_NonexistentModReference
 Cov_DetermineCompileState_OutOfDate
 Cov_DetermineCompileState_SpecialDependencyChanged
 Create In Hierarchy
+CreateDocument failed
 CreateTestSimpleVmatTgaAndInitAssetsystem
 Critical
 CrlID
@@ -2747,6 +2761,7 @@ DmeJoint
 DmeLight
 DmeLog
 DmeLogLayer
+DmeMaya
 DmeModel
 DmePackColorOperator
 DmeParticleOperator
@@ -3598,6 +3613,7 @@ LZWPreDecode
 LZWSetupEncode
 Last two rows as percentage of total size %f %%:\n
 LbWf
+Leading-slash-relative path used
 Leaking %i elements\n
 LeftFingers
 Legs
@@ -3861,6 +3877,7 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
+OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -3931,6 +3948,7 @@ OPENSSL_malloc Error
 ORPHAN
 OTHERNAME
 O\r5x
+O\tV_expd
 O_yG|
 Oakley-EC2N-3
 Oakley-EC2N-4
@@ -3977,6 +3995,7 @@ P-224
 P-256
 P-384
 P-521
+P0G5
 P1\t98"
 P5[1
 PAGN_4
@@ -4187,6 +4206,7 @@ Parameters
 Parent with missing children. (eg. '%s')
 Parented by out-of-date but not directly loaded '%s':\n -> reason: %s
 ParseEXRHeaderFromMemory() failed! Error message: %s\n
+ParseImageDataSection failed
 Particle Configuration File
 Paths excluded from your client: %d\n
 Paths included (regardless of exclude) in your client: %d\n
@@ -4199,6 +4219,7 @@ Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
 PixarLog
+PlI5
 PlanarConfiguration
 Planarconfig tag value assumed incorrect, assuming data is contig instead of chunky
 Pm8A?
@@ -4394,10 +4415,8 @@ RSA_verify
 RSA_verify_ASN1_OCTET_STRING
 RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
-R\fpl
+R\fp,k5
 R\r1>Vp
-R\vpL
-R\vpT
 R]Di
 R_T5Y
 Radius Random
@@ -4816,6 +4835,9 @@ Tag Update Failed
 Tag Value
 TargetPrinter
 Test coverage group '%s' missed some coverage points. (See above.)\n
+Test failure - Unexpected number of compiled files:\nActual: %i\nExpected: %i
+Test failure - Unexpected number of failed files:\nActual: %i\nExpected: %i
+Test failure - Unexpected number of skipped files:\nActual: %i\nExpected: %i
 Test failure - mismatched recompile reason\nExpected starts with: %s\nActual              : %s
 Test ignore suppressed dependency
 Test resort expected 1 argument: <number>\n
@@ -4823,6 +4845,7 @@ TestDependsOnOtherResourceContent
 TestExtensionOnlyFile
 TestFileWritabilityAndTimestampFeature
 TestFusedChildResource
+TestGameCompiledFileDependency
 TestInMemoryFingerprint
 TestMovingBetweenSearchPaths
 TestMultiPathMultiExtensionFileBeingDeleted
@@ -4920,6 +4943,7 @@ U^Pg
 Ugi<
 Unable to create unknown element %s!\n
 Unable to load kv3 userdata
+Unable to load psd: %s\n
 Unable to save special input dependency userdata: %s\n
 Unable to set type unless you're creating untyped elements!\n
 Undo\n======\n
@@ -4945,11 +4969,11 @@ Unserialize: Unable to start dmxconvert process\n
 Unserialize: Unexpected encoding name '%s' reading file '%s' - expected encoding '%s'\n
 Unserialize: Unexpected format '%s' reading file '%s' - expected format '%s'\n
 Unspecified
-Unsupported PSD color mode!\n
 Unsupported extension feature
 Unsuppressed auto-recompile
 Untagged
 Unused
+Up to date
 Updated auto tags %.2fs.\n
 Updated change times on tag files. %d files checked in %.2fs.\n
 Updated tags on assets in %.2fs.\n
@@ -5106,6 +5130,7 @@ WTLS curve over a 160 bit prime field
 WTLS curvs over a 224 bit prime field
 WZTR
 W\noB
+W\tV_fgets
 Waited %dms for quiet inputs of %s before recompiling.\n
 Waited too long (%dms) for quiet inputs of %s - abandoning recompile!\n
 Waiting
@@ -5113,6 +5138,7 @@ Warning (problem that doesn't prevent forward progress)
 Wcr"
 We_A0
 WfMD{
+When an asset is being recompiled the dependents will be recompiled only as needed, otherwise the original recompile mode will be passed on.
 Whether to explicitly reload child resources of a QueueReloadIfLoaded
 WhiteLevel
 WhitePoint
@@ -5383,6 +5409,7 @@ Z~wl
 \f]ne3
 \fdhWTh
 \fiaR
+\fp\v`0G5
 \ful2
 \fy&3Gl
 \l:ArR
@@ -5397,12 +5424,22 @@ Z~wl
 \n%*sVersion   : 
 \n%*sZone: %s, User: 
 \n%12s%s
-\n0g4
+\n***ASSERT FAILED*** Image data section has too many channels (%d).
+\n***ASSERT FAILED*** Pointer is null.
+\n***ERROR*** [DecompressRle] Malformed RLE data encountered
+\n***ERROR*** [ImageData] Unhandled bits per channel: %u.
+\n***ERROR*** [ImageData] Unhandled compression type %u.
+\n***ERROR*** [PSD] Document does not contain an image data section.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, reserved bytes are not zero.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, signature does not match "8BPS".
+\n***ERROR*** [PsdExtract] File seems to be corrupt, version does not match 1 or 2.
 \n5a=Z
 \n:82H
 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
 \n\tIPSec/IKE/Oakley curve #3 over a 155 bit binary field.\n\tNot suitable for ECDSA.\n\tQuestionable extension field!
 \n\tIPSec/IKE/Oakley curve #4 over a 185 bit binary field.\n\tNot suitable for ECDSA.\n\tQuestionable extension field!
+\n_V_StrSubst
+\n_V_StringAfterPrefixCaseSensitive
 \ndummyfilename.tif
 \nqYu
 \ntM(ie-V
@@ -5436,11 +5473,12 @@ Z~wl
 \tJm_9
 \tLa0+
 \tNAN encountered in element '%s' guid %s attribute '%s'!\n
-\tV_atan2d
+\tP0G5
+\tV_log2f
+\tV_logd
+\tV_powd
 \tV_sscanf_s
 \t\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_StrSubst
-\t_V_StringAfterPrefixCaseSensitive
 \toRE
 \ttqE5
 \t}BzJ88
@@ -5449,10 +5487,14 @@ Z~wl
 \vGt5
 \vHCK/
 \vNCE\v
+\vP0G5
 \vUY6[E
 \v\vTSG
+\v`0G5
 \vj0k
 \vjC7
+\vp,k5
+\vp`H5
 ]1h=bfz
 ]FhSD}
 ]GT7]
@@ -5490,6 +5532,7 @@ _user.txt
 _wjb
 _xU`u
 _}eOk
+`0G5
 `28)fk
 `:zQF
 `D$daM-l
@@ -5497,7 +5540,6 @@ _}eOk
 `H(hqA1p
 `ITS
 `VX:H
-`\tV_log2f
 `fPw.\vM
 `h9T~
 `o_je
@@ -5534,7 +5576,6 @@ aRWZ5
 aRecord
 aSRP
 aXvC
-a\tV_logd
 a]?xG
 aaControls
 ac-auditEntity
@@ -5702,6 +5743,7 @@ assetsystem_old_loop_algorithm
 assetsystem_quiet_inputs_before_recompile
 assetsystem_quiet_inputs_before_recompile_max_pause
 assetsystem_quiet_inputs_before_reload
+assetsystem_recompile_dependents_as_needed
 assetsystem_reload_queue_requeue_pause
 assetsystem_stats
 assetsystem_test_resort
@@ -5836,7 +5878,6 @@ balance$0
 balance$0Indices
 balanceIndices
 balancechannel
-base
 base search path (eg. core)
 base64 decode error
 base64 encoding
@@ -5866,6 +5907,7 @@ binary_v
 bio not set
 bio write failure
 biometricInfo
+bitmap output needs an 8 bit document
 bits too small
 bl <= (int)sizeof(ctx->buf)
 blendColor
@@ -5926,7 +5968,6 @@ brightness_units
 brightnessscale
 bt1+
 bu\N
-buf.TellMaxPut() == 0
 buffer
 buildingName
 businessCategory
@@ -6105,6 +6146,7 @@ cms_msgSigDigest_add1
 cms_set1_SignerIdentifier
 cms_set1_ias
 cms_set1_keyid
+cmyk document with non 8 bit channels
 co7S
 codeSigning
 coefficient:
@@ -6134,6 +6176,8 @@ commonName
 comp
 compatible
 compileAsOverride
+composite channel data missing
+composite has too few channels for its color mode
 compressed length too long
 compressed-data
 compression
@@ -6151,6 +6195,7 @@ connectionsData
 cons: 
 constrainVelocity
 constrain_velocity
+consumer
 cont [ %d ]
 content
 content and data present
@@ -6802,6 +6847,10 @@ fogshadows
 fogstrength
 folder.vtest
 folder/.vtest
+folder/consumer.vtest
+folder/producer.vtestdep
+folder/subfolder/special_input.vtest_special
+folder/subfolder/uses_special_input.vtest
 fopen
 fopen('
 for "ReferenceBlackWhite" array
@@ -6899,6 +6948,8 @@ h0XB
 h2Wl
 h2n_\
 h5N.
+hConsumer.GetReloadCounter() == 1
+hConsumer.GetReloadCounter() == 2
 hDiamond.GetReloadCounter() == 1
 hEM&!
 hF\rDz
@@ -7294,6 +7345,9 @@ incorrect file syntax
 incorrect policy syntax tag
 index too large
 index too small
+indexed document with more than 2 channels
+indexed document with no usable palette
+indexed document with non 8 bit indices
 indirectCRL
 indirectlight
 infinite
@@ -7428,6 +7482,7 @@ ir@r`
 isGroup
 isOrientation
 isPosition
+is_gamefile
 is_optional
 issuer
 issuer capabilities
@@ -7658,7 +7713,6 @@ mOD:V
 mS'7
 mXRecord
 mZKB
-m\tV_powd
 m\ta=\ruWb
 m_AdditionalInputDependencies
 m_AdditionalRelatedFiles
@@ -7915,6 +7969,7 @@ no ciphers specified
 no client cert method
 no client cert received
 no close brace
+no composite (not saved with Maximize Compatibility)
 no compression specified
 no conf
 no conf or environment variable
@@ -8105,6 +8160,7 @@ odMsh
 odd number of chars
 odd number of digits
 oeap
+offseTime
 offsetTime
 oi3o
 old session cipher not returned
@@ -8171,12 +8227,14 @@ p not prime
 p!PcA1|
 p)ou}
 p+"\tHr9
+p,k5
 p.char_two
 p.onBasis
 p.other
 p.ppBasis
 p.prime
 p.tpBasis
+p0G5
 p2{l
 p4Z3
 p4lib
@@ -8201,6 +8259,8 @@ pBaseWavThenLeafMP3 != nullptr
 pBaseWavThenLeafMP3->HasFileInLocation( ASSET_LOCATION_CONTENT )
 pBaseWavThenLeafMP3_Second == pBaseWavThenLeafMP3
 pBaseWavThenLeafMP3_Second->HasFileInLocation( ASSET_LOCATION_CONTENT )
+pConsumerAsset->CompileState() == ASSET_FILE_COMPILED
+pConsumerAsset->HasFileInLocation( ASSET_LOCATION_GAME )
 pContentMP3AndGame != nullptr
 pContentMP3AndGame->HasFileInLocation( ASSET_LOCATION_CONTENT )
 pContentMP3AndGame->HasFileInLocation( ASSET_LOCATION_GAME )
@@ -8217,6 +8277,9 @@ pFromFile
 pG_*h
 pGameOnly != nullptr
 pGameOnly->HasFileInLocation( ASSET_LOCATION_GAME )
+pInfo->m_ExpectedResult.value().m_nFilesCompiled == result.m_nFilesCompiled
+pInfo->m_ExpectedResult.value().m_nFilesFailed == result.m_nFilesFailed
+pInfo->m_ExpectedResult.value().m_nFilesSkipped == result.m_nFilesSkipped
 pIp 
 pMP3ThenWAV_First != nullptr
 pMP3ThenWAV_First->HasFileInLocation( ASSET_LOCATION_CONTENT )
@@ -8227,6 +8290,12 @@ pParentNonexistentAsset_Alpha->CompileState() == ASSET_FILE_COMPILED
 pParentNonexistentAsset_Beta->CompileState() == ASSET_FILE_COMPILED
 pPath
 pPath != nullptr
+pProducerAsset && pConsumerAsset
+pProducerAsset->CompileState() == ASSET_FILE_COMPILED
+pProducerAsset->CompileState() == ASSET_FILE_UNCOMPILED
+pProducerAsset->HasFileInLocation( ASSET_LOCATION_GAME )
+pProducerAsset->RecompileAsset( ResourceCompileMode_t::FORCE_PARENTS )
+pProducerAsset->RecompileAsset()
 pRTH
 pResource->CompileState() == ASSET_FILE_COMPILED
 pResource->CompileState() == ASSET_FILE_UNCOMPILED
@@ -8405,7 +8474,6 @@ preferredDeliveryMethod
 presentationAddress
 presetGroups
 presetRemap
-presets
 prf-gostr3411-94
 prh[
 prim: 
@@ -8438,6 +8506,8 @@ problems getting password
 problems mapping cipher functions
 procedural
 producedAt
+producer_v1
+producer_v2
 prop_physics_override
 prop_physics_respawnable
 propdataname
@@ -8513,9 +8583,8 @@ rRfKR
 rX&O0
 rZ1VwGf5
 rZPM
-r\fpL
 r\vDi
-r\vpl
+r\vp,k5
 radiusScale
 radius_random
 radius_scale
@@ -8542,6 +8611,7 @@ rc5-ecb
 rc5-ofb
 read bio not set
 read key
+read past end of file (truncated/corrupt)
 read timeout expired
 read wrong packet type
 readdir
@@ -9321,6 +9391,7 @@ tdYv
 telephoneNumber
 teletexTerminalIdentifier
 telexNumber
+test.EnsureAssetIsUpToDate( producerName.Get() ) == ASSET_UP_TO_DATE
 test.EnsureAssetIsUpToDate( vmatName ) == ASSET_UP_TO_DATE
 test.FindAssetByAssetRelativePath( "folder.vtest" ) == nullptr
 test.FindAssetByAssetRelativePath( "folder/.vtest" ) == nullptr
@@ -9332,6 +9403,9 @@ test.GetRecompiledByAssetsystemCount( pAsset ) == 4
 test.GetRecompiledByAssetsystemCount( pAsset ) == 5
 test.GetRecompiledByAssetsystemCount( pAsset ) == 6
 test.GetRecompiledByAssetsystemCount( pAsset ) == 7
+test.GetRecompiledByAssetsystemCount( pConsumerAsset ) == 1
+test.GetRecompiledByAssetsystemCount( pConsumerAsset ) == 2
+test.GetRecompiledByAssetsystemCount( pConsumerAsset ) == 3
 test.GetRecompiledByAssetsystemCount( pDiamondAsset ) == 1
 test.GetRecompiledByAssetsystemCount( pDiamondAsset ) == 2
 test.GetRecompiledByAssetsystemCount( pMiddle1Asset ) == 1
@@ -9340,6 +9414,9 @@ test.GetRecompiledByAssetsystemCount( pMiddle2Asset ) == 1
 test.GetRecompiledByAssetsystemCount( pMiddle2Asset ) == 2
 test.GetRecompiledByAssetsystemCount( pParentNonexistentAsset_Alpha ) == 1
 test.GetRecompiledByAssetsystemCount( pParentNonexistentAsset_Beta ) == 1
+test.GetRecompiledByAssetsystemCount( pProducerAsset ) == 1
+test.GetRecompiledByAssetsystemCount( pProducerAsset ) == 2
+test.GetRecompiledByAssetsystemCount( pProducerAsset ) == 3
 test.GetRecompiledByAssetsystemCount( pSharedAsset ) == 1
 test.GetRecompiledByAssetsystemCount( pSharedAsset ) == 2
 test.GetRecompiledByAssetsystemCount( pTestMaterial ) == 0
@@ -9593,6 +9670,7 @@ unknown protocol
 unknown pss digest
 unknown public key type
 unknown purpose id
+unknown reason
 unknown remote error type
 unknown signature algorithm
 unknown ssl version
@@ -9608,9 +9686,15 @@ unstructuredName
 unsuported number of rounds
 unsupported algorithm
 unsupported any defined by type
+unsupported bits per channel
 unsupported certificate purpose
 unsupported cipher
 unsupported cipher type
+unsupported color mode: bitmap
+unsupported color mode: duotone
+unsupported color mode: lab
+unsupported color mode: multichannel
+unsupported color mode: unknown
 unsupported compression algorithm
 unsupported content type
 unsupported digest type
@@ -9895,6 +9979,7 @@ z>Hz
 zF):O4
 zG2m8
 zRXU 
+zero sized document
 zlVO
 zlib compression
 zone
@@ -9911,6 +9996,7 @@ zz2K
 |11Jv
 |3ox
 |<C!FReQ
+|BUnsupported PSD color mode!\n
 |InzT
 |XYl
 |hdX)

@@ -1,3 +1,0 @@
-class CLogicEventListener_API
-{
-};

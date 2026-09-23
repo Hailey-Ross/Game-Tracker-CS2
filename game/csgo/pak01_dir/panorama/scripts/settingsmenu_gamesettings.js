@@ -47,59 +47,8 @@ var SettingsMenuGameSettings;
         }
         elContainer.SetHasClass('no-data-centers', numSamplesAdded == 0);
     }
-    function _InitSteamClanTagsPanel() {
-        let clanTagDropdown = $('#ClanTagsEnum');
-        if (!clanTagDropdown || !clanTagDropdown.IsValid()) {
-            return;
-        }
-        clanTagDropdown.RemoveAllOptions();
-        let id = 'clantagoption_none';
-        let optionLabel = $.CreatePanel('Label', clanTagDropdown, id);
-        optionLabel.text = $.Localize("#SFUI_Settings_ClanTag_None");
-        optionLabel.SetAttributeString('value', '0');
-        clanTagDropdown.AddOption(optionLabel);
-        let nNumClans = MyPersonaAPI.GetMyClanCount();
-        for (let i = 0; i < nNumClans; i++) {
-            let clanID = MyPersonaAPI.GetMyClanIdByIndex(i);
-            let clanTag = MyPersonaAPI.GetMyClanTagByIdCensored(clanID);
-            let clanIDForCvar = MyPersonaAPI.GetMyClanId32BitByIndex(i);
-            id = 'clantagoption' + i.toString();
-            optionLabel = $.CreatePanel('Label', clanTagDropdown, id, { text: '{s:clanTag}' });
-            optionLabel.SetDialogVariable('clanTag', clanTag);
-            optionLabel.SetAttributeString('value', clanIDForCvar.toString());
-            clanTagDropdown.AddOption(optionLabel);
-        }
-        clanTagDropdown.RefreshDisplay();
-    }
-    function OnCrosshairStyleChange() {
-        let nStyle = parseInt(GameInterfaceAPI.GetSettingString('cl_crosshairstyle'));
-        let bEnableControls = nStyle !== 0 && nStyle !== 1;
-        $("#XhairLength").visible = bEnableControls;
-        $("#XhairThickness").visible = bEnableControls;
-        $("#XhairGap").visible = bEnableControls;
-        $("#XhairOutline").visible = bEnableControls;
-        $("#XhairColorRed").visible = bEnableControls;
-        $("#XhairColorGreen").visible = bEnableControls;
-        $("#XhairColorBlue").visible = bEnableControls;
-        $("#XhairAlpha").visible = bEnableControls;
-        $("#XhairCenterDot").visible = bEnableControls;
-        $("#XhairRecoil").visible = bEnableControls;
-        $("#XhairTStyle").visible = bEnableControls;
-        let bEnableSplitControls = nStyle === 2;
-        $("#XhairSlitDist").visible = bEnableSplitControls;
-        $("#XhairSplitInnerAlpha").visible = bEnableSplitControls;
-        $("#XhairSplitOuterAlpha").visible = bEnableSplitControls;
-        $("#XhairSplitRatio").visible = bEnableSplitControls;
-        $("#XhairFixedGap").visible = (nStyle === 1);
-        $("#CrosshairEditorPreview").SetHasClass("dynamic-crosshair", nStyle === 0 || nStyle === 2 || nStyle === 3);
-        let obsCrosshairs = parseInt(GameInterfaceAPI.GetSettingString('cl_show_observer_crosshair'));
-        $("#XhairObservedBotCrosshair").visible = (obsCrosshairs === 2);
-    }
-    SettingsMenuGameSettings.OnCrosshairStyleChange = OnCrosshairStyleChange;
     {
-        _InitSteamClanTagsPanel();
         _InitGameSettings();
-        OnCrosshairStyleChange();
         SettingsMenuShared.ChangeBackground(0);
         $.RegisterForUnhandledEvent('PanoramaComponent_Lobby_ReachableDatacentersUpdated', _RefreshDatacentersList);
     }

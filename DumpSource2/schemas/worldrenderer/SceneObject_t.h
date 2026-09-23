@@ -42,6 +42,7 @@
 //	"m_nLODOverride": -1,
 //	"m_nCubeMapPrecomputedHandshake": 0,
 //	"m_nLightProbeVolumePrecomputedHandshake": 0,
+//	"m_flEmissiveLightingBoost": 1.000000,
 //	"m_renderableModel": "",
 //	"m_renderable": ""
 //}
@@ -59,6 +60,7 @@ class SceneObject_t
 	int16 m_nLODOverride;
 	int32 m_nCubeMapPrecomputedHandshake;
 	int32 m_nLightProbeVolumePrecomputedHandshake;
+	float32 m_flEmissiveLightingBoost;
 	CStrongHandle< InfoForResourceTypeCModel > m_renderableModel;
 	CStrongHandle< InfoForResourceTypeCRenderMesh > m_renderable;
 };

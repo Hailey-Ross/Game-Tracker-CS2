@@ -1,3 +1,0 @@
-class CPointGiveAmmo_API
-{
-};

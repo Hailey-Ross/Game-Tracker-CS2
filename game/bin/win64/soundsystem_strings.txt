@@ -4,7 +4,6 @@
  changes to final result of %.2f\n
 !!SyncExtref!!%s
 !I>Ct
-!\tV_coshf
 #OS_Default_Device
 $procedural
 $toolgraphs
@@ -21,7 +20,6 @@ $toolgraphs
 %dOffset: %i\n
 %f Async I/O Bumped priority for %s (%8.2f msec)\n
 %f: %f : %f : %f : %f\n
-%f: %f: %f : %f : %f : %f\n
 %s %s audio contains INF/NaN
 %s %s audio contains INF/NaN at index %d\n
 %s : param size = %i, field size = %i\n
@@ -37,6 +35,7 @@ $toolgraphs
 %s: Sound event executionlist has too many active voices (%d). Index %i : %s\n
 %s: params.pSfx is NULL.\n
 %s::Execute: Can't find operator stack %s in %s\n
+&\n_V_wcsncpy_bytes
 (%2db) %6lli : %s\n
 (Steam Audio) Update physics material attribute of a VMAT file. They are used for picking acoustic material property for Steam Audio.
 (connected: %s %i )
@@ -51,6 +50,7 @@ $toolgraphs
 .?AUBufferedImpulseResponse_t@@
 .?AUCAttr_m_bApplyAntialiasing@?1??GetAttributeTable_Impl@VMixFlangerDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bApplyAntialiasing@?1??GetAttributeTable_Impl@VMixModDelayDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
+.?AUCAttr_m_bAutoMakeupGain@?1??GetAttributeTable_Impl@VMixDynamicsCompressorDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bBassMono@?1??GetAttributeTable_Impl@VMixUtilityDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bEnable@?1??GetAttributeTable_Impl@VMixDynamicsBand_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bEnableFilter@?1??GetAttributeTable_Impl@VMixDelayDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
@@ -67,32 +67,6 @@ $toolgraphs
 .?AUCAttr_m_bSolo@?1??GetAttributeTable_Impl@VMixDynamicsBand_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bandDesc@?1??GetAttributeTable_Impl@VMixDualCompressorDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_bandDesc@?1??GetAttributeTable_Impl@VMixDynamics3BandDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixAutoFilterProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixBoxverb2ProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixBoxverbProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixConvolutionProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDelayProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDiffusorProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDualCompressorProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDynamics3BandProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDynamicsCompressorProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixDynamicsProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixEQ8ProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixEffectChainProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixEnvelopeProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixFilterProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixFlangerProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixFreeverbProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixModDelayProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixOscProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixPannerProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixPitchShiftProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixPlateReverbProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixPresetDSPProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixShaperProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixSubgraphSwitchProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixUtilityProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_desc@?1??GetAttributeTable_Impl@CVMixVocoderProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_effectName@?1??GetAttributeTable_Impl@VMixEffectChainDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_effectName@?1??GetAttributeTable_Impl@VMixPresetDSPDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_effectName@?1??GetAttributeTable_Impl@VMixSubgraphSwitchDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
@@ -184,6 +158,7 @@ $toolgraphs
 .?AUCAttr_m_flReleaseTimeMS@?1??GetAttributeTable_Impl@VMixEnvelopeDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_flReleaseTimeMS@?1??GetAttributeTable_Impl@VMixVocoderDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_flRoomSize@?1??GetAttributeTable_Impl@VMixFreeverbDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
+.?AUCAttr_m_flSCHighPassFreq@?1??GetAttributeTable_Impl@VMixDynamicsCompressorDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_flSize@?1??GetAttributeTable_Impl@VMixDiffusorDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_flSizeMax@?1??GetAttributeTable_Impl@VMixBoxverbDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_flSizeMin@?1??GetAttributeTable_Impl@VMixBoxverbDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
@@ -224,22 +199,21 @@ $toolgraphs
 .?AUCAttr_m_fldbOutputGain@?1??GetAttributeTable_Impl@VMixUtilityDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_fldbThresholdAbove@?1??GetAttributeTable_Impl@VMixDynamicsBand_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_fldbThresholdBelow@?1??GetAttributeTable_Impl@VMixDynamicsBand_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_flxfade@?1??GetAttributeTable_Impl@CVMixBaseProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_freq@?1??GetAttributeTable_Impl@VMixOscDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_interpolationMode@?1??GetAttributeTable_Impl@VMixSubgraphSwitchDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nBandCount@?1??GetAttributeTable_Impl@VMixVocoderDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_nChannels@?1??GetAttributeTable_Impl@CVMixBaseProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
+.?AUCAttr_m_nChannelSet@?1??GetAttributeTable_Impl@VMixEQFilterDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nDebugBand@?1??GetAttributeTable_Impl@VMixVocoderDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nFilterSlope@?1??GetAttributeTable_Impl@VMixFilterDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nFilterType@?1??GetAttributeTable_Impl@VMixFilterDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nGrainSampleCount@?1??GetAttributeTable_Impl@VMixPitchShiftDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nLFOShape@?1??GetAttributeTable_Impl@VMixAutoFilterDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
+.?AUCAttr_m_nOffset@?1??GetAttributeTable_Impl@CVMixDataOffset@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nOp@?1??GetAttributeTable_Impl@VMixUtilityDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nOversampleFactor@?1??GetAttributeTable_Impl@VMixShaperDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nProcType@?1??GetAttributeTable_Impl@VMixPitchShiftDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nQuality@?1??GetAttributeTable_Impl@VMixPitchShiftDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_nShape@?1??GetAttributeTable_Impl@VMixShaperDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AUCAttr_m_name@?1??GetAttributeTable_Impl@CVMixBaseProcessorDesc@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_name@?1??GetAttributeTable_Impl@VMixSubgraphSwitchDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_stages@?1??GetAttributeTable_Impl@VMixEQ8Desc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_subgraphs@?1??GetAttributeTable_Impl@VMixSubgraphSwitchDesc_t@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
@@ -260,6 +234,9 @@ $toolgraphs
 .?AUSndBeatEventKeyedMidiNotes_t@@
 .?AUSndBeatEventKeyedSndEvts_t@@
 .?AUVDataInitInfo_t@@
+.?AV<lambda_1>@?1???$BindSourceParam@H@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@
+.?AV<lambda_1>@?1???$BindSourceParam@M@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@
+.?AV<lambda_1>@?1???$BindSourceParam@V?$Vec3D@M@@@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@
 .?AV<lambda_1>@?1???0CWaveMicrophoneWriter@@QEAA@PEBD@Z@
 .?AV<lambda_1>@?1??BindInstanceParams@CVoiceContainerGranulator@@MEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@
 .?AV<lambda_1>@?1??BindInstanceParams@CVoiceContainerLoopXFade@@UEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@
@@ -269,11 +246,11 @@ $toolgraphs
 .?AV<lambda_1>@?1??BindInstanceParams@CVoiceContainerStaticAdditiveSynth@@MEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@
 .?AV<lambda_1>@?1??CopySamplesAndMixToMono@CAudioSourceCached@@UEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@@Z@
 .?AV<lambda_1>@?1??CopySamplesFloat@CAudioSourceCached@@UEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@0@Z@
+.?AV<lambda_1>@?1??EnableSourceDoubleBuffering@CGranulatorInstance@CVoiceContainerGranulator@@QEAAXXZ@
 .?AV<lambda_1>@?1??Finalize_Internal@CVoiceContainerRandomSampler@@UEAA_NXZ@
 .?AV<lambda_1>@?1??Finalize_Internal@CVoiceContainerStaticAdditiveSynth@@UEAA_NXZ@
 .?AV<lambda_1>@?1??GenerateArcTan@@YAXAEAVCCubicSplineFunction@@IMM@Z@
 .?AV<lambda_1>@?1??GenerateCompiledFloatAudioStream@CVoiceContainerBase@@QEAAHAEAVCUtlBuffer@@MH@Z@
-.?AV<lambda_1>@?1??GenerateCompiledFloatAudioStream_Mono@CVoiceContainerBase@@QEAAXAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@@Z@
 .?AV<lambda_1>@?1??GenerateFuzzExp1@@YAXAEAVCCubicSplineFunction@@IMM@Z@
 .?AV<lambda_1>@?1??GenerateSigmoid2@@YAXAEAVCCubicSplineFunction@@IMM@Z@
 .?AV<lambda_1>@?1??GenerateSigmoid@@YAXAEAVCCubicSplineFunction@@IMM@Z@
@@ -283,6 +260,7 @@ $toolgraphs
 .?AV<lambda_1>@?1??SetSoundEventField@CSoundEventFieldsQueue@@QEAAXVSoundEventGuid_t@@VCUtlStringToken@@AEBVCSosFieldData@@H@Z@
 .?AV<lambda_1>@?1??SetSoundEventFields@CSoundEventFieldsQueue@@QEAAXVSoundEventGuid_t@@PEBXH@Z@
 .?AV<lambda_1>@?1??StartAsyncLoading@CAsyncWaveData@@QEAAXAEBUasyncwaveparams_t@@@Z@
+.?AV<lambda_1>@?1??TryGenerateCompiledFloatAudioStream_Mono@CVoiceContainerBase@@QEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@AEBUVoiceContainerParameterTableParams_t@@H@Z@
 .?AV<lambda_1>@?4??Finalize_Internal@CVoiceContainerGranulator@@UEAA_NXZ@
 .?AV<lambda_1>@?4??Finalize_Internal@CVoiceContainerTapePlayer@@UEAA_NXZ@
 .?AV<lambda_1>@?6??GenerateCompiledFloatAudioStream@CVoiceContainerBase@@QEAAHAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@0@Z@
@@ -308,11 +286,11 @@ $toolgraphs
 .?AV?$CBaseAppSystem@VISoundOpSystemEdit@@@@
 .?AV?$CBaseAppSystem@VISoundSystem@@@@
 .?AV?$CBaseConcreteToolAttr@$$BY02UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@$$BY07UVMixFilterDesc_t@@UVMixEQ8Desc_t@@@@
+.?AV?$CBaseConcreteToolAttr@$$BY07UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@@@
 .?AV?$CBaseConcreteToolAttr@HUVMixPitchShiftDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@HUVMixShaperDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@HUVMixVocoderDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@HVCVMixBaseProcessorDesc@@@@
+.?AV?$CBaseConcreteToolAttr@IVCVMixDataOffset@@@@
 .?AV?$CBaseConcreteToolAttr@MUVMixAutoFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@MUVMixBoxverbDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@MUVMixConvolutionDesc_t@@@@
@@ -336,46 +314,19 @@ $toolgraphs
 .?AV?$CBaseConcreteToolAttr@MUVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@MUVMixUtilityDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@MUVMixVocoderDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@MVCVMixBaseProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixAutoFilterDesc_t@@VCVMixAutoFilterProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixBoxverbDesc_t@@VCVMixBoxverb2ProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixBoxverbDesc_t@@VCVMixBoxverbProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixConvolutionDesc_t@@VCVMixConvolutionProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDelayDesc_t@@VCVMixDelayProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDiffusorDesc_t@@VCVMixDiffusorProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDualCompressorDesc_t@@VCVMixDualCompressorProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDynamics3BandDesc_t@@VCVMixDynamics3BandProcessorDesc@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixDynamicsBand_t@@UVMixDualCompressorDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDynamicsCompressorDesc_t@@VCVMixDynamicsCompressorProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixDynamicsDesc_t@@VCVMixDynamicsProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixEQ8Desc_t@@VCVMixEQ8ProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixEffectChainDesc_t@@VCVMixEffectChainProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixEnvelopeDesc_t@@VCVMixEnvelopeProcessorDesc@@@@
+.?AV?$CBaseConcreteToolAttr@UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@UVMixAutoFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@UVMixBoxverbDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@UVMixDelayDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@UVMixEQ8Desc_t@@@@
 .?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@UVMixModDelayDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixFilterDesc_t@@VCVMixFilterProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixFlangerDesc_t@@VCVMixFlangerProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixFreeverbDesc_t@@VCVMixFreeverbProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixModDelayDesc_t@@VCVMixModDelayProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixOscDesc_t@@VCVMixOscProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixPannerDesc_t@@VCVMixPannerProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixPitchShiftDesc_t@@VCVMixPitchShiftProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixPlateverbDesc_t@@VCVMixPlateReverbProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixPresetDSPDesc_t@@VCVMixPresetDSPProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixShaperDesc_t@@VCVMixShaperProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixSubgraphSwitchDesc_t@@VCVMixSubgraphSwitchProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixUtilityDesc_t@@VCVMixUtilityProcessorDesc@@@@
-.?AV?$CBaseConcreteToolAttr@UVMixVocoderDesc_t@@VCVMixVocoderProcessorDesc@@@@
 .?AV?$CBaseConcreteToolAttr@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@VCUtlString@@UVMixEffectChainDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@VCUtlString@@UVMixPresetDSPDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@VCUtlString@@UVMixSubgraphSwitchDesc_t@@@@
-.?AV?$CBaseConcreteToolAttr@VCUtlString@@VCVMixBaseProcessorDesc@@@@
 .?AV?$CBaseConcreteToolAttr@W4VMixChannelOperation_t@@UVMixUtilityDesc_t@@@@
+.?AV?$CBaseConcreteToolAttr@W4VMixFilterChannelSet_t@@UVMixEQFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@W4VMixFilterSlope_t@@UVMixFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@W4VMixFilterType_t@@UVMixFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttr@W4VMixLFOShape_t@@UVMixAutoFilterDesc_t@@@@
@@ -398,7 +349,7 @@ $toolgraphs
 .?AV?$CBaseConcreteToolAttrValue@HUVMixPitchShiftDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@HUVMixShaperDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@HUVMixVocoderDesc_t@@@@
-.?AV?$CBaseConcreteToolAttrValue@HVCVMixBaseProcessorDesc@@@@
+.?AV?$CBaseConcreteToolAttrValue@IVCVMixDataOffset@@@@
 .?AV?$CBaseConcreteToolAttrValue@MUVMixAutoFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@MUVMixBoxverbDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@MUVMixConvolutionDesc_t@@@@
@@ -422,12 +373,11 @@ $toolgraphs
 .?AV?$CBaseConcreteToolAttrValue@MUVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@MUVMixUtilityDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@MUVMixVocoderDesc_t@@@@
-.?AV?$CBaseConcreteToolAttrValue@MVCVMixBaseProcessorDesc@@@@
 .?AV?$CBaseConcreteToolAttrValue@VCUtlString@@UVMixEffectChainDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@VCUtlString@@UVMixPresetDSPDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@VCUtlString@@UVMixSubgraphSwitchDesc_t@@@@
-.?AV?$CBaseConcreteToolAttrValue@VCUtlString@@VCVMixBaseProcessorDesc@@@@
 .?AV?$CBaseConcreteToolAttrValue@W4VMixChannelOperation_t@@UVMixUtilityDesc_t@@@@
+.?AV?$CBaseConcreteToolAttrValue@W4VMixFilterChannelSet_t@@UVMixEQFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@W4VMixFilterSlope_t@@UVMixFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@W4VMixFilterType_t@@UVMixFilterDesc_t@@@@
 .?AV?$CBaseConcreteToolAttrValue@W4VMixLFOShape_t@@UVMixAutoFilterDesc_t@@@@
@@ -451,11 +401,11 @@ $toolgraphs
 .?AV?$CBoxverbAudioProcessor@VCReverbDelayLineNoSource@@@@
 .?AV?$CBoxverbAudioProcessor@VCReverbDelayLineWithSource@@@@
 .?AV?$CConcreteToolAttr@$$BY02UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@X@@
-.?AV?$CConcreteToolAttr@$$BY07UVMixFilterDesc_t@@UVMixEQ8Desc_t@@X@@
+.?AV?$CConcreteToolAttr@$$BY07UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@X@@
 .?AV?$CConcreteToolAttr@HUVMixPitchShiftDesc_t@@X@@
 .?AV?$CConcreteToolAttr@HUVMixShaperDesc_t@@X@@
 .?AV?$CConcreteToolAttr@HUVMixVocoderDesc_t@@X@@
-.?AV?$CConcreteToolAttr@HVCVMixBaseProcessorDesc@@X@@
+.?AV?$CConcreteToolAttr@IVCVMixDataOffset@@X@@
 .?AV?$CConcreteToolAttr@MUVMixAutoFilterDesc_t@@X@@
 .?AV?$CConcreteToolAttr@MUVMixBoxverbDesc_t@@X@@
 .?AV?$CConcreteToolAttr@MUVMixConvolutionDesc_t@@X@@
@@ -479,46 +429,19 @@ $toolgraphs
 .?AV?$CConcreteToolAttr@MUVMixSubgraphSwitchDesc_t@@X@@
 .?AV?$CConcreteToolAttr@MUVMixUtilityDesc_t@@X@@
 .?AV?$CConcreteToolAttr@MUVMixVocoderDesc_t@@X@@
-.?AV?$CConcreteToolAttr@MVCVMixBaseProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixAutoFilterDesc_t@@VCVMixAutoFilterProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixBoxverbDesc_t@@VCVMixBoxverb2ProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixBoxverbDesc_t@@VCVMixBoxverbProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixConvolutionDesc_t@@VCVMixConvolutionProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixDelayDesc_t@@VCVMixDelayProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixDiffusorDesc_t@@VCVMixDiffusorProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixDualCompressorDesc_t@@VCVMixDualCompressorProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixDynamics3BandDesc_t@@VCVMixDynamics3BandProcessorDesc@@X@@
 .?AV?$CConcreteToolAttr@UVMixDynamicsBand_t@@UVMixDualCompressorDesc_t@@X@@
 .?AV?$CConcreteToolAttr@UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@X@@
-.?AV?$CConcreteToolAttr@UVMixDynamicsCompressorDesc_t@@VCVMixDynamicsCompressorProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixDynamicsDesc_t@@VCVMixDynamicsProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixEQ8Desc_t@@VCVMixEQ8ProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixEffectChainDesc_t@@VCVMixEffectChainProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixEnvelopeDesc_t@@VCVMixEnvelopeProcessorDesc@@X@@
+.?AV?$CConcreteToolAttr@UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@X@@
 .?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@UVMixAutoFilterDesc_t@@X@@
 .?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@UVMixBoxverbDesc_t@@X@@
 .?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@UVMixDelayDesc_t@@X@@
-.?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@UVMixEQ8Desc_t@@X@@
 .?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@UVMixModDelayDesc_t@@X@@
-.?AV?$CConcreteToolAttr@UVMixFilterDesc_t@@VCVMixFilterProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixFlangerDesc_t@@VCVMixFlangerProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixFreeverbDesc_t@@VCVMixFreeverbProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixModDelayDesc_t@@VCVMixModDelayProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixOscDesc_t@@VCVMixOscProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixPannerDesc_t@@VCVMixPannerProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixPitchShiftDesc_t@@VCVMixPitchShiftProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixPlateverbDesc_t@@VCVMixPlateReverbProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixPresetDSPDesc_t@@VCVMixPresetDSPProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixShaperDesc_t@@VCVMixShaperProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixSubgraphSwitchDesc_t@@VCVMixSubgraphSwitchProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixUtilityDesc_t@@VCVMixUtilityProcessorDesc@@X@@
-.?AV?$CConcreteToolAttr@UVMixVocoderDesc_t@@VCVMixVocoderProcessorDesc@@X@@
 .?AV?$CConcreteToolAttr@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UVMixSubgraphSwitchDesc_t@@X@@
 .?AV?$CConcreteToolAttr@VCUtlString@@UVMixEffectChainDesc_t@@X@@
 .?AV?$CConcreteToolAttr@VCUtlString@@UVMixPresetDSPDesc_t@@X@@
 .?AV?$CConcreteToolAttr@VCUtlString@@UVMixSubgraphSwitchDesc_t@@X@@
-.?AV?$CConcreteToolAttr@VCUtlString@@VCVMixBaseProcessorDesc@@X@@
 .?AV?$CConcreteToolAttr@W4VMixChannelOperation_t@@UVMixUtilityDesc_t@@X@@
+.?AV?$CConcreteToolAttr@W4VMixFilterChannelSet_t@@UVMixEQFilterDesc_t@@X@@
 .?AV?$CConcreteToolAttr@W4VMixFilterSlope_t@@UVMixFilterDesc_t@@X@@
 .?AV?$CConcreteToolAttr@W4VMixFilterType_t@@UVMixFilterDesc_t@@X@@
 .?AV?$CConcreteToolAttr@W4VMixLFOShape_t@@UVMixAutoFilterDesc_t@@X@@
@@ -539,11 +462,11 @@ $toolgraphs
 .?AV?$CConcreteToolAttr@_NUVMixUtilityDesc_t@@X@@
 .?AV?$CConcreteToolAttr@_NUVMixVocoderDesc_t@@X@@
 .?AV?$CConcreteToolAttrDirectMember@$$BY02UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@$$BY07UVMixFilterDesc_t@@UVMixEQ8Desc_t@@@@
+.?AV?$CConcreteToolAttrDirectMember@$$BY07UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@HUVMixPitchShiftDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@HUVMixShaperDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@HUVMixVocoderDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@HVCVMixBaseProcessorDesc@@@@
+.?AV?$CConcreteToolAttrDirectMember@IVCVMixDataOffset@@@@
 .?AV?$CConcreteToolAttrDirectMember@MUVMixAutoFilterDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@MUVMixBoxverbDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@MUVMixConvolutionDesc_t@@@@
@@ -567,44 +490,17 @@ $toolgraphs
 .?AV?$CConcreteToolAttrDirectMember@MUVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@MUVMixUtilityDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@MUVMixVocoderDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@MVCVMixBaseProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixAutoFilterDesc_t@@VCVMixAutoFilterProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixBoxverbDesc_t@@VCVMixBoxverb2ProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixBoxverbDesc_t@@VCVMixBoxverbProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixConvolutionDesc_t@@VCVMixConvolutionProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDelayDesc_t@@VCVMixDelayProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDiffusorDesc_t@@VCVMixDiffusorProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDualCompressorDesc_t@@VCVMixDualCompressorProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDynamics3BandDesc_t@@VCVMixDynamics3BandProcessorDesc@@@@
 .?AV?$CConcreteToolAttrDirectMember@UVMixDynamicsBand_t@@UVMixDualCompressorDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDynamicsCompressorDesc_t@@VCVMixDynamicsCompressorProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixDynamicsDesc_t@@VCVMixDynamicsProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixEQ8Desc_t@@VCVMixEQ8ProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixEffectChainDesc_t@@VCVMixEffectChainProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixEnvelopeDesc_t@@VCVMixEnvelopeProcessorDesc@@@@
 .?AV?$CConcreteToolAttrDirectMember@UVMixFilterDesc_t@@UVMixAutoFilterDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@UVMixFilterDesc_t@@UVMixBoxverbDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@UVMixFilterDesc_t@@UVMixDelayDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@UVMixFilterDesc_t@@UVMixModDelayDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixFilterDesc_t@@VCVMixFilterProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixFlangerDesc_t@@VCVMixFlangerProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixFreeverbDesc_t@@VCVMixFreeverbProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixModDelayDesc_t@@VCVMixModDelayProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixOscDesc_t@@VCVMixOscProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixPannerDesc_t@@VCVMixPannerProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixPitchShiftDesc_t@@VCVMixPitchShiftProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixPlateverbDesc_t@@VCVMixPlateReverbProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixPresetDSPDesc_t@@VCVMixPresetDSPProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixShaperDesc_t@@VCVMixShaperProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixSubgraphSwitchDesc_t@@VCVMixSubgraphSwitchProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixUtilityDesc_t@@VCVMixUtilityProcessorDesc@@@@
-.?AV?$CConcreteToolAttrDirectMember@UVMixVocoderDesc_t@@VCVMixVocoderProcessorDesc@@@@
 .?AV?$CConcreteToolAttrDirectMember@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@VCUtlString@@UVMixEffectChainDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@VCUtlString@@UVMixPresetDSPDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@VCUtlString@@UVMixSubgraphSwitchDesc_t@@@@
-.?AV?$CConcreteToolAttrDirectMember@VCUtlString@@VCVMixBaseProcessorDesc@@@@
 .?AV?$CConcreteToolAttrDirectMember@W4VMixChannelOperation_t@@UVMixUtilityDesc_t@@@@
+.?AV?$CConcreteToolAttrDirectMember@W4VMixFilterChannelSet_t@@UVMixEQFilterDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@W4VMixFilterSlope_t@@UVMixFilterDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@W4VMixFilterType_t@@UVMixFilterDesc_t@@@@
 .?AV?$CConcreteToolAttrDirectMember@W4VMixLFOShape_t@@UVMixAutoFilterDesc_t@@@@
@@ -635,6 +531,7 @@ $toolgraphs
 .?AV?$CDefaultToolAttrTableForStruct@UVMixDynamicsCompressorDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixDynamicsDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixEQ8Desc_t@@@@
+.?AV?$CDefaultToolAttrTableForStruct@UVMixEQFilterDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixEffectChainDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixEnvelopeDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixFilterDesc_t@@@@
@@ -650,44 +547,15 @@ $toolgraphs
 .?AV?$CDefaultToolAttrTableForStruct@UVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixUtilityDesc_t@@@@
 .?AV?$CDefaultToolAttrTableForStruct@UVMixVocoderDesc_t@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixAutoFilterProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixBaseProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixBoxverb2ProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixBoxverbProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixConvolutionProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDelayProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDiffusorProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDualCompressorProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDynamics3BandProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDynamicsCompressorProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixDynamicsProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixEQ8ProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixEffectChainProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixEnvelopeProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixFilterProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixFlangerProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixFreeverbProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixModDelayProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixOscProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixPannerProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixPitchShiftProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixPlateReverbProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixPresetDSPProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixShaperProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixSteamAudioDirectProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixSteamAudioHRTFProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixSteamAudioHybridReverbProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixSteamAudioPathingProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixStereoDelayProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixSubgraphSwitchProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixUtilityProcessorDesc@@@@
-.?AV?$CDefaultToolAttrTableForStruct@VCVMixVocoderProcessorDesc@@@@
+.?AV?$CDefaultToolAttrTableForStruct@VCVMixDataOffset@@@@
 .?AV?$CErrorContextValue@PEBVKeyValues3@@@@
+.?AV?$CKV3ResourceTypeManager@$0HAHDGEHG@@@
 .?AV?$CKV3ResourceTypeManager@$0HIGJGNHG@@@
 .?AV?$CParameter@VCAdditiveSynthInstanceView@CVoiceContainerStaticAdditiveSynth@@H@CVoiceContainerBase@@
 .?AV?$CParameter@VCFMSineInstance@CVoiceContainerRealtimeFMSineWave@@M@CVoiceContainerBase@@
 .?AV?$CParameter@VCGranulatorInstance@CVoiceContainerGranulator@@H@CVoiceContainerBase@@
 .?AV?$CParameter@VCGranulatorInstance@CVoiceContainerGranulator@@M@CVoiceContainerBase@@
+.?AV?$CParameter@VCGranulatorInstance@CVoiceContainerGranulator@@V?$Vec3D@M@@@CVoiceContainerBase@@
 .?AV?$CParameter@VCLoopXFadeInstance@@M@CVoiceContainerBase@@
 .?AV?$CParameter@VCLoopXFadeInstance@@_N@CVoiceContainerBase@@
 .?AV?$CParameter@VCParameterBlendInstance@@M@CVoiceContainerBase@@
@@ -706,11 +574,11 @@ $toolgraphs
 .?AV?$CTier2AppSystem@VISoundOpSystemEdit@@$0A@@@
 .?AV?$CTier2AppSystem@VISoundSystem@@$0A@@@
 .?AV?$CToolAttrDirectMemberAccess@$$BY02UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@$$BY07UVMixFilterDesc_t@@UVMixEQ8Desc_t@@@@
+.?AV?$CToolAttrDirectMemberAccess@$$BY07UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@HUVMixPitchShiftDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@HUVMixShaperDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@HUVMixVocoderDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@HVCVMixBaseProcessorDesc@@@@
+.?AV?$CToolAttrDirectMemberAccess@IVCVMixDataOffset@@@@
 .?AV?$CToolAttrDirectMemberAccess@MUVMixAutoFilterDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@MUVMixBoxverbDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@MUVMixConvolutionDesc_t@@@@
@@ -734,44 +602,17 @@ $toolgraphs
 .?AV?$CToolAttrDirectMemberAccess@MUVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@MUVMixUtilityDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@MUVMixVocoderDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@MVCVMixBaseProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixAutoFilterDesc_t@@VCVMixAutoFilterProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixBoxverbDesc_t@@VCVMixBoxverb2ProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixBoxverbDesc_t@@VCVMixBoxverbProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixConvolutionDesc_t@@VCVMixConvolutionProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDelayDesc_t@@VCVMixDelayProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDiffusorDesc_t@@VCVMixDiffusorProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDualCompressorDesc_t@@VCVMixDualCompressorProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDynamics3BandDesc_t@@VCVMixDynamics3BandProcessorDesc@@@@
 .?AV?$CToolAttrDirectMemberAccess@UVMixDynamicsBand_t@@UVMixDualCompressorDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDynamicsCompressorDesc_t@@VCVMixDynamicsCompressorProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixDynamicsDesc_t@@VCVMixDynamicsProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixEQ8Desc_t@@VCVMixEQ8ProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixEffectChainDesc_t@@VCVMixEffectChainProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixEnvelopeDesc_t@@VCVMixEnvelopeProcessorDesc@@@@
 .?AV?$CToolAttrDirectMemberAccess@UVMixFilterDesc_t@@UVMixAutoFilterDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@UVMixFilterDesc_t@@UVMixBoxverbDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@UVMixFilterDesc_t@@UVMixDelayDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@UVMixFilterDesc_t@@UVMixModDelayDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixFilterDesc_t@@VCVMixFilterProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixFlangerDesc_t@@VCVMixFlangerProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixFreeverbDesc_t@@VCVMixFreeverbProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixModDelayDesc_t@@VCVMixModDelayProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixOscDesc_t@@VCVMixOscProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixPannerDesc_t@@VCVMixPannerProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixPitchShiftDesc_t@@VCVMixPitchShiftProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixPlateverbDesc_t@@VCVMixPlateReverbProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixPresetDSPDesc_t@@VCVMixPresetDSPProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixShaperDesc_t@@VCVMixShaperProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixSubgraphSwitchDesc_t@@VCVMixSubgraphSwitchProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixUtilityDesc_t@@VCVMixUtilityProcessorDesc@@@@
-.?AV?$CToolAttrDirectMemberAccess@UVMixVocoderDesc_t@@VCVMixVocoderProcessorDesc@@@@
 .?AV?$CToolAttrDirectMemberAccess@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UVMixSubgraphSwitchDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@VCUtlString@@UVMixEffectChainDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@VCUtlString@@UVMixPresetDSPDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@VCUtlString@@UVMixSubgraphSwitchDesc_t@@@@
-.?AV?$CToolAttrDirectMemberAccess@VCUtlString@@VCVMixBaseProcessorDesc@@@@
 .?AV?$CToolAttrDirectMemberAccess@W4VMixChannelOperation_t@@UVMixUtilityDesc_t@@@@
+.?AV?$CToolAttrDirectMemberAccess@W4VMixFilterChannelSet_t@@UVMixEQFilterDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@W4VMixFilterSlope_t@@UVMixFilterDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@W4VMixFilterType_t@@UVMixFilterDesc_t@@@@
 .?AV?$CToolAttrDirectMemberAccess@W4VMixLFOShape_t@@UVMixAutoFilterDesc_t@@@@
@@ -793,38 +634,17 @@ $toolgraphs
 .?AV?$CToolAttrDirectMemberAccess@_NUVMixVocoderDesc_t@@@@
 .?AV?$CVDataFileManager@VCSosSoundEventGroupSchema@@@@
 .?AV?$IToolAttrConcreteDataAccess@$$BY02UVMixDynamicsBand_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@$$BY07UVMixFilterDesc_t@@@@
+.?AV?$IToolAttrConcreteDataAccess@$$BY07UVMixEQFilterDesc_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@H@@
+.?AV?$IToolAttrConcreteDataAccess@I@@
 .?AV?$IToolAttrConcreteDataAccess@M@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixAutoFilterDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixBoxverbDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixConvolutionDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDelayDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDiffusorDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDualCompressorDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDynamics3BandDesc_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@UVMixDynamicsBand_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDynamicsCompressorDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixDynamicsDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixEQ8Desc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixEffectChainDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixEnvelopeDesc_t@@@@
+.?AV?$IToolAttrConcreteDataAccess@UVMixEQFilterDesc_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@UVMixFilterDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixFlangerDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixFreeverbDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixModDelayDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixOscDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixPannerDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixPitchShiftDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixPlateverbDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixPresetDSPDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixShaperDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixSubgraphSwitchDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixUtilityDesc_t@@@@
-.?AV?$IToolAttrConcreteDataAccess@UVMixVocoderDesc_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@@@
 .?AV?$IToolAttrConcreteDataAccess@VCUtlString@@@@
 .?AV?$IToolAttrConcreteDataAccess@W4VMixChannelOperation_t@@@@
+.?AV?$IToolAttrConcreteDataAccess@W4VMixFilterChannelSet_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@W4VMixFilterSlope_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@W4VMixFilterType_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@W4VMixLFOShape_t@@@@
@@ -832,9 +652,11 @@ $toolgraphs
 .?AV?$IToolAttrConcreteDataAccess@W4VMixSubgraphSwitchInterpolationType_t@@@@
 .?AV?$IToolAttrConcreteDataAccess@_N@@
 .?AV?$IToolAttr_TypedValue@H@@
+.?AV?$IToolAttr_TypedValue@I@@
 .?AV?$IToolAttr_TypedValue@M@@
 .?AV?$IToolAttr_TypedValue@VCUtlString@@@@
 .?AV?$IToolAttr_TypedValue@W4VMixChannelOperation_t@@@@
+.?AV?$IToolAttr_TypedValue@W4VMixFilterChannelSet_t@@@@
 .?AV?$IToolAttr_TypedValue@W4VMixFilterSlope_t@@@@
 .?AV?$IToolAttr_TypedValue@W4VMixFilterType_t@@@@
 .?AV?$IToolAttr_TypedValue@W4VMixLFOShape_t@@@@
@@ -849,12 +671,16 @@ $toolgraphs
 .?AV?$_Func_base@XPEAVCFMSineInstance@CVoiceContainerRealtimeFMSineWave@@AEBM@std@@
 .?AV?$_Func_base@XPEAVCGranulatorInstance@CVoiceContainerGranulator@@AEBH@std@@
 .?AV?$_Func_base@XPEAVCGranulatorInstance@CVoiceContainerGranulator@@AEBM@std@@
+.?AV?$_Func_base@XPEAVCGranulatorInstance@CVoiceContainerGranulator@@AEBV?$Vec3D@M@@@std@@
 .?AV?$_Func_base@XPEAVCLoopXFadeInstance@@AEBM@std@@
 .?AV?$_Func_base@XPEAVCLoopXFadeInstance@@AEB_N@std@@
 .?AV?$_Func_base@XPEAVCParameterBlendInstance@@AEBM@std@@
 .?AV?$_Func_base@XPEAVCRandomSamplerInstanceView@CVoiceContainerRandomSampler@@AEBH@std@@
 .?AV?$_Func_base@_N$$V@std@@
 .?AV?$_Func_base@_N_N_N@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$BindSourceParam@H@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@XPEAVCGranulatorInstance@2@AEBH@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$BindSourceParam@M@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@XPEAVCGranulatorInstance@2@AEBM@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$BindSourceParam@V?$Vec3D@M@@@CVoiceContainerGranulator@@AEAAXAEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@AEBUVoiceParamNamespace_t@@PEBD@Z@XPEAVCGranulatorInstance@2@AEBV?$Vec3D@M@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???0CWaveMicrophoneWriter@@QEAA@PEBD@Z@XPEAVIAudioInputStream@@H@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??BindInstanceParams@CVoiceContainerGranulator@@MEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@XPEAVCGranulatorInstance@3@AEBH@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??BindInstanceParams@CVoiceContainerLoopXFade@@UEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@XPEAVCLoopXFadeInstance@@AEBM@std@@
@@ -864,11 +690,11 @@ $toolgraphs
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??BindInstanceParams@CVoiceContainerStaticAdditiveSynth@@MEAAXAEBUVoiceParamNamespace_t@@AEAV?$CUtlVector@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@HV?$CUtlVectorMemory_Growable@V?$unique_ptr@VCParameterBase@CVoiceContainerBase@@U?$default_delete@VCParameterBase@CVoiceContainerBase@@@std@@@std@@H$0A@@@@@@Z@XPEAVCAdditiveSynthInstanceView@3@AEBH@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??CopySamplesAndMixToMono@CAudioSourceCached@@UEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@@Z@XPEAMHHH@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??CopySamplesFloat@CAudioSourceCached@@UEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@0@Z@XPEAMHHH@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??EnableSourceDoubleBuffering@CGranulatorInstance@CVoiceContainerGranulator@@QEAAXXZ@_N$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??Finalize_Internal@CVoiceContainerRandomSampler@@UEAA_NXZ@_N$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??Finalize_Internal@CVoiceContainerStaticAdditiveSynth@@UEAA_NXZ@_N$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateArcTan@@YAXAEAVCCubicSplineFunction@@IMM@Z@MMM@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateCompiledFloatAudioStream@CVoiceContainerBase@@QEAAHAEAVCUtlBuffer@@MH@Z@XAEAV?$CUtlVector@VCAudioMixBuffer@@HV?$CUtlVectorMemory_Growable@VCAudioMixBuffer@@H$0A@@@@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateCompiledFloatAudioStream_Mono@CVoiceContainerBase@@QEAAXAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@@Z@XAEAV?$CUtlVector@VCAudioMixBuffer@@HV?$CUtlVectorMemory_Growable@VCAudioMixBuffer@@H$0A@@@@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateFuzzExp1@@YAXAEAVCCubicSplineFunction@@IMM@Z@MMM@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateSigmoid2@@YAXAEAVCCubicSplineFunction@@IMM@Z@MMM@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??GenerateSigmoid@@YAXAEAVCCubicSplineFunction@@IMM@Z@MMM@std@@
@@ -878,6 +704,7 @@ $toolgraphs
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??SetSoundEventField@CSoundEventFieldsQueue@@QEAAXVSoundEventGuid_t@@VCUtlStringToken@@AEBVCSosFieldData@@H@Z@PEAVCSosEventInfo_t@@$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??SetSoundEventFields@CSoundEventFieldsQueue@@QEAAXVSoundEventGuid_t@@PEBXH@Z@PEAVCSosEventInfo_t@@$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??StartAsyncLoading@CAsyncWaveData@@QEAAXAEBUasyncwaveparams_t@@@Z@XPEAVIAsyncReadRequest2@@W4AsyncRequestStatus_t@@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??TryGenerateCompiledFloatAudioStream_Mono@CVoiceContainerBase@@QEAA_NAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@AEBUVoiceContainerParameterTableParams_t@@H@Z@XAEAV?$CUtlVector@VCAudioMixBuffer@@HV?$CUtlVectorMemory_Growable@VCAudioMixBuffer@@H$0A@@@@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?4??Finalize_Internal@CVoiceContainerGranulator@@UEAA_NXZ@_N$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?4??Finalize_Internal@CVoiceContainerTapePlayer@@UEAA_NXZ@_N$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?6??GenerateCompiledFloatAudioStream@CVoiceContainerBase@@QEAAHAEAV?$CUtlVector@MHV?$CUtlVectorMemory_Growable@MH$0A@@@@@0@Z@XAEAV?$CUtlVector@VCAudioMixBuffer@@HV?$CUtlVectorMemory_Growable@VCAudioMixBuffer@@H$0A@@@@@@std@@
@@ -904,7 +731,7 @@ $toolgraphs
 .?AVCAddonWatcher@@
 .?AVCAmpedDecaySineInstance@CVoiceContainerAmpedDecayingSineWave@@
 .?AVCArrayElementAccess@?$CConcreteToolAttr@$$BY02UVMixDynamicsBand_t@@UVMixDynamics3BandDesc_t@@X@@
-.?AVCArrayElementAccess@?$CConcreteToolAttr@$$BY07UVMixFilterDesc_t@@UVMixEQ8Desc_t@@X@@
+.?AVCArrayElementAccess@?$CConcreteToolAttr@$$BY07UVMixEQFilterDesc_t@@UVMixEQ8Desc_t@@X@@
 .?AVCArrayElementAccess@?$CConcreteToolAttr@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UVMixSubgraphSwitchDesc_t@@X@@
 .?AVCAsyncProcessResult@CVSoundStackScriptTypeManager@@
 .?AVCAsyncWavDataCache@@
@@ -970,6 +797,7 @@ $toolgraphs
 .?AVCMultiInstance@@
 .?AVCNullAudioSubsystem@@
 .?AVCNullContainerInstance@CVoiceContainerNull@@
+.?AVCOfflineVMixRenderer@@
 .?AVCOscAudioProcessor@@
 .?AVCOutputStreamAttachedInstance@CVoiceContainerOutputStreamAttached@@
 .?AVCOversampler16@@
@@ -1038,6 +866,7 @@ $toolgraphs
 .?AVCSosOperatorCalcWeightedAvgVec3@@
 .?AVCSosOperatorCheckValidVsnd@@
 .?AVCSosOperatorCitadelEntityInfo@@
+.?AVCSosOperatorCitadelPointEffectInfo@@
 .?AVCSosOperatorClampFloat@@
 .?AVCSosOperatorConvar@@
 .?AVCSosOperatorCrossfade@@
@@ -1062,6 +891,8 @@ $toolgraphs
 .?AVCSosOperatorFalloff@@
 .?AVCSosOperatorFalloffTail@@
 .?AVCSosOperatorFalloffVR@@
+.?AVCSosOperatorFindEntitiesListByName@@
+.?AVCSosOperatorFindEntityByName@@
 .?AVCSosOperatorFindGroup@@
 .?AVCSosOperatorFindSourceDspPreset@@
 .?AVCSosOperatorFloat16Accumulate16@@
@@ -1181,6 +1012,7 @@ $toolgraphs
 .?AVCSosOperatorRightAngleFloat3@@
 .?AVCSosOperatorSamplerEvent@@
 .?AVCSosOperatorScaleVec3@@
+.?AVCSosOperatorSelfExciting@@
 .?AVCSosOperatorSeqCurve4@@
 .?AVCSosOperatorSequencerLFO@@
 .?AVCSosOperatorSetBuiltins@@
@@ -1196,6 +1028,8 @@ $toolgraphs
 .?AVCSosOperatorSetVoicePosition@@
 .?AVCSosOperatorSmoothApproachFloat@@
 .?AVCSosOperatorSoundEventParam@@
+.?AVCSosOperatorSoundEventParentInfo@@
+.?AVCSosOperatorSoundscapeLocalPosition@@
 .?AVCSosOperatorSourceInfo@@
 .?AVCSosOperatorSourcePlayerInfo@@
 .?AVCSosOperatorSpatializeSpeakers@@
@@ -1258,6 +1092,7 @@ $toolgraphs
 .?AVCToolEditContextQuery_Base@@
 .?AVCToolEditContextQuery_String@@
 .?AVCUtilityAudioProcessor@@
+.?AVCVDSPTypeManager@@
 .?AVCVMixAPI@@
 .?AVCVMixAutoFilterProcessorDesc@@
 .?AVCVMixBaseProcessorDesc@@
@@ -1342,6 +1177,7 @@ $toolgraphs
 .?AVIBaseErrorContext@@
 .?AVIBaseSequence@@
 .?AVIBaseToolAttr@@
+.?AVIGranulatorDebugTarget@@
 .?AVIMixFilter@@
 .?AVIRD_RegisterResourceDataUtils@@
 .?AVIRD_ResourceExtrefUtils@@
@@ -1368,22 +1204,26 @@ $toolgraphs
 .?AVSndBeatEventKeys_t@@
 .vrman
 .vsnd
+.vsndstck
 12dB
 1e<w 
+2\vpL
 33s?
-7\tV_fread
 8fff?fff?fff?fff?
 ;1#INF
 <EMPTY>
 <INVALID>
 <None>
 <UNRESOLVED>
-<\tV_fseek
+<any scope>
 <empty vmix>
 <invalid soundevent name>
 <non-RTTI type>
+<unnamed>
 =X94=
+>0VK
 >EJtM
+>\tV_atanf
 ?amN2
 ?gUB
 ?l@GC
@@ -1430,7 +1270,6 @@ Audio Occlusion: path from %0.1f,%0.1f,%0.1f to %0.1f,%0.1f,%0.1f encountered on
 Audio device starved %d samples \n
 AudioMixer
 Available Operators:\n
-BARS: %i\n
 Bad FLC data for resource '%s': %s\n
 Bad KV3 data for resource '%s': %s\n
 Bad command in vmix!\n
@@ -1441,12 +1280,14 @@ BandPass
 Bass Freq
 Bass Mono
 Beat Midi:\t%f : %i : %i\n
+Beat SndEvt:\t%f : %f\n
 Beat float:\t%f : %f\n
 Beat:\t%f\n
 BeatPattern: Failed to load vdata: %s\n
 BeatPattern: No vdata file (%s), staying dormant.\n
 BeatPattern: Unable to find track %s\n
 BeatPattern: VData file reloaded, re-initializing.\n
+BeatPattern: track %s authored with BPM %f, using %f.\n
 Bits/Sample:\t%d\n
 C-memory-
 C:\buildworker\csgo_rel_win64\build\_build_\soundsystem\_vpc_soundsystem\default\win64\_msvc_\Retail\soundsystem.pdb
@@ -1538,6 +1379,7 @@ CSoundOpSystem::LoadManifestStacksForParsing - stack with empty name
 CStrongHandle
 CTSQueue<class CAsyncWaveData *,0>::Push
 CTSQueue<class CSfxTable *,0>::Push
+CURVE_TANGENT_FLAT
 CURVE_TANGENT_FREE
 CURVE_TANGENT_MIRROR
 CURVE_TANGENT_SINE
@@ -1547,14 +1389,33 @@ CUtlDict<struct CSosOperatorEvalFloat::EvalData *,class CDefFastCaselessStringLe
 CUtlLeanVectorBase<struct UtlRBTreeNode_t<struct CUtlOrderedMapBase<class CSosDependent *,int,class CDefLess<class CSosDependent *>,unsigned short>::Node_t,unsigned short>,unsigned short,class CMemAllocAllocator>::EnsureCapacity
 CUtlLeanVectorBase<struct UtlRBTreeNode_t<struct CUtlOrderedMapBase<class SoundEventGuid_t,class CSndMixGroupTrigger_t,class CDefLess<class SoundEventGuid_t>,unsigned short>::Node_t,unsigned short>,unsigned short,class CMemAllocAllocator>::EnsureCapacity
 CUtlLeanVectorBase<struct UtlRBTreeNode_t<struct CUtlOrderedMapBase<unsigned short,int,class CDefLess<unsigned short>,unsigned short>::Node_t,unsigned short>,unsigned short,class CMemAllocAllocator>::EnsureCapacity
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CSubmix,int,class CMemAllocAllocator>,class CSubmix,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixAdditionalOutput,int,class CMemAllocAllocator>,class CVMixAdditionalOutput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixAudioMeter,int,class CMemAllocAllocator>,class CVMixAudioMeter,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixAutomaticControlInput,int,class CMemAllocAllocator>,class CVMixAutomaticControlInput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixCommand,int,class CMemAllocAllocator>,class CVMixCommand,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixControlInput,int,class CMemAllocAllocator>,class CVMixControlInput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixControlMeter,int,class CMemAllocAllocator>,class CVMixControlMeter,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixControlOutput,int,class CMemAllocAllocator>,class CVMixControlOutput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixGraphInput,int,class CMemAllocAllocator>,class CVMixGraphInput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixImpulseResponseInput,int,class CMemAllocAllocator>,class CVMixImpulseResponseInput,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixNameInputMeter,int,class CMemAllocAllocator>,class CVMixNameInputMeter,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class CVMixSubmix,int,class CMemAllocAllocator>,class CVMixSubmix,int>::InsertBeforeGetPtr
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<class SoundGuid_t,int,class CMemAllocAllocator>,class SoundGuid_t,int>::AddMultipleToTail
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class std::unique_ptr<class CVMixBaseProcessorDesc,struct std::default_delete<class CVMixBaseProcessorDesc> >,int,class CMemAllocAllocator>,class std::unique_ptr<class CVMixBaseProcessorDesc,struct std::default_delete<class CVMixBaseProcessorDesc> >,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<class std::unique_ptr<class CVoiceContainerBase,struct std::default_delete<class CVoiceContainerBase> >,int,class CMemAllocAllocator>,class std::unique_ptr<class CVoiceContainerBase,struct std::default_delete<class CVoiceContainerBase> >,int>::InsertBeforeGetPtr
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<float,int,class CMemAllocAllocator>,float,int>::AddMultipleToTail
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CAudioSentence,int,class CMemAllocAllocator>,struct CAudioSentence,int>::InsertBeforeGetPtr
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CPendingInstanceInitialParamValues,int,class CMemAllocAllocator>,struct CPendingInstanceInitialParamValues,int>::AddMultipleToTail
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CPendingInstanceParam,int,class CMemAllocAllocator>,struct CPendingInstanceParam,int>::AddMultipleToTail
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CUtlHashMap<class CUtlStringTokenNoRegistration,class CUtlVector<unsigned int,int,class CUtlVectorMemory_Growable<unsigned int,int,0> >,class CDefEquals<class CUtlStringTokenNoRegistration>,struct DefaultHashFunctor<class CUtlStringTokenNoRegistration>,int>::HashBucket_t,int,class CMemAllocAllocator>,struct CUtlHashMap<class CUtlStringTokenNoRegistration,class CUtlVector<unsigned int,int,class CUtlVectorMemory_Growable<unsigned int,int,0> >,class CDefEquals<class CUtlStringTokenNoRegistration>,struct DefaultHashFunctor<class CUtlStringTokenNoRegistration>,int>::HashBucket_t,int>::AddMultipleToTail
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CUtlHashMap<int,struct SteamAudioOcclusionVizData_t,class CDefEquals<int>,struct DefaultHashFunctor<int>,int>::HashBucket_t,int,class CMemAllocAllocator>,struct CUtlHashMap<int,struct SteamAudioOcclusionVizData_t,class CDefEquals<int>,struct DefaultHashFunctor<int>,int>::HashBucket_t,int>::AddMultipleToTail
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CUtlHashMap<unsigned __int64,struct vcon_SoundCacheMinorUpdateDatum_t,class CDefEquals<unsigned __int64>,struct DefaultHashFunctor<unsigned __int64>,int>::HashBucket_t,int,class CMemAllocAllocator>,struct CUtlHashMap<unsigned __int64,struct vcon_SoundCacheMinorUpdateDatum_t,class CDefEquals<unsigned __int64>,struct DefaultHashFunctor<unsigned __int64>,int>::HashBucket_t,int>::AddMultipleToTail
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct VoicetraceStopSubvoice_t,int,class CMemAllocAllocator>,struct VoicetraceStopSubvoice_t,int>::AddMultipleToTail
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<unsigned __int64,int,class CMemAllocAllocator>,unsigned __int64,int>::InsertBeforeGetPtr
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<unsigned int,int,class CMemAllocAllocator>,unsigned int,int>::AddMultipleToTail
+CUtlLeanVectorImpl<class CUtlLeanVectorBase<unsigned int,int,class CMemAllocAllocator>,unsigned int,int>::InsertBeforeGetPtr
+CVMixDescription::KV3TransferPostLoad
 CVMixTypeManager::VMixTableInit
 CVSoundStackScriptTypeManager::Allocate can't parse stack %s\n
 CVSoundStackScriptTypeManager::Allocate stack with empty name\n
@@ -1581,11 +1442,6 @@ Cluster size: %u
 Connection Offset: %i\n
 Container has %d Arguments:\n
 Container has %d Parameters:\n
-ControlInput_
-ControlOutput_
-ControlOutput_13
-ControlOutput_14
-ControlOutput_15
 Convert Fixed To Float
 Copy Deinterleaved Float
 Copying '%s' to '%s'\n
@@ -1646,7 +1502,6 @@ Delay Type
 Denominator:\t%u\n
 Depth
 Depth Reflectivity
-Desc
 Detected %d-level recursion in sound operator stack, abort!\n
 Device active: %.2fs.  Active Voices: %d\n
 Did not find valid MixGroups entry in soundmixers.txt\n
@@ -1679,38 +1534,7 @@ Edit Stack Property Mismatch: stack count: %i -> %i\n
 EditGetDomainAttrInfo: sound event %s, could not find field %s. \n
 Effect Name
 Element Count: %i\n
-Element.CVMixAutoFilterProcessorDesc
-Element.CVMixBaseProcessorDesc
-Element.CVMixBoxverb2ProcessorDesc
-Element.CVMixBoxverbProcessorDesc
-Element.CVMixConvolutionProcessorDesc
-Element.CVMixDelayProcessorDesc
-Element.CVMixDiffusorProcessorDesc
-Element.CVMixDualCompressorProcessorDesc
-Element.CVMixDynamics3BandProcessorDesc
-Element.CVMixDynamicsCompressorProcessorDesc
-Element.CVMixDynamicsProcessorDesc
-Element.CVMixEQ8ProcessorDesc
-Element.CVMixEffectChainProcessorDesc
-Element.CVMixEnvelopeProcessorDesc
-Element.CVMixFilterProcessorDesc
-Element.CVMixFlangerProcessorDesc
-Element.CVMixFreeverbProcessorDesc
-Element.CVMixModDelayProcessorDesc
-Element.CVMixOscProcessorDesc
-Element.CVMixPannerProcessorDesc
-Element.CVMixPitchShiftProcessorDesc
-Element.CVMixPlateReverbProcessorDesc
-Element.CVMixPresetDSPProcessorDesc
-Element.CVMixShaperProcessorDesc
-Element.CVMixSteamAudioDirectProcessorDesc
-Element.CVMixSteamAudioHRTFProcessorDesc
-Element.CVMixSteamAudioHybridReverbProcessorDesc
-Element.CVMixSteamAudioPathingProcessorDesc
-Element.CVMixStereoDelayProcessorDesc
-Element.CVMixSubgraphSwitchProcessorDesc
-Element.CVMixUtilityProcessorDesc
-Element.CVMixVocoderProcessorDesc
+Element.CVMixDataOffset
 Element.VMixAutoFilterDesc_t
 Element.VMixBoxverbDesc_t
 Element.VMixConvolutionDesc_t
@@ -1722,6 +1546,7 @@ Element.VMixDynamicsBand_t
 Element.VMixDynamicsCompressorDesc_t
 Element.VMixDynamicsDesc_t
 Element.VMixEQ8Desc_t
+Element.VMixEQFilterDesc_t
 Element.VMixEffectChainDesc_t
 Element.VMixEnvelopeDesc_t
 Element.VMixFilterDesc_t
@@ -1800,11 +1625,10 @@ Failed to allocate an instance of class '%s' (type '%s')
 Failed to apply FLC data to resource '%s': %s\n
 Failed to decode %s\n
 Failed to get p4 file info for %s\n
-Failed to load soundstacks/mixgraph.vmix
+Failed to load sounds/graphs/mixgraphs.vrman
 Failed to load voice container: %s\n
 Failed to read soundmixers.txt as KV3: %s\n
 Failed to start voice for %s\n
-Feedback
 Feedback Depth
 Feedback Diffusion1
 Feedback Diffusion2
@@ -1825,6 +1649,7 @@ Filter Bandwidth
 Filter Slope
 Filter bandwidth
 FilteredLinear
+Flat
 Fld B Mod Gain
 Fld B Unvoiced Gain
 Fldb Compression Threshold
@@ -1833,7 +1658,6 @@ Fldb Gain Output
 Fldb Knee Width
 Fldb Limiter Threshold
 Fldb Noise Gate Threshold
-Flxfade
 FoliageAnimation
 Follow user preference
 Force
@@ -1866,7 +1690,8 @@ Gradient()
 Grain Crossfade Amount
 Grain Length
 Grain Sample Count
-Graphs
+Granulator source container exposes "%s", which is already a parameter on the granulator itself. It will not be settable through "%s".\n
+Granulator source parameter "%s" has type %s, which cannot be rerendered into the source buffer.\n
 Group Index: %i does not reference a valid group.\n
 Group: %s\n
 Groups %i: %i\n
@@ -1877,13 +1702,10 @@ HighPass
 Hold Time MS
 IKV3TransferInterface_ResourceSave
 Ignoring reload of '%s' whose only changes are in vsnd_duration\n
-ImpulseResponse
 InOut: %.2f\nSize: %.1f
 Incorrect sampling rate in %s (mp3 frames are at %dHz, .vsnd file has %dHz)\n
 Increased audio mix latency to %.1f ms\n
-Input %s: %.3f\n
-Input %s: %x (%s)\n
-Input %s: (%s)\n
+Input %s: 
 Input Diffusion1
 Input Diffusion2
 Inside Distance\n%.1f
@@ -1893,8 +1715,11 @@ Invalid Sound Event
 Invalid Sound Event '%s'
 Invalid arg %s set for subvoice playing %s\n
 Invalid field type %s for field %s\n
+Invalid vmix graph %s\n
 Is Oneshot
 KV3 Pointer
+K\tV_coshf
+KeyValues3
 Ksnd_enable_subgraph_log
 L?fff?
 LFO Amount
@@ -1911,7 +1736,6 @@ ListenerForwardVector
 LkV~
 LoadKV3Object error: %s\n
 LoadKV3ObjectInPlace error: %s\n
-LoadVMixList
 Loading mapping from %s file.\n
 Loop End
 Loop Start
@@ -2001,6 +1825,7 @@ OPEN SIDED OUTDOOR AREA Detected \n
 OUTSIDE ALLEY Detected \n
 OUTSIDE COURTYARD Detected \n
 OUTSIDE STREET Detected \n
+Occlusion: %.2f
 Octaves shifted
 Only Tails On Fade Out
 OpenMutexA
@@ -2021,7 +1846,7 @@ PARAM COUNT COMPARE FAIL: %s->%s\n
 PARAMDATA COMPARE FAIL: %s->%s : %s\n
 PARAMINFO COMPARE FAIL: %s->%s\n
 Parallel
-Param Name: "%s" Type: %s
+Param Name: "%s" Scope: %s Type: %s
 Parameters: mix group name, [vol, mute, solo], value\n
 Parameters: mix group name, layer name, [vol, mute, solo], value, amount\n
 Parameters: mix layer name, mix group name, trigger amount\n
@@ -2087,12 +1912,13 @@ Quality
 RESOURCE_TYPE_SOUND
 RESOURCE_TYPE_SOUNDEVENTSCRIPT
 RESOURCE_TYPE_SOUNDSTACKSCRIPT
+RESOURCE_TYPE_VDSP
 RESOURCE_TYPE_VMIX_LIST
 RMS Time MS
 ROOM Detected \n
 RSDS1
+R\fpL
 Random Modulation
-Random Sampler Voice Container Failed to load audio data for %s\n
 Random Sampler Voice Container referenced an audio asset (%s) that's too long (%d samples. Max supported: %d)\n
 Random Sampler Voice Container referenced too many audio assets (Referenced %d. Max supported: %d)\n
 Ratio
@@ -2100,6 +1926,8 @@ Recorded into %s...\n
 Release Time MS
 RemoveSoundEvents: event with empty name\n
 Resample Deinterleaved Float
+Restarting audio device due to configuration change. Was:%s:%d, now %s:%d\n
+Restarting audio device due to errors detected: %s:%d\n
 Retrigger Tone
 Reverb Depth ms
 Reverb Height ms
@@ -2121,7 +1949,20 @@ STACK FRAME: %f\n
 S_Init( finish )
 S_MixSampleFrames
 S_UpdateVoicesPerFrame
+S_ValidateOpVarStackCache: dropping an opvar cache built in another stack, now running %s in %s\n
+S_ValidateOpVarStackCache: soundevent (%d) cached by %s is gone, re-resolving\n
+S_ValidateOpVarStackCache: stack "%s" cached by %s is gone, re-resolving\n
 Select Tone
+SendAllVoices
+SendAllVoicesWithMaxSendLevel
+SendFacingVoice
+SendMixgroupVoice
+SendNone
+SendRoomVoice
+SendTrack
+SendVoiceInverseSends
+SendVoiceInverseTotalSend
+SendVoiceWithNamedSend
 Serialization failure: %s\n
 Set Blend
 Set Num Grains
@@ -2160,8 +2001,8 @@ Sound Event '%s' is of invalid type '%s'
 Sound Initialization: Finish, Device Sampling Rate: %i\n
 Sound disabled\n
 Sound memory used %3.1f%%, %s bytes used, %s bytes total\n
-Sound operator generating a vsnd.
-Sound operator generating a vsnd. 
+Sound operator generating a vsnd: source %s cannot be loaded.\n
+Sound operator generating a vsnd: source %s failed to load.\n
 Sound services not available.\n
 Sound system not started\n
 SoundBugBugService001_Client
@@ -2209,10 +2050,7 @@ Stages
 Start Jitter
 Start Op: EVENT FRAME %s.\n
 Start Op: Op Stop Pattern %s.\n
-Start Op: PLAYING %s.\n
-Start Op: QUEUED %s.\n
 Start Op: START FRAME %s.\n
-Start Op: STOP FRAME %s.\n
 Start Sound Event: %s\n
 StartTime: %f\n
 Started to record into %s...\n
@@ -2232,10 +2070,11 @@ Sync Event Type: KEYS\n
 Sync Event Type: LENGTH\n
 Sync Event Type: PHRASE\n
 Sync Mult:\t%f\n
+Sync START Type: IMMEDIATE\n
+Sync Start Type: QUEUE\n
 Sync Track: %s\n
-Sync Type: QUEUE\n
 Sync Type: RESET\n
-Sync Type: SEEK\n
+Sync Type: SEEK IMMEDIATE\n
 SystemAttributes
 TOPOLOGY: Stack %s has %i VSND operators\n
 TOPOLOGY: Stack %s, soundevent_start operator %s, soundevent_name field, source unresolved\n
@@ -2352,9 +2191,9 @@ VertexPaintBlendParams
 VertexPaintBlendParams1
 VertexPaintTintColor
 Vmix Convolution node (re)loaded IR vsnd.\n
-Vmix Convolution node has not yet loaded IR vsnd, running pass thru.\n
+Vmix Convolution node has not yet loaded IR vsnd, but audio is processing; running pass thru.\n
 Voice Container Async Render Work
-Voice Containers: Attempted to set invalid param: %s\n
+Voice Containers: Attempted to set invalid param: %s in scope %s\n
 Voice Elapsed Time: %f\n
 WAIT event %s | %s: elapsed time: %f, next sync time: %f, local elapsed: %f, local sync: %f, length: %f, num loops: %i\n
 WARNING CSosOperatorSystem::OverwriteOpVarsParseKV3: Stack %s Operator %s: cannot find opfield : %s\n
@@ -2375,6 +2214,7 @@ WARNING: snd_sos_soundevent_profile disabled - ignoring!\n
 Warning (problem that doesn't prevent forward progress)
 Warning:  math_curve_2d in %s : Curve 2d field %s won't cache more than 8 points currently. Increase cache size in sos_op_math.h::CSosOperatorCurve_t \n
 Warning: %s (error %s)!\n
+Warning: %s : math_random_self_exciting input_excite * input_tau = %.2f >= 1, excitation will grow without bound and events will fire every frame. Reduce input_excite below %.2f, or add an input_refractory.\n
 Warning: Attempting to add an addition field: %s %s\n
 Warning: Can't find sos strings file: %s!\n
 Warning: Overwriting soundevent %s in file "%s" with one from "%s", the same file.\n
@@ -2411,17 +2251,20 @@ X<"wP
 \nTrack: %s\n
 \nType Name: %s\n
 \nUpdate SoundEvent: %s\n
+\n_V_StringAfterPrefixCaseSensitive
 \rgeneric_data_type
 \t dspmix %1.2f : lvol %1.2f : cvol %1.2f : rvol %1.2f : rlvol %1.2f : rrvol %1.2f\n
 \t x: %4f y: %4f z: %4f\n
 \tRefs %16s : Name (Locks)\n
 \tVOL: %f\n\tLVL: %f\n\tDSP: %f\n\tMUTE: %f\n\tSOLO: %f\n\n
-\tV_atanf
+\tV_UTF8ToUTF16
+\tV_powd
+\tV_sinhf
 \tV_tand
 \tV_tanhf
 \t[%2d] %16.16s : %s (%d) priority: %d\n
+\t\tV_UTF16ToUTF8
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_wcsncpy_bytes
 _CustomCommand
 _CustomCommand%d
 __current_metadata_table_stack
@@ -2439,23 +2282,16 @@ _stack_properties
 _startSample
 _system_properties
 _voicegraph
+a\tV_fread
 accumulate_indexed_speakers
 advanced
 after_first_frame
-ahead.x
-ahead.y
-ahead.z
 allocate_by_area
 allow_empty_match
 always
 and_not
 anim_type
 apply
-applyAirAbsorption
-applyDirectivity
-applyDistanceAttenuation
-applyOcclusion
-applyTransmission
 area_shape
 area_type
 array_selection_type
@@ -2484,8 +2320,6 @@ band_2:input
 band_2:inputPeak
 band_2:output
 band_2:outputPeak
-bandwidth
-base
 base_operator
 beat
 beatpattern_pattern_get_float
@@ -2494,6 +2328,10 @@ beatpattern_pattern_start
 beatpattern_track_set_bpm
 beatpattern_track_stop
 bentnormal
+bezier
+bezier_bounce
+bezier_even
+bezier_even_bounce
 biased
 binary
 blend_ratio
@@ -2520,6 +2358,7 @@ calc_segment
 calc_spatialize_VR
 calc_spatialize_speakers
 calc_spatialize_speakers_hrtf
+category
 causes_ducking
 center1
 center2
@@ -2527,6 +2366,7 @@ check_event_data
 circle
 circle_bounce
 citadel_entity_info
+citadel_point_effect_info
 clamp
 clamp_range
 class_substring
@@ -2542,6 +2382,7 @@ container_sample_curve
 container_set_param_number
 container_set_param_vector
 content/
+continuous
 convar
 convar_get
 convar_set
@@ -2551,7 +2392,6 @@ core.null
 core.voip
 cputimeus
 crossfade ms
-crossfading
 ctrl_gate
 ctrl_switch12_float
 ctrl_switch12_float3
@@ -2569,17 +2409,12 @@ curvature
 curve_defintion_type
 curve_type
 custom_stack
-dBLevel
-dBOutputGain
 data_type
-dbGain
 debug.bypass
 defaultValue
 default_to_max
 deferred Sound Events:\n
 delay count
-delayLeft
-delayRight
 detail_label_1
 detail_label_2
 detail_label_3
@@ -2599,9 +2434,6 @@ detail_value_8
 diffmapping
 diffmaterials
 dimensions
-dipolePower
-dipoleWeight
-directmixlevel
 directsound
 display_category
 display_game
@@ -2609,16 +2441,14 @@ display_group
 distance
 dota2
 dota_ground_under_water
-drive
+draining old buffer
 dsp: %3.2f 
-dsp_presets
 dsppreset
 duck_to_percent
 ducker_threshold
 dynamicEQScale
 ease_sin_out
 econ_replacement
-effectname
 end_as_info
 end_group
 enum_decl
@@ -2632,6 +2462,7 @@ event_type
 exclude_group_name
 execute_once
 exit_if_blocked
+f\tV_fseek
 facing
 fade
 fade_type
@@ -2639,7 +2470,6 @@ fast
 field_name
 field_override
 filterFreq
-filterGain
 filterQ
 flc_columns
 flc_count
@@ -2669,14 +2499,16 @@ game_entity_get_random_position
 game_entity_info
 game_entity_perspective
 game_entity_world_aabb
+game_find_entities_list_by_name
+game_find_entity_by_name
 game_get_local_player_entity_id
 game_get_point_contents
 game_get_point_surfaceproperties
+game_get_soundscape_local_position
 game_get_source_info
 game_get_source_player_info
 game_get_surface_property_string
 get_system_globals
-grainSampleCount
 graphName
 greater_than
 greater_than_or_equal
@@ -2688,6 +2520,7 @@ harmonic_tools_odds_and_evens
 harmonic_tools_spectral_spread
 headphones
 ignore_import
+immediate
 import_public_opvars
 import_stack
 impulseresponse
@@ -2746,6 +2579,7 @@ input_clamp
 input_class_name
 input_clear_dependencies
 input_clear_selection
+input_cluster_period
 input_compute_dimensions
 input_compute_materials
 input_compute_occlusion
@@ -2787,6 +2621,7 @@ input_entity_index_to_ignore
 input_entry_count
 input_event_guid
 input_event_type
+input_excite
 input_execute
 input_factor
 input_fade_in
@@ -2830,7 +2665,6 @@ input_is_player
 input_is_subpattern
 input_label
 input_latch_output_high
-input_launch_sync_beat_mult
 input_level
 input_lfo_center
 input_lifespan_time
@@ -2919,6 +2753,7 @@ input_pitch5
 input_pitch6
 input_pitch7
 input_pitch8
+input_play_beat_mult
 input_playback_jitter
 input_player_value
 input_pos
@@ -2937,12 +2772,15 @@ input_position_6
 input_position_7
 input_position_a
 input_position_b
+input_position_index
 input_priority
 input_query_position
 input_query_z_offset
+input_queue_beat_mult
 input_radius
 input_radius_max
 input_radius_min
+input_rand_distance_min
 input_rand_max
 input_rand_min
 input_random_seed
@@ -2953,6 +2791,7 @@ input_rate_multiplier
 input_rate_rising
 input_rear_stereo_scale
 input_reference_ir
+input_refractory
 input_release_time
 input_relevance_value
 input_replenish_delay
@@ -2968,6 +2807,7 @@ input_restart_time
 input_retrigger_on_finish
 input_reverb_position
 input_reverb_scale
+input_revolutions
 input_rgb_color
 input_rotation_angle
 input_sampler
@@ -3039,6 +2879,7 @@ input_tail_min
 input_target
 input_target_angle
 input_target_value
+input_tau
 input_team_value
 input_test_depth
 input_threshold
@@ -3100,6 +2941,7 @@ input_vsnd7
 input_vsnd8
 input_vsnd_name
 input_wait_time
+input_warmup_time
 input_weight
 input_weight1
 input_weight2
@@ -3130,9 +2972,6 @@ is_untimed
 k8y<=
 key_groups
 last_calc_time
-launch_sync_event_type
-launch_sync_track_name
-launch_sync_type
 left_front
 left_front1
 left_front2
@@ -3163,25 +3002,12 @@ loud
 lowprecisionuv
 lowprecisionuv1
 lvl: %3.2f 
-m\tV_powd
-m_MixCommands
 m_PreviewInputs
 m_PreviewTweak
-m_Processors
-m_Submixes
-m_additionalOutputs
-m_audioMeters
-m_automaticControlInputs
+m_bIsTrackSend
 m_bIsUnderwater
 m_bShouldPause
-m_controlInputArrays
 m_controlInputs
-m_controlMeters
-m_controlOutputs
-m_controlPoints
-m_controlTransientInputs
-m_curves
-m_effectsPreview
 m_flMasterVolume
 m_flMaxVolumeChangePerBuffer
 m_flSeekTime
@@ -3193,26 +3019,20 @@ m_flSlopeOutgoing
 m_flSystemVolumeFadeRate
 m_graphDesc
 m_graphName
-m_impulseResponseInputs
-m_impulseResponseValues
 m_nChannelSelect
 m_nGuid
 m_nMemSize: %i -> %i\n
 m_nMixGroups
 m_nStartSample
 m_nVoiceId
-m_nameInputMeters
 m_nameInputs
 m_pHandle
 m_pStack
 m_pVoice
 m_sendList
 m_sendName
-m_sources
 m_vHandLeft
 m_vHandRight
-m_valueArrays
-m_vsndInputs
 m_vsndName
 main
 mainGraph
@@ -3263,6 +3083,7 @@ math_parameter_accumulator
 math_perlin_noise
 math_random_float
 math_random_float3
+math_random_self_exciting
 math_randomize_float
 math_remap_float
 math_right_angle_float3
@@ -3288,8 +3109,6 @@ mixamount
 mixgroup
 mixlayer
 mod_LFO
-mod_depth
-mod_rate
 monitor_pid
 movie_fixwave: File '%s' does not exist\n
 mpg123_close
@@ -3326,7 +3145,6 @@ muteTrackList
 nNameSpaceIndex: %i -> %i\n
 named
 namespace
-nband
 neutral
 no stack mem
 noise_type
@@ -3389,7 +3207,6 @@ opvar_increment_float
 opvar_increment_float operator %s in %s failed to get field\n
 opvar_set_array_index
 opvar_set_float
-opvar_set_float operator %s in %s referencing invalid stack\n
 opvar_set_float3
 opvar_set_string
 opvar_set_vsnd
@@ -3398,7 +3215,6 @@ orient_vector_to_entity
 outer_split
 output1
 output2
-outputGain
 outputPeak
 output_0
 output_1
@@ -3424,10 +3240,12 @@ output_branch_match_event_name
 output_branch_match_float
 output_branch_match_opvar_string
 output_closest_point
+output_count
 output_current_guid
 output_current_level_name
 output_delay
 output_dependencies
+output_dimension_data_found
 output_dimensions_inout_value
 output_dimensions_insize_direction_0
 output_dimensions_insize_distance_0
@@ -3439,6 +3257,7 @@ output_distance
 output_dot_product
 output_dsp
 output_duration
+output_effect_matches_listener
 output_effect_name
 output_elapsed_time
 output_element_count
@@ -3448,6 +3267,22 @@ output_enemy_is_targeting_local_player
 output_ent_dormant
 output_entity_classname
 output_entity_index
+output_entity_index_01
+output_entity_index_02
+output_entity_index_03
+output_entity_index_04
+output_entity_index_05
+output_entity_index_06
+output_entity_index_07
+output_entity_index_08
+output_entity_index_09
+output_entity_index_10
+output_entity_index_11
+output_entity_index_12
+output_entity_index_13
+output_entity_index_14
+output_entity_index_15
+output_entity_index_16
 output_entity_is_actual_player_entity
 output_entity_is_npc
 output_entity_is_player
@@ -3458,6 +3293,7 @@ output_event_happened
 output_event_playing
 output_event_time
 output_events_matching
+output_excitation
 output_final_delay
 output_float
 output_frame_time
@@ -3514,12 +3350,15 @@ output_mix
 output_mixgroups
 output_modifier_surface_index
 output_name
+output_next_awake
+output_next_gap
 output_normalized
 output_not_selected
 output_occlusion
 output_occlusion_value
 output_opvar_elements
 output_opvar_exists
+output_parent_stopped
 output_pathing_coeffs
 output_pathing_direction
 output_pathing_distance_ratio
@@ -3572,6 +3411,7 @@ output_time_to_next_syncpoint
 output_time_to_start
 output_total_weights
 output_transmission
+output_trigger
 output_unspread
 output_unstopped
 output_usable_max
@@ -3612,18 +3452,11 @@ pass_builtin_fields
 pass_opvar_args
 path_substring
 pathing
-pathingcoeffs
-pathingeq
-pathingmixlevel
 pattern_name
 perlin
-perspectivecorrection
-phase
 phrase
 pitch.cos
 pitch.sin
-pitchScale
-play time
 play_event_type
 playback
 position.x
@@ -3657,8 +3490,10 @@ public_opvar
 qWindows Audio
 quad
 queue
+queue_event_type
 quiet
 rAb<
+r\vpL
 random
 random_distribution_factor
 random_exclusive
@@ -3666,22 +3501,15 @@ random_pan
 random_volume
 random_weighted
 recording_dump.wav
-reduction
 reference_operator
 reference_stack
-relativeposition
+render complete
+render requested
 reserve_array
 resourceManifest
 resourcesystem
 retrigger_current_event
 reverb
-reverbTime
-reverbTime.high
-reverbTime.low
-reverbTime.mid
-right.x
-right.y
-right.z
 right_down
 right_front
 right_front1
@@ -3700,19 +3528,25 @@ round_to_int
 sampler_event
 saw_down
 saw_up
+scheduled
 scripts/soundmixers.txt
-seek
-selection_index
+seeding
+seek_immediate
 send
-send%d
+send0
+send1
+send2
+send3
 sendOperator
 send_type
 sequence_track_name
 sequencer_LFO unable to find sequence track %s\n
 sequencer_mod_LFO
 sequencer_mod_curve_2d_4knot
+shared with the container
 sideChain
 sideChainPeak
+simulate_warm
 sine
 single
 slerp
@@ -3756,6 +3590,7 @@ soundevent_group_stop
 soundevent_limiter
 soundevent_name
 soundevent_param
+soundevent_parent_info
 soundevent_pause
 soundevent_samples
 soundevent_start
@@ -3776,10 +3611,12 @@ soundmixer_set_vmix
 sounds/
 sounds/__attached_output_stream_wrapper_%d.vsnd
 sounds/common/null.vsnd
+sounds/graphs/mixgraphs.vrman
+sounds/vsndgen_TapeFx_%d.vsnd
 sounds\
 soundstacks/beatpattern_manager.vdata
+soundstacks/dsp_core.vdsp
 soundstacks/dsp_mix_modifiers.vdata
-soundstacks/mixgraph.vmix
 soundstacks/sosstrings.txt
 soundstacks/soundeventgroups.vdata
 soundstacks/soundstacks_manifest.vrman
@@ -3787,17 +3624,24 @@ soundstacks/soundstacks_manifest_tools.vrman
 soundsystem.dll
 soundsystem_lowlevel
 soundsystem_voicecontainers
+source
 source_column
 source_file_searchpath
 source_soundscape
 spawn_orphans
+spiral
+spiral_bounce
+spiral_even
+spiral_even_bounce
 spline
 square
 startSubvoice
 startVoice
 start_group
+start_mode
 start_on_name_change
 start_time%02d
+std::unique_ptr
 steamaudio_blend_ir
 steamaudio_compute_customdata
 steamaudio_compute_reverb
@@ -3826,6 +3670,9 @@ string8
 string9
 sub_pattern_name
 submix_name
+sync_start_type
+sync_track_name
+sync_type
 t\tvi
 tangent
 tangentu_signv
@@ -3842,19 +3689,13 @@ tool_request_text
 tool_request_tool
 tools/
 total preset slots used: %d \n
+trace_to_farthest_surface
 track_01
 track_name
 track_queue
 track_stop
-transmission
-transmissionHigh
-transmissionLow
-transmissionMid
 trigger
 trigger%02d
-up.x
-up.y
-up.z
 updateVoice
 update_stack
 use_entity_position_if_local_player
@@ -3925,11 +3766,11 @@ vsnd_files
 vsnd_pause_with_game
 vsndgen_DecayingSineWave_%d
 vsndgen_Granulator_%d
-vsndgen_TapeFx_%d
 vsndgen_granulator
 vsndgen_sine_wave
 vsndgen_tape
 wait_for_track
+wait_gap
 waiting_group
 warn
 wave_type
@@ -3938,4 +3779,3 @@ yaw.cos
 yaw.sin
 zG(knN
 ~CSosOperatorSystem: Deleting orphaned CSosOperatorStack pointer for %s via shutdown\n
-~\tV_sinhf

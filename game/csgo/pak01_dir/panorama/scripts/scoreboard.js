@@ -5,7 +5,6 @@
 /// <reference path="common/formattext.ts" />
 /// <reference path="rating_emblem.ts" />
 /// <reference path="match_stakes.ts" />
-/// <reference path="honor_icon.ts" />
 /// <reference path="context_menus/context_menu_playercard.ts" />
 var Scoreboard;
 (function (Scoreboard) {
@@ -1205,6 +1204,7 @@ var Scoreboard;
                 return 'snippet_scoreboard-classic__row--wingman';
             case 'competitive':
             case 'premier':
+            case 'rush':
                 return 'snippet_scoreboard-classic__row--comp';
             case 'training':
                 return 'snippet_scoreboard__row--training';
@@ -1687,6 +1687,9 @@ var Scoreboard;
             if ((result.charAt(1) === 't') && (result.charAt(2) === '_')) {
                 result = result.substring(3);
             }
+            if ((MockAdapter.GetGameModeInternalName(false) == 'rush')) {
+                result = "win_rush";
+            }
             elRndTop.m_elResult.SetImage(dictRoundResultImage[result]);
             elRndTop.m_elResult.AddClass('sb-timeline__segment__round--active');
             elRndBot.m_elResult.SetImage('');
@@ -1703,6 +1706,9 @@ var Scoreboard;
                 m_botScore++;
             if (result.charAt(1) === '_') {
                 result = result.substring(2);
+            }
+            if ((MockAdapter.GetGameModeInternalName(false) == 'rush')) {
+                result = "win_rush";
             }
             elRndBot.m_elResult.SetImage(dictRoundResultImage[result]);
             elRndBot.m_elResult.AddClass('sb-timeline__segment__round--active');
@@ -2276,6 +2282,7 @@ var Scoreboard;
                 return sortOrder_dm;
             case 'competitive':
             case 'premier':
+            case 'rush':
                 return sortOrder_tmm;
             case 'gungameprogressive':
                 return sortOrder_gg;
@@ -2463,12 +2470,10 @@ var Scoreboard;
                 scoreboardTemplate = 'snippet_scoreboard--coopmission';
                 break;
             case 'casual':
-                if (skirmish == 'flyingscoutsman') {
-                    scoreboardTemplate = 'snippet_scoreboard-classic--with-timeline--no-half-times';
-                }
-                else {
-                    scoreboardTemplate = 'snippet_scoreboard-classic--no-timeline';
-                }
+                scoreboardTemplate = 'snippet_scoreboard-classic--no-timeline';
+                break;
+            case 'rush':
+                scoreboardTemplate = 'snippet_scoreboard-classic--with-timeline--no-half-times';
                 break;
             default:
                 scoreboardTemplate = 'snippet_scoreboard-classic--no-timeline';

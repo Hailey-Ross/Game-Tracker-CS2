@@ -305,6 +305,7 @@
 //				},
 //				"m_type": "BlendTreeState",
 //				"m_cloneSourceStateID": "00000000-0000-0000-0000-000000000000",
+//				"m_cloneStateVersion": "b896d8b9-6c2d-45cd-8b25-6d7926da7fc8",
 //				"m_stateEvents":
 //				[
 //				],

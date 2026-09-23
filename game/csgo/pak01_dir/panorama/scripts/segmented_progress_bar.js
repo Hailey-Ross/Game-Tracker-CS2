@@ -1,10 +1,9 @@
 "use strict";
 /// <reference path="csgo.d.ts" />
 /// <reference path="mission_tile.ts" />
+$.LogChannel('p.progressbar', "LV_OFF");
 var SegmentedProgressBar;
 (function (SegmentedProgressBar) {
-    function _msg(text) {
-    }
     const WHOLE_BAR_WIDTH = 180;
     const PROGRESS_PIP_WIDTH = 24;
     const SEGMENT_MARGIN_LEFT = 1;

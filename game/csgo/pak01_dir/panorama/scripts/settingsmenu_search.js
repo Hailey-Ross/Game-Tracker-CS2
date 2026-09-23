@@ -35,6 +35,7 @@ var SettingsMenuSearch;
             'video_settings',
             'advanced_video',
             'KeybdMouseSettings',
+            'CrosshairSettings',
             'ControllerSettings'
         ];
         let arrMatches = [];

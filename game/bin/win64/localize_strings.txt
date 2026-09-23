@@ -26,35 +26,6 @@
 !vars.SetVariable( "u64", 12345ull )
 !vars2.GetLocVariable( "str" )->HasExternalValue()
 "lang"\r\n{\r\n"Language" "English"\r\n"Tokens"\r\n{\r\n
-#GameUI_Language_Brazilian
-#GameUI_Language_Bulgarian
-#GameUI_Language_Czech
-#GameUI_Language_Danish
-#GameUI_Language_Dutch
-#GameUI_Language_English
-#GameUI_Language_Finnish
-#GameUI_Language_French
-#GameUI_Language_German
-#GameUI_Language_Greek
-#GameUI_Language_Hungarian
-#GameUI_Language_Indonesian
-#GameUI_Language_Italian
-#GameUI_Language_Japanese
-#GameUI_Language_Korean
-#GameUI_Language_Latam_Spanish
-#GameUI_Language_Norwegian
-#GameUI_Language_Polish
-#GameUI_Language_Portuguese
-#GameUI_Language_Romanian
-#GameUI_Language_Russian
-#GameUI_Language_Simplified_Chinese
-#GameUI_Language_Spanish
-#GameUI_Language_Swedish
-#GameUI_Language_Thai
-#GameUI_Language_Traditional_Chinese
-#GameUI_Language_Turkish
-#GameUI_Language_Ukrainian
-#GameUI_Language_Vietnamese
 #LOC_Date_AM
 #LOC_Date_Day%d
 #LOC_Date_DayNumFormat
@@ -107,35 +78,6 @@
 #LOC_Duration_m_s
 #LOC_Duration_mmss
 #LOC_Duration_s
-#Valve_SelectLanguage_Brazilian
-#Valve_SelectLanguage_Bulgarian
-#Valve_SelectLanguage_Czech
-#Valve_SelectLanguage_Danish
-#Valve_SelectLanguage_Dutch
-#Valve_SelectLanguage_English
-#Valve_SelectLanguage_Finnish
-#Valve_SelectLanguage_French
-#Valve_SelectLanguage_German
-#Valve_SelectLanguage_Greek
-#Valve_SelectLanguage_Hungarian
-#Valve_SelectLanguage_Indonesian
-#Valve_SelectLanguage_Italian
-#Valve_SelectLanguage_Japanese
-#Valve_SelectLanguage_Korean
-#Valve_SelectLanguage_Latam_Spanish
-#Valve_SelectLanguage_Norwegian
-#Valve_SelectLanguage_Polish
-#Valve_SelectLanguage_Portuguese
-#Valve_SelectLanguage_Romanian
-#Valve_SelectLanguage_Russian
-#Valve_SelectLanguage_Simplified_Chinese
-#Valve_SelectLanguage_Spanish
-#Valve_SelectLanguage_Swedish
-#Valve_SelectLanguage_Thai
-#Valve_SelectLanguage_Traditional_Chinese
-#Valve_SelectLanguage_Turkish
-#Valve_SelectLanguage_Ukrainian
-#Valve_SelectLanguage_Vietnamese
 $1.23
 %04d
 %language%
@@ -174,7 +116,6 @@ $1.23
 .?AVCLocalizeCompiledStringLocVariables@@
 .?AVCLocalizeCompiledStringMessageFormat@@
 .?AVCLocalizeCompiledStringSinglePlain@@
-.?AVCSimpleErrorListener@@
 .?AVILocVariableSource@@
 .?AVILocalize@@
 .?AVILocalizeCompiledString@@
@@ -207,8 +148,6 @@ ARS$
 AllowOverrideFiles
 Bad optional access
 Badly formed loc var, format is {g:type:name} '%.*s'\n
-Brazilian
-Bulgarian
 C:\buildworker\csgo_rel_win64\build\_build_\localize\_vpc_localize\default\win64\_msvc_\Retail\localize.pdb
 C:\buildworker\csgo_rel_win64\build\src\localize\loc_add.cpp
 C:\buildworker\csgo_rel_win64\build\src\localize\loc_variables.cpp
@@ -237,17 +176,13 @@ CheckParseLocVars
 CheckValidParseLocVar
 CompileAndConstructMFString
 CompiledMFString
-Czech
-Danish
 Duplicate load of loc file '%s'\n
 DuplicateFileLoadFail
 DuplicateTokensAssert
 DuplicateTokensFail
 DuplicateTokensWarning
-Dutch
 ERROR: Duplicate load of loc file '%s'\n
 ERROR: Duplicate string token '%s' found in %s (original in %s) - new value '%s', original value '%s'\n
-English
 Expected loc var ref %u of '%s' to be '%s', found '%s'\n
 Expecting %u loc var ref(s) in '%s', found %u\n
 Expecting to fail loc var ref parse of text '%.*s'\n
@@ -255,22 +190,14 @@ Expecting to find %u loc var ref(s) in '%s'\n
 Expecting to find a loc variable reference in '%s'\n
 Expecting to parse loc var ref text '%s'\n
 Failed to read localization file %s\n
-Finnish
-French
 Full paths not allowed in localization file specification '%s'\n
 Generic loc var missing a type in '%.*s'\n
 Generic loc var reference missing a name in '%.*s'\n
 Generic loc var reference modifiers '%s' ignored\n
-German
-Hungarian
 ILocalize::AddFile() failed to load file "%s".\n
 Improper termination of loc variable reference\n
-Indonesian
 Invalid loc variable reference pointer\n
 Invalid loc variable type for '%.*s' (%c)
-Italian
-Japanese
-Korean
 LOCFAIL %s: '%s' combines :f with other flags\n
 LOCFAIL %s: '%s' has multiple parts\n
 LOCFAIL %s: '%s' has variants but does not have any token name variant flags (:g, :n, :p, etc.)\n
@@ -298,7 +225,6 @@ LOC_Ordinal_Prefix_%u
 LOC_Ordinal_Prefix_Default
 LOC_Ordinal_Suffix_%u
 LOC_Ordinal_Suffix_Default
-Latam_Spanish
 List all loaded localization files
 List information on the given token
 Loaded localization files:\n
@@ -322,21 +248,10 @@ Localize_EconProvider_Create
 MFTest of '%s' failed: got '%s', expected '%s'\n
 MessageFormat %s
 Mex$
-Norwegian
 Not expecting to find a loc variable reference in '%s'\n
 Not expecting to find any loc var refs in '%s'\n
 PERF WARNING: '%s' is in UTF-16 format, converting to UTF-8 will allow faster loading of it\n
-Polish
-Portuguese
-Romanian
-Russian
-Simplified_Chinese
-Spanish
-Swedish
 Tokens
-Traditional_Chinese
-Turkish
-Ukrainian
 Unable to find localization token '%s'\n
 Unable to parse loc var reference '%s'\n
 Unknown loc variable number modifier '%c'\n
@@ -345,65 +260,36 @@ Unknown loc variable time modifier '%c'\n
 Unlocalized token '%s'\n
 Usage: %s <token>\n
 V_strStartsWith( pFound, pExpected )
-Vietnamese
 WARNING: Duplicate string token '%s' found in %s (original in %s) - new value '%s', original value '%s'\n
 [!s:notavar]
 [!s:notpresent]
 [END]
+\n_V_StringAfterPrefixCaseSensitive
 \resource\valve_
-\t_V_StringAfterPrefixCaseSensitive
+\tV_UTF16ToUChar32
+\tV_UTF8ToUChar32
+\tV_UTF8ToUTF16
+\tV_powd
 \{s:foo} {s:bar}
 \{s:foo} {} {,:} {s:} {s:bar} extra
-bg_BG
-brazilian
-bulgarian
-cs_CZ
-czech
-da_DK
-danish
-de_DE
 dump_loc_token
 dump_localization_files
 duplicate selector case
-dutch
-el_GR
-en_US
 ends_with_000
 english]
-es-419
-es_419
-es_ES
 external string val
 extstr
-fi_FI
 file://
-finnish
 foo}
-fr_FR
-french
 gen test
 gen test mod A
 gen test mod AB
 gen test mod B
 gender
-german
-greek
-hu_HU
-hungarian
-id_ID
-indonesian
 instance %d:\n
 invalid plural predicate after '='
-it_IT
-italian
-ja_JP
-japanese
-ko_KR
 korean
-koreana
-latam
 localize.dll
-m\tV_powd
 many
 missing required ',' after selection type
 missing required ',' or '}' after substitution variable (do you have unusual characters in your substitution token name?)
@@ -420,11 +306,8 @@ missing required integer or predicate after '='
 missing required selection type (ie., 'plural') after comma
 missing required substitution variable name
 money
-nl_NL
 no vars
 no vars at all
-no_NO
-norwegian
 not used
 other
 pAfter != nullptr && pAfter > pFound && pAfter[-1] == '}'
@@ -432,34 +315,15 @@ pCompiled->IsValid()
 pExpected == nullptr
 pLocalize->FindLocVariableReferenceText( pString ) == pFound
 parse error: %s at position %lld (context: "%s>>>%s<<<%s")
-pl_PL
 plural
-polish
-portuguese
-pt_BR
-pt_PT
 resource/countries_%language%.txt
 resource/valve_
 resource/valve_%language%.txt
 resource\valve_
-ro_RO
-romanian
-ru_RU
-russian
 select
 selectordinal
-spanish
 string val
-sv_SE
-swedish
-tchinese
-th_TH
-thai
 three
-tr_TR
-turkish
-uk_UA
-ukrainian
 unknown/unimplemented selection type
 unknown/unsupported gender category
 unknown/unsupported plural category
@@ -481,8 +345,6 @@ vars.SetVariable( "u64", 12345ull )
 vars.SetVariableExternal( "extstr", "external string val" )
 vars2.GetLocVariable( "extstr" )->HasExternalValue()
 vars[i].m_variableName == expectedNames[i]
-vi_VN
-vietnamese
 x !{q:badtype} x
 x STRING VAL external string val -1234 12345 12.346 $1.23 gen test mod AB x
 x STRING VAL external string val -1234 12345 12.346 $1.23 gen test x
@@ -494,8 +356,6 @@ x {s:str} x
 x {s:u:str} {s:extstr} {d:r:i64} {u:u64} {f:3:f64} {m:money} {g:test:ab:gen} x
 x {s:u:str} {s:extstr} {d:r:i64} {u:u64} {f:3:f64} {m:money} {g:test:gen} x
 x {{s:one} x
-zh_CN
-zh_TW
 {D:o:r:foo}
 {M:foo}
 {d:i64}

@@ -45,6 +45,7 @@ class C_CSPlayerPawn : public C_CSPlayerPawnBase
 	VectorWS m_vRagdollServerOrigin;
 	GameTime_t m_lastLandTime;
 	bool m_bOnGroundLastTick;
+	CHandle< CCSMinimapVolume > m_hActiveMinimapVolume;
 	CHandle< C_CS2HudModelArms > m_hHudModelArms;
 	QAngle m_qDeathEyeAngles;
 	bool m_bLeftHanded;
@@ -87,6 +88,7 @@ class C_CSPlayerPawn : public C_CSPlayerPawnBase
 	VectorWS m_vecStashedGrenadeThrowPosition;
 	VectorWS m_vecStashedGrenadeThrowPawnCenter;
 	Vector m_vecStashedVelocity;
+	float32 m_flInterpolatedInaccuracy;
 	bool m_bShouldAutobuyDMWeapons;
 	GameTime_t m_fImmuneToGunGameDamageTime;
 	bool m_bGunGameImmunity;

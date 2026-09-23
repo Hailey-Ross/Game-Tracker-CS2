@@ -13,6 +13,7 @@
 //	"m_flMuzzleSmokeTimeout": 0.250000,
 //	"m_flMuzzleSmokeDecrementRate": 1.000000,
 //	"m_bGenerateMuzzleLight": true,
+//	"m_bShouldAnimateInWorld": false,
 //	"m_bLinkedCooldowns": false,
 //	"m_iFlags": "",
 //	"m_iWeight": 0,
@@ -67,6 +68,8 @@ class CBasePlayerWeaponVData : public CEntitySubclassVDataBase
 	// MPropertyDescription = "Barrel smoke decrement rate when not firing"
 	float32 m_flMuzzleSmokeDecrementRate;
 	bool m_bGenerateMuzzleLight;
+	// MPropertyDescription = "Was the weapon was built right-handed?"
+	bool m_bShouldAnimateInWorld;
 	// MPropertyStartGroup = "Behavior"
 	// MPropertyDescription = "Should both primary and secondary attacks be cooled down together (so cooling down primary attack would cooldown both primary + secondary attacks)?"
 	bool m_bLinkedCooldowns;

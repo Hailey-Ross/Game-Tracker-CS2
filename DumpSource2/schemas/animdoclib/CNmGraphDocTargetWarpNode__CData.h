@@ -4,5 +4,5 @@
 //}
 class CNmGraphDocTargetWarpNode::CData : public CNmGraphDocVariationDataNode::CData
 {
-	CUtlString m_strAlignmentBoneName;
+	CGlobalSymbol m_strAlignmentBoneName;
 };

@@ -1,6 +1,9 @@
 class CPathMoverEntitySpawner : public CLogicalEntity
 {
+	CPathMoverEntitySpawner::TemplateChoiceStrategy_t m_eTemplateChoiceStrategy;
 	CUtlSymbolLarge[4] m_szSpawnTemplates;
+	int32[4] m_szSpawnTemplateParams;
+	int32[4] m_szSpawnTemplateCount;
 	int32 m_nSpawnIndex;
 	CHandle< CPathMover > m_hPathMover;
 	float32 m_flSpawnFrequencySeconds;
@@ -16,4 +19,7 @@ class CPathMoverEntitySpawner : public CLogicalEntity
 	CEntityIOOutput m_OnTemplateGroupSpawned;
 	CUtlSymbolLarge m_iszPathMoverName;
 	bool m_bPrepopulateOnSpawn;
+	CUtlSymbolLarge m_iszPathNodeStartName;
+	VectorWS m_vMoverSpawnPos;
+	bool m_bRunningDebugThink;
 };

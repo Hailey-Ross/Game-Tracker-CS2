@@ -2301,6 +2301,7 @@ Must use texture register a dest param for tex* instructions.
 NEVER
 NMLK
 NOPQ9:?@H
+NORMAL
 NORMALDEGREE
 NORMALIZENORMALS
 NOT BEQ => BNE <| MR.GenSimplifyInstructionsOpt1_Excl
@@ -2465,6 +2466,7 @@ QUADRATIC
 QUINTIC
 Quadrilateral
 RANGEFOGENABLE
+REPLACE
 RESULTARG
 REVSUBTRACT
 REV_SUBTRACT

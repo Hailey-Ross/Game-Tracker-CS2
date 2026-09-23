@@ -1,5 +1,430 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} -->
 {
+	bind_targets = 
+	{
+		"2DCanvasCamera" = 
+		{
+			ClassName = "C2DCanvasCamera"
+			OverideHelpContextName = ""
+			File = "src/qcontrols/q2dcanvas.cpp"
+			FileLine = 30
+			commands = 
+			{
+				DebugUnlockZoom = 
+				{
+					description = ""
+				}
+				MouseZoom = 
+				{
+					description = ""
+				}
+				PanCamera = 
+				{
+					description = ""
+				}
+				RecenterView = 
+				{
+					description = ""
+				}
+				ZoomIn = 
+				{
+					description = ""
+				}
+				ZoomOut = 
+				{
+					description = ""
+				}
+			}
+		}
+		AssetBrowserMainWnd = 
+		{
+			ClassName = "CQAssetBrowserMainWnd"
+			OverideHelpContextName = ""
+			File = "src/assetbrowser/qassetbrowsermainwnd.cpp"
+			FileLine = 38
+			commands = null
+		}
+		AssetGraphView = 
+		{
+			ClassName = "CQAssetGraphView"
+			OverideHelpContextName = ""
+			File = "src/assetbrowser/qasset_graph_view.cpp"
+			FileLine = 30
+			commands = 
+			{
+				DecreaseMaxDepth = 
+				{
+					description = ""
+				}
+				DecreaseMaxLinks = 
+				{
+					description = ""
+				}
+				Find = 
+				{
+					description = ""
+				}
+				IncreaseMaxDepth = 
+				{
+					description = ""
+				}
+				IncreaseMaxLinks = 
+				{
+					description = ""
+				}
+				NavigateHistoryBack = 
+				{
+					description = ""
+				}
+				NavigateHistoryForward = 
+				{
+					description = ""
+				}
+				ResetMaxDepth = 
+				{
+					description = ""
+				}
+			}
+		}
+		Camera = 
+		{
+			ClassName = "CBindableCamera"
+			OverideHelpContextName = "SharedToolCommands"
+			File = "src/tools/toolutils2/bindablecamera.cpp"
+			FileLine = 60
+			commands = 
+			{
+				CameraLookAtSelection = 
+				{
+					description = ""
+				}
+				DecreaseMoveSpeed = 
+				{
+					description = ""
+				}
+				HorizontalStrafeCamera = 
+				{
+					description = ""
+				}
+				IncreaseMoveSpeed = 
+				{
+					description = ""
+				}
+				MouseControlCamera = 
+				{
+					description = ""
+				}
+				MouseControlCamera2D = 
+				{
+					description = ""
+				}
+				MouseControlCamera3D = 
+				{
+					description = ""
+				}
+				MouseControlCamera3D_Toggle = 
+				{
+					description = ""
+				}
+				MouseLook3D = 
+				{
+					description = ""
+				}
+				MoveCameraBackward3D = 
+				{
+					description = ""
+				}
+				MoveCameraDown3D = 
+				{
+					description = ""
+				}
+				MoveCameraForward3D = 
+				{
+					description = ""
+				}
+				MoveCameraLeft3D = 
+				{
+					description = ""
+				}
+				MoveCameraRight3D = 
+				{
+					description = ""
+				}
+				MoveCameraUp3D = 
+				{
+					description = ""
+				}
+				PanCamera3D = 
+				{
+					description = ""
+				}
+				PitchCameraDown = 
+				{
+					description = ""
+				}
+				PitchCameraUp = 
+				{
+					description = ""
+				}
+				ResetMoveSpeed = 
+				{
+					description = ""
+				}
+				RotateAboutTarget3D = 
+				{
+					description = ""
+				}
+				SnapCameraToSelection = 
+				{
+					description = ""
+				}
+				ToggleLockCameraHeight = 
+				{
+					description = ""
+				}
+				VerticalStrafeCamera = 
+				{
+					description = ""
+				}
+				YawCameraLeft = 
+				{
+					description = ""
+				}
+				YawCameraRight = 
+				{
+					description = ""
+				}
+				ZoomAllCamerasIn = 
+				{
+					description = ""
+				}
+				ZoomAllCamerasOut = 
+				{
+					description = ""
+				}
+				ZoomCameraIn = 
+				{
+					description = ""
+				}
+				ZoomCameraOut = 
+				{
+					description = ""
+				}
+				ZoomForwardBack2D = 
+				{
+					description = ""
+				}
+				ZoomForwardBack3D = 
+				{
+					description = ""
+				}
+			}
+		}
+		GlobalHotkeys = 
+		{
+			ClassName = "CGlobalHotkeyCommands"
+			OverideHelpContextName = ""
+			File = "src/qcontrols/inputglobalhotkeys.cpp"
+			FileLine = 26
+			commands = 
+			{
+				DebugWidgetActiveWindow = 
+				{
+					description = ""
+				}
+				DebugWidgetUnderMouse = 
+				{
+					description = ""
+				}
+				DebugWidgetWithFocus = 
+				{
+					description = ""
+				}
+				DummyNoOp = 
+				{
+					description = ""
+				}
+				FocusChainDebug_Back = 
+				{
+					description = ""
+				}
+				FocusChainDebug_Forward = 
+				{
+					description = ""
+				}
+				FocusChainDebug_Less = 
+				{
+					description = ""
+				}
+				FocusChainDebug_More = 
+				{
+					description = ""
+				}
+				FocusChainDebug_Toggle = 
+				{
+					description = ""
+				}
+				ShowAllCommandsPopup = 
+				{
+					description = ""
+				}
+				ShowConsole = 
+				{
+					description = ""
+				}
+				ShowFullHelpForBindableCommandUnderMouse = 
+				{
+					description = ""
+				}
+				ShowInputDebugger = 
+				{
+					description = ""
+				}
+				ShowWidgetDebugger = 
+				{
+					description = ""
+				}
+				SwitchToEngineWindow = 
+				{
+					description = ""
+				}
+			}
+		}
+		GraphCanvasDebugger = 
+		{
+			ClassName = "CQGraphCanvasDebugger"
+			OverideHelpContextName = ""
+			File = "src/qcontrols/qgraphcanvas_debugger.cpp"
+			FileLine = 86
+			commands = 
+			{
+				PerfRefresh = 
+				{
+					description = ""
+				}
+				PerfShowGatherStyles = 
+				{
+					description = ""
+				}
+				PerfShowLayout = 
+				{
+					description = ""
+				}
+				PerfShowResolveStyles = 
+				{
+					description = ""
+				}
+			}
+		}
+		GraphCanvasViewMiniMap = 
+		{
+			ClassName = "CQGraphCanvasViewMiniMap"
+			OverideHelpContextName = ""
+			File = "src/qcontrols/qgraphcanvas_minimap.cpp"
+			FileLine = 11
+			commands = 
+			{
+				PanCameraFromMiniMap = 
+				{
+					description = ""
+				}
+				ZoomInFromMiniMap = 
+				{
+					description = ""
+				}
+				ZoomOutFromMiniMap = 
+				{
+					description = ""
+				}
+			}
+		}
+		GraphSceneView = 
+		{
+			ClassName = "CQGraphCanvasView"
+			OverideHelpContextName = ""
+			File = "src/qcontrols/qgraphcanvas_view.cpp"
+			FileLine = 31
+			commands = 
+			{
+				DebugCanvasItemUnderMouse = 
+				{
+					description = ""
+				}
+				DoubleClick = 
+				{
+					description = ""
+				}
+				Drag = 
+				{
+					description = ""
+				}
+				FitAllInView = 
+				{
+					description = ""
+				}
+				ForceRelayoutOfAllScenes = 
+				{
+					description = ""
+				}
+				Select = 
+				{
+					description = ""
+				}
+				SelectionAddModifier = 
+				{
+					description = ""
+				}
+				SelectionRemoveModifier = 
+				{
+					description = ""
+				}
+				ShowContextMenu = 
+				{
+					description = ""
+				}
+			}
+		}
+		LightingControl = 
+		{
+			ClassName = "CLightingControlRig"
+			OverideHelpContextName = ""
+			File = "src/tools/toolscene/lightingcontrolrig.cpp"
+			FileLine = 27
+			commands = 
+			{
+				ReloadLightRigDefinitions = 
+				{
+					description = ""
+				}
+				RotateLights = 
+				{
+					description = ""
+				}
+				ToggleLights = 
+				{
+					description = ""
+				}
+			}
+		}
+		ToolSceneWidget = 
+		{
+			ClassName = "CQToolSceneWidget"
+			OverideHelpContextName = ""
+			File = "src/tools/toolscene/qtoolscenewidget.cpp"
+			FileLine = 58
+			commands = 
+			{
+				DebugToolScene = 
+				{
+					description = ""
+				}
+				DefaultPreviewCamera = 
+				{
+					description = ""
+				}
+			}
+		}
+	}
 	resource_manifests = 
 	[
 		{

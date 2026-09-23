@@ -109,6 +109,10 @@ var LoadoutGrid;
             else
                 UpdateCharModel(team);
         }
+        else if (slot == 'pet') {
+            UpdateCharModel('ct');
+            UpdateCharModel('t');
+        }
         FillOutRowItems('ct');
         FillOutRowItems('t');
         UpdateGridFilterIcons();
@@ -175,6 +179,7 @@ var LoadoutGrid;
             return;
         let charId = LoadoutAPI.GetItemID(team, 'customplayer');
         let glovesId = LoadoutAPI.GetItemID(team, 'clothing_hands');
+        let petId = InventoryAPI.GetPetItemID();
         const settings = ItemInfo.GetOrUpdateVanityCharacterSettings(charId);
         if (team == m_selectedTeam) {
             let selectedGroup = GetSelectedGroup();
@@ -199,12 +204,16 @@ var LoadoutGrid;
         }
         if (charId != m_currentCharId[team] ||
             glovesId != m_currentCharGlovesId[team] ||
-            weaponId != m_currentCharWeaponId[team]) {
+            weaponId != m_currentCharWeaponId[team]
+            || Number(petId) != 0 || Number(m_currentPetId[team]) != 0) {
             m_currentCharId[team] = charId;
             m_currentCharGlovesId[team] = glovesId;
             m_currentCharWeaponId[team] = weaponId;
+            m_currentPetId[team] = petId;
             settings.panel = elPanel;
             settings.weaponItemId = weaponId;
+            settings.petItemId = petId;
+            elPanel.SetPetPlacement(!!petId && Number(petId) != 0 ? 'shoulder' : 'none');
             CharacterAnims.PlayAnimsOnPanel(settings);
         }
     }

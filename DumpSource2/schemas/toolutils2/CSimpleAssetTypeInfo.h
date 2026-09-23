@@ -37,6 +37,7 @@
 //	"m_bPresentInGameTree": false,
 //	"m_bShouldCompileErrorFallbackToDisk": false,
 //	"m_nAssetTypeVersion": 0,
+//	"m_nAssetThumbnailVersion": 0,
 //	"m_Test_InjectSearchable": ""
 //}
 class CSimpleAssetTypeInfo
@@ -64,5 +65,6 @@ class CSimpleAssetTypeInfo
 	bool m_bPresentInGameTree;
 	bool m_bShouldCompileErrorFallbackToDisk;
 	int32 m_nAssetTypeVersion;
+	int32 m_nAssetThumbnailVersion;
 	CUtlString m_Test_InjectSearchable;
 };

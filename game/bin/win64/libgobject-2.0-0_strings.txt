@@ -347,7 +347,6 @@ Read-only property '%s' on class '%s' has type '%s' which is not equal to or mor
 Read/writable property '%s' on class '%s' has type '%s' which is not exactly equal to the type '%s' of the property on the interface '%s'\n
 SetDefaultDllDirectories
 SetFileInformationByHandleW
-SetThreadStackGuarantee
 SetThreadpoolTimer
 SetThreadpoolWait
 Source

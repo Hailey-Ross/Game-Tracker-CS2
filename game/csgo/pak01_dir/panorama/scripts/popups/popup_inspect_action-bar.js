@@ -165,6 +165,7 @@ var InspectActionBar;
         const isSpraySealed = ItemInfo.IsSpraySealed(id);
         const bCloseInspectOnSingleAction = (isSticker || isSpraySealed || isFanToken || isPatch || isKeychain || isStickerDisplaySleeve);
         let isEquipped = InventoryAPI.IsEquipped(id, 't') || InventoryAPI.IsEquipped(id, 'ct') || InventoryAPI.IsEquipped(id, "noteam");
+        isEquipped ||= ItemInfo.IsPet(id);
         if (ItemInfo.IsEquippalbleButNotAWeapon(id) ||
             bCloseInspectOnSingleAction ||
             isEquipped) {
@@ -347,7 +348,7 @@ var InspectActionBar;
             if (list && (list.length > 0) && !elPanel.FindChildInLayoutFile('InspectDropdownCharModels').Data().selectedId)
                 _SetDropdown(elPanel, list, id);
         }
-        elPanel.FindChildInLayoutFile('ChangeScenery').SetHasClass('hidden', ItemInfo.IsCharacter(id));
+        elPanel.FindChildInLayoutFile('ChangeScenery').SetHasClass('hidden', ItemInfo.IsCharacter(id) || ItemInfo.IsPet(id));
     }
     function _ShowButtonsForCharacterInspect(elPanel, id) {
         const elPreviewPanel = InspectModelImage.GetModelPanel();

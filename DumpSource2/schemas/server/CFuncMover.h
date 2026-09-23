@@ -40,6 +40,8 @@ class CFuncMover : public CBaseModelEntity
 	bool m_bStartAtClosestPoint;
 	bool m_bStartAtEnd;
 	bool m_bStartFollowingClosestMover;
+	float32 m_flStartFollowingClosestMoverWhenWithinDistance;
+	float32 m_flStartFollowingClosestMoverWhenOutsideDistance;
 	CFuncMover::OrientationUpdate_t m_eOrientationUpdate;
 	GameTime_t m_flTimeStartOrientationChange;
 	float32 m_flTimeToBlendToNewOrientation;
@@ -50,11 +52,15 @@ class CFuncMover : public CBaseModelEntity
 	CEntityOutputTemplate< CUtlString > m_OnNodePassed;
 	CUtlSymbolLarge m_iszOrientationMatchEntityName;
 	CHandle< CBaseEntity > m_hOrientationMatchEntity;
-	float32 m_flTimeToTraverseToNextNode;
-	Vector m_vLerpToNewPosStartInPathEntitySpace;
-	Vector m_vLerpToNewPosEndInPathEntitySpace;
+	VectorWS m_vLerpToNewPosStartWS;
+	float32 m_flLerpToPositionTargetT;
 	float32 m_flLerpToPositionT;
 	float32 m_flLerpToPositionDeltaT;
+	CHandle< CPathMover > m_hTransitionSourcePath;
+	float32 m_flTransitionSourceT;
+	float32 m_flTransitionSourcePathLocation;
+	CUtlSymbolLarge m_iszTransitionSourcePathNodeStart;
+	bool m_bStoppedDuringTransition;
 	CEntityIOOutput m_OnLerpToPositionComplete;
 	bool m_bIsPaused;
 	CFuncMover::TransitionToPathNodeAction_t m_eTransitionedToPathNodeAction;
@@ -98,4 +104,7 @@ class CFuncMover : public CBaseModelEntity
 	bool m_bQueueStopMoving;
 	bool m_bQueueSetupPathMover;
 	CFuncMover::PathRebuildStrategy_t m_ePathRebuildStrategy;
+	CFuncMover::FindFollowMoverStrategy_t m_eFindFollowMoverStrategy;
+	bool m_bDisableDecelerationToStop;
+	Vector m_vOffsetFromPath;
 };

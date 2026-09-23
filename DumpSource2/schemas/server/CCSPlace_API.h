@@ -1,3 +1,0 @@
-class CCSPlace_API
-{
-};

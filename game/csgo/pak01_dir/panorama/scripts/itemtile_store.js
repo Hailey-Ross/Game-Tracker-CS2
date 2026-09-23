@@ -124,7 +124,9 @@ var ItemTileStore;
     function SetClaimed(elPanel, oItemData) {
         if (oItemData.isDropItem) {
             const bIsFauxItem = InventoryAPI.IsFauxItemID(oItemData.id);
+            const bIsExpiredClaimSlot = bIsFauxItem && InventoryAPI.DoesItemMatchDefinitionByName(oItemData.id, 'expired_itemdef');
             elPanel.SetHasClass('item-claimed', bIsFauxItem);
+            elPanel.SetHasClass('item-claimslot-expired', bIsExpiredClaimSlot);
         }
     }
     function isNewRelease(oItemData) {

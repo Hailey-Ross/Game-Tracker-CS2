@@ -40,6 +40,12 @@
 //	"m_SimdTris":
 //	[
 //	],
+//	"m_Prisms":
+//	[
+//	],
+//	"m_SimdPrisms":
+//	[
+//	],
 //	"m_SimdRods":
 //	[
 //	],
@@ -276,6 +282,8 @@ class PhysFeModelDesc_t
 	CUtlVector< FeQuad_t > m_Quads;
 	CUtlVector< FeSimdQuad_t > m_SimdQuads;
 	CUtlVector< FeSimdTri_t > m_SimdTris;
+	CUtlVector< FePrism_t > m_Prisms;
+	CUtlVector< FeSimdPrism_t > m_SimdPrisms;
 	CUtlVector< FeSimdRodConstraint_t > m_SimdRods;
 	CUtlVector< FeSimdRodConstraintAnim_t > m_SimdRodsAnim;
 	CUtlVector< CTransform > m_InitPose;

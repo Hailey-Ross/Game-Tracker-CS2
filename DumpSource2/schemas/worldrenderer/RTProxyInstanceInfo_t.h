@@ -21,6 +21,12 @@
 //		0.000000,
 //		0.000000,
 //		0.000000
+//	],
+//	"m_vTintColorSRGB":
+//	[
+//		255,
+//		255,
+//		255
 //	]
 //}
 class RTProxyInstanceInfo_t
@@ -34,4 +40,5 @@ class RTProxyInstanceInfo_t
 	uint32 m_nVertexEmissiveByteOffset;
 	float32 m_fEmissiveFactor;
 	matrix3x4_t m_mWorldFromLocal;
+	Color m_vTintColorSRGB;
 };

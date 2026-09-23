@@ -14,7 +14,6 @@
 %s called with %d arguments - expected %d-%d
 %s connection attempt timed out\n
 %s expected, got %s
-%s has no instance glue - are you doing objectName.%s instead of objectName:%s?
 %s near '%s'
 %s parameter %d: expected %s but got %s.\n
 %u nesting levels not completed\n
@@ -41,6 +40,8 @@
 (for limit)
 (for state)
 (for step)
+)\nbase64_decode
+*\nbase64_encode
 ... Waiting for an incoming Inspector connection, %llus so far, timeout in %llus\n
 .?AV?$CBaseAppSystem@VIScriptManager@@@@
 .?AV?$CTier0AppSystem@VIScriptManager@@$0A@@@
@@ -82,7 +83,7 @@
 1X2\v3z3
 258EAFA5-E914-47DA-95CA-C5AB0DC85B11
 2\nP!E
-2\vppx
+2\vpx
 4\f%44
 8@HPX
 8Csin
@@ -126,7 +127,6 @@ COMSPEC
 CSS.
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct CUtlHashMap<unsigned __int64,int,class CDefEquals<unsigned __int64>,struct DefaultHashFunctor<unsigned __int64>,int>::HashBucket_t,int,class CMemAllocAllocator>,struct CUtlHashMap<unsigned __int64,int,class CDefEquals<unsigned __int64>,struct DefaultHashFunctor<unsigned __int64>,int>::HashBucket_t,int>::AddMultipleToTail
 Cabs
-Can't call %s:%s on an object of type %s
 Cannot recover from failed socket shutdown. (error %d)
 ClearBit
 Close
@@ -214,6 +214,7 @@ Invalid continueToLocation message
 Invalid evaluate message
 Invalid evaluateOnCallFrame message
 Invalid getProperties message
+Invalid object passed to %s.
 Invalid removeBreakpoint message
 Invalid seek
 Invalid setBreakpoint message
@@ -308,8 +309,8 @@ RRRRRRRR
 RRRRRRRR4Q5QQQQQ
 RRRRRRRREEGRQQQQ
 RSDSu
-R\fppx
-R\vppx
+R\fpx
+R\vpx
 RandomFloatWrapper
 Read-only file system
 Receive buffer overflow for %s\n
@@ -405,24 +406,20 @@ WebSocket
 Xbox VDP is not supported on this platform.
 [ { "description" : "Lua VM Debugging", "devtoolsFrontendUrl" : "/devtools/inspector.html?ws=localhost:41000/process/%u/%s", "id" : "%s", "title" : "%s", "url" : "http://vscript/lua/%s", "type" : "page", "webSocketDebuggerUrl" : "ws://localhost:41000/process/%u/%s" } ]\r\n
 [builtin:
-[none]
 [string "
 \n//# sourceURL=
 \n\t[builtin#%d]:
 \n\tno field package.preload['%s']
 \n\tno file '%s'
 \n\tno module '%s' in file '%s'
+\n_V_StringAfterPrefixCaseSensitive
 \nrandomseed
 \t2K2K
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_StringAfterPrefixCaseSensitive
-\tbase64_decode
-\tbase64_encode
 \tisrunning
 \u%04x
 \var\srcds\shared\dota
 \vgetregistry\fgetmetatable\fsetmetatable
-\vppx
 _LOADED
 _LOADLIB
 _NAME
@@ -876,6 +873,7 @@ property_set
 protocolVersion
 protocol_version
 putf
+r\vpx
 random
 rawequal
 rawset
@@ -1092,7 +1090,6 @@ vwprintf
 vwprintf_s
 vwscanf
 vwscanf_s
-w8#5
 wHbr^
 wNcvn
 waitForDebugger

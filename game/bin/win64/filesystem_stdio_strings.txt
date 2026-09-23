@@ -235,7 +235,6 @@ $hRh
 *UlS
 *Y$ve
 *\fhsD
-*\tV_ferror
 *gFBk
 *hbJ1
 *it%2
@@ -312,8 +311,8 @@ $hRh
 .?AVCFileHandle@@
 .?AVCFileStream@@
 .?AVCFileSystem_Stdio@@
+.?AVCFioMemoryMappedFile@@
 .?AVCFioReadOnlyFile@@
-.?AVCFioReadOnlyMemoryMappedFile@@
 .?AVCIODelayAlarmThread@@
 .?AVCIOServiceThread@CAsyncFileSystem2@@
 .?AVCMemoryMappedFileSection@@
@@ -668,7 +667,6 @@ $hRh
 2Zq)
 2\fWQx
 2\rlhp
-2\vpL
 2^pV
 2a"l
 2bT~
@@ -763,7 +761,6 @@ $hRh
 7XRJ
 7\rayf+
 7\tFq?
-7\tV_fread
 7gS_
 7i@X
 7m:e
@@ -858,13 +855,11 @@ $hRh
 <SVX
 <YGr+
 <YVtV&
-<\tV_fseek
 <unsupported>
 =!=-=3=7=?=C=o=s=u=y={=
 =&sf9
 =O?AqP
 =Q9M
-=\tV_fseeki64
 =cdE
 =trF6,#
 >#>)>/>3>A>W>c>e>w>
@@ -899,7 +894,6 @@ $hRh
 @X!pf
 @Zs3
 @\f1OJ
-@\tV_ftelli64
 @dKb]
 @i1V
 @n2w
@@ -2187,7 +2181,6 @@ Filesystem
 FindFileAbsoluteList
 FindFirstHelper
 FindNext
-Flush
 FlushConsoleInputBuffer
 Fm{#t
 Fop]
@@ -2618,6 +2611,7 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
+OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -3097,7 +3091,6 @@ RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
 RSDS!K
 R\r1>Vp
-R\vpL
 R]Di
 Rbg.E
 Read-only file system
@@ -3311,6 +3304,7 @@ Sd:z
 Secure Electronic Transactions
 Security
 Seed:
+Seek
 Selected Attribute Types
 Sending Steam API content notification\n
 Service
@@ -3404,6 +3398,7 @@ TS_VERIFY_CERT
 TS_VERIFY_CTX_new
 TXJw^{
 TYPE=
+T\tV_ferror
 Tell
 This is an S/MIME signed message%s%s
 Thread32First
@@ -3915,6 +3910,7 @@ aRWZ5
 aRecord
 aSRP
 aXvC
+a\tV_fread
 a]?xG
 aaControls
 ac-auditEntity
@@ -4114,7 +4110,6 @@ bad version number
 bad write retry
 bad x509 filetype
 bad_weak_ptr
-base
 base64 decode error
 base64 encoding
 basicConstraints
@@ -4853,6 +4848,7 @@ fC\tc
 fL\ri
 fP;y
 fUnh\
+f\tV_fseek
 f\trixZ
 facsimileTelephoneNumber
 failed loading private key
@@ -4902,6 +4898,7 @@ gF{A
 gHAx
 gTH.M
 gXC.nT\v
+g\tV_fseeki64
 g]i/H
 gb`X
 gdPI
@@ -5453,6 +5450,7 @@ jOJw"
 jTuf
 jV*d9O
 j[6Z
+j\tV_ftelli64
 j\vIP{s
 janetMailbox
 jb:5

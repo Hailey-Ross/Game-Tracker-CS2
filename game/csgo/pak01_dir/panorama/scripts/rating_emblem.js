@@ -2,10 +2,9 @@
 /// <reference path="csgo.d.ts" />
 /// <reference path="digitpanel.ts" />
 /// <reference path="common/sessionutil.ts" />
+$.LogChannel('p.rating', "LV_OFF");
 var RatingEmblem;
 (function (RatingEmblem) {
-    function _msg(msg) {
-    }
     function _GetMainPanel(root_panel) {
         if (root_panel &&
             root_panel.IsValid() &&
@@ -71,10 +70,8 @@ var RatingEmblem;
         wins = options.leaderboard_details.matchesWon;
         rank = options.leaderboard_details.rank;
         pct = options.leaderboard_details.pct;
-        _msg(rating_type + root_panel.id);
         root_panel.SwitchClass('type', rating_type);
         if (bFullDetails) {
-            _msg('making strings');
             root_panel.SetDialogVariable('rating_type', rating_type);
         }
         let elSkillGroupImage = null;

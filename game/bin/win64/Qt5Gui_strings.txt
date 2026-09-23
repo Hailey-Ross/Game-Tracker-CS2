@@ -28121,7 +28121,6 @@ Agrave
 Airbrush
 AlchemistLab
 AlertMessage
-Alignment
 All Files (*)
 AllLowercase
 AllPropertiesResolved
@@ -28381,6 +28380,7 @@ ComplementaryContent
 Composing and flushing
 Compressed format %d not mappable to GL compressed format
 Compressed texture cannot be used with image load/store
+Compute
 Condensed
 ConfidentCloud
 ConicalGradient
@@ -29063,7 +29063,6 @@ HideNameFilterDetails
 HighFlight
 HighQualityAntialiasing
 HighestBit
-Highlight
 HighlightedText
 HintingPreference
 HintingPreferenceResolved
@@ -29278,7 +29277,6 @@ JN'Z
 J\r?endsWith@QString@@QEBA_NVQLatin1String@@W4CaseSensitivity@Qt@@@Z
 J\tJ\nJ\vJ\fJ\rJ
 JapanBlush
-Japanese
 Jcircumflex
 JuicyCake
 JuicyPeach
@@ -29300,7 +29298,6 @@ Keyboard Light On/Off
 Keyboard Menu
 KeyboardModifiers
 KindSteel
-Korean
 L L!L"L#L$L%L&L'L(L)L*L+L,L-L.L/L0L1L2L3L4L5L6L7L8L9L:L;L<L=L>L?L@LALBLCLDLELFLGLHLILJLKLLLMLNLOLPLQLRLSLTLULVLWLXLYLZL[L\L]L^L_L`LaLbLcLdLeLfLgLhLiLjLkLlLmLnLoLpLqLrLsLtLuLvLwLxLyLzL{L|L}L~L
 L*LrL
 LI at level %d ended
@@ -29680,6 +29677,7 @@ OpenVG
 OpenVGSurface
 Option
 OrangeJuice
+Origin
 OriginBottomLeft
 OriginTopLeft
 Oslash
@@ -30618,6 +30616,7 @@ Red_Integer
 Redo
 ReflectSpread
 Refresh
+Regular
 Reject
 RejectRole
 Reload
@@ -30640,7 +30639,6 @@ Restore Defaults
 RestoreDefaults
 Restores the application from an earlier session.
 Retry
-Return
 Returning shortcut match == 
 Reverse
 Rfraktur
@@ -30711,6 +30709,7 @@ SF530000
 SF540000
 SHAPE_PLAN
 SHEX|
+SNAP
 SRGB8
 SRGB8_Alpha8
 SRGB8_Alpha8_ASTC_10x10
@@ -30878,6 +30877,7 @@ StandardKey
 StandardNotation
 Standby
 StarWine
+State
 State changed:
 StateChanged
 Statement
@@ -31258,7 +31258,6 @@ Vertex shader for blitShaderProg (MainWithTexCoordsVertexShader & UntransformedP
 Vertex shader for simpleShaderProg (MainVertexShader & PositionOnlyVertexShader) failed to compile
 Vertex stage present without any vertex inputs
 ViciousStance
-Vietnamese
 View
 ViewMode
 Visibility
@@ -31781,7 +31780,6 @@ bad height format
 bad keyword
 bad parameters to zlib
 bad width format
-base
 baseUrl
 baseUrlChanged
 basefont

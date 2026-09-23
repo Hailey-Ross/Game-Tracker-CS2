@@ -13,6 +13,7 @@
 //	"m_flMuzzleSmokeTimeout": 0.250000,
 //	"m_flMuzzleSmokeDecrementRate": 1.000000,
 //	"m_bGenerateMuzzleLight": true,
+//	"m_bShouldAnimateInWorld": false,
 //	"m_bLinkedCooldowns": false,
 //	"m_iFlags": "",
 //	"m_iWeight": 0,
@@ -63,8 +64,7 @@
 //	"m_bCannotShootUnderwater": false,
 //	"m_szName": "",
 //	"m_eSilencerType": "WEAPONSILENCER_NONE",
-//	"m_nCrosshairMinDistance": 0,
-//	"m_nCrosshairDeltaDistance": 0,
+//	"m_bShowCrosshair": true,
 //	"m_bIsFullAuto": false,
 //	"m_nNumBullets": 0,
 //	"m_bReloadsSingleShells": false,
@@ -166,8 +166,7 @@ class CCSWeaponBaseVData : public CBasePlayerWeaponVData
 	// MPropertyFriendlyName = "In-Code weapon name"
 	CGlobalSymbol m_szName;
 	CSWeaponSilencerType m_eSilencerType;
-	int32 m_nCrosshairMinDistance;
-	int32 m_nCrosshairDeltaDistance;
+	bool m_bShowCrosshair;
 	bool m_bIsFullAuto;
 	int32 m_nNumBullets;
 	bool m_bReloadsSingleShells;

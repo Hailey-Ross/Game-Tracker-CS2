@@ -44,7 +44,6 @@
 .?AVIIMEManager@@
 .?AVIMEManagerBase@@
 0x%4.4x 
-2\vp`Z
 A previous call to CoInitializeEx specified the concurrency model for this thread as multithread apartment (MTA).\n
 ABC IME
 ALPHANUMERIC_FULL
@@ -104,7 +103,6 @@ DefWindowProcW
 DirectInput
 Discovered %d HKL Keys.\n
 Discovered %d installed languages.\n
-English
 Failed to AdviseSink( IID_ITfCompartmentEventSink ).\n
 Failed to CoCreateInstance( CLSID_TF_ThreadMgr ).\n
 Failed to GetCompartment( GUID_COMPARTMENT_KEYBOARD_INPUTMODE_CONVERSION_GFX ).\n
@@ -182,13 +180,11 @@ JAPANESE_KATAKANA_FULL
 JAPANESE_KATAKANA_HALF
 JJ Pinyin
 JJ.IME
-Japanese
 Japanese IME 2010
 Japanese Input System (MS-IME2002)
 Japanese Microsoft IME
 Katakana_FullShape
 Katakana_HalfShape
-Korean
 Korean 2000
 Korean IME 2000
 Korean IME 2002
@@ -233,13 +229,11 @@ QQPinyin
 Quan Pin
 Quan Pin 6.0
 Quick
-R\fp`Z
 RegEnumKeyExA
 RegOpenKeyExW
 RegQueryInfoKeyW
 RegQueryValueExW
 Registering IME. Profile: '%s', IME filename: '%s'\n
-Russian
 SendInput
 Set Current Language: %s\n
 SetActiveUIView(): IMEUIView: 0x%p\n
@@ -303,7 +297,10 @@ Wubi98
 Zheng Ma
 Zheng Ma 6.0
 ZhengMa
+\nPty
+\tV_UTF8ToUTF16
 \tV_wcsicmp
+\t\tV_UTF16ToUTF8
 `5Sf
 c\t4
 chajei.ime
@@ -329,7 +326,6 @@ itABC IME v5.30
 phon.ime
 pintlgnt.ime
 quick.ime
-r\vp`Z
 sogoupy.ime
 winabc.ime
 winabcx.ime

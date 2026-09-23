@@ -1,0 +1,3 @@
+class CBrokenGlassTrap : public CBaseModelEntity
+{
+};

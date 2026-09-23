@@ -39,6 +39,9 @@ var InventoryInspect;
         CapabilityHeader.Init();
         InspectPurchaseBar.Init();
         _SetDescription(itemId);
+        if (ItemInfo.IsPet(itemId)) {
+            InspectModelImage.StartPetLookAt();
+        }
     }
     function _PlayShowPanelSound(itemId) {
         const category = InventoryAPI.GetLoadoutCategory(itemId);
@@ -134,8 +137,9 @@ var InventoryInspect;
         if (!(ItemInfo.IsWeapon(itemId) || ItemInfo.IsMelee(itemId))) {
             return;
         }
-        const elActionBarPanel = $.GetContextPanel().FindChildInLayoutFile('PopUpInspectActionBar');
-        InspectActionBar.OnUpdateCharModel(elActionBarPanel.FindChildInLayoutFile('InspectDropdownCharModels'), itemId);
+        const elCp = $.GetContextPanel();
+        const elActionBarPanel = elCp.FindChildInLayoutFile('PopUpInspectActionBar');
+        InspectActionBar.OnUpdateCharModel(elActionBarPanel.FindChildInLayoutFile('InspectDropdownCharModels'), itemId, elCp);
     }
     function _EnableNextPrevBtns(aLootlistIds) {
         const btnNext = $.GetContextPanel().FindChildInLayoutFile('id-lootlist-next');

@@ -1,3 +1,0 @@
-class CTestPulseIOComponent_API
-{
-};

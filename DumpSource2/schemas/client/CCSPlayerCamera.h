@@ -1,3 +1,0 @@
-class CCSPlayerCamera : public CCSCustomPlayerCamera
-{
-};

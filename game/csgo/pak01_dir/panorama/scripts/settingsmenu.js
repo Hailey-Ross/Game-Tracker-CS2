@@ -28,6 +28,10 @@ var SettingsMenu;
         Search: {
             xml: "settings_search",
             radioid: "SearchRadio"
+        },
+        CrosshairSettings: {
+            xml: 'settings_crosshair',
+            radioid: 'CrosshairRadio'
         }
     };
     let activeTab;
@@ -140,6 +144,16 @@ var SettingsMenu;
         p.ScrollParentToMakePanelFit(3, false);
         p.AddClass('Highlight');
     }
+    function _UpdateTabNewBadges() {
+        const arrNewSettings = PromotedSettingsUtil.GetUnacknowledgedPromotedSettings();
+        for (const tab in TabInfo) {
+            const elAlert = $('#' + TabInfo[tab].radioid)?.FindChild('TabNewAlert');
+            if (!elAlert)
+                continue;
+            elAlert.SetDialogVariable('alert_value', $.Localize('#Store_Price_New'));
+            elAlert.SetHasClass('hidden', !arrNewSettings.some(setting => setting.section === tab));
+        }
+    }
     function _Init() {
         for (let tab in TabInfo) {
             if (tab !== "Promoted" && tab !== "Search")
@@ -148,6 +162,7 @@ var SettingsMenu;
     }
     {
         _Init();
+        _UpdateTabNewBadges();
         if ($.GetContextPanel().GetAttributeString('set-active-section', '') !== '') {
             let tab = $.GetContextPanel().GetAttributeString('set-active-section', '');
             if (SettingsMenu.IsTabId(tab)) {

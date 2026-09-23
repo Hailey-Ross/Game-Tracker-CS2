@@ -116,7 +116,21 @@
 //	"m_bUseSecondaryColor": false,
 //	"m_flLightStyleStartTime": null,
 //	"m_flCapsuleLength": 0.000000,
-//	"m_flMinRoughness": 0.000000
+//	"m_flMinRoughness": 0.000000,
+//	"m_bAmbientOcclusionProxyOverride": false,
+//	"m_hAmbientOcclusionProxyPosition0": null,
+//	"m_hAmbientOcclusionProxyPosition1": null,
+//	"m_hAmbientOcclusionProxyPosition2": null,
+//	"m_hAmbientOcclusionProxyPosition3": null,
+//	"m_flAmbientOcclusionProxyStrength0": 0.000000,
+//	"m_flAmbientOcclusionProxyStrength1": 0.000000,
+//	"m_flAmbientOcclusionProxyStrength2": 0.000000,
+//	"m_flAmbientOcclusionProxyStrength3": 0.000000,
+//	"m_flAmbientOcclusionProxyAmbientStrength": 0.000000,
+//	"m_flAmbientOcclusionProxyConeAngle0": 0.000000,
+//	"m_flAmbientOcclusionProxyConeAngle1": 0.000000,
+//	"m_flAmbientOcclusionProxyConeAngle2": 0.000000,
+//	"m_flAmbientOcclusionProxyConeAngle3": 0.000000
 //}
 class CLightComponent : public CEntityComponent
 {
@@ -192,4 +206,18 @@ class CLightComponent : public CEntityComponent
 	GameTime_t m_flLightStyleStartTime;
 	float32 m_flCapsuleLength;
 	float32 m_flMinRoughness;
+	bool m_bAmbientOcclusionProxyOverride;
+	CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition0;
+	CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition1;
+	CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition2;
+	CHandle< C_BaseEntity > m_hAmbientOcclusionProxyPosition3;
+	float32 m_flAmbientOcclusionProxyStrength0;
+	float32 m_flAmbientOcclusionProxyStrength1;
+	float32 m_flAmbientOcclusionProxyStrength2;
+	float32 m_flAmbientOcclusionProxyStrength3;
+	float32 m_flAmbientOcclusionProxyAmbientStrength;
+	float32 m_flAmbientOcclusionProxyConeAngle0;
+	float32 m_flAmbientOcclusionProxyConeAngle1;
+	float32 m_flAmbientOcclusionProxyConeAngle2;
+	float32 m_flAmbientOcclusionProxyConeAngle3;
 };

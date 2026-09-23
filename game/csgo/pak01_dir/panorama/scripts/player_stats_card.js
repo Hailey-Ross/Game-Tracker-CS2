@@ -3,7 +3,6 @@
 /// <reference path="common/async.ts" />
 /// <reference path="rating_emblem.ts" />
 /// <reference path="mock_adapter.ts" />
-/// <reference path="honor_icon.ts" />
 var PlayerStatsCard;
 (function (PlayerStatsCard) {
     const CARD_ID = 'card';

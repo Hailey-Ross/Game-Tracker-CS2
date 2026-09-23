@@ -14,6 +14,8 @@
 //	"m_weaponType": null,
 //	"m_weaponState": null,
 //	"m_inspectTurnAngle": null,
+//	"m_nChickSnapshotVariant": null,
+//	"m_nChickLifeStage": null,
 //	"m_bCT": null
 //}
 class CCS2UIPawnGraphController : public CAnimGraphControllerBase
@@ -31,5 +33,7 @@ class CCS2UIPawnGraphController : public CAnimGraphControllerBase
 	CAnimGraph2ParamOptionalRef< CGlobalSymbol > m_weaponType;
 	CAnimGraph2ParamOptionalRef< CGlobalSymbol > m_weaponState;
 	CAnimGraph2ParamOptionalRef< float32 > m_inspectTurnAngle;
+	CAnimGraph2ParamOptionalRef< float32 > m_nChickSnapshotVariant;
+	CAnimGraph2ParamOptionalRef< float32 > m_nChickLifeStage;
 	CAnimGraph2ParamOptionalRef< bool > m_bCT;
 };

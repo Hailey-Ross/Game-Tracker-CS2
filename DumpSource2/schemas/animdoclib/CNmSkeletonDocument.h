@@ -6,6 +6,9 @@
 //	"m_flGlobalScale": 1.000000,
 //	"m_bIsAttachableProp": false,
 //	"m_bIsCS_HACK": false,
+//	"m_contactConfigs":
+//	[
+//	],
 //	"m_secondarySkeletons":
 //	[
 //	],
@@ -31,6 +34,7 @@ class CNmSkeletonDocument : public CNmAnimDocument
 	float32 m_flGlobalScale;
 	bool m_bIsAttachableProp;
 	bool m_bIsCS_HACK;
+	CUtlVector< CNmSkeletonDocument::ContactConfig_t > m_contactConfigs;
 	// MPropertyFriendlyName = "Expected secondary skeletons"
 	// MPropertyAutoExpandSelf
 	CUtlVector< CNmSkeletonDocument::SecondarySkeleton_t > m_secondarySkeletons;

@@ -1,6 +1,5 @@
 "use strict";
 /// <reference path="csgo.d.ts" />
-/// <reference path="honor_icon.ts" />
 var FriendTile;
 (function (FriendTile) {
     let _m_xuid = '';
@@ -11,7 +10,7 @@ var FriendTile;
         _m_xuid = elTile.GetAttributeString('xuid', '(not found)');
         _m_isClan = elTile.GetAttributeString('isClan', 'false') === 'true';
         if (_m_isClan) {
-            _m_hasClanInfo = MyPersonaAPI.GetMyClanNameById(_m_xuid) != '';
+            _m_hasClanInfo = FriendsListAPI.GetClanInfoById32Bit(FriendsListAPI.ConvertXuidToId32Bit(_m_xuid), 'name') != '';
             if (!_m_clanHandle)
                 _m_clanHandle = $.RegisterForUnhandledEvent('PanoramaComponent_MyPersona_ClansInfoUpdated', _ClansInfoUpdated);
         }
@@ -58,7 +57,7 @@ var FriendTile;
             elLabel.text = name;
         }
         else {
-            elLabel.text = MyPersonaAPI.GetMyClanNameById(_m_xuid);
+            elLabel.text = FriendsListAPI.GetClanInfoById32Bit(FriendsListAPI.ConvertXuidToId32Bit(_m_xuid), 'name');
             elLabel.visible = !_m_isClan || _m_hasClanInfo;
         }
     }

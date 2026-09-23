@@ -117,6 +117,7 @@ $prefix_element$
 *** Unable to find or add attribute "%s" to element "%s"!\n
 **?SetVertexColors@FbxLayer@fbxsdk@@QEAAXPEAVFbxLayerElementVertexColor@2@@Z
 *?Transpose@FbxAMatrix@fbxsdk@@QEBA?AV12@XZ
+*\tV_ZSTD_decompress
 ---- dmxconvert cmdline ----\n
 ---- dmxconvert output ----\n
 ---------------------------\n
@@ -765,7 +766,6 @@ $prefix_element$
 .?AVCSchemaRegistration_exportsystem@@
 .?AVCSchemaRegistration_toolutils2@@
 .?AVCSimpleAssetTypeInfo@@
-.?AVCSimpleErrorListener@@
 .?AVCUndoAttributeAddRemove@@
 .?AVCUndoAttributeRenameElement@@
 .?AVCUndoCreateElement@@
@@ -800,12 +800,11 @@ $prefix_element$
 .png
 .tga
 .vmat
-0lj'
 0x%llx
 16-byte data pool
+1\f%1t
 2(?SetFrame@FbxTime@fbxsdk@@QEAAX_JW4EMode@12@@Z
 2\nP!E
-2\vplj'
 4-byte data pool
 5sfm_v8
 64 283 0
@@ -817,7 +816,6 @@ $prefix_element$
 <UNKNOWN_EXPORT_TYPE>
 <\v??BFbxString@fbxsdk@@QEBAPEBDXZ
 ='?SetAxisSystem@FbxGlobalSettings@fbxsdk@@QEAAXAEBVFbxAxisSystem@2@@Z
-=8l3
 >"?IsValid@FbxProperty@fbxsdk@@QEBA_NXZ
 ??0FbxAMatrix@fbxsdk@@QEAA@AEBV01@@Z
 ??0FbxAMatrix@fbxsdk@@QEAA@XZ
@@ -924,11 +922,13 @@ $prefix_element$
 ?Get@FbxAMatrix@fbxsdk@@QEBANHH@Z
 ?Get@FbxProperty@fbxsdk@@IEBA_NPEAXAEBW4EFbxType@2@@Z
 ?GetAt@FbxLayerElementArray@fbxsdk@@QEBA_NHPEAPEAXW4EFbxType@2@@Z
+?GetChannel@FbxAnimCurveNode@fbxsdk@@AEAA?AVFbxProperty@2@I@Z
 ?GetChild@FbxNode@fbxsdk@@QEAAPEAV12@H@Z
 ?GetChildCount@FbxNode@fbxsdk@@QEBAH_N@Z
 ?GetCurrentAnimationStack@FbxScene@fbxsdk@@QEAAPEAVFbxAnimStack@2@XZ
 ?GetCurve@FbxProperty@fbxsdk@@QEAAPEAVFbxAnimCurve@2@PEAVFbxAnimLayer@2@PEBD_N@Z
 ?GetCurve@FbxProperty@fbxsdk@@QEAAPEAVFbxAnimCurve@2@PEAVFbxAnimLayer@2@_N@Z
+?GetCurveNode@FbxProperty@fbxsdk@@QEAAPEAVFbxAnimCurveNode@2@PEAVFbxAnimLayer@2@_N@Z
 ?GetDirectArrayVoid@FbxLayerElementUserData@fbxsdk@@QEAAPEAV?$FbxLayerElementArrayTemplate@PEAX@2@PEBDPEA_N@Z
 ?GetDocumentInfo@FbxDocument@fbxsdk@@QEBAPEAVFbxDocumentInfo@2@XZ
 ?GetErrorString@FbxStatus@fbxsdk@@QEBAPEBDXZ
@@ -962,10 +962,10 @@ $prefix_element$
 ?GetT@FbxAMatrix@fbxsdk@@QEBA?AVFbxVector4@2@XZ
 ?GetTexture@FbxScene@fbxsdk@@QEAAPEAVFbxTexture@2@H@Z
 ?GetTextureCount@FbxScene@fbxsdk@@QEBAHXZ
-?alpha
 ?expf
 ?model_default_preview_sequence_name
 ?vtex
+@alpha
 AddNewLayer
 AddUndoElement '%s'\n
 Adding %s helper key at %d value 
@@ -1277,6 +1277,7 @@ DmeLog
 DmeLogLayer
 DmeMakefile
 DmeMaterial
+DmeMaya
 DmeMayaAnimationMakefile
 DmeMayaMakefile
 DmeMayaModelMakefile
@@ -1448,11 +1449,14 @@ GenericType
 GetClipboardData
 GetProfile_ultrafast
 GlobalSize
+HI=3
+HI?3
 Hammer temp export
 HemiOctAnisoRoughness_RG_BA
 HemiOctIsoRoughness_RG_B
 HemiOctNormal
 Hold
+Hq<3
 I(?SetGlobalTimeMode@FbxTime@fbxsdk@@SAXW4EMode@12@N@Z
 IExportSystem
 IKV3TransferInterface_ResourceSave
@@ -1568,7 +1572,6 @@ Oscillate Vector
 Output memory size is zero
 OverlayProjectionDirection
 P'?SetBoolProp@FbxIOSettings@fbxsdk@@QEAAXPEBD_N@Z
-PDW'
 PF\n%d %d\n-1.000000\n
 Particle Configuration File
 PerVertexLighting
@@ -1707,6 +1710,7 @@ WipeUndo '%s'\n
 World Files
 World Node Files
 X)?SetRotationActive@FbxNode@fbxsdk@@QEAAX_N@Z
+XA>3
 Z%?RemoveElementUV@FbxGeometryBase@fbxsdk@@QEAA_NPEAVFbxLayerElementUV@2@@Z
 ZFP compression is not supported in this build
 [%d] Aborting undo '%s'\n
@@ -1716,6 +1720,8 @@ ZFP compression is not supported in this build
 [%s] Forced dmxconvert - Finished [%s] in %0.2f secs. Please re-save or upconvert this asset!\n
 [morph_controls
 \f*?SetUserData@FbxLayer@fbxsdk@@QEAAXPEAVFbxLayerElementUserData@2@@Z
+\n_V_StringAfterPrefixCaseSensitive
+\n_V_StripLastDir
 \r?AddBlendShapeChannel@FbxBlendShape@fbxsdk@@QEAA_NPEAVFbxBlendShapeChannel@2@@Z
 \r?AddChild@FbxNode@fbxsdk@@QEAA_NPEAV12@@Z
 \r?AddCluster@FbxSkin@fbxsdk@@QEAA_NPEAVFbxCluster@2@@Z
@@ -1730,13 +1736,11 @@ ZFP compression is not supported in this build
 \t??8FbxVector4@fbxsdk@@QEBA_NAEBV01@@Z
 \tError\n
 \tNAN encountered in element '%s' guid %s attribute '%s'!\n
-\tV_ZSTD_decompress
+\tV_log2f
 \tV_sscanf_s
 \tV_strnchr
 \t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
 \t\t\t\t\n\n\n\n\n\n\n\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_StringAfterPrefixCaseSensitive
-\t_V_StripLastDir
 \v??_7FbxAnimCurveFilter@fbxsdk@@6B@
 _basetintmask_
 _colorSetNames
@@ -1755,7 +1759,7 @@ _selfillummask_
 _specexp_
 _specmask_
 _texcoordNames
-`\tV_log2f
+`1A3
 activeBookmarkSet
 adding layer %d to stack\n
 addlayer: log %p lc[%d], layer %p
@@ -2269,6 +2273,7 @@ note
 npcclass
 numTimeSteps
 oOffset
+offseTime
 offsetTime
 operators
 optionallycompressedtangentframe
@@ -2306,7 +2311,6 @@ pinEnabled
 pin_enabled
 pivotOffset
 pixelAspectRatio
-plj'
 pointentityclass
 poleVector
 posTolerance
@@ -2331,7 +2335,6 @@ prefab_has_runtime_entity_by_default
 prefab_root
 presetGroups
 presetRemap
-presets
 procedural
 prop_physics_override
 prop_physics_respawnable

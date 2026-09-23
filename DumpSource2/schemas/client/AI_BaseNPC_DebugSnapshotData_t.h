@@ -15,6 +15,7 @@
 //	],
 //	"animgraph":
 //	{
+//		"ag2_update_id": -1,
 //		"e_action_desired": "",
 //		"e_action_handshake_restart": "",
 //		"e_action_handshake_body_authority_current": "",
@@ -48,7 +49,8 @@
 //		],
 //		"motor_path":
 //		[
-//		]
+//		],
+//		"ground_entity_debug_name": ""
 //	},
 //	"facingServices":
 //	{

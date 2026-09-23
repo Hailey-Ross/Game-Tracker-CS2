@@ -236,6 +236,14 @@ var g_PromotedSettings = [
         start_date: new Date('January 27, 2025'),
         end_date: new Date('June 1, 2025')
     },
+    {
+        id: "XhairStyle",
+        loc_name: "#settings_crosshair",
+        loc_desc: "#settings_crosshair_info",
+        section: "CrosshairSettings",
+        start_date: new Date('September 21, 2026'),
+        end_date: new Date('December 1, 2026')
+    },
 ]
     .reverse();
 var PromotedSettingsUtil;

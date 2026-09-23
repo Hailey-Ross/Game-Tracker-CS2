@@ -2,7 +2,6 @@
 /// <reference path="csgo.d.ts" />
 /// <reference path="common/sessionutil.ts" />
 /// <reference path="rating_emblem.ts" />
-/// <reference path="honor_icon.ts" />
 /// <reference path="avatar.ts" />
 var PlayerCard;
 (function (PlayerCard) {
@@ -141,6 +140,9 @@ var PlayerCard;
             const xpBonuses = MyPersonaAPI.GetActiveXpBonuses();
             const bEligibleForCarePackage = xpBonuses.split(',').includes('2');
             $.GetContextPanel().SetHasClass('care-package-eligible', bEligibleForCarePackage);
+            const petId = InventoryAPI.GetPetItemID();
+            const nStage = petId ? Number(InventoryAPI.GetItemAttributeValue(petId, '{uint32}upgrade level')) : 0;
+            $.GetContextPanel().SetHasClass('pet-feed-eligible', bEligibleForCarePackage && !!petId && nStage > 0);
         }
         let elRankText = $.GetContextPanel().FindChildInLayoutFile('JsPlayerRankName');
         elRankText.SetHasClass('player-card-prime-text', bHasRankToFreezeButNoPrestige);
@@ -409,20 +411,13 @@ var PlayerCard;
         }
     }
     PlayerCard.ShowHideAdditionalRanks = ShowHideAdditionalRanks;
-    function FriendsListUpdateName(xuid) {
-        if (xuid === _m_xuid) {
-            UpdateName();
-        }
-    }
     {
         if ($.DbgIsReloadingScript()) {
         }
         Init();
         $.RegisterForUnhandledEvent('PanoramaComponent_GC_Hello', FillOutFriendCard);
-        $.RegisterForUnhandledEvent('PanoramaComponent_MyPersona_NameChanged', UpdateName);
         $.RegisterForUnhandledEvent('PanoramaComponent_FriendsList_ProfileUpdated', ProfileUpdated);
         $.RegisterForUnhandledEvent('PanoramaComponent_MyPersona_PipRankUpdate', SetAllSkillGroups);
         $.RegisterForUnhandledEvent("PanoramaComponent_Lobby_PlayerUpdated", UpdateAvatar);
-        $.RegisterForUnhandledEvent('PanoramaComponent_FriendsList_NameChanged', FriendsListUpdateName);
     }
 })(PlayerCard || (PlayerCard = {}));

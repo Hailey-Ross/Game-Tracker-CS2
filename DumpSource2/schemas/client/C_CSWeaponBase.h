@@ -5,8 +5,6 @@ class C_CSWeaponBase : public C_BasePlayerWeapon
 	GameTime_t m_flInspectCancelCompleteTime;
 	bool m_bInspectPending;
 	bool m_bInspectShouldLoop;
-	float32 m_flCrosshairDistance;
-	int32 m_iAmmoLastCheck;
 	int32 m_nLastEmptySoundCmdNum;
 	bool m_bFireOnEmpty;
 	CEntityIOOutput m_OnPlayerPickup;
@@ -29,6 +27,9 @@ class C_CSWeaponBase : public C_BasePlayerWeapon
 	bool m_bIsHauledBack;
 	bool m_bSilencerOn;
 	GameTime_t m_flTimeSilencerSwitchComplete;
+	bool m_bStealthy;
+	bool m_bInSilentReloadSection;
+	GameTime_t m_flStealthHoldStartTime;
 	float32 m_flWeaponActionPlaybackRate;
 	int32 m_iOriginalTeamNumber;
 	int32 m_iMostRecentTeamNumber;

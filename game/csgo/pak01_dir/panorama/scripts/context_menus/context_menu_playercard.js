@@ -83,6 +83,22 @@ var ContextmenuPlayerCard;
             },
         },
         {
+            name: 'changeclantag',
+            icon: 'clantag',
+            AvailableForItem: (id) => !GameStateAPI.IsLocalPlayerPlayingMatch() && _IsSelf(id) && MyPersonaAPI.GetLauncherType() !== "perfectworld",
+            OnSelected: null,
+            xml: 'file://{resources}/layout/change_clantag_playercard_button.xml',
+        },
+        {
+            name: 'petbook',
+            icon: 'pet_book',
+            AvailableForItem: (id) => {
+                return !GameStateAPI.IsLocalPlayerPlayingMatch() && _IsSelf(id) &&
+                    (InventoryAPI.GetPetItemID() !== '' || _RetiredPetBookKeys().length > 0);
+            },
+            OnSelected: () => _ShowPetBookMenu(),
+        },
+        {
             name: 'kick_from_lobby',
             icon: 'friendignore',
             AvailableForItem: (id) => {
@@ -335,6 +351,50 @@ var ContextmenuPlayerCard;
     }
     function _IsSelf(id) {
         return id === MyPersonaAPI.GetXuid();
+    }
+    function _RetiredPetBookKeys() {
+        const strLivePet = InventoryAPI.GetPetItemID();
+        const strLivePrefix = strLivePet === '' ? '' : '_p' + strLivePet + '_x';
+        return GameInterfaceAPI.GetPetBookCloudFileKeys().reverse()
+            .filter(strCloudKey => strLivePrefix === '' || !strCloudKey.startsWith(strLivePrefix));
+    }
+    function _LivePetBookLabel(elPanel) {
+        const strPetId = InventoryAPI.GetPetItemID();
+        const strName = InventoryAPI.HasCustomName(strPetId) ? InventoryAPI.GetItemName(strPetId)
+            : InventoryAPI.GetItemNameUncustomized(strPetId);
+        if (strName === '') {
+            return $.Localize('#pet_book_menu_current_unnamed');
+        }
+        elPanel.SetDialogVariable('pet_name', strName);
+        return $.Localize('#pet_book_menu_current', elPanel);
+    }
+    function _ShowPetBookMenu() {
+        const elPanel = $.GetContextPanel();
+        const items = [];
+        if (InventoryAPI.GetPetItemID() !== '') {
+            items.push({ label: _LivePetBookLabel(elPanel), jsCallback: _OpenLivePetBook });
+        }
+        _RetiredPetBookKeys().forEach((strCloudKey, nIndex) => {
+            elPanel.SetDialogVariableInt('book_number', nIndex + 1);
+            items.push({
+                label: $.Localize(nIndex === 0 ? '#pet_book_menu_recent' : '#pet_book_menu_numbered', elPanel),
+                jsCallback: _OpenPetBook.bind(undefined, strCloudKey),
+            });
+        });
+        if (items.length > 0) {
+            UiToolkitAPI.ShowSimpleContextMenu('petbook', 'PetBookContextMenu', items);
+        }
+    }
+    function _OpenLivePetBook() {
+        UiToolkitAPI.ShowCustomLayoutPopup('', 'file://{resources}/layout/popups/popup_pet_book.xml');
+        _CloseForBook();
+    }
+    function _OpenPetBook(strCloudKey) {
+        UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_pet_book.xml', 'bookkey=' + strCloudKey);
+        _CloseForBook();
+    }
+    function _CloseForBook() {
+        $.DispatchEvent('DismissAllContextMenus');
     }
     function _GetContextMenuEntries() {
         $.CreatePanel('Panel', $.GetContextPanel(), '', { class: 'context-menu-playercard-seperator' });

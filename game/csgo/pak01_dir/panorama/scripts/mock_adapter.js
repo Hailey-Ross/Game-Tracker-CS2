@@ -2,6 +2,7 @@
 /// <reference path="csgo.d.ts" />
 /// <reference path="common/iteminfo.ts" />
 /// <reference path="rating_emblem.ts" />
+$.LogChannel('p.mock', "LV_OFF");
 var MockAdapter = (function () {
     const k_GetMatchEndWinDataJSO = "k_GetMatchEndWinDataJSO";
     const k_GetScoreDataJSO = "k_GetScoreDataJSO";
@@ -76,8 +77,6 @@ var MockAdapter = (function () {
     const k_bXpDataReady = "k_bXpDataReady";
     const k_bXpShopDataReady = "k_bXpShopDataReady";
     var _m_mockData = _GetMockData();
-    function _msg(msg) {
-    }
     function _GetRootPanel() {
         let parent = $.GetContextPanel().GetParent();
         let newParent = parent.GetParent();

@@ -6,7 +6,7 @@
 			name = "GpuLightBinnerStartupManifest"
 			group = "GpuLightBinnerManifest"
 			source_file = "src/scenesystem/lightbinner_gpu.cpp"
-			source_line = 62
+			source_line = 63
 			resources = 
 			[
 				resource_name:"materials/dev/compute_tile_cullbits.vmat",
@@ -18,7 +18,7 @@
 			name = "WindControllerManifest"
 			group = ""
 			source_file = "src/scenesystem/utils/windcontroller.cpp"
-			source_line = 26
+			source_line = 37
 			resources = 
 			[
 				resource_name:"materials/dev/wind_update_cs.vmat",
@@ -81,7 +81,7 @@
 			name = "CharacterDecalRendererManifest"
 			group = "GameStartup"
 			source_file = "src/scenesystem/utils/characterdecalrenderer.cpp"
-			source_line = 23
+			source_line = 24
 			resources = 
 			[
 				resource_name:"materials/dev/generate_decal_normals.vmat",
@@ -112,7 +112,7 @@
 			name = "SubsurfaceProfilesManifest"
 			group = "SubsurfaceProfilesManifest"
 			source_file = "src/scenesystem/scenegfxresources.cpp"
-			source_line = 478
+			source_line = 479
 			resources = 
 			[
 				resource_name:"materials/subsurface_profiles.vdata",
@@ -122,7 +122,7 @@
 			name = ""
 			group = "ToolsStartup_RayTracing"
 			source_file = "src/scenesystem/scenegfxresources.cpp"
-			source_line = 469
+			source_line = 470
 			resources = 
 			[
 				resource_name:"materials/dev/rtx/binlights.vmat",
@@ -144,6 +144,7 @@
 				resource_name:"VolumetricFogManifest",
 				resource_name:"WindControllerManifest",
 				resource_name:"materials/dev/skinning_cs.vmat",
+				resource_name:"materials/dev/meshlet_refit_cs.vmat",
 				resource_name:"materials/dev/compute_smooth_normals_cs.vmat",
 				resource_name:"materials/dev/cs_parallel_sort.vmat",
 				resource_name:"materials/dev/cs_parallel_sort_onesweep.vmat",
@@ -202,7 +203,7 @@
 			name = "BaseSceneObjectManifest"
 			group = ""
 			source_file = "src/scenesystem/sceneobjectdescs.cpp"
-			source_line = 60
+			source_line = 59
 			resources = 
 			[
 				resource_name:"materials/dev/cull_scene_objects.vmat",
@@ -212,7 +213,7 @@
 			name = "InstancedMeshSceneObjectManifest"
 			group = "GameStartup"
 			source_file = "src/scenesystem/instancedmeshdesc.cpp"
-			source_line = 67
+			source_line = 68
 			resources = 
 			[
 				resource_name:"materials/dev/cull_instanced_meshes.vmat",
@@ -243,7 +244,7 @@
 			name = "AggregateSceneObjectManifest"
 			group = "GameStartup"
 			source_file = "src/scenesystem/aggregatedesc.cpp"
-			source_line = 36
+			source_line = 38
 			resources = 
 			[
 				resource_name:"materials/dev/cull_aggregate_fragments.vmat",

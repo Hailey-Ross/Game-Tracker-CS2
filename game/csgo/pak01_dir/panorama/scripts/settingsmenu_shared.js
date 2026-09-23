@@ -161,7 +161,7 @@ var SettingsMenuShared;
         let elBkg = $("#XhairBkg");
         if (elBkg) {
             let nBkgIdx = elBkg.GetAttributeInt("bkg-id", 0);
-            let arrBkgs = ["bkg-dust2", "bkg-nuke", "bkg-mirage", "bkg-office"];
+            let arrBkgs = ["bkg-dust2", "bkg-nuke", "bkg-mirage", "bkg-ancient", "bkg-anubis", "bkg-cache", "bkg-inferno"];
             nBkgIdx = (arrBkgs.length + nBkgIdx + delta) % arrBkgs.length;
             elBkg.SwitchClass("bkg-style", arrBkgs[nBkgIdx]);
             elBkg.SetAttributeInt("bkg-id", nBkgIdx);
@@ -169,6 +169,5 @@ var SettingsMenuShared;
     }
     SettingsMenuShared.ChangeBackground = ChangeBackground;
     {
-        $.RegisterForUnhandledEvent('CSGOCrosshairSettingsChanged', _RefreshControls);
     }
 })(SettingsMenuShared || (SettingsMenuShared = {}));

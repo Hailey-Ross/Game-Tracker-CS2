@@ -1,7 +1,5 @@
  (%d remaining)...
- (08@HPX`j
  (08@HPXb
- (08@HPZ
  (08@HR
  (0X`hpz
  (Boosted +1)
@@ -181,6 +179,7 @@
 #LoadoutSlot_Melee
 #LoadoutSlot_Misc
 #LoadoutSlot_MusicKit
+#LoadoutSlot_Pet
 #LoadoutSlot_Rifle
 #LoadoutSlot_SMG
 #LoadoutSlot_Secondary
@@ -223,6 +222,7 @@ $\n\tword_list
 %1x%2
 %\?setUnderline@QFont@@QEAAX_N@Z
 %\n k_EGCMsgAccountPhoneNumberChange
+%\n k_EGCMsgAppCheersGetAllowedTypes
 %\n k_EGCMsgGCAccountVacStatusChange
 %\n k_EMsgGCDeliverGiftResponseGiver
 %\n k_EMsgGCRemoveMakersMarkResponse
@@ -306,25 +306,23 @@ $\n\tword_list
 '\n\fglobal_stats
 '\v?enterEvent@QMenu@@MEAAXPEAVQEvent@@@Z
 ( %1, %2, %3, %4% )
-(18X
-(1CX
-(5VX
-(5bX
-(5mX
-(9UX
-(AWX
+(5BX
+(5tX
+(92X
+(9sX
+(AeX
+(AfX
 (Documents Filter - Use | for OR, space for AND)
+(E5X
+(EMX
+(ExX
 (Filter)
-(I9X
-(IEX
-(IfX
-(MuX
-(MvX
+(IuX
+(IyX
+(M3X
 (No Active Session)
 (Outliner Filter)
-(QMX
-(ULX
-(UqX
+(QKX
 (YwX
 (\f"(\n&CMsgGCCStrike15_v2_ClientRequestOffers"\\n(CMsgGCCStrike15_v2_ClientRequestSouvenir
 (\f"6\n#CSOAccountKeychainRemoveToolCharges
@@ -451,14 +449,16 @@ $\n\tword_list
 (\v2\f.CSOEconItem
 (\v?enterEvent@QToolButton@@MEAAXPEAVQEvent@@@Z
 (default)
-(eXX
-(iDX
-(iOX
-(ioX
-(iqY
-(mlX
-(uKX
-(yrX
+(eCX
+(iEX
+(u5X
+(u6X
+(uLX
+(uWX
+(ueX
+(uyX
+(yGX
+(ycX
 ) ?timerEvent@QTableView@@MEAAXPEAVQTimerEvent@@@Z
 )\f?focusOutEvent@QAbstractItemView@@MEAAXPEAVQFocusEvent@@@Z
 )\n!penalty_account_id_sessions_green
@@ -485,6 +485,7 @@ $\n\tword_list
 * Rehandling active codes
 * { font-size: 10px }
 *"?updateGeometries@QHeaderView@@MEAAXXZ
+*%\n\tEGCPetMsg
 *.econitem
 *J\n\tQuestType
 *NONE*VALID*
@@ -545,6 +546,7 @@ $\n\tword_list
 - Remove Active Code: %s
 -"?updateGeometries@QTreeView@@MEAAXXZ
 -> Success (%d attempts)\n
+-\n(k_EGCMsgAppCheersGetAllowedTypesResponse
 -\n(k_EMsgGCCStrike15_v2_ClientCommendPlayer
 -\n(k_EMsgGCCStrike15_v2_ClientNetworkConfig
 -\n(k_EMsgGCCStrike15_v2_ClientRequestOffers
@@ -587,6 +589,7 @@ $\n\tword_list
 .?AUCAttr_m_FriendlyName@?1??GetAttributeTable_CCS2EconNode_Color@CCS2EconNode_Color@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_FriendlyName@?1??GetAttributeTable_CCS2EconNode_MusicKit@CCS2EconNode_MusicKit@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_FriendlyName@?1??GetAttributeTable_CCS2EconNode_Rarity@CCS2EconNode_Rarity@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
+.?AUCAttr_m_IconBase@?1??GetAttributeTable_CCS2EconNode_KeychainKit@CCS2EconNode_KeychainKit@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_Image@?1??GetAttributeTable_CCS2EconNode_CaseKey@CCS2EconNode_CaseKey@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_Image@?1??GetAttributeTable_CCS2EconNode_Coin@CCS2EconNode_Coin@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_m_Image@?1??GetAttributeTable_CCS2EconNode_CommunityCase@CCS2EconNode_CommunityCase@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
@@ -899,34 +902,12 @@ $\n\tword_list
 .?AUCAttr_no_member@?6??GetAttributeTable_CDiscreteLootList_KeychainKit@CDiscreteLootList_KeychainKit@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_no_member@?6??GetAttributeTable_CDiscreteLootList_StickerKit@CDiscreteLootList_StickerKit@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
 .?AUCAttr_no_member@?6??GetAttributeTable_CMusicKitBox_MusicKit@CMusicKitBox_MusicKit@@SAXPEAV?$CUtlVector@PEAVIBaseToolAttr@@HV?$CUtlVectorMemory_Growable@PEAVIBaseToolAttr@@H$0A@@@@@@Z@
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
+.?AV<lambda_1>@?1???$SetFunction@P8CCS2ItemEditorSession@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCCS2ItemEditorSession@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CCS2ItemEditorSession@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAX_N@Z1@Z@
 .?AV<lambda_2>@?1??RequestSchemaReservation@CCS2ItemEditorSystem@@QEAAPEAUSchemaReservation_t@@PEAVCCS2ItemEditorNode@@PEBD11@Z@
-.?AV<lambda_2>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV?$CAttributeIterator_GetTypedAttributeValue@II@@
 .?AV?$CAttributeIterator_GetTypedAttributeValue@MM@@
 .?AV?$CAttributeIterator_GetTypedAttributeValue@V?$Vec3D@M@@V1@@@
@@ -1835,7 +1816,6 @@ $\n\tword_list
 .?AV?$IToolAttr_TypedValue@W4SeedMode_t@@@@
 .?AV?$IToolAttr_TypedValue@_K@@
 .?AV?$IToolAttr_TypedValue@_N@@
-.?AV?$ITypedPropertyEditDomain@VHToolAttrTableInstance@@PEAVIBaseToolAttr@@@@
 .?AV?$Vec3D@M@@
 .?AV?$_Func_base@XPEAVCCS2ItemEditorSession@@@std@@
 .?AV?$_Func_base@XPEAVCGlobalHotkeyCommands@@@std@@
@@ -1869,34 +1849,12 @@ $\n\tword_list
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQToolButton@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@P6A_NVHToolAttrTableInstance@@PEBVIBaseToolAttr@@@Z_NV1@PEBV2@@std@@
 .?AV?$_Func_impl_no_alloc@P6A_NVHToolAttrTableInstance@@PEBVIBaseToolAttr@@PEAVCUtlString@@@Z_NV1@PEBV2@PEAV3@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CCS2ItemEditorSession@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCCS2ItemEditorSession@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CCS2ItemEditorSession@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAX_N@Z1@Z@XPEAV5@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2>@?1??RequestSchemaReservation@CCS2ItemEditorSystem@@QEAAPEAUSchemaReservation_t@@PEAVCCS2ItemEditorNode@@PEBD11@Z@XPEBDPEBD_JI@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
 .?AVAccountActivity@@
 .?AVCArrayElementAccess@?$CConcreteToolAttr@V?$CUtlVector@PEAVCUnusualLootListContents@@HV?$CUtlVectorMemory_Growable@PEAVCUnusualLootListContents@@H$0A@@@@@VCCS2EconNode_UnusualLootList@@X@@
 .?AVCArrayElementAccess@?$CConcreteToolAttr@V?$CUtlVector@UCompMatMutatorCondition_t@@HV?$CUtlVectorMemory_Growable@UCompMatMutatorCondition_t@@H$0A@@@@@UCompMatPropertyMutator_t@@X@@
@@ -1925,15 +1883,18 @@ $\n\tword_list
 .?AVCArrayElementAccess@?$CConcreteToolAttr@V?$CUtlVector@VCUnusualLootListPaintKit@@HV?$CUtlVectorMemory_Growable@VCUnusualLootListPaintKit@@H$0A@@@@@VCUnusualLootListContents@@X@@
 .?AVCArrayElementAccess@?$CConcreteToolAttr@V?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@UCompMatPropertyMutator_t@@X@@
 .?AVCAttribute_String@@
+.?AVCBaseBindTargetDescriptor@@
+.?AVCBaseBindableCommand@@
 .?AVCBaseDynamicWidgetFactory@@
 .?AVCBaseToolAttr@@
 .?AVCBaseToolSystem2@@
 .?AVCBaseUndoable@@
-.?AVCBindTargetDescriptorBase@@
-.?AVCBindableCommand@@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCCS2ItemEditorSession@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CCS2ItemEditorSession@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBaseBindTargetDescriptor@@XZ@
 .?AVCBufferStream@@
 .?AVCCS2EconNode_CaseKey@@
 .?AVCCS2EconNode_Coin@@
@@ -2006,8 +1967,10 @@ $\n\tword_list
 .?AVCGameServers_AggregationQuery_Response@@
 .?AVCGameServers_AggregationQuery_Response_Group@@
 .?AVCGlobalHotkeyCommands@@
+.?AVCInputBindTargetMetadataProvider@@
 .?AVCKV3FGDToolAttr@@
 .?AVCMsgAccountDetails@@
+.?AVCMsgAckPetEvent@@
 .?AVCMsgAcknowledgeRentalExpiration@@
 .?AVCMsgAdjustEquipSlot@@
 .?AVCMsgAdjustEquipSlots@@
@@ -2354,9 +2317,6 @@ $\n\tword_list
 .?AVCSchemaRegistration_cs2_item_editor@@
 .?AVCSetCondition@CItemSelectionCriteria@@
 .?AVCSimpleBaseErrorListener@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCCS2ItemEditorSession@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@
 .?AVCStringCondition@CItemSelectionCriteria@@
 .?AVCToolAttrHost@@
 .?AVCToolAttrPropertyDomain@@
@@ -2631,9 +2591,7 @@ $\n\tword_list
 /sprays
 /stickers
 /weapons/customization/paints_gloves/
-08@HR
 08@J
-0La;
 0\n+k_EGCItemCustomizationNotification_NameItem
 0\n+k_EMsgGCCStrike15_v2_AccountPrivacySettings
 0\n+k_EMsgGCCStrike15_v2_Account_RequestCoPlays
@@ -2791,7 +2749,7 @@ $\n\tword_list
 2\n\nline_items
 2\r?hideEvent@QWidget@@MEAAXPEAVQHideEvent@@@Z
 2\v?event@QAction@@MEAA_NPEAVQEvent@@@Z
-2\vpLa;
+2\vp43?
 2aboutToShow()
 2activated( int )
 2changed()
@@ -2877,9 +2835,7 @@ $\n\tword_list
 7\n2k_EGCItemCustomizationNotification_XpShopUseTicket
 7\n2k_EMsgGCCStrike15_v2_GCToClientSteamdatagramTicket
 7\n2k_EMsgGCCStrike15_v2_PlayerOverwatchCaseAssignment
-7\tV_fread
-8)gX
-89[X
+89@X
 8\f?focusOutEvent@QTextBrowser@@MEAAXPEAVQFocusEvent@@@Z
 8\n3k_EGCItemCustomizationNotification_ActivateFanToken
 8\n3k_EGCItemCustomizationNotification_GenerateSouvenir
@@ -2888,7 +2844,6 @@ $\n\tword_list
 8\n3k_EMsgGCCStrike15_v2_ServerVarValueNotificationInfo
 8\v?event@QCompleter@@MEAA_NPEAVQEvent@@@Z
 8]?size@QPixmap@@QEBA?AVQSize@@XZ
-8mOW
 9>-memory-
 9\f?focusOutEvent@QTextEdit@@MEAAXPEAVQFocusEvent@@@Z
 9\n4k_EMsgGCCStrike15_v2_MatchEndRewardDropsNotification
@@ -2926,7 +2881,6 @@ $\n\tword_list
 <\f?deallocate@QArrayData@@SAXPEAU1@_K1@Z
 <\f?focusPolicy@QWidget@@QEBA?AW4FocusPolicy@Qt@@XZ
 <\n\ncategories
-<\tV_fseek
 <\v?event@QDockWidget@@MEAA_NPEAVQEvent@@@Z
 <a href="%1">%2</a>
 <br>Game preview active. Switch to inspect?<br>
@@ -3200,6 +3154,7 @@ $\n\tword_list
 ??MQTableWidgetItem@@UEBA_NAEBV0@@Z
 ??MQTreeWidgetItem@@UEBA_NAEBV0@@Z
 ??YQString@@QEAAAEAV0@PEBD@Z
+?CompositeMaterialInputContainer_t
 ?No data
 ?\n:k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse
 ?\n:k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions
@@ -4378,11 +4333,10 @@ $\n\tword_list
 ?userType@QVariant@@QEBAHXZ
 ?valueToKeys@QMetaEnum@@QEBA?AVQByteArray@@H@Z
 @#?write@QTableWidgetItem@@UEBAXAEAVQDataStream@@@Z
-@HPX`hvp
+@HPX`hv
 @\n\fSingleObject
 @\n\vserver_type
 @\v?event@QFrame@@MEAA_NPEAVQEvent@@@Z
-@ht0
 A new location must be selected in order to save the file.
 A#?write@QTreeWidgetItem@@UEBAXAEAVQDataStream@@@Z
 ARRAY_MEMBERS_VIA_PARENT
@@ -4474,6 +4428,7 @@ BackGroundFill_t
 BackGroundStyle_t
 Background
 Backspace
+Bad GD variable type
 Bad checkstate (expected eg. 'PartiallyChecked')
 Bad class description
 Bad horizontalPolicy "%s"
@@ -4514,6 +4469,9 @@ C:\buildworker\csgo_rel_win64\build\src\game\shared\econ_csgo_legacy\econ_item_s
 C:\buildworker\csgo_rel_win64\build\src\gcsdk_csgo_legacy\gclogger.cpp
 C:\buildworker\csgo_rel_win64\build\src\public\tier0\utlbuffer.h
 C:\buildworker\csgo_rel_win64\build\src\public\zip\zip_utils.cpp
+C:\buildworker\csgo_rel_win64\build\src\qcontrols\inputglobalhotkeys.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\cs2_item_editor\cs2_item_editor_session.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\qbaseeditorwnd.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\toolattr_propertydomain.cpp
 CAttribute_String
 CBaseEditorSession::Revert - Perforce unavailable: %s\n
@@ -4569,6 +4527,7 @@ CGCToGCMsgRoutedReply
 CGlobalHotkeyCommands
 CInputBindManager::HandleInputCode recursion depth got too deep.\n
 CMsgAccountDetails
+CMsgAckPetEvent
 CMsgAcknowledgeRentalExpiration
 CMsgAdjustEquipSlot
 CMsgAdjustEquipSlots
@@ -4854,6 +4813,7 @@ CUtlDict<class CEconLootListDefinition,class CDefFastCaselessStringLess>::Insert
 CUtlDict<class CStickerKit *,class CDefFastCaselessStringLess>::Insert
 CUtlDict<class CUtlVector<class CItemLevelingDefinition,int,class CUtlVectorMemory_Growable<class CItemLevelingDefinition,int,0> > *,class CDefFastCaselessStringLess>::Insert
 CUtlDict<class CUtlVector<struct `public: virtual bool __cdecl CCS2EconNode_UnusualLootList::LoadKeysInternal(class KeyValues3 const *)'::`21'::LootListWeaponAttribute_t,int,class CUtlVectorMemory_Growable<struct `public: virtual bool __cdecl CCS2EconNode_UnusualLootList::LoadKeysInternal(class KeyValues3 const *)'::`21'::LootListWeaponAttribute_t,int,0> >,class CDefFastCaselessStringLess>::Insert
+CUtlDict<class KeyValues3 *,class CDefFastCaselessStringLess>::Insert
 CUtlDict<class QAction *,class CDefFastCaselessStringLess>::Insert
 CUtlDict<struct AchievementAward_t *,class CDefFastCaselessStringLess>::Insert
 CUtlDict<struct CQInputBindEditor::BindingContextInfo_t *,class CDefFastCaselessStringLess>::Insert
@@ -4903,9 +4863,11 @@ Checkout Failed
 Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
+Children
 Choose Team
 Circular visibility dependency '%s' found in '%s'.\n
 Class
+ClassName
 Clear All
 Clear History
 ClearInputHistory
@@ -5029,6 +4991,7 @@ Duplicate kill eater score type index %u.
 Duplicate leveling data block named "%s".
 Duplicate lootlist name (%s) found!
 Duplicate music definition id %d
+Duplicate pet definition id %d
 Duplicate prefab name (%s)
 Duplicate quality value (%d)
 Duplicate rarity value (%d)
@@ -5052,6 +5015,7 @@ EXEC-REMOVE-END: %s
 E\n\fongoingmatch
 E\r?endsWith@QByteArray@@QEBA_ND@Z
 EatEscapeKeyPress
+Econ item %s
 Edit
 EditingCancelled
 EditingFinished
@@ -5158,13 +5122,14 @@ Failure.
 Fast Asset Search
 FastAssetPicked
 File '%s' not found.\n
+FileLine
 Filter In Outliner
 Filter type/description:
 Filter with dependent items
 Filter:
 FilterApplied
 Filtering
-Final K Vs
+Final KVs
 Find:
 Finish
 Finish Tooltip Override
@@ -5269,6 +5234,7 @@ I\n\fdata_per_map
 I\r?endsWith@QString@@QEBA_NVQChar@@W4CaseSensitivity@Qt@@@Z
 I\r?hitButton@QCheckBox@@MEBA_NAEBVQPoint@@@Z
 Icon
+Icon Base
 Icon Generation
 Icon Generation - %1 Icons
 Icon Generation Failure: CONTENT resides in read-only search path '%s'.\n
@@ -5281,6 +5247,9 @@ If the file is saved in this location it cannot be used in game.\nSave here anyw
 Ignore Seed
 IgnoreConsoleKeypress
 Ignored
+In '%s', attempting to replace subkey '%s' with a value (type %u)
+In '%s', attempting to replace value key '%s' (type %u) with a subkey
+In '%s', unhandled data type %u for KeyValues inheritance!
 Include
 Include Coupon
 Include Hidden
@@ -5320,6 +5289,7 @@ InspectBackground_t::INSPECT_GRAY
 InspectBackground_t::INSPECT_GREEN
 InspectBackground_t::INSPECT_SCENERY
 InspectBackground_t::INSPECT_TRANSPARENT
+Invalid %s: %s
 Invalid 'dockWidgetArea (%s)
 Invalid 'toolbarArea' (%s)
 Invalid CONTENT path '%s'.\n\n%s
@@ -5686,14 +5656,14 @@ OperationalVarValue
 OrigMat
 Other Tools
 Outliner
+OverideHelpContextName
 OverlayProjectionDirection
 P08@J
-P08J0
+P08Jp4!
 P?isValid@QColor@@QEBA_NXZ
 P?isValid@QTextCharFormat@@QEBA_NXZ
 P?itemData@QStandardItemModel@@UEBA?AV?$QMap@HVQVariant@@@@AEBVQModelIndex@@@Z
 P?jumpToNextImage@QImageReader@@QEAA_NXZ
-PLa;
 PROXY
 P\f?font@QTableWidgetItem@@QEBA?AVQFont@@XZ
 P\n\nattributes
@@ -5739,6 +5709,8 @@ Patina
 Patina Extended
 Pedestal Model
 PerVertexLighting
+Pet definition %s: missing "name"
+Pet definition %s: name must be a positive integer
 PgDn
 PgUp
 Physics
@@ -5752,7 +5724,7 @@ PlayerRankingInfo
 Policy
 PopupClosed
 PopupOpened
-Pre Generation K Vs
+Pre Generation KVs
 Preferred
 Preview
 Preview '%1'
@@ -5820,6 +5792,7 @@ QWidget
 QWidget { padding: 0px; background-color: transparent; }
 QWidget { padding: 2px; background-color : #4fb44f; color : black; }
 QWidget { padding: 2px; background-color : #5991e4; color : black; }
+QWidget { padding: 2px; background-color : #808080; color : black; }
 QWidget { padding: 2px; background-color : #b26262; color : black; }
 QWidget { padding: 2px; background-color : #e9ce93; color : black; }
 QWidget { padding: 2px;\t\t\t\t\t\t\t\t\t\t\t  }
@@ -5849,7 +5822,6 @@ RW?restore@QPainter@@QEAAXXZ
 R\f?font@QTreeWidgetItem@@QEBA?AVQFont@@H@Z
 R\t?canFetchMore@QAbstractItemModel@@UEBA_NAEBVQModelIndex@@@Z
 R\v?event@QMenuBar@@MEAA_NPEAVQEvent@@@Z
-R\vpLa;
 R^?supportedDropActions@QStandardItemModel@@UEBA?AV?$QFlags@W4DropAction@Qt@@@@XZ
 Random attributes '%s': Attribute definition "%s" was not found
 RangedFloat
@@ -5895,7 +5867,6 @@ Resource Compile Items: Completed.
 Resource Compile Items: Failed. (Error: %d)\n
 Resource Compile Items: Skipped.
 Resource compile process could not be started.\n
-Return
 Return to %1
 Revenue Share
 Revert?
@@ -6109,7 +6080,7 @@ Tabbed Mode
 TanFrameQuat
 Target Attr: '%s' != '%s'
 Target Attr: '%s' == '%s'
-Target K Vs
+Target KVs
 Target NOT must have Property: '%s'
 Target Property: '%s' != '%s'
 Target Property: '%s' == '%s'
@@ -6199,6 +6170,7 @@ Undo
 Undo/Redo failed to find: %s\n
 Unexpected end of input
 Unhandled/unrecognized child entry (Must have a _class, or be a special entry like: vbox=[] hbox=[] grid=[[],[]] flowing=[] spacing=NUM stretch=NUM
+Unknown GDIVType_t %u
 Unknown Path Class
 Unknown Token
 Unknown class '%s' specified by @exclude
@@ -6319,7 +6291,6 @@ X\n\tTeamStats
 X\n\vFantasyTeam
 X\r?horizontalHeader@QTableView@@QEBAPEAVQHeaderView@@XZ
 X\v?event@QPushButton@@MEAA_NPEAVQEvent@@@Z
-X`hr
 XpProgressData
 Y?setData@QStandardItem@@UEAAXAEBVQVariant@@H@Z
 Y?setData@QStandardItemModel@@UEAA_NAEBVQModelIndex@@AEBVQVariant@@H@Z
@@ -6414,7 +6385,6 @@ Zip system failure.\n
 \f\f?focusInEvent@QLabel@@MEAAXPEAVQFocusEvent@@@Z
 \f\n EGCItemCustomizationNotification
 \f\n?deselect@QLineEdit@@QEAAXXZ
-\fpLa;
 \n CMsgItemAcknowledged__DEPRECATED
 \n!CMsgGCCStrike15_v2_Party_Register
 \n!CMsgGCCStrike15_v2_PlayersProfile
@@ -6584,7 +6554,6 @@ Zip system failure.\n
 \n\nchange_num
 \n\ncmd_leader
 \n\ncurrent_xp
-\n\ncustomname
 \n\ncyber_cafe
 \n\ndiagnostic
 \n\ndropreason
@@ -6697,6 +6666,7 @@ Zip system failure.\n
 \n\rvolatile_shop
 \n\taccountid
 \n\tattribute
+\n\tclan_tags
 \n\tcode_type
 \n\tdef_index
 \n\tdir_index
@@ -6773,6 +6743,7 @@ Zip system failure.\n
 \n\vcpus_online
 \n\vcustom_desc
 \n\vcustom_name
+\n\vcustomnames
 \n\vdesc_inputs
 \n\vdescription
 \n\vegg_item_id
@@ -6799,6 +6770,7 @@ Zip system failure.\n
 \n\vother_pos_y
 \n\vother_pos_z
 \n\vperfcounter
+\n\vpet_item_id
 \n\vplayer_desc
 \n\vplayer_flag
 \n\vplayer_nick
@@ -6828,6 +6800,9 @@ Zip system failure.\n
 \n\vvalue_bytes
 \n\vxp_category
 \n\vyoutube_url
+\n_V_StrSubst
+\n_V_StringAfterPrefixCaseSensitive
+\nu7X
 \r?darker@QColor@@QEBA?AV1@H@Z
 \r?data@QStandardItem@@UEBA?AVQVariant@@H@Z
 \r?data@QStandardItemModel@@UEBA?AVQVariant@@AEBVQModelIndex@@H@Z
@@ -6880,8 +6855,6 @@ Zip system failure.\n
 \tV_tier0_strchr
 \tV_tmpnam
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_StrSubst
-\t_V_StringAfterPrefixCaseSensitive
 \v?clear@QStandardItemModel@@QEAAXXZ
 \v?clear@QTextDocument@@UEAAXXZ
 \v?clipboard@QGuiApplication@@SAPEAVQClipboard@@XZ
@@ -6907,7 +6880,6 @@ Zip system failure.\n
 \v?fixup@QSpinBox@@MEBAXAEAVQString@@@Z
 \v?focusChanged@QApplication@@QEAAXPEAVQWidget@@0@Z
 \v\f?focusInEvent@QGroupBox@@MEAAXPEAVQFocusEvent@@@Z
-\vpLa;
 ]?staticMetaObject@QTextDocument@@2UQMetaObject@@B
 ]?staticMetaObject@QWindow@@2UQMetaObject@@B
 ]\r?horizontalOffset@QListView@@MEBAHXZ
@@ -6929,6 +6901,7 @@ __RootNode
 __SelectedNode
 __current_metadata_table_stack
 _autosave
+_base
 _capsule
 _copy
 _copy%d
@@ -6943,12 +6916,14 @@ _sticker_capsule
 _toolsautosave
 `?validate@QDoubleValidator@@UEBA?AW4State@QValidator@@AEAVQString@@AEAH@Z
 `?validate@QRegExpValidator@@UEBA?AW4State@QValidator@@AEAVQString@@AEAH@Z
-`IrY
+`IcX
+`MSX
+`QjX
 `\v?event@QSpinBox@@MEAA_NPEAVQEvent@@@Z
-`ht0
 a?windowText@QPalette@@QEBAAEBVQBrush@@XZ
 a?write@QStandardItem@@UEBAXAEAVQDataStream@@@Z
 a?x@QMouseEvent@@QEBAHXZ
+a\tV_fread
 abandon
 abandoned_match
 absolute
@@ -7047,7 +7022,6 @@ backgroundStyle
 background_color
 balance
 ban_list_group_id
-base
 base_gcmessages.proto
 baseclass
 baseitem
@@ -7055,10 +7029,12 @@ baseitem_defidx
 bentnormal
 biased
 binary
+bind_targets
 bindable_command_buttons
 blendindices
 blendweight
 blendweights
+blobdata
 body_substring_keys
 body_substring_values
 bodygroupchoices
@@ -7110,12 +7086,15 @@ chance
 charges
 cheating_penalty_level
 checkstate
+chicken_egg
+chicken_feed
 choice_group
 choices
 choose_team
 chooseteam
 choreoanchorclass
 clan_id
+clan_tag
 class_token_id
 class_usage_for_output
 classdefidx:
@@ -7367,13 +7346,13 @@ extra_wearable
 eyes_follow
 f\n?dragEnterEvent@QAbstractScrollArea@@MEAAXPEAVQDragEnterEvent@@@Z
 f\r?horizontalScrollbarAction@QAbstractItemView@@MEAAXH@Z
+f\tV_fseek
 failping_account_id_sessions
 failready_account_id_sessions
 fan_shield
 fast
 featured_display_item_defidx
 ffValueIn
-fgd_metadata_merge
 file://{images}/
 file://{images}/%s
 file://{images}/econ/keychains/%s.png
@@ -7408,6 +7387,7 @@ flMinimum
 flValue
 flVaue
 flagchoices
+flags value
 flair0
 flexible_loadout_category
 flexible_loadout_default
@@ -7419,6 +7399,8 @@ float==
 float>
 float>=
 float_floor_to_integer
+floatchoices
+floatchoices choice
 flowing
 flying_courier_effect
 fontfamily
@@ -7546,6 +7528,7 @@ gs_location_id
 gs_ping
 gungameprogressive
 gungametrbomb
+h5RX
 h\r?horizontalScrollbarAction@QTreeView@@MEAAXH@Z
 h\v?event@QTabWidget@@MEAA_NPEAVQEvent@@@Z
 ha?window@QPalette@@QEBAAEBVQBrush@@XZ
@@ -7583,6 +7566,7 @@ i\r?enumerator@QMetaProperty@@QEBA?AVQMetaEnum@@XZ
 i\r?horizontalScrollbarValueChanged@QAbstractItemView@@MEAAXH@Z
 i\v?event@QTableWidget@@MEAA_NPEAVQEvent@@@Z
 icon
+icon_base
 icon_default_image
 icon_path
 icon_path_range:%u:%u
@@ -7621,6 +7605,7 @@ instance_parm
 instance_variable
 insufficientlevel_sessions
 intchoices
+intchoices choice
 intmap
 inv_container_and_tools
 inventoryPos
@@ -7794,6 +7779,7 @@ m_DescriptionTag
 m_DevOnlyTag
 m_EndOfMatch
 m_FirstSaleDate
+m_IconBase
 m_Image
 m_InputMacros
 m_ItemDescription
@@ -8037,6 +8023,9 @@ optional_toggle_cmd
 optionallycompressedtangentframe
 orientation
 original
+originating_classname
+originating_filename
+originating_linenumber
 outliner_filter
 outliner_settings
 outofdate_subscribed_caches
@@ -8051,12 +8040,12 @@ overrideclass
 owcaseid
 owner_only
 owns_polymorphic_data
+p0j@L!
 pButton
 pCurrentFocusWidget
 pData
 pEvent
 pFilter
-pLa;
 pPrevFocusWidget
 pResultKV
 pV?read@QImageReader@@QEAA?AVQImage@@XZ
@@ -8123,6 +8112,10 @@ penalty_reason
 penalty_seconds
 pennant_item_id
 period
+pet_definitions
+pet_food_expiration_date
+pet_gcmessages.proto
+pet_gcmessages.proto"&\n
 petindex
 phone_id
 phongalbedoboost
@@ -8515,6 +8508,7 @@ suggestions
 supplemental_data
 supply_crate
 suppressed_field
+surface_properties
 survival
 svalue
 system

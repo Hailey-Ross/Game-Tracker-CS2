@@ -9,7 +9,8 @@
 //	],
 //	"motor_path":
 //	[
-//	]
+//	],
+//	"ground_entity_debug_name": ""
 //}
 // MPropertyFriendlyName = "Motor Services"
 // MDebugSnapshotDataRenderFn (UNKNOWN FOR PARSER)
@@ -19,4 +20,5 @@ class AI_MotorServices_DebugSnapshotData_t
 	float32 desired_speed;
 	Vector motor_velocity;
 	CUtlVector< AI_MotorServices_DebugSnapshotData_t::MotorPathWaypoint_t > motor_path;
+	CUtlString ground_entity_debug_name;
 };

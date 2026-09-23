@@ -1,6 +1,6 @@
 enum SndBeatKeyType_t : uint32_t
 {
-	// MPropertyFriendlyName = "None"
+	// MPropertySuppressEnumerator
 	eSndBeatPatternTypeNone = 0,
 	// MPropertyFriendlyName = "Keys"
 	eSndBeatPatternTypeKeys = 1,

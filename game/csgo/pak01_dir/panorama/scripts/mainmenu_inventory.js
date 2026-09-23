@@ -292,6 +292,7 @@ var InventoryPanel;
     }
     function _InitXrayBtn() {
         _ShowHideXrayBtn();
+        $.GetContextPanel().FindChildrenWithClassTraverse('inv-nav-solid-btn-notification').forEach(el => el.SetDialogVariable('alert_value', '1'));
         let elXrayBtn = $.GetContextPanel().FindChildInLayoutFile("InvXrayBtnContainer");
         elXrayBtn.SetPanelEvent('onactivate', () => {
             let oData = ItemInfo.GetItemsInXray();

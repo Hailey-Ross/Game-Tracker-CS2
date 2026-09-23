@@ -1,7 +1,5 @@
- !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
- (08@HPX`j
+ !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$0\
  (08@HPXb
- (08@HPZ
  (08@HR
  (0X`hpz
 !m_hParam.IsValid()
@@ -95,14 +93,14 @@
 .?AVISequence@@
 .?AVISinglePlayerSharedMemory@@
 .?AVISource2Host@@
-08@HR
 08@J
-2\vpD
-8Fp\
+2\vp4\n
+2\vpL
+2\vpx
 ?expf
-@6pV
 @HPX`hv
-AA:@0
+@N0h
+AA:P;
 APPSYSTEM: In ConnectGameInterfaces(), s_nRegistrationCount is %d!\n
 APPSYSTEM: In ConnectGameInterfaces(), tried to use different connection modes!\n
 APPSYSTEM: In ReconnectGameInterface(), tried to use different connection modes!\n
@@ -146,7 +144,8 @@ PivotPaint
 PredictionDiffManager001
 PropWorldOrigin
 RSDS\ra`G\v\v
-R\vpD
+R\fpx
+R\vpL
 ResponseRulesCache001
 SaveRestoreDataVersion001
 Shared memory space %s (%i) still has %i references.\n
@@ -160,10 +159,10 @@ VertexGenericIntegerData
 VertexPaintBlendParams
 VertexPaintBlendParams1
 VertexPaintTintColor
-X`hr
-Xf0]
+Xf@y
+\fp\vP0
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-`604
+`60P
 bad 
 bentnormal
 blendindices
@@ -181,8 +180,8 @@ lowprecisionuv
 lowprecisionuv1
 medium
 optionallycompressedtangentframe
-p6`f
 posxyz
+r\vpx
 runleft
 runright
 scripts/surfaceproperties_footsteps.txt

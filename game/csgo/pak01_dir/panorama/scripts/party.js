@@ -68,7 +68,6 @@ var PartyMenu;
             let elPartyMemberCurrent = null;
             if (i < numPlayersActuallyInParty) {
                 elPartyMemberCurrent = _MakeNewPartyMemberTile("PartyMember" + i, xuid);
-                _SetPartyMemberName(elPartyMemberCurrent, xuid);
                 _SetPartyMemberRank(elPartyMemberCurrent, xuid);
                 _SetPrimeForMember(elPartyMemberCurrent, xuid);
                 _UpdateAvatar(elPartyMemberCurrent, xuid);
@@ -82,6 +81,7 @@ var PartyMenu;
         let elPartyMember = $.CreatePanel("Panel", elParent, panelIdToLoad);
         elPartyMember.BLoadLayoutSnippet('PartyMember');
         elPartyMember.Data().xuid = xuid;
+        elPartyMember.SetDialogVariable('partyxuid', xuid);
         let memberBtn = elPartyMember.FindChildInLayoutFile('PartyMemberBtn');
         let elAvatar = $.CreatePanel("Panel", memberBtn, xuid);
         _SetAttributeStringsOnAvatarPanel(elAvatar, xuid);
@@ -105,10 +105,6 @@ var PartyMenu;
     function _UpdateAvatar(elPartyMember, xuid) {
         let elAvatar = elPartyMember.FindChildInLayoutFile(xuid);
         Avatar.Init(elAvatar, xuid, 'partymember');
-    }
-    function _SetPartyMemberName(elPartyMember, xuid) {
-        let elName = elPartyMember.FindChildInLayoutFile('JsFriendName');
-        elName.text = FriendsListAPI.GetFriendName(xuid);
     }
     function _SetPartyMemberRank(elPartyMember, xuid) {
         let skillgroupType = PartyListAPI.GetFriendCompetitiveRankType(xuid);

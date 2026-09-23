@@ -22,6 +22,7 @@ class CCSPlayerController : public CBasePlayerController
 	bool m_bRemoveAllItemsOnNextRoundReset;
 	GameTime_t m_flLastJoinTeamTime;
 	CUtlSymbolLarge m_szClan;
+	uint32 m_unClanId32bit;
 	int32 m_iCoachingTeam;
 	uint64 m_nPlayerDominated;
 	uint64 m_nPlayerDominatingMe;

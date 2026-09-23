@@ -153,11 +153,16 @@ var MainMenuStore;
                 elStickerLink.FindChildInLayoutFile('id-sticker-' + i).itemid = itemId;
             }
         }
-        if (aItemsList.length < 1) {
+        const bHasItems = aItemsList.length > 0;
+        const bForceTournamentVisible = sSectionName === 'tournament';
+        if (!bHasItems && !bForceTournamentVisible) {
             elParent.visible = false;
             return;
         }
         elParent.visible = true;
+        elParent.SetHasClass('store-home-section--no-items', !bHasItems);
+        if (!bHasItems)
+            return;
         for (let i = 0; i < numItemsToShow; i++) {
             let elTile = elPanel.FindChildInLayoutFile('home-' + sSectionName + '-' + i);
             if (!elTile) {

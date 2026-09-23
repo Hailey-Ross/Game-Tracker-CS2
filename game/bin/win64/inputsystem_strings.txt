@@ -330,6 +330,7 @@ MUTE
 MWHEELDOWN
 MWHEELUP
 MapVirtualKeyExA
+Modifiers
 MouseDown
 MouseMove
 MouseUp
@@ -567,6 +568,7 @@ Y_WITH_DIAERESIS
 Z_AXIS
 Z_AXIS_NEG
 Z_AXIS_POS
+\tV_UTF8ToUTF32
 _vsz%u.bmp
 allowed
 cl_auto_cursor_scale

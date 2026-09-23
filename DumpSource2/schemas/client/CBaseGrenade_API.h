@@ -1,3 +1,0 @@
-class CBaseGrenade_API
-{
-};

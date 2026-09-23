@@ -1,6 +1,6 @@
 enum SndBeatEventType_t : uint32_t
 {
-	// MPropertyFriendlyName = "Invalid"
+	// MPropertySuppressEnumerator
 	eSndBeatEventTypeInvalid = 0,
 	// MPropertyFriendlyName = "Beat"
 	eSndBeatEventTypeBeat = 1,

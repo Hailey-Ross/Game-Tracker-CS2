@@ -121,6 +121,7 @@ var ItemInfo;
             loadoutSlot: undefined,
             weaponItemId: undefined,
             glovesItemId: undefined,
+            petItemId: undefined,
             cameraPreset: undefined
         };
         if (optionalCharacterItemId && InventoryAPI.IsValidItemID(optionalCharacterItemId)) {
@@ -168,6 +169,7 @@ var ItemInfo;
             GameInterfaceAPI.SetSettingString('ui_vanitysetting_loadoutslot_' + oSettings.team, oSettings.loadoutSlot);
         }
         oSettings.glovesItemId = LoadoutAPI.GetItemID(oSettings.team, 'clothing_hands');
+        oSettings.petItemId = InventoryAPI.GetPetItemID();
         if (!oSettings.charItemId)
             oSettings.charItemId = LoadoutAPI.GetItemID(oSettings.team, 'customplayer');
         if (optionalState && optionalState === 'unowned') {
@@ -338,6 +340,12 @@ var ItemInfo;
         return InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'patch');
     }
     ItemInfo.IsPatch = IsPatch;
+    function IsPet(itemId) {
+        return InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'pet') ||
+            InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'chicken_egg') ||
+            InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'chicken_feed');
+    }
+    ItemInfo.IsPet = IsPet;
     function GetDefaultCheer(id) {
         const itemSchemaDef = BuildItemSchemaDef(id);
         if (itemSchemaDef["default_cheer"])

@@ -53,6 +53,7 @@ var CharacterAnims;
         }
         playerPanel.EquipPlayerWithItem(wid);
         playerPanel.EquipPlayerWithItem(settings.glovesItemId);
+        playerPanel.EquipPlayerWithPet(settings.petItemId);
         if (settings.cheer != null) {
             playerPanel.ApplyCheer(settings.cheer);
         }

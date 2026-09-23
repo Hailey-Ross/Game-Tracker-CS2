@@ -158,76 +158,18 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 -"?updateGeometries@QTreeView@@MEAAXXZ
 -> Success (%d attempts)\n
 .#?windowTitle@QWidget@@QEBA?AVQString@@XZ
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_16>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_16>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_17>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_17>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_18>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_19>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorSessionWindow@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_20>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
+.?AV<lambda_1>@?1???$SetFunction@P8CBaseEditorApp@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CBaseEditorApp@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CBaseEditorApp@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CBaseEditorApp@@EAAX_N@Z1@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAX_N@Z1@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSubrectEditorImageWidget@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSubrectEditorImageWidget@@EAAXHH@ZHH@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSubrectEditorImageWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSubrectEditorImageWidget@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQSubrectEditorSessionWindow@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorSessionWindow@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQSubrectEditorSessionWindow@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CSubrectEditorApp@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CSubrectEditorApp@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CSubrectEditorSession@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorSession@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CSubrectEditorSession@@EAAXXZ@Z@
 .?AV<lambda_2_>@?0???0CAssetSelectionListenerHelper@@QEAA@PEAVIAssetSelectionListener@@@Z@
-.?AV<lambda_3>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV?$CBaseAppSystem@VIToolSystem2@@@@
 .?AV?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
 .?AV?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@
@@ -308,93 +250,42 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQTableWidget@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQToolBar@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQToolButton@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_16>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_16>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_17>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_17>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_18>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_19>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorSessionWindow@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_20>@?BD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CBaseEditorApp@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CBaseEditorApp@@EAAXXZ@Z@XPEAVCSubrectEditorApp@@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CBaseEditorApp@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CBaseEditorApp@@EAAX_N@Z1@Z@XPEAVCSubrectEditorApp@@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSessionCycleWidget@@EAAX_N@Z_N@CBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSessionCycleWidget@@EAAX_N@Z1@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSubrectEditorImageWidget@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSubrectEditorImageWidget@@EAAXHH@ZHH@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSubrectEditorImageWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSubrectEditorImageWidget@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQSubrectEditorSessionWindow@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorSessionWindow@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQSubrectEditorSessionWindow@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CSubrectEditorApp@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CSubrectEditorApp@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CSubrectEditorSession@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorSession@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CSubrectEditorSession@@EAAXXZ@Z@XPEAV5@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2_>@?0???0CAssetSelectionListenerHelper@@QEAA@PEAVIAssetSelectionListener@@@Z@XAEBUAssetSelectionInfo_t@@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
+.?AVCBaseBindTargetDescriptor@@
+.?AVCBaseBindableCommand@@
 .?AVCBaseDynamicWidgetFactory@@
 .?AVCBaseEditorApp@@
 .?AVCBaseEditorSeparateWindowApp@@
 .?AVCBaseEditorSession@@
 .?AVCBaseToolSystem2@@
 .?AVCBaseUndoable@@
-.?AVCBindTargetDescriptorBase@@
-.?AVCBindableCommand@@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorPropertiesWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorSessionWindow@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBindTargetDescriptorBase@@XZ@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorSessionWindow@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorSession@@@@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSessionCycleWidget@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorImageWidget@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorPropertiesWidget@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQSubrectEditorSessionWindow@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorApp@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CSubrectEditorSession@@SAPEAVCBaseBindTargetDescriptor@@XZ@
 .?AVCContentChangeWatcher@@
 .?AVCGlobalHotkeyCommands@@
+.?AVCInputBindTargetMetadataProvider@@
 .?AVCQBaseEditorSessionCheckin@@
 .?AVCQBaseEditorSessionStatus@@
 .?AVCQBaseEditorWnd@@
@@ -440,12 +331,6 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 .?AVCQWidgetDebuggerTreeItem@@
 .?AVCQtImageCache@@
 .?AVCSimpleBaseEditorSession@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCQSessionCycleWidget@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorImageWidget@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCQSubrectEditorSessionWindow@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorApp@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCSubrectEditorSession@@@@
 .?AVCSubrectDocument@@
 .?AVCSubrectDocumentState@@
 .?AVCSubrectEditorApp@@
@@ -606,7 +491,7 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 2\n?doItemsLayout@QListView@@UEAAXXZ
 2\r?hideEvent@QWidget@@MEAAXPEAVQHideEvent@@@Z
 2\v?event@QAction@@MEAA_NPEAVQEvent@@@Z
-2\vpt
+2\vpL
 2aboutToShow()
 2activated( int )
 2changed()
@@ -635,6 +520,7 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 6\v?createNode@QMapDataBase@@QEAAPEAUQMapNodeBase@@HHPEAU2@_N@Z
 6\v?event@QComboBox@@UEAA_NPEAVQEvent@@@Z
 7\f?focusOutEvent@QPushButton@@MEAAXPEAVQFocusEvent@@@Z
+8CP<
 8\f?focusOutEvent@QTextBrowser@@MEAAXPEAVQFocusEvent@@@Z
 8]?size@QPixmap@@QEBA?AVQSize@@XZ
 9\f?focusOutEvent@QTextEdit@@MEAAXPEAVQFocusEvent@@@Z
@@ -1923,7 +1809,14 @@ BuildWatch
 BuildWindowMenu
 C:\buildworker\csgo_rel_win64\build\_build_\tools\subrecteditor\_vpc_subrecteditor\default\win64\_msvc_\Retail\subrecteditor.pdb
 C:\buildworker\csgo_rel_win64\build\src\bitmap\floatbitmap.cpp
+C:\buildworker\csgo_rel_win64\build\src\qcontrols\inputglobalhotkeys.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\subrecteditor\qsubrecteditor_imagewidget.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\subrecteditor\qsubrecteditor_propertieswidget.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\subrecteditor\qsubrecteditor_sessionwindow.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\subrecteditor\subrecteditor_app.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\subrecteditor\subrecteditor_session.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\baseeditorapp.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\qbaseeditorwnd.cpp
 CBaseEditorApp::SetActiveEditorSession
 CBaseEditorApp::~CBaseEditorApp
 CBaseEditorSession::Revert - Perforce unavailable: %s\n
@@ -2052,7 +1945,9 @@ Checkout Failed
 Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
+Children
 Class
+ClassName
 Clear History
 Clear Recent File List
 Clear Selection
@@ -2169,6 +2064,7 @@ File Opened by Other User
 File Opened by Other Users
 File opened with errors
 FileClose
+FileLine
 FileNew
 FileOpen
 FileReload
@@ -2227,6 +2123,7 @@ Increase Grid Size
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
+InputBindSystem
 Inset X
 Inset Y
 Invalid 'dockWidgetArea (%s)
@@ -2248,7 +2145,6 @@ KeepActive
 Key Bindings
 KeyState
 KeyState[%1]
-L>InputBindSystem
 LMouse
 LMouseDoubleClick
 LT?pixel@QImage@@QEBAIHH@Z
@@ -2391,6 +2287,7 @@ OpenBuildWatch
 OpenMutexA
 OpenVConsole
 Other Tools
+OverideHelpContextName
 P?isValid@QColor@@QEBA_NXZ
 P?itemData@QStandardItemModel@@UEBA?AV?$QMap@HVQVariant@@@@AEBVQModelIndex@@@Z
 P?jumpToNextImage@QImageReader@@QEAA_NXZ
@@ -2449,6 +2346,7 @@ QWidget
 QWidget { padding: 0px; background-color: transparent; }
 QWidget { padding: 2px; background-color : #4fb44f; color : black; }
 QWidget { padding: 2px; background-color : #5991e4; color : black; }
+QWidget { padding: 2px; background-color : #808080; color : black; }
 QWidget { padding: 2px; background-color : #b26262; color : black; }
 QWidget { padding: 2px; background-color : #e9ce93; color : black; }
 QWidget { padding: 2px;\t\t\t\t\t\t\t\t\t\t\t  }
@@ -2464,9 +2362,9 @@ RMouse
 RMouseDoubleClick
 RSDShi
 R\f?font@QTreeWidgetItem@@QEBA?AVQFont@@H@Z
-R\fpt
 R\t?canFetchMore@QAbstractItemModel@@UEBA_NAEBVQModelIndex@@@Z
 R\v?event@QMenuBar@@MEAA_NPEAVQEvent@@@Z
+R\vpL
 R^?supportedDropActions@QStandardItemModel@@UEBA?AV?$QFlags@W4DropAction@Qt@@@@XZ
 ReSelectOnReturn
 Read Only
@@ -2726,6 +2624,7 @@ Z]?sort@QStandardItemModel@@UEAAXHW4SortOrder@Qt@@@Z
 [NO_ACTION]
 [NoWidget]
 [\v?event@QScrollArea@@MEAA_NPEAVQEvent@@@Z
+[success
 \?setWeight@QFont@@QEAAXH@Z
 \\r?horizontalOffset@QHeaderView@@MEBAHXZ
 \\v?event@QScrollBar@@UEAA_NPEAVQEvent@@@Z
@@ -2799,6 +2698,7 @@ Z]?sort@QStandardItemModel@@UEAAXHW4SortOrder@Qt@@@Z
 \n?edit@QAbstractItemView@@MEAA_NAEBVQModelIndex@@W4EditTrigger@1@PEAVQEvent@@@Z
 \n?editorDestroyed@QAbstractItemView@@MEAAXPEAVQObject@@@Z
 \n\r?heightForWidth@QBoxLayout@@UEBAHH@Z
+\n_V_FixupPathName
 \r?data@QStandardItem@@UEBA?AVQVariant@@H@Z
 \r?data@QStandardItemModel@@UEBA?AVQVariant@@AEBVQModelIndex@@H@Z
 \r?error@QFileDevice@@QEBA?AW4FileError@1@XZ
@@ -2845,7 +2745,6 @@ Z]?sort@QStandardItemModel@@UEAAXHW4SortOrder@Qt@@@Z
 \t?defaultWidget@QWidgetAction@@QEBAPEAVQWidget@@XZ
 \tT?parent@QWindow@@QEBAPEAV1@XZ
 \t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_FixupPathName
 \v?clear@QStandardItemModel@@QEAAXXZ
 \v?clone@QStandardItem@@UEBAPEAV1@XZ
 \v?color@QBrush@@QEBAAEBVQColor@@XZ
@@ -2888,6 +2787,7 @@ b\fp\v0
 b\v?event@QSplitter@@MEAA_NPEAVQEvent@@@Z
 background
 binary
+bind_targets
 bold
 bottom
 centralWidget
@@ -3029,7 +2929,6 @@ primary
 q\n?dragLeaveEvent@QAbstractScrollArea@@MEAAXPEAVQDragLeaveEvent@@@Z
 q\v?event@QWidgetAction@@MEAA_NPEAVQEvent@@@Z
 quiet
-r\vpt
 recovered_autosave
 rectangles
 right

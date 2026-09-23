@@ -14,7 +14,9 @@ class CCSPlayerController : public CBasePlayerController
 	bool m_bEverPlayedOnTeam;
 	GameTime_t m_flPreviousForceJoinTeamTime;
 	CUtlSymbolLarge m_szClan;
+	uint32 m_unClanId32bit;
 	CUtlString m_sSanitizedPlayerName;
+	CUtlString m_sSanitizedClanTag;
 	int32 m_iCoachingTeam;
 	uint64 m_nPlayerDominated;
 	uint64 m_nPlayerDominatingMe;

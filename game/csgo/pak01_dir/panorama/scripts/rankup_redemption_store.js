@@ -2,7 +2,9 @@
 /// <reference path="csgo.d.ts" />
 /// <reference path="common/formattext.ts" />
 /// <reference path="common/iteminfo.ts" />
+/// <reference path="common/sessionutil.ts" />
 /// <reference path="itemtile_store.ts" />
+$.LogChannel('p.rankup', "LV_OFF");
 var RankUpRedemptionStore;
 (function (RankUpRedemptionStore) {
     let m_redeemableBalance = 0;
@@ -12,8 +14,6 @@ var RankUpRedemptionStore;
     let m_profileUpdateHandler;
     let m_registered = false;
     let m_schTimer;
-    function _msg(text) {
-    }
     function RegisterForInventoryUpdate() {
         if (m_registered)
             return;
@@ -24,7 +24,6 @@ var RankUpRedemptionStore;
         m_profileCustomizationHandler = $.RegisterForUnhandledEvent('PanoramaComponent_Inventory_ItemCustomizationNotification', OnItemCustomization);
         $.GetContextPanel().RegisterForReadyEvents(true);
         $.RegisterEventHandler('ReadyForDisplay', $.GetContextPanel(), () => {
-            _msg("READY FOR DISPLAY");
             _UpdateStoreState();
             CheckForPopulateItems(true);
             if (!m_profileUpdateHandler) {
@@ -35,7 +34,6 @@ var RankUpRedemptionStore;
             }
         });
         $.RegisterEventHandler('UnreadyForDisplay', $.GetContextPanel(), () => {
-            _msg("UN-READY FOR DISPLAY");
             if (m_schTimer) {
                 $.CancelScheduled(m_schTimer);
                 m_schTimer = null;
@@ -62,10 +60,17 @@ var RankUpRedemptionStore;
             PopulateItems(bFirstTime, claimedItemId);
         }
     }
+    const TEST_DOUBLE_CLAIM_COST_SLOT = -1;
+    function _GetClaimCost(itemId, index) {
+        if (itemId !== '-' && InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'chicken_egg'))
+            return 2;
+        if (itemId !== '-' && InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'chicken_feed'))
+            return 2;
+        return (index === TEST_DOUBLE_CLAIM_COST_SLOT) ? 2 : 1;
+    }
     function _CreateItemPanel(itemId, index, bFirstTime, claimedItemId = '') {
         const bNoDropsEarned = itemId === '-';
         if (itemId !== '-' && (!InventoryAPI.IsItemInfoValid(itemId) || !InventoryAPI.IsValidItemID(itemId))) {
-            _msg('item ' + itemId + ' is invalid');
             return;
         }
         const elItemContainer = $.GetContextPanel().FindChildTraverse('jsRrsItemContainer');
@@ -80,8 +85,10 @@ var RankUpRedemptionStore;
         };
         ItemTileStore.Init(elGhostItem, oItemData);
         elGhostItem.Data().itemid = itemId;
-        elGhostItem.Data().cost = 1;
+        elGhostItem.Data().cost = _GetClaimCost(itemId, index);
         elGhostItem.Data().index = index;
+        elGhostItem.SetHasClass('claim-cost-2', elGhostItem.Data().cost === 2);
+        elGhostItem.SetDialogVariableInt('claim-cost', elGhostItem.Data().cost);
         if (bNoDropsEarned)
             return;
         _OnGhostItemActivate(elGhostItem, itemId);
@@ -145,8 +152,6 @@ var RankUpRedemptionStore;
         return oStore;
     }
     function PopulateItems(bFirstTime = false, claimedItemId = '') {
-        _msg('PopulateItems');
-        _msg('claimedItemId:' + claimedItemId);
         const objStore = GetPersonalStore();
         $.GetContextPanel().RemoveClass('waiting');
         if (bFirstTime) {
@@ -205,18 +210,89 @@ var RankUpRedemptionStore;
         _UpdateTime();
     }
     function OnItemCustomization(numericType, type, itemid) {
-        _msg('OnItemCustomization ' + numericType + ' ' + type + ' ' + itemid);
         if (type !== 'free_reward_redeemed')
             return;
         if (m_timeoutScheduleHandle) {
             $.CancelScheduled(m_timeoutScheduleHandle);
             m_timeoutScheduleHandle = null;
         }
+        const objStore = GetPersonalStore();
+        m_redeemableBalance = objStore ? objStore.redeemable_balance : 0;
         CheckForPopulateItems(false, itemid);
+        if (ItemInfo.IsPet(itemid)) {
+            let myContextPanel = $.GetContextPanel();
+            function DiscoverPanels() {
+                if (!myContextPanel || !myContextPanel.IsValid())
+                    return [];
+                let elMainMenu = myContextPanel.Data().elMainMenu;
+                let elPopupRoot = myContextPanel;
+                if (!elMainMenu) {
+                    elMainMenu = myContextPanel;
+                    for (;;) {
+                        let elParent = elMainMenu.GetParent();
+                        if (elParent && elParent.IsValid()) {
+                            if (elParent.Data().elMainMenu) {
+                                elMainMenu = elParent.Data().elMainMenu;
+                                elPopupRoot = elParent;
+                                break;
+                            }
+                            elMainMenu = elParent;
+                            if (elMainMenu.id === 'MainMenu')
+                                break;
+                        }
+                        else
+                            break;
+                    }
+                }
+                if (!elMainMenu) {
+                    return [];
+                }
+                let btnHome = elMainMenu.FindChildInLayoutFile('MainMenuNavBarHome');
+                if (!btnHome) {
+                    return [];
+                }
+                let elPetInfoPanel = elMainMenu.FindChildInLayoutFile('id-mainmenu-pet-info');
+                let elZoomInBtn = elPetInfoPanel ? elPetInfoPanel.FindChildInLayoutFile('id-zoom-in-pet') : undefined;
+                let elCloseBtn = (elPopupRoot && (elPopupRoot != myContextPanel))
+                    ? elPopupRoot.FindChildInLayoutFile('PopupRankUpRedemptionStoreClose')
+                    : undefined;
+                return [btnHome, elZoomInBtn, elPopupRoot, elCloseBtn];
+            }
+            function ClickToMainMenuAndZoomIn(arrParamPanels) {
+                if (!SessionUtil.BCanUseMyPetInCurrentLobby())
+                    return;
+                let arrPanels = arrParamPanels ?? DiscoverPanels();
+                if (arrPanels.length == 4 && arrPanels[0] && arrPanels[1]) {
+                    $.DispatchEvent("Activated", arrPanels[0], "mouse");
+                    $.DispatchEvent("Activated", arrPanels[1], "mouse");
+                    if (myContextPanel.Data().schPendingZoom) {
+                        $.CancelScheduled(myContextPanel.Data().schPendingZoom);
+                        delete myContextPanel.Data().schPendingZoom;
+                    }
+                }
+            }
+            {
+                let arrPanels = DiscoverPanels();
+                if (arrPanels.length == 4 && arrPanels[2] && arrPanels[3]) {
+                    arrPanels[2].Data().fnPopupRankUpRedemptionStoreOnClose = ClickToMainMenuAndZoomIn.bind(null);
+                }
+                if (!SessionUtil.BCanUseMyPetInCurrentLobby()) {
+                    LobbyAPI.CloseSession();
+                }
+            }
+            myContextPanel.Data().schPendingZoom = $.Schedule(2.0, () => {
+                let arrPanels = DiscoverPanels();
+                if (arrPanels.length == 4 && arrPanels[2] && arrPanels[3]) {
+                    $.DispatchEvent("Activated", arrPanels[3], "mouse");
+                }
+                else {
+                    ClickToMainMenuAndZoomIn(arrPanels);
+                }
+            });
+        }
     }
     function OnInventoryUpdated() {
         _UpdateStoreState();
-        _msg('OnInventoryUpdated ');
         CheckForPopulateItems();
     }
     function _GetSelectedItems() {
@@ -285,7 +361,6 @@ var RankUpRedemptionStore;
         }
     }
     function _EnableStore() {
-        _msg('_EnableStore ');
         $.GetContextPanel().RemoveClass('waiting');
         $.GetContextPanel().RemoveClass('store-closed');
         $.GetContextPanel().SetDialogVariableInt('redeemable_balance', m_redeemableBalance);
@@ -293,7 +368,6 @@ var RankUpRedemptionStore;
         _EnableDisableStorePanels(true);
     }
     function _EnableDisableStorePanels(enableStore) {
-        _msg('_enableStore ' + enableStore);
         $.GetContextPanel().Children().forEach(elPanel => {
             elPanel.enabled = enableStore;
         });

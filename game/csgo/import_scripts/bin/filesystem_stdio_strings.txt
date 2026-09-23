@@ -212,7 +212,6 @@ $$$$$$$HighlyUnlikelyPathForInitializationPurposes#######
 AddedToCache
 Ai0T
 AiFC.
-Alignment
 Allow AsyncBegin/EndRead()
 Assertion Failed: !m_bNeedsSort
 Async I/O disabled from command line\n
@@ -330,6 +329,7 @@ Flushes the FIOS HDD cache.
 FmtStrVSNPrintf truncated to %d without QUIET_TRUNCATION specified!\n
 ForceVpkOnlyExtensions
 FsAsyncIO
+GAMECONSOLE
 GYM=
 GameUISystemMgr001
 GetCallStack
@@ -462,6 +462,7 @@ Verify integrity of your game files, perform memory and disk diagnostics on your
 Version
 Warning:  %s = '%s' is infinite, clamping value.\n
 WriteMiniDump
+X360
 X4I+
 XZP%c %d
 Y@.dll

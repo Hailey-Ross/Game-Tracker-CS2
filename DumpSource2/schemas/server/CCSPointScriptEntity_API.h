@@ -1,3 +1,0 @@
-class CCSPointScriptEntity_API
-{
-};

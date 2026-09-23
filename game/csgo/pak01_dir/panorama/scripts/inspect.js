@@ -98,6 +98,13 @@ var InspectModelImage;
             DeleteExistingItemPanel(itemId, 'ItemPreviewPanel');
             m_elPanel = _InitDisplayScene(itemId, true);
         }
+        else if (InventoryAPI.DoesItemMatchDefinitionByName(itemId, 'chicken_feed')) {
+            DeleteExistingItemPanel(itemId, 'ItemPreviewPanel');
+            m_elPanel = _InitChickenFeedScene(itemId);
+        }
+        else if (ItemInfo.IsPet(itemId)) {
+            m_elPanel = _InitPetScene(itemId);
+        }
         else if (model) {
             if (InventoryAPI.GetLoadoutCategory(itemId) === 'clothing') {
                 m_elPanel = _InitGlovesScene(itemId);
@@ -180,6 +187,13 @@ var InspectModelImage;
         return false;
     }
     InspectModelImage.PanZoomEnabled = PanZoomEnabled;
+    function StartPetLookAt() {
+        let elInspectPanel = GetExistingItemPanel('ItemPreviewPanel');
+        if (elInspectPanel) {
+            elInspectPanel.StartPetLookAt();
+        }
+    }
+    InspectModelImage.StartPetLookAt = StartPetLookAt;
     function _SetCSMSplitPlane0DistanceOverrideMainCharacter(elPanel, backgroundMap) {
         let flSplitPlane0Distance = 0.0;
         if (backgroundMap === 'de_ancient_vanity') {
@@ -389,6 +403,31 @@ var InspectModelImage;
         _TransitionCamera(panel, 'display_close');
         return panel;
     }
+    function _InitChickenFeedScene(itemId, bDoNotAllowRotate = false) {
+        let bOverrideItem = InventoryAPI.GetItemDefinitionIndex(itemId) === 996;
+        let rotationOverrideX = bOverrideItem ? "360" : "70";
+        let autoRotateOverrideX = bDoNotAllowRotate ? "0" : bOverrideItem ? "180" : "45";
+        let autoRotateTimeOverrideX = bDoNotAllowRotate ? "1" : bOverrideItem ? "100" : "20";
+        let oSettings = {
+            panel_type: "MapItemPreviewPanel",
+            active_item_idx: 3,
+            camera: 'cam_display_close_intro',
+            initial_entity: 'item',
+            mouse_rotate: bDoNotAllowRotate ? "false" : "true",
+            rotation_limit_x: rotationOverrideX,
+            rotation_limit_y: "60",
+            auto_rotate_x: autoRotateOverrideX,
+            auto_rotate_y: bDoNotAllowRotate ? "0" : "12",
+            auto_rotate_period_x: autoRotateTimeOverrideX,
+            auto_rotate_period_y: bDoNotAllowRotate ? "1" : "20",
+            auto_recenter: false,
+            player: "false",
+        };
+        const panel = _LoadInspectMap(itemId, oSettings);
+        _SetParticlesBg(itemId, panel);
+        _TransitionCamera(panel, 'display_close');
+        return panel;
+    }
     function _InitMusicKitScene(itemId) {
         let oSettings = {
             panel_type: "MapItemPreviewPanel",
@@ -527,6 +566,26 @@ var InspectModelImage;
         const panel = _LoadInspectMap(itemId, oSettings);
         _SetParticlesBg(itemId, panel);
         _TransitionCamera(panel, 'nametag_close');
+        return panel;
+    }
+    function _InitPetScene(itemId) {
+        let oSettings = {
+            panel_type: "MapItemPreviewPanel",
+            active_item_idx: 9,
+            camera: 'cam_gloves',
+            initial_entity: 'item',
+            mouse_rotate: "true",
+            rotation_limit_x: "180",
+            rotation_limit_y: "0",
+            auto_rotate_x: "0",
+            auto_rotate_y: "0",
+            auto_rotate_period_x: "0",
+            auto_rotate_period_y: "0",
+            auto_recenter: false,
+            player: "false",
+        };
+        const panel = _LoadInspectMap(itemId, oSettings, true);
+        _SetParticlesBg(itemId, panel);
         return panel;
     }
     function _GetBackGroundMap(bUseMainMenuMap = false) {

@@ -5,7 +5,14 @@
 //	"m_pTargetInput": "",
 //	"m_hActivator": null,
 //	"m_hCaller": null,
-//	"m_hEntTarget": null
+//	"m_hEntTarget": null,
+//	"m_PulseArguments":
+//	{
+//	},
+//	"m_paramMap":
+//	{
+//		"--forward-all-args--": false
+//	}
 //}
 class EntityIOQueuePrioritizedEvent_t
 {
@@ -18,4 +25,6 @@ class EntityIOQueuePrioritizedEvent_t
 	CEntityHandle m_hEntTarget;
 	// MKV3TransferSaveOpsForField = "GetVariantSaveDataOps"
 	CVariantBase< CVariantDefaultAllocator > m_variantValue;
+	CPulseArgumentPack m_PulseArguments;
+	CPulseInputParamMap m_paramMap;
 };

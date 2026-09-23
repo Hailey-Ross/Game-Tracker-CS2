@@ -7,7 +7,6 @@
 //	[
 //	]
 //}
-// MPropertyAutoExpandSelf
 class CNmGraphDocDataDictionary::Parameter_t
 {
 	// MPropertySuppressField

@@ -8,7 +8,8 @@
 //	"m_flPositionScoreWeight": 1.000000,
 //	"m_parameterNodeIdx": -1,
 //	"m_bIgnoreInvalidOptions": false,
-//	"m_bIsWorldSpaceTarget": true
+//	"m_bIsWorldSpaceTarget": true,
+//	"m_alignmentBoneID": ""
 //}
 class CNmTargetSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinition
 {
@@ -18,4 +19,5 @@ class CNmTargetSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinit
 	int16 m_parameterNodeIdx;
 	bool m_bIgnoreInvalidOptions;
 	bool m_bIsWorldSpaceTarget;
+	CGlobalSymbol m_alignmentBoneID;
 };

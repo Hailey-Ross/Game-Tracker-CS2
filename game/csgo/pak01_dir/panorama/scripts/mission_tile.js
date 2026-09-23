@@ -14,14 +14,10 @@ var MissionTile;
     function IsTheMainMenuPanel() {
         return ($.GetContextPanel().id === 'id-mainmenu-mission-panel');
     }
-    function _msg(text) {
-    }
     function Init(srcText) {
         if (MyPersonaAPI.GetElevatedState() != "elevated")
             return;
-        function _msg(text) {
-        }
-        _msg("Init");
+        const logPrefix = '[p.missions] ' + srcText + ': ' + $.GetContextPanel().id + ': ';
         let missionData = undefined;
         if (IsThePauseMenuPanel()) {
             missionData = MissionsAPI.GetRecurringMission(false);
@@ -31,7 +27,6 @@ var MissionTile;
         }
         $.GetContextPanel().Data().m_oMissionData = missionData;
         if (!$.GetContextPanel().Data().m_oMissionData) {
-            _msg("no GetRecurringMissions()");
             $.GetContextPanel().AddClass('hidden');
             return;
         }
@@ -40,17 +35,14 @@ var MissionTile;
                 $.GetContextPanel().Data().m_livePointsCache = -1;
             }
             if (FriendsListAPI.IsGameInWarmup()) {
-                _msg("warmup");
                 $.GetContextPanel().AddClass('hidden');
                 return;
             }
             if (GameStateAPI.GetMapBSPName() === 'lobby_mapveto') {
-                _msg("lobby_mapveto");
                 $.GetContextPanel().AddClass('hidden');
                 return;
             }
             if (!GameStateAPI.GetActiveQuestID()) {
-                _msg("NO QUEST ID");
                 $.GetContextPanel().AddClass('hidden');
                 return;
             }
@@ -61,12 +53,10 @@ var MissionTile;
                 $.GetContextPanel().TriggerClass('progress-pulse');
                 $.GetContextPanel().Data().m_livePointsCache = missionData.progress_this_match;
                 $.DispatchEvent('CSGOPlaySoundEffect', 'UI.Mission.QuotaUp', 'MOUSE');
-                _msg('PULSE');
             }
         }
         else if (!IsTheInGamePanel()) {
             if (!MyPersonaAPI.IsConnectedToGC()) {
-                _msg("no gc");
                 $.GetContextPanel().AddClass('hidden');
                 return;
             }
@@ -91,7 +81,6 @@ var MissionTile;
         }
         $.GetContextPanel().SetHasClass('COMPLETE', missionData.progress_saved +
             (missionData.progress_this_match ? missionData.progress_this_match : 0) >= missionData.goal_points.slice(-1)[0]);
-        _msg("progress_this_match " + missionData.progress_this_match);
         $.GetContextPanel().RemoveClass('hidden');
         ConstructMissionStrings($.GetContextPanel());
         if (!$.GetContextPanel().Data().hasOwnProperty('id') ||
@@ -156,8 +145,11 @@ var MissionTile;
         elPanel.SetDialogVariable("mission-xp", totalXp);
         const elDirective = elPanel.FindChildTraverse('mission-main-label');
         if (elDirective) {
-            const token = progress > 0 ? '#mission_directive_progress:f' : '#mission_directive:f';
-            elDirective.SetLocString(token);
+            const actionId = missionData.string_tokens?.action_id;
+            const actionDirective = actionId ? $.Localize(`#mission_directive_${actionId}:f`, elPanel) : '';
+            elPanel.SetDialogVariable('action_directive', actionDirective);
+            const frame = progress > 0 ? '#mission_directive_progress:f' : '#mission_directive:f';
+            elDirective.SetLocString(frame);
         }
         const timeRemaining = FormatText.SecondsToSignificantTimeString(missionData.seconds_remaining);
         elPanel.SetDialogVariable('mission-time-remaining', timeRemaining);
@@ -215,8 +207,6 @@ var MissionTile;
     }
     MissionTile.ExtractStringTokens = ExtractStringTokens;
     function UpdateProgressBar(missionData) {
-        function _msg(text) {
-        }
         const elProg = $.GetContextPanel().FindChildTraverse('progressBaContainer');
         if (!elProg)
             return;
@@ -225,7 +215,6 @@ var MissionTile;
             const liveValue = missionData.progress_saved + missionData.progress_this_match;
             SegmentedProgressBar.SetValue(elProg, liveValue, 'Live');
         }
-        _msg(missionData.progress_saved + ' ' + missionData.progress_this_match);
     }
     function GetSearchStatus() {
         return LobbyAPI.GetMatchmakingStatusString();

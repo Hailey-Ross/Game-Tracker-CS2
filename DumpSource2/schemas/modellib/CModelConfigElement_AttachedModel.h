@@ -26,7 +26,9 @@
 //	"m_bUserSpecifiedColor": false,
 //	"m_bUserSpecifiedMaterialGroup": false,
 //	"m_BodygroupOnOtherModels": "",
-//	"m_MaterialGroupOnOtherModels": ""
+//	"m_MaterialGroupOnOtherModels": "",
+//	"m_bCollideWithHierarchy": false,
+//	"m_bCollideOutsideHierarchy": true
 //}
 class CModelConfigElement_AttachedModel : public CModelConfigElement
 {
@@ -43,4 +45,6 @@ class CModelConfigElement_AttachedModel : public CModelConfigElement
 	bool m_bUserSpecifiedMaterialGroup;
 	CUtlString m_BodygroupOnOtherModels;
 	CUtlString m_MaterialGroupOnOtherModels;
+	bool m_bCollideWithHierarchy;
+	bool m_bCollideOutsideHierarchy;
 };

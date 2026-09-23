@@ -1,6 +1,7 @@
 // MEntityAllowsPortraitWorldSpawn
 class CDynamicProp : public CBreakableProp
 {
+	bool m_bGraphControllerEnabled;
 	bool m_bCreateNavObstacle;
 	bool m_bNavObstacleUpdatesOverridden;
 	bool m_bUseHitboxesForRenderBox;

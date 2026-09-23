@@ -1,3 +1,0 @@
-class CFlashbangProjectile_API
-{
-};

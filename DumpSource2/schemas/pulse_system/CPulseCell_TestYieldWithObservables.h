@@ -27,6 +27,9 @@
 //		],
 //		"m_DependentObservableBlackboardReferences":
 //		[
+//		],
+//		"m_DependentObservableTempVars":
+//		[
 //		]
 //	},
 //	"m_WatchForStringValue": "",
@@ -42,6 +45,9 @@
 //		[
 //		],
 //		"m_DependentObservableBlackboardReferences":
+//		[
+//		],
+//		"m_DependentObservableTempVars":
 //		[
 //		]
 //	},

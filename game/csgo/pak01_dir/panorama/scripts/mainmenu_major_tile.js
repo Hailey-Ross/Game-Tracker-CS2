@@ -7,7 +7,8 @@ var MainMenuMajorTile;
 (function (MainMenuMajorTile) {
     const _m_cp = $.GetContextPanel();
     function _Init() {
-        let bVisible = true;
+        const bForceHidden = true;
+        let bVisible = !bForceHidden;
         if (!MyPersonaAPI.IsConnectedToGC())
             bVisible = false;
         else if (LicenseUtil.GetCurrentLicenseRestrictions())

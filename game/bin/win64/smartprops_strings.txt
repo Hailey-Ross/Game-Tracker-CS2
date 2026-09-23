@@ -1,0 +1,1349 @@
+( m_PlaceAtPositions == ALL ) || ( m_PlaceAtPositions == START_AND_END ) || ( m_PlaceAtPositions == CONTROL_POINTS )
+( m_SelectionMode != SPECIFIC )
++End Points
++Forward
++Line End Point A
++Line End Point B
++Orientation
++Origin
++Position A
++Position B
++Result
++Target Point
++Trace Away
++Trace Direction
++Vector A
++Vector B
+.?AV?$CBaseAppSystem@VISmartPropSystem@@@@
+.?AV?$CEvaluatedAttributeEnum@W4ApplyColorMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4PickMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4ScaleMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropChoiceSelectionMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropColorSelectionMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropDirection_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropDistributionMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropGridOriginBasis_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropGridPlacementMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropPathPositions_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropPlaceMeshOrientationMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropRadiusPlacementMode_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4SmartPropSpace_t@@@@
+.?AV?$CEvaluatedAttributeEnum@W4TraceNoHitResult_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4ApplyColorMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4PickMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4ScaleMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropChoiceSelectionMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropColorSelectionMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropDirection_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropDistributionMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropGridOriginBasis_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropGridPlacementMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropPathPositions_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropPlaceMeshOrientationMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropRadiusPlacementMode_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4SmartPropSpace_t@@@@
+.?AV?$CEvaluatedAttributeSchemaEnum@W4TraceNoHitResult_t@@@@
+.?AV?$CKV3ResourceTypeManager@$0HEHCGBGNHDHG@@@
+.?AV?$CSmartPropVariable_Enum@W4ApplyColorMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4PickMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4ScaleMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropChoiceSelectionMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropColorSelectionMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropDirection_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropDistributionMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropGridOriginBasis_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropGridPlacementMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropPathPositions_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropPlaceMeshOrientationMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropRadiusPlacementMode_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4SmartPropSpace_t@@@@
+.?AV?$CSmartPropVariable_Enum@W4TraceNoHitResult_t@@@@
+.?AV?$CTier0AppSystem@VISmartPropSystem@@$0A@@@
+.?AV?$CTier1AppSystem@VISmartPropSystem@@$0A@@@
+.?AV?$CTier2AppSystem@VISmartPropSystem@@$0A@@@
+.?AVCErrorCounter@@
+.?AVCEvaluatedAttribute@@
+.?AVCEvaluatedAttributeAngles@@
+.?AVCEvaluatedAttributeBool@@
+.?AVCEvaluatedAttributeColor@@
+.?AVCEvaluatedAttributeFloat@@
+.?AVCEvaluatedAttributeInt@@
+.?AVCEvaluatedAttributeResourceName@@
+.?AVCEvaluatedAttributeString@@
+.?AVCEvaluatedAttributeVector2D@@
+.?AVCEvaluatedAttributeVector@@
+.?AVCKV3ResourceBlockHelper@@
+.?AVCSchemaRegistration_smartprops@@
+.?AVCSmartProp@@
+.?AVCSmartPropAttributeAngles@@
+.?AVCSmartPropAttributeApplyColorMode@@
+.?AVCSmartPropAttributeBool@@
+.?AVCSmartPropAttributeChoiceSelectionMode@@
+.?AVCSmartPropAttributeColor@@
+.?AVCSmartPropAttributeColorSelectionMode@@
+.?AVCSmartPropAttributeCoordinateSpace@@
+.?AVCSmartPropAttributeDirection@@
+.?AVCSmartPropAttributeDistributionMode@@
+.?AVCSmartPropAttributeFloat@@
+.?AVCSmartPropAttributeGridOriginMode@@
+.?AVCSmartPropAttributeGridPlacementMode@@
+.?AVCSmartPropAttributeInt@@
+.?AVCSmartPropAttributeMaterialGroup@@
+.?AVCSmartPropAttributeMaterialName@@
+.?AVCSmartPropAttributeModelName@@
+.?AVCSmartPropAttributeOrientationMode@@
+.?AVCSmartPropAttributePathPositions@@
+.?AVCSmartPropAttributePickMode@@
+.?AVCSmartPropAttributeRadiusPlacementMode@@
+.?AVCSmartPropAttributeScaleMode@@
+.?AVCSmartPropAttributeStateName@@
+.?AVCSmartPropAttributeString@@
+.?AVCSmartPropAttributeSurfaceProperty@@
+.?AVCSmartPropAttributeTraceNoHit@@
+.?AVCSmartPropAttributeVariableValue@@
+.?AVCSmartPropAttributeVector2D@@
+.?AVCSmartPropAttributeVector@@
+.?AVCSmartPropChoice@@
+.?AVCSmartPropElement@@
+.?AVCSmartPropElement_BendDeformer@@
+.?AVCSmartPropElement_Deformer@@
+.?AVCSmartPropElement_FitOnLine@@
+.?AVCSmartPropElement_Group@@
+.?AVCSmartPropElement_Layout2DGrid@@
+.?AVCSmartPropElement_MidpointDeformer@@
+.?AVCSmartPropElement_Model@@
+.?AVCSmartPropElement_ModelEntity@@
+.?AVCSmartPropElement_ModifyState@@
+.?AVCSmartPropElement_PickOne@@
+.?AVCSmartPropElement_PlaceInSphere@@
+.?AVCSmartPropElement_PlaceMultiple@@
+.?AVCSmartPropElement_PlaceOnMesh@@
+.?AVCSmartPropElement_PlaceOnPath@@
+.?AVCSmartPropElement_PropDynamic@@
+.?AVCSmartPropElement_PropPhysics@@
+.?AVCSmartPropElement_SmartProp@@
+.?AVCSmartPropEvaluationContext@@
+.?AVCSmartPropFilter@@
+.?AVCSmartPropFilter_Expression@@
+.?AVCSmartPropFilter_MaterialAttributes@@
+.?AVCSmartPropFilter_Probability@@
+.?AVCSmartPropFilter_SurfaceAngle@@
+.?AVCSmartPropFilter_SurfaceProperties@@
+.?AVCSmartPropFilter_VariableValue@@
+.?AVCSmartPropModifier@@
+.?AVCSmartPropOperation@@
+.?AVCSmartPropOperation_ComputeCrossProduct3D@@
+.?AVCSmartPropOperation_ComputeDistance3D@@
+.?AVCSmartPropOperation_ComputeDotProduct3D@@
+.?AVCSmartPropOperation_ComputeNormalizedVector3D@@
+.?AVCSmartPropOperation_ComputeProjectVector3D@@
+.?AVCSmartPropOperation_ComputeVectorBetweenPoints3D@@
+.?AVCSmartPropOperation_CreateLocator@@
+.?AVCSmartPropOperation_CreateRotator@@
+.?AVCSmartPropOperation_CreateSizer@@
+.?AVCSmartPropOperation_MaterialOverride@@
+.?AVCSmartPropOperation_MaterialTint@@
+.?AVCSmartPropOperation_RandomColorTintColor@@
+.?AVCSmartPropOperation_RandomOffset@@
+.?AVCSmartPropOperation_RandomRotation@@
+.?AVCSmartPropOperation_RandomScale@@
+.?AVCSmartPropOperation_ResetRotation@@
+.?AVCSmartPropOperation_ResetScale@@
+.?AVCSmartPropOperation_RestoreState@@
+.?AVCSmartPropOperation_RigidDeformation@@
+.?AVCSmartPropOperation_Rotate@@
+.?AVCSmartPropOperation_RotateTowards@@
+.?AVCSmartPropOperation_SaveColor@@
+.?AVCSmartPropOperation_SaveDirection@@
+.?AVCSmartPropOperation_SavePosition@@
+.?AVCSmartPropOperation_SaveScale@@
+.?AVCSmartPropOperation_SaveState@@
+.?AVCSmartPropOperation_SaveSurfaceNormal@@
+.?AVCSmartPropOperation_Scale@@
+.?AVCSmartPropOperation_SetMateraialGroupChoice@@
+.?AVCSmartPropOperation_SetOrientation@@
+.?AVCSmartPropOperation_SetPosition@@
+.?AVCSmartPropOperation_SetTintColor@@
+.?AVCSmartPropOperation_SetVariable@@
+.?AVCSmartPropOperation_Trace@@
+.?AVCSmartPropOperation_TraceInDirection@@
+.?AVCSmartPropOperation_TraceToLine@@
+.?AVCSmartPropOperation_TraceToPoint@@
+.?AVCSmartPropOperation_Translate@@
+.?AVCSmartPropParameter@@
+.?AVCSmartPropSelectionCriteria@@
+.?AVCSmartPropSelectionCriteria_ChoiceWeight@@
+.?AVCSmartPropSelectionCriteria_EdgeAngleCriteria@@
+.?AVCSmartPropSelectionCriteria_EndCap@@
+.?AVCSmartPropSelectionCriteria_IsValid@@
+.?AVCSmartPropSelectionCriteria_LinearLength@@
+.?AVCSmartPropSelectionCriteria_MaterialCriteria@@
+.?AVCSmartPropSelectionCriteria_PathPosition@@
+.?AVCSmartPropSelectionCriteria_TopoEdgeCountCriteria@@
+.?AVCSmartPropSelectionCriteria_VertexCountCriteria@@
+.?AVCSmartPropSystem@@
+.?AVCSmartPropTransformOperation@@
+.?AVCSmartPropTypeManager@@
+.?AVCSmartPropVariable@@
+.?AVCSmartPropVariable_Angles@@
+.?AVCSmartPropVariable_ApplyColorMode@@
+.?AVCSmartPropVariable_Bool@@
+.?AVCSmartPropVariable_ChoiceSelectionMode@@
+.?AVCSmartPropVariable_Color@@
+.?AVCSmartPropVariable_ColorSelectionMode@@
+.?AVCSmartPropVariable_CoordinateSpace@@
+.?AVCSmartPropVariable_DirectionVector@@
+.?AVCSmartPropVariable_DistributionMode@@
+.?AVCSmartPropVariable_Float@@
+.?AVCSmartPropVariable_GridOriginMode@@
+.?AVCSmartPropVariable_GridPlacementMode@@
+.?AVCSmartPropVariable_Int@@
+.?AVCSmartPropVariable_Material@@
+.?AVCSmartPropVariable_MaterialGroup@@
+.?AVCSmartPropVariable_Model@@
+.?AVCSmartPropVariable_OrientationMode@@
+.?AVCSmartPropVariable_PathPositions@@
+.?AVCSmartPropVariable_PickMode@@
+.?AVCSmartPropVariable_RadiusPlacementMode@@
+.?AVCSmartPropVariable_ScaleMode@@
+.?AVCSmartPropVariable_String@@
+.?AVCSmartPropVariable_SurfaceProperty@@
+.?AVCSmartPropVariable_TraceNoHit@@
+.?AVCSmartPropVariable_Vector2D@@
+.?AVCSmartPropVariable_Vector3D@@
+.?AVCSmartPropVariable_Vector4D@@
+.?AVIAsyncProcessedDataResult@@
+.?AVIAttributeEvaluationContext@@
+.?AVIResourceTypeManager@@
+.?AVISmartProp@@
+.?AVISmartPropSystem@@
+0 to 1 value indicating the amout of random offset that should be applied to the reguluarly spaced positions
+0.0 to 1.0 value indicating the probability of this element being evaluated. Where a value of 0 means the element will never be evaluated and 1.0 means it will always be evaluated
+1 64
+2\vpT
+7\tV_acosd
+;1#INF
+>\tV_atanf
+@fff>fff>fff>fff>
+A group of elements that will all be evaulated.
+A local offset to apply to the base volume of the deformer that will not apply to its children.
+A local rotation to apply to apply the base volume of the deformer that will not apply to its children. This can be used to alter the direction of the deformation.
+A set of points defining a path to use when an external path isn't specified. This will be used in the preview and thumbnail for the smart prop. It will also be used when the smart prop is placed in Hammer before a path is selected.
+ALL_IN_ORDER
+ARRAY: Grid is a specific number of grid divisions. FILL: The boundary is filled with as many as will fit at the specified cell spacing.
+Adjust deformation falloff from the center of the region to the endpoints.
+Align Backward with Normal
+Align Forward with Normal
+Align Up With Normal
+Align the initial orientation of each placed object based on it position on the sphere or circle.
+All positions
+Allows the parent element to be conditionally evaluated base on the current surface angle. The surface angle is set based on the initial placement of the smart prop object, but can also be updated by the Trace to Surface modifier.
+Allows the parent element to be conditionally evaluated based on attributes assigned to the surface material.
+Allows the parent element to be conditionally evaluated based on surface properties.
+An element which fits one or more instances of a set of choices on to a line.
+An element which is used to apply a set of modifiers to the state of its parent.
+An element which places an instance of its child elements at a specified interval along a path.
+An element which places multiple instances of its child elements within a radius.
+An element which places multiple instances of its child elements.
+An element which selects a single choice from its set of child choices.
+Angle at closed edge of face.
+Angles
+Application Mode
+Apply Modifiers
+Apply a position offset to the current transform.
+Apply a random position offset to the current transform.
+Apply a random rotation to the current transform.
+Apply a random scale to the current transform.
+Apply a rotation to the current transform according to the alignment of two points.
+Apply a rotation to the current transform.
+Apply a scale to the current transform.
+Apply scale to the last element in order to fit the line. Only proceed to scale additional elements if the scale range of the last element is not sufficient.
+Apply the active deformer to the current transform as a rigid deformation and disable the deformer.
+ApplyColorMode_t
+Attachment Mode
+Attempt to apply the same amount of scale to all of the elements placed on the line while still respecting their size constraints.
+Axis around which the rotation will occur
+BACKWARD_NORMAL
+Bad FLC data for resource '%s': %s\n
+Bad KV3 data for resource '%s': %s\n
+Bend Angle
+Bend Deformer
+Bend Point
+Bend Radius
+Bend amount to apply, specified in degrees. Bend occurs along the local x-axis and bends around the local z-axis
+C:\buildworker\csgo_rel_win64\build\_build_\smartprops\_vpc_smartprops\default\win64\_msvc_\Retail\smartprops.pdb
+CColorGradient
+CModelMaterialGroupName
+CONTROL_POINTS
+CORNER
+CResourceNameTyped
+CSmartPropAttributeAngles
+CSmartPropAttributeApplyColorMode
+CSmartPropAttributeBool
+CSmartPropAttributeChoiceSelectionMode
+CSmartPropAttributeColor
+CSmartPropAttributeColorSelectionMode
+CSmartPropAttributeCoordinateSpace
+CSmartPropAttributeDirection
+CSmartPropAttributeDistributionMode
+CSmartPropAttributeFloat
+CSmartPropAttributeGridOriginMode
+CSmartPropAttributeGridPlacementMode
+CSmartPropAttributeInt
+CSmartPropAttributeLocatorName
+CSmartPropAttributeMaterialGroup
+CSmartPropAttributeMaterialName
+CSmartPropAttributeModelName
+CSmartPropAttributeOrientationMode
+CSmartPropAttributePathPositions
+CSmartPropAttributePickMode
+CSmartPropAttributeRadiusPlacementMode
+CSmartPropAttributeScaleMode
+CSmartPropAttributeStateName
+CSmartPropAttributeString
+CSmartPropAttributeSurfaceProperty
+CSmartPropAttributeTraceNoHit
+CSmartPropAttributeVariableValue
+CSmartPropAttributeVector
+CSmartPropAttributeVector2D
+CSmartPropAttributeVector4D
+CSmartPropChoice
+CSmartPropChoiceOption
+CSmartPropElement
+CSmartPropElement_BendDeformer
+CSmartPropElement_Deformer
+CSmartPropElement_Layout2DGrid
+CSmartPropElement_MidpointDeformer
+CSmartPropElement_Model
+CSmartPropElement_ModelEntity
+CSmartPropElement_PlaceInSphere
+CSmartPropElement_PlaceMultiple
+CSmartPropElement_PlaceOnMesh
+CSmartPropElement_PlaceOnPath
+CSmartPropElement_PropDynamic
+CSmartPropElement_PropPhysics
+CSmartPropElement_SmartProp
+CSmartPropFilter
+CSmartPropFilter_Expression
+CSmartPropFilter_MaterialAttributes
+CSmartPropFilter_VariableValue
+CSmartPropMaterialReplacement
+CSmartPropModifier
+CSmartPropOperation
+CSmartPropOperation_ComputeCrossProduct3D
+CSmartPropOperation_ComputeDistance3D
+CSmartPropOperation_ComputeDotProduct3D
+CSmartPropOperation_ComputeNormalizedVector3D
+CSmartPropOperation_ComputeProjectVector3D
+CSmartPropOperation_ComputeVectorBetweenPoints3D
+CSmartPropOperation_CreateLocator
+CSmartPropOperation_CreateRotator
+CSmartPropOperation_CreateSizer
+CSmartPropOperation_MaterialOverride
+CSmartPropOperation_MaterialTint
+CSmartPropOperation_RandomColorTintColor
+CSmartPropOperation_RestoreState
+CSmartPropOperation_RigidDeformation
+CSmartPropOperation_RotateTowards
+CSmartPropOperation_SaveColor
+CSmartPropOperation_SaveDirection
+CSmartPropOperation_SavePosition
+CSmartPropOperation_SaveScale
+CSmartPropOperation_SaveState
+CSmartPropOperation_SaveSurfaceNormal
+CSmartPropOperation_SetMateraialGroupChoice
+CSmartPropOperation_SetOrientation
+CSmartPropOperation_SetPosition
+CSmartPropOperation_Trace
+CSmartPropOperation_TraceToLine
+CSmartPropOperation_TraceToPoint
+CSmartPropParameter
+CSmartPropRoot
+CSmartPropSelectionCriteria
+CSmartPropSelectionCriteria_EdgeAngleCriteria
+CSmartPropSelectionCriteria_EndCap
+CSmartPropSelectionCriteria_IsValid
+CSmartPropSelectionCriteria_MaterialCriteria
+CSmartPropSelectionCriteria_PathPosition
+CSmartPropSelectionCriteria_TopoEdgeCountCriteria
+CSmartPropSelectionCriteria_VertexCountCriteria
+CSmartPropTransformOperation
+CSmartPropVariable
+CSmartPropVariableComparison
+CSmartPropVariableValue
+CSmartPropVariable_Angles
+CSmartPropVariable_ApplyColorMode
+CSmartPropVariable_Bool
+CSmartPropVariable_ChoiceSelectionMode
+CSmartPropVariable_Color
+CSmartPropVariable_ColorSelectionMode
+CSmartPropVariable_CoordinateSpace
+CSmartPropVariable_DirectionVector
+CSmartPropVariable_DistributionMode
+CSmartPropVariable_Float
+CSmartPropVariable_GridOriginMode
+CSmartPropVariable_GridPlacementMode
+CSmartPropVariable_Int
+CSmartPropVariable_Material
+CSmartPropVariable_MaterialGroup
+CSmartPropVariable_Model
+CSmartPropVariable_OrientationMode
+CSmartPropVariable_PathPositions
+CSmartPropVariable_PickMode
+CSmartPropVariable_RadiusPlacementMode
+CSmartPropVariable_ScaleMode
+CSmartPropVariable_String
+CSmartPropVariable_SurfaceProperty
+CSmartPropVariable_TraceNoHit
+CSmartPropVariable_Vector2D
+CSmartPropVariable_Vector3D
+CSmartPropVariable_Vector4D
+CWeakHandle
+Can this object be scaled. If enabled the minimum and maximum lengths must be set to specify the size range of allowable scale.
+Cannot allocate abstract class
+Cannot parse %s: String Literals are not supported
+Cannot register constant %s more than once
+Cannot register function %s more than once
+Cannot register more than %i functions
+Cannot register more than %i variables
+Cannot register variable %s because it is an unsupported type
+Cannot register variable %s more than once
+Cannot register variable %s: it has no components
+Cannot register variable %s: only float variables can have multiple components
+Cast Shadows
+Causes the parent element to only be evaluated with a specified random probability.
+Child Selection Mode
+Child elements will be placed within a circle of the specified radius.
+Child elements will be placed within a sphere of the specified radius.
+Children
+Choice Index
+Choice Output Variable
+Choice Weight
+Choices
+Class does not allow allocation from its schema binding
+Clear Active Overrides
+Coefficient to modulate the rotation
+Color Gradient
+Color Position
+Color Selection
+Color Selection mode
+Color to be applied if this choice is selected.
+Color to display the rotator handle with.
+Color to use to display the configuration handle.
+ColorChoice_t
+Compares the current value of a variable to the specified value. If the comparison is false the element evaluation is stopped.
+Compute
+Compute a dot or cross product between two 3D vectors
+Compute the distance between two 3D points
+Compute the spacing distance in the 2d plane defined by the up direction. Most useful when using a fixed up direction, if maintaining a distance in the 2d plane is more important than maintaing distance along the path.
+Compute the vector between two 3D points
+ConfigurationHandleShape_t
+Continuous Interpolation
+Controls the size at which a model marked as a detail object will fade out.
+Controls whether or not the configuration of the locator can include scale. If enabled scale can be applied to the editable locator in Hammer. If disabled the scale will not be editable and the current scale will be used.
+Controls whether or not the locator can be edited in a smart prop configuration. If enabled an editable locator will appear when the smart prop is placed in Hammer. Any changes to that locator will modify the current transform.
+Coordinate Space
+Coordinate space the axis of rotation is specified in.
+Coordinate space the end point is specified in.
+Coordinate space the origin is specified in. Using Element space allows specifying a value relative to the current position. However, world space should generally be used when for variable values.
+Corner
+Couldn't load KV3 for resource: %s
+Create Locator
+Create Rotator
+Create Sizer
+Create a locator with the current transform. The locator may optionally be configurable, so that its transform can be modified in Hammer.
+Create a rotator that will be displayed at the current location, allowing the user to manipulate a rotation around an axis. The rotation value can be applied to the current transform as well as saved to a variable.
+Create a sizer that will be displayed at the current location, allowing the user to manipulate the specified set of size values.
+Creates a bend deformer that is applied to child elements. The deformation bends the local space x-axis around the local space z-axis. The Angles property can be used to rotate the local axis to change the direction of deformation.
+DIAMOND
+Default Material
+Default Material Group
+Default Model
+Default Path In World Space
+Default Surface Property
+Default material group (skin) to assign to the variable value.
+Defines a color gradient from which a color can be selected based on the selection mode.
+Defines a color gradient from which a random color will be piked.
+Deformable Entity Settings
+Deformation Enabled
+Determine how child elements are oriented when mapped to face.
+Diamond
+Dimensions
+Direction Vector
+Disable Dynamic Deformable
+Disallow Roll
+Display Model
+Distribute the child element evenly within the specified area of volume
+Distribute the child elements randomly within the specified area or volume
+Distribution Mode
+Do not allow selected elements to be scaled, the parts may not fit the line exactly
+Do not trace against any models (only hit world geometry).
+Do not trace against cable geometry.
+Do not trace against dynamic entities which may move in game.
+Do not trace against no draw materials (material attribute 'mapbuilder.nodraw').
+Do not trace against sky materials (attribute 'mapbuilder.sky').
+Do not trace against tool materials (attribute 'tools.toolsmaterial').
+Do not trace against translucent materials (materials with 'alphatest' or 'translucent' attributes).
+Do nothing
+ELEMENT
+EQUAL
+Each element will be scaled to is maximum allowable size that will still fit on the line.
+Edge Count
+Effect Size
+Element space
+Element space transform, includes the transform of the current element, which is also relative to the object.
+Enables an alternate interpolation method that doesnt deform endpoint tangents.
+End Cap Settings
+End Point
+End point of the line to trace to.
+End point space
+Endpoint of deformation region.
+Enforce Limits
+Enforce Shared Vert
+Enumerator Types
+Evaluated %s in %.2fms\n
+Evaluates a specified smart prop as a child of the current element.
+Evaluates the specified expression, if the result of the expression is false evaluation of the element is stopped.
+EvaluationDepth
+Every N positions
+Expression to evaluate to detemrine if this parameter should be read-only. Can be used to make this parameter read-only based on the state of other parameters.
+Expression to evaluate to determine if this choice is currently valid.
+Expression to evaluate to determine if this parameter should be hidden. Can be used to hide this parameter based on the state of other parameters.
+FILL
+FIRST_CLOSED_EDGE
+FIRST_OPEN_EDGE
+FORWARD
+FORWARD_NORMAL
+Fade Level
+Failed to allocate an instance of class '%s' (type '%s')
+Failed to apply FLC data to resource '%s': %s\n
+Falloff
+Fill
+Fill the area based on the largest bounds of child elements as specified in their selection criteria.
+Filter Edges by Angle
+Filter Faces By Material
+Filter Faces By Open Edges
+Filter Faces By Vertex Count
+Filter: Expression
+Filter: Material Attributes
+Filter: Probability
+Filter: Surface Angles
+Filter: Surface Properties
+Filter: Variable Value
+First Closed Edge
+First Open Edge
+Fit on Line
+Fit on Line Pick Mode
+Fit on Line Scale Mode
+Force Static
+Force this model to be placed as a static model rather then generating an entity.
+Forward direction (+x)
+Function "%s" takes %i parameters, but %i were given
+GRADIENT_LOCATION
+GRADIENT_RANDOM
+GRADIENT_RANDOM_STOP
+GREATER
+GREATER_OR_EQUAL
+Generate the grid by placing N x N children.
+Generates set of child instances arranged in a regular grid layout.
+Gradient Random
+Gradient Random Stop
+Gradient Specific Value
+Grid Origin
+Grid Placement
+Grid segments along Length axis.
+Grid segments along width axis.
+Handle Settings
+How much should the surface normal up direction influence the final orientation. [ 0, 1 ] where 0 = don't modify the orientation, 1 = completely re-orient to match the surface.
+If No Surface Hit
+If a variable name is specified, sets the value of that variable to the index of the selected choice
+If checked, this model will not deform in game when the smart prop is placed inside a dynamic deformable entity (such as func_deformable_brush).
+If enabled a model will be displayed at the position of the sizer that can be used to select the sizer in Hammer.
+If enabled the model will be rendered as a detail object, which is faster for placing many small objects and has fade out functionality, but may have different lighting characteristics. Detail object models support only uniform scale and will use the largest component of the scale value.
+If enabled, any changes made to the evaluation state by the target smart prop (as well as modifiers) will only apply locally and will not affect the evaluation state of the parent. Disabling this will allow modifications to the evaluation state by the referenced smart prop to apply the current state of the of the parent. For example if the referenced smart prop applies a transform and you want the transform to affect the elements in the parent after this element, then you should disable local evaluation state.
+If enabled, clear any previous material overrides, so that only the material replacements specified in this table will be active.
+If enabled, instead of tracing from the origin to the line, trace away from the line for the specified distance starting at the origin.
+If enabled, instead of tracing from the origin to the target point, trace away from the target point for the specified distance starting at the origin.
+If enabled, only the transform of the model will be modified by any active deformer, the vertices of the model will not be changed by the deformer.
+If enabled, the default path values will be treated as world space values, if disabled they are treated as object space values. Typically it makes sense for literal values to be treated as being in object space, but if the values are being supplied by locators they will typically be in world space.
+If enabled, the minimum and maximum rotation angles will be used to limit the range of the rotation.
+If enabled, the object level scale will be ignored, meaning any scale applied in Hammer will have no effect on the element or its children.
+If enabled, the rotation will be reset to a world space instead of object space, meaning any rotation applied to the object in Hammer will be ignored.
+If enabled, this value will be exposed as a parameter that can be set on the smart prop object in hammer.
+If no surface is hit move the current transform to the end of the trace.
+If no surface is hit move the current transform to the start of the trace.
+If no surface is hit stop evaluation of the current element, no following modifiers will be evaluated and the current transform will not be modified.
+If no surface it hit, don't update the transform at all, act as if the trace was not performed.
+If non-empty, specifies the name of a surface property to use for all physics shapes of the specified model, overriding any surface properties specified within the model.
+If non-zero, specifies the angle increment to which the randomly selected value will be snapped. Note that the snap value is absolute, not relative to the min or max, but if the if the min or max are not multiples of the snap value they can still be selected.
+If non-zero, specifies the increment to which the randomly selected offset value will be snapped. Note that the snap value is absolute, not relative to the min or max, but if the if the min or max are not multiples of the snap value they can still be selected.
+If non-zero, specifies the increment to which the randomly selected scale value will be snapped. Note that the snap value is absolute, not relative to the min or max, but if the min or max are not multiples of the snap value they can still be selected.
+If not using a fixed up direction, provides an initial up direction which will be used to determine the orientation of first element on the path, after that the elements will incrementally update to follow the path and may not match this direction. If Use Fixed Up direction is specified, then all elements will use this direction to deterime their up direction.
+If the smart prop is child of a deformable entity, this setting specifies how the entity generated by this element will be attached to the deformable surface.
+If the smart prop is child of a deformable entity, this setting specifies how the entity generated by this element will be oriented relative to the deformable surface.
+If the specified vectors are not orthogonal, normally the up vector will be adjusted to make it orthogonal to the forward vector. If prioritize up is true, then the forward vector will be adjusted to be orthogonal to the specified up vector instead.
+If true, the parent element will be discarded there is no state with the specified name. If false, and there is no state with the specified name then no changes are made.
+If true, treat the specified up direction as fixed up direction to apply to all elements placed on the path. If false the up direction is just an initial direction.
+Inner radius from the placement position where the model can appear.
+Input Coordinate Space
+InstanceCount
+InstanceIndex
+Interpret Vector B as plane normal.
+Invalid component specifier ".%s" used on variable "%s"
+Invalid property specification
+Invalid string value %s -- pick another one!\n
+Invert
+Is Valid
+Is this an element which should be placed at the end of the line.
+Is this an element which should be placed at the start of the line.
+Is this element enabled? If not enabled, this element will not be evaluted and will have no effect on the result.
+Iterate through faces with 'n' open edges (edges with only one neighboring face).
+Iterate through faces with target vertex count.
+K\tV_coshf
+L<L7
+LARGEST_FIRST
+LEAST_AGGRESSIVE
+LESS
+LESS_AGGRESSIVE
+LESS_OR_EQUAL
+Largest fitting
+Lay out child elements with their origin at the center of each grid cell.
+Lay out child elements with their origin at the corner of each grid cell.
+Layout Grid
+Layout length vertically (Along Z axis instead of Y).
+Least Aggressive
+Least aggressive fade out. The object will be quite small before fading out. Fade out will only complete at the size cull limit.
+Left direction (+y)
+Less Aggressive
+Less aggressive fade out. The object will not fade out until it is smaller on screen than normal.
+LineLength
+Linear Length
+LinearScale
+List of child elements which will appear if this element appears
+List of material attributes on which this element is not valid. If empty, the element is not restricted to any specific surfaces.
+List of material attributes on which this element is valid. If empty, the element is not restricted to any specific surfaces.
+List of possible colors which may be selected
+List of surface properties on which this element is not valid. If empty element is not restricted to any specific surfaces.
+List of surface properties on which this element is valid. If empty element is not restricted to any specific surfaces.
+List of the root level elements making up the smart prop definition, each element may be an entire tree.
+Local space position translation to apply to the current transform
+Local space rotation (in degrees) to apply to the current transform
+MAINTAIN_OFFSET
+MORE_AGGRESSIVE
+MOST_AGGRESSIVE
+MOVE_TO_END
+MOVE_TO_START
+MPropertyAutoExpandSelf
+MPropertyCustomEditor
+MPropertySortPriority
+MPropertyStartGroup
+MPropertySuppressBaseClassField
+MPropertySuppressField
+MSmartPropClassVersion
+MULTIPLY_CURRENT
+MULTIPLY_OBJECT
+MVDataAnonymousNode
+MVDataBase
+MVDataClassGroup
+MVDataComponentRequiresAncestor
+MVDataComponentValidGrandParents
+MVDataEnableKey
+MVDataExperimentalNodeSet
+MVDataFileExtension
+MVDataGroupNodeClass
+MVDataNodeTintColor
+MVDataOutlinerAssetNameExpr
+MVDataOutlinerLabelExpr
+MVDataOutlinerNameExpr
+MVDataPreviewWidget
+MVDataPromoteField
+MVDataRoot
+MVDataSingleton
+MVDataUniqueMonotonicInt
+MVDataUsesComponentEditor
+Maintain Closest Triangle Offset
+Manipulators
+Material Asset Variable
+Material Color Tint
+Material Override
+Material Replacements
+Material group variable to set to the selected choice.
+Material to which color tint is to be applied.
+MaterialGroupChoice_t
+MaxEvaluationDepth
+Maximize scale
+Maximum Angle
+Maximum allowable length for the object. Must be >= length. If length is 100 and maximum length is 160, then the object may be assigned a scale in the rage [ 1.0, 1.6 ].
+Maximum depth of smart prop evaluation stack during evaluation.
+Maximum length
+Maximum length of the trace. Surfaces beyond this distance will not be hit.
+Maximum number of instances of this object and its children to be placed.
+Maximum random position offset
+Maximum rotation range
+Maximum scale range
+Midpoint Deformer
+Midpoint Offset
+Midpoint Rotation
+Midpoint Scale
+Minimum Angle
+Minimum Length of filled grid cells.
+Minimum Width of filled grid cells.
+Minimum allowable length for the object. Must be <= length. If length is 100 and minimum length is 20, then the object may be assigned a scale in the rage [ 0.2, 1.0 ].
+Minimum length
+Minimum number of instances of this object and its children to be placed.
+Minimum random position offset
+Minimum rotation range
+Minimum scale range
+Minimum slope on which the target will be placed. Slope is a [ 0, 180 ] value of the surface normal rotation from up such that 0 is a horizontal surface (floor), 90 is a vertical surface (wall), 180 is horizontal upside down surface (ceiling).
+Model Asset Variable
+Model containing the set of material groups to select.
+Modifiers
+More Aggressive
+More aggressive fade out. The object will fade out while larger on screen than normal.
+Most Aggressive
+Most aggressive fade out. The object will fade out while still quite large on screen.
+Move to end
+Move to start
+Multiply current tint
+Multiply object tint
+Multiply with the current color tint value.
+Multiply with the object level color tint and replace the current color value.
+NORMAL
+NOT_EQUAL
+N\tV_exp2f
+Name of the locator. This can be used to reference the locator in this element or its children. If the locator is configurable, the locator will be identified by this name in Hammer.
+Name of the model resource (.vmdl) to place.
+Name of the parameter which will appear as a property in the Hammer object properties ui when selecting an object using this smart prop.
+Name of the path to use. This path name will show up in the property editor when selecting a placement of this smart prop in Hammer, allowing selection of a path object in the map to use.
+Name of the previously saved state to restore
+Name of the target smart prop resource (.vsmart) to evaluate.
+Name to assign to the saved state, the save state can be restored later using this name.
+Name used to identify the rotator. Must be unique within the parent element.
+Name used to identify the sizer. Must be unique within the paraent element.
+New Material
+New material to replace the original material with.
+No DATA block for resource\n
+No fade out. The object will not fade out, but will still be culled when below the minimum size and will pop at that that point.
+No scaling
+Normal fade out. The object will fade at when at the standard size on screen.
+Normalize Vector
+Normalize the value of a 3d vector.
+Normalized (Direction Vector)
+Not safe to 'new' this class due to alignment requirements
+Number of instances of this object and its children to be placed.
+OBJECT
+Object space
+Object space transform, relative to the object placement, but does not include the current element transform.
+Offset from path
+Offset from the start of the path to place the first point.
+Offset of the locator relative to the current transform. This allows the locator to be created at an offset location without applying that offset to the current transform.
+Offset of the rotator relative to the current transform. This allows the rotator to be created at an offset location without applying that offset to the current transform.
+Offset to apply to the path, specifies a horizontal and vertical offset to apply relative to the up direction.
+Offset to apply to the specified origin along the trace direction to compute the starting point of the trace.
+Offsets the center of the deformation region.
+Only at start and end
+Only place at the start or end of the path
+Option Display Name
+Option Value Name
+Optional text that will appear in the outliner to help organize Smart Prop elements and communicate their purpose to other users.
+Orientation Mode
+Orientation of child elements placed on faces will be driven by orthonormalized UV basis at face center. U axis is prioritized during orthonormalization.
+Orientation of child elements placed on faces will be driven by position of center of first closed edge relative to face center.
+Orientation of child elements placed on faces will be driven by position of center of first open edge relative to face center.
+Origin
+Original Material
+Original material to replace. This is the material specified in the model, including any material group asignment within the model. Does not consider any existing material overrides specified within the smart prop.
+Outer radius from the placement position where the model can appear.
+Output Variable
+Outputs the absolute position of the midpoint post deformation.
+Overall grid dimension along X axis.
+Overall grid dimension along Y axis.
+Override Surface Property
+Parameter Display Name
+Path Evaluation Space
+Path Positions
+Path control points
+PathParameter
+Perform a trace between the specified origin and a specified target point.
+Perform a trace from a specified origin point to a the closest point on a line.
+Perform a trace in a direction from a specified origin and stop when a surface is hit.
+Pick a choice specified by an additional authored value.
+Pick a random choice from the child elements that will fit within the remaining length, repeat this process until the line is full or no child will fit in the remaining length.
+Pick a random color from anywhere on the authored color gradient
+Pick the first valid choice. Selection criteria may be added to a choice to determine if it is valid.
+Pick the largest child element that will fit in the remaining length of the line, repeat this process until the line is full or no child will fit in the remaining length.
+PickMode_t
+Picks a material group from a set of choices and assigns that material group to a specified variable.
+Place Children on Mesh Components.
+Place In Radius
+Place Multiple
+Place all in order
+Place all of the child elements in the order they are specified even if they do not fit the line or do not fill the line. NOTE: end cap settings are ignored in this mode.
+Place at all positions along the path
+Place at every Nth position along the path, skipping over the other positions
+Place at path control points instead of every point along the path, when this is selected the path spacing no longer applies
+Place in circle
+Place in sphere
+Place on Mesh
+Place on Path
+Placement Shape
+Places a model as the child of an element.
+Places a prop dynamic entity.
+Places a prop physics entity.
+Position A
+Position B
+Position of origin point.
+Program has invalid instruction %i
+Program uses more temp variables than are supported. Needs %i, max is %i
+Project Vector
+Project Vector A onto Vector B
+Projection to plane
+Prop Dynamic
+Prop Physics
+QAngle
+RANDOM
+REGULAR
+RELATIVE
+REPLACE
+RESOURCE_TYPE_SMART_PROP
+Radius at which the rotator handle should be displayed.
+Radius of the bend. If 0 the radius will be computed automatically to preserve the length of the inner edge of the x-axis. If a non-zero value is specified then the inner edge will maintain this radius, but its length will change.
+Random fitting
+Randomly pick a choice. If the choices have weights, the weights will be used to determine the probability of picking a given choice
+Randomly select one of the color stops specified on the gradient. Never picks a value between stops.
+Regular
+Relative to Surface
+Relative weight of this choice, higher weighted choices are more likely to be selected.
+Replace the current color tint value completely, overwriting any object level tint.
+Replace the current state with a previously saved state.
+Replace tint
+Reset the current rotation such the element only inherits the object level rotation, but does not inherit the rotation applied to its parent.
+Reset the current scale such the element only inherits the object level scale, but does not inherit the scale applied to its parent.
+Restore State
+Rigid Deformation Only
+Root of a smart prop, contains a list of elements to evaluate.
+Rotate the center of the deformation region.
+SCALE_END_TO_FIT
+SCALE_EQUALLY
+SCALE_MAXIMIZE
+SEGMENT
+SNAP
+SPECIFIC
+SPECIFIC_COLOR
+SPHERE
+START_AND_END
+STIFFEN
+Save Current Color
+Save Current Position
+Save Current Scale
+Save Current Surface Normal
+Save Direction Vector
+Save State
+Save the current color tint value to a specified variable
+Save the current position to a specified variable in the requested coordinate space
+Save the current scale factor to a specified variable.
+Save the current state, allowing it to be restored at a later state.
+Save the current surface normal to a specified variable in the requested coordinate space
+Save the specified direction vector to a specified variable, in the requested coordinate space
+Scale Mode
+Scale equally
+Scale factor (may be non-uniform) to be applied directly to the model (in the model's local space).
+Scale last
+Scale the center of the deformation region.
+Scale to apply only to the locator model
+Scale to apply to the current transform
+ScaleMode_t
+Select Single Child
+Select model LOD level. The default Auto LOD means the lod will be picked based on the size of the model on screen. If a specific level is selected, then that lod level will always be used regardless of the size of the model on screen.
+Selection Criteria
+Selection Mode
+Set Material Group Choice
+Set Variable
+Set a color tint to apply to a specific material.
+Set the color tint to a selection from within the defined gradient.
+Set the color tint to one color out of a pre-selected set of colors.
+Set the current orientation from a specified forward and up vector.
+Set the position of the current transform.
+Set the value of a variable.
+Shape of the configuration handle to display.
+Shifts every other cell row and/or column.
+Should a control to select the specific choice be shown when this prop is placed in Hammer.
+Should the child elements be oriented based on the line. If enabled the child elements placed on the line will be oriented such that their +x axis points along the line towards the end point.
+Should the deformation be applied. If disabled the children will still be placed, but will not be deformed. Esentially making the element behave as a group.
+Should the entity created by this element cast shadows.
+Should the model cast shadows.
+Should the pitch (rotation around left vector) value be reset.
+Should the return value be normalized to unit length (direction vector).
+Should the roll (rotation around forward vector) value be reset.
+Should the rotation be applied to the current transform.
+Should the yaw (roation around the up vector) value be reset.
+Should this element be placed at the first positions on the path
+Should this element be placed at the last positions on the path
+Should this physics prop start in a sleeping (non-simulating) state such that it won't update until it is woken up by an external event.
+Size of the base volume to be deformed.
+Size of the configuration handle.
+Smart Prop Element
+Smart Prop Reference
+Smart Prop Root
+SmartPropAttributeEditor( LODLevel )
+SmartPropAttributeEditor( MaterialGroupFromVariable )
+SmartPropAttributeEditor(MaterialGroup)
+SmartPropAttributeEditor(MaterialInSmartProp)
+SmartPropAttributeEditor(SurfaceProperty)
+SmartPropAttributeEditor(VariableValue)
+SmartPropAttributeEditor(angles)
+SmartPropAttributeEditor(bool)
+SmartPropAttributeEditor(color)
+SmartPropAttributeEditor(enum:ApplyColorMode_t)
+SmartPropAttributeEditor(enum:PickMode_t)
+SmartPropAttributeEditor(enum:ScaleMode_t)
+SmartPropAttributeEditor(enum:SmartPropChoiceSelectionMode_t)
+SmartPropAttributeEditor(enum:SmartPropColorSelectionMode_t)
+SmartPropAttributeEditor(enum:SmartPropDirection_t)
+SmartPropAttributeEditor(enum:SmartPropDistributionMode_t)
+SmartPropAttributeEditor(enum:SmartPropGridOriginBasis_t)
+SmartPropAttributeEditor(enum:SmartPropGridPlacementMode_t)
+SmartPropAttributeEditor(enum:SmartPropPathPositions_t)
+SmartPropAttributeEditor(enum:SmartPropPlaceMeshOrientationMode_t)
+SmartPropAttributeEditor(enum:SmartPropRadiusPlacementMode_t)
+SmartPropAttributeEditor(enum:SmartPropSpace_t)
+SmartPropAttributeEditor(enum:TraceNoHitResult_t)
+SmartPropAttributeEditor(expression)
+SmartPropAttributeEditor(float)
+SmartPropAttributeEditor(integer)
+SmartPropAttributeEditor(locator)
+SmartPropAttributeEditor(material)
+SmartPropAttributeEditor(model)
+SmartPropAttributeEditor(savedState)
+SmartPropAttributeEditor(string)
+SmartPropAttributeEditor(vector2)
+SmartPropAttributeEditor(vector3)
+SmartPropAttributeEditor(vector4)
+SmartPropChoiceSelectionMode_t
+SmartPropColorSelectionMode_t
+SmartPropDeformableAttachMode_t
+SmartPropDeformableOrientMode_t
+SmartPropDetailFadeLevel_t
+SmartPropDirection_t
+SmartPropDistributionMode_t
+SmartPropGridOriginBasis_t
+SmartPropGridPlacementMode_t
+SmartPropItemNameEditor( Locator )
+SmartPropItemNameEditor( SavedState )
+SmartPropItemNameEditor( Variable:Color )
+SmartPropItemNameEditor( Variable:Float )
+SmartPropItemNameEditor( Variable:Integer )
+SmartPropItemNameEditor( Variable:MaterialGroup )
+SmartPropItemNameEditor( Variable:Vector )
+SmartPropItemNameEditor( Variable:Vector3 )
+SmartPropPathPositions_t
+SmartPropPlaceMeshOrientationMode_t
+SmartPropRadiusPlacementMode_t
+SmartPropReferences
+SmartPropSpace_t
+SmartPropVariableValueEditor( comparison )
+SmartPropVariableValueEditor()
+Snap to Surface
+Soft deform the center of a volume defined by two endpoints.
+Space in which the origin position is defined.
+Space in which the target position is defined.
+Space in which the up direction is defined.
+Space in which the up target is defined.
+Spacing between points on the path
+Specific
+Specific Child
+Specific Color
+Specified what to do when a trace does not hit a surface.
+Specifies a basis direction vector ( Forward, Left, or UP).
+Specifies a coordinate space in which a point or vector value is defined.
+Specifies a distribution mode used to determine how certain elements distribute instances of their children within a space.
+Specifies a float variable to which the rotation value should be output. The variable only receives the rotation around the axis, the axis of rotation does not affect this output.
+Specifies a table of material replacements to apply to all following models. Mapping goes from the material specified by the model (including material group selection) to the replacement material. Previous material overrides are not considered when determining the base material.
+Specifies a weighting value which affects that likelyhood of selecting this element which picking a choice.
+Specifies an offset in the local space of the element to apply to the configuration handle.
+Specifies an offset to use when determining the Nth position to place an element at. For example if placing at every third position with an offset of 0, an element will appear at positions 1, 4, 7, and so on. But if an offset of 2 is set instead of 0, then an element will appear at positions 3, 6, and 9 and so on.
+Specifies how a color tint value is to be applied with respect to the existing color tint
+Specifies how a fit on line element will pick which child elements it will place.
+Specifies how a fit on line element will scale generate scale values for the objects it places.
+Specifies how scale is applied to each of the selected element in order to fit them to the line.
+Specifies how the color is to be selected from the authored set of choices
+Specifies how the color is to be specified.
+Specifies how the initial selection of a choice should be handled.
+Specifies how the material group is to be selected from the authored set of choices
+Specifies how the positions are computed based on the radius.
+Specifies how the selected color should be applied to the current color.
+Specifies how to place elements within a grid.
+Specifies if this element is currently valid choice.
+Specifies that this is a special part that should be used at the start or end of the line.
+Specifies the angle the rotator should be set to initially.
+Specifies the behavior when the trace does not hit a surface.
+Specifies the coordinate space in which the end point values are specified.
+Specifies the coordinate space of position A.
+Specifies the coordinate space of position B.
+Specifies the coordinate space of posivectortion B.
+Specifies the coordinate space of the saved position value.
+Specifies the coordinate space of the specified position value.
+Specifies the coordinate space of vector A.
+Specifies the coordinate space that vector should be returned in.
+Specifies the coordinate space the distance should be computed in. The scale of the coordinate space may affect the distance value.
+Specifies the coordinate space the forward direction is being specified in
+Specifies the coordinate space the target point is specified in.
+Specifies the coordinate space the trace direction vector is specified in.
+Specifies the coordinate space the up direction is being specified in
+Specifies the current version of this smart prop. Any existing references to this smart prop with an older version number will not automatically update.
+Specifies the end point of the line in the specified coordinate space.
+Specifies the index of the child to pick.
+Specifies the index of the color to pick
+Specifies the index of the material group choice to pick
+Specifies the length of the line that will be taken up if this element is selected.
+Specifies the length of this element, used when fitting an element on to a line.
+Specifies the method by which a child element is selected from a list.
+Specifies the method by which a color selection is to be made.
+Specifies the method to be used to distribute.
+Specifies the method to use to determine which positions this element should be placed at along the path.
+Specifies the minimum angle limit in degrees
+Specifies the name of the material group (skin) to use when displaying the specified model.
+Specifies the number of degrees the rotation should snap to. If set to 0, then the rotation snapping will be controlled by the rotation snapping in Hammer.
+Specifies the origin point for the start of the trace. To trace from the current position, set to < 0, 0, 0 > and set the coordinate space to Element Space
+Specifies the overall grid origin location. Corner origin grids default to quadrant I, but may be expressed in others using negative values for Width and/or Length.
+Specifies the path positions at which this element may appear.
+Specifies the set of positions that are valid for path placement.
+Specifies the shape (circle, or sphere) to use with elements that place children within a radius.
+Specifies the space in which the provided input path is to be evalauted.<br><br><b>World Space</b>: The input path will be evaluated in world space, such that child elements will be placed directly on the target path regardless of the transform of the smart prop object. <br><b>Object Space</b>: The world space transform of the input path will be ignored and instead the path will be evaluated relative to the transform of the smart prop object. <br><b>Element Space</b>: The world space transform of the input path will be ignored and instead the path will be evaluated relative to the transform of the current element within the smart prop. 
+Specifies the spacing between positions. For example, a value of 1 will place the element at very position, 2 every other position, 3 every third position
+Specifies the start point of the line in the specified coordinate space.
+Specifies where the origin of a child element is placed realative to each grid cell.
+Specifies which direction vector to save.
+Specify a specific color value (may be linked to a variable
+Start Asleep
+Start Point
+State
+Stiffen Overlapping Joints
+Stop When
+Stop evaluation
+Stop placing copies of the children when this expression evaluates to true.
+Surface Property
+Surface Property Variable
+Table specifying pairs of existing materials and the material to replace them with.
+Target Vertex Count
+Target material name.
+The distance from the line formed by the endpoints that encapsulated the deformation region.
+The target point to trace to from the origin.
+Tint Color Choice
+Tint Color Gradient
+Tint Mode
+ToolEditContext_ID_SmartProp_Variable
+Trace Miss Behavior
+Trace away from line
+Trace away from point
+Trace filtering
+TraceNoHitResult_t
+Transform: Random Offset
+Transform: Random Rotation
+Transform: Random Scale
+Transform: Reset Rotation
+Transform: Reset Scale
+Transform: Rigid Deformation
+Transform: Rotate
+Transform: Rotate Towards
+Transform: Scale
+Transform: Set Orientation
+Transform: Set Position
+Transform: Trace In Direction
+Transform: Trace To Line
+Transform: Trace To Point
+Transform: Translate
+Tried to load a polymorphic pointer with no '%s' key
+UP_NORMAL
+UScale
+UV Channel 1
+UV Channel 2
+UVMAP1
+UVMAP2
+Uniform scale to be applied to the model, certain properties like detail object mean only uniform scale may be applied to the model.
+Unknown binary operator
+Unknown function "%s"
+Unknown unary operator
+Unknown variable "%s"
+Unsupported use of property accessor "%s.%s", property accessors can only be used variables
+Unsupported version %d for resource '%s' (Expected %d)\n
+Up direction (+z)
+Up vector which is used to determine the rotation of each element around the line.
+Use Closed Edges
+Use a color value from a specified location on the gradient
+VScale
+Valid Path Positions
+Valid When
+Variable "%s" has %i components, a specific component must be specified, for example use: "%s.x"
+Vary cell shift in X.
+Vary cell shift in Y.
+Vec2
+Vec3
+Vec4
+Vector 2D
+Vector 3D
+Vector 4D
+Vector A
+Vector B
+Vector Between Points
+Vector in the local space of the child element to be aligned with sphere or circle
+Vector up direction of the plane of the circle. This in the local space of the current element.
+When computing the transform at each path point ensure that there is no roll around the path relative to the up direction. This prevents objects from tilting side to side while still allowing them to tilt along the path (unlike Use Fixed Up which does not allow them to tilt along the path).
+When the up direction is not orthogonal to the line direction normally the up vector will be adjusted to make it orthogonal to the line direction. If prioritize up is true, then the up direction will be maintained and the forward direction will be adjusted.
+When true, discard edges within the angle threshold.
+When true, discard faces with matching material.
+When true, only consider open/closed edges that share a vert with another open/closed edge.
+When true, we only consider closed edges (edges with exactly two neighboring faces).
+World space
+World space transform, not relative to the specific smart prop object placement.
+X-Axis Size
+Y-Axis Size
+Z-Axis Size
+[ 0, 1 ] Value specifying the location along the local x-axis the bend will occur around
+[ 0, 1 ] Value specifying the location on the gradient to pick the color from.
+\rtext
+\tV_log2f
+\tV_sinhf
+\tV_tanhf
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
+_editor/next_element_id
+biased 0 1024
+biased 0 4096
+castShadows
+clamp
+deformable_attach_mode
+deformable_attach_orientation_mode
+deg2rad
+detailFadeEndSize
+detailFadeStartSize
+detailObject
+disableDynamicDeformable
+entityKeys
+entitySpawnFlags
+error.vsmart
+exp2
+flc_columns
+flc_count
+flc_file_ids
+flc_file_list
+flc_lines
+frac
+generic_data_type
+length2d
+length3d
+lerp
+lodLevel
+log2
+m_AllowedMaterialAttributes
+m_ChoiceSelection
+m_ColorPosition
+m_ColorSelection
+m_Comparison
+m_Components
+m_CoordinateSpace
+m_CoordinateSpaceA
+m_CoordinateSpaceB
+m_DefaultOption
+m_DefaultPath
+m_DefaultPathInWorldSpace
+m_DirectionVector
+m_DisallowedMaterialAttributes
+m_DisplayColor
+m_DistributionMode
+m_DistributionMode == RANDOM
+m_EndPointA
+m_EndPointB
+m_EndPointSpaceA
+m_EndPointSpaceB
+m_ForwardDirectionSpace
+m_GridArrangement
+m_GridArrangement == FILL
+m_GridArrangement == FILL || m_bAlternateShift == false
+m_GridArrangement == SEGMENT
+m_GridOriginMode
+m_HandleColor
+m_HandleShape
+m_HandleSize
+m_HideExpression
+m_InputPositionA
+m_InputPositionB
+m_InputVector
+m_InputVectorA
+m_InputVectorB
+m_LocatorName
+m_MaterialGroupChoices
+m_MaterialReplacements
+m_MeshName
+m_Options
+m_OriginSpace
+m_OriginalMaterial
+m_OutputChoiceVariableName
+m_OutputCoordinateSpace
+m_OutputVariable
+m_OutputVariableMaxX
+m_OutputVariableMaxY
+m_OutputVariableMaxZ
+m_OutputVariableMinX
+m_OutputVariableMinY
+m_OutputVariableMinZ
+m_OutputVariableName
+m_PathName
+m_PathSpace
+m_PlaceAtPositions
+m_PlacementMode
+m_PlacementMode == SPHERE
+m_PointSpace
+m_ReadOnlyExpression
+m_ReplacementMaterial
+m_SelectionMode
+m_SelectionMode != GRADIENT_LOCATION
+m_SelectionMode != SPECIFIC_COLOR
+m_SelectionMode == SPECIFIC_COLOR
+m_SpecificChildIndex
+m_StateName
+m_Stops
+m_SurfacePropertyOverride
+m_TargetPoint
+m_TargetPointSpace
+m_TargetSpace
+m_UpDirectionSpace
+m_UpSpace
+m_VariableComparison
+m_VariableValue.m_TargetName
+m_VariableValues
+m_bAlignOrientation
+m_bAlignOrientation == false
+m_bAllowAtEnd
+m_bAllowAtStart
+m_bAllowRotation
+m_bAllowScale
+m_bAllowScale == false
+m_bAllowTranslation
+m_bAlternateShift
+m_bApplyToCurrentTransform
+m_bClearCurrentOverrides
+m_bConfigurable
+m_bConfigurable == false
+m_bContinuousSpline
+m_bDeformationEnabled
+m_bDetailObject
+m_bDetailObject == false
+m_bDetailObject == true
+m_bDisableDynamicDeformable
+m_bDiscardIfUknown
+m_bDisplayModel
+m_bEnd
+m_bEnforceLimits
+m_bEnforceLimits == false
+m_bExposeAsParameter
+m_bExposeAsParameter == false
+m_bForceStatic
+m_bForceStatic == true
+m_bIgnoreCables
+m_bIgnoreObjectRotation
+m_bIgnoreObjectScale
+m_bLocalEvaluationState
+m_bNoRoll
+m_bNormalized
+m_bOrientAlongLine
+m_bPlane
+m_bPrioritizeUp
+m_bResetPitch
+m_bResetRoll
+m_bResetYaw
+m_bRestoreState
+m_bRigidDeformation
+m_bSharedVert
+m_bStart
+m_bTraceAway
+m_bTraceAway == false
+m_bUseFixedUpDirection
+m_bUseProjectedDistance
+m_bVerticalLength
+m_fFalloff
+m_flAlternateShiftLength
+m_flAlternateShiftWidth
+m_flBendAngle
+m_flBendPoint
+m_flBendRadius
+m_flConstraintMaxX
+m_flConstraintMaxY
+m_flConstraintMaxZ
+m_flConstraintMinX
+m_flConstraintMinY
+m_flConstraintMinZ
+m_flDisplayRadius
+m_flDisplayScale
+m_flInitialAngle
+m_flInitialMaxX
+m_flInitialMaxY
+m_flInitialMaxZ
+m_flInitialMinX
+m_flInitialMinY
+m_flInitialMinZ
+m_flOffsetAlongPath
+m_flParamaterMaxValue
+m_flParamaterMinValue
+m_flPositionRadiusInner
+m_flPositionRadiusOuter
+m_flRandomness
+m_flSnapIncrement
+m_flSnappingIncrement
+m_flSpacingLength
+m_flSpacingWidth
+m_flUniformModelScale
+m_nContentVersion
+m_nCountL
+m_nCountMax
+m_nCountMin
+m_nCountW
+m_nDeformableAttachmentMode
+m_nDeformableOrientationMode
+m_nDetailObjectFadeLevel
+m_nLodLevel
+m_nMaxDepth
+m_nNthPositionIndexOffset
+m_nParamaterMaxValue
+m_nParamaterMinValue
+m_nPickMode
+m_nPlaceEveryNthPosition
+m_nScaleMode
+m_nTargetOpenEdgeCount
+m_nTargetVertexCount
+m_sLabel
+m_sSmartProp
+m_vAlignDirection
+m_vForwardVector
+m_vHandleOffset
+m_vModelScale
+m_vOriginPos
+m_vPathOffset
+m_vPlaneUpDirection
+m_vRotationAxis
+m_vScale
+m_vSnapIncrement
+m_vTargetPos
+m_vTraceDirection
+m_vUpDirection
+m_vUpPos
+materialGroup
+models/dev/error.vmdl
+models/error.vmdl
+position of target point.
+position of up point.
+prop_dynamic
+rad2deg
+resourcesystem
+round
+rsqrt
+saturate
+sign
+smart_prop
+smartprop_choice_options
+smartprop_print_timings
+smartprops
+smartprops.dll
+smoothstep
+surfacePropertyOverride
+surface_properties
+vsmart

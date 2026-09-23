@@ -67,6 +67,8 @@
 .?AVIWorldRendererMgr@@
 .?AVIWorldVPKReference@@
 .vwnod
+2\vp4:
+2\vp\fX
 9>-memory-
 <<NULL ENTITY LUMP>>
 <no classname>
@@ -96,7 +98,7 @@ CEntityKeyValues::LoadFromContext: Invalid version! Expected %d, encountered %d!
 CEntityKeyValues::LoadFromKV3
 CEntityKeyValues::Unserialize: Invalid version! Expected %d, encountered %d!\n
 CGrassTileObjectDesc
-CGrassTileObjectDesc::CreateGrass(1345): 
+CGrassTileObjectDesc::CreateGrass(1338): 
 CSemiAutoRWLockT<class CThreadRWLock_FastRead>::LockForRead
 CStrongHandle
 CStrongHandleCopyable
@@ -104,9 +106,9 @@ CUtlBinaryBlock
 CUtlLeanVectorImpl<class CUtlLeanVectorBase<struct EntityKeyValueData_t,int,class CMemAllocAllocator>,struct EntityKeyValueData_t,int>::InsertBeforeGetPtr
 CUtlStringToken
 CWorld::CacheNodes
-CWorldNode::CreateExtraVertexStreams(376): 
+CWorldNode::CreateExtraVertexStreams(399): 
 CWorldNode::GrassFileCreateManifest
-CWorldNode::HandleThrottledGrassTileLoading(1452): 
+CWorldNode::HandleThrottledGrassTileLoading(1489): 
 CWorldRendererMgr::CreateWorld
 CWorldRendererMgr::CreateWorld_Internal( %s ):  Blocking load because marked for deletion during load\n
 CWorldRendererMgr::ServiceWorldRequests long frame: %fms\n
@@ -116,7 +118,7 @@ Class does not allow allocation from its schema binding
 ClutterSceneObjectDesc
 Couldn't ReadTexturePixels when creating grass.\n
 CreateAggregateRTProxySceneObjects
-Creating %i scene objects for node %i\n
+Creating %i scene objects for world node\n
 Data_Branch1xy
 Data_Branch1zBranch2x
 Data_Branch2yz
@@ -134,7 +136,6 @@ GenerateGrassTexture
 GenerateGrassTexture failed for albedo!\n
 GenerateGrassTexture failed for specular!\n
 GetProfile_ultrafast
-GrassCopyTexture.vtex
 GrassDensity.vtex
 GrassDepth.vtex
 GrassObject
@@ -168,6 +169,7 @@ OverlayProjectionDirection
 PerVertexLighting
 Physics
 PivotPaint
+PooledLayout
 PropWorldOrigin
 PushCurrentSkewBrightnessValuesToSceneObject
 RESOURCE_TYPE_ENTITY_LUMP
@@ -209,11 +211,13 @@ WorldRenderer/GrassCastsShadows
 WorldRenderer/GrassDilateColors
 WorldRenderer/GrassNoHalfTexel
 WorldRenderer/GrassQuadSize
+[m_pSemanticName
 \nLoaded List:\n
 \nPending List:\n
 \tWorld: %s
 \t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t\t\tNodes Loaded: %d / %d\n
+\t\t\tWorld Node Loaded: %s\n
+\vPhA
 an attr
 ati_compress_wrapper.dll
 attributes
@@ -265,7 +269,6 @@ values
 very_fast
 vmap
 vpk:%s:
-w8#o
 world renderer - 
 world_layer_base
 world_layer_set_visible %s %s false

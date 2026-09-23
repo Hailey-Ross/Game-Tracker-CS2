@@ -1,3 +1,0 @@
-class CCSCustomHudLayout_API
-{
-};

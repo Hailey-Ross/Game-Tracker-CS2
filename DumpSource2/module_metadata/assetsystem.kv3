@@ -6,7 +6,7 @@
 			name = "AssetTagsManifest"
 			group = ""
 			source_file = "src/assetsystem/assettags.cpp"
-			source_line = 97
+			source_line = 99
 			resources = 
 			[
 				resource_name:"scripts/tools/game_asset_tags.vdata",

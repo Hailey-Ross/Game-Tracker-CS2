@@ -7,16 +7,29 @@
 //	"m_nToolMaterialHash": 0,
 //	"m_Compound":
 //	{
-//		"m_Spheres":
-//		[
-//		],
-//		"m_Capsules":
+//		"m_Tree":
+//		{
+//			"m_Nodes":
+//			[
+//			],
+//			"m_nStartIterationIndex": 0
+//		},
+//		"m_nHullBaseIndex": 0,
+//		"m_nMeshBaseIndex": 0,
+//		"m_nShapeCount": 0,
+//		"m_Meshes":
 //		[
 //		],
 //		"m_Hulls":
 //		[
 //		],
-//		"m_Meshes":
+//		"m_Capsules":
+//		[
+//		],
+//		"m_Spheres":
+//		[
+//		],
+//		"m_CompoundMaterialIndices":
 //		[
 //		],
 //		"m_Bounds":

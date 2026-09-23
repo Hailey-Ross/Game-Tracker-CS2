@@ -376,9 +376,6 @@ audio_input_use_sdl_roles false (developmentonly)
 autosave_fully_async true (developmentonly gamedll defensive)
 	Set to 1 to have autosaves execute completely on the save thread, forces 'render only' mode while the save completes
 
-battery_saver false (archive)
-	OBSOLETE replaced by mobile_fps_* - Battery saver mode. 0=off, 1=on
-
 bot_allow_grenades true (gamedll release)
 	If nonzero, bots may use grenades.
 
@@ -498,6 +495,9 @@ bot_mimic_spec_buttons true (clientdll cheat)
 
 bot_mimic_yaw_offset 180 (gamedll cheat)
 	<no description>
+
+bot_path_require_reachable_goal true (gamedll release)
+	If nonzero, bots refuse to path to a nav area that the nav build did not reach from a player spawn.
 
 bot_prefix "" (gamedll release)
 	This string is prefixed to the name of all bots that join the game.
@@ -892,9 +892,6 @@ cl_change_callback_limit 0.2 (clientdll release)
 cl_chat_active 0 (developmentonly clientdll defensive)
 	<no description>
 
-cl_clanid "0" (clientdll hidden archive userinfo)
-	Current clan ID for name decoration
-
 cl_clock_buffer_ticks 0 (developmentonly)
 	Clock sync will try to maintain an additional margin of N ticks.  This is intended to smooth over packet loss, and is a replacement for cl_interp_ratio / cl_interp.  This value is simply added to cl_clock_recvmargin_desired
 
@@ -944,72 +941,72 @@ cl_cq_min_queue 0 (userinfo)
 	Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
 
 cl_crosshair_drawoutline true (clientdll archive per_user)
-	Draws a black outline around the crosshair for better visibility
+	Draw a black outline around the crosshair for better visibility
 
 cl_crosshair_dynamic_maxdist_splitratio 1 (min: 0, max: 1, clientdll archive per_user)
-	If using cl_crosshairstyle 2, this is the ratio used to determine how long the inner and outer xhair pips will be. [inner = cl_crosshairsize*(1-cl_crosshair_dynamic_maxdist_splitratio), outer = cl_crosshairsize*cl_crosshair_dynamic_maxdist_splitratio]  [0 - 1]
+	Style 2 only: how the bar length is divided between inner and outer bars once split. inner = cl_crosshairsize * (1 - ratio), outer = cl_crosshairsize * ratio. [0 - 1]
 
 cl_crosshair_dynamic_splitalpha_innermod 0 (min: 0, max: 1, clientdll archive per_user)
-	If using cl_crosshairstyle 2, this is the alpha modification that will be used for the INNER crosshair pips once they've split. [0 - 1]
+	Style 2 only: alpha multiplier for the INNER crosshair bars once they have split. [0 - 1]
 
 cl_crosshair_dynamic_splitalpha_outermod 1 (min: 0.3, max: 1, clientdll archive per_user)
-	If using cl_crosshairstyle 2, this is the alpha modification that will be used for the OUTER crosshair pips once they've split. [0.3 - 1]
+	Style 2 only: alpha multiplier for the OUTER crosshair bars once they have split. [0.3 - 1]
 
-cl_crosshair_dynamic_splitdist 3 (clientdll archive per_user)
-	If using cl_crosshairstyle 2, this is the distance that the crosshair pips will split into 2. (default is 7)
+cl_crosshair_dynamic_splitdist 3 (min: 0, max: 127, clientdll archive per_user)
+	Style 2: distance at which the crosshair bars split in two.
+
+cl_crosshair_dynamic_spread_limit 255 (min: 0, max: 255, clientdll archive per_user)
+	The additional distance the dynamic elements are allowed to spread out to from the baseline of 128 pixels.
 
 cl_crosshair_friendly_warning 1 (min: 0, max: 1, clientdll archive release)
 	0: off, 1: on
 
-cl_crosshair_outlinethickness 1 (min: 0, max: 3, clientdll archive per_user)
-	Set how thick you want your crosshair outline to draw (0-3)
+cl_crosshair_gap 4 (min: 0, max: 128, clientdll archive per_user)
+	Offset added to the gap between the crosshair center and the bars.
+
+cl_crosshair_length 8 (min: 0, max: 255, clientdll archive per_user)
+	Length of each crosshair bar, scaled with screen resolution
 
 cl_crosshair_recoil true (clientdll archive per_user)
-	<no description>
+	Crosshair follows the weapon's predicted recoil (aim punch)
 
-cl_crosshair_show_desynced_seeds_marker true (developmentonly clientdll)
-	<no description>
+cl_crosshair_screen_height 1080 (min: 240, clientdll hidden archive per_user)
+	The res at which the user authored their size settings at - changes whenever a size setting is updated
 
 cl_crosshair_sniper_width 1 (clientdll archive per_user)
 	If >1 sniper scope cross lines gain extra width (1 for single-pixel hairline)
 
 cl_crosshair_t false (clientdll archive per_user)
-	T style crosshair
+	T-style crosshair: hide the top bar
 
-cl_crosshairalpha 200 (min: 0, max: 255, clientdll archive per_user)
+cl_crosshair_thickness 2 (min: 0, max: 31, clientdll archive per_user)
+	Thickness of the crosshair bars and circle, scaled with screen resolution (minimum 1 pixel)
+
+cl_crosshairalpha 200 (min: 0, max: 255, clientdll hidden archive per_user)
 	<no description>
 
-cl_crosshaircolor 5 (clientdll archive per_user)
-	Set crosshair color as defined in game_options.consoles.txt
+cl_crosshaircolor_a 255 (min: 0, max: 255, clientdll archive per_user)
+	Crosshair opacity. 0 = fully transparent, 255 = fully opaque
 
 cl_crosshaircolor_b 0 (min: 0, max: 255, clientdll archive per_user)
-	<no description>
+	Crosshair color, blue component
 
 cl_crosshaircolor_g 255 (min: 0, max: 255, clientdll archive per_user)
-	<no description>
+	Crosshair color, green component
 
 cl_crosshaircolor_r 0 (min: 0, max: 255, clientdll archive per_user)
-	<no description>
+	Crosshair color, red component
 
 cl_crosshairdot false (clientdll archive per_user)
+	Draw a dot at the center of the crosshair
+
+cl_crosshairsize 3.9 (clientdll hidden archive per_user)
 	<no description>
 
-cl_crosshairgap -2.2 (clientdll archive per_user)
-	<no description>
+cl_crosshairstyle 7 (min: 0, max: 7, clientdll archive per_user)
+	Crosshair style. 0 = Dynamic Cross, 1 = Dynamic Circle, 2 = Dynamic Cross (Legacy), 3 = Static Circle, 4 = Static Cross, 5 = Static Cross (Shot Feedback), 6 = Dot Only, 7 = Dynamic Quad. Styles 0, 1 and 7 track the weapon's actual inaccuracy.
 
-cl_crosshairgap_useweaponvalue true (clientdll archive per_user)
-	If set to 1, the gap will update dynamically based on which weapon is currently equipped
-
-cl_crosshairsize 3.9 (clientdll archive per_user)
-	<no description>
-
-cl_crosshairstyle 2 (clientdll archive per_user)
-	0 = DEFAULT (DISABLED), 1 = DEFAULT STATIC (DISABLED), 2 = DEFAULT (accurate recoil/spread feedback with a fixed inner part), 3 = ACCURATE DYNAMIC (DISABLED) (accurate recoil/spread feedback), 4 = DEFAULT STATIC, 5 = LEGACY (fake recoil - inaccurate feedback)
-
-cl_crosshairthickness 0.6 (clientdll archive per_user)
-	<no description>
-
-cl_crosshairusealpha true (clientdll archive per_user)
+cl_crosshairthickness 0.6 (clientdll hidden archive per_user)
 	<no description>
 
 cl_csgo_shoot_debugvis_rdp_text_l 10 (developmentonly clientdll)
@@ -1231,9 +1228,6 @@ cl_firstperson_legs true (developmentonly clientdll defensive)
 cl_firstperson_legs_aoproxy true (developmentonly clientdll defensive)
 	<no description>
 
-cl_fixedcrosshairgap 3 (clientdll archive per_user)
-	For crosshair style 1: How big to make the gap between the pips in the fixed crosshair
-
 cl_flushentitypacket 0 (cheat)
 	For debugging. Force the engine to flush an entity packet.
 
@@ -1313,19 +1307,19 @@ cl_grenadecrosshair_flash true (clientdll archive per_user)
 	Is the grenade crosshair enabled
 
 cl_grenadecrosshair_keepusercrosshair true (clientdll archive per_user)
-	Keep the user's crosshair when the grenade crosshair is enabled
+	Keep drawing the user's crosshair while the grenade throw crosshair is shown
 
 cl_grenadecrosshair_smoke true (clientdll archive per_user)
 	Is the grenade crosshair enabled
 
 cl_grenadecrosshair_tickinterval 10 (min: 1, max: 45, developmentonly clientdll)
-	<no description>
+	Spacing between ticks on the grenade throw crosshair
 
 cl_grenadecrosshair_ticklabels true (developmentonly clientdll)
-	<no description>
+	Draw labels on grenade throw crosshair ticks
 
 cl_grenadecrosshair_tickscaling 1.1 (min: 0.5, max: 2, developmentonly clientdll)
-	<no description>
+	Scale applied to grenade throw crosshair ticks
 
 cl_grenadecrosshairdelay_decoy 2 (clientdll archive per_user)
 	How long should the pin be pulled for before showing the grenade crosshair
@@ -1577,7 +1571,7 @@ cl_obs_interp_speed 1 (min: 0.25, max: 2.5, clientdll archive)
 	Spectator camera interpolation speed
 
 cl_observed_bot_crosshair 2 (clientdll archive release)
-	Control the crosshair shown when observing a bot. 0: Show player crosshair. 1: Show player crosshair only when bot can be taken over, otherwise show default.. 2: Always show default crosshair for bots.
+	Crosshair shown when observing a bot. 0 = show your crosshair, 1 = show your crosshair only when the bot can be taken over (otherwise default), 2 = always show the default crosshair
 
 cl_paintkit_override "" (clientdll cheat release)
 	<no description>
@@ -2012,7 +2006,7 @@ cl_show_matchmaking_stat_spew false (developmentonly clientdll defensive)
 	<no description>
 
 cl_show_observer_crosshair 2 (clientdll archive release)
-	Show the crosshair of the player being observed. 0: off 1: friends and party 2: everyone 
+	Show the crosshair of the player being observed. 0 = off, 1 = friends and party only, 2 = everyone
 
 cl_show_playernames_max_chars_console false (developmentonly clientdll)
 	Shows all player names (including bots) as 16 W's.
@@ -2149,6 +2143,9 @@ cl_spec_stats true (clientdll release)
 cl_spec_use_tournament_content_standards false (clientdll release)
 	<no description>
 
+cl_spectator_predict false (clientdll release)
+	Enable 'TrueView' when spectating another player, which attempts to recreate the client's experience more accurately.  The server may not allow this at certain times.
+
 cl_streams_image_sfurl "img://loadjpeg:(640x360):" (developmentonly clientdll)
 	Format of Scaleform image representing the stream
 
@@ -2278,6 +2275,9 @@ cl_use_old_wearable_shoulddraw false (developmentonly clientdll defensive)
 cl_use_opens_buy_menu false (clientdll archive userinfo per_user)
 	Pressing the +use key will open the buy menu if in a buy zone (just as if you pressed the 'buy' key).
 
+cl_use_prompt_smoke_density 0.03 (clientdll cheat)
+	Smoke density at the eye position above which a button's use prompt is suppressed.
+
 cl_usercmd_dbg 0 (developmentonly)
 	show usercmd payload sizing info for packets with more than this many usercmds
 
@@ -2350,7 +2350,7 @@ clear_debug_flags_on_death true (developmentonly gamedll defensive)
 clientport 0 (release)
 	If non-zero, client binds port to specific address.  Usually you should leave this blank to use a different random system-assigned port for each connection.
 
-closecaption false (clientdll archive userinfo)
+closecaption false (clientdll archive userinfo per_user)
 	Enable close captioning.
 
 cloth_debug_draw 0 (developmentonly clientdll)
@@ -2662,13 +2662,16 @@ csm_sst_max_visible_dist 2000 (clientdll cheat)
 csm_sst_pushback_distance 1500 (clientdll cheat)
 	default pushback
 
+csm_sst_shadow_focus_region_caster_headroom 256 (clientdll cheat)
+	<no description>
+
 csm_sst_shadow_focus_region_maxz 2000 (clientdll cheat)
 	<no description>
 
 csm_sst_shadow_focus_region_minz -2000 (clientdll cheat)
 	<no description>
 
-csm_sst_shadow_focus_region_thin_compensation 1500 (clientdll cheat)
+csm_sst_vertical_depth_shear_enable true (clientdll cheat)
 	<no description>
 
 csm_viewdir_shadow_bias 0 (clientdll cheat)
@@ -3127,9 +3130,6 @@ ent_skeleton_duration 0 (gamedll clientdll replicated cheat)
 ent_skeleton_only_ik_joints false (developmentonly gamedll defensive)
 	<no description>
 
-ent_skeleton_snapshot false (developmentonly gamedll)
-	<no description>
-
 ent_steadystate_batchsize 20 (developmentonly gamedll defensive)
 	Max number of entities to transmit to player
 
@@ -3153,6 +3153,9 @@ ent_text_no_name_really_i_mean_it false (gamedll cheat)
 
 entity_log_load_unserialize 0 (gamedll clientdll replicated cheat)
 	Output unserialization of entities on map load. 0 - off, 1 - client/server, 2 - server, 3 - client
+
+env_shake_debug false (developmentonly gamedll)
+	Draw debug info for active env_shakes: query radius, affected physics bodies/particles, and the forces/velocity deltas applied to them.
 
 eom_local_player_defeat_anim_enabled true (clientdll archive release)
 	<no description>
@@ -3382,6 +3385,9 @@ func_mover_debug_showtext false (developmentonly gamedll defensive)
 func_mover_debug_verbose false (developmentonly gamedll defensive)
 	<no description>
 
+func_mover_disable_movement false (developmentonly gamedll defensive)
+	<no description>
+
 func_mover_force_transition_start_direction false (developmentonly gamedll defensive)
 	<no description>
 
@@ -3468,9 +3474,6 @@ gameinstructor_verbose_lesson "" (clientdll cheat)
 
 gamestats_file_output_directory "" (developmentonly gamedll defensive)
 	When -gamestatsfileoutputonly is specified, file will be emitted here instead of to modpath
-
-gc_secret_key "" (developmentonly gamedll protected defensive)
-	Secret key for authenticating with the GC
 
 gl_clear true (developmentonly clientdll defensive)
 	<no description>
@@ -4219,13 +4222,10 @@ lb_use_ellipsoid_bounds true (developmentonly cheat)
 lb_use_illumination_silhouette true (developmentonly cheat menubar_item)
 	SceneSystem/LightBinner/Use Illumination Bounds
 
+lb_use_illumination_volume true (developmentonly cheat)
+	Disables use of illumination volume (may cause precomputed lighting errors)
+
 leaderboards_cache_duration 600 (developmentonly clientdll)
-	<no description>
-
-lightquery_debug_direct_lighting true (gamedll clientdll replicated cheat)
-	<no description>
-
-lightquery_debug_indirect_lighting true (gamedll clientdll replicated cheat)
 	<no description>
 
 lobby_default_privacy_bits2 "1" (clientdll archive release)
@@ -4539,19 +4539,10 @@ mm_tu_string "00000000" (developmentonly defensive)
 mm_use_p2p_for_listen_server true (developmentonly defensive)
 	<no description>
 
-mobile_fps_increase_during_charging false (archive)
-	MOBILE_FPS_CONTROL: If true we increase framerate limit while charging
-
-mobile_fps_increase_during_hfr_animations true (developmentonly hidden defensive)
-	MOBILE_FPS_CONTROL: If true we increase framerate limit during HFR-tagged animations and transitions.
-
-mobile_fps_increase_during_touch true (archive)
-	MOBILE_FPS_CONTROL: If true we increase framerate limit during touch
-
-mobile_fps_limit 30 (archive)
-	MOBILE_FPS_CONTROL: Mobile FPS limit - 15, 30, 60
-
 model_default_preview_sequence_name "" (gamedll clientdll archive replicated)
+	<no description>
+
+modeldoc_fgd_debug_path "" (developmentonly)
 	<no description>
 
 molotov_throw_detonate_time 2 (gamedll clientdll replicated release commandline_enforced)
@@ -4683,8 +4674,8 @@ mp_death_drop_defuser true (gamedll clientdll replicated release commandline_enf
 mp_death_drop_grenade 2 (min: 0, max: 2, gamedll clientdll replicated release commandline_enforced)
 	Which grenade to drop on player death: 0=none, 1=best, 2=current or best, 3=all grenades
 
-mp_death_drop_gun 1 (min: 0, max: 2, gamedll clientdll replicated release commandline_enforced)
-	Which gun to drop on player death: 0=none, 1=best, 2=current or best
+mp_death_drop_gun 1 (min: 0, max: 3, gamedll clientdll replicated release commandline_enforced)
+	Which gun to drop on player death: 0=none, 1=best, 2=current or best, 3=both
 
 mp_death_drop_healthshot true (gamedll clientdll replicated release)
 	Drop healthshot on player death
@@ -4956,7 +4947,7 @@ mp_playerid_delay 0.4 (min: 0, max: 1, gamedll clientdll replicated release)
 mp_playerid_hold 0.1 (min: 0, max: 1, gamedll clientdll replicated release)
 	Number of seconds to keep showing old information in the status bar
 
-mp_promoted_item_enabled false (gamedll clientdll notify replicated release)
+mp_promoted_item_enabled true (gamedll clientdll notify replicated release)
 	Allow the purchasing of the promoted item.
 
 mp_randomspawn 0 (gamedll clientdll replicated release commandline_enforced)
@@ -5111,6 +5102,9 @@ mp_td_spawndmgthreshold 50 (gamedll replicated release)
 
 mp_team_intro_time 6.5 (min: 0, gamedll notify replicated release commandline_enforced)
 	How many seconds for team intro
+
+mp_team_intro_type "auto" (gamedll clientdll replicated release commandline_enforced)
+	none, normal, wingman, rush, or auto (implies normal if mp_halftime is set, none otherwise)
 
 mp_team_timeout_max 1 (gamedll clientdll replicated release)
 	Number of timeouts each team gets per match.
@@ -5334,11 +5328,14 @@ nav_curve_step 0.02 (gamedll cheat)
 nav_debug_blocked false (gamedll cheat)
 	<no description>
 
-nav_drag_selection_volume_zmax_offset 32 (developmentonly gamedll replicated defensive)
+nav_drag_selection_volume_zmax_offset 32 (developmentonly gamedll)
 	The offset of the nav drag volume top from center
 
-nav_drag_selection_volume_zmin_offset 32 (developmentonly gamedll replicated defensive)
+nav_drag_selection_volume_zmin_offset 32 (developmentonly gamedll)
 	The offset of the nav drag volume bottom from center
+
+nav_draw_area_color_by_game_attribute false (gamedll cheat)
+	<no description>
 
 nav_draw_area_connections false (gamedll cheat)
 	<no description>
@@ -5403,25 +5400,25 @@ nav_draw_dormant_movable_meshes false (gamedll cheat)
 nav_draw_externally_created false (gamedll cheat)
 	<no description>
 
-nav_draw_flow_map false (gamedll cheat)
+nav_draw_flow_map false (developmentonly gamedll)
 	<no description>
 
 nav_draw_hidingspots false (gamedll cheat)
 	<no description>
 
-nav_draw_indirect_connections false (gamedll cheat)
+nav_draw_indirect_connections false (developmentonly gamedll)
 	<no description>
 
 nav_draw_jump_links false (gamedll cheat)
 	<no description>
 
-nav_draw_limit 300 (gamedll cheat)
+nav_draw_limit 300 (developmentonly gamedll)
 	The maximum number of areas to draw in edit mode
 
-nav_draw_link_alignment false (gamedll cheat)
+nav_draw_link_alignment false (developmentonly gamedll)
 	<no description>
 
-nav_draw_links false (gamedll cheat)
+nav_draw_links false (developmentonly gamedll)
 	<no description>
 
 nav_draw_markup true (gamedll cheat)
@@ -5715,37 +5712,49 @@ nav_potentially_visible_dot_tolerance 0.98 (gamedll cheat)
 nav_recorder_enabled true (gamedll cheat)
 	<no description>
 
-nav_select_allow_blocked true (gamedll cheat)
+nav_select_allow_blocked true (developmentonly gamedll)
 	When selecting an area under nav_edit, allow area marked as blocked.
 
-nav_select_area_id -1 (gamedll cheat)
+nav_select_area_id -1 (developmentonly gamedll)
 	Select nav area with matching ID.
 
-nav_select_block_id -1 (gamedll cheat)
+nav_select_block_id -1 (developmentonly gamedll)
 	Select nav space block with matching ID.
 
-nav_select_hull 0 (gamedll cheat)
+nav_select_hull 0 (developmentonly gamedll)
 	Restrict area selection to areas that can support a hull of the given category
 
-nav_show_area_connections true (gamedll cheat)
+nav_show_area_connections true (developmentonly gamedll)
 	Show connections to selected area when true
 
-nav_show_area_verts true (gamedll cheat)
+nav_show_area_verts true (developmentonly gamedll)
 	Show area vertex positions
 
-nav_show_area_water_info true (gamedll cheat)
+nav_show_area_water_info true (developmentonly gamedll)
 	<no description>
 
-nav_show_elem_info true (gamedll cheat)
+nav_show_elem_info true (developmentonly gamedll)
 	<no description>
 
-nav_show_elem_info_font "Consolas" (gamedll cheat)
+nav_show_elem_info_font "Consolas" (developmentonly gamedll)
 	<no description>
 
-nav_show_elem_info_font_size -1 (gamedll cheat)
+nav_show_elem_info_font_size -1 (developmentonly gamedll)
 	<no description>
 
-nav_show_elem_info_font_voffset -11 (gamedll cheat)
+nav_show_elem_info_font_voffset -11 (developmentonly gamedll)
+	<no description>
+
+nav_smooth_arrival_enable false (gamedll cheat)
+	<no description>
+
+nav_smooth_arrival_handle_scale 3 (gamedll cheat)
+	<no description>
+
+nav_smooth_arrival_spline true (gamedll cheat)
+	<no description>
+
+nav_smooth_arrival_spring false (gamedll cheat)
 	<no description>
 
 nav_smooth_constrain_spline true (gamedll cheat)
@@ -5758,6 +5767,9 @@ nav_smooth_constrain_spring 2 (gamedll cheat)
 	<no description>
 
 nav_smooth_constrain_spring_relax 0.01 (gamedll cheat)
+	<no description>
+
+nav_smooth_draw_arrival_calc false (gamedll cheat)
 	<no description>
 
 nav_smooth_draw_boundary 0 (gamedll cheat)
@@ -5898,9 +5910,6 @@ nav_test_boundary_zone_sphere 0 (gamedll cheat)
 nav_test_curve_opt 0 (gamedll cheat)
 	<no description>
 
-nav_test_detour false (gamedll cheat)
-	<no description>
-
 nav_test_find_nearest false (gamedll cheat)
 	Calculate the nearest point on the navmesh to the trace point.  Uses selection from nav_select_hull.
 
@@ -5955,34 +5964,40 @@ nav_test_npc_collision_range 250 (gamedll cheat)
 nav_test_npc_collision_show_geometry false (gamedll cheat)
 	<no description>
 
-nav_test_path false (gamedll cheat)
+nav_test_path false (developmentonly gamedll)
 	Calculate and draw a path from player/camera position to the test position.
 
-nav_test_path_lock_goal false (gamedll cheat)
+nav_test_path_lock_goal false (developmentonly gamedll)
 	Lock the pathfinding goal to the current intersection point.
 
-nav_test_path_lock_start false (gamedll cheat)
+nav_test_path_lock_start false (developmentonly gamedll)
 	Lock the pathfinding start to the current intersection point.
 
-nav_test_path_move false (gamedll cheat)
+nav_test_path_move false (developmentonly gamedll)
 	<no description>
 
-nav_test_path_opt true (gamedll cheat)
+nav_test_path_npc false (developmentonly gamedll)
+	Calculate and draw a path for the selected NPC to the test position.
+
+nav_test_path_npc_success_radius_when_blocked -1 (developmentonly gamedll)
+	Calculate and draw a path for the selected NPC to the test position.
+
+nav_test_path_opt true (developmentonly gamedll)
 	Enable path optimization for nav_edit_path paths.
 
-nav_test_path_opt_transitions false (gamedll cheat)
+nav_test_path_opt_transitions false (developmentonly gamedll)
 	<no description>
 
-nav_test_path_return false (gamedll cheat)
+nav_test_path_return false (developmentonly gamedll)
 	Calculate a return path from cursor position to the path calculated by nav_test_path.
 
-nav_test_path_space 0 (gamedll cheat)
+nav_test_path_space 0 (developmentonly gamedll)
 	Should nav_test_path test 3d navigation?  1 = space to space, 2 = multi-modal space/ground
 
-nav_test_path_space_fly true (gamedll cheat)
+nav_test_path_space_fly true (developmentonly gamedll)
 	Test flight paths
 
-nav_test_path_space_swim true (gamedll cheat)
+nav_test_path_space_swim true (developmentonly gamedll)
 	Test swim paths
 
 nav_test_pos_name "" (developmentonly gamedll defensive)
@@ -6057,6 +6072,9 @@ nav_volume_debug 0 (gamedll cheat)
 navspace_create_water_smooth_connections true (gamedll cheat)
 	<no description>
 
+navspace_create_water_surface_connections true (gamedll cheat)
+	<no description>
+
 navspace_create_water_transition_connections true (gamedll cheat)
 	<no description>
 
@@ -6109,6 +6127,9 @@ nextmode "" (gamedll notify replicated release)
 	Sets the game mode to be played when the next level loads
 
 noclip_fixup true (gamedll cheat)
+	<no description>
+
+npc_record_skeleton_snapshot false (developmentonly gamedll)
 	<no description>
 
 npc_record_snapshot_data false (developmentonly gamedll)
@@ -6339,6 +6360,9 @@ panorama_focus_world_panels false (clientdll archive)
 panorama_force_active_controller_type -1 (developmentonly hidden defensive)
 	<no description>
 
+panorama_force_atlas_clear false (developmentonly hidden defensive)
+	<no description>
+
 panorama_force_desired_layout_traverse false (developmentonly hidden defensive)
 	Force desired layout traverse, even if the cached values are up to date.
 
@@ -6462,12 +6486,6 @@ panorama_toggledebugger_mode 0 (min: 0, max: 1, hidden archive)
 panorama_track_render_commands false (developmentonly hidden defensive)
 	<no description>
 
-panorama_transform_parents_no_layer_for_perspective false (developmentonly hidden defensive)
-	<no description>
-
-panorama_transforms_no_comp_layer false (developmentonly hidden defensive)
-	<no description>
-
 panorama_transition_time_factor 1 (developmentonly hidden defensive)
 	A float representing a scale factor for transitions. 1.0 is normal, 2.0 would be twice as fast as normal, 0.5 half as fast
 
@@ -6496,6 +6514,9 @@ parallel_perform_invalidate_physics false (developmentonly gamedll clientdll rep
 	<no description>
 
 parallel_update_surrounding_bounds_in_spatial_partition_update false (developmentonly gamedll clientdll replicated)
+	<no description>
+
+particle_cluster_bounds_debug 0 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
 particle_cluster_debug 0 (developmentonly gamedll clientdll replicated defensive)
@@ -6534,6 +6555,12 @@ password "" (archive dontrecord server_cannot_query missing1)
 path_closest_point_debug false (developmentonly gamedll clientdll replicated)
 	<no description>
 
+path_mover_enable_high_resolution_debug_rendering false (developmentonly gamedll defensive)
+	<no description>
+
+path_mover_entity_spawner_debug false (developmentonly gamedll defensive)
+	<no description>
+
 path_node_evaluation_debug 0 (developmentonly gamedll clientdll replicated)
 	<no description>
 
@@ -6548,6 +6575,9 @@ phonemefilter 0.08 (developmentonly clientdll defensive)
 
 phonemesnap 2 (developmentonly clientdll defensive)
 	Lod at level at which visemes stops always considering two phonemes, regardless of duration.
+
+phys_agg_world_compounds false (developmentonly gamedll clientdll replicated)
+	<no description>
 
 phys_batch_ray_test 0 (developmentonly clientdll defensive)
 	<no description>
@@ -6653,9 +6683,6 @@ phys_visualize_awake_dynamic_only false (developmentonly gamedll clientdll repli
 
 phys_visualize_awake_unattached_only false (developmentonly gamedll clientdll replicated defensive)
 	<no description>
-
-phys_wind_force_scale 1 (developmentonly gamedll clientdll replicated)
-	Scale on the force wind applies to physics bodies
 
 pickup_check_period 0.25 (developmentonly gamedll defensive)
 	<no description>
@@ -6771,6 +6798,9 @@ props_break_max_pieces_perframe 16 (developmentonly gamedll clientdll replicated
 props_break_radial_force_ratio 0.33 (developmentonly gamedll clientdll replicated)
 	<no description>
 
+pulse_cursor_infinite_loop_detection_threshold 20000 (developmentonly gamedll clientdll replicated)
+	<no description>
+
 pulse_save_execution_history true (developmentonly gamedll clientdll replicated)
 	Keep a history of all instructions run on a per graph basis.
 
@@ -6821,6 +6851,12 @@ r_allow_onesweep_gpusort true (developmentonly defensive)
 
 r_always_render_all_windows false (developmentonly defensive)
 	Always force all engine & tools to render
+
+r_animatable_mesh_shaders false (cheat)
+	<no description>
+
+r_animatable_mesh_shaders_visualize_bounds false (cheat)
+	<no description>
 
 r_aoproxy_cull_dist 12 (developmentonly defensive)
 	Distance to cull the AO proxy as a factor of size
@@ -7266,6 +7302,9 @@ r_csgo_water_refraction true (clientdll cheat)
 r_csgo_water_skybox_depth true (developmentonly clientdll)
 	<no description>
 
+r_csgo_world_receives_skybox_csm true (developmentonly clientdll)
+	<no description>
+
 r_cubemap_debug_colors 0 (cheat)
 	<no description>
 
@@ -7274,9 +7313,6 @@ r_dashboard_render_quality true (developmentonly clientdll missing1 defensive)
 
 r_debug_depth_holes false (clientdll cheat)
 	<no description>
-
-r_debug_draw_safe_area_insets false (developmentonly)
-	Render safe area insets as wireframe.
 
 r_debug_particle_shadows false (clientdll cheat)
 	<no description>
@@ -7299,7 +7335,16 @@ r_decals_default_fade_duration 3 (developmentonly gamedll clientdll replicated d
 r_decals_default_start_fade 30 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
-r_decals_max_on_deformables 512 (developmentonly gamedll clientdll replicated defensive)
+r_decals_distance_scale 1.35 (gamedll clientdll replicated cheat)
+	Size multiplier applied to decals placed at r_decals_distance_scale_end or further from the local player. 1.0 disables distance scaling.
+
+r_decals_distance_scale_end 1536 (gamedll clientdll replicated cheat)
+	Distance from the local player at which decals reach r_decals_distance_scale.
+
+r_decals_distance_scale_start 256 (gamedll clientdll replicated cheat)
+	Distance from the local player at which decals start scaling toward r_decals_distance_scale.
+
+r_decals_max_triangle_anchored 512 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
 r_decals_overide_fadestarttime_params -1 (developmentonly gamedll clientdll replicated commandline_enforced defensive)
@@ -7307,6 +7352,9 @@ r_decals_overide_fadestarttime_params -1 (developmentonly gamedll clientdll repl
 
 r_decals_overlap_threshold 6 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
+
+r_decals_triangle_max_stretch 1.25 (developmentonly gamedll clientdll replicated defensive)
+	Max stretch (and 1/x compression) ratio a triangle-anchored decal may show relative to its shape at placement. 1 = rigid follow, <= 0 = unlimited.
 
 r_depth_of_field 1 (developmentonly clientdll)
 	0 = off, 1 = enabled (high quality, circular bokeh, HDR)
@@ -7354,9 +7402,6 @@ r_draw_first_tri_only false (cheat)
 	<no description>
 
 r_draw_instances true (cheat)
-	<no description>
-
-r_draw_overlays true (developmentonly defensive)
 	<no description>
 
 r_drawblankworld false (cheat)
@@ -7779,17 +7824,17 @@ r_render_hair true (developmentonly cheat)
 r_render_to_cubemap_begin_mixing_roughness 0.25 (developmentonly clientdll defensive)
 	<no description>
 
-r_render_to_cubemap_debug false (developmentonly clientdll defensive)
+r_render_to_cubemap_debug false (clientdll cheat)
 	<no description>
-
-r_render_world_node_bounds false (cheat)
-	Render world node bounds
 
 r_renderdoc_auto_shader_pdbs true (developmentonly defensive)
 	Automatically generate shader debug info on capture
 
 r_renderdoc_open_captures true (developmentonly defensive)
 	<no description>
+
+r_renderdoc_show_overlay true (developmentonly defensive)
+	Show RenderDoc overlay
 
 r_renderdoc_validation_error_capture_limit 5 (developmentonly defensive)
 	<no description>
@@ -8145,6 +8190,9 @@ rr_debugresponses 0 (developmentonly gamedll clientdll replicated defensive)
 rr_debugrule "" (developmentonly gamedll clientdll replicated defensive)
 	If set to the name of the rule, that rule's score will be shown whenever a concept is passed into the response rules system.
 
+rr_dumpresponses false (developmentonly gamedll clientdll replicated)
+	<no description>
+
 rr_followup_maxdist 1800 (gamedll cheat)
 	'then ANY' or 'then ALL' response followups will be dispatched only to characters within this distance.
 
@@ -8175,7 +8223,7 @@ safezoney 1 (min: 0.8, max: 1, clientdll archive)
 save_async true (developmentonly gamedll defensive)
 	<no description>
 
-save_debug_snapshots false (developmentonly gamedll clientdll replicated defensive)
+save_debug_snapshots true (developmentonly gamedll clientdll replicated defensive)
 	Save/Load debug snapshot data
 
 save_fake_hitch 0 (developmentonly gamedll defensive)
@@ -8216,6 +8264,9 @@ sc_aggregate_debug_draw_meshlets_bounds false (developmentonly)
 
 sc_aggregate_debug_visualizer false (developmentonly cheat menubar_item)
 	SceneSystem/Aggregates/Debug Visualizer
+
+sc_aggregate_fragment_culling_boxes true (cheat)
+	Test aggregate fragments against culling boxes individually instead of per aggregate.
 
 sc_aggregate_fragment_merging true (developmentonly)
 	<no description>
@@ -8337,6 +8388,9 @@ sc_extended_stats false (cheat)
 sc_fade_distance_scale_override -1 (cheat)
 	<no description>
 
+sc_fog_cull true (cheat)
+	<no description>
+
 sc_force_lod_level -1 (cheat)
 	<no description>
 
@@ -8376,6 +8430,9 @@ sc_instanced_mesh_enable true (developmentonly cheat menubar_item)
 sc_instanced_mesh_gpu_culling true (developmentonly defensive)
 	Toggles GPU culling of instanced meshes
 
+sc_instanced_mesh_gpu_culling_boxes true (cheat)
+	Test instanced mesh instances against info_visibility_box culling boxes.
+
 sc_instanced_mesh_gpu_density_culling true (developmentonly defensive)
 	Toggles density culling (if enabled)
 
@@ -8396,6 +8453,9 @@ sc_instanced_mesh_motion_vectors true (developmentonly defensive)
 
 sc_instanced_mesh_opaque_fade true (developmentonly defensive)
 	Toggles fade support for instanced meshes
+
+sc_instanced_mesh_shadows_batch_across_materials false (developmentonly defensive)
+	Toggles whether mesh shader instanced can batch on reflectivity
 
 sc_instanced_mesh_size_cull_bias 1.5 (developmentonly defensive)
 	Bias for size culling of instanced meshes
@@ -8418,6 +8478,9 @@ sc_layer_batch_threshold_fullsort 80 (developmentonly defensive)
 sc_max_framebuffer_copies_per_layer 1 (developmentonly defensive)
 	<no description>
 
+sc_mesh_allow_batch_across_primitives true (developmentonly defensive)
+	<no description>
+
 sc_mesh_backface_culling true (developmentonly defensive)
 	<no description>
 
@@ -8431,9 +8494,6 @@ sc_mesh_mesh_shaders false (developmentonly defensive)
 	<no description>
 
 sc_mesh_shadows_batch_across_materials true (developmentonly defensive)
-	<no description>
-
-sc_mesh_use_pmb false (developmentonly defensive)
 	<no description>
 
 sc_no_cull false (developmentonly defensive)
@@ -8492,6 +8552,9 @@ sc_skip_traversal false (cheat)
 
 sc_spew_cmt_usage false (developmentonly defensive)
 	<no description>
+
+sc_stats_sections "SCENE_STATS_FRAME|SCENE_STATS_GEOMETRY|SCENE_STATS_CULLING|SCENE_STATS_MATERIALS|SCENE_STATS_LIGHTING|SCENE_STATS_RAYTRACING|SCENE_STATS_INTERNALS" (developmentonly archive cheat)
+	Which stats groups to show
 
 sc_throw_away_all_layers false (developmentonly defensive)
 	<no description>
@@ -8619,6 +8682,9 @@ skeleton_physics_joint_fixup true (developmentonly gamedll clientdll replicated 
 skill 1 (min: 1, max: 3, gamedll clientdll archive replicated per_user)
 	Game skill level.
 
+sky_camera_volume_debug false (clientdll cheat)
+	Draw sky_camera_volume bounds and their target links.
+
 slope_drop_enable true (developmentonly gamedll clientdll replicated defensive)
 	Toggles a test dropping the view offset based on the slope
 
@@ -8685,11 +8751,26 @@ snd_boxverb_simd_svf 1 (developmentonly defensive)
 snd_break_on_start_soundevent "" (gamedll clientdll replicated cheat)
 	Use to debug break on any soundevent that is started matching this name
 
+snd_chicken_obscured_fade_time 0.25 (developmentonly clientdll defensive)
+	Seconds to fade the ChickensObscuredLayer mix layer in and out.
+
 snd_compare_KV_convert false (developmentonly defensive)
 	<no description>
 
 snd_deathcamera_volume 0.16 (min: 0, max: 1, clientdll archive release)
 	Volume of Deathcam Timers
+
+snd_deathcamera_volume_armsrace 0.16 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Deathcam Timers
+
+snd_deathcamera_volume_casual 0.16 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Deathcam Timers
+
+snd_deathcamera_volume_deathmatch 0.16 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Deathcam Timers
+
+snd_deathcamera_volume_rush 0.16 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Deathcam Timers
 
 snd_delay_sound_ms_max 250 (min: 0, max: 250, developmentonly defensive)
 	Sound device synchronization max delay (ms)
@@ -8790,6 +8871,9 @@ snd_gamevoicevolume 1 (min: 0, max: 1, archive)
 snd_gamevolume 1 (min: 0, max: 1, archive missing1)
 	Game volume
 
+snd_granulator_imgui false (developmentonly archive cheat menubar_item)
+	Game/Granulator Debugger
+
 snd_group_cluster_debug false (replicated cheat)
 	<no description>
 
@@ -8826,6 +8910,18 @@ snd_mainmenu_music_break_time_min 0 (clientdll cheat)
 snd_mapobjective_volume 0.04 (min: 0, max: 1, clientdll archive release)
 	Volume of Map Objective Music
 
+snd_mapobjective_volume_armsrace 0.01 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Map Objective Music
+
+snd_mapobjective_volume_casual 0.01 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Map Objective Music
+
+snd_mapobjective_volume_deathmatch 0.01 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Map Objective Music
+
+snd_mapobjective_volume_rush 0.01 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Map Objective Music
+
 snd_max_pitch_shift_inaccuracy 0.08 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
@@ -8834,6 +8930,18 @@ snd_menumap_volume 1 (min: 0, max: 1, clientdll archive release)
 
 snd_menumusic_volume 0.04 (min: 0, max: 1, clientdll archive release)
 	Volume of Menu / Non-gameplay music
+
+snd_menumusic_volume_armsrace 0.04 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Menu / Non-gameplay music
+
+snd_menumusic_volume_casual 0.04 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Menu / Non-gameplay music
+
+snd_menumusic_volume_deathmatch 0.04 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Menu / Non-gameplay music
+
+snd_menumusic_volume_rush 0.04 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Menu / Non-gameplay music
 
 snd_mergemethod 1 (developmentonly defensive)
 	Sound merge method (0 == sum and clip, 1 == max, 2 == avg).
@@ -8853,6 +8961,12 @@ snd_mixer_master_dsp 1 (cheat)
 snd_mixer_master_level 1 (cheat)
 	<no description>
 
+snd_music_mode 1 (clientdll release)
+	Selects which per-game-mode set of music volume convars is live
+
+snd_music_settings_mode 0 (clientdll archive release)
+	Which game mode's music volumes the audio settings screen is editing
+
 snd_musicvolume 1 (min: 0, max: 1, archive missing1)
 	Music volume
 
@@ -8864,6 +8978,18 @@ snd_mute_mvp_music_live_players false (clientdll archive release)
 
 snd_mvp_volume 0.16 (min: 0, max: 1, clientdll archive release)
 	Volume of MVP Music
+
+snd_mvp_volume_armsrace 0.16 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of MVP Music
+
+snd_mvp_volume_casual 0.16 (min: 0, max: 1, clientdll archive release)
+	Casual volume of MVP Music
+
+snd_mvp_volume_deathmatch 0.16 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of MVP Music
+
+snd_mvp_volume_rush 0.16 (min: 0, max: 1, clientdll archive release)
+	Rush volume of MVP Music
 
 snd_new_visualize false (gamedll cheat)
 	Displays soundevent name played at it's 3d position
@@ -8904,6 +9030,18 @@ snd_occlusion_visualize false (developmentonly cheat)
 snd_op_test_convar 720 (cheat)
 	<no description>
 
+snd_opvar_set_dome_catchup_distance 64 (developmentonly gamedll clientdll replicated defensive)
+	<no description>
+
+snd_opvar_set_dome_catchup_rate 1 (developmentonly gamedll clientdll replicated defensive)
+	<no description>
+
+snd_opvar_set_dome_churn_fraction 0.25 (developmentonly gamedll clientdll replicated defensive)
+	<no description>
+
+snd_opvar_set_dome_cluster_steps_per_think 32 (developmentonly gamedll clientdll replicated defensive)
+	<no description>
+
 snd_opvar_set_point_debug false (gamedll clientdll replicated cheat)
 	<no description>
 
@@ -8934,11 +9072,47 @@ snd_report_verbose_error false (cheat)
 snd_roundaction_volume 0 (min: 0, max: 1, clientdll archive release)
 	Volume of Move Action Music
 
+snd_roundaction_volume_armsrace 0 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Move Action Music
+
+snd_roundaction_volume_casual 0 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Move Action Music
+
+snd_roundaction_volume_deathmatch 0 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Move Action Music
+
+snd_roundaction_volume_rush 0.0064 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Move Action Music
+
 snd_roundend_volume 0.16 (min: 0, max: 1, clientdll archive release)
 	Volume of Won/Lost Music
 
+snd_roundend_volume_armsrace 0.16 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Won/Lost Music
+
+snd_roundend_volume_casual 0.16 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Won/Lost Music
+
+snd_roundend_volume_deathmatch 0.16 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Won/Lost Music
+
+snd_roundend_volume_rush 0.16 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Won/Lost Music
+
 snd_roundstart_volume 0 (min: 0, max: 1, clientdll archive release)
 	Volume of Round Start Music
+
+snd_roundstart_volume_armsrace 0.0225 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Round Start Music
+
+snd_roundstart_volume_casual 0.0225 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Round Start Music
+
+snd_roundstart_volume_deathmatch 0.0225 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Round Start Music
+
+snd_roundstart_volume_rush 0.0225 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Round Start Music
 
 snd_showclassname 0 (cheat)
 	<no description>
@@ -9164,6 +9338,18 @@ snd_surf_volume_slide 0.5 (clientdll archive release)
 
 snd_tensecondwarning_volume 0.04 (min: 0, max: 1, clientdll archive release)
 	Volume of Ten Second Warnings
+
+snd_tensecondwarning_volume_armsrace 0.01 (min: 0, max: 1, clientdll archive release)
+	Arms Race volume of Ten Second Warnings
+
+snd_tensecondwarning_volume_casual 0.01 (min: 0, max: 1, clientdll archive release)
+	Casual volume of Ten Second Warnings
+
+snd_tensecondwarning_volume_deathmatch 0.01 (min: 0, max: 1, clientdll archive release)
+	Deathmatch volume of Ten Second Warnings
+
+snd_tensecondwarning_volume_rush 0.01 (min: 0, max: 1, clientdll archive release)
+	Rush volume of Ten Second Warnings
 
 snd_toolvolume 1 (min: 0, max: 1, archive)
 	Volume of sounds in tools (e.g. Hammer, SFM)
@@ -9480,14 +9666,8 @@ steamworks_sessionid_server "0" (developmentonly gamedll clientdll hidden replic
 sticky_tooltips false (developmentonly clientdll hidden defensive)
 	Don't ever hide tooltips. Helpful when debugging complicated tooltip layouts.
 
-surf_speed_fast 3000 (gamedll clientdll replicated release)
-	Speed above which a player is considered to be going fast.
-
-surf_speed_med 2000 (gamedll clientdll replicated release)
-	Speed above which a player is considered to be going medium.
-
 surf_speed_slow 50 (gamedll clientdll replicated release)
-	Speed above which a player is considered to be going slow.
+	Speed above which surf sounds are played.
 
 suspicious_hit_odds_threshold 0.01 (gamedll release)
 	<no description>
@@ -9521,6 +9701,9 @@ sv_allchat true (gamedll notify release)
 
 sv_allow_annotations_access_level 0 (gamedll clientdll replicated release commandline_enforced)
 	0:off | 1: view-only | 2: edit.
+
+sv_allow_approximate_spawns false (gamedll clientdll replicated release commandline_enforced)
+	Test spawn points for occupancy. Fall back to placing players in the nearest empty space instead of overlapping.
 
 sv_allow_ground_weapon_pickup true (developmentonly gamedll clientdll replicated)
 	<no description>
@@ -9638,6 +9821,12 @@ sv_chat_proximity -1 (gamedll clientdll replicated release)
 
 sv_cheats false (notify replicated release)
 	Allow cheats on server
+
+sv_clanid 0 (developmentonly gamedll)
+	Steam clan ID to allow members to set some convars
+
+sv_clanserver_gms false (developmentonly)
+	<no description>
 
 sv_client_max_interp_ratio 5 (min: 0, max: 19, developmentonly gamedll clientdll replicated defensive)
 	This can be used to limit the value of cl_interp_ratio for connected clients (only while they are connected).
@@ -9864,6 +10053,12 @@ sv_force_transmit_ents false (developmentonly gamedll)
 sv_fps_max 0 (developmentonly hidden defensive)
 	Dedicated server frame rate limiter. 0=tick rate. Only applies to the dedicated server.
 
+sv_frame_snapshot_async_delete false (developmentonly)
+	<no description>
+
+sv_frame_snapshot_sort_entities true (developmentonly)
+	<no description>
+
 sv_freeze_camera_angles [0, 0, 0] (gamedll clientdll replicated release commandline_enforced)
 	<no description>
 
@@ -10065,11 +10260,8 @@ sv_long_frame_ms 0 (developmentonly defensive)
 sv_mapvetopickvote_maps "de_cache,de_anubis,de_inferno,de_mirage,de_dust2,de_nuke,de_ancient" (gamedll release)
 	Which maps are used for map veto pick sequence
 
-sv_mapvetopickvote_phase_duration "[1:5][2:15][3:20][4:10][5:10][6:5]" (gamedll release)
+sv_mapvetopickvote_phase_duration "[1:5][2:15][3:15][4:10][5:5][6:5][7:5]" (gamedll release)
 	How many seconds each phase lasts
-
-sv_mapvetopickvote_rnd false (gamedll release)
-	When enabled will shuffle veto pick maps list order every time
 
 sv_massreport false (developmentonly gamedll defensive)
 	<no description>
@@ -10149,6 +10341,9 @@ sv_mmqueue_reservation_extended_timeout 21 (min: 5, max: 180, developmentonly)
 sv_mmqueue_reservation_timeout 21 (min: 5, max: 180, developmentonly)
 	Time in seconds before mmqueue reservation expires.
 
+sv_molotov_broken_glass_trap false (gamedll release)
+	<no description>
+
 sv_mover_maxslope 0.7 (developmentonly gamedll clientdll notify replicated defensive)
 	The maximum slope the player can overcome [-]
 
@@ -10160,6 +10355,9 @@ sv_mover_pogofrequency 10 (developmentonly gamedll clientdll notify replicated d
 
 sv_mute_players_with_social_penalties true (developmentonly gamedll defensive)
 	<no description>
+
+sv_netprof_delta_sharing_temp false (release)
+	Temp counter for measuring performance impact of some network changes. To be removed by the end of Sept 2026
 
 sv_networkvar_log_fullchanges false (developmentonly gamedll)
 	Log FUL_FULL_EDICT_CHANGED calls.
@@ -10497,6 +10695,9 @@ sv_sniper_tracer_mode 1 (developmentonly gamedll clientdll replicated defensive)
 sv_spawn_afk_bomb_drop_time 15 (gamedll replicated release)
 	Players that have never moved since they spawned will drop the bomb after this amount of time.
 
+sv_spawn_random_nudge_offset 0 (min: 0, max: 512, gamedll clientdll replicated release commandline_enforced)
+	Max distance in X and Y to randomly offset a player from their spawn position, for procedural spawn variation. 0 to disable.
+
 sv_spec_hear 3 (gamedll clientdll notify replicated release)
 	Determines who spectators can hear: 0: only spectators; 1: all players; 2: spectated team; 3: self only; 4: nobody
 
@@ -10610,9 +10811,6 @@ sv_temp_baseline_string_table_buffer_size 524288 (developmentonly defensive)
 
 sv_tick_parallel_with_client false (developmentonly)
 	Runs the final server tick of the frame in parallel with client work
-
-sv_tick_snapshot_sort_entities true (developmentonly)
-	<no description>
 
 sv_timebetweenducks 0.4 (min: 0, max: 2, gamedll clientdll replicated release)
 	Minimum time before recognizing consecutive duck key
@@ -10848,6 +11046,9 @@ trigger_fan_debug false (developmentonly gamedll clientdll replicated)
 trigger_fan_player_windblock_debug false (developmentonly gamedll clientdll replicated)
 	<no description>
 
+trigger_physics_debug false (developmentonly gamedll cheat)
+	Toggle trigger_physics debug visualization.
+
 trusted_launch 0 (clientdll archive)
 	Trusted launch status
 
@@ -11049,6 +11250,9 @@ tv_playcast_retry_timeout 25 (release)
 tv_playcast_showerrors "" (hidden release)
 	Set to display headers upon error (e.g. "CF-Ray,CF-Cache-Status,Body" )
 
+tv_playcast_slow_playback_fragment_count 3 (hidden release)
+	Number of fragments we need to have in the buffer before slowing down playback. For use with tv_playcast_slow_playback_when_fragment_requests_fail
+
 tv_playcast_slow_playback_when_fragment_requests_fail true (hidden release)
 	Whether or not we slow playback rate if we start running out of buffered stream fragments.
 
@@ -11181,6 +11385,9 @@ ui_playsettings_flags_listen_deathmatch "32" (clientdll archive release)
 ui_playsettings_flags_listen_retakes "0" (clientdll archive release)
 	<no description>
 
+ui_playsettings_flags_listen_rush "0" (clientdll archive release)
+	<no description>
+
 ui_playsettings_flags_listen_scrimcomp2v2 "0" (clientdll archive release)
 	<no description>
 
@@ -11203,6 +11410,9 @@ ui_playsettings_flags_official_deathmatch "32" (clientdll archive release)
 	<no description>
 
 ui_playsettings_flags_official_retakes "0" (clientdll archive release)
+	<no description>
+
+ui_playsettings_flags_official_rush "0" (clientdll archive release)
 	<no description>
 
 ui_playsettings_flags_official_scrimcomp2v2 "0" (clientdll archive release)
@@ -11241,6 +11451,9 @@ ui_playsettings_maps_listen_gungameprogressive "mg_ar_baggage" (clientdll archiv
 ui_playsettings_maps_listen_retakes "mg_de_dust2" (clientdll archive release)
 	<no description>
 
+ui_playsettings_maps_listen_rush "mg_rush_001" (clientdll archive release)
+	<no description>
+
 ui_playsettings_maps_listen_scrimcomp2v2 "mg_de_inferno" (clientdll archive release)
 	<no description>
 
@@ -11254,6 +11467,9 @@ ui_playsettings_maps_official_gungameprogressive "mg_armsrace" (clientdll archiv
 	<no description>
 
 ui_playsettings_maps_official_retakes "mg_casualalpha" (clientdll archive release)
+	<no description>
+
+ui_playsettings_maps_official_rush "mg_rush_001" (clientdll archive release)
 	<no description>
 
 ui_playsettings_maps_workshop "" (clientdll archive release)
@@ -11514,6 +11730,9 @@ volume_fog_temporal_weight 0.9 (min: 0.1, max: 0.99, developmentonly defensive)
 volume_fog_width 240 (min: 64, max: 1024, developmentonly defensive)
 	Width of volume fog texture
 
+vprof_all_threads false (developmentonly)
+	Capture VProf scopes on background threads as well as the target thread. Same option as the All Threads checkbox in the VProf tools -- setting either one updates the other
+
 vprof_counters 0 (developmentonly defensive)
 	<no description>
 
@@ -11568,11 +11787,8 @@ weapon_debug_inaccuracy_only_up false (developmentonly gamedll clientdll replica
 weapon_debug_max_inaccuracy false (developmentonly gamedll clientdll replicated cheat)
 	Force all shots to have maximum inaccuracy
 
-weapon_debug_spread_gap 0.67 (clientdll cheat per_user)
-	<no description>
-
-weapon_debug_spread_show 0 (clientdll cheat per_user)
-	Enables display of weapon accuracy; 1: show accuracy box, 3: show accuracy with dynamic crosshair
+weapon_debug_spread_show false (clientdll cheat per_user)
+	Draws the current weapon's true inaccuracy + spread radius around the crosshair
 
 weapon_land_dip_amt 20 (developmentonly gamedll clientdll replicated cheat)
 	The amount the gun should dip when the player lands after a jump.
@@ -11609,9 +11825,6 @@ webapi_values_init_buffer_size 65536 (developmentonly clientdll defensive)
 
 webapi_values_max_pool_size_mb 400 (developmentonly clientdll defensive)
 	Maximum size in bytes of the WebAPIValues buffer pool
-
-wind_system_debug_volumes false (developmentonly defensive)
-	<no description>
 
 wind_system_default_resolution_xy 256 (developmentonly defensive)
 	<no description>

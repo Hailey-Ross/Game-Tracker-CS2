@@ -116,6 +116,7 @@ DeleteAll
 Directory not empty
 Domain error
 Double
+ELEMENT
 EMPTY
 ENTITIES
 EPSN
@@ -504,7 +505,6 @@ Serialized pattern:\n
 SetDefaultDllDirectories
 SetEnvironmentVariableA
 SetFileInformationByHandleW
-SetThreadStackGuarantee
 SetThreadpoolTimer
 SetThreadpoolWait
 Sort 

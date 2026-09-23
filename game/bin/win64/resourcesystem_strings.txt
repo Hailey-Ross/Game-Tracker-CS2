@@ -65,6 +65,8 @@
 .?AVIResourceTypeManager@@
 .?AVIVDataTypeManager@@
 .?AVbad_weak_ptr@std@@
+2\vp,E
+2\vp0
 <Anonymous>
 <INVALID>
 <non-RTTI type>
@@ -187,6 +189,7 @@ RESOURCE_TYPE_TEST
 RESOURCE_TYPE_VDATA
 RSDSqqf,
 RSProfilerTool
+R\fp0
 Range_t
 Re-entrant calls to CResourceSystem::PreShutdown()\n
 Reentrant call to CResourceSystem::BlockUntilManifestLoaded() while already in a frame update!\n
@@ -253,6 +256,7 @@ itemdefs
 localization_required
 m_hResource->m_nLoadingResource != LOADING_RESOURCE_INDEX_INVALID
 m_hResource->m_nStreamingResource != STREAMING_RESOURCE_DATA_INDEX_INVALID
+m_pPreviousFullFileSystem == nullptr
 m_pTestFS == nullptr
 m_pTestFS == pTestFS
 mathlib_extended
@@ -260,6 +264,7 @@ newSerial == i + 1
 panorama_image
 pthis->HandleUtils_Deref( ch )->m_ResourceId == key
 pthis->StaticDeref( ch, true ) == nullptr
+r\vp0
 removed
 resource_leaks: Invalid resource name '%s'\n
 resource_leaks: No resource named '%s'\n
@@ -279,6 +284,7 @@ vanmgrpheconitem
 vcompmat
 vdata
 vdpn
+vdsp
 vdvn
 vents
 vgcxdata
@@ -294,6 +300,7 @@ vpost
 vptest
 vrman
 vsgraph
+vsmart
 vsndevts
 vsndstckvseq
 vsurf

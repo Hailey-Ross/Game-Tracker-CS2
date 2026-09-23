@@ -140,7 +140,6 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 2\f?focusOutEvent@QLabel@@MEAAXPEAVQFocusEvent@@@Z
 2\r?hideEvent@QWidget@@MEAAXPEAVQHideEvent@@@Z
 2\v?event@QAction@@MEAA_NPEAVQEvent@@@Z
-2\vpTO
 2cellClicked( int, int )
 2clicked( bool )
 2currentChanged( int )
@@ -759,6 +758,7 @@ N?height@QFontMetrics@@QEBAHXZ
 N\v?event@QMainWindow@@MEAA_NPEAVQEvent@@@Z
 No Samples.
 OnChannelNameChanged
+OnEditingFinished
 OnExecTableContextMenu
 OnFocusOut
 OnHistoryTableContextMenu

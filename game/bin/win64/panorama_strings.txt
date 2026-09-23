@@ -10,16 +10,18 @@
     Signature Algorithm: 
    %60s: %6d (pending %6d)\n
   ##%%&&))**,,//1122447788;;==>>@@CCEEFFIIJJLLOOQQRRTTWWXX[[]]^^aabbddgghhkkmmnnppssuuvvyyzz||
- !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+ !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$`
  !"#$%%&'()*+,-../0123456789:;<=>?@ABCDEFGHIJKLLMNOPQRSTUVWXY[]_`bdefhjlnprtvz|~
  %4hf
  %s%lu (%s0x%lx)\n
  ' ) - 3 G M Q _ c e i w } 
  (%ld unused bits)\n
- (08@HPX`jP
- (08@HPXb@Q#
- (08@HPZP
- (0X`hpz@Q#
+ (08@HPX`j0
+ (08@HPXb
+ (08@HPZ0
+ (08@HR
+ (08@J0
+ (0X`hpz
  (INVALID PSS PARAMETERS)\n
  (Negative)
  (derived from %s)
@@ -264,53 +266,57 @@ $hRh
 (!(1(=(?(I(Q([(](a(g(u(
 ((long)msg_hdr->msg_len) > 0
 (0'yX
-(1mJ
+(1JJ
 (4?NewFromUnsigned@Integer@v8@@SA?AV?$Local@VInteger@v8@@@2@PEAVIsolate@2@I@Z
 (54J
-(57J
-(59J
 (5Me
+(5ZJ
+(5fJ
 (5jP
-(92J
-(AeJ
+(AmJ
 (BZq
 (D4D
+(ELJ
+(I3J
 (I?Value@External@v8@@QEBAPEAXXZ
-(IJJ
-(IOJ
-(ISJ
-(MbJ
+(IPJ
+(IcJ
+(IiJ
 (NONE)
-(QIJ
+(QaJ
+(QyJ
 (U1h
-(YEJ
-(YTJ
-(YgJ
-(YnJ
+(UAJ
+(UDJ
+(UeJ
+(UpJ
 (ZdOt\n&
 (_Assert)
-(a3J
+(a6J
+(alJ
 (anonymous)
-(aqJ
 (d4t8
 (down)
-(eLJ
-(ewJ
 (fS{ggRcjh
 (h`H1pqA
 (i/Al
 (jvg;
 (memory)
-(mjJ
-(mlJ
-(mzJ
-(uBJ
+(msJ
+(mvJ
+(uOJ
 (undefined)
 (unset)
 (unset) w/parent: %s
+(uuJ
 (vQF
 (wMww
-(yQJ
+(y4J
+(y8J
+(yBJ
+(yEJ
+(yUJ
+(yjJ
 )!)#)?)G)])e)i)o)u)
 )4?NewFromUtf8@String@v8@@SA?AV?$MaybeLocal@VString@v8@@@2@PEAVIsolate@2@PEBDW4NewStringType@2@H@Z
 )Ck?B
@@ -527,7 +533,6 @@ $hRh
 .?AVCRenderCommandList@panorama@@
 .?AVCSHA1@@
 .?AVCSchemaRegistration_panorama_content@@
-.?AVCSimpleErrorListener@@
 .?AVCSource2DoubleBufferedTexture@panorama@@
 .?AVCSource2PanelImageSourceTexture@panorama@@
 .?AVCSource2Surface@panorama@@
@@ -967,6 +972,7 @@ $hRh
 .tga
 .vjs_c
 .vsvg
+.vtex
 .vts_c
 .webp
 .x7B
@@ -986,9 +992,9 @@ $hRh
 0123456789
 02V8[
 05=k
-08@HRP
-08@J@Q#
-08BP
+08@HR0
+08@J
+08B0
 08bX
 09,h
 0;Q5[
@@ -997,7 +1003,6 @@ $hRh
 0W/5
 0Z@q
 0\r0#0)070;0U0Y0[0g0q0y0}0
-0dO=
 0e\r8
 0pp@5tqE?|sO541
 0tU+xc:
@@ -1037,14 +1042,12 @@ $hRh
 2:pS
 2?Message@TryCatch@v8@@QEBA?AV?$Local@VMessage@v8@@@2@XZ
 2I y)
-2PT 
+2Ph%
 2Tm=#
 2Uiwp"9
 2Zq)
 2\fWQx
 2\rlhp
-2\vpd
-2\vpdO=
 2^pV
 2a"l
 2bT~
@@ -1053,7 +1056,6 @@ $hRh
 2f)l=
 2nIg
 2p"6
-2pG 
 2prB
 3%3+3/353A3G3[3_3g3k3s3y3
 31tPR
@@ -1165,14 +1167,14 @@ $hRh
 8<pl
 8= zp
 8??SetInternalFieldCount@ObjectTemplate@v8@@QEAAXH@Z
-8@JP
+8@J0
 8A6j
 8GZS
 8SIffK5W
 8TZvrv<
-8\tMJ
 8\v8!83858A8G8K8S8W8_8e8o8q8}8
 8]Vc2
+8a|J
 8ca1
 8dS2
 8pe7?
@@ -1335,15 +1337,13 @@ $hRh
 ?dt]X
 ?gwL
 ?jOb
-?position
 ?srJO
 ?tya
 ?uWS
+?valveextensions.proto
 ?x29
 @!@%@+@1@?@C@E@]@a@g@m@
-@08NP
 @0pp
-@6pm=
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @BH]f
 @HPX`hv
@@ -1360,7 +1360,6 @@ $hRh
 @define missing semicolon
 @define name is invalid (use A-Z,a-z,_-): %s
 @fff>fff>fff>fff>
-@htP
 @i1V
 @import
 @import missing semicolon
@@ -2104,6 +2103,7 @@ CUtlDict<class v8::Global<class v8::String> *,class CDefStringLess>::Insert
 CUtlDict<class v8::Global<class v8::Value> *,class CDefStringLess>::Insert
 CUtlDict<short,class CDefFastCaselessStringLess>::Insert
 CUtlDict<struct ImageInfo_t,class CDefFastCaselessStringLess>::Insert
+CUtlDict<struct panorama::CUIEngine::NamedPathInfo_t,class CDefFastCaselessStringLess>::Insert
 CUtlDict<struct panorama::PanelDescription_t *,class CDefStringLess>::Insert
 CUtlLeanVectorBase<struct UtlLinkedListElem_t<class CUtlString,unsigned short>,unsigned short,class CMemAllocAllocator>::EnsureCapacity
 CUtlLeanVectorBase<struct UtlLinkedListElem_t<class panorama::CUIPanel *,unsigned short>,unsigned short,class CMemAllocAllocator>::EnsureCapacity
@@ -2914,6 +2914,7 @@ First argument to RegisterForUnhandledEvent is not a valid event type
 First argument to RegisterForUnhandledEvent must be a string (event type)
 First argument to RegisterKeyBind must be a panel object or string (input namespace, may be empty string)
 First argument to Schedule() must be a number as a delay in seconds
+FloatBitMap_t::LoadFromFloatBitmap: Received improper bitmap size, skipping!\n
 FlushConsoleInputBuffer
 Fm{#t
 Follow user preference
@@ -3057,7 +3058,6 @@ Heap32ListNext
 Heap32Next
 Hg>?S
 Hhr+g
-Hi_J
 Hide unless error/warning occurs
 Hofw
 Hold Instruction Call Issuer
@@ -3427,7 +3427,6 @@ NWzl\n\
 NXfT>o
 N[Ox
 N[iY 
-N\tV_isstrlower_fast
 N\v7e_
 N_U9203
 N`UaK
@@ -3472,6 +3471,7 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
+OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -3577,13 +3577,10 @@ P-224
 P-256
 P-384
 P-521
-P08@J@Q#
+P08@J
 P08J
-P08NP
 P1\t98"
-P2@Q#
 P5[1
-P60z=
 PAGN_4
 PARAMETERS
 PARSE_BAG
@@ -3781,7 +3778,6 @@ PSPECIFIED
 PUBLIC KEY
 PURH
 PUT 
-P\tV_isvalidhex
 PageDown
 PageLeft
 PagePanelDown
@@ -3813,7 +3809,7 @@ Panorama requires a full rendersystem, please check your launch options\n
 Panorama texture %s not already loaded/invalid.  Resource should have already loaded before this call.\n
 Panorama/AllowCustomGameUI
 PanoramaBasicQuad
-PanoramaBlurOutputTexture%dx%d
+PanoramaBlurOutputTexture%dx%d.vtex
 PanoramaContent
 PanoramaDebuggerHotkey
 PanoramaFancyQuad
@@ -3925,7 +3921,6 @@ RIPEMD160
 RM~]qY
 RO%s.
 RP;e!
-RPT 
 RSA Data Security, Inc.
 RSA Data Security, Inc. PKCS
 RSA PRIVATE KEY
@@ -4005,9 +4000,7 @@ RSA_verify
 RSA_verify_ASN1_OCTET_STRING
 RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
-R\fpd
 R\r1>Vp
-R\vpdO=
 R]Di
 R_T5Y
 Rbg.E
@@ -4532,8 +4525,7 @@ TXJw^{
 TYPE=
 TabBackward
 TabForward
-Temp1%dx%d
-Temp2%dx%d
+Temp%d%dx%d
 Text content inside of element is not permitted.
 TextEntryFocusChange(): Cleared for %s\n
 TextEntryFocusChange(): Set for %s\n
@@ -4926,7 +4918,7 @@ XRJ2
 XWY]
 XYD%
 X\tQo
-X`hrP
+X`hr0
 Xd3h
 XfJ7
 XjfR
@@ -5009,7 +5001,6 @@ Z~wl
 \f]ne3
 \fdhWTh
 \fiaR
-\fp\vPL
 \ful2
 \fy&3Gl
 \l:ArR
@@ -5025,7 +5016,6 @@ Z~wl
 \n%*sZone: %s, User: 
 \n%12s%s
 \n5a=Z
-\n7MJ
 \n:82H
 \nJS(%s:%d:%d)\n%s\n%s\n
 \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
@@ -5034,8 +5024,10 @@ Z~wl
 \n\t\t<xs:complexType name="%sType">\n\t\t\t<xs:complexContent>\n\t\t\t\t<xs:extension base="Internal_BaseType">\n\t\t\t\t\t<xs:annotation>\n\t\t\t\t\t\t<xs:documentation xml:lang="en">\n\t\t\t\t\t\t\t%s\n\t\t\t\t\t\t</xs:documentation>\n\t\t\t\t\t</xs:annotation>\n\t\t
 \n\t\t\t\t</xs:extension>\n\t\t\t</xs:complexContent>\n\t\t</xs:complexType>\n\t\t
 \n\t\t\t\t\t<xs:annotation><xs:documentation xml:lang="en">%s</xs:documentation></xs:annotation>\n\t\t\t\t
-\nbutt
+\n_V_StringAfterPrefixCaseSensitive
+\n_V_strcspn
 \nqYu
+\nround
 \ntM(ie-V
 \r!\r+\r-\r=\r?\rO\rU\ri\ry\r
 \r@h!Aq8
@@ -5064,11 +5056,11 @@ Z~wl
 \tHAI8xpH\f
 \tJm_9
 \tLa0+
+\tV_XMLEncode
+\tV_powd
 \tV_strtoi64
 \tV_strtoui64
 \t\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t_V_StringAfterPrefixCaseSensitive
-\t_V_strcspn
 \toRE
 \ttqE5
 \t}BzJ88
@@ -5104,7 +5096,6 @@ _wjb
 _xU`u
 _}eOk
 `28)fk
-`2pG 
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
 `:zQF
 `D$daM-l
@@ -5115,7 +5106,6 @@ _}eOk
 `VX:H
 `fPw.\vM
 `h9T~
-`htP
 `o_je
 `yNT
 a null shared library handle was used
@@ -5130,7 +5120,6 @@ a5<p
 a;Tg
 a@XZ
 aA0k
-aBvP
 aD/x
 aDSS
 aECDH
@@ -5385,7 +5374,6 @@ bad value
 bad version number
 bad write retry
 bad x509 filetype
-base
 base64 decode error
 base64 encoding
 basicConstraints
@@ -5489,6 +5477,7 @@ buffer
 buildingName
 burlywood
 businessCategory
+butt
 c2\f?C\t
 c2i_ASN1_BIT_STRING
 c2i_ASN1_INTEGER
@@ -6795,7 +6784,6 @@ horizontal-align
 hotpink
 houseIdentifier
 hover
-hpz@Q#
 hr_H
 hscroll
 hsv-transform
@@ -6805,6 +6793,7 @@ http://
 https
 https proxy request
 https://
+hu J
 hue-rotation
 hvL&
 h|gg
@@ -7349,7 +7338,10 @@ k_ECmdFreeCompositingLayer
 k_ECompositeLayer
 k_EDeletePanel
 k_EDrawBorder
+k_EDrawBoxShadow
 k_EDrawFilledRect
+k_EDrawOpacityBrush
+k_EDrawPanelBlur
 k_EDrawTextRegion
 k_EEndFrame
 k_EEndPaintBackground
@@ -7358,15 +7350,12 @@ k_ELoadRectangleIntoTexture
 k_ENestedCommandList
 k_EPerformWorldBlur
 k_EPopAnimationAndTransformContext
-k_EPopClipLayer
 k_EPopCompositingLayer
-k_EPopPanelContextInLayer
 k_EPushAnimationAndTransformContext
 k_EPushBlurPanels
-k_EPushClipLayer
 k_EPushCompositingLayer
-k_EPushPanelContextInLayer
 k_ERequestRenderCallback
+k_ESetClipRect
 k_EStartRootDrawing
 k_EWorldBlur
 ka`O
@@ -7630,7 +7619,6 @@ mOD:V
 mS'7
 mXRecord
 mZKB
-m\tV_powd
 m\ta=\ruWb
 m_AST
 m_bShuttingDown
@@ -8137,8 +8125,6 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
-p08@H^P
-p2@Q#
 p2{l
 p4Z3
 p5Z3
@@ -8212,14 +8198,13 @@ panorama::CFillBrush::AccessStopColors
 panorama::CFillBrush::GetFillColor
 panorama::CFillBrush::GetRadialGradientValues
 panorama::CFillBrush::GetStartAndEndPoints
-panorama::CSource2Surface::ApplyMippedGaussianBlur
 panorama::CSource2Surface::BlurLayer
 panorama::CSource2Surface::CacheMaterialInformation
 panorama::CSource2Surface::DrawBasicQuads
 panorama::CSource2Surface::DrawFancyQuad
 panorama::CStyleSymbol::CStyleSymbol
 panorama::CUIEngine::PanelDestroyed
-panorama::CUIEngine::UpdateVideoTextures(7562): 
+panorama::CUIEngine::UpdateVideoTextures(7593): 
 panorama::CUIPanel::AttachChild
 panorama::CUIPanel::DetachChild
 panorama::CUIPanel::~CUIPanel
@@ -8274,7 +8259,6 @@ pbeWithSHA1And40BitRC4
 pbeWithSHA1AndDES-CBC
 pbeWithSHA1AndRC2-CBC
 pcPathLengthConstraint
-pdO=
 peachpuff
 peer did not return a certificate
 peer does not accept heartbeats
@@ -8475,7 +8459,6 @@ rX&O0
 rZ1VwGf5
 rZPM
 r\vDi
-r\vpd
 radial
 radial( 
 radialGradient
@@ -8586,7 +8569,6 @@ rotate3d(
 rotatex
 rotatey
 rotatez
-round
 row-resize
 royalblue
 rsa not implemented
@@ -8640,10 +8622,6 @@ sV u\t
 s\tor
 saJ!
 saddlebrown
-safe-area-inset-bottom
-safe-area-inset-left
-safe-area-inset-right
-safe-area-inset-top
 safeContentsBag
 salmon
 salt
@@ -9547,6 +9525,7 @@ w+Ce
 w-g2
 w-resize
 w0A4k
+w8#w
 w8i_q
 w=Zk
 w?6r
@@ -9637,6 +9616,7 @@ xFKF
 xOu\vsF
 xQfF
 xUN'
+x\tV_isstrlower_fast
 x\v6V
 xg-9Ja
 xlink:href
@@ -9678,6 +9658,7 @@ z>Hz
 zF):O4
 zG2m8
 zRXU 
+z\tV_isvalidhex
 zlVO
 zlib compression
 zone

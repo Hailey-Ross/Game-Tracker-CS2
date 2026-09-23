@@ -90,8 +90,7 @@ var PopupAcceptMatch;
         elAvatar.FindChildTraverse('JsAvatarImage').PopulateFromSteamID(xuid);
         const elTeamColor = elAvatar.FindChildInLayoutFile('JsAvatarTeamColor');
         elTeamColor.visible = false;
-        const strName = FriendsListAPI.GetFriendName(xuid);
-        elAvatar.SetDialogVariable('teammate_name', strName);
+        elAvatar.SetDialogVariable('xuid', xuid);
     }
     function _AddOpenPlayerCardAction(elAvatar, xuid) {
         elAvatar.SetPanelEvent("onactivate", () => {
@@ -149,15 +148,6 @@ var PopupAcceptMatch;
             }
             m_jsTimerUpdateHandle = $.Schedule(1.0, _OnTimerUpdate);
         }
-    }
-    function _FriendsListNameChanged(xuid) {
-        if (!xuid)
-            return;
-        const elNameLabel = $.GetContextPanel().FindChildTraverse('xuid');
-        if (!elNameLabel)
-            return;
-        const strName = FriendsListAPI.GetFriendName(xuid);
-        elNameLabel.SetDialogVariable('teammate_name', strName);
     }
     function _ReadyForMatch(shouldShow, playersReadyCount, numTotalClientsInReservation) {
         if (!shouldShow) {
@@ -244,7 +234,6 @@ var PopupAcceptMatch;
         CancelTimerSound();
     }
     PopupAcceptMatch.ShowPreMatchInterface = ShowPreMatchInterface;
-    $.RegisterForUnhandledEvent('PanoramaComponent_FriendsList_NameChanged', _FriendsListNameChanged);
     $.RegisterForUnhandledEvent('PanoramaComponent_Lobby_ReadyUpForMatch', _ReadyForMatch);
     $.RegisterForUnhandledEvent('MatchAssistedAccept', OnAcceptMatchPressed);
     $.RegisterForUnhandledEvent('PanoramaComponent_Lobby_ShowPreMatchInterface', ShowPreMatchInterface);

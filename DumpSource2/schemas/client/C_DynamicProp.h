@@ -1,6 +1,7 @@
 // MEntityAllowsPortraitWorldSpawn
 class C_DynamicProp : public C_BreakableProp
 {
+	bool m_bGraphControllerEnabled;
 	bool m_bUseHitboxesForRenderBox;
 	bool m_bUseAnimGraph;
 	CEntityIOOutput m_pOutputAnimBegun;

@@ -14,13 +14,7 @@
     owner:     %llx\n
     rejected dedicated server '%s' due to ip filter '%s'\n
    View %s failed to allocate description!\n
- !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ 
- (08@HPX`j 
- (08@HPXb0
- (08@HPZ 
- (08@HR0
- (08@J0
- (0X`hpz0
+ !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$8
  :score average_contribution  :payloadformat {  payload0 {  :score mvp_awards :format int  :upload sum  }  payload1 {  :score rounds_played  :format int  :upload sum  }  payload2 {  :score total_contribution  :format int  :upload sum  }  payload3 {  :score kills  :format int  :upload sum  }  payload4 {  :score deaths  :format int  :upload sum  }  payload5 {  :score damage  :format int  :upload sum  }  } 
  :score kd_ratio  :payloadformat {  payload0 {  :score kills :format int  :upload sum  }  payload1 {  :score deaths  :format int  :upload sum  }  payload2 {  :score rounds_played  :format int  :upload sum  }  payload3 {  :score shots_fired  :format int  :upload sum  }  payload4 {  :score head_shots  :format int  :upload sum  }  payload5 {  :score shots_hit  :format int  :upload sum  }  } 
  :score num_rounds  :scoresum 1  :payloadformat {  payload0 {  :score time_played  :format uint64  :upload sum  }  payload1 {  :score time_played_ct  :format uint64  :upload sum  }  payload2 {  :score time_played_t  :format uint64  :upload sum  }  payload3 {  :score total_medals  :format int  :upload last  }  } 
@@ -62,6 +56,7 @@ $\n k_EGCMsgGetEmailTemplateResponse
 $\n k_EGCMsgWebAPIRegisterInterfaces
 $tIJobs/Coroutines
 %\n k_EGCMsgAccountPhoneNumberChange
+%\n k_EGCMsgAppCheersGetAllowedTypes
 %\n k_EGCMsgGCAccountVacStatusChange
 %\n!GCClientLauncherType_PERFECTWORLD
 %\n!k_ECommunityItemAttribute_Invalid
@@ -122,6 +117,7 @@ $tIJobs/Coroutines
 ,\n(k_ECommunityItemAttribute_StorePackageID
 ,ar_monastery
 ,sv_load_test
+-\n(k_EGCMsgAppCheersGetAllowedTypesResponse
 -\n\tAttribute
 .360
 .?AV<lambda_1>@?1???0CSysSessionBase@@IEAA@PEAVKeyValues@@@Z@
@@ -353,15 +349,12 @@ $tIJobs/Coroutines
 /\n+k_ECommunityItemAttribute_CommunityItemType
 0.0.0.0
 00000000
-08@HR 
-08@J0
-08B 
 0\n,GCConnectionStatus_NO_SESSION_IN_LOGON_QUEUE
 0\n,k_ECommunityItemAttribute_CommunityItemAppID
 18446744073709551615
 1\n,k_EGCMsgGetGamePersonalDataCategoriesRequest
 2\n-k_EGCMsgGetGamePersonalDataCategoriesResponse
-2\vp\8
+2\vp\M
 32:B\n
 3\n/k_ECommunityItemAttribute_ProfileModiferEnabled
 4Ccl_session
@@ -382,8 +375,7 @@ $tIJobs/Coroutines
 :upload
 <\n\ncategories
 >\n\tTypeCache
-@HPX`hv@
-@HVP
+@HPX`hv
 @\n\fSingleObject
 @workshop
 APPSYSTEM: In ConnectGameInterfaces(), s_nRegistrationCount is %d!\n
@@ -719,7 +711,6 @@ OnlineSearch::StartSearch failed to build filter list!\n
 OnlineSearch::StartSearchPass:\n
 Options/searchteamkey
 Options/server
-P08@J0
 P08J
 P\n\nattributes
 PartnerItemPaymentRule
@@ -729,7 +720,7 @@ PlayerManager::OnGameUsersChanged\n
 PredictionDiffManager001
 QueueConnect
 RP for %s\n
-R\fp\8
+R\fp\M
 Received %d search results.\n
 Received server_pre_shutdown notification - server is shutting down...\n
 Requested join data %.3f sec ago from xuid = %llx\n
@@ -826,7 +817,6 @@ WakeDependentJobFinished
 Work Item for Work Pool %s completed but job no longer existed to notify\n
 WorkshopDirectPaymentRule
 WorkshopItemPaymentRule
-X`hr 
 [MM] Joining session %llx, %d search results remaining...\n
 [MM] Server responded '%s', dist %d\n
 \\n\tlanguages
@@ -838,6 +828,7 @@ X`hr
 \n0CProductInfo_SetRichPresenceLocalization_Request
 \n1CCommunity_GetGamePersonalDataCategories_Response
 \n1CQuest_PublisherAddCommunityItemsToPlayer_Request
+\nPDB
 \n\fEGCSystemMsg
 \n\faccount_name
 \n\fcontributors
@@ -982,14 +973,9 @@ friends
 fullpostinit
 game/apr
 game/ark
-game/clanID
 game/clanid
-game/clanname
-game/clantag
 game/dlcrequired
 game/hosted
-game/jclanid
-game/jclantag
 game/jfriend
 game/loc
 game/map
@@ -1042,7 +1028,6 @@ host>client
 host_writeconfig_ss %d
 hostendgame
 hostinit
-hpz0
 imagename
 is_identifying
 item_description
@@ -1128,7 +1113,6 @@ one_per_account
 options/action
 options/anytypemode
 options/bypasslobby
-options/clanid
 options/conteammatch
 options/createreason
 options/dcFriendsRed
@@ -1166,7 +1150,7 @@ public_inventory
 public_profile
 queue_position
 quickmatch
-r\vp\8
+r\vp\M
 random
 ratelimit
 ready
@@ -1187,6 +1171,7 @@ round_start
 rtime32_gc_welcome_timestamp
 rule_description
 runxuid
+rush
 school_account
 scrimcomp2v2
 scrimcomp5v5

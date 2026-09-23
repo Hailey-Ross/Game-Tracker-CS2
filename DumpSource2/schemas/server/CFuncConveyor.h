@@ -9,5 +9,6 @@ class CFuncConveyor : public CBaseModelEntity
 	GameTick_t m_nTransitionStartTick;
 	int32 m_nTransitionDurationTicks;
 	float32 m_flTransitionStartSpeed;
+	float32 m_flFrictionScale;
 	CNetworkUtlVectorBase< CHandle< CBaseEntity > > m_hConveyorModels;
 };

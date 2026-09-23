@@ -44,6 +44,15 @@
 //			"m_bAllowMultipleOutConnections": false
 //		}
 //	],
+//	"m_pDefaultVariationData":
+//	{
+//		"_class": "CNmGraphDocTargetSelectorNode::CData",
+//		"m_strAlignmentBoneName": ""
+//	},
+//	"m_overrides":
+//	[
+//	],
+//	"m_defaultResourceName": "",
 //	"m_optionLabels":
 //	[
 //		"Option",
@@ -54,7 +63,7 @@
 //	"m_bIsWorldSpaceTarget": true,
 //	"m_bIgnoreInvalidOptions": false
 //}
-class CNmGraphDocTargetSelectorNode : public CNmGraphDocFlowNode
+class CNmGraphDocTargetSelectorNode : public CNmGraphDocVariationDataNode
 {
 	// MPropertyAutoExpandSelf
 	// MPropertyResizable (UNKNOWN FOR PARSER)

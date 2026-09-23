@@ -1,3 +1,0 @@
-class CCSPlayerPawnBase_API
-{
-};

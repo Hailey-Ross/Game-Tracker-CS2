@@ -64,8 +64,6 @@
 //		"m_flBlendTimeSeconds": 0.000000,
 //		"m_chainWeights":
 //		[
-//			1.000000,
-//			1.000000
 //		]
 //	},
 //	"m_overrides":

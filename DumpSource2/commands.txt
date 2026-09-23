@@ -968,6 +968,9 @@ crash_job (cheat)
 crash_thread (cheat)
 	Cause the engine to crash in a brand new non-main thread (Debug!!)
 
+create_explosion_damage (gamedll cheat)
+	Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
+
 create_radius_damage (gamedll cheat)
 	Causes radius damage where you're looking, at the passed in radius.
 
@@ -1243,11 +1246,19 @@ ent_find_index (gamedll cheat)
 
 ent_fire (gamedll cheat vconsole_fuzzy_matching)
 	Usage:
-	   ent_fire <target> [action] [value] [delay]
+	   ent_fire <target> [action] [value0] [value1] ... [valueN]
+
+ent_fire_delay (gamedll cheat vconsole_fuzzy_matching)
+	Usage:
+	   ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay]
 
 ent_fire_output (gamedll cheat vconsole_fuzzy_matching)
 	Usage:
-	   ent_fire_output <target> [output name] [value] [delay]
+	   ent_fire_output <target> [output name] [value0] [value1] ... [valueN]
+
+ent_fire_output_delay (gamedll cheat vconsole_fuzzy_matching)
+	Usage:
+	   ent_fire_output_delay <target> [output name] [value0] [value1] ... [valueN] [delay]
 
 ent_gib (gamedll cheat)
 	Gibs the given entity(s)
@@ -1480,9 +1491,6 @@ force_fatal_error (developmentonly)
 force_floating_point_exceptions (developmentonly)
 	Enable floating point exceptions to find bugs
 
-force_hibernate (developmentonly)
-	Force toggle hibernation state
-
 fs_clear_open_duplicate_times (developmentonly defensive)
 	Clear the list of files that have been opened.
 
@@ -1493,6 +1501,9 @@ func_mover_count (gamedll cheat)
 	<no description>
 
 func_mover_enable_debug_all (gamedll cheat)
+	<no description>
+
+func_mover_step_movement (gamedll cheat)
 	<no description>
 
 game_alias (release)
@@ -2201,7 +2212,7 @@ panorama_print_svg_stats (developmentonly)
 	<no description>
 
 particle_test_create (gamedll cheat)
-	Creates the named particle system where the player is looking.
+	Creates the named particle system where the player is looking.  Can be used on an entity if pointed at the entity.  Optionally takes a particle config name.
 	Arguments:   	{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 
 particle_test_destroy (gamedll cheat)
@@ -2701,6 +2712,9 @@ servervoice_clear (developmentonly clientdll defensive)
 servervoice_dump (developmentonly clientdll defensive)
 	servervoice_dump
 
+set_server_cvar (developmentonly clientdll)
+	Change a server convar if allowed
+
 setang (gamedll cheat client_can_execute)
 	Snap player eyes to specified pitch yaw <roll:optional> (must have sv_cheats).
 
@@ -3085,6 +3099,9 @@ soundscape_flush (developmentonly gamedll defensive)
 
 soundsysteminfo (developmentonly defensive)
 	Describe the current sound device without an active voice list.
+
+spawnBrokenGlass (developmentonly gamedll cheat)
+	<no description>
 
 spawnCashStack (developmentonly gamedll cheat)
 	<no description>

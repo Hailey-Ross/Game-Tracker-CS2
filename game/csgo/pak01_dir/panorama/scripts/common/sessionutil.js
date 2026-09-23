@@ -12,6 +12,8 @@ var SessionUtil;
                 return 2;
             case "retakes":
                 return 4;
+            case "rush":
+                return 3;
             default:
                 return 5;
         }
@@ -35,4 +37,12 @@ var SessionUtil;
         return 10;
     }
     SessionUtil.GetNumWinsNeededForRank = GetNumWinsNeededForRank;
+    function BCanUseMyPetInCurrentLobby() {
+        if (PartyListAPI.GetCount() <= 1)
+            return true;
+        if (LobbyAPI.GetHostSteamID() === MyPersonaAPI.GetXuid())
+            return true;
+        return false;
+    }
+    SessionUtil.BCanUseMyPetInCurrentLobby = BCanUseMyPetInCurrentLobby;
 })(SessionUtil || (SessionUtil = {}));

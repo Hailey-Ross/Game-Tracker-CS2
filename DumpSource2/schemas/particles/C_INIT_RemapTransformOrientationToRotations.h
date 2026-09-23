@@ -73,7 +73,8 @@
 //				0.000000,
 //				0.000000
 //			]
-//		}
+//		},
+//		"m_flCompareValue": 0.000000
 //	},
 //	"m_nOpEndCapState": "PARTICLE_ENDCAP_ALWAYS_ON",
 //	"m_nToolsState": "PARTICLE_TOOLS_STATE_ALWAYS_ON",
@@ -114,11 +115,11 @@
 //}
 class C_INIT_RemapTransformOrientationToRotations : public CParticleFunctionInitializer
 {
-	// MPropertyFriendlyName = "transform input"
+	// MPropertyFriendlyName = "Transform input"
 	CParticleTransformInput m_TransformInput;
-	// MPropertyFriendlyName = "offset pitch/yaw/roll"
+	// MPropertyFriendlyName = "Offset pitch/yaw/roll"
 	Vector m_vecRotation;
-	// MPropertyFriendlyName = "Use Quaternians Internally"
+	// MPropertyFriendlyName = "Use quaternions internally"
 	bool m_bUseQuat;
 	// MPropertyFriendlyName = "Write normal instead of rotation"
 	bool m_bWriteNormal;

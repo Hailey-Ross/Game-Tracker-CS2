@@ -1,3 +1,4 @@
+// MEntityAllowsPortraitWorldSpawn
 class CGradientFog : public CBaseEntity
 {
 	CStrongHandle< InfoForResourceTypeCTextureBase > m_hGradientFogTexture;

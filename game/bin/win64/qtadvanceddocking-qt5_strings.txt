@@ -965,6 +965,7 @@ SideBarRight
 SideBarTop
 Sizes
 Splitter
+State
 TabIndex
 Tabs
 Title

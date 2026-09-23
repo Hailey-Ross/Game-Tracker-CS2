@@ -587,6 +587,7 @@ SetStackTranslationSymbolSearchPath
 SetThreadContext
 SetThreadpoolTimer
 SetThreadpoolWait
+SetupWin32ConsoleIO
 Shadow_Rendering
 ShouldUseNewAssertDialog
 ShutdownPME

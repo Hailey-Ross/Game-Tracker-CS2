@@ -1,3 +1,0 @@
-class CMapVetoPickController_API
-{
-};

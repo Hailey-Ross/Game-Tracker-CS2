@@ -1,3 +1,0 @@
-class CGameMoney_API
-{
-};

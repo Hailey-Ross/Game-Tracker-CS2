@@ -20,6 +20,7 @@ var MainMenu;
     const _m_elContentPanel = $('#JsMainMenuContent');
     let _m_playedInitalFadeUp = false;
     const _m_maxMainMenuDisplayAgents = 5;
+    let _m_nPetUpgradeLevel = null;
     const _m_elNotificationsContainer = $('#id-notifications-container');
     let _m_notificationSchedule = false;
     let _m_bVanityAnimationAlreadyStarted = false;
@@ -45,14 +46,12 @@ var MainMenu;
     let _m_bTriedShowVideoSettingRecommendation = false;
     const _m_acknowledgedRentalExpirationCrateIds = new Set();
     let _m_bPreLoadedTabs = false;
-    function _msg(text, ...args) {
-    }
     function UpdateSettingsMenuAlert() {
         let elNewSettingsAlert = $("#MainMenuSettingsAlert");
         if (elNewSettingsAlert) {
             let nNewSettings = PromotedSettingsUtil.GetUnacknowledgedPromotedSettings().length;
-            elNewSettingsAlert.SetHasClass("has-new-settings", nNewSettings > 0);
-            elNewSettingsAlert.SetDialogVariable("num_settings", nNewSettings.toString());
+            elNewSettingsAlert.SetDialogVariable("alert_value", $.Localize("#Store_Price_New"));
+            elNewSettingsAlert.SetHasClass('hidden', nNewSettings < 1);
             return nNewSettings;
         }
         return 0;
@@ -86,7 +85,6 @@ var MainMenu;
         $.RegisterEventHandler('PropertyTransitionEnd', elLeftColumn, fnOnPropertyTransitionEndEvent);
     }
     function _FetchTournamentData() {
-        _msg("---- fetching tournament data");
         if (_m_jobFetchTournamentData)
             return;
         TournamentsAPI.RequestTournaments();
@@ -104,7 +102,6 @@ var MainMenu;
     function _UpdateBackgroundMap() {
         let savedMapName = GameInterfaceAPI.GetSettingString('ui_mainmenu_bkgnd_movie');
         let backgroundMap = !savedMapName ? 'de_dust2_vanity' : savedMapName + '_vanity';
-        _msg('backgroundMap: ' + backgroundMap);
         let elMapPanel = $('#JsMainmenu_Vanity');
         if (!(elMapPanel && elMapPanel.IsValid())) {
             elMapPanel = $.CreatePanel('MapVanityPreviewPanel', $('#JsMainmenu_Vanity-Container'), 'JsMainmenu_Vanity', {
@@ -132,6 +129,7 @@ var MainMenu;
             elMapPanel.SwitchMap(backgroundMap);
             elMapPanel.Data().loadedMap = backgroundMap;
             m_bRestartBackgroundMapSound = true;
+            _ResetPetZoom();
         }
         if (m_bRestartBackgroundMapSound) {
             $.Schedule(0.1, function () {
@@ -146,6 +144,8 @@ var MainMenu;
         InspectModelImage.DisableItemLighting(elMapPanel);
         _SetCSMSplitPlane0DistanceOverride(elMapPanel, backgroundMap);
         _SetBarnlightShadowScaleOverride(elMapPanel, backgroundMap);
+        _ShowLeaderPet(elMapPanel);
+        _SetPetInteractionEnabled(elMapPanel, true);
         return elMapPanel;
     }
     function _SetCSMSplitPlane0DistanceOverride(elPanel, backgroundMap) {
@@ -203,6 +203,49 @@ var MainMenu;
         }
         m_backgroundMapSoundHandle = UiToolkitAPI.PlaySoundEvent(soundName);
     }
+    function _ShowLeaderPet(elMapPanel) {
+        const leaderPetItemId = elMapPanel.GetLeaderPetItemId();
+        if (!VanityPetInfo.BShouldKeepZoom(leaderPetItemId)) {
+            _ResetPetZoom();
+        }
+        if (leaderPetItemId === '0') {
+            _HidePetEntities(elMapPanel);
+        }
+        else {
+            _ShowPetEntities(elMapPanel, leaderPetItemId);
+        }
+    }
+    function _HidePetEntities(elPanel) {
+        elPanel.FireEntityInput('nest', 'Disable');
+        _m_nPetUpgradeLevel = null;
+        UpdatePetInfoPanel(elPanel, '0');
+    }
+    function _ShowPetEntities(elPanel, petItemId) {
+        elPanel.FireEntityInput('nest', 'Disable');
+        _m_nPetUpgradeLevel = Number(InventoryAPI.GetItemAttributeValue(petItemId, '{uint32}upgrade level'));
+        UpdatePetInfoPanel(elPanel, petItemId);
+        const bPetCanWalkAround = (_m_nPetUpgradeLevel && (_m_nPetUpgradeLevel > 0));
+        if (!bPetCanWalkAround)
+            elPanel.FireEntityInput('nest', 'Enable');
+    }
+    function UpdatePetInfoPanel(elMapPanel, petItemId) {
+        let elParent = $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo');
+        let elInfoPanel = VanityPetInfo.CreateOrUpdatePetInfoPanel(elParent, petItemId);
+        if (elInfoPanel) {
+            VanityPetInfo.SetZoomBtns(elMapPanel, elInfoPanel, petItemId);
+            $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityParent').AddBlurPanel(elInfoPanel.FindChildInLayoutFile('vanity-pet-actions'));
+            $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityParent').AddBlurPanel(elInfoPanel.FindChildInLayoutFile('id-pet-milestone-egg'));
+            $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityParent').AddBlurPanel(elInfoPanel.FindChildInLayoutFile('id-pet-milestone-chick'));
+            $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityParent').AddBlurPanel(elInfoPanel.FindChildInLayoutFile('id-pet-milestone-pullet'));
+            $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityParent').AddBlurPanel(elInfoPanel.FindChildInLayoutFile('id-pet-milestone-hen'));
+        }
+    }
+    function _ResetPetZoom() {
+        const vanityPanel = $('#JsMainmenu_Vanity');
+        if (vanityPanel && vanityPanel.IsValid()) {
+            VanityPetInfo.ResetPetZoom(vanityPanel);
+        }
+    }
     function _RegisterOnShowEvents() {
         NewNewsEntryCheck.RegisterForRssReceivedEvent();
         if (!_m_LobbyMatchmakingSessionUpdateEventHandler && !GameStateAPI.IsLocalPlayerPlayingMatch()) {
@@ -220,6 +263,7 @@ var MainMenu;
     }
     function _OnShowMainMenu() {
         $.DispatchEvent('PlayMainMenuMusic', true, true);
+        GameInterfaceAPI.ResetChickenAudio();
         m_bRestartBackgroundMapSound = true;
         _RegisterOnShowEvents();
         _m_bVanityAnimationAlreadyStarted = false;
@@ -325,7 +369,6 @@ var MainMenu;
         ++_m_numGameMustExitNowForAntiAddictionHandled;
         _m_panelGameMustExitDialog =
             UiToolkitAPI.ShowGenericPopupOneOptionBgStyle("#GameUI_QuitConfirmationTitle", "#UI_AntiAddiction_ExitGameNowMessage", "", "#GameUI_Quit", () => GameInterfaceAPI.ConsoleCommand("quit"), "dim");
-        _msg("JS: Game Must Exit Now Dialog Displayed: " + _m_panelGameMustExitDialog);
     }
     function _OnGcLogonNotificationReceived_ShowLicenseYesNoBox(strTextMessage, pszOverlayUrlToOpen) {
         UiToolkitAPI.ShowGenericPopupTwoOptionsBgStyle("#CSGO_Purchasable_Game_License_Short", strTextMessage, "", "#UI_Yes", () => SteamOverlayAPI.OpenURL(pszOverlayUrlToOpen), "#UI_No", () => { }, "dim");
@@ -336,7 +379,6 @@ var MainMenu;
         _GcLogonNotificationReceived();
     }
     function _OnHideMainMenu() {
-        _msg("Hide main menu");
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (vanityPanel) {
             CharacterAnims.CancelScheduledAnim(vanityPanel);
@@ -347,6 +389,9 @@ var MainMenu;
         _UnregisterShowEvents();
         UiToolkitAPI.CloseAllVisiblePopups();
         _StopFetchingTournamentData();
+        if (vanityPanel) {
+            _SetPetInteractionEnabled(vanityPanel, false);
+        }
     }
     function _UnregisterShowEvents() {
         NewNewsEntryCheck.UnRegisterForRssReceivedEvent();
@@ -472,7 +517,6 @@ var MainMenu;
             if (setActiveSection !== '') {
                 newPanel.SetAttributeString('set-active-section', setActiveSection);
             }
-            _msg('Created Panel with id: ' + newPanel.id);
             newPanel.BLoadLayout('file://{resources}/layout/' + XmlName + '.xml', false, false);
             newPanel.SetReadyForDisplay(false);
             newPanel.RegisterForReadyEvents(true);
@@ -481,7 +525,6 @@ var MainMenu;
                     if (newPanel.visible === true && newPanel.BIsTransparent()) {
                         newPanel.SetReadyForDisplay(false);
                         newPanel.visible = false;
-                        _msg('HidePanel: ' + newPanel.id);
                         return true;
                     }
                     else if (newPanel.visible === true) {
@@ -495,7 +538,6 @@ var MainMenu;
         }
     }
     function NavigateToTab(tab, XmlName, setActiveSection = '') {
-        _msg('tabToShow: ' + tab + ' XmlName = ' + XmlName);
         if (!_BCheckTabCanBeOpenedRightNow(tab)) {
             OnHomeButtonPressed();
             return;
@@ -535,11 +577,13 @@ var MainMenu;
             activePanel.RemoveClass('mainmenu-content--hidden');
             activePanel.visible = true;
             activePanel.SetReadyForDisplay(true);
-            _msg('ShowPanel: ' + _m_activeTab);
         }
         _ShowContentPanel();
     }
     MainMenu.NavigateToTab = NavigateToTab;
+    function _UpdateChickenAudioForContentPanel(bContentPanelOpen) {
+        GameInterfaceAPI.SetChickenAudioSuppressed('mainmenu_content', bContentPanelOpen);
+    }
     function _ShowContentPanel() {
         if (_m_elContentPanel.BHasClass('mainmenu-content--offscreen')) {
             _m_elContentPanel.AddClass('mainmenu-content--animate');
@@ -547,6 +591,7 @@ var MainMenu;
             _m_elContentPanel.SetFocus();
         }
         $.GetContextPanel().AddClass("mainmenu-content--open");
+        _UpdateChickenAudioForContentPanel(true);
         $.DispatchEvent('ShowContentPanel');
         _DimMainMenuBackground(false);
         _HideFloatingPanels();
@@ -555,6 +600,7 @@ var MainMenu;
         _m_elContentPanel.AddClass('mainmenu-content--animate');
         _m_elContentPanel.AddClass('mainmenu-content--offscreen');
         $.GetContextPanel().RemoveClass("mainmenu-content--open");
+        _UpdateChickenAudioForContentPanel(false);
         const elActiveNavBarBtn = _GetActiveNavBarButton();
         if (elActiveNavBarBtn && elActiveNavBarBtn.id !== 'MainMenuNavBarHome') {
             elActiveNavBarBtn.checked = false;
@@ -569,11 +615,9 @@ var MainMenu;
         _ShowFloatingPanels();
     }
     function _OnShowFullScreenOpaquePopup() {
-        _msg("_OnShowFullScreenOpaquePopup");
         $('#MainMenuInput').SetHasClass('HiddenByPopup', true);
     }
     function _OnCloseAllFullScreenOpaquePopups() {
-        _msg("_OnCloseAllFullScreenOpaquePopups");
         $('#MainMenuInput').SetHasClass('HiddenByPopup', false);
     }
     function _GetActiveNavBarButton() {
@@ -639,6 +683,7 @@ var MainMenu;
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (vanityPanel && vanityPanel.IsValid()) {
             vanityPanel.Pause();
+            _ResetPetZoom();
         }
         $('#MainMenuNavBarHome').checked = true;
         _CheckRankUpRedemptionStore();
@@ -739,23 +784,19 @@ var MainMenu;
         }
         _m_bVanityAnimationAlreadyStarted = false;
         _InitVanity();
-        _msg('_ForceRestartVanity');
     }
     let m_aDisplayLobbyVanityData = [];
     function _InitVanity() {
         if (MatchStatsAPI.GetUiExperienceType()) {
             return;
         }
-        _msg("_InitVanity: called");
         if (!MyPersonaAPI.IsInventoryValid()) {
-            _msg("_InitVanity: inventory not valid yet");
             if (MyPersonaAPI.GetClientLogonFatalError()) {
                 _ShowVanity();
             }
             return;
         }
         if (_m_bVanityAnimationAlreadyStarted) {
-            _msg("_InitVanity: vanity animation already started, not restarting");
             return;
         }
         _ShowVanity();
@@ -763,10 +804,8 @@ var MainMenu;
     function _ShowVanity() {
         const vanityPanel = $('#JsMainmenu_Vanity');
         if (!vanityPanel) {
-            _msg("_InitVanity: failed to find panel 'JsMainmenu_Vanity'");
             return;
         }
-        _msg("_InitVanity: kicking off character animation");
         _m_bVanityAnimationAlreadyStarted = true;
         if (vanityPanel.BHasClass('hidden')) {
             vanityPanel.RemoveClass('hidden');
@@ -789,13 +828,25 @@ var MainMenu;
         _CreateUpdateVanityInfo(oSettings);
     }
     function _ApplyVanitySettingsToLobbyMetadata(oSettings) {
-        PartyListAPI.SetLocalPlayerVanityPresence(oSettings.team, oSettings.charItemId, oSettings.glovesItemId, oSettings.loadoutSlot, oSettings.weaponItemId);
+        PartyListAPI.SetLocalPlayerVanityPresence(oSettings.team, oSettings.charItemId, oSettings.glovesItemId, oSettings.loadoutSlot, oSettings.weaponItemId, oSettings.petItemId);
     }
     function _UpdatePlayerVanityModel(oSettings) {
         const vanityPanel = _UpdateBackgroundMap();
         vanityPanel.SetActiveCharacter(oSettings.playeridx);
         oSettings.panel = vanityPanel;
-        _msg("_InitVanity: successfully parsed vanity info: " + oSettings);
+        if (!!oSettings.petItemId && Number(oSettings.petItemId) != 0) {
+            if (oSettings.playeridx === 0) {
+                _ShowPetEntities(vanityPanel, oSettings.petItemId);
+                vanityPanel.SetPetPlacement('main-menu-foreground');
+            }
+            else
+                vanityPanel.SetPetPlacement('main-menu-background');
+        }
+        else {
+            if (oSettings.playeridx === 0)
+                _HidePetEntities(vanityPanel);
+            vanityPanel.SetPetPlacement('none');
+        }
         CharacterAnims.PlayAnimsOnPanel(oSettings);
     }
     function _CreateUpdateVanityInfo(oSettings) {
@@ -842,8 +893,6 @@ var MainMenu;
                     vanity_data: PartyListAPI.GetPartyMemberVanity(xuid)
                 });
             }
-            _msg('NEW LOBBY_DATA' + JSON.stringify(aCurrentLobbyVanityData));
-            _msg('OLD DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
             _CompareLobbyPlayers(aCurrentLobbyVanityData);
         }
         else {
@@ -884,18 +933,15 @@ var MainMenu;
                 delete m_aDisplayLobbyVanityData[i];
             }
         }
-        _msg('NEW DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
     }
     function _ClearLobbyPlayers() {
         for (let i = 0; i < m_aDisplayLobbyVanityData.length; ++i) {
             _ClearLobbyVanityModel(i);
         }
-        _msg('DELETED DISPLAY_DATA' + JSON.stringify(m_aDisplayLobbyVanityData));
         m_aDisplayLobbyVanityData = [];
     }
     function _ClearLobbyVanityModel(index) {
         VanityPlayerInfo.DeleteVanityInfoPanel($.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo'), index);
-        _msg('CLEAR VANITY MODEL INDEX: ' + index);
         $('#JsMainmenu_Vanity').SetActiveCharacter(index);
         $('#JsMainmenu_Vanity').RemoveCharacterModel();
     }
@@ -908,6 +954,7 @@ var MainMenu;
             glovesItemId: arrVanityInfo[2],
             loadoutSlot: arrVanityInfo[3],
             weaponItemId: arrVanityInfo[4],
+            petItemId: arrVanityInfo[5],
             playeridx: index
         };
         _UpdatePlayerVanityModel(oSettings);
@@ -925,9 +972,22 @@ var MainMenu;
             const elVanityPlayerInfoParent = $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo');
             for (let i = 0; i < _m_maxMainMenuDisplayAgents; i++) {
                 if (elVanityPanel.SetActiveCharacter(i) === true) {
-                    const oPanelPos = elVanityPanel.GetBonePositionInPanelSpace('pelvis');
+                    const oPanelPos = elVanityPanel.GetBonePositionInPanelSpace((i === 0) ? 'pelvis' : 'head_0');
                     oPanelPos.y -= 0.0;
                     VanityPlayerInfo.SetVanityInfoPanelPos(elVanityPlayerInfoParent, i, oPanelPos, "id-player-vanity-info-" + i);
+                    if (i === 0) {
+                        let oPetPanelPos;
+                        if (_m_nPetUpgradeLevel === 0) {
+                            oPetPanelPos = elVanityPanel.GetPetBonePositionInPanelSpace('egg');
+                            oPetPanelPos.y -= 0.0;
+                            VanityPetInfo.SetVanityPetInfoPos(elVanityPlayerInfoParent, oPetPanelPos);
+                        }
+                        else if (_m_nPetUpgradeLevel && _m_nPetUpgradeLevel > 0) {
+                            oPetPanelPos = elVanityPanel.GetPetBonePositionInPanelSpace('root_motion');
+                            oPetPanelPos.y -= 0.0;
+                            VanityPetInfo.SetVanityPetInfoPos(elVanityPlayerInfoParent, oPetPanelPos);
+                        }
+                    }
                 }
             }
         }
@@ -1009,13 +1069,13 @@ var MainMenu;
     }
     MainMenu.OnEscapeKeyPressed = OnEscapeKeyPressed;
     function _InventoryUpdated() {
+        _UpdatePetNotification();
         _ForceRestartVanity();
         if (GameStateAPI.IsLocalPlayerPlayingMatch()) {
             return;
         }
         _UpdateInventoryBtnAlert();
         _UpdateStoreAlert();
-        _msg('__InventoryUpdated');
     }
     function _CheckRankUpRedemptionStore() {
         if (_m_bHasPopupNotification)
@@ -1035,12 +1095,12 @@ var MainMenu;
         if (prevClientGenTime != genTime && balance > 0) {
             _m_bHasPopupNotification = true;
             const RankUpRedemptionStoreClosedCallbackHandle = UiToolkitAPI.RegisterJSCallback(_OnRankUpRedemptionStoreClosed);
-            UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_rankup_redemption_store.xml', 'callback=' + RankUpRedemptionStoreClosedCallbackHandle);
+            let elPopupPanel = UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_rankup_redemption_store.xml', 'callback=' + RankUpRedemptionStoreClosedCallbackHandle);
+            elPopupPanel.Data().elMainMenu = $.GetContextPanel();
         }
     }
     function _OnRankUpRedemptionStoreClosed() {
         _m_bHasPopupNotification = false;
-        _msg('_OnRankUpRedemptionStoreClosed');
     }
     function _UpdateInventoryBtnAlert() {
         const aNewItems = AcknowledgeItems.GetItems();
@@ -1086,7 +1146,6 @@ var MainMenu;
             UiToolkitAPI.UnregisterJSCallback(JsInspectCallback);
             JsInspectCallback = -1;
         }
-        _msg('params: ' + params);
         const ParamsList = params.split(',');
         const caseId = ParamsList[0];
         const lootlistNameOverride = ParamsList[3] && ParamsList[3] !== '' ? ParamsList[3] : 'false';
@@ -1146,6 +1205,78 @@ var MainMenu;
     function _AcknowledgeMsgNotificationsCallback() {
         MyPersonaAPI.ActionAcknowledgeNotifications();
         _m_bHasPopupNotification = false;
+    }
+    let _m_petEventCache = null;
+    function GetPetPopupNotification() {
+        if (_m_bHasPopupNotification)
+            return null;
+        if (GameStateAPI.IsLocalPlayerPlayingMatch())
+            return null;
+        if (!$('#MainMenuNavBarHome').checked)
+            return null;
+        if (!MyPersonaAPI.IsConnectedToGC() || !MyPersonaAPI.IsInventoryValid())
+            return null;
+        const petItemId = InventoryAPI.GetPetItemID();
+        if (!petItemId && !_m_petEventCache)
+            return null;
+        let nUpgradeLevelDetected = 0;
+        if (petItemId) {
+            const nUpgradeLevel = Number(InventoryAPI.GetItemAttributeValue(petItemId, '{uint32}upgrade level'));
+            if (!_m_petEventCache || petItemId !== _m_petEventCache.petItemId) {
+                _m_petEventCache = {
+                    petItemId: petItemId,
+                    nLastKnownUpgradeLevel: nUpgradeLevel,
+                    strExpiryReason: '',
+                };
+            }
+            const strExpectExpiry = InventoryAPI.TryAckPetEventAndCheckExpiration(petItemId);
+            if (strExpectExpiry) {
+                _m_petEventCache.strExpiryReason = strExpectExpiry;
+            }
+            else if (nUpgradeLevel > _m_petEventCache.nLastKnownUpgradeLevel) {
+                nUpgradeLevelDetected = nUpgradeLevel;
+            }
+        }
+        if (_m_petEventCache && _m_petEventCache.strExpiryReason) {
+            if (!petItemId) {
+                const ackExpPetItemId = _m_petEventCache.petItemId;
+                const savedPetId = InventoryAPI.RestorePetItemData();
+                return {
+                    title: "#pet_expired_notification_title",
+                    msg: "#pet_expired_notification_msg",
+                    color_class: "NotificationYellow",
+                    callback: () => {
+                        _m_bHasPopupNotification = false;
+                        if (_m_petEventCache && _m_petEventCache.petItemId === ackExpPetItemId)
+                            _m_petEventCache = null;
+                    },
+                    html: false,
+                    rental_id: "",
+                    pet_id: savedPetId + ',' + _m_petEventCache.strExpiryReason,
+                    ack_exp_pet_id: ackExpPetItemId
+                };
+            }
+            else
+                return null;
+        }
+        if (petItemId && (nUpgradeLevelDetected > 0)) {
+            const savedPetId = InventoryAPI.RestorePetItemData();
+            return {
+                title: "#pet_upgrade_notification_title",
+                msg: "#pet_upgrade_notification_msg",
+                color_class: "NotificationGreen",
+                callback: () => {
+                    _m_bHasPopupNotification = false;
+                    if (_m_petEventCache && _m_petEventCache.petItemId === petItemId
+                        && nUpgradeLevelDetected > _m_petEventCache.nLastKnownUpgradeLevel)
+                        _m_petEventCache.nLastKnownUpgradeLevel = nUpgradeLevelDetected;
+                },
+                html: false,
+                rental_id: "",
+                pet_id: petItemId + ',' + savedPetId,
+            };
+        }
+        return null;
     }
     let _m_bCheckHasLowAvailableVirtualMemory = true;
     let _m_bCheckHasInsufficientPagefile = true;
@@ -1248,6 +1379,16 @@ var MainMenu;
         }
     }
     function PopUpPetNotification(popupNotification) {
+        if (popupNotification != null && popupNotification.pet_id) {
+            _m_bHasPopupNotification = true;
+            const OnClosePetEventNotification = UiToolkitAPI.RegisterJSCallback(popupNotification.callback);
+            let Panel = UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_pet_event.xml', 'action-type=expire'
+                + '&' + 'title=' + popupNotification.title
+                + '&' + 'msg=' + popupNotification.msg
+                + '&' + 'pet_id=' + popupNotification.pet_id
+                + '&' + 'callback=' + OnClosePetEventNotification
+                + '&' + 'ack_exp_pet_id=' + popupNotification.ack_exp_pet_id);
+        }
     }
     function _GetNotificationBarData() {
         let aAlerts = [];
@@ -1410,9 +1551,19 @@ var MainMenu;
         });
     }
     function _UpdateNotifications() {
-        _msg('_UpdateNotifications');
         if (_m_notificationSchedule == false) {
             _LoopUpdateNotifications();
+        }
+    }
+    function _UpdatePetNotification() {
+        if (GameStateAPI.IsLocalPlayerPlayingMatch())
+            return;
+        const elPopups = $('#PopupManager');
+        if (elPopups && elPopups.BHasClass('HaveActivePopups'))
+            return;
+        const petNotification = GetPetPopupNotification();
+        if (petNotification) {
+            PopUpPetNotification(petNotification);
         }
     }
     function _LoopUpdateNotifications() {
@@ -1422,6 +1573,7 @@ var MainMenu;
         if (REDEMPTION_ENABLED) {
             _CheckRankUpRedemptionStore();
         }
+        _UpdatePetNotification();
         _m_notificationSchedule = $.Schedule(1, _LoopUpdateNotifications);
     }
     let _m_acknowledgePopupHandler = null;
@@ -1534,6 +1686,14 @@ var MainMenu;
             '&' + 'team=' + team, () => { });
         elVanityContextMenu.AddClass("ContextMenu_NoArrow");
     }
+    function _OnChangeClanTagPressed() {
+        if (!MyPersonaAPI.IsInventoryValid() || !MyPersonaAPI.IsConnectedToGC()) {
+            UiToolkitAPI.ShowGenericPopupOk($.Localize('#SFUI_SteamConnectionErrorTitle'), $.Localize('#SFUI_Steam_Error_LinkUnexpected'), '', () => { });
+            return;
+        }
+        const elClanTagContextMenu = UiToolkitAPI.ShowCustomLayoutContextMenuParametersDismissEvent('id-vanity-contextmenu-clanchange', '', 'file://{resources}/layout/context_menus/context_menu_clan_tags.xml', '', () => { });
+        elClanTagContextMenu.AddClass("ContextMenu_NoArrow");
+    }
     function _CheckConnection() {
         if (!MyPersonaAPI.IsConnectedToGC()) {
             if (!_BCheckTabCanBeOpenedRightNow(_m_activeTab)) {
@@ -1618,6 +1778,11 @@ var MainMenu;
     function _MainInitBackgroundMovie() {
         _UpdateBackgroundMap();
     }
+    function _SetPetInteractionEnabled(mapPanel, bEnabled) {
+        mapPanel.hittest = bEnabled;
+        mapPanel.SetAcceptsInput(bEnabled);
+        mapPanel.SetMapEntitiesCanReceiveInput(bEnabled);
+    }
     {
         $.LogChannel("p.mainmenu", "LV_DEFAULT", "#aaff80");
         $.RegisterForUnhandledEvent('HideContentPanel', _OnHideContentPanel);
@@ -1650,6 +1815,7 @@ var MainMenu;
         $.RegisterForUnhandledEvent('ShowStoreStatusPanel', _ShowStoreStatusPanel);
         $.RegisterForUnhandledEvent('HideStoreStatusPanel', _HideStoreStatusPanel);
         $.RegisterForUnhandledEvent('MainMenu_OnGoToCharacterLoadoutPressed', _OnGoToCharacterLoadoutPressed);
+        $.RegisterForUnhandledEvent('MainMenu_OnChangeClanTagPressed', _OnChangeClanTagPressed);
         $.RegisterForUnhandledEvent("PanoramaComponent_EmbeddedStream_VideoPlaying", _OnSteamIsPlaying);
         $.RegisterForUnhandledEvent("StreamPanelClosed", _ResetNewsEntryStyle);
         $.RegisterForUnhandledEvent("HideMainMenuNewsPanel", _HideMainMenuNewsPanel);

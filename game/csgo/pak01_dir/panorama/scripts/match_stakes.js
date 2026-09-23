@@ -2,11 +2,10 @@
 /// <reference path="csgo.d.ts" />
 /// <reference path="rating_emblem.ts" />
 /// <reference path="mock_adapter.ts" />
+$.LogChannel('p.matchstakes', "LV_OFF");
 var MatchStakes;
 (function (MatchStakes) {
     let m_elMatchStakes = undefined;
-    function _msg(msg) {
-    }
     function _GetRootPanel() {
         let parent = $.GetContextPanel().GetParent();
         let newParent = parent.GetParent();
@@ -18,7 +17,6 @@ var MatchStakes;
     }
     function _GetMatchStakesPanel() {
         if (!m_elMatchStakes) {
-            _msg('getting matchstakes panel');
             let elHud = _GetRootPanel();
             m_elMatchStakes = elHud.FindChildTraverse('MatchStakes');
         }

@@ -13260,7 +13260,6 @@ Bbf$
 Bg\tm3
 Bgj:4
 Bhhq
-BitBlt
 Bl&ue:
 BlurHint
 BlurHints
@@ -15817,6 +15816,7 @@ StackingOrder
 StandardButton
 StandardButtons
 StandardPixmap
+State
 StateFlag
 State_Active
 State_AutoRaise
@@ -17418,7 +17418,6 @@ backgroundVisible
 backward
 backward-icon
 backwardAvailable
-base
 baseSize
 batchSize
 bbbbbbbbbbbbccc#

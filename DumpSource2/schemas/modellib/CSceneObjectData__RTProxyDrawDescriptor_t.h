@@ -14,6 +14,7 @@
 //		"m_nNumMeshlets": 0,
 //		"m_nFirstMeshlet": 0,
 //		"m_nAppliedIndexOffset": 0,
+//		"m_nEmissivePrimitiveCount": -1,
 //		"m_nDepthVertexBufferIndex": 255,
 //		"m_nMeshletPackedIVBIndex": 255,
 //		"m_rigidMeshParts":

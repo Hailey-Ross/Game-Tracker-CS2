@@ -10,15 +10,27 @@
 var PremierPickBan;
 (function (PremierPickBan) {
     let _m_nPhase = 0;
-    let _m_pickedMapReveal = false;
+    let _m_draftUpdateHandler = null;
+    let _m_playerActivityVoiceHandler = null;
+    const k_EMapVetoPickPhase_BeginDraftType1 = 0;
+    const k_EMapVetoPickPhase_DecideWhoGoesFirst = 1;
+    const k_EMapVetoPickPhase_PickFirstOfTwoMaps = 2;
+    const k_EMapVetoPickPhase_PickBothOtherMaps = 3;
+    const k_EMapVetoPickPhase_PickLastOfTwoMaps = 4;
+    const k_EMapVetoPickPhase_SelectingMap = 5;
+    const k_EMapVetoPickPhase_PickStartingSide = 6;
+    const k_EMapVetoPickPhase_EndDraftType1 = 7;
     const TEAM_TERRORIST = 2;
     const TEAM_CT = 3;
     const _m_aTeams = ['3', '2'];
     const _m_elPickBanPanel = $.GetContextPanel().FindChildInLayoutFile('id-premier-pick-ban');
     function Init() {
-        $.RegisterForUnhandledEvent('PanoramaComponent_PregameDraft_DraftUpdate', OnDraftUpdate);
-        $.RegisterForUnhandledEvent('PanoramaComponent_FriendsList_NameChanged', UpdateName);
-        $.RegisterForUnhandledEvent("PanoramaComponent_PartyList_PlayerActivityVoice", PlayerActivityVoice);
+        if (!_m_draftUpdateHandler) {
+            _m_draftUpdateHandler = $.RegisterForUnhandledEvent('PanoramaComponent_PregameDraft_DraftUpdate', OnDraftUpdate);
+        }
+        if (!_m_playerActivityVoiceHandler) {
+            _m_playerActivityVoiceHandler = $.RegisterForUnhandledEvent("PanoramaComponent_PartyList_PlayerActivityVoice", PlayerActivityVoice);
+        }
         SetDefaultTimerValue();
         Show();
         OnDraftUpdate();
@@ -47,7 +59,15 @@ var PremierPickBan;
         let bNewPhase = _m_nPhase !== MatchDraftAPI.GetPregamePhase();
         PlayNewPhaseSound(bNewPhase);
         _m_nPhase = MatchDraftAPI.GetPregamePhase();
-        let mapIds = MatchDraftAPI.GetPregameMapIdsList().split(',');
+        let mapIdsList = MatchDraftAPI.GetPregameMapIdsList().split(',');
+        let mapName2Id = new Map();
+        mapIdsList.forEach(x => mapName2Id.set(DeepStatsAPI.MapIDToString(parseInt(x)), x));
+        let mapNames = Object.keys(FriendsListAPI.GetFriendCompetitivePremierWindowStatsObject("0"));
+        let mapIds = [];
+        mapNames.forEach(x => mapIds.push(mapName2Id.get(x)));
+        if (mapIds.filter(x => !x).length > 0) {
+            mapIds = mapIdsList;
+        }
         _m_elPickBanPanel.SwitchClass('pick-ban-phase', 'premier-pickban-phase-' + _m_nPhase);
         let btnMapSettings = {
             isTeam: false,
@@ -69,7 +89,7 @@ var PremierPickBan;
     }
     function SetBackgroundColor() {
         let elPanel = _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-middle');
-        if (_m_nPhase < 2) {
+        if (_m_nPhase <= k_EMapVetoPickPhase_DecideWhoGoesFirst) {
             elPanel.SwitchClass('bg-fade', 'premier-pickban__middle--neutral');
             return;
         }
@@ -81,18 +101,24 @@ var PremierPickBan;
         }
     }
     function PlayNewPhaseSound(bNewPhase) {
-        if (bNewPhase && _m_nPhase > 0 && _m_nPhase <= 4) {
+        if (bNewPhase && _m_nPhase > k_EMapVetoPickPhase_BeginDraftType1 && _m_nPhase < k_EMapVetoPickPhase_SelectingMap) {
             $.DispatchEvent('CSGOPlaySoundEffectMuteBypass', 'UI.Premier.MapsLocked', 'MOUSE', 1.0);
         }
-        else if (bNewPhase && _m_nPhase > 4) {
+        else if (bNewPhase && _m_nPhase >= k_EMapVetoPickPhase_SelectingMap) {
             $.DispatchEvent('CSGOPlaySoundEffectMuteBypass', 'UI.Premier.SubmenuTransition', 'MOUSE', 1.0);
         }
+    }
+    function PhaseStringSuffix(nPhaseBarIndex) {
+        return ''
+            + ((nPhaseBarIndex <= k_EMapVetoPickPhase_SelectingMap) ? (nPhaseBarIndex) : (nPhaseBarIndex - 1))
+            + (((nPhaseBarIndex > k_EMapVetoPickPhase_DecideWhoGoesFirst && nPhaseBarIndex <= k_EMapVetoPickPhase_SelectingMap)
+                || (nPhaseBarIndex == k_EMapVetoPickPhase_BeginDraftType1)) ? '_v2' : '');
     }
     function UpdatePhaseProgressBar() {
         let aChildren = _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-phasebar-container').Children();
         for (let phase of aChildren) {
-            let nPhaseBarIndex = parseInt(phase.GetAttributeString('data-phase', ''));
-            phase.SetDialogVariable('section-label', $.Localize('#matchdraft_phase_' + nPhaseBarIndex));
+            const nPhaseBarIndex = parseInt(phase.GetAttributeString('data-phase', ''));
+            phase.SetDialogVariable('section-label', $.Localize('#matchdraft_phase_' + PhaseStringSuffix(nPhaseBarIndex)));
             phase.SetHasClass('premier-pickban__progress--ban', IsBanPhase() && nPhaseBarIndex === _m_nPhase);
             phase.SetHasClass('premier-pickban__progress--pick', !IsBanPhase() && nPhaseBarIndex === _m_nPhase);
             phase.SetHasClass('premier-pickban__progress--pre', nPhaseBarIndex > _m_nPhase);
@@ -100,7 +126,7 @@ var PremierPickBan;
         }
     }
     function IsBanPhase() {
-        return _m_nPhase > 1 && _m_nPhase < 5;
+        return false;
     }
     function UpdateActivePhaseTimerAndBar() {
         let nPlaySound = 0;
@@ -127,25 +153,22 @@ var PremierPickBan;
     function GetMaxTimeForPhase() {
         let timeMax = 0;
         switch (_m_nPhase) {
-            case 0:
-                timeMax = 0;
-                break;
-            case 1:
-                timeMax = 0;
-                break;
-            case 2:
+            case k_EMapVetoPickPhase_PickFirstOfTwoMaps:
                 timeMax = 15;
                 break;
-            case 3:
-                timeMax = 20;
+            case k_EMapVetoPickPhase_PickBothOtherMaps:
+                timeMax = 15;
                 break;
-            case 4:
+            case k_EMapVetoPickPhase_PickLastOfTwoMaps:
                 timeMax = 10;
                 break;
-            case 5:
-                timeMax = 10;
+            case k_EMapVetoPickPhase_SelectingMap:
+                timeMax = 5;
                 break;
-            case 6:
+            case k_EMapVetoPickPhase_PickStartingSide:
+                timeMax = 5;
+                break;
+            case k_EMapVetoPickPhase_EndDraftType1:
                 timeMax = 5;
                 break;
             default:
@@ -155,7 +178,7 @@ var PremierPickBan;
         return timeMax;
     }
     function UpdateTitleText(bNewPhase) {
-        let isWaiting = MatchDraftAPI.GetPregameTeamToActNow() !== MatchDraftAPI.GetPregameMyTeam() || _m_nPhase < 2;
+        let isWaiting = MatchDraftAPI.GetPregameTeamToActNow() !== MatchDraftAPI.GetPregameMyTeam() || _m_nPhase <= k_EMapVetoPickPhase_DecideWhoGoesFirst;
         let elTitle = _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-title-phase');
         _m_elPickBanPanel.SetHasClass('your-turn', !isWaiting);
         _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-title-spinner').SetHasClass('hide', !isWaiting);
@@ -164,17 +187,24 @@ var PremierPickBan;
             _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-title').TriggerClass('premier-pickban__title--change');
         }
         if (isWaiting) {
-            elTitle.text = $.Localize('#matchdraft_phase_action_wait_' + _m_nPhase);
+            elTitle.text = $.Localize('#matchdraft_phase_action_wait_' + PhaseStringSuffix(_m_nPhase));
             return;
         }
         let nPickedMaps = GetCurrentVotes().filter(vote => vote !== -1).length;
         elTitle.SetDialogVariableInt('maps', nPickedMaps);
-        elTitle.text = $.Localize('#matchdraft_phase_action_' + _m_nPhase, elTitle);
+        elTitle.text = $.Localize('#matchdraft_phase_action_' + PhaseStringSuffix(_m_nPhase), elTitle);
     }
     function UpdateVoteBtns(btnSettings, bNewPhase) {
         let aVoteIds = btnSettings.list;
         let btnId = btnSettings.btnId;
         if (aVoteIds.length > 1) {
+            const nYourTeam = MatchDraftAPI.GetPregameMyTeam();
+            const sYourTeamPick = 'veto' + nYourTeam;
+            let rndStyles = [1, 2, 3];
+            for (let i = rndStyles.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [rndStyles[i], rndStyles[j]] = [rndStyles[j], rndStyles[i]];
+            }
             for (let i = 0; i < aVoteIds.length; i++) {
                 const elMapBtnParent = _m_elPickBanPanel.FindChildInLayoutFile(btnId + i);
                 const elMapBtn = elMapBtnParent.FindChild('id-pickban-btn');
@@ -182,6 +212,7 @@ var PremierPickBan;
                     let imageName = '';
                     let imagePath = '';
                     let backgroundColor = 'none;';
+                    elMapBtn.SetDialogVariable('btm-line', '');
                     if (btnSettings.isTeam) {
                         let team = aVoteIds[i] === '3' ? "ct" : "t";
                         let charId = LoadoutAPI.GetItemID(team, 'customplayer');
@@ -200,6 +231,7 @@ var PremierPickBan;
                         elMapBtn.Data().isTeamBtn = false;
                         let elReflection = _m_elPickBanPanel.FindChildInLayoutFile(btnId + 'ref-' + i);
                         elReflection.SetImageFromPanel(elMapBtnParent, false);
+                        elMapBtn.AddClass('premier-pickban-canblur');
                     }
                     let elBtnMapImage = elMapBtn.FindChildInLayoutFile('id-pickban-map-btn-bg');
                     elBtnMapImage.style.backgroundImage = imagePath;
@@ -219,15 +251,33 @@ var PremierPickBan;
                 let isMyTurn = MatchDraftAPI.GetPregameTeamToActNow() === MatchDraftAPI.GetPregameMyTeam();
                 if (btnSettings.isTeam) {
                     elMapBtn.enabled = isMyTurn;
-                    if (_m_nPhase === 6) {
+                    if (_m_nPhase === k_EMapVetoPickPhase_EndDraftType1) {
                         elMapBtn.SetHasClass('premier-pickban-pick', parseInt(aVoteIds[i]) === GetStartingTeam());
                     }
                 }
                 else {
                     let mapState = MatchDraftAPI.GetPregameMapIdState(parseInt(elMapBtn.Data().voteId));
+                    if (_m_nPhase >= k_EMapVetoPickPhase_PickStartingSide) {
+                        if (mapState !== 'pick')
+                            mapState = 'veto';
+                    }
+                    else {
+                        if (mapState.startsWith('veto')) {
+                            elMapBtn.SetDialogVariable('btm-line', $.Localize((mapState === sYourTeamPick) ? '#matchdraft_pick_your' : '#matchdraft_pick_their'));
+                            if ((_m_nPhase >= k_EMapVetoPickPhase_SelectingMap)
+                                && ("pick" === MatchDraftAPI.GetPregameMapIdState(-parseInt(elMapBtn.Data().voteId)))) {
+                                elMapBtn.SwitchClass('premier-pickban-pick-seq', 'premier-pickban-pick-seq' + 0);
+                            }
+                            else {
+                                const nAnimSequence = (rndStyles.length > 0) ? rndStyles.pop() : 0;
+                                elMapBtn.SwitchClass('premier-pickban-pick-seq', 'premier-pickban-pick-seq' + nAnimSequence);
+                            }
+                            mapState = 'pick';
+                        }
+                    }
                     elMapBtn.SetHasClass('premier-pickban-' + mapState, mapState !== '');
                     elMapBtn.enabled = mapState === '' && isMyTurn;
-                    if (_m_nPhase >= 5 && !_m_pickedMapReveal) {
+                    if (_m_nPhase >= k_EMapVetoPickPhase_PickStartingSide) {
                         elMapBtnParent.SetHasClass("premier-pickban__map-btn--picked", mapState === "pick");
                         elMapBtnParent.SetHasClass("not-picked", mapState !== "pick");
                         let elReflection = _m_elPickBanPanel.FindChildInLayoutFile(btnId + 'ref-' + i);
@@ -303,29 +353,29 @@ var PremierPickBan;
         return null;
     }
     function GetNumVoteSlots() {
-        if (_m_nPhase === 2) {
-            return 2;
-        }
-        if (_m_nPhase === 3) {
-            return 3;
-        }
-        if (_m_nPhase === 4) {
+        if (_m_nPhase === k_EMapVetoPickPhase_PickFirstOfTwoMaps) {
             return 1;
         }
-        if (_m_nPhase === 5) {
+        if (_m_nPhase === k_EMapVetoPickPhase_PickBothOtherMaps) {
+            return 2;
+        }
+        if (_m_nPhase === k_EMapVetoPickPhase_PickLastOfTwoMaps) {
+            return 1;
+        }
+        if (_m_nPhase === k_EMapVetoPickPhase_PickStartingSide) {
             return 1;
         }
         return 0;
     }
     function UpdateWinningVote(elButton, voteId, isMyTurn) {
         let bTileWinningThisVote = false;
-        if (isMyTurn && ((elButton.Data().isTeamBtn && _m_nPhase == 5)
+        if (isMyTurn && ((elButton.Data().isTeamBtn && _m_nPhase == k_EMapVetoPickPhase_PickStartingSide)
             ||
-                (!elButton.Data().isTeamBtn && _m_nPhase < 5))) {
+                (!elButton.Data().isTeamBtn && _m_nPhase < k_EMapVetoPickPhase_SelectingMap))) {
             bTileWinningThisVote = !!MatchDraftAPI.GetPregameXuidsForVote(parseInt(voteId));
         }
         if (bTileWinningThisVote) {
-            let statusText = elButton.Data().isTeamBtn ? $.Localize('#matchdraft_vote_status_pick') : $.Localize('#matchdraft_vote_status_ban');
+            let statusText = elButton.Data().isTeamBtn ? $.Localize('#matchdraft_vote_status_pick') : $.Localize('#matchdraft_vote_status_pick');
             elButton.SetDialogVariable('status', statusText);
             let aVoteIds = MatchDraftAPI.GetPregameWinningVotes().split(',');
             elButton.SetHasClass('premier-pickban__map-btn__show-status', aVoteIds.indexOf(voteId) !== -1);
@@ -343,8 +393,9 @@ var PremierPickBan;
     function GetStartingTeam() {
         let nYourTeam = MatchDraftAPI.GetPregameMyTeam();
         let nOtherTeam = nYourTeam === 2 ? 3 : 2;
-        let nStartingTeam = (MatchDraftAPI.GetPregameTeamWithFirstChoice() === MatchDraftAPI.GetPregameTeamStartingCT())
-            ? nOtherTeam : nYourTeam;
+        let nStartingTeam = nYourTeam;
+        if (2 === MatchDraftAPI.GetPregameTeamStartingCT())
+            nStartingTeam = nOtherTeam;
         return nStartingTeam;
     }
     function UpdateBtnAvatars(elBtn, voteId, isMyTurn) {
@@ -370,7 +421,7 @@ var PremierPickBan;
             const teamColorIdx = PartyListAPI.GetPartyMemberTeammateColor(xuid);
             const teamColorRgb = TeamColor.GetTeamColor(Number(teamColorIdx));
             avatarImage.style.border = '2px solid rgb(' + teamColorRgb + ')';
-            elAvatar.SetDialogVariable('teammate_name', FriendsListAPI.GetFriendName(xuid));
+            elAvatar.SetDialogVariable('xuid', xuid);
             return elAvatar;
         }
     }
@@ -401,7 +452,7 @@ var PremierPickBan;
         return elAvatar;
     }
     function UpdateTeamPanelBackground() {
-        if (_m_nPhase >= 5) {
+        if (_m_nPhase >= k_EMapVetoPickPhase_PickStartingSide) {
             let selectedMapName = GetSelectedMap();
             let imagePath = 'url("file://{images}/map_icons/screenshots/360p/' + selectedMapName + '.png")';
             UpdateCharacterModels('ct', 'rifle0');
@@ -418,7 +469,7 @@ var PremierPickBan;
                 elMapImage.style.backgroundImgOpacity = '1';
                 _m_elPickBanPanel.FindChildInLayoutFile('id-pick-vote-team').AddClass('show');
             });
-            if (_m_nPhase === 6) {
+            if (_m_nPhase === k_EMapVetoPickPhase_EndDraftType1) {
                 for (let i = 0; i < _m_aTeams.length; i++) {
                     if (parseInt(_m_aTeams[i]) === GetStartingTeam()) {
                         let team = _m_aTeams[i] === '3' ? 'ct' : 't';
@@ -618,13 +669,6 @@ var PremierPickBan;
             else if (aPartyMembers.length === 1) {
                 aPartyMembers[0].FindChild('id-avatar-party-line')?.AddClass('premier-pickban__map-avatars__party-line-empty');
             }
-        }
-    }
-    function UpdateName(xuid) {
-        let elList = _m_elPickBanPanel.FindChildInLayoutFile('id-team-vote-team-teammates');
-        let elAvatar = elList.FindChildInLayoutFile(xuid);
-        if (elAvatar) {
-            elAvatar.SetDialogVariable('teammate_name', FriendsListAPI.GetFriendName(xuid));
         }
     }
     function PlayerActivityVoice(xuid) {

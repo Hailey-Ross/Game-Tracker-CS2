@@ -40,6 +40,7 @@ var PlayMenu;
         training: 'training',
         coopstrike: 'coopmission',
         armsrace: 'gungameprogressive',
+        rush: 'rush',
         custom: 'custom',
         flyingscoutsman: 'flyingscoutsman',
         retakes: 'retakes'
@@ -242,12 +243,13 @@ var PlayMenu;
     function _SetDirectChallengeKey(key) {
         let keySource;
         let keySourceLabel;
-        let type, id;
+        let type, id, id32;
         if (key != '') {
             const oReturn = { value: [] };
             const bValid = _IsChallengeKeyValid(key, oReturn, 'set');
             type = oReturn.value[2];
             id = oReturn.value[3];
+            id32 = parseInt(oReturn.value[4]);
             if (bValid) {
                 switch (type) {
                     case 'u':
@@ -255,7 +257,7 @@ var PlayMenu;
                         keySourceLabel = $.Localize('#DirectChallenge_CodeSourceLabelUser2');
                         break;
                     case 'g':
-                        keySource = MyPersonaAPI.GetMyClanNameById(id);
+                        keySource = FriendsListAPI.GetClanInfoById32Bit(id32, 'name');
                         keySourceLabel = $.Localize('#DirectChallenge_CodeSourceLabelClan2');
                         if (!keySource) {
                             keySource = $.Localize("#DirectChallenge_UnknownSource");
@@ -591,6 +593,7 @@ var PlayMenu;
         _UpdatePracticeSettingsBtns(isSearching, isHost);
         _UpdateLeaderboardBtn(m_gameModeSetting);
         _UpdateSurvivalAutoFillSquadBtn(m_gameModeSetting);
+        _UpdateRushFriendLeaderboards(m_gameModeSetting);
         _SelectActivePlayPlayTypeBtn();
         _UpdateReplayNewUserTrainingBtn(m_gameModeSetting);
         _UpdateDirectChallengePage(isSearching, isHost);
@@ -1187,7 +1190,7 @@ var PlayMenu;
                 mapImage = $.CreatePanel('Panel', p.FindChildInLayoutFile('MapGroupImagesCarousel'), 'MapSelectionScreenshot' + i);
                 mapImage.AddClass('map-selection-btn__screenshot');
             }
-            if (m_gameModeSetting === 'survival') {
+            if (m_gameModeSetting === 'survival' || m_gameModeSetting === 'rush') {
                 mapImage.style.backgroundImage = 'url("file://{resources}/videos/' + keysList[i] + '_preview.webm")';
             }
             else {
@@ -1298,7 +1301,7 @@ var PlayMenu;
     }
     function _ReloadLeaderboardLayoutGivenSettings(container, lbName, strTitleOverride, strPointsTitle) {
         const elFriendLeaderboards = container.FindChildTraverse("FriendLeaderboards");
-        elFriendLeaderboards.SetAttributeString("type", lbName);
+        elFriendLeaderboards.SetAttributeString("type", lbName + ".friends");
         if (strPointsTitle)
             elFriendLeaderboards.SetAttributeString("points-title", strPointsTitle);
         if (strTitleOverride)
@@ -1309,8 +1312,12 @@ var PlayMenu;
     }
     function _UpdateMapGroupButtons(isEnabled, isSearching, isHost) {
         const panelID = _LazyCreateMapListPanel();
-        if ((_RealGameMode() === 'competitive' || _RealGameMode() === 'scrimcomp2v2') && _IsPlayingOnValveOfficial()) {
-            _UpdateWaitTime(_GetMapListForServerTypeAndGameMode(panelID));
+        switch (_IsPlayingOnValveOfficial() ? _RealGameMode() : '') {
+            case 'competitive':
+            case 'scrimcomp2v2':
+            case 'rush':
+                _UpdateWaitTime(_GetMapListForServerTypeAndGameMode(panelID));
+                break;
         }
         if (!inDirectChallenge())
             _SetEnabledStateForMapBtns(m_mapSelectionButtonContainers[panelID], isSearching, isHost);
@@ -1494,8 +1501,22 @@ var PlayMenu;
             const container = elBtn.GetParent().GetParent();
             const elFriendLeaderboards = container.FindChildTraverse("FriendLeaderboards");
             const sPreviousType = elFriendLeaderboards.GetAttributeString("type", '');
-            if (sPreviousType !== lbName) {
+            if (!sPreviousType || !sPreviousType.startsWith(lbName)) {
                 _ReloadLeaderboardLayoutGivenSettings(container, lbName, "#CSGO_official_leaderboard_survival_" + lbType, "#Cstrike_TitlesTXT_WINS");
+            }
+        }
+    }
+    function _UpdateRushFriendLeaderboards(gameMode) {
+        const elRoot = $('#gameModeButtonContainer_rush_official');
+        if (!elRoot)
+            return;
+        if (gameMode === 'rush') {
+            const lbType = 'solo';
+            const lbName = "official_leaderboard_rush_" + lbType;
+            const elFriendLeaderboards = elRoot.FindChildTraverse("FriendLeaderboards");
+            const sPreviousType = elFriendLeaderboards.GetAttributeString("type", '');
+            if (!sPreviousType || !sPreviousType.startsWith(lbName)) {
+                _ReloadLeaderboardLayoutGivenSettings(elRoot, lbName, "#CSGO_official_leaderboard_rush_" + lbType, "#Cstrike_TitlesTXT_WINS");
             }
         }
     }
@@ -1573,6 +1594,10 @@ var PlayMenu;
                     aListMapPanels[0].checked = true;
             }
         }
+        if ((serverType === 'official' && gameMode === 'survival')
+            || (gameMode === 'rush')) {
+            return GameInterfaceAPI.GetSettingString('ui_playsettings_maps_' + serverType + '_' + gameMode);
+        }
         const selectedMaps = aListMapPanels.filter((e) => {
             return e.checked;
         })
@@ -1596,9 +1621,10 @@ var PlayMenu;
             }
             return aListMapPanels;
         }
-        else if (_IsPlayingOnValveOfficial() && (_RealGameMode() === 'survival'
+        else if ((_IsPlayingOnValveOfficial() && (_RealGameMode() === 'survival'
             || _RealGameMode() === 'cooperative'
-            || _RealGameMode() === 'coopmission')) {
+            || _RealGameMode() === 'coopmission'))
+            || (_RealGameMode() === 'rush')) {
             let elMapTile = elParent.FindChildTraverse("MapTile");
             if (elMapTile)
                 return elMapTile.Children();

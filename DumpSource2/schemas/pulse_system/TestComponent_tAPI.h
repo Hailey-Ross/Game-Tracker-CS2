@@ -1,3 +1,0 @@
-class TestComponent_tAPI
-{
-};

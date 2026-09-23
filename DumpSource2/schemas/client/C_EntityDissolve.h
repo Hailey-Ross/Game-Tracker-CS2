@@ -15,13 +15,13 @@ class C_EntityDissolve : public C_BaseModelEntity
 	// MNotSaved
 	float32 m_flFadeOutLength;
 	// MNotSaved
-	GameTime_t m_flNextSparkTime;
-	// MNotSaved
 	EntityDissolveType_t m_nDissolveType;
+	// MNotSaved
+	uint32 m_nMagnitude;
 	// MNotSaved
 	VectorWS m_vDissolverOrigin;
 	// MNotSaved
-	uint32 m_nMagnitude;
+	GameTime_t m_flNextSparkTime;
 	// MNotSaved
 	bool m_bCoreExplode;
 	// MNotSaved

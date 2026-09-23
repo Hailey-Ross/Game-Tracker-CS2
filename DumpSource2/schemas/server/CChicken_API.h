@@ -1,3 +1,0 @@
-class CChicken_API
-{
-};

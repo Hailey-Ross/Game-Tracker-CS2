@@ -1,4 +1,6 @@
+    T%d: '%s' (%s) EditorID:%d%s\n
   Bad Fax Lines: %lu\n
+  Bank%d: %d temp vars (%d bytes)\n
   C%d:I%-2d {F=%-10d,V=%-10d,S=%-20.20s} 
   CallInfo%d: %s\n
   Cell%d - NULL\n
@@ -53,6 +55,7 @@
  Vector b
  X?setAlignment@QTextOption@@QEAAXV?$QFlags@W4AlignmentFlag@Qt@@@@@Z
  [*OBSERVABLE*]
+ [loop body, break -> C%d:I%d]
  \f?focusNextPrevChild@QPlainTextEdit@@MEAA_N_N@Z
  \n?columnCount@QAbstractListModel@@EEBAHAEBVQModelIndex@@@Z
  aRI
@@ -184,7 +187,6 @@ $5RJ'
 $B0B
 $[?setRange@QDoubleValidator@@UEAAXNNH@Z
 $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
-$\tV_exp2f
 $hab
 $t5\tEi\fo
 % ?timerEvent@QMenu@@MEAAXPEAVQTimerEvent@@@Z
@@ -207,7 +209,6 @@ $t5\tEi\fo
 %EaL^
 %[?setRange@QIntValidator@@UEAAXHH@Z
 %\?setUnderline@QFont@@QEAAX_N@Z
-%\tV_expd
 %]?sibling@QStandardItemModel@@UEBA?AVQModelIndex@@HHAEBV2@@Z
 %c%c%c%c%c%c
 %c%c%c%c%c%c%c%c
@@ -217,6 +218,7 @@ $t5\tEi\fo
 %d InvokeBindings:\n
 %d OutputConnections:\n
 %d PublicOutputs:\n
+%d TempVarBanks:\n
 %d Vars:\n
 %d instruction(s)\n
 %d register(s) %d byte(s)\n
@@ -315,6 +317,7 @@ $t5\tEi\fo
 '%1' is not available until connected to Device.\n
 'DoQ
 'FBrn{
+'\t?boundedTo@QSize@@QEBA?AV1@AEBV1@@Z
 '\v?enterEvent@QMenu@@MEAAXPEAVQEvent@@@Z
 ( %1, %2, %3, %4% )
 ( ?timerEvent@QTabBar@@MEAAXPEAVQTimerEvent@@@Z
@@ -330,6 +333,7 @@ $t5\tEi\fo
 (\v?enterEvent@QToolButton@@MEAAXPEAVQEvent@@@Z
 (bLLDc
 (d.9QN
+(eXD
 (i En
 (p8m
 ) ?timerEvent@QTableView@@MEAAXPEAVQTimerEvent@@@Z
@@ -386,67 +390,20 @@ $t5\tEi\fo
 .?AUCPulseCell_IntervalTimer_DebugInfo_t@@
 .?AUCPulseCell_Timeline_DebugInfo_t@@
 .?AUVDataInitInfo_t@@
-.?AV<lambda_10>@?BM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?BO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?BP@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?CA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_14>@?CD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_15>@?CE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_16>@?CF@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_17>@?CI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_18>@?CM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_19>@?CN@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV<lambda_1>@?$PulseBindingSchemaEnumTraits_t@W4PulseDurationStringFormat_t@@@@
+.?AV<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAXW4BindableCameraAdjustSpeed_t@@@ZW42@@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CBindableCamera@@EAAXW4BindableCameraAdjustSpeed_t@@@Z1@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CBindableCamera@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAX_N0@Z_N_N@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CBindableCamera@@EAAX_N1@Z11@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CLightingControlRig@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCLightingControlRig@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CLightingControlRig@@EAAXXZ@Z@
+.?AV<lambda_1>@?1???$SetFunction@P8CQToolSceneWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQToolSceneWidget@@@@QEAAAEAV12@W4BindableCommandStage_t@@P8CQToolSceneWidget@@EAAXXZ@Z@
 .?AV<lambda_1>@?1??SetupAccelerationStructure@RayTracingEnvironment@@QEAAXXZ@
 .?AV<lambda_1>@?1??StopEmission@CNewParticleEffect@@QEAAX_N000@Z@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV<lambda_1>@?M@??RefineNode@RayTracingEnvironment@@AEAAXHPEBHHPEBUTriangleBounds_t@@V?$Vec3D@M@@2HPEAVCUtlMultiJobProcessor@@@Z@
-.?AV<lambda_1>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_20>@?CO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_21>@?CP@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_22>@?DC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_23>@?DD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_24>@?DE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_25>@?DH@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_26>@?DI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_27>@?DJ@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_28>@?DM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_29>@?DN@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV<lambda_2>@?$PulseBindingSchemaEnumTraits_t@W4PulseDurationStringFormat_t@@@@
 .?AV<lambda_2>@?1??SimulateParticles@CParticleMgr@@AEAAXAEAV?$CUtlVectorFixedGrowableCompat@UParticleSimListItem_t@CParticleMgr@@$0EAA@H@@@Z@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_2>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV<lambda_2>@?BJ@??RefineNode@RayTracingEnvironment@@AEAAXHPEBHHPEBUTriangleBounds_t@@V?$Vec3D@M@@2HPEAVCUtlMultiJobProcessor@@@Z@
-.?AV<lambda_30>@?DO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_31>@?EC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_32>@?ED@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_3>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_4>@?BE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_5>@?BG@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_6>@?BI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_7>@?BJ@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_8>@?BK@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?BL@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
-.?AV<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@
 .?AV?$CBaseTypesafeVDataFileManager@VCToolSceneLightRig@@@@
 .?AV?$CBindTargetDescriptor@VCBindableCamera@@@@
 .?AV?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
@@ -520,80 +477,39 @@ $t5\tEi\fo
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQTableWidget@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQToolBar@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
 .?AV?$_Func_impl_no_alloc@P6AXPEAVQToolButton@@AEBUInitContext_t@CBaseDynamicWidgetFactory@@@ZXPEAV1@AEBU23@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?BM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_10>@?M@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?BO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_11>@?N@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?BP@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_12>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?CA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_13>@?P@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_14>@?CD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?BB@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_15>@?CE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_16>@?CF@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_17>@?CI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_18>@?CM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_19>@?CN@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?$PulseBindingSchemaEnumTraits_t@W4PulseDurationStringFormat_t@@@@VCPulseValueFullType@@$$V@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAXW4BindableCameraAdjustSpeed_t@@@ZW42@@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CBindableCamera@@EAAXW4BindableCameraAdjustSpeed_t@@@Z1@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CBindableCamera@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CBindableCamera@@EAAX_N0@Z_N_N@CBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CBindableCamera@@EAAX_N1@Z11@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXHH@ZHH@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CGlobalHotkeyCommands@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CGlobalHotkeyCommands@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CLightingControlRig@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCLightingControlRig@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CLightingControlRig@@EAAXXZ@Z@XPEAV5@@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1???$SetFunction@P8CQToolSceneWidget@@EAAXXZ$$V@CBindableCommand@?$CBindTargetDescriptor@VCQToolSceneWidget@@@@QEAAAEAV23@W4BindableCommandStage_t@@P8CQToolSceneWidget@@EAAXXZ@Z@XPEAV5@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??SetupAccelerationStructure@RayTracingEnvironment@@QEAAXXZ@X$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??StopEmission@CNewParticleEffect@@QEAAX_N000@Z@X$$V@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?2???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?M@??RefineNode@RayTracingEnvironment@@AEAAXHPEBHHPEBUTriangleBounds_t@@V?$Vec3D@M@@2HPEAVCUtlMultiJobProcessor@@@Z@X$$V@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_1>@?O@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_20>@?CO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_21>@?CP@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_22>@?DC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_23>@?DD@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_24>@?DE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_25>@?DH@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_26>@?DI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_27>@?DJ@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_28>@?DM@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_29>@?DN@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2>@?$PulseBindingSchemaEnumTraits_t@W4PulseDurationStringFormat_t@@@@I$$V@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2>@?1??SimulateParticles@CParticleMgr@@AEAAXAEAV?$CUtlVectorFixedGrowableCompat@UParticleSimListItem_t@CParticleMgr@@$0EAA@H@@@Z@X$$V@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?3???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_2>@?BA@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_2>@?BJ@??RefineNode@RayTracingEnvironment@@AEAAXHPEBHHPEBUTriangleBounds_t@@V?$Vec3D@M@@2HPEAVCUtlMultiJobProcessor@@@Z@X$$V@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_30>@?DO@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_31>@?EC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_32>@?ED@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?4???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_3>@?BC@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?5???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_4>@?BE@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?6???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_5>@?BG@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?7???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_6>@?BI@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?8???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_7>@?BJ@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?9???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_8>@?BK@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?BL@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
-.?AV?$_Func_impl_no_alloc@V<lambda_9>@?L@???0CBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@QEAA@XZ@XPEAV4@@std@@
+.?AV?$_Ref_count_obj2@VCVolumetricCustomTrace@CParticleSystemQuery_ToolScene@@@std@@
+.?AVAllocator@psd@@
 .?AVCAttachmentData@@
+.?AVCBaseBindTargetDescriptor@@
+.?AVCBaseBindableCommand@@
 .?AVCBaseDynamicWidgetFactory@@
 .?AVCBasePulseGraphInstance@@
 .?AVCBaseToolsModelInstance@@
 .?AVCBaseVDataFileManager@@
-.?AVCBindTargetDescriptorBase@@
 .?AVCBindTargetProxy@@
 .?AVCBindableCamera@@
-.?AVCBindableCommand@@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBindTargetDescriptorBase@@XZ@
-.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBindTargetDescriptorBase@@XZ@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCLightingControlRig@@@@
+.?AVCBindableCommand@?$CBindTargetDescriptor@VCQToolSceneWidget@@@@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CBindableCamera@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CGlobalHotkeyCommands@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CLightingControlRig@@SAPEAVCBaseBindTargetDescriptor@@XZ@
+.?AVCBindableTargetDescriptorInstance@?1??StaticBindableTargetDescriptor@CQToolSceneWidget@@SAPEAVCBaseBindTargetDescriptor@@XZ@
 .?AVCCommandLinkAttachment@@
 .?AVCCommunicationThread@@
 .?AVCCommunicationThread_PC@@
@@ -608,6 +524,7 @@ $t5\tEi\fo
 .?AVCGeomViewObjectName@@
 .?AVCGlobalHotkeyCommands@@
 .?AVCImageAttachment@@
+.?AVCInputBindTargetMetadataProvider@@
 .?AVCInputLayoutRegistration_s_hColoredVertexLayout@@
 .?AVCInternalLogging@@
 .?AVCInternalStackTranslationHelper@@
@@ -622,6 +539,7 @@ $t5\tEi\fo
 .?AVCParticleMgr@@
 .?AVCParticleSystemQuery_ToolScene@@
 .?AVCParticlesLibHost_ToolScene@@
+.?AVCPsdBufferFile@@
 .?AVCPulseCell_BaseState@@
 .?AVCPulseCell_BooleanSwitchState@@
 .?AVCPulseCell_CursorQueue@@
@@ -639,6 +557,8 @@ $t5\tEi\fo
 .?AVCPulseCell_Outflow_CycleRandom@@
 .?AVCPulseCell_Outflow_CycleShuffled@@
 .?AVCPulseCell_PickBestOutflowSelector@@
+.?AVCPulseCell_RaceCursors@@
+.?AVCPulseCell_ReturnValues@@
 .?AVCPulseCell_Step_CallExternalMethod@@
 .?AVCPulseCell_Step_DebugLog@@
 .?AVCPulseCell_Step_PublicOutput@@
@@ -738,10 +658,6 @@ $t5\tEi\fo
 .?AVCSchemaRegistration_toolscene@@
 .?AVCSchemaRegistration_vconsole2@@
 .?AVCSimpleSceneObjectContainer@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCBindableCamera@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCGlobalHotkeyCommands@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCLightingControlRig@@@@
-.?AVCSpecificTargetBindableCommand@?$CBindTargetDescriptor@VCQToolSceneWidget@@@@
 .?AVCStackAttachment@@
 .?AVCStackTranslationHelper@@
 .?AVCStackTranslationHelper_Universal@@
@@ -783,7 +699,9 @@ $t5\tEi\fo
 .?AVCVNotifyErrorForwarder@@
 .?AVCVertexListSceneObject@@
 .?AVCVertexListSceneObjectDescriptor@@
+.?AVCVolumetricCustomTrace@CParticleSystemQuery_ToolScene@@
 .?AVCommandItemDelegate@@
+.?AVFile@psd@@
 .?AVIAnimTagListener@@
 .?AVIAnimationHelperAnimGraphChangeLister@@
 .?AVIAssetFileListener@@
@@ -829,6 +747,8 @@ $t5\tEi\fo
 .?AVIVDataResourceListener@@
 .?AVIVLogViewer@@
 .?AVIVertexListObject@@
+.?AVIVolumetricCustomTrace@@
+.?AVMallocAllocator@psd@@
 .?AVQAbstractButton@@
 .?AVQAbstractItemDelegate@@
 .?AVQAbstractItemModel@@
@@ -948,59 +868,72 @@ $t5\tEi\fo
 /]?size@QImage@@QEBA?AVQSize@@XZ
 /s\tIg
 0.0.0.0
-007@
-017@
 027@
-036@
+037@
 03j3
-046@
-056@
-066@
-076@
-07G@
-096@
+068@
+06A@
+073@
+083@
 099i 
-0A5@
+0AA@
+0B6@
 0BCDEFGHIJKLMNOPQRSTUVWXYZ1BCDEFGHIJKLMNOPQRSTUVWXYZ2BCDEFGHIJKLMNOPQRSTUVWXYZ3BCDEFGHIJKLMNOPQRSTUVWXYZ4BCDEFGHIJKLMNOPQRSTUVWXYZ\n
-0D5@
-0EG@
-0I2@
+0BI@
+0C3@
+0E3@
+0E8@
+0EA@
+0HH@
 0IDAT8
-0J2@
-0K2@
-0KG@
-0L2@
-0LG@
-0N2@
-0N6@
+0IH@
+0OI@
 0Ou"@
-0Q2@
 0R7@
+0RI@
 0S7@
-0TG@
-0V6@
+0S8@
+0T6@
+0TH@
+0UH@
+0Y8@
 0a)Y
-0fG@
-0g4@
-0h4@
-0hF@
-0j5@
-0jG@
-0mG@
-0oG@
-0pG@
-0v6@
-0vF@
+0bA@
+0c7@
+0cA@
+0d7@
+0dA@
+0e7@
+0f7@
+0gH@
+0h7@
+0h8@
+0i7@
+0k7@
+0m8@
+0n8@
+0o5@
+0oH@
+0p5@
+0p8@
+0q5@
+0q8@
+0qA@
+0r8@
+0sH@
+0w6@
+0w8@
 0x%1
 0x%llx
 0x%p = %s '%s'
-0z1@
+0x6@
+0zH@
 1"?updateGeometry@QWidget@@QEAAXXZ
 1&im*
 127.0.0.0
 127.0.0.1:%d
-15:14:42
-15:15:32
+13:53:01
+13:53:20
 16];h
 16yd
 172.16.0.0
@@ -1334,6 +1267,8 @@ $t5\tEi\fo
 3\v?event@QApplication@@MEAA_NPEAVQEvent@@@Z
 3wn;7:
 4)Br
+417@
+467@
 49-8
 4>G1_
 4EnP6AI
@@ -1342,7 +1277,7 @@ $t5\tEi\fo
 4[YF
 4\n?doItemsLayout@QTreeView@@UEAAXXZ
 4\r?hidePopup@QComboBox@@UEAAXXZ
-4h4@
+4z8@
 5 Line gap\n
 5.15.2
 58OnB!
@@ -1359,6 +1294,7 @@ $t5\tEi\fo
 6F_U*
 6[?setRenderHint@QPainter@@QEAAXW4RenderHint@1@_N@Z
 6\f?focusOutEvent@QPlainTextEdit@@MEAAXPEAVQFocusEvent@@@Z
+6\ng_flConfigMaxCoord
 6\nm@[EA
 6\rOW\r
 6\v?createNode@QMapDataBase@@QEAAPEAUQMapNodeBase@@HHPEAU2@_N@Z
@@ -1372,50 +1308,47 @@ $t5\tEi\fo
 7RL7o
 7T2,
 7\f?focusOutEvent@QPushButton@@MEAAXPEAVQFocusEvent@@@Z
+7\tV_acosd
 7^#OC\vO^r
 7i^1
 7o4&
 7u{7"
 8"3hrf
 8&Kx
-836@
-846@
-856@
-864@
-874@
-877@
-87G@
-886@
 8:9a
-8B5@
-8D7@
-8M2@
-8O6@
+8F8@
+8HA@
+8I3@
+8IA@
+8L7@
+8N7@
 8O7@
-8P6@
-8Q6@
-8R6@
+8OA@
 8R7)
-8S2@
-8S6@
-8T6@
-8TG@
-8U6@
-8W6@
+8TH@
+8UH@
 8WWWs
 8XU%
-8Y7@
 8\f?focusOutEvent@QTextBrowser@@MEAAXPEAVQFocusEvent@@@Z
 8\v?event@QCompleter@@MEAA_NPEAVQEvent@@@Z
 8]?size@QPixmap@@QEBA?AVQSize@@XZ
-8g4@
-8h4@
-8hF@
-8i4@
-8lG@
+8c7@
+8d6@
+8d7@
+8e8@
+8f8@
+8g7@
+8j7@
+8j8@
+8jA@
 8liS
-8pG@
-8y1@
+8m7@
+8n5@
+8n7@
+8s8@
+8x8@
+8z6@
+8zH@
 9*x2$
 969p
 98On@
@@ -1423,7 +1356,9 @@ $t5\tEi\fo
 99:99:99.999W
 9>-memory-
 9\f?focusOutEvent@QTextEdit@@MEAAXPEAVQFocusEvent@@@Z
+9\ng_flToolsDefaultFarZ
 9\r?hideText@QToolTip@@SAXXZ
+9\tV_asind
 9e5Z
 9f<d~e
 9gRJ
@@ -1451,6 +1386,7 @@ $t5\tEi\fo
 :\v?canRead@QImageReader@@QEBA_NXZ
 :gqh-
 ;\n?doSetTextCursor@QTextEdit@@MEAAXAEBVQTextCursor@@@Z
+;\tV_atan2d
 ;\v?event@QDialogButtonBox@@MEAA_NPEAVQEvent@@@Z
 ;`?transientParent@QWindow@@QEBAPEAV1@XZ
 ;bLT
@@ -1473,14 +1409,13 @@ $t5\tEi\fo
 <no debug file path>
 <non-RTTI type>
 <none>\n
-<p>[<b>%d</b>] <big>%s</big></p>
-<small><p>%s</p></small>
 == PulseGraphDef ==\n
+=> TempVarBank: Bank%d\n
 =HA5
 =IDAT(
 =M3B
+=\tV_atand
 =blendweight
-=fff?
 =hSa
 =lUAnh%
 >Far
@@ -1489,6 +1424,7 @@ $t5\tEi\fo
 >V`mV
 >WVT
 >\n?dockWidgetArea@QMainWindow@@QEBA?AW4DockWidgetArea@Qt@@PEAVQDockWidget@@@Z
+>\tV_atanf
 ??0Connection@QMetaObject@@QEAA@XZ
 ??0QAbstractNativeEventFilter@@QEAA@XZ
 ??0QAction@@QEAA@AEBVQIcon@@AEBVQString@@PEAVQObject@@@Z
@@ -1587,6 +1523,7 @@ $t5\tEi\fo
 ??0QPointF@@QEAA@XZ
 ??0QPolygon@@QEAA@H@Z
 ??0QPolygon@@QEAA@XZ
+??0QPolygonF@@QEAA@XZ
 ??0QProgressBar@@QEAA@PEAVQWidget@@@Z
 ??0QProxyStyle@@QEAA@PEAVQStyle@@@Z
 ??0QPushButton@@QEAA@AEBVQIcon@@AEBVQString@@PEAVQWidget@@@Z
@@ -1596,6 +1533,7 @@ $t5\tEi\fo
 ??0QRadioButton@@QEAA@PEAVQWidget@@@Z
 ??0QRect@@QEAA@AEBVQPoint@@AEBVQSize@@@Z
 ??0QRect@@QEAA@HHHH@Z
+??0QRectF@@QEAA@AEBVQPointF@@0@Z
 ??0QRectF@@QEAA@AEBVQRect@@@Z
 ??0QRegExp@@QEAA@AEBVQString@@W4CaseSensitivity@Qt@@W4PatternSyntax@0@@Z
 ??0QRegExp@@QEAA@XZ
@@ -1647,6 +1585,7 @@ $t5\tEi\fo
 ??0QTimer@@QEAA@PEAVQObject@@@Z
 ??0QToolBar@@QEAA@PEAVQWidget@@@Z
 ??0QToolButton@@QEAA@PEAVQWidget@@@Z
+??0QTransform@@QEAA@XZ
 ??0QTreeWidget@@QEAA@PEAVQWidget@@@Z
 ??0QTreeWidgetItem@@QEAA@H@Z
 ??0QTreeWidgetItem@@QEAA@PEAV0@H@Z
@@ -1723,6 +1662,7 @@ $t5\tEi\fo
 ??1QPixmap@@UEAA@XZ
 ??1QPlainTextEdit@@UEAA@XZ
 ??1QPolygon@@QEAA@XZ
+??1QPolygonF@@QEAA@XZ
 ??1QProgressBar@@UEAA@XZ
 ??1QProxyStyle@@UEAA@XZ
 ??1QPushButton@@UEAA@XZ
@@ -1789,8 +1729,10 @@ $t5\tEi\fo
 ??4QString@@QEAAAEAV0@AEBVQByteArray@@@Z
 ??4QString@@QEAAAEAV0@PEBD@Z
 ??4QStyleOption@@QEAAAEAV0@AEBV0@@Z
+??4QTransform@@QEAAAEAV0@AEBV0@@Z
 ??4QVariant@@QEAAAEAV0@$$QEAV0@@Z
 ??4QVariant@@QEAAAEAV0@AEBV0@@Z
+??6?$QVector@VQPointF@@@@QEAAAEAV0@$$QEAVQPointF@@@Z
 ??6QDebug@@QEAAAEAV0@PEBD@Z
 ??8@YA_NAEBVQCursor@@0@Z
 ??8@YA_NAEBVQString@@0@Z
@@ -1994,6 +1936,7 @@ $t5\tEi\fo
 ?customContextMenuRequested@QWidget@@QEAAXAEBVQPoint@@@Z
 ?devType@QPixmap@@UEBAHXZ
 ?devicePixelRatioF@QPaintDevice@@QEBANXZ
+?deviceTransform@QPainter@@QEBAAEBVQTransform@@XZ
 ?drawEllipse@QPainter@@QEAAXAEBVQPoint@@HH@Z
 ?drawEllipse@QPainter@@QEAAXAEBVQRect@@@Z
 ?drawEllipse@QPainter@@QEAAXAEBVQRectF@@@Z
@@ -2001,6 +1944,7 @@ $t5\tEi\fo
 ?drawLine@QPainter@@QEAAXAEBVQPoint@@0@Z
 ?drawLine@QPainter@@QEAAXHHHH@Z
 ?drawLines@QPainter@@QEAAXPEBVQLine@@H@Z
+?drawLines@QPainter@@QEAAXPEBVQLineF@@H@Z
 ?drawPath@QPainter@@QEAAXAEBVQPainterPath@@@Z
 ?drawPixmap@QPainter@@QEAAXAEBVQPointF@@AEBVQPixmap@@@Z
 ?drawPixmap@QPainter@@QEAAXAEBVQRect@@AEBVQPixmap@@@Z
@@ -2010,6 +1954,7 @@ $t5\tEi\fo
 ?drawPolygon@QPainter@@QEAAXPEBVQPoint@@HW4FillRule@Qt@@@Z
 ?drawPolygon@QPainter@@QEAAXPEBVQPointF@@HW4FillRule@Qt@@@Z
 ?drawPolyline@QPainter@@QEAAXAEBVQPolygon@@@Z
+?drawPolyline@QPainter@@QEAAXAEBVQPolygonF@@@Z
 ?drawRects@QPainter@@QEAAXPEBVQRect@@H@Z
 ?drawRects@QPainter@@QEAAXPEBVQRectF@@H@Z
 ?drawRoundedRect@QPainter@@QEAAXAEBVQRectF@@NNW4SizeMode@Qt@@@Z
@@ -2924,6 +2869,7 @@ $t5\tEi\fo
 ?setTextColor@QTextEdit@@QEAAXAEBVQColor@@@Z
 ?setTextCursor@QPlainTextEdit@@QEAAXAEBVQTextCursor@@@Z
 ?setTextCursor@QTextEdit@@QEAAXAEBVQTextCursor@@@Z
+?setTextFormat@QLabel@@QEAAXW4TextFormat@Qt@@@Z
 ?setTextInteractionFlags@QLabel@@QEAAXV?$QFlags@W4TextInteractionFlag@Qt@@@@@Z
 ?setTickPosition@QSlider@@QEAAXW4TickPosition@1@@Z
 ?setTitle@QMenu@@QEAAXAEBVQString@@@Z
@@ -3167,6 +3113,7 @@ $t5\tEi\fo
 ?value@QSettings@@QEBA?AVQVariant@@AEBVQString@@AEBV2@@Z
 ?valueToKeys@QMetaEnum@@QEBA?AVQByteArray@@H@Z
 @#?write@QTableWidgetItem@@UEBAXAEAVQDataStream@@@Z
+@0JA@
 @Integer overflow in %s
 @Physics
 @UI4
@@ -3215,21 +3162,26 @@ AdobeDeflate
 After the real remainder, how many additional digits should we continue to append to create additional visual movement?
 Alpha decoder initialization failed.
 Alpha:
-Alternate
 Alternate Path: %s\n
 AlternateBase
 AnalogBalance
 And R%d <- R%d && R%d
+AngleA
+AngleB
+Animation 2
 AntiAliasStrength
 Any Other Cursors Have Tag
+Any request for a duplicate dispatch/mesh shader primitive in an outputbuffer must previously set the dispatch buffer
 Anywhere
+Applies 'Local' on top of 'Base'. Inverse of 'Get Relative Transform'
+Applies B in A's local space.
 Apply filter to log line only, excluding the channel header.
 Arc Cos
-Arc Cosine of input value. Input must be -1.0, 1.0 range. Output in radians, from 0 to 
+Arc Cosine of input value. Input must be -1.0, 1.0 range. Output in radians, from 0 to pi
 Arc Sin
-Arc Sine of input value. Input must be -1.0, 1.0 range. Output in radians, from -
+Arc Sine of input value. Input must be -1.0, 1.0 range. Output in radians, from -pi/2 to pi/2
 Arc Tan
-Arc Tangent of input value. Input can be any real number. Output in radians, from -
+Arc Tangent of input value. Input can be any real number. Output in radians, from -pi/2 to pi/2
 ArcCos input out of range (-1, 1)
 ArcSin input out of range (-1, 1)
 Are we currently running unit tests?
@@ -3239,6 +3191,7 @@ Array Concatenate
 Array Count
 Array Find Element Matching
 Array First N Elements
+Array Has Element Matching
 Array Insert
 Array Remove Element Matching
 Array Remove Index
@@ -3256,7 +3209,7 @@ Asserts/Errors Only
 Async Call Method (Child Cursor) C%d:I%d
 Async Outflow (Child Cursor) C%d:I%d
 At Whitespace
-AtlasToVolumeTextureConversion(3537): Error! Unable to parse grid/slice count from volume atlas filename: %s\n
+AtlasToVolumeTextureConversion(3572): Error! Unable to parse grid/slice count from volume atlas filename: %s\n
 Attachment Text - Attachment Text - Attachment Text
 Attempting to register the command %s for context %s multiple times\n
 AuC=
@@ -3267,6 +3220,7 @@ Auto-Restart when any monitored libraries change
 Auto-reload file
 Awx#
 B channel not found!\n
+B8TA@
 BC3qxWc
 BDU5
 BLUq_
@@ -3279,12 +3233,14 @@ BackGroundFill_t
 BackGroundStyle_t
 Background
 Background Color...
+Background Setup
 BackgroundColor
 BackgroundColorChanged
 Backspace
 Bad Filename
 Bad checkstate (expected eg. 'PartiallyChecked')
 Bad code word
+Bad count in ArraySetCount (%d)
 Bad horizontalPolicy "%s"
 Bad max in ArrayFirstNElements (%d)
 Bad reinterpret on ArrayAppend
@@ -3298,6 +3254,7 @@ Bad value for vAlign in AttachPos!
 Bad verticalPolicy "%s"
 Bad vmdl
 BadFaxLines
+BankID%d
 Base
 Base-10 logarithm
 Base-2 logarithm
@@ -3336,12 +3293,17 @@ C:\buildworker\csgo_rel_win64\build\_build_\utils\vconsole2\_vpc_vconsole2\defau
 C:\buildworker\csgo_rel_win64\build\src\bitmap\floatbitmap.cpp
 C:\buildworker\csgo_rel_win64\build\src\common\stackhelpers\stackhelpers_vsymbolmodule_translation.cpp
 C:\buildworker\csgo_rel_win64\build\src\particleslib\particlemgr.cpp
+C:\buildworker\csgo_rel_win64\build\src\public\scenesystem\sceneobject.h
 C:\buildworker\csgo_rel_win64\build\src\public\tier0\utlblockvector.h
+C:\buildworker\csgo_rel_win64\build\src\public\tier0\utlmap.h
+C:\buildworker\csgo_rel_win64\build\src\qcontrols\inputglobalhotkeys.cpp
 C:\buildworker\csgo_rel_win64\build\src\toolrenderutils\toolmatsysutils.cpp
 C:\buildworker\csgo_rel_win64\build\src\toolrenderutils\toolstandardmodels.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolscene\lightingcontrolrig.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\toolscene\qtoolscenewidget.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolscene\toolscene_hitboxes.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolscene\toolscene_sky.cpp
+C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\bindablecamera.cpp
 C:\buildworker\csgo_rel_win64\build\src\tools\toolutils2\toolrenderutils.cpp
 C@HY
 C@ag
@@ -3377,6 +3339,7 @@ CLightingControlRig
 CLightingControlRig::DestroyBackgroundMap
 CLightingControlRig::ReloadLightRigConfig
 CLightingPreviewPopupUI
+CMeshPrimitiveOutputBuffer::Next
 CModelPreviewAttachedModel
 CNewParticleEffect::DetectChanges
 COMMAND_TEXT_MODE_BUTTON
@@ -3385,13 +3348,15 @@ COMMAND_TEXT_MODE_MENU
 COMMAND_TEXT_MODE_NONE
 COZw
 CParticleCollectionBindingInstance::HACK_UnusedBinding
-CParticleMgr::SimulateParticles(), C:\buildworker\csgo_rel_win64\build\src\particleslib\particlemgr.cpp:1166
+CParticleMgr::SimulateParticles(), C:\buildworker\csgo_rel_win64\build\src\particleslib\particlemgr.cpp:1167
 CPiecewiseCurve
+CPulseArraylib
 CPulseArraylib::ArrayAppend
 CPulseArraylib::ArrayConcatenate
 CPulseArraylib::ArrayCount
 CPulseArraylib::ArrayFindElementMatching
 CPulseArraylib::ArrayFirstNElements
+CPulseArraylib::ArrayHasElementMatching
 CPulseArraylib::ArrayInsert
 CPulseArraylib::ArrayRemoveElementMatching
 CPulseArraylib::ArrayRemoveIndex
@@ -3413,12 +3378,15 @@ CPulseCell_IsRequirementValid::CheckRequirement
 CPulseCell_LimitCount::CheckRequirement
 CPulseCell_LimitCount::CommitStep
 CPulseCell_PickBestOutflowSelector::ProcessSelector
+CPulseCell_RaceCursors::Start
+CPulseCell_RaceCursors::StopWaiting
 CPulseCell_Step_CallExternalMethod '%s'
 CPulseCell_Timeline::Start
 CPulseCell_Value_Curve::Eval
 CPulseCell_Value_Gradient::Eval
 CPulseCell_WaitForCursorsWithTag::Wait
 CPulseCell_WaitForObservable::Start
+CPulseCursorFuncs
 CPulseCursorFuncs::AnyOtherCursorsHaveTag
 CPulseCursorFuncs::CursorHasTag
 CPulseCursorFuncs::KillAllOtherCursors
@@ -3426,10 +3394,12 @@ CPulseCursorFuncs::KillCursorsWithTag
 CPulseCursorFuncs::RemoveTagFromCursor
 CPulseCursorFuncs::TagCursor
 CPulseCursorFuncs::WakeCursorsWithTag
+CPulseEnumlib
 CPulseEnumlib::AddFlags
 CPulseEnumlib::HasAllFlags
 CPulseEnumlib::HasAnyFlags
 CPulseEnumlib::RemoveFlags
+CPulseMathlib
 CPulseMathlib::AbsFloat
 CPulseMathlib::AbsInt
 CPulseMathlib::ArcCos
@@ -3438,6 +3408,8 @@ CPulseMathlib::ArcTan
 CPulseMathlib::CeilingFloat
 CPulseMathlib::ClampFloat
 CPulseMathlib::ClampInt
+CPulseMathlib::ComposeAngles
+CPulseMathlib::ComposeTransforms
 CPulseMathlib::Cos
 CPulseMathlib::CrossProductVector
 CPulseMathlib::Deg2Rad
@@ -3448,13 +3420,19 @@ CPulseMathlib::FloatToGameTime
 CPulseMathlib::FloorFloat
 CPulseMathlib::Frac
 CPulseMathlib::GameTimeToFloat
+CPulseMathlib::GetRelativeTransform
 CPulseMathlib::IntegerDivide
+CPulseMathlib::InverseRotateVector
+CPulseMathlib::InverseTransformVector
 CPulseMathlib::IsValidVector
 CPulseMathlib::IsValidWorldVector
 CPulseMathlib::LengthVector
 CPulseMathlib::LengthVector2D
+CPulseMathlib::LerpAngle
 CPulseMathlib::LerpFloat
+CPulseMathlib::LerpTransform
 CPulseMathlib::LerpVector
+CPulseMathlib::LerpWorldTransform
 CPulseMathlib::LerpWorldVector
 CPulseMathlib::Log
 CPulseMathlib::Log10
@@ -3480,6 +3458,9 @@ CPulseMathlib::RSqrt
 CPulseMathlib::Rad2Deg
 CPulseMathlib::RandomWorldPosition
 CPulseMathlib::RemapClampedFloat
+CPulseMathlib::RotateVector
+CPulseMathlib::RotateVectorToWorld
+CPulseMathlib::RotateWorldVectorToLocal
 CPulseMathlib::RoundFloat
 CPulseMathlib::Saturate
 CPulseMathlib::SignFloat
@@ -3496,19 +3477,32 @@ CPulseMathlib::SplitWorldVector
 CPulseMathlib::SqrFloat
 CPulseMathlib::SqrInt
 CPulseMathlib::Sqrt
-CPulseMathlib::StringsAreEqualCaseSensitive
 CPulseMathlib::Tan
+CPulseMathlib::TransformInverse
+CPulseMathlib::TransformVector
+CPulseMathlib::TransformVectorToWorld
+CPulseMathlib::TransformWorldVectorToLocal
 CPulseMathlib::VectorToWorldVector
+CPulseMathlib::WorldTransformInverse
 CPulseMathlib::WorldVectorToVector
 CPulseObservableExpression
+CPulseStringlib
+CPulseStringlib::Format1
+CPulseStringlib::Format2
+CPulseStringlib::Format3
+CPulseStringlib::Format4
+CPulseStringlib::Format5
 CPulseStringlib::FormatDurationStringFromSeconds
 CPulseStringlib::StringLength
 CPulseStringlib::StringsAreEqualCaseSensitive
+CPulseTestScriptLib
 CPulseTestScriptLib::AssertTrue
 CPulseTestScriptLib::IndicateTestFailure
 CPulseTestScriptLib::IsInTestMode
 CPulseTestScriptLib::RegisterTestCheckpoint
 CPulseTestScriptLib::TestModeAssertTrue
+CPulseValueFullType
+CPulseVariant
 CQAddLogViewerDialog
 CQApplication
 CQAttachmentGeoViewer
@@ -3639,6 +3633,9 @@ CToolRenderContext::PopTransform - matrix stack underflow
 CToolRenderContext::PushRenderMode - exceeded stack depth\n
 CToolRenderContext::PushTransform - busted through MAX_MATRIX_STACK_DEPTH (%d)
 CToolRenderContext::PushTransform - matrix stack underflow
+CToolScene::AddRenderLayers::<lambda_1>::operator ()
+CToolScene::AddRenderLayers::<lambda_2>::operator ()
+CToolScene::AddRenderLayers::<lambda_3>::operator ()
 CToolSceneAxis
 CToolSceneCamera
 CToolSceneGrid
@@ -3649,6 +3646,7 @@ CToolSceneSky
 CToolSceneText
 CToolSceneTraceEnvironment::Draw_SetupIdForCurrentNode - Trying to draw with no node. You need to call Draw_SetCurrentNode() before drawing\n
 CToolsVisPopupUI
+CURVE_TANGENT_FLAT
 CURVE_TANGENT_FREE
 CURVE_TANGENT_MIRROR
 CURVE_TANGENT_SINE
@@ -3676,6 +3674,7 @@ CUtlMemoryBlockAllocator<class Vec2D<float>,class CMemAllocAllocator>::AddPage
 CUtlMemoryBlockAllocator<class std::function<void __cdecl(void)>,class CMemAllocAllocator>::AddPage
 CUtlMemoryBlockAllocator<struct CacheOptimizedTriangle_t,class CMemAllocAllocator>::AddPage
 CUtlMemoryBlockAllocator<struct StoredTriangleVertexPositions_t,class CMemAllocAllocator>::AddPage
+CUtlOrderedMap<class PulseCursorID_t,struct PulseGraphExecutionHistoryCursorDesc_t *,class CDefLess<class PulseCursorID_t>,int>::FindElement
 CUtlSortVector<struct LogChannelConfig_t *,class CChannelConfigLess,class CUtlVector<struct LogChannelConfig_t *,int,class CUtlVectorMemory_Growable<struct LogChannelConfig_t *,int,0> > >::Insert
 CUtlSortVector<unsigned int,class CUtlSortVectorDefaultLess<unsigned int>,class CUtlVector<unsigned int,int,class CUtlVectorMemory_Growable<unsigned int,int,0> > >::Find
 CUtlStreamBuffer does not support TEXT_BUFFER's use CUtlBuffer\n
@@ -3688,6 +3687,7 @@ CVConsoleSubToolInfo
 CVConsoleSubToolsConfig
 CVertexListSceneObject
 CWeakHandle
+C\B5@
 CalibrationIlluminant1
 CalibrationIlluminant2
 Call C%d:I%d (%s)
@@ -3730,10 +3730,12 @@ ChannelHeaderColor
 ChannelInfos
 Check Requirement
 Check Type
+Check if any element of 'a' compares equal to 'element'.
 Check if any yielded cursors on the graph already have the given tag.
 Check if the cursor already has the given tag.
 CheckState
 CheckmarkPossible
+Children
 ChromaBlurRadius
 Ck(E! eY
 Clamp Float
@@ -3742,6 +3744,7 @@ Clamp value to range (float)
 Clamp value to range (int)
 Class
 Class does not allow allocation from its schema binding
+ClassName
 CleanFaxData
 Clear Bookmark
 Clear Command History
@@ -3780,11 +3783,13 @@ CommandHistory
 Commit Step
 Compare strings with case sensitivity, in contrast to normal string equality which is case-insensitive.
 Completed
+Compose Angles
+Compose Transforms
 Compression
 Compression algorithm does not support random access
 Compression scheme %u %s decoding is not implemented
 Compression scheme %u %s encoding is not implemented
-Computes 2 ( 2.71...) raised to a power
+Computes 2 raised to a power
 Computes e ( 2.71...) raised to a power
 ConColorMsg
 ConMsg
@@ -3826,6 +3831,7 @@ Count the number of codepoints in the string (unicode-aware). If you want render
 Courier
 Courier New
 CpC xj
+CreateDocument failed
 Cross Product Vector
 Cross Product of Vector a x Vector b
 Ctrl
@@ -3848,7 +3854,9 @@ Custom\nColor
 D ?toPlainText@QTextEdit@@QEBA?AVQString@@XZ
 D f(M9h
 D#sC
+D17@
 D3nPJ
+D67@
 DBM&(
 DETAILED\nColor
 DISABLED
@@ -3907,14 +3915,12 @@ Device Name - Error
 Device Properties - %1
 Device tabs at bottom
 Devices
-Dg4@
-Dh4@
-Di4@
 Disable "Restart Dialog" notifications
 Disconnect
 Disconnected From '%1'\n
 Disconnecting From '%1'\n
 Div R%d <- R%d / R%d
+Dn5@
 DockWidgetArea
 DockWidgetTitleBackground
 DocumentName
@@ -4026,7 +4032,8 @@ Failed To Connect After %1 Attempts.\n
 Failed to allocate an instance of a class of type '%s'
 Failed to allocate field info array
 Failed to allocate memory for %s (%ld elements of %ld bytes each)
-Failed to compute bone transform %d for attachment '%s'
+Failed to compute attachment transform for '%s'
+Failed to compute bone transforms for attachment '%s'
 Failed to compute channel layout.\n
 Failed to convert value '%s' to enum/flags '%s' (expecting eg. '%s')
 Failed to create widget %s
@@ -4056,6 +4063,7 @@ FaxSubAddress
 FiCLyR
 FieldOfViewCotangent
 File not open for reading
+FileLine
 FillOrder
 Filter:
 FilterApplied
@@ -4063,15 +4071,17 @@ Final Port: %1
 Find all the yielded cursors on this graph and cancel them.
 Find all the yielded cursors on this graph with the matching tag and cancel them.
 Find all the yielded cursors on this graph with the matching tag and wake them.
-Find first element 'a' which compare equal to 'element' and return its index.
+Find first element 'a' which compare equal to 'element' and return its index. Returns -1 if not found.
 Find:
+Finished SetupMaterialSystem (%0.1fs)\n
 Fixed
 Flash hidden channel activity in log viewer tab
+Flat
 FlatSelection
 Float To Game Time
 FloatBitMap_t: Error loading %s\n
-FloatBitMap_t::LoadFromFile(3729): Error! Slice %d format %dx%dx%d Attr(%d) != previous slices of %dx%d Attr(%d) for %s\n
-FloatBitMap_t::LoadFromTGA(2678): Error loading %s\n
+FloatBitMap_t::LoadFromFile(3764): Error! Slice %d format %dx%dx%d Attr(%d) != previous slices of %dx%d Attr(%d) for %s\n
+FloatBitMap_t::LoadFromTGA(2713): Error loading %s\n
 Floating point "Predictor" not supported with %d data format
 Floor - round float down to nearest integer
 Floor Float
@@ -4092,6 +4102,15 @@ FocusOut
 FoliageAnimation
 Follow user preference
 Format Duration String From Seconds
+Format encountered } without matching { at column %d
+Format expected number or } at column %d
+Format expected } after number at column %d
+Format invalid index %d at column %d
+Format1
+Format2
+Format3
+Format4
+Format5
 Frac
 Fractional component (ie. returns 0.34 for 12.34)
 Frame Selected
@@ -4121,6 +4140,7 @@ Geo file (*.geo)
 GeoView
 GeoView Viewer
 Geometry
+Get Relative Transform
 GetArrayElement R%d <- R%d[ R%d ]
 GetAsyncKeyState
 GetBlackboardReference R%d <- BR%d (%s)
@@ -4128,10 +4148,10 @@ GetClassNameA
 GetConst R%d <- C%d (%s)
 GetCursorPos
 GetDomainValue R%d <- DV%d (%s)
-GetDotaGlobalDefaultConstantBuffer
 GetInlineCallData
 GetInlineConst R%d <- C%d (%s)
 GetProfile_ultrafast
+GetTempVar R%d <- 
 GetTranslationData
 GetVar R%d <- V%d (%s)
 GetVar R%d <=MOVE*V%d (%s)
@@ -4155,54 +4175,46 @@ Group3Options
 Group4Options
 GvZ<3
 H!0kZj
-H36@
-H46@
-H54@
-H64@
-H67@
-H74@
-H7G@
-H86@
-H97@
+H%ZD
+H27@
+H28@
+H73@
 HAC K  Unused Binding
 HCto
+HDA@
+HH3@
 HKEY_CURRENT_USER\Software\Valve\GeoView
-HN2@
-HO6@
-HP6@
-HQ2@
-HQ6@
-HR6@
-HS2@
-HS6@
-HT6@
-HTG@
-HU6@
+HQ7@
+HQZD
+HS7@
+HTH@
+HU8@
+HUH@
 HV &G
 HV.J
-HV6@
-HW6@
-HYG@
+HWH@
 H\fBp
+H\tV_cosd
 Hack Dota Layer Opaque
 Hack Dota Layer Opaque Translucent
 HalftoneHints
 Has All Flags
 Has Any Flags
-HeG@
+Hc7@
+Hd7@
+HeH@
+He[D
 Header Color
 Header Color...
 HeaderCheckStateChanged
 HeaderSectionBackground
 HeaderSectionLine
-HelperLoadFbmByFileExtension(3509): Error! Unknown file type for %s\n
+HelperLoadFbmByFileExtension(3544): Error! Unknown file type for %s\n
 HeroViewer
 Hex:
-Hg4@
+Hg7@
 HgBNv
-Hh4@
-HhF@
-HhG@
+Hi8@
 Hidden Channels
 HiddenIds
 Hide
@@ -4210,23 +4222,27 @@ Hide Non-Essential
 Hide VConsole from ALT+TAB (Do not show in Task View or Taskbar)
 Hide matches only
 Hide unless error/warning occurs
-Highlight
 Highlight Color
 Highlight Color...
 Highlight Line Matches
 HighlightColor
 HighlightedText
+Hj7@
 Hj~7!
+Hl8@
+Hm7@
 Hmx\
+Hn7@
+Ho5@
 Home
 Horizontal differencing "Predictor" not supported with %d-bit samples
 HorizontalStrafeCamera
 HostComputer
 HoverItemChanged
-HpG@
-Hv5@
-Hy1@
-Hz1@
+Hp5@
+Hp8@
+Hx6@
+HzH@
 H}Go-
 I ?toggleViewAction@QDockWidget@@QEBAPEAVQAction@@XZ
 IBindTarget
@@ -4333,6 +4349,8 @@ Invalid size: %s
 Invalid splitscreen slot in '%1'.\n
 Invalid tile size x : 
 Invalid tile size y : 
+Inverse Rotate Vector
+Inverse Transform Vector
 Invoke Cell%d [eid=%d] %s%s
 Invoke Lib %s
 InvokeCommand
@@ -4340,6 +4358,7 @@ Is In Test Mode
 Is Valid Vector
 Is Valid World Vector
 IsIconic
+IsValidIndex( i )
 IsWindow
 IsWindowVisible
 J%f%f%f%f%f%f%f%f
@@ -4377,6 +4396,7 @@ Kill Cursors With Tag
 Koez
 Kt6b}$
 K}QVi1c
+L67@
 LMouse
 LMouseDoubleClick
 LT?pixel@QImage@@QEBAIHH@Z
@@ -4394,7 +4414,6 @@ LZWPreDecode
 LZWSetupEncode
 L\r?hitButton@QToolButton@@MEBA_NAEBVQPoint@@@Z
 L\t?canDropMimeData@QAbstractItemModel@@UEBA_NPEBVQMimeData@@W4DropAction@Qt@@HHAEBVQModelIndex@@@Z
-L\tV_isinfd
 L_?toImage@QPixmap@@QEBA?AVQImage@@XZ
 LabelPos_t
 Leap to Chunk C%d
@@ -4404,14 +4423,15 @@ Length (magnitude) of Vector2D
 Length Vector
 Length Vector2 D
 LensInfo
+Lerp Angle
 Lerp Float
+Lerp Transform
 Lerp Vector
+Lerp World Transform
 Lerp World Vector
 Less R%d <- R%d < R%d
 LessEq R%d <- R%d <= R%d
 Lf-N
-Lg4@
-Li4@
 Library Modification Detected
 Library Modification Detected: '%s'\n
 Library: "%s" %s\n
@@ -4433,12 +4453,17 @@ LinkVisited
 Link\t\tB\t
 Listening For Application On '%1'\n
 Listening...
+Ln5@
 LoadEXRImageFromMemory failed! Error message: %s\n
 LoadEXRImageFromMemory() failed! Error message: %s\n
 LoadFromInMemoryEXR( %s ) failed.\n
+LoadFromPSD: Unable to load %s: %s\n
+LoadFromPSD: Unable to read file %s\n
 LoadKV3Object error: %s\n
 Loading SubTool: '%s', Interface: %s\n
+Local
 Local VConsole Commands:\n
+LocalVector
 Localhost
 LocalizedCameraModel
 Lock Height [Toggle: %s]
@@ -4470,6 +4495,7 @@ MMouseDoubleClick
 MPBPK
 MPropertyFlattenIntoParentRow
 MPulseExpressionAlias
+MPulseFunctionAddsCursorTag
 MPulseFunctionHiddenInTool
 MPulseTypeRestriction
 MSAA Resolve
@@ -4576,7 +4602,7 @@ N?highlight@QPalette@@QEBAAEBVQBrush@@XZ
 N?horizontalAdvance@QFontMetrics@@QEBAHAEBVQString@@H@Z
 N?hueF@QColor@@QEBANXZ
 N?index@QStandardItemModel@@UEBA?AVQModelIndex@@HHAEBV2@@Z
-N@Bad count in ArraySetCount (%d)
+N@__FireCursorsParent__
 NColorRoles_Qt
 NLl55
 NO COMMAND TARGET
@@ -4585,6 +4611,7 @@ NULL CELL
 NULL VP8Io parameter in VP8Decode().
 N[5#D
 N\n?averageCharWidth@QFontMetrics@@QEBAHXZ
+N\tV_exp2f
 N\v?event@QMainWindow@@MEAA_NPEAVQEvent@@@Z
 N_U9203
 Name\t\t\t\t\tCount\t\tParticle Count\n
@@ -4630,6 +4657,7 @@ NodeID %d port '%s' called from C%d:I%d
 None\n
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
+Normalize Vector
 Normalize Vector a
 Normals
 Not R%d <- !R%d
@@ -4662,10 +4690,13 @@ NumberOfInks
 O.G+e
 O?Et=
 O?installUpdateHandler@QAccessible@@SAP6AXPEAVQAccessibleEvent@@@ZP6AX0@Z@Z
+O?inverted@QTransform@@QEBA?AV1@PEA_N@Z
+OH5@
 OP?isNull@QIcon@@QEBA_NXZ
 O\YZ
 O\fyW
 O\r?hitTestComplexControl@QCommonStyle@@UEBA?AW4SubControl@QStyle@@W4ComplexControl@3@PEBVQStyleOptionComplex@@AEBVQPoint@@PEBVQWidget@@@Z
+O\tV_expd
 Oa?width@QImage@@QEBAHXZ
 Old-style JPEG
 Old-style LZW codes, convert file
@@ -4744,6 +4775,7 @@ OnDrawNormals
 OnEditTextChanged
 OnEditTextEdited
 OnEditingAddress
+OnEditingFinished
 OnEditingName
 OnEditingPort
 OnExitAction
@@ -4892,6 +4924,7 @@ Options:
 Oqj\n
 Oqpx
 Or R%d <- R%d || R%d
+Origin
 Original Path: %s\n
 OriginalRawFileData
 OriginalRawFileName
@@ -4899,65 +4932,45 @@ Out of memory allocating %d byte temp buffer.
 Outflow List
 Outgoing Message Overflow! - Discarding\n
 Output aborted.
+OverideHelpContextName
 OverlayProjectionDirection
 Overwrite With Current
 P"?updateSection@QHeaderView@@IEAAXH@Z
-P02@
 P05y
-P07@
 P17@
-P27@
-P46@
-P54@
-P56@
-P5G@
-P66@
-P76@
-P7G@
-P96@
-P9G@
+P1A@
+P37@
+P88@
 P=B A
 P?isValid@QColor@@QEBA_NXZ
 P?isValidColor@QColor@@SA_NAEBVQString@@@Z
 P?itemData@QStandardItemModel@@UEBA?AV?$QMap@HVQVariant@@@@AEBVQModelIndex@@@Z
 P?jumpToNextImage@QImageReader@@QEAA_NXZ
 P?keyboardModifiers@QGuiApplication@@SA?AV?$QFlags@W4KeyboardModifier@Qt@@@@XZ
-PC5@
-PD5@
-PDG@
-PG7@
-PH7@
-PI2@
-PI7@
+PD3@
+PEI@
+PF8@
+PH6@
 PIDAT8
-PJ2@
-PJ5@
 PJD<
 PJE=9'
-PJG@
 PJIa"\v
-PK2@
-PM2@
-PM7@
-PMG@
-PN6@
-PO2@
-PO5@
-PO7@
+PL7@
+PL8@
+PLI@
+PM8@
 POISONED 
-PP2@
+PP7@
+PPI@
 PQ]D?
+PR7@
 PRP\vI
-PS2@
-PS7@
-PTG@
+PSH@
+PTH@
+PUH@
 PURH
-PY7@
-PYG@
-PZ7@
 P\f?font@QTableWidgetItem@@QEBA?AVQFont@@XZ
 P\vFE
-PaG@
 PackBits
 PackBitsDecode: Not enough data for scanline %ld
 PackBitsDecode: discarding %ld bytes to avoid buffer overrun
@@ -4968,6 +4981,7 @@ PanelID
 Parent Map: %s\n
 ParseEXRHeaderFromMemory failed! Error message: %s\n
 ParseEXRHeaderFromMemory() failed! Error message: %s\n
+ParseImageDataSection failed
 Particle Binding
 Particle Binding (Real)
 ParticlesLib
@@ -4975,20 +4989,25 @@ Pass Outflow
 Paste
 Paste (Overwrite)
 PasteColor
-PbG@
-PdG@
+PbH@
+Pc7@
+Pd7@
+Pd8@
+Pe7@
+PeH@
 PerVertexLighting
-Pg4@
+Pf7@
+Pg8@
 PgDn
-PgG@
 PgUp
-Ph4@
-PhF@
+Ph7@
+Ph8@
 Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
 Physics Debug Draw
+Pi7@
 Pick
 Pick Global Background
 PickCancelled
@@ -4997,16 +5016,18 @@ PitchCameraDown
 PitchCameraUp
 PivotPaint
 PixarLog
-PlG@
+Pk7@
+Pk8@
+Pl7@
+PlH@
 PlaceholderText
 PlanarConfiguration
 Planarconfig tag value assumed incorrect, assuming data is contig instead of chunky
 Please close and restart VConsole to update!
-PnG@
 Policy
 Port: (Default = %1)
-PpG@
-PrG@
+Pp8@
+Pq5@
 Predictor
 PredictorEncodeTile
 PredictorSetup
@@ -5028,15 +5049,20 @@ Properties
 Properties...
 Property '%s.%s' not writable
 Protocol: %d\n
-PsG@
-PtG@
+PsH@
+Pt8@
 PtZP
-PuG@
 Pulse domain which enables particle content to query leaf code to introspect game state.
 Pulse: %s 
-PwF@
+Pw6@
+Pw8@
+Px8@
+PxH@
+Py8@
 PyNn2FAh
-Pz1@
+Pz6@
+Pz8@
+PzA@
 Q1y\tkL
 Q?logicalDotsPerInch@QScreen@@QEBANXZ
 Q?logicalDpiY@QPaintDevice@@QEBAHXZ
@@ -5103,6 +5129,7 @@ R Sqrt
 R channel not found!\n
 R*bo
 R+hM
+R?mapRect@QTransform@@QEBA?AVQRectF@@AEBV2@@Z
 R?metaObject@QRegularExpressionValidator@@UEBAPEBUQMetaObject@@XZ
 R?metaObject@QStandardItemModel@@UEBAPEBUQMetaObject@@XZ
 R?metric@QPixmap@@MEBAHW4PaintDeviceMetric@QPaintDevice@@@Z
@@ -5124,7 +5151,6 @@ R\r?hitTestComplexControl@QProxyStyle@@UEBA?AW4SubControl@QStyle@@W4ComplexContr
 R\rBe
 R\t?canFetchMore@QAbstractItemModel@@UEBA_NAEBVQModelIndex@@@Z
 R\v?event@QMenuBar@@MEAA_NPEAVQEvent@@@Z
-R\vpL
 R^?supportedDropActions@QStandardItemModel@@UEBA?AV?$QFlags@W4DropAction@Qt@@@@XZ
 R_T5Y
 Rad2 Deg
@@ -5189,22 +5215,37 @@ Retrying Connection...\n
 Return the number of elements in the array.
 Returns -1 or 0 or 1 based on the sign of the argument
 Returns -1.0 or 0.0 or 1.0 based on the sign of the argument
+Returns a local transform that you could put back into 'Compose Transforms' to recover 'Offset'
 Returns a random position centered on vCenter with random min and max radius
+Returns interpolated value between A and B based on frac 0.0 - 1.0 (angle)
 Returns interpolated value between A and B based on frac 0.0 - 1.0 (float)
+Returns interpolated value between A and B based on frac 0.0 - 1.0 (transform)
 Returns interpolated value between A and B based on frac 0.0 - 1.0 (vector)
+Returns interpolated value between A and B based on frac 0.0 - 1.0 (world transform)
 Returns interpolated value between A and B based on frac 0.0 - 1.0 (world vector)
 Returns the constant pi (3.14...)
+Returns the inverse of a transform.
+Returns the inverse of a world transform.
 Returns true if the Vector is valid
 Returns true if the World Vector is valid
 Returns up to the maximum requested elements. Never grows the array (unlike SetCount).
 RichTIFFIPTC
 Right Mouse (Average)
+Rotate Vector
+Rotate Vector To World
+Rotate World Vector To Local
+Rotate a relative vector by a local transform, not including position or scale.
+Rotate a relative vector into a world direction, not including position or scale.
+Rotate a vector by the inverse of a local transform, not including position or scale. Inverse of 'Rotate Vector'.
+Rotate a world direction vector into a local direction, not including position or scale.
 RotateAboutTarget3D
 RotateLights
 Round - round float up or down to integer
 Round Float
 Row pixels integer overflow (rowpixels %u)
 RowsPerStrip
+Run expensive operations like SetupMaterialSystem before they're needed, whenever VConsole is in the background
+Running SetupMaterialSystem '%s'\n
 Rv ui
 S?name@QColor@@QEBA?AVQString@@W4NameFormat@1@@Z
 S?name@QColor@@QEBA?AVQString@@XZ
@@ -5361,6 +5402,7 @@ SetTabStyleBar
 SetTabStyleBrick
 SetTabStyleLine
 SetTabStyleNone
+SetTempVar 
 SetValueCenter
 SetValueHidden
 SetValueLeft
@@ -5496,6 +5538,7 @@ Sync may be disrupted! Restart from alternate location DISABLED (%1)
 Syncing in progress! Auto Restart pending...
 Syntax error with array notation or invalid splitscreen slot in '%1'.\n
 SystemParametersInfoA
+T67@
 T?parent@QStandardItemModel@@UEBA?AVQModelIndex@@AEBV2@@Z
 T?pos@QCursor@@SA?AVQPoint@@XZ
 T?pos@QDropEvent@@QEBA?AVQPoint@@XZ
@@ -5539,6 +5582,7 @@ Tag Cursor
 Tag Self When Complete
 Tag Value
 TakeRenderDocCapture
+Takes a format string that and 1-5 arguments to insert into that string.<br>Format string can look like, for example, <tt>"Hello {} my name is {}"</tt> to reference arguments 0 and 1 implcictly.<br>Or <tt>"Hello {0} my name is {1}"</tt> to reference arguments 0 and 1 explicitly.<br>Use <tt>{{</tt> and <tt>}}</tt> for literal brace characters.<br>
 TanFrameQuat
 Tangent of angle. Input in radians, output in radians
 TargetPrinter
@@ -5553,7 +5597,6 @@ Text Data Corrupt
 Text Viewer
 TextureFormat
 TextureWrapModes
-Tg4@
 The following libraries have changed:<pre>%1</pre>You need to close and restart VConsole to update.<br>(You will only be prompted to restart once per session.)
 This is BLUE text
 This is a BigTIFF file.  This format not supported\nby this version of libtiff.
@@ -5565,7 +5608,6 @@ Threshholding
 Threshold of sun shadow map size percentage below which objects get culled
 ThunderDecode: %s data at scanline %ld (%lu != %lu)
 ThunderScan
-Ti4@
 TileByteCounts
 TileDepth
 TileLength
@@ -5574,6 +5616,7 @@ TileWidth
 Time since the start of the timer
 TmvSQD
 Tm{X#e
+Tn8@
 Toggle Wireframe Selected
 Toggle mat_fullbright - Does Not Add To History\n
 Toggle mat_wireframe and set Focus back to App.\n
@@ -5621,10 +5664,19 @@ Tools_Unlit_Wireframe
 Toolscene screen space view
 Track Mouse & Focus
 TransferFunction
+Transform Inverse
+Transform Vector
+Transform Vector To World
+Transform World Vector To Local
+Transform a relative vector by a local transform, including position and scale.
+Transform a relative vector into worldspace, including position and scale.
+Transform a vector by the inverse of a local transform, including position and scale. Inverse of 'Transform Vector'.
+Transform a worldspace vector into a relative vector, including position and scale.
+TransformA
+TransformB
 Truncated header.
 TrySendVNotify - SendKV3 failed\n
 Turn a time in seconds into a display string. NOT localized.
-Ty1@
 U5B$z
 U?qt_metacall@QIntValidator@@UEAAHW4Call@QMetaObject@@HPEAPEAX@Z
 U?qt_metacall@QRegularExpressionValidator@@UEAAHW4Call@QMetaObject@@HPEAPEAX@Z
@@ -5643,6 +5695,7 @@ U\r?home@QTextBrowser@@UEAAXXZ
 U\v?event@QPlainTextEdit@@MEAA_NPEAVQEvent@@@Z
 Ue[0
 Un/>DD
+Unable to load psd: %s\n
 Unbalanced pop object namespace
 UnderMouse
 Unhandled/unrecognized child entry (Must have a _class, or be a special entry like: vbox=[] hbox=[] grid=[[],[]] flowing=[] spacing=NUM stretch=NUM
@@ -5797,18 +5850,18 @@ WireframeEffectsBloom
 WireframeTranslucent
 WjM\rm!
 Wkkp
+World Transform Inverse
 World Vector To Vector
+WorldVector
 Writable
 Write error at scanline %lu
 W~1Z
 X to the Y power
-X36@
-X46@
-X64@
-X74@
-X7G@
-X84@
-X86@
+X08@
+X18@
+X28@
+X68@
+X78@
 X8\r,z
 X?setBrush@QPainter@@QEAAXAEBVQBrush@@@Z
 X?setBrush@QPainter@@QEAAXW4BrushStyle@Qt@@@Z
@@ -5816,6 +5869,7 @@ X?setBrush@QPalette@@QEAAXW4ColorGroup@1@W4ColorRole@1@AEBVQBrush@@@Z
 X?setBrush@QPalette@@QEAAXW4ColorRole@1@AEBVQBrush@@@Z
 X?setBrushOrigin@QPainter@@QEAAXAEBVQPoint@@@Z
 X?setBrushOrigin@QPainter@@QEAAXAEBVQPointF@@@Z
+X?setCapStyle@QPen@@QEAAXW4PenCapStyle@Qt@@@Z
 X?setClipRegion@QPainter@@QEAAXAEBVQRegion@@W4ClipOperation@Qt@@@Z
 X?setColor@QBrush@@QEAAXAEBVQColor@@@Z
 X?setColor@QPalette@@QEAAXW4ColorRole@1@AEBVQColor@@@Z
@@ -5824,51 +5878,59 @@ X?setColorAt@QGradient@@QEAAXNAEBVQColor@@@Z
 X?setColumnCount@QStandardItemModel@@QEAAXH@Z
 X?setCompositionMode@QPainter@@QEAAXW4CompositionMode@1@@Z
 X?setCoordinateMode@QGradient@@QEAAXW4CoordinateMode@1@@Z
+X?setCosmetic@QPen@@QEAAX_N@Z
 X?setDashOffset@QPen@@QEAAXN@Z
 X?setDashPattern@QPen@@QEAAXAEBV?$QVector@N@@@Z
-XA5@
-XB5@
+XA3@
+XB3@
+XB6@
+XC3@
 XClipPathUnits
-XD5@
-XD7@
-XE7@
+XE6@
+XEA@
+XFI@
+XG6@
+XJ7@
 XJpQ
-XL2@
+XKI@
 XM3w
 XMLPacket
+XN7@
 XN?hasChildren@QStandardItemModel@@UEBA_NAEBVQModelIndex@@@Z
 XNML
-XO6@
-XP6@
+XO7@
 XPosition
-XQ6@
-XR6@
+XRA@
 XResolution
-XS6@
-XT6@
-XTG@
-XU6@
-XV6@
+XTH@
+XU8@
+XUH@
 XW%\vC
-XW6@
 XX?setBackground@QPainter@@QEAAXAEBVQBrush@@@Z
-XYG@
 XYY~
 XYZ, Luv
+XZ8@
 X[[CY
 X\r?horizontalHeader@QTableView@@QEBAPEAVQHeaderView@@XZ
 X\v?event@QPushButton@@MEAA_NPEAVQEvent@@@Z
 Xbox VDP is not supported on this platform.
-XdG@
-Xg4@
-Xh4@
+Xc7@
+Xd7@
+Xe8@
+XeH@
+Xf8@
+Xg7@
 XhD?\
-XhF@
+Xj7@
+Xm7@
 Xm8;
-XpG@
-XrG@
-XtG@
-XuG@
+Xn5@
+Xn7@
+Xn8@
+Xo5@
+Xr5@
+XsA@
+XxH@
 X}zl
 Y?setData@QStandardItem@@UEAAXAEBVQVariant@@H@Z
 Y?setData@QStandardItemModel@@UEAA_NAEBVQModelIndex@@AEBVQVariant@@H@Z
@@ -5887,7 +5949,6 @@ YO?insertColumns@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 YPosition
 YResolution
 YW?rgb@QColor@@QEBAIXZ
-YZ C
 Y\v?event@QRadioButton@@MEAA_NPEAVQEvent@@@Z
 YawCameraLeft
 YawCameraRight
@@ -5897,6 +5958,7 @@ Yield, Resume=%s
 Yr\t0
 Z?setItalic@QFont@@QEAAX_N@Z
 Z?setItemData@QStandardItemModel@@UEAA_NAEBVQModelIndex@@AEBV?$QMap@HVQVariant@@@@@Z
+Z?setJoinStyle@QPen@@QEAAXW4PenJoinStyle@Qt@@@Z
 Z?setNamedColor@QColor@@QEAAXAEBVQString@@@Z
 Z?setOverrideCursor@QGuiApplication@@SAXAEBVQCursor@@@Z
 Z?setPen@QPainter@@QEAAXAEBVQColor@@@Z
@@ -5939,6 +6001,8 @@ Z~!|L8\v1H
 [?setStops@QGradient@@QEAAXAEBV?$QVector@U?$QPair@NVQColor@@@@@@@Z
 [?setStyle@QBrush@@QEAAXW4BrushStyle@Qt@@@Z
 [?setText@QClipboard@@QEAAXAEBVQString@@W4Mode@1@@Z
+[BREAK]
+[CPulseCell_ReturnValues]
 [Default] Determine a lifespan based on the warning/error state of the group
 [Default] General information
 [IMMEDIATE_HALT]
@@ -6009,6 +6073,15 @@ Z~!|L8\v1H
 \f\t?beginReadArray@QSettings@@QEAAHAEBVQString@@@Z
 \fj0F
 \fz0$vZ 
+\n***ASSERT FAILED*** Image data section has too many channels (%d).
+\n***ASSERT FAILED*** Pointer is null.
+\n***ERROR*** [DecompressRle] Malformed RLE data encountered
+\n***ERROR*** [ImageData] Unhandled bits per channel: %u.
+\n***ERROR*** [ImageData] Unhandled compression type %u.
+\n***ERROR*** [PSD] Document does not contain an image data section.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, reserved bytes are not zero.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, signature does not match "8BPS".
+\n***ERROR*** [PsdExtract] File seems to be corrupt, version does not match 1 or 2.
 \n------------------------------\n
 \n0DI
 \n3 RZh
@@ -6096,7 +6169,8 @@ Z~!|L8\v1H
 \nYou have data or important state in the "%1" Tool.\n\nAbandon and continue closing?\n
 \n\f?data@QStringListModel@@UEBA?AVQVariant@@AEBVQModelIndex@@H@Z
 \n\r?heightForWidth@QBoxLayout@@UEBAHH@Z
-\ng_flConfigMaxCoord
+\n_V_StringAfterPrefixCaseSensitive
+\nplB
 \p4u
 \r?dark@QPalette@@QEBAAEBVQBrush@@XZ
 \r?darker@QColor@@QEBA?AV1@H@Z
@@ -6135,7 +6209,6 @@ Z~!|L8\v1H
 \r\nconsole command: 
 \r\r12iF
 \r\r?heightForWidth@QGridLayout@@UEBAHH@Z
-\r\tV_acosd
 \t?addPixmap@QIcon@@QEAAXAEBVQPixmap@@W4Mode@1@W4State@1@@Z
 \t?alpha@QColor@@QEBAHXZ
 \t?alphaF@QColor@@QEBANXZ
@@ -6165,20 +6238,22 @@ Z~!|L8\v1H
 \tNew Line Indented 1 Tab...
 \tT?parent@QWindow@@QEBAPEAV1@XZ
 \tTwZ
-\tV_asind
-\tV_atan2d
-\tV_atand
-\tV_atanf
-\tV_cosd
+\tV_UTF8ToUTF16
+\tV_XMLEncode
+\tV_log2f
+\tV_logd
+\tV_modfd
+\tV_powd
+\tV_sind
+\tV_strtof
 \tV_tand
 \t[?setPosition@QTextCursor@@QEAAXHW4MoveMode@1@@Z
 \t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\t\ng_flToolsDefaultFarZ
 \t\tL\ti\tn\tk\t  A  \n
 \t\v?brushOrigin@QPainter@@QEBA?AVQPoint@@XZ
-\t_V_StringAfterPrefixCaseSensitive
 \tpHYs
 \v?brush@QPainter@@QEBAAEBVQBrush@@XZ
+\v?brush@QPalette@@QEBAAEBVQBrush@@W4ColorGroup@1@W4ColorRole@1@@Z
 \v?brush@QPalette@@QEBAAEBVQBrush@@W4ColorRole@1@@Z
 \v?button@QPalette@@QEBAAEBVQBrush@@XZ
 \v?characterCount@QTextDocument@@QEBAHXZ
@@ -6218,6 +6293,7 @@ Z~!|L8\v1H
 ]z\tj8
 ^#?([0-9A-Fa-f]{6}|[0-9A-Fa-f]{3})
 ^#?([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{4}|[0-9A-Fa-f]{3})$
+^?testRenderHint@QPainter@@QEBA_NW4RenderHint@1@@Z
 ^?text@QClipboard@@QEBA?AVQString@@W4Mode@1@@Z
 ^?text@QKeyEvent@@QEBA?AVQString@@XZ
 ^?text@QPalette@@QEBAAEBVQBrush@@XZ
@@ -6238,9 +6314,9 @@ _TIFFVSetField
 _\r?horizontalOffset@QTreeView@@MEBAHXZ
 _\v?event@QSlider@@UEAA_NPEAVQEvent@@@Z
 __CursorQueue__
-__FireCursorsParent__
 __Frame
 __IsValveCQTabbedStyle
+__RaceCursorsParent__
 __State_Child_Condition__
 __TabIndex
 __TimelineParent__
@@ -6266,7 +6342,6 @@ _wjb
 `Q?lightnessF@QColor@@QEBANXZ
 `T?pixmap@QIcon@@QEBA?AVQPixmap@@HW4Mode@1@W4State@1@@Z
 `W?rgba@QColor@@QEBAIXZ
-`\tV_log2f
 `\v?event@QSpinBox@@MEAA_NPEAVQEvent@@@Z
 `qok
 a { text-decoration: underline; color: %1; }
@@ -6277,7 +6352,6 @@ a?windowText@QPalette@@QEBAAEBVQBrush@@XZ
 a?write@QStandardItem@@UEBAXAEAVQDataStream@@@Z
 a?x@QMouseEvent@@QEBAHXZ
 aV03F\t
-a\tV_logd
 actions
 activatedText
 activeDevice
@@ -6289,6 +6363,7 @@ allflags
 allowed_api_features
 allowed_requirements
 amd_ags_x64.dll
+ang2vec
 anyflags
 aoB>"
 area
@@ -6317,12 +6392,16 @@ background
 backgroundColor
 backgroundEnabled
 backgroundFill
+backgroundSetup
 backgroundStyle
 bad partition length
+bank_unique_id
 bentnormal
 bh\fcc
 bii\t
 binary
+bind_targets
+bitmap output needs an 8 bit document
 black
 blendindices
 blendweights
@@ -6366,10 +6445,15 @@ clearLogsOnConnect
 clear_group
 clicked
 closed %d devices, ports %s\n
+cmyk document with non 8 bit channels
 colorSelected
 colorizeSearchResults
 colspan
 commandline
+composeAngles
+composeTransforms
+composite channel data missing
+composite has too few channels for its color mode
 compressedtangentframe
 compression
 connectAtStartup
@@ -6381,6 +6465,7 @@ contentsMargins
 control_storage
 couldn't find a free port in range %d to %d!!!\n
 creating %d devices, port range %d -> %d\n
+cross
 currentChanged
 currentColorChanged
 current_value
@@ -6388,11 +6473,13 @@ cursor_id
 cursors
 curvature
 custom_colors
-d54@
+d38@
+d67@
 d6J0
 d6ai
 d7(N
-dI2@
+dD6@
+dE8@
 dO{H
 dZr:
 d\f?convertToFormat_helper@QImage@@IEBA?AV1@W4Format@1@V?$QFlags@W4ImageConversionFlag@Qt@@@@@Z
@@ -6422,10 +6509,7 @@ deviceTabPaneSize
 deviceTabView
 deviceTabsAtBottom
 deviceType
-dg4@
-dh4@
 dhc\tM"7
-di4@
 dimensions
 displayWindow
 dlBNvz!/u{1?cmR^
@@ -6435,7 +6519,6 @@ docked_widget
 domain_scope
 doubleClicked
 dqe-KO{/3
-du4@
 dummyfilename.tif
 e"?validate@QSpinBox@@MEBA?AW4State@QValidator@@AEAVQString@@AEAH@Z
 e"Q8
@@ -6452,18 +6535,19 @@ end_group
 er'6
 etW.A
 execution_history
+exp2
 expression_type
 extrasMinimized
 f5Y}
 fTul
 f\n?dragEnterEvent@QAbstractScrollArea@@MEAAXPEAVQDragEnterEvent@@@Z
 f\r?horizontalScrollbarAction@QAbstractItemView@@MEAAXH@Z
-f\tV_modfd
 f`0P
 fail, GetMappedModuleName\n
 fail\n
 fast
 ffValueIn
+fff?
 field_name
 filePath
 filesystem_stdio.dll
@@ -6569,18 +6653,8 @@ game:tools/images/valve_style/arrow_right.png
 game:tools/images/valve_style/arrow_up.png
 game:tools/images/valve_style/branch_open.png
 game:tools/images/valve_style/branch_open_activated.png
-game:tools/images/valve_style/checkbox_checked.png
-game:tools/images/valve_style/checkbox_checked_disabled.png
-game:tools/images/valve_style/checkbox_indeterminate.png
-game:tools/images/valve_style/checkbox_indeterminate_disabled.png
-game:tools/images/valve_style/checkbox_unchecked.png
-game:tools/images/valve_style/checkbox_unchecked_disabled.png
 game:tools/images/valve_style/dock_close_button.png
 game:tools/images/valve_style/dock_float_button.png
-game:tools/images/valve_style/radio_selected.png
-game:tools/images/valve_style/radio_selected_disabled.png
-game:tools/images/valve_style/radio_unselected.png
-game:tools/images/valve_style/radio_unselected_disabled.png
 game:tools/images/valve_style/tab-closebutton-hovered.png
 game:tools/images/valve_style/tab-closebutton-selected-hovered.png
 game:tools/images/valve_style/tab-closebutton-selected.png
@@ -6590,6 +6664,7 @@ game:tools/images/valve_style/toolbar_extension_v.png
 gameinfo.txt
 geometry
 get module name\n
+getRelativeTransform
 get_good_mutex
 gfsdk_aftermath_lib.x64.dll
 gjv!
@@ -6598,60 +6673,58 @@ green
 grid
 group_title
 h*CU
-h36@
+h17@
+h28@
+h38@
 h4*3
-h46@
-h57@
-h74@
-h77@
-h7G@
-h86@
-h97@
+h67@
+h83@
 h<7s
-hD5@
-hJ2@
-hM2@
-hO6@
-hP2@
-hP6@
-hQ6@
+hA3@
+hJ7@
+hLA@
+hM7@
 hQXk0F
-hR6@
-hS6@
+hS7@
 hSnX
-hT6@
-hT7@
-hTG@
-hU6@
-hV6@
-hV7@
-hW6@
-hYG@
+hUH@
+hVH@
 h\r?horizontalScrollbarAction@QTreeView@@MEAAXH@Z
 h\v?event@QTabWidget@@MEAA_NPEAVQEvent@@@Z
 ha?window@QPalette@@QEBAAEBVQBrush@@XZ
 handleDelta
 hbox
-hcG@
+hc7@
 hcenter
-hdG@
+hd7@
+he8@
+heH@
 helpsystem.dll
-hg4@
-hh4@
+hf8@
+hg7@
+hhA@
+hiA@
 hideFromTaskSwitching
 highlightColor
 highlightLineSearchResults
 highlightText
+hj7@
 hjO>
-hkG@
+hm7@
+hn5@
+hn7@
 horizontal differencing 
 horizontalPolicy
 horizontalStretch
 horizontal_header
 horizontal_header_labels
-hpG@
+hq5@
+htH@
+hu8@
+hxH@
 hy\teQ
-hz1@
+hz8@
+hzH@
 i ?topLevelWidgets@QApplication@@SA?AV?$QList@PEAVQWidget@@@@XZ
 i=TZ
 iN_Uh
@@ -6669,8 +6742,13 @@ incrementalTabCompletion
 incrementvar mat_fullbright 0 1 1
 incrementvar mat_wireframe 0 1 1
 indentWrappedLines
+indexed document with more than 2 channels
+indexed document with no usable palette
+indexed document with non 8 bit indices
 interrupt_priority
 invalid vector subscript
+inverseRotateVector
+inverseTransformVector
 is_selector
 italic
 i}tT
@@ -6692,10 +6770,8 @@ kX?setBlue@QColor@@QEAAXH@Z
 k\v?event@QTextEdit@@MEAA_NPEAVQEvent@@@Z
 l-%Zk
 lELp
-lI2@
 lJoH
 lR?metaObject@QIntValidator@@UEBAPEBUQMetaObject@@XZ
-lS2@
 l\n?dragEnterEvent@QLineEdit@@MEAAXPEAVQDragEnterEvent@@@Z
 l\v?event@QToolBar@@MEAA_NPEAVQEvent@@@Z
 labelPos
@@ -6706,7 +6782,6 @@ left
 length2d
 length3d
 lerp
-lg4@
 lhA[M
 lifespan
 lineOrder
@@ -6726,17 +6801,16 @@ loud
 lowprecisionuv
 lowprecisionuv1
 lp={S
-ly1@
 m4UPh
 mX?setBlueF@QColor@@QEAAXN@Z
 m\f?frameGeometry@QWidget@@QEBA?AVQRect@@XZ
 m\n?dragEnterEvent@QPlainTextEdit@@MEAAXPEAVQDragEnterEvent@@@Z
-m\tV_powd
 m_AdditionalDependencies
 m_Bindings
 m_CommandString
 m_Context
 m_DependentObservableBlackboardReferences
+m_DependentObservableTempVars
 m_DependentObservableVars
 m_EvaluateConnection
 m_ExecutableArguments
@@ -6765,6 +6839,7 @@ m_bIsFlagsEnum
 m_bRemoveWhenOutOfScope
 m_bRequiresAppConnection
 m_bRequiresToolConnection
+m_bShowInUI
 m_flSlopeIncoming
 m_flSlopeOutgoing
 m_hCursorOnOtherGraph
@@ -6774,6 +6849,7 @@ m_nCursorID
 m_nGraphID
 m_nStackDepthWhenAdded
 m_nYieldToken
+m_pDuplicateDispatchPrimitives != nullptr
 m_szDefault
 m_szFriendlyName
 m_szGroupName
@@ -6865,6 +6941,7 @@ newSelection
 next_cursor_id
 nm3[
 nmUf
+no composite (not saved with Maximize Compatibility)
 no memory during frame initialization.
 node_id
 none 
@@ -6892,90 +6969,104 @@ outputcolor
 oy1\v
 p"?value@QSpinBox@@QEBAHXZ
 p"vb
-p04@
-p17@
+p07@
 p27@
-p36@
-p37@
-p46@
-p54@
-p56@
-p66@
-p76@
-p7G@
-p84@
+p2I@
+p5H@
+p67@
+p68@
 p8d8
-p96@
+p98@
 p>,iO~L
-pA5@
+pB6@
 pCheckpointName
 pCurrentFocusWidget
+pD3@
 pD3o
+pD6@
 pDescription
 pDevice
-pE7@
+pE3@
+pE6@
+pE8@
+pFA@
 pFilter
 pFromWidget
-pG7@
-pHG@
-pIG@
-pK2@
-pL2@
+pI3@
 pLightRigButton
 pLogViewer
 pModule->%s( 0x%llX )\n
-pN2@
-pN6@
-pO2@
-pOG@
+pN7@
+pO8@
 pObject
+pPH@
 pPrevFocusWidget
-pQ2@
+pQ7@
+pQ8@
+pQH@
 pR7@
-pTG@
+pSH@
 pTagName
 pToWidget
 pToolButton
 pToolsVisModeButton
 pTraceResult
+pU8@
+pUH@
+pV8@
 pV?read@QImageReader@@QEAA?AVQImage@@XZ
-pW7@
+pVH@
+pWH@
 pWidget
-pYG@
+pXH@
 p\n?dragLeaveEvent@QAbstractItemView@@MEAAXPEAVQDragLeaveEvent@@@Z
 p\v?event@QWidget@@MEAA_NPEAVQEvent@@@Z
 p`?type@QStandardItem@@UEBAHXZ
+paH@
 parent
 parent_cursor_id
-pcG@
-pdG@
+pc7@
+pd7@
+pd8@
+pe7@
+peH@
 pet_preview_gravity
 pet_preview_underwater
 pet_preview_wind
-pg4@
-ph4@
-pi4@
+pf7@
+pfH@
+pgA@
+pgH@
+ph7@
 pi5@
-piG@
+pi7@
 pi\nH%
 pickedColor
 pixelAspectRatio
-poG@
+pk7@
+pl7@
+po5@
 pointer not found in module list\n
 polymorphic_arg
 port_name
 posxyz
-ppG@
 previous_value
 propattr_flatten_into_parent_row
 propertyeditor
 propertyeditor.dll
 pseudo-
+pt8@
+ptH@
+puH@
 pulse_node_custom_attributes
 pulse_open_graph_id %u %u
 pulse_runtime_lib
-pxF@
-pz1@
+pv8@
+pw6@
+px6@
+pxH@
+pz6@
+pz8@
 q12_
 q1AVpx
 q3\f5e{
@@ -6999,13 +7090,13 @@ qt_dockwidget_floatbutton
 qtadvanceddocking-qt5.dll
 quiet
 qvm\tK
-r\fpL
 r_stereo_mode_anaglyph
 r_stereo_mode_crossed
 r_stereo_mode_parallel
 rad2deg
 rag=
 random_position
+read past end of file (truncated/corrupt)
 readbackcolor
 registers
 remap
@@ -7015,10 +7106,12 @@ requested_cancel
 resourcesystem
 resourcesystem.dll
 return_values
-return_values_enabled
 rigIdx
 right
 root
+rotateVector
+rotateVectorToLocal
+rotateVectorToWorld
 round
 rowspan
 rsqrt
@@ -7092,6 +7185,7 @@ stacked_one
 stats_display %d\n
 stats_display set to %d\n
 stickyRCONDeviceTabs
+strFormat
 strValue
 stretch
 strip
@@ -7101,6 +7195,7 @@ success\n
 suppress_menu
 system_state
 t*iv`
+t07@
 t2ak
 tEXtSoftware
 tH)a]
@@ -7109,6 +7204,7 @@ t\n?connect@QObject@@SA?AVConnection@QMetaObject@@PEBV1@AEBVQMetaMethod@@01W4Con
 t\nhM
 t\t?addFile@QIcon@@QEAAXAEBVQString@@AEBVQSize@@W4Mode@1@W4State@1@@Z
 t]\rY2
+t`?type@QTransform@@QEBA?AW4TransformationType@1@XZ
 tabCloseRequested
 tabContextMenuRequested
 tabIndex
@@ -7119,12 +7215,12 @@ tagValue
 tangent
 tangentu_signv
 td0JQ
+temp_var_banks
+tempvar:%d
 tentative
 texcoord
 text/plain
-tg4@
 th1EAt\n
-th4@
 thread initialization failed.
 tile
 tiles
@@ -7157,6 +7253,11 @@ tools_renderscenes
 toolscene
 toolscenenodes
 toolscenevismodes.txt
+tq8@
+transformInverse
+transformVector
+transformVectorToLocal
+transformVectorToWorld
 transparency
 type_restriction_is_enum_flags
 t|AO
@@ -7175,8 +7276,15 @@ uiiHYv
 ul7i
 underline
 unexpected count for field "%s", %u, expected 2; ignored
+unknown reason
 unknown_module
 unload %s 0x%llX - 0x%llX\n
+unsupported bits per channel
+unsupported color mode: bitmap
+unsupported color mode: duotone
+unsupported color mode: lab
+unsupported color mode: multichannel
+unsupported color mode: unknown
 userEdit
 v)F3
 v07X
@@ -7192,11 +7300,18 @@ vE$22
 vForward
 vIK \f3
 vM=j
+v\tV_isinfd
 v\v?eventFilter@QAbstractScrollArea@@MEAA_NPEAVQObject@@PEAVQEvent@@@Z
+value0
+value1
+value2
+value3
+value4
 value:fulltype
 valueChanged
 valueChangedByEdit
 valueChangedBySlider
+values
 vbox
 vc_add_device
 vc_connect
@@ -7243,6 +7358,10 @@ vcenter
 vconcomm.dll
 vconsole2
 vconsole2.exe
+vec2
+vec2ang
+vec2wvec
+vec4
 vecValue
 vecValueA
 vecValueB
@@ -7270,60 +7389,67 @@ waiting_group
 warn
 white
 wjk.g
+worldTransformInverse
 wrapping
+wvec
+wvec2vec
 wvsCa_]
 ww#SN>
 www.steampowered.com
 www.steampowered.com\n
+wxform
 wy)D
 wyS]
 x"?valueFromText@QSpinBox@@MEBAHAEBVQString@@@Z
 x07@
+x08@
 x0Ysqx
-x36@
-x46@
-x64@
-x7G@
-x86@
-xB5@
-xC5@
-xD7@
+x17@
+x18@
+x28@
+x37@
+x38@
+x5A@
+x63@
+x67@
+x73@
+xBA@
+xD6@
 xEIh
-xI2@
+xG3@
 xIDAT(
-xL7@
-xO6@
-xO7@
 xOIIQd
-xP6@
-xQ6@
-xR6@
-xS2@
-xS6@
-xT6@
-xTG@
-xU6@
-xV6@
-xW6@
-xX7@
-xYG@
-xZ1@
+xP7@
+xUH@
+xVH@
 x\f?generatedIconPixmap@QCommonStyle@@UEBA?AVQPixmap@@W4Mode@QIcon@@AEBV2@PEBVQStyleOption@@@Z
 x\n?dragLeaveEvent@QListView@@MEAAXPEAVQDragLeaveEvent@@@Z
-xcG@
+xc7@
+xd7@
 xdt,T
-xg4@
-xh4@
+xeH@
+xform
+xg7@
+xg8@
 xi\t%x
+xj7@
+xk8@
+xl8@
 xm#uc
-xpG@
+xm7@
+xn5@
+xn7@
+xo8@
+xoH@
+xp5@
 xpd\
-xrG@
-xtG@
-xuG@
+xq5@
+xq8@
+xr8@
+xtH@
 xwv/
+xxA@
 xxz-<Z]
-xy1@
 y8Ry
 yTTh%
 yU?qt_metacall@QDoubleValidator@@UEAAHW4Call@QMetaObject@@HPEAPEAX@Z
@@ -7348,6 +7474,7 @@ z\f?generatedIconPixmap@QProxyStyle@@UEBA?AVQPixmap@@W4Mode@QIcon@@AEBV2@PEBVQSt
 z\n?dragLeaveEvent@QTextEdit@@MEAAXPEAVQDragLeaveEvent@@@Z
 z\v?customEvent@QObject@@MEAAXPEAVQEvent@@@Z
 z\v?eventFilter@QDialog@@MEAA_NPEAVQObject@@PEAVQEvent@@@Z
+zero sized document
 zf1ZK
 zhh%
 z}AR
@@ -7356,7 +7483,6 @@ z}AR
 {Y?setFixedPitch@QFont@@QEAAX_N@Z
 {\n?connectNotify@QObject@@MEAAXAEBVQMetaMethod@@@Z
 {\n?dragLeaveEvent@QWidget@@MEAAXPEAVQDragLeaveEvent@@@Z
-{\tV_sind
 {a~8f
 {zLG
 |"?verticalHeader@QTableView@@QEBAPEAVQHeaderView@@XZ

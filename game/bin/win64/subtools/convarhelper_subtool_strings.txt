@@ -55,7 +55,6 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 .?AV?$CTier1AppSystem@VIExternalSubTool@@$0A@@@
 .?AV?$CTier2AppSystem@VIExternalSubTool@@$0A@@@
 .?AV?$CTier3AppSystem@VIExternalSubTool@@$0A@@@
-.?AV?$ITypedPropertyEditDomain@VHToolAttrTableInstance@@PEAVIBaseToolAttr@@@@
 .?AVCConvarAttr@@
 .?AVCConvarHelperTool@@
 .?AVCEditButtonDialog@@
@@ -831,10 +830,12 @@ $\f?focusNextPrevChild@QWidget@@MEAA_N_N@Z
 ?staticMetaObject@QDialogButtonBox@@2UQMetaObject@@B
 ?staticMetaObject@QLabel@@2UQMetaObject@@B
 ?staticMetaObject@QLineEdit@@2UQMetaObject@@B
+?staticMetaObject@QObject@@2UQMetaObject@@B
 ?staticMetaObject@QProxyStyle@@2UQMetaObject@@B
 ?staticMetaObject@QPushButton@@2UQMetaObject@@B
 ?staticMetaObject@QSplitter@@2UQMetaObject@@B
 ?staticMetaObject@QSplitterHandle@@2UQMetaObject@@B
+?staticMetaObject@QTextEdit@@2UQMetaObject@@B
 ?staticMetaObject@QTreeWidget@@2UQMetaObject@@B
 ?staticMetaObject@QWidget@@2UQMetaObject@@B
 ?stepBy@QAbstractSpinBox@@UEAAXH@Z
@@ -906,6 +907,33 @@ CEditButtonDialog
 CEditLabelDialog
 CGridButton
 CGridLabel
+CQClickableLabel
+CQConnectHelper_QObject
+CQConnectHelper_QString
+CQConnectHelper_QStringQString
+CQConnectHelper_QStringbool
+CQConnectHelper_QStringfloat
+CQConnectHelper_QStringint
+CQConnectHelper_QVariant
+CQConnectHelper_QWidget
+CQConnectHelper_bool
+CQConnectHelper_boolQString
+CQConnectHelper_boolbool
+CQConnectHelper_boolfloat
+CQConnectHelper_boolint
+CQConnectHelper_float
+CQConnectHelper_floatQString
+CQConnectHelper_floatbool
+CQConnectHelper_floatfloat
+CQConnectHelper_floatint
+CQConnectHelper_int
+CQConnectHelper_intQString
+CQConnectHelper_intbool
+CQConnectHelper_intfloat
+CQConnectHelper_intint
+CQConnectHelper_intvoid
+CQConnectHelper_void
+CQConnectHelper_voidvoid
 CQConvarBrowserWidget
 CQConvarHelperWidget
 CQConvarTable
@@ -915,6 +943,7 @@ CQRichItemListPickerWidget
 CQRichItemListPicker_Choice_Internal*
 CQRichItemListPicker_Group_Internal*
 CQSelectColorButton
+CQSmartTextEdit
 CQSplitter
 CQSplitterHandle
 CQTabbedStyle
@@ -1008,7 +1037,9 @@ OnAlwaysOnTop
 OnButtonClicked
 OnButtonPushed
 OnCancel
+OnEditingFinished
 OnFilterTextChanged
+OnFocusOut
 OnGroupButtonClicked
 OnHeightChanged
 OnItemDoubleClicked
@@ -1039,10 +1070,12 @@ QAbstractButton*
 QPushButton { 
 QTextDocument*
 QTreeWidgetItem*
+QWidget*
 Q\v?event@QMenu@@MEAA_NPEAVQEvent@@@Z
 Qt5Widgets.dll
 R?metaObject@QTextDocument@@UEBAPEBUQMetaObject@@XZ
 R\f?font@QTreeWidgetItem@@QEBA?AVQFont@@H@Z
+R\vppd
 Render/DX11
 Render/LightBinner
 Render/LightBinner/CSM
@@ -1177,6 +1210,7 @@ ZX?setBackground@QTextFormat@@QEAAXAEBVQBrush@@@Z
 \nDelete Row.\n\nAre you sure?
 \nWorking Directory: 
 \n\r?heightForWidth@QBoxLayout@@UEBAHH@Z
+\n_V_StringAfterPrefixCaseSensitive
 \nadd it to perforce and restart VConsole2
 \r?darker@QColor@@QEBA?AV1@H@Z
 \r?event@QObject@@UEAA_NPEAVQEvent@@@Z
@@ -1206,7 +1240,6 @@ ZX?setBackground@QTextFormat@@QEAAXAEBVQBrush@@@Z
 \t?clear@QSettings@@QEAAXXZ
 \t?data@QTreeWidgetItem@@UEBA?AVQVariant@@HH@Z
 \t?dataChanged@QTreeView@@UEAAXAEBVQModelIndex@@0AEBV?$QVector@H@@@Z
-\t_V_StringAfterPrefixCaseSensitive
 \v?clear@QTextDocument@@UEAAXXZ
 \v?clipboard@QGuiApplication@@SAPEAVQClipboard@@XZ
 \v?color@QBrush@@QEBAAEBVQColor@@XZ
@@ -1220,6 +1253,7 @@ ZX?setBackground@QTextFormat@@QEAAXAEBVQBrush@@@Z
 \v?expandingDirections@QGridLayout@@UEBA?AV?$QFlags@W4Orientation@Qt@@@@XZ
 \v?expandingDirections@QSpacerItem@@UEBA?AV?$QFlags@W4Orientation@Qt@@@@XZ
 \v?fixup@QSpinBox@@MEBAXAEAVQString@@@Z
+\vppd
 ]?staticMetaObject@QTextDocument@@2UQMetaObject@@B
 ^?text@QClipboard@@QEBA?AVQString@@W4Mode@1@@Z
 ^Q?lighter@QColor@@QEBA?AV1@H@Z
@@ -1239,6 +1273,7 @@ cR?metaObject@QDrag@@UEBAPEBUQMetaObject@@XZ
 c\v?event@QSplitterHandle@@MEAA_NPEAVQEvent@@@Z
 changeColor
 cl_particle_
+clicked
 cloth_
 color:
 convarhelper
@@ -1295,6 +1330,7 @@ m_description=
 m_fgColor=
 m_label=
 m_type=
+mapped
 mat_
 mem_
 nHeight

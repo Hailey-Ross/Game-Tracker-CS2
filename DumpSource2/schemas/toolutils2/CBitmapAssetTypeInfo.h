@@ -37,6 +37,7 @@
 //	"m_bPresentInGameTree": false,
 //	"m_bShouldCompileErrorFallbackToDisk": false,
 //	"m_nAssetTypeVersion": 0,
+//	"m_nAssetThumbnailVersion": 0,
 //	"m_Test_InjectSearchable": ""
 //}
 class CBitmapAssetTypeInfo : public CSimpleAssetTypeInfo

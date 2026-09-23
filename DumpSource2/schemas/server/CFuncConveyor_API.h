@@ -1,3 +1,0 @@
-class CFuncConveyor_API
-{
-};

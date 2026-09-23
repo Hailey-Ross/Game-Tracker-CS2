@@ -44,7 +44,6 @@
 %-100s %-6s %-6s\n
 %.100s: Can not read TIFF directory
 %A Is
-%\tV_expd
 %daT
 %lu: Row out of range, max %lu
 %lu: Sample out of range, max %lu
@@ -104,12 +103,14 @@
 (%s): ADD %s = %s\n
 (%s): Setting %s to %s\n
 *.spv
+*\tV_ZSTD_decompress
 , channels = 
 , height = 
 --------------------------------------------\n
 .?AV<lambda_1>@?1???$DoNotDeleteReadCallback@VCReadGPUBuffer@@@@YA?AV?$shared_ptr@VCReadGPUBuffer@@@std@@PEAVCReadGPUBuffer@@@Z@
 .?AV<lambda_1>@?1??CaptureRenderDocWindow@CRenderDocAPI@@SAXAEBVCCommandContext@@AEBVCCommand@@@Z@
 .?AV<lambda_1>@?1??MN_AddAsyncTextureBitsHookupJob@CTextureManagerBase@@IEAAXPEAVCTextureBase@@AEBUAsyncTextureHookupData_t@2@@Z@
+.?AV<lambda_1>@?1??ReadCompiledTextureMips@CTextureManagerBase@@QEAA_NV?$CWeakHandle@UInfoForResourceTypeCTextureBase@@@@HHHW4ImageFormat@@V?$shared_ptr@VIReadTexturePixelsCallback@@@std@@@Z@
 .?AV<lambda_1>@?4??RenderDocCaptureWindowAutoComplete@@YAXAEBVCCommand@@AEAV?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@@Z@
 .?AV?$CBaseAppSystem@VIRenderDeviceMgr@@@@
 .?AV?$CBaseAppSystem@VIRenderUtils@@@@
@@ -123,15 +124,19 @@
 .?AV?$CTier2AppSystem@VIRenderUtils@@$0A@@@
 .?AV?$ITSHashConstructor@VCTextureSequenceRecord_t@@@@
 .?AV?$_Func_base@XPEAVCSwapChainBase@@@std@@
+.?AV?$_Func_base@XPEAVIAsyncResourceDataRequest@@V?$unique_ptr@VIAsyncProcessedDataResult@@U?$default_delete@VIAsyncProcessedDataResult@@@std@@@std@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??CaptureRenderDocWindow@CRenderDocAPI@@SAXAEBVCCommandContext@@AEBVCCommand@@@Z@XPEAVCSwapChainBase@@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??MN_AddAsyncTextureBitsHookupJob@CTextureManagerBase@@IEAAXPEAVCTextureBase@@AEBUAsyncTextureHookupData_t@3@@Z@X$$V@std@@
+.?AV?$_Func_impl_no_alloc@V<lambda_1>@?1??ReadCompiledTextureMips@CTextureManagerBase@@QEAA_NV?$CWeakHandle@UInfoForResourceTypeCTextureBase@@@@HHHW4ImageFormat@@V?$shared_ptr@VIReadTexturePixelsCallback@@@std@@@Z@XPEAVIAsyncResourceDataRequest@@V?$unique_ptr@VIAsyncProcessedDataResult@@U?$default_delete@VIAsyncProcessedDataResult@@@std@@@7@@std@@
 .?AV?$_Func_impl_no_alloc@V<lambda_1>@?4??RenderDocCaptureWindowAutoComplete@@YAXAEBVCCommand@@AEAV?$CUtlVector@VCUtlString@@HV?$CUtlVectorMemory_Growable@VCUtlString@@H$0A@@@@@@Z@XPEAVCSwapChainBase@@@std@@
 .?AV?$_Ref_count_resource@PEAVCReadGPUBuffer@@V<lambda_1>@?1???$DoNotDeleteReadCallback@VCReadGPUBuffer@@@@YA?AV?$shared_ptr@VCReadGPUBuffer@@@std@@PEAV1@@Z@@std@@
+.?AVAllocator@psd@@
 .?AVCDeviceFence@@
 .?AVCDeviceFenceBase@@
 .?AVCEmptyShaderBuffer@@
 .?AVCPooledIndexBuffer@@
 .?AVCPooledVertexBuffer@@
+.?AVCPsdBufferFile@@
 .?AVCReadGPUBuffer@@
 .?AVCRenderContextEmpty@@
 .?AVCRenderDeviceBase@@
@@ -150,6 +155,7 @@
 .?AVCTextureEmpty@@
 .?AVCTextureManagerBase@@
 .?AVCTextureManagerEmpty@@
+.?AVFile@psd@@
 .?AVIReadBufferCallback@@
 .?AVIRenderContext@@
 .?AVIRenderDevice@@
@@ -158,6 +164,8 @@
 .?AVIRenderShaderByteCode@@
 .?AVIRenderUtils@@
 .?AVIResourceTypeManager@@
+.?AVMallocAllocator@psd@@
+/\ng_TSPointerListNodes
 2\nP!E
 5;FJ$,XEK4<
 7&F|If
@@ -165,9 +173,9 @@
 8"3hrf
 8&Kx
 969p
+;\tV_atan2d
 <invalid %d>
 <unknown multisample type
-?EncodeBC7Blocks
 ?~~~~~~~~~~~~~~~~
 @Integer overflow in %s
 ActiveArea
@@ -207,23 +215,23 @@ C:\buildworker\csgo_rel_win64\build\_build_\rendersystem\_vpc_rendersystemempty\
 C:\buildworker\csgo_rel_win64\build\src\bitmap\floatbitmap.cpp
 C:\buildworker\csgo_rel_win64\build\src\rendersystem\renderdevicebase.cpp
 C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(2339):Error loading texture: %s\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3097):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3100):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3133):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3136):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3158):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3161):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3181):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3184):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3204):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3207):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3229):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3232):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3244):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3247):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3259):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
-C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3262):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(2911):Error loading texture: %s\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3695):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3698):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3731):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3734):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3756):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3759):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3779):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3782):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3802):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3805):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3827):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3830):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3842):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3845):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3857):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
+C:\buildworker\csgo_rel_win64\build\src\rendersystem\texturebase.cpp(3860):ResourceHandleToData( %s ) failed! Falling back to error texture!\n
 CCITT Group 3
 CCITT Group 4
 CCITT RLE
@@ -235,23 +243,23 @@ CFAPlaneColor
 CLargeCommandBufferChunk CUtlMemoryPool
 CMediumCommandBufferChunk CUtlMemoryPool
 CRenderDeviceBase
-CRenderDeviceBase::AllocatePooledIndexBuffer(3638): 
-CRenderDeviceBase::AllocatePooledIndexBuffer(3665): 
-CRenderDeviceBase::AllocatePooledVertexBuffer(3825): 
-CRenderDeviceBase::AllocatePooledVertexBuffer(3847): 
-CRenderDeviceBase::AsyncSetTextureData(3266): 
-CRenderDeviceBase::BeginRenderingToSwapChain(3520): 
-CRenderDeviceBase::CreateConstantBuffer(1573): 
+CRenderDeviceBase::AllocatePooledIndexBuffer(3761): 
+CRenderDeviceBase::AllocatePooledIndexBuffer(3788): 
+CRenderDeviceBase::AllocatePooledVertexBuffer(3951): 
+CRenderDeviceBase::AllocatePooledVertexBuffer(3973): 
+CRenderDeviceBase::AsyncSetTextureData(3361): 
+CRenderDeviceBase::BeginRenderingToSwapChain(3629): 
+CRenderDeviceBase::CreateConstantBuffer(1655): 
 CRenderDeviceBase::CreateConstantBufferInternal
-CRenderDeviceBase::EndRenderDocCapture(3500): 
-CRenderDeviceBase::FindOrCreateTexture(1715): 
+CRenderDeviceBase::EndRenderDocCapture(3595): 
+CRenderDeviceBase::FindOrCreateTexture(1804): 
 CRenderDeviceBase::FindOrCreateTexture: Trying to load multiple mipmaps into 3d or array texture: %s\n
-CRenderDeviceBase::Flush(889): 
-CRenderDeviceBase::ForceFlushGPU(914): 
-CRenderDeviceBase::FreeTextureGPUResources(2032): 
-CRenderDeviceBase::FreeTextureGPUResources(2036): 
-CRenderDeviceBase::Present(601): 
-CRenderDeviceBase::StartRenderDocCapture(3487): 
+CRenderDeviceBase::Flush(971): 
+CRenderDeviceBase::ForceFlushGPU(996): 
+CRenderDeviceBase::FreeTextureGPUResources(2121): 
+CRenderDeviceBase::FreeTextureGPUResources(2125): 
+CRenderDeviceBase::Present(683): 
+CRenderDeviceBase::StartRenderDocCapture(3582): 
 CSheetDataTextureCache::AllocateAndUploadSequenceData(582): 
 CTextureManagerBase::AsyncHookUpTextureBits
 CTextureManagerBase::LoadStreamingData
@@ -290,6 +298,7 @@ ConsecutiveBadFaxLines
 Copyright
 Could not decode alpha data.
 CreateConstantBufferInternal
+CreateDocument failed
 CurrentICCProfile
 CurrentPreProfileMatrix
 DBM&(
@@ -491,6 +500,7 @@ Not a key frame.
 Not enough
 NumberOfInks
 OUTSTANDING_HOOKUP_REQUEST 
+O\tV_expd
 Old-style JPEG
 Old-style LZW codes, convert file
 OldSubfileType
@@ -510,6 +520,7 @@ PackBitsDecode: discarding %ld bytes to avoid buffer overrun
 PageName
 PageNumber
 ParseEXRHeaderFromMemory() failed! Error message: %s\n
+ParseImageDataSection failed
 Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
@@ -528,6 +539,16 @@ RENDERDOC_GetAPI
 RESOURCE_TYPE_TEXTURE
 R_T5Y
 RawDataUniqueID
+ReadCompiledTextureMips: callback for %s is still using mip %d, but that data is about to be recycled\n
+ReadCompiledTextureMips: cannot convert %s from %s to %s\n
+ReadCompiledTextureMips: could not create a read request for %s\n
+ReadCompiledTextureMips: could not decode passthrough %s\n
+ReadCompiledTextureMips: mip %d of %s did not decompress (%d of %d bytes)\n
+ReadCompiledTextureMips: mip %d of %s is %d bytes on disk but %d uncompressed\n
+ReadCompiledTextureMips: mip %d of %s runs past the data we read\n
+ReadCompiledTextureMips: mip %d of %s wants pages out to byte %lld but only %llu were read\n
+ReadCompiledTextureMips: no texture data for %s\n
+ReadCompiledTextureMips: short read for %s, wanted %lld bytes of mips but got %llu\n
 ReductionMatrix1
 ReductionMatrix2
 ReferenceBlackWhite
@@ -544,6 +565,8 @@ RenderSystem/MinStreamingPoolSizeMB
 RenderSystem/MinStreamingPoolSizeMBTools
 Rendersystem/SheetCacheTextureCols
 Rendersystem/SheetCacheTextureRows
+Resizing IBPool from %s -> %s\n
+Resizing VBPool from %s -> %s\n
 ResolutionUnit
 RichTIFFIPTC
 Row pixels integer overflow (rowpixels %u)
@@ -634,6 +657,8 @@ Trying to set dxlevel (%d) which is higher than the card can support (%d)!\n
 Trying to set dxlevel (%d) which is lower than the card can support (%d)!\n
 U\8h(
 Unable to find swapchain named %s
+Unable to load psd: %s\n
+Unable to read compiled texture "%s" (Error: %s)\n
 Unavailable
 Unexpected resource version '%d' for '%s'\n
 UniqueCameraModel
@@ -675,23 +700,31 @@ ZIPPostEncode
 ZIPSetupDecode
 ZIPSetupEncode
 ZIPVSetField
+\n***ASSERT FAILED*** Image data section has too many channels (%d).
+\n***ASSERT FAILED*** Pointer is null.
+\n***ERROR*** [DecompressRle] Malformed RLE data encountered
+\n***ERROR*** [ImageData] Unhandled bits per channel: %u.
+\n***ERROR*** [ImageData] Unhandled compression type %u.
+\n***ERROR*** [PSD] Document does not contain an image data section.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, reserved bytes are not zero.
+\n***ERROR*** [PsdExtract] File seems to be corrupt, signature does not match "8BPS".
+\n***ERROR*** [PsdExtract] File seems to be corrupt, version does not match 1 or 2.
 \t@@@@@@@@@@@@@@@@{N{N{N{N{N{N{N{N
-\tV_ZSTD_decompress
-\tV_atan2d
+\tV_logd
+\tV_powd
 \tV_strtoi64
 \t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-\tg_TSPointerListNodes
 _TIFFMergeFieldInfo
 _TIFFSetupFieldInfo
 _TIFFVGetField
 _TIFFVSetField
 _tools.txt
 _wjb
-a\tV_logd
 aoB>"
 ati_compress_wrapper.dll
 bValid
 bad partition length
+bitmap output needs an 8 bit document
 blocking issue in occlusion queries!!\n
 cannot parse filter header
 cannot parse partitions
@@ -704,6 +737,9 @@ cfg\%svideo_%02d.txt
 cfg\moddefaults.txt
 cfg\videodefaults.txt
 chunkCount
+cmyk document with non 8 bit channels
+composite channel data missing
+composite has too few channels for its color mode
 compression
 data height too large.
 data width or data height is negative.
@@ -734,10 +770,12 @@ horizontal differencing
 immediate
 incorrect count for field "%s" (%u, expecting %u); tag ignored
 incorrect count for field "%s" (%u, expecting %u); tag trimmed
+indexed document with more than 2 channels
+indexed document with no usable palette
+indexed document with non 8 bit indices
 invalid vector subscript
 lineOrder
 ltmX.
-m\tV_powd
 makemelast
 max megabytes
 max megatexels
@@ -747,6 +785,7 @@ min megatexels
 min_processor_count
 must be either LogLUV or LogL
 n$Kx
+no composite (not saved with Maximize Compatibility)
 no memory during frame initialization.
 none 
 null VP8Io passed to VP8GetHeaders()
@@ -759,6 +798,7 @@ pixelAspectRatio
 png/jpg
 pseudo-
 r_renderdoc_capture_window_vulkan
+read past end of file (truncated/corrupt)
 renderdoc
 renderdoc.json
 renderdoc_captures
@@ -798,9 +838,18 @@ to read TIFF directory
 transparency
 t|AO
 unexpected count for field "%s", %u, expected 2; ignored
+unknown reason
+unsupported bits per channel
+unsupported color mode: bitmap
+unsupported color mode: duotone
+unsupported color mode: lab
+unsupported color mode: multichannel
+unsupported color mode: unknown
 vIK \f3
 video.cfg
 video_version
 wyS]
 x0Ysqx
+zero sized document
+|BEncodeBC7Blocks
 ~}|{zyxwvutsrqponmlkjihgfedcba`_^]\[ZYXWVUTSRQPONMLKJIHGFEDCBA@?>=<;:9876543210/.-,+*)('&%$#"! 

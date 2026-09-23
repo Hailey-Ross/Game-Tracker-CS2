@@ -2122,13 +2122,11 @@ Book Voucher
 Borrowed
 Bounce
 Bradesco Online
-Brazilian
 Broken pipe
 Browser
 Bt-N
 Bucket size : count\n
 Bugs
-Bulgarian
 Business account not allowed to purchase
 Busy
 Busy, please retry.\n
@@ -2883,7 +2881,6 @@ Curves
 Custom CSS
 Cw!K
 Cyber cafe accounts can't purchase
-Czech
 D#D)D;D?DEDKDQDSDYDeDoD
 D4tp
 D@D/lcO+hcK
@@ -3057,7 +3054,6 @@ DVCS
 DVF0Dz
 D\vvf:
 Dana
-Danish
 Dankort
 Data Encipherment
 Data Exploit
@@ -3126,7 +3122,6 @@ Duplicate Name
 Duplicate activation code
 Duplicate attribute '%s'
 Duplicated Request
-Dutch
 DwWzO
 Dynamic engine loading support
 Dyp~B\n1
@@ -3277,6 +3272,7 @@ EECDH+AESGCM+AES128:EECDH+AESGCM:EECDH+AES128:EECDH+AES:EECDH+3DES:AES128+kRSA:A
 EE\fl~5
 EHTTPMethod
 EHTTPStatusCode
+ELEMENT
 EMPTY
 EMsg
 EMsg %d registered multiple times.
@@ -3414,7 +3410,6 @@ Ecrypto\bn\bn_prime.c
 EcxmV4
 EdiPartyName
 EdiPartyName:<unsupported>
-Editor
 Efecty
 Ekonomi Bank
 Element( i )
@@ -3434,7 +3429,6 @@ Encryption
 Encryption Failure
 End of File
 End tag '%s' was not expected here
-English
 Enter 
 Enter PEM pass phrase:
 Enterprises
@@ -3543,7 +3537,6 @@ Files Corrupt
 Files Missing
 Finansbank
 FindResourceA
-Finnish
 FiveHours
 FlushProcessWriteBuffers
 Forbidden
@@ -3578,7 +3571,6 @@ Free fragments %llu\n
 Free( 0x%p ): iPage >= 0 && iPage < %d, iPage == %d
 FreeDeletedPackets
 FreeImageYUV
-French
 FrenemyFilter
 Friend
 Friend-only
@@ -3663,7 +3655,6 @@ GeneralString
 Generator (compressed):
 Generator (hybrid):
 Generator (uncompressed):
-German
 GetAllWorkThreadPools()
 GetClassInfoExW
 GetConnectionType( hConnection ) == eConnectionType
@@ -3776,7 +3767,6 @@ Hp!v
 HqI9x
 HttpClientConnection (%p) now connected through %X \n
 Hung transaction cancelled
-Hungarian
 Hw~J
 H{1S
 I(fQ
@@ -3969,7 +3959,6 @@ IsValidIndex(elem)
 IsVideoPlayerManagerInitialized()
 IsWindowVisible
 Issuer certificate lookup error
-Italian
 Itau Online
 Item or entry has been deleted
 Items_Mtx
@@ -3981,7 +3970,6 @@ JOINT-ISO-ITU-T
 JZJ{.
 J\nHBF
 J\rS%H
-Japanese
 Job yielding despite declaring a Do Not Yield block at %s
 JobIOCPWork
 JoinedGroup
@@ -4015,7 +4003,6 @@ Kicked
 KickedAcknowledged
 Kiosk
 Konbini
-Korean
 Kr\t=o
 Kuveyt Turk Bank
 KwZi
@@ -4042,7 +4029,6 @@ Large SBH:\n
 Laser
 Last Message Repeated %d times.\n%s
 Last-Modified
-Latam_Spanish
 Lavasoft Web Companion
 LavasoftTCPService.dll
 Leaked KeyValues (%u):\n
@@ -4311,7 +4297,6 @@ Non Repudiation
 Non-Authoritative Information
 NonMembers
 Nonce
-Norwegian
 Not Acceptable
 Not After: 
 Not Before: 
@@ -4348,6 +4333,7 @@ O44h\
 O:t\vg
 O@RJ
 OBJ lib
+OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -4799,12 +4785,10 @@ PlatformSocketsInit failed, error %s (%d)
 Player Name History
 Policy Qualifier CPS
 Policy Qualifier User Notice
-Polish
 Poly1305
 Polynomial:
 Pool %5llu: allocated:%8i free:%8i committed:%8i (size:%7llu kb)\n
 Pool %i: Size: %llu Allocated: %i Free: %i Committed: %i CommittedSize: %llu kb\n
-Portuguese
 Post DNS resolve
 PostQueuedCompletionStatus
 PostRecv
@@ -5114,14 +5098,12 @@ Revive
 Revoked
 RgD/X
 RoVZcz
-Romanian
 Routing Domain Identifiers
 Rs$c~B
 RtlNtStatusToDosError
 RunCallbacks
 Running Script
 Running Update
-Russian
 S#FI
 S+Re
 S/MIME
@@ -5444,7 +5426,6 @@ Signing KDC Response
 Signing Tool of Issuer
 Signing Tool of Subject
 Simple
-Simplified_Chinese
 Single Purchase
 Single Purchase, Limited Use
 SipHash
@@ -5471,7 +5452,6 @@ Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings
 Someone called ClearWritingMinidump without holding the minidump lock.
 Someone called SetWritingMinidump without holding the minidump lock.
 Spamming
-Spanish
 Speakers
 Special Cause
 Specifies an ENGINE id name for loading
@@ -5532,7 +5512,6 @@ Support
 Suspect
 Suspected Hijacker
 Suspended
-Swedish
 Switch
 Switch from encoding '%s' to '%s' is not supported
 SwitchToFiber
@@ -5846,7 +5825,6 @@ Trade Fee
 Trade Scam
 Trade Scam Old
 Trading
-Traditional_Chinese
 Trailer Field: 0x
 Transaction expired
 Transcode Behind
@@ -5861,7 +5839,6 @@ Trustly
 Trustpay
 Try another CM
 TryEnterCriticalSection
-Turkish
 Two-factor activation code mismatch
 Two-factor code mismatch
 Type=
@@ -5942,7 +5919,6 @@ UUUUUUUUUUUa\f\v
 U\n4|6
 U`2d
 UiCL
-Ukrainian
 Unable to send encrypted SSL data over connection\n
 Unable to set default socket options, error %d
 Unauthorized
@@ -6089,7 +6065,6 @@ VideoResumeFromValidation
 VideoValidate
 VideoValidateStatics
 Videos
-Vietnamese
 VirtualAlloc returned unaligned address?
 Visa
 Visa (BoaCompra)
@@ -6998,7 +6973,6 @@ baishancloud
 ban_check_result
 bandwidth
 banned from chat
-base
 base64 decode error
 base64 encoding
 basicConstraints
@@ -7010,7 +6984,6 @@ bf-cbc
 bf-cfb
 bf-ecb
 bf-ofb
-bg_BG
 bignum out of range
 bignum routines
 bignum too long
@@ -7064,7 +7037,6 @@ brainpoolP384r1
 brainpoolP384t1
 brainpoolP512r1
 brainpoolP512t1
-brazilian
 broadcast_live
 broadcastchat
 broadcaster_accountid
@@ -7082,7 +7054,6 @@ buffer_ctrl
 bugs
 build_chain
 buildingName
-bulgarian
 businessCategory
 bvVd
 bwiO'
@@ -7907,7 +7878,6 @@ crypto\x509v3\v3_tlsf.c
 crypto\x509v3\v3_utl.c
 cryptocom
 cryptopro
-cs_CZ
 csgolauncher.exe
 ct_base64_decode
 ct_cert_scts
@@ -7957,7 +7927,6 @@ curves
 custom ext handler already installed
 custom_ext_add
 custom_ext_parse
-czech
 d e not congruent to 1
 d.allOrFirstTier
 d.authenticatedData
@@ -8020,7 +7989,6 @@ dSAQuality
 dV22tN::
 dZ!2.
 dZK<),F8
-da_DK
 dane already enabled
 dane cannot override mtype full
 dane not enabled
@@ -8036,7 +8004,6 @@ dane_ctx_enable
 dane_i2d
 dane_mtype_set
 dane_tlsa_add
-danish
 data between ccs and finished
 data greater than mod len
 data is wrong
@@ -8054,7 +8021,6 @@ datacoll
 date
 dcObject
 dcobject
-de_DE
 decipherOnly
 decode error
 decompress_failed
@@ -8294,7 +8260,6 @@ dual_stack
 dummy
 duplicate compression id
 duplicate zone id
-dutch
 dvcs
 dynamic
 dynamic_ctrl
@@ -8420,7 +8385,6 @@ edit_store_display_content
 ee key too small
 eeX=
 ei\t&H
-el_GR
 elliptic curve routines
 email
 email:
@@ -8430,7 +8394,6 @@ emailProtection
 embedded_unknown
 empty file structure
 empty srtp protection profile list
-en_US
 enc_data
 enc_digest
 enc_key
@@ -8499,9 +8462,6 @@ error setting tlsa base domain
 error verifying pkcs12 mac
 error with the srp params
 error:%08lX:%s:%s:%s
-es-419
-es_419
-es_ES
 ess add signing cert error
 ess add signing cert v2 error
 ess signing certificate error
@@ -8609,7 +8569,6 @@ ffdhe8192
 ffffff
 fflush
 fflush()
-fi_FI
 field missing
 field too large
 field=
@@ -8638,7 +8597,6 @@ final_sig_algs
 fingerprint size does not match digest
 finish failed
 finished
-finnish
 fips mode not supported
 fips_mode
 first num too large
@@ -8657,12 +8615,10 @@ format error in certificate's notBefore field
 forum_topic_id
 forward_to_sysid
 fqi\tH
-fr_FR
 fragmented client hello
 franchise
 fread
 freeaddrinfo
-french
 freshestCRL
 friendlyCountry
 friendlyCountryName
@@ -8706,7 +8662,6 @@ generationQualifier
 generator:
 generic context
 generic cryptogram
-german
 get raw key failed
 get_Count failed
 get_RebootRequired failed
@@ -8756,7 +8711,6 @@ grasshopper-ctr
 grasshopper-ecb
 grasshopper-mac
 grasshopper-ofb
-greek
 group details changed
 group was created
 group2pkparameters failure
@@ -8846,8 +8800,6 @@ https://%s%s
 https://%s%s%s
 https=
 httpserver
-hu_HU
-hungarian
 h~0Q.
 i2a_ASN1_OBJECT
 i2b_PVK
@@ -9433,8 +9385,6 @@ issuerSignTool
 issuerUID
 issuer_and_serial
 issuingDistributionPoint
-it_IT
-italian
 item %p sentinel corrupted. skipping.\n
 iter
 itu-t
@@ -9443,9 +9393,7 @@ ixaustralia
 i~wKVA\
 jL?1]
 jZ=F
-ja_JP
 janetMailbox
-japanese
 jastel
 jjjjjjjjjjjjjjjj[
 job_metrics
@@ -10725,8 +10673,6 @@ kicked from chat
 kicked off the group
 kingsoftcloud
 kisa
-ko_KR
-koreana
 kx-any
 kx-dhe
 kx-dhe-psk
@@ -10759,7 +10705,6 @@ lastModifiedBy
 lastModifiedTime
 lastUpdate
 last_update_steamid
-latam
 lcO/<1\r=,!\r-@@@
 left the group
 legacy_renegotiation
@@ -10872,7 +10817,6 @@ m_StatWaitTime
 m_StringPools
 m_ThreadPool
 m_TotalElements != InvalidIndex()
-m_Tree
 m_WorkThreads
 m_WorkThreads.Count() == 0 && m_cThreadsRunning == (uint32) 0
 m_WorkThreads[ iWorkThread ]
@@ -10919,7 +10863,6 @@ m_hConnection != 0xdddddddd
 m_hIOCP
 m_hSocket == INVALID_SOCKET
 m_hashMap
-m_heap
 m_heap.IsValidIndex(index)
 m_iAudioTrack >= 0
 m_iHistory < V_ARRAYSIZE( m_rgunMicroSecRunHistory )
@@ -11386,7 +11329,6 @@ nextupdate before thisupdate
 nistp224_pre_comp_new
 nistp256_pre_comp_new
 nistp521_pre_comp_new
-nl_NL
 no accept addr or service specified
 no application protocol
 no cert set for us to verify
@@ -11483,7 +11425,6 @@ no-store
 no:7
 noCheck
 noRevAvail
-no_NO
 no_anti_replay
 no_comp
 no_legacy_server_connect
@@ -11504,7 +11445,6 @@ nonce mismatch
 nonce not returned
 nonsegmentedvideo
 normal disconnect
-norwegian
 not XOF or invalid length
 not a NIST prime
 not a certificate
@@ -11962,7 +11902,6 @@ pkey_tls1_prf_derive
 pkey_tls1_prf_init
 pkeyalg
 pkparameters2group failure
-pl_PL
 platform_linux
 platform_windows
 plogs
@@ -11988,9 +11927,7 @@ policy_cache_new
 policy_data_new
 policy_section
 policyid
-polish
 poly1305
-portuguese
 post handshake auth encoding err
 postOfficeBox
 postalAddress
@@ -12076,8 +12013,6 @@ pss saltlen too small
 pszName
 pszThreadName != NULL
 pt-br
-pt_BR
-pt_PT
 pub: 
 pubData
 pubEncryptedData
@@ -12255,10 +12190,8 @@ ripemd160
 ripemd160WithRSA
 rm\niAB
 rmd160
-ro_RO
 role
 roleOccupant
-romanian
 room
 roomNumber
 root ca not trusted
@@ -12316,8 +12249,6 @@ rtime32_start_time
 rtime32_visibility_end
 rtime32_visibility_start
 rtime_mod_reviewed
-ru_RU
-russian
 rv > 0 && rv <= nSendLen
 s ap traffic
 s hs traffic
@@ -12686,7 +12617,6 @@ socket
 soft_load
 solrconfig
 sourceURL
-spanish
 spkac
 srp_generate_client_master_secret
 srp_generate_server_master_secret
@@ -12903,9 +12833,7 @@ supportedAlgorithms
 supportedApplicationContext
 supported_languages
 surname
-sv_SE
 svcm
-swedish
 sws_freeContext
 sws_getCachedContext
 sws_scale
@@ -12928,7 +12856,6 @@ target_job_name
 taskus.com
 tbsRequest
 tbsResponseData
-tchinese
 tdXn
 telephoneNumber
 teletexTerminalIdentifier
@@ -12942,8 +12869,6 @@ text:
 textEncodedORAddress
 textNotice
 tfjgvmfv
-th_TH
-thai
 the asn1 object identifier is not known for this md
 the join request was approved by a mod
 the join request was denied by a mod
@@ -13183,7 +13108,6 @@ total_queue_size
 totaltime
 towerattack
 tpBasis
-tr_TR
 traffic upd
 trailerField
 trailers
@@ -13214,7 +13138,6 @@ ts_verify_cert
 tsa name mismatch
 tsa untrusted
 tst info setup error
-turkish
 tvos64
 type not compressed data
 type not constructed
@@ -13256,8 +13179,6 @@ uint32_new
 uint64_c2i
 uint64_new
 ujR\f
-uk_UA
-ukrainian
 un-banned from chat
 unBytes == 0
 unDataLen < INT_MAX
@@ -13508,13 +13429,11 @@ version incompatibility
 version too high
 version too low
 vfat
-vi_VN
 video
 video libav error: %s
 video/webm
 video64.dll
 videomanager
-vietnamese
 view_error_data
 view_financials
 view_marketing_traffic
@@ -13652,8 +13571,6 @@ zdengine.dll
 zh-cn
 zh-tw
 zh-xc
-zh_CN
-zh_TW
 zh_XC
 zlib compression
 zone

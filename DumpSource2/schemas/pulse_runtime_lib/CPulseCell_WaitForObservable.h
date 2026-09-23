@@ -26,6 +26,9 @@
 //		],
 //		"m_DependentObservableBlackboardReferences":
 //		[
+//		],
+//		"m_DependentObservableTempVars":
+//		[
 //		]
 //	},
 //	"m_OnTrue":

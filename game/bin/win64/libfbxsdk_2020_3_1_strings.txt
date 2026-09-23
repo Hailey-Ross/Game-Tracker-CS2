@@ -13825,6 +13825,7 @@ ChestTOffset
 ChestTOffsetX
 ChestTOffsetY
 ChestTOffsetZ
+Children
 ChunkType
 ChunkUnique
 Circular reference to the attribute group '%s' defined
@@ -14196,6 +14197,7 @@ Diffuse: r: %f, g: %f, b: %f\n
 DiffuseColor
 DiffuseFactor
 Dimension
+Dimensions
 Dingbats
 Direct
 DirectX
@@ -16296,6 +16298,7 @@ NMTOKEN
 NMTOKENS
 NODE_HDR
 NODE_ID
+NORMAL
 NOTATION
 NOTATION %s is not declared\n
 NOTATION attribute %s declared for EMPTY element %s\n
@@ -16849,6 +16852,7 @@ RAY_BIAS
 RAuto
 RClampType
 REFERENCE
+RELATIVE
 REnable
 RGB component tint
 RGB lumanence tint
@@ -16981,6 +16985,7 @@ ReflectionFactor
 Reflectivity
 RegConnectRegistryA
 RegQueryValueExW
+Regular
 RelPath
 Relative To Interest
 RelativeFilename
@@ -17309,7 +17314,6 @@ Self Illumination: %f\n
 Sequence ']]>' not allowed in content
 Set Occluded To Last Valid Pos
 SetFileInformationByHandle
-SetThreadStackGuarantee
 SetThreadpoolTimer
 SetThreadpoolWait
 ShaderLanguage
@@ -18709,7 +18713,6 @@ bad polygon loop
 bad root block
 bad size
 bad_weak_ptr
-base
 base64Binary
 bcKU\r!
 bezier

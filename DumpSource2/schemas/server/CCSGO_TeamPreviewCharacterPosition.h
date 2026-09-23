@@ -8,4 +8,5 @@ class CCSGO_TeamPreviewCharacterPosition : public CBaseEntity
 	CEconItemView m_agentItem;
 	CEconItemView m_glovesItem;
 	CEconItemView m_weaponItem;
+	CEconItemView m_petItem;
 };

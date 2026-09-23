@@ -2,8 +2,6 @@
 %s%cbug.txt
 .?AVCBugReporter@@
 .?AVIBugReporter@@
-2\vpH
-7\tV_fread
 <<Invalid>>
 Area
 BugReporter005
@@ -18,7 +16,6 @@ Names
 OptionsFile
 Owner
 RSDSF.
-R\fpH
 Savegame
 Screenshot
 Source2
@@ -29,6 +26,7 @@ Versions
 WSOCK32.dll
 \\bugbait.valvesoftware.com\bugsub\config.txt
 aZF[N
+a\tV_fread
 alt_config
 bug_directory
 bugreporter repository
@@ -38,7 +36,6 @@ config_file
 crashdump_user_name
 json
 netmask
-r\vpH
 resource/bugreporter.res
 source2
 username

@@ -15,6 +15,7 @@ class CChicken : public CDynamicProp, public IHasAttributes
 	CountdownTimer m_startleTimer;
 	CountdownTimer m_vocalizeTimer;
 	CHandle< CCSPlayerPawn > m_leader;
+	CHandle< CCSPlayerController > m_owner;
 	CountdownTimer m_reuseTimer;
 	CountdownTimer m_jumpTimer;
 	float32 m_flLastJumpTime;
@@ -23,4 +24,5 @@ class CChicken : public CDynamicProp, public IHasAttributes
 	GameTime_t m_flActiveFollowStartTime;
 	CountdownTimer m_followMinuteTimer;
 	CountdownTimer m_BlockDirectionTimer;
+	bool m_bSpawnDyingParticles;
 };

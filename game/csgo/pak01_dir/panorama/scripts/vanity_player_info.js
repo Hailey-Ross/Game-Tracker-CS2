@@ -4,7 +4,6 @@
 /// <reference path="common/sessionutil.ts" />
 /// <reference path="mock_adapter.ts" />
 /// <reference path="rating_emblem.ts" />
-/// <reference path="honor_icon.ts" />
 var VanityPlayerInfo;
 (function (VanityPlayerInfo) {
     function CreateOrUpdateVanityInfoPanel(elParent = null, oSettings = null) {
@@ -60,10 +59,7 @@ var VanityPlayerInfo;
     }
     VanityPlayerInfo.SetVanityInfoPanelPos = SetVanityInfoPanelPos;
     function _SetName(newPanel, xuid) {
-        const name = MockAdapter.IsFakePlayer(xuid)
-            ? MockAdapter.GetPlayerName(xuid)
-            : FriendsListAPI.GetFriendName(xuid);
-        newPanel.SetDialogVariable('player_name', name);
+        newPanel.SetDialogVariable('partyxuid', xuid);
     }
     function _SetAvatar(newPanel, xuid) {
         const elParent = newPanel.FindChildInLayoutFile('vanity-avatar-container');

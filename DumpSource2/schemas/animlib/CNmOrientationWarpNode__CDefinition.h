@@ -6,6 +6,7 @@
 //	"m_bIsOffsetNode": false,
 //	"m_bIsOffsetRelativeToCharacter": true,
 //	"m_bWarpTranslation": false,
+//	"m_alignmentMode": "MovementDirection",
 //	"m_samplingMode": "WorldSpace"
 //}
 class CNmOrientationWarpNode::CDefinition : public CNmPoseNode::CDefinition
@@ -15,5 +16,6 @@ class CNmOrientationWarpNode::CDefinition : public CNmPoseNode::CDefinition
 	bool m_bIsOffsetNode;
 	bool m_bIsOffsetRelativeToCharacter;
 	bool m_bWarpTranslation;
+	CNmOrientationWarpNode::AlignmentMode_t m_alignmentMode;
 	CNmRootMotionData::SamplingMode_t m_samplingMode;
 };

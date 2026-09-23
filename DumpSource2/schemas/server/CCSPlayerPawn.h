@@ -40,6 +40,8 @@ class CCSPlayerPawn : public CCSPlayerPawnBase
 	VectorWS m_vRagdollServerOrigin;
 	CEconItemView m_EconGloves;
 	uint8 m_nEconGlovesChanged;
+	CUtlVector< CHandle< CCSMinimapVolume > > m_vecCurrentMinimapVolumes;
+	CHandle< CCSMinimapVolume > m_hActiveMinimapVolume;
 	QAngle m_qDeathEyeAngles;
 	bool m_bLeftHanded;
 	GameTime_t m_fSwitchedHandednessTime;

@@ -20,6 +20,7 @@
 class CNmClipDocEvent_Particle : public CNmClipDocEvent
 {
 	CNmEventRelevance_t m_relevance;
+	// MPropertyAutoRebuildOnChange
 	CNmParticleEvent::Type_t m_type;
 	CNmEventTargetEntity_t m_target;
 	// MPropertyStartGroup = "+Particle"

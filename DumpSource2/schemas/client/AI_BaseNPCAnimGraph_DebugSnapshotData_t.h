@@ -1,4 +1,5 @@
 // MGetKV3ClassDefaults = {
+//	"ag2_update_id": -1,
 //	"e_action_desired": "",
 //	"e_action_handshake_restart": "",
 //	"e_action_handshake_body_authority_current": "",
@@ -11,6 +12,7 @@
 // MPropertyFriendlyName = "AnimGraph"
 class AI_BaseNPCAnimGraph_DebugSnapshotData_t
 {
+	int32 ag2_update_id;
 	CGlobalSymbol e_action_desired;
 	CGlobalSymbol e_action_handshake_restart;
 	CGlobalSymbol e_action_handshake_body_authority_current;
