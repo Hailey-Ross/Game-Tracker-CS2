@@ -82897,6 +82897,7 @@ panorama/images/map_icons/map_icon_de_train.vsvg_c CRC:00cdb41b4d size:20884
 panorama/images/map_icons/map_icon_de_vertigo.vsvg_c CRC:00959a9762 size:42419
 panorama/images/map_icons/map_icon_lobby_mapveto.vsvg_c CRC:001badacf5 size:28265
 panorama/images/map_icons/map_icon_none_png.vtex_c CRC:00b415b29c size:27632
+panorama/images/map_icons/map_icon_rush_001.vsvg_c CRC:004906d3ce size:5364
 panorama/images/map_icons/mapgroup_icon_rush.vsvg_c CRC:0003ac9602 size:5364
 panorama/images/map_icons/screenshots/1080p/ar_baggage_1_png.vtex_c CRC:00d55d2d92 size:2703260
 panorama/images/map_icons/screenshots/1080p/ar_baggage_2_png.vtex_c CRC:00e006d478 size:2872281
@@ -84053,7 +84054,7 @@ panorama/layout/segmented_progress_bar.vxml_c CRC:007bb0de92 size:2280
 panorama/layout/settings/settings.vxml_c CRC:00c8092b29 size:2548
 panorama/layout/settings/settings_audio.vxml_c CRC:0005e38b40 size:7866
 panorama/layout/settings/settings_audio_meter.vxml_c CRC:001f7943db size:1685
-panorama/layout/settings/settings_crosshair.vxml_c CRC:002944071d size:6423
+panorama/layout/settings/settings_crosshair.vxml_c CRC:001cd7942f size:6423
 panorama/layout/settings/settings_enum.vxml_c CRC:00e2cd7809 size:1470
 panorama/layout/settings/settings_game.vxml_c CRC:00afaf5cc0 size:13586
 panorama/layout/settings/settings_kbmouse.vxml_c CRC:0044d887cf size:8365

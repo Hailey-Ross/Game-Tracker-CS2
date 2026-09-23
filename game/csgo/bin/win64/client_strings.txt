@@ -126,11 +126,11 @@
  (%lu = 0x%lx)\n
  (%u = 0x%x)\n
  (+%d more due to usercommand delivery)
- (08@HPX`jP
+ (08@HPX`jp
  (08@HPXb
- (08@HPZP
+ (08@HPZp
  (08@HR
- (08@JP
+ (08@Jp
  (0X`hpz
  (DEFAULT)
  (Dirty Animation)
@@ -301,6 +301,7 @@
 "4\n CUserMessageLagCompensationError
 "4\n!CMsgGCCStrike15_v2_BetaEnrollment
 "5\n"CMsgGCCStrike15_v2_MatchmakingStop
+"5pI
 "7\n!CMsgGCToGCIsTrustedServerResponse
 "7\n&CMsgGCUserTrackTimePlayedConsecutively
 "8\n!CMsgGCToGCBroadcastConsoleCommand
@@ -3165,7 +3166,7 @@ $taser_charge
 ,?IsUint32@Value@v8@@QEBA_NXZ
 ,ARu@y6
 ,I?Value@Number@v8@@QEBANXZ
-,N`4hF
+,N`4xF
 ,Reason=
 ,Service for dealing with user-submitted logsB
 ,ShfPQ
@@ -3190,7 +3191,7 @@ $taser_charge
 ,kj8\te
 ,name:
 ,oYR
-,sK3PB
+,sK3`B
 ,section=
 ,value:
 - "%s" = "%.2f"\n
@@ -11204,9 +11205,9 @@ $taser_charge
 0123456789ABCDEF#
 02V8[
 05=k
-08@HRP
+08@HRp
 08@J
-08BP
+08Bp
 08bX
 09,h
 0;Q5[
@@ -11238,6 +11239,7 @@ $taser_charge
 0e\r8
 0pp@5tqE?|sO541
 0tU+xc:
+0v4Q
 0x%4.4x 
 0x%X
 0x%X 
@@ -11465,6 +11467,7 @@ $taser_charge
 2026-06-24
 2026-07-01
 2048
+20k#
 20t\f
 20x9
 2117-ILZV-2837
@@ -11506,7 +11509,8 @@ $taser_charge
 2\n\nline_items
 2\n\vpreferences
 2\rlhp
-2\vpT^
+2\vp(T
+2\vpt^
 2^pV
 2a"l
 2bT~
@@ -11517,7 +11521,6 @@ $taser_charge
 2nIg
 2ndry
 2p"6
-2pk#
 2prB
 2|2;#GameUI_Retake_Card_TakeFive,0,0,weapon_fiveseven|2;#GameUI_Retake_Card_BlindFire,1,0,weapon_p250,grenade0|2;#GameUI_Retake_Card_OnlyTakesOne,0,0,weapon_deagle|2;#GameUI_Retake_Card_SneakyBeakyLike,0,0,weapon_p250,grenade1
 3%3+3/353A3G3[3_3g3k3s3y3
@@ -11727,15 +11730,17 @@ $taser_charge
 8192
 8285-YOAZ-6049
 82\n:XPH
+83 B
 851Pe
 8835-KLXV-0292
 8<pl
 8= zp
-8@JP
+8@Jp
 8A6j
-8B30B
+8B3@B
 8C:\buildworker\csgo_rel_win64\build\src\panorama\layout\stylepropertyfactory.cpp
 8Client ID for which to count the number of issued tokens"
+8F s
 8GZS
 8Gets the list of nicknames this user has for other users
 8If set, remove from ignore/block list instead of adding "\\n
@@ -11835,6 +11840,7 @@ $taser_charge
 ;5jNf
 ;83\v\nHBJ7
 ;<}\v<}\v<}\v<}\vC_TonemapController2
+;I4(F
 ;LGEW
 ;Qo0
 ;Subtitles and Captions
@@ -11928,6 +11934,7 @@ $taser_charge
 <weapon>
 =!=-=3=7=?=C=o=s=u=y={=
 =&sf9
+=30B
 == %d Entities Dumped\n
 == PulseGraphDef ==\n
 == false\n
@@ -12032,14 +12039,15 @@ $taser_charge
 ?uWS
 ?x29
 @!@%@+@1@?@C@E@]@a@g@m@
+@08N4Q
 @0pp
-@6P5
+@6p5
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @@CNmFloatCurveEvent
 @BH]f
 @DebugIndividualStyle
 @Determines recharge time for taser. -1 = disabled.
-@HPX`hv@V
+@HPX`hv`V
 @Integer overflow in %s
 @MfKZ
 @Pgl
@@ -12057,6 +12065,7 @@ $taser_charge
 @\n\vserver_type
 @cl_aggregate_particles
 @dKb]
+@f4Q
 @fff>fff>fff>fff>
 @ffffff
 @i1V
@@ -12067,6 +12076,7 @@ $taser_charge
 @keyframes 
 @keyframes '%s'\r\n{\r\n
 @n2w
+@n4Q
 @workshop
 @zDSteamUnifiedMessages
 A random value [0.0, 1.0] used to make sure entities are not all in sync
@@ -12955,7 +12965,6 @@ BOOL ABSENT
 BOOLEAN
 BOOSTS
 BPIN_txt
-BPi#
 BPublic
 BReadyForDisplay
 BRouteMsgToJob
@@ -13190,6 +13199,7 @@ Bounce.Shrapnel
 Bounce.Wood
 Box%d
 BoxAngles
+Bpi#
 Breach
 BreakCreateParticle
 BreakPiece
@@ -16735,6 +16745,7 @@ CompetitiveVol
 Competitive_TeamColor_%d
 Compiling minimap image: %s\n
 Completed
+Complex
 Complex achievement %s must have an Items key or a DefIndex field
 Component %s illegally specified INT_MIN as its priority!\n
 Components
@@ -18485,7 +18496,7 @@ F+Zb
 F,mZq
 F/o4
 F2M+
-F3@B
+F3PB
 F6tr
 F7!z
 F9q'
@@ -21285,6 +21296,7 @@ LOG_MESSAGE
 LONG
 LONG_C2I
 LPVIndex
+LS&\nK8
 LT[N
 LT_txt
 LXKQ
@@ -21543,7 +21555,7 @@ Lunacy
 M'Ezb
 M-laO
 M0 E
-M4(F
+M48F
 MASK:
 MATCH-
 MATCHSTATS\t%s, round %d, value %d\n
@@ -22768,12 +22780,14 @@ P-256
 P-384
 P-521
 P08@J
-P08Jp
+P08J
+P08N4Q
 P1\t98"
 P2P Voice
 P2P ping to "%s". Timed out after %.2fms\n
-P3`B
+P3pB
 P5[1
+P6 L
 PAGN_4
 PANORAMA_LAYOUTFILE
 PARALYZE
@@ -23504,6 +23518,7 @@ Playsoundscape %s:Unknown command %s\n
 Please specify 0 or 1 with the -stream Parameter\n
 Pm8A?
 PmR"H?
+Pn4Q
 Point entity.
 PointsAnim
 Policy Qualifier CPS
@@ -23751,7 +23766,6 @@ Pushes an identifier used to group overlays. Deletes all existing overlays using
 Pushes an identifier used to group overlays. Overlays marked with this identifier can be deleted in a big batch.
 Pyramid
 P|iC\r
-Q$4xE
 Q(Optional) If supplied, the resulting published file's Id is appended to the URI.
 Q*hd
 Q/xtJ2
@@ -23982,11 +23996,12 @@ RT %dx%d %s %s : %d Bytes\n
 RT_txt
 RTime32
 RULESHERE
+R\fp(T
 R\n\rincludekvtags
 R\r1>Vp
 R\vp!y
-R\vpLA
-R\vpT^
+R\vplA
+R\vpt^
 R]Di
 R_T5Y
 Rad2 Deg
@@ -26197,7 +26212,6 @@ SystemInputLanguageChanged
 SystemMemoryMB
 T*8U
 T0.S
-T3pB
 T61STRING
 T72[t
 TASK=%llu\n
@@ -27365,7 +27379,7 @@ W'6S`
 W2Q=
 W3fp
 W3i+,
-W4HF
+W4XF
 W>peSp>9
 WAITING FOR VSCRIPT DEBUGGER CONNECTION -- '-vscriptdebug' was provided on the command line.\n
 WARNING: Attempted to send a steamworks gamestats row when the steamworks interface was not available!
@@ -27808,11 +27822,11 @@ X\n\tTeamStats
 X\n\vFantasyTeam
 X\n\vLoadoutItem
 X\tQo
-X`hrP
+X`hrp
 Xd3h
-Xf w
+Xf v
+Xf@w
 XfJ7
-Xfpu
 XjfR
 XpDataJSO
 XpNeededForDrop
@@ -27899,7 +27913,6 @@ ZL9L
 ZLIB
 ZLONG
 ZNear
-ZPi#
 ZSz@
 ZXF,`i
 Zd[w
@@ -27912,6 +27925,7 @@ Zigzag
 Zipping %s (%d files)\n
 ZjLS
 Zod6
+Zpi#
 Zpwz
 Z~wl
 [               ]
@@ -27958,7 +27972,7 @@ Z~wl
 [-1] -> empty
 [-1] -> gsn(empty)
 [-1] -> gsn(null)
-[4XF
+[4hF
 [Additional text in debugoverlay_dashboard]
 [BREAK]
 [CC Log %s]: d: %f, ls: %f, %s\n
@@ -28155,7 +28169,7 @@ Z~wl
 \n2CMsgGCCStrike15_v2_MatchmakingGC2ClientSearchStats
 \n3CMsgGCCStrike15_v2_ServerNotificationForUserPenalty
 \n3CPlayer_GetMutualFriendsForIncomingInvites_Response
-\n3HA
+\n3XA
 \n5a=Z
 \n7CMsgGCCStrike15_v2_MatchmakingServerReservationResponse
 \n:82H
@@ -28165,7 +28179,7 @@ Z~wl
 \nFinished generating SSTs (%.1f seconds)\n\n
 \nGameTick_t
 \nLOADOUT ACTION BATCH #%i\n
-\nPLA
+\nPlA
 \nScratch RT Allocations:\n
 \nSimulating Entities:\n\n
 \n\fBPE_Teleport
@@ -29007,7 +29021,7 @@ Z~wl
 \v\vTSG
 \vj0k
 \vjC7
-\vpLA
+\vplA
 ]1h=bfz
 ]FhSD}
 ]GT7]
@@ -29124,11 +29138,13 @@ _}eOk
 `ITS
 `VX:H
 `\n\rvector_values
-`\rP\f0LA
+`\rP\f0lA
 `anonymous-namespace'::DynamicLockHelper<struct `anonymous namespace'::SmokeConstantBuffer_t>::Lock
 `anonymous-namespace'::DynamicLockHelper<struct `anonymous namespace'::SmokeLightProbeVolumeData_t>::Lock
+`f4Q
 `fPw.\vM
 `h9T~
+`n4Q
 `o_je
 `yNT
 a null shared library handle was used
@@ -29148,6 +29164,7 @@ a:typeparam
 a;Tg
 a@XZ
 aA0k
+aBv4Q
 aD/x
 aDSS
 aECDH
@@ -31641,7 +31658,6 @@ d2i_TS_RESP
 d2i_X509_PKEY
 d35P
 d4\tp
-d4xF
 d7NSuLq2
 d=%-2d hl=%ld l=%4ld 
 d=%-2d hl=%ld l=inf  
@@ -35694,7 +35710,7 @@ lowprecisionuv1
 luminaire_anisotropy
 luminaire_shape
 luminaire_size
-lvR48F
+lvR4HF
 m&9W
 m*Zu
 m249
@@ -37540,6 +37556,7 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
+p08@H^4Q
 p250
 p2p_ping could not convert "%s" to a CPeerToPeerAddress\n
 p2p_ping could not ping "%s" because they are an unknown peer\n
@@ -37550,7 +37567,8 @@ p4Z3
 p5Z3
 p5\nL,
 p618
-p6Pj
+p6pj
+p>4Q
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
 p@0pqE5tsO?|1
 pBuffer != nullptr
@@ -38211,6 +38229,7 @@ playtime
 playtime_2weeks
 playtime_forever
 plum
+pn4Q
 point
 point arithmetic failure
 point at infinity
@@ -38620,10 +38639,11 @@ rVal
 rX&O0
 rZ1VwGf5
 rZPM
-r\fpLA
+r\fplA
 r\n\vstart_index
 r\vDi
 r\vp!K
+r\vp(T
 r_2PassBuildDraw 0
 r_2PassBuildDraw 1
 r_csm_fast_path 0
@@ -39062,7 +39082,6 @@ roundtime_elapsed
 roundtime_remaining
 row-resize
 royalblue
-rp3-
 rpt_abusivemodels
 rpt_inventoryabuse
 rpt_listingabuse
@@ -42521,7 +42540,6 @@ zF):O4
 zFar
 zG2m8
 zNear
-zPi#
 zRXU 
 z\tV_isvalidhex
 zebra
@@ -42537,6 +42555,7 @@ zoom_in_sound
 zoom_out_sound
 zoom_sensitivity_ratio_mouse
 zoomwithuiscale
+zpi#
 zxNIjo
 zz2K
 { "limit": %d, "selected": %s, "choices": [  %s  { "limit": 0, "label": "#SFUI_Settings_Volatile_Limit_Unlimited" }  ] }
