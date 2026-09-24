@@ -22,6 +22,7 @@
 //	"m_inspectExtraInfo": null,
 //	"m_reloadStage": null
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCS2WeaponGraphController : public CAnimGraphControllerBase
 {
 	CAnimGraph2ParamOptionalRef< CGlobalSymbol > m_action;

@@ -714,7 +714,6 @@ OnSaveFile
 OnSelectedChanged
 OnSetTick
 OnShowBudgetAverages
-OnStop
 OnTreeSelectionChanged
 OnValueChanged
 Open vprof recording
@@ -739,7 +738,6 @@ Timings truncated
 Totals
 Truncated file
 Unsupported file version
-VConsole_SubTool_001_ShowBudgetTool
 VProf Nodes
 VProf Player
 VProf_Player

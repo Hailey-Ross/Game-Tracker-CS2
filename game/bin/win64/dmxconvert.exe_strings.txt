@@ -706,7 +706,6 @@ World Node Files
 \tV_log2f
 \tV_sscanf_s
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\v\n\v\n\v\n\v\n\v\n\v\n\v\n\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\v\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\f\r\f\r\f\r\f\r\f\r\f\r\f\r\f\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r\r
-_light
 _linked_type_
 _name
 activeBookmarkSet
@@ -715,8 +714,6 @@ alpha_fade_in_random
 alpha_fade_out_random
 alpha_random
 ambientOcclusionMode
-ambientcolor2
-ambientcolor3
 angulardiameter
 anim
 animSetList
@@ -769,22 +766,15 @@ bookmarkSets
 bookmarks
 bool log
 bool_array
-bouncelight
-bouncescale
-box_maxs
-box_mins
 boxproject_maxs
 boxproject_mins
 brightness_units
-brightnessscale
 cable_static
-can_override_npc_state
 candle_1
 candle_2
 candle_3
 cannotgravitygrab
 cannotgravitypunt
-castshadows
 cellConfiguration
 cellsNodeID
 choices
@@ -802,14 +792,12 @@ color_hdr
 color_pack
 color_random
 color_red
-color_tint
 colorsIndices
 combo
 compileAsOverride
 connectionsData
 constrainVelocity
 constrain_velocity
-continue_on_death
 controlColor
 controlValues
 controlValuesLagged
@@ -831,7 +819,6 @@ defaultRightValue
 defaultValue
 defaultcurvetype
 defaultedgezerovalue
-directlight
 disableShadows
 disableShadows2
 disableinlowquality
@@ -865,14 +852,10 @@ embeddedTarget
 emissionStopTime
 emitting
 enablemotionongravitygrab
-enableuseoutput
 encoding %s %d format %s %d\n
 endTime
 ent_dota_lightinfo
 entity_properties
-env_cubemap_box
-env_global_light
-env_sky
 exportTags
 exporttags
 eyes
@@ -883,7 +866,6 @@ falloff_left
 falloff_right
 fast_strobe
 fbx2dmx
-filterclass
 finalTime
 final_time
 flicker_1
@@ -894,13 +876,10 @@ float_array
 fluorescent_flicker
 fog_lighting
 fogcontributionstrength
-fogshadows
-fogstrength
 forwardParity
 frameRate
 fromAttribute
 fromElement
-func_physbox
 functionName
 gameitemclass
 gameunitclass
@@ -913,14 +892,11 @@ groupColor
 hammer
 hiddenFlags
 hiddenGroups
-hide_debug_complaints
-high_priority
 hitbox
 hold_left
 hold_right
 houdini
 indirectlight
-info_particle_system
 initialMass
 initial_mass
 innerconeangle
@@ -958,15 +934,7 @@ leftvaluechannel
 lifespan_decay
 lifetime_random
 light
-light_barn
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_sky
-light_spot
-light_style
 light_sun
 lightgroup
 lights
@@ -975,7 +943,6 @@ local_point
 localaxis
 lock to bone
 lower_hemisphere_is_black
-m_fMoveTo
 m_pVertexData
 maintain position along path
 makefile
@@ -996,7 +963,6 @@ model_attachment
 model_bone
 model_path
 modo
-move_to_gait
 movieSettings
 movieobjects
 mp_anim
@@ -1015,11 +981,8 @@ multilevel
 multilevelchannel
 nLayoffState
 nearclipplane
-no_interrupts
-no_teleport_at_end
 nodeID
 node_dest
-node_id
 node_id_List
 node_name
 nodes
@@ -1034,7 +997,6 @@ numTimeSteps
 offseTime
 offsetTime
 operators
-orientation
 orientationChannel
 ortholightheight
 ortholightwidth
@@ -1050,7 +1012,6 @@ path_node_cable
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_trajectory
 pattern
 physicsSimplificationError
@@ -1072,14 +1033,11 @@ positions
 positionsIndices
 posterSettings
 postion_lock_to_controlpoint
-postprocessing
 prefab_has_runtime_entity_by_default
 prefab_root
 presetGroups
 presetRemap
 procedural
-prop_physics_override
-prop_physics_respawnable
 propdataname
 qangle_array
 quaternion_array
@@ -1089,14 +1047,12 @@ radius_scale
 random position along path
 random position on model
 random yaw
-range
 rawControlNames
 recursive
 refOrientation
 remap_scalar
 renderOnlySelectedClips
 renderSettings
-repeatable
 resampleinterval
 result_left
 result_right
@@ -1110,7 +1066,6 @@ right_edge_curvetype
 right_edge_value
 rightedgetime
 rightvaluechannel
-root
 rootControlGroup
 rootGroup
 rootSelectionSet
@@ -1121,7 +1076,6 @@ rotation_spin
 rotation_spin yaw
 saturation
 scene
-scripted_sequence
 scriptlist
 second_sequence_random
 selectedControls
@@ -1150,9 +1104,7 @@ shadow_secondary_color_day
 shadow_secondary_color_night
 shadowtextureheight
 shadowtexturewidth
-shape
 shared
-should_leave_corpse
 showAmbientOcclusion
 showCameraFrustum
 showFocalPlane
@@ -1163,22 +1115,16 @@ sidelist
 simulating
 simulationTime
 simulationTimeScale
-size_params
 skeleton
 sketchup
 skycolor
 skyintensity
-skyname
 slow_pulse_nofade
 slow_strobe
 slow_strong_pulse
 snappable
 snapshotOverride
-snapshot_file
-soft_x
-soft_y
 spawnFlags
-spawnflags
 specificImpulse
 specific_impulse
 specular_direction_day
@@ -1190,13 +1136,11 @@ speedIndices
 staggerinterval
 standard
 startTime
-start_on_spawn
 stereo
 stereoSingleFile
 stereoscopic
 string_array
 string_instanced
-style
 subkeys
 syncEngineFramerate
 tag_list

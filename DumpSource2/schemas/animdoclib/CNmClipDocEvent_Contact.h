@@ -18,6 +18,7 @@
 //		"m_soundeventOverrideID": ""
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_Contact : public CNmClipDocEvent
 {
 	// MPropertyAutoRebuildOnChange

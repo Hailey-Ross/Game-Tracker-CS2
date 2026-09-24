@@ -13,5 +13,4 @@ GetFileAttributesA
 PATH
 PATH=%s;%s
 \nPl8
-launchable_dll_1
 local_AppendSlash: ran out of space on %s.

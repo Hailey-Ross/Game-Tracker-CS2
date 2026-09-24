@@ -28,7 +28,6 @@ FindFirstFileExA
 FindNextFileA
 GameUISystemMgr001
 GetConsoleCP
-IMEManager001
 MDLCache004
 MatSystemSurface006
 MaterialSystemHardwareConfig013

@@ -14,7 +14,7 @@
 //		"m_flRandomMin": 0.000000,
 //		"m_flRandomMax": 1.000000,
 //		"m_bHasRandomSignFlip": false,
-//		"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//		"m_nRandomSeed": 0,
 //		"m_nRandomMode": "PF_RANDOM_MODE_CONSTANT",
 //		"m_strSnapshotSubset": "",
 //		"m_flLOD0": 0.000000,
@@ -111,7 +111,7 @@
 //		"m_flRandomMin": 0.000000,
 //		"m_flRandomMax": 1.000000,
 //		"m_bHasRandomSignFlip": false,
-//		"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//		"m_nRandomSeed": 0,
 //		"m_nRandomMode": "PF_RANDOM_MODE_CONSTANT",
 //		"m_strSnapshotSubset": "",
 //		"m_flLOD0": 0.000000,
@@ -187,7 +187,7 @@
 //		"m_flRandomMin": 0.000000,
 //		"m_flRandomMax": 1.000000,
 //		"m_bHasRandomSignFlip": false,
-//		"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//		"m_nRandomSeed": 0,
 //		"m_nRandomMode": "PF_RANDOM_MODE_CONSTANT",
 //		"m_strSnapshotSubset": "",
 //		"m_flLOD0": 0.000000,
@@ -263,7 +263,7 @@
 //		"m_flRandomMin": 0.000000,
 //		"m_flRandomMax": 1.000000,
 //		"m_bHasRandomSignFlip": false,
-//		"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//		"m_nRandomSeed": 0,
 //		"m_nRandomMode": "PF_RANDOM_MODE_CONSTANT",
 //		"m_strSnapshotSubset": "",
 //		"m_flLOD0": 0.000000,
@@ -339,7 +339,7 @@
 //		"m_flRandomMin": 0.000000,
 //		"m_flRandomMax": 1.000000,
 //		"m_bHasRandomSignFlip": false,
-//		"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//		"m_nRandomSeed": 0,
 //		"m_nRandomMode": "PF_RANDOM_MODE_CONSTANT",
 //		"m_strSnapshotSubset": "",
 //		"m_flLOD0": 0.000000,
@@ -402,6 +402,7 @@
 //		"m_flCompareValue": 0.000000
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class C_OP_RemapDotProductToCP : public CParticleFunctionPreEmission
 {
 	// MPropertyFriendlyName = "first input control point"

@@ -15,6 +15,7 @@
 // MPropertyFriendlyName = "Smart Prop Reference"
 // MPropertyDescription = "Evaluates a specified smart prop as a child of the current element."
 // MVDataOutlinerAssetNameExpr = "m_sSmartProp"
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropElement_SmartProp : public CSmartPropElement
 {
 	// MPropertyDescription = "Name of the target smart prop resource (.vsmart) to evaluate."

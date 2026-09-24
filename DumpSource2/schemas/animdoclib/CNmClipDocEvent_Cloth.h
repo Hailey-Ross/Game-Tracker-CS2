@@ -10,6 +10,7 @@
 //	"m_vertexSetName": "",
 //	"m_effectName": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_Cloth : public CNmClipDocEvent
 {
 	// MPropertyAutoRebuildOnChange

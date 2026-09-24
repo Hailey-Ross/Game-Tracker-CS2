@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -19,7 +19,7 @@
 //	"m_paramName": "",
 //	"m_param":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_blendKeyType": "BlendKey_UserValue",
 //	"m_bLockBlendOnReset": false,
@@ -37,6 +37,7 @@
 //	"m_eLinearRootMotionBlendMode": "LERP"
 //}
 // MPropertyFriendlyName = "Blend 1D"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_BlendNode : public CAnimGraphDoc_Node
 {
 	// MPropertyFriendlyName = "Blend Items"

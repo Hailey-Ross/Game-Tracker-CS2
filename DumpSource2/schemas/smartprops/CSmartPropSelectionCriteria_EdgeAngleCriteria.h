@@ -8,6 +8,7 @@
 // MVDataComponentValidGrandParents = "CSmartPropElement_PlaceOnMesh"
 // MPropertyFriendlyName = "Filter Edges by Angle"
 // MPropertyDescription = ""
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropSelectionCriteria_EdgeAngleCriteria : public CSmartPropSelectionCriteria
 {
 	// MPropertyFriendlyName = "Min Angle"

@@ -5817,7 +5817,6 @@ Global_work_size must be evenly divisible by local_work_size. Non-uniform work-g
 Graph nodes cannot depend on events from another graph.
 Graph nodes cannot depend on events from outside the graph.
 Graphs cannot be submitted to a queue which uses immediate command lists. Use sycl::ext::intel::property::queue::no_immediate_command_list to disable them.
-Host
 Host Accessor Creation/Buffer Lock
 Host Accessor Destruction/Buffer Lock Release
 Host accessors cannot be created for buffers which are currently in use by a command graph.

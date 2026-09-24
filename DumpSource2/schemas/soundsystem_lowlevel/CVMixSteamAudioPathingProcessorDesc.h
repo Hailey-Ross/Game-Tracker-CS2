@@ -81,6 +81,7 @@
 //		"index": 0
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMixSteamAudioPathingProcessorDesc : public CVMixBaseProcessorDesc
 {
 	CVMixParameterFloat m_paramPositionX;

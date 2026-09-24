@@ -51,6 +51,7 @@
 //		}
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMixFilterProcessorDesc : public CVMixBaseProcessorDesc
 {
 	VMixFilterDesc_t m_desc;

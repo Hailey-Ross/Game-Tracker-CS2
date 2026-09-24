@@ -39,6 +39,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CPulseCell_Outflow_PlayVCD : public CPulseCell_Outflow_PlayVCDBase
 {
 	CStrongHandle< InfoForResourceTypeCChoreoSceneResource > m_hChoreoScene;

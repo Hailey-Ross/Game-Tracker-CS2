@@ -10719,7 +10719,6 @@ ClipOperation
 Clipboard
 Clipperton Island
 ClippertonIsland
-Close
 Close application
 CloseSoftwareInputPanel
 CloseThreadpoolTimer
@@ -10887,7 +10886,6 @@ DaySection
 DcG@
 DdEd
 DeIeKe
-Deactivate
 DeactivateControl
 Debug stream operator already registered for type %s
 Decimal
@@ -14829,7 +14827,6 @@ TnSn
 ToJo
 ToTaT`T
 Tocantins Standard Time
-Toggle
 ToggleCurrent
 Togo
 Tok Pisin
@@ -17154,7 +17151,6 @@ bananarepublic
 band
 bandai.fukushima.jp
 bando.ibaraki.jp
-bank
 bar.pro
 bara
 barcelona
@@ -19185,7 +19181,6 @@ firm.ng
 firm.ro
 firm.ve
 firmdale
-fish
 fishing
 fitjar.no
 fitness
@@ -21651,7 +21646,6 @@ lib.wy.us
 lidl
 lier.no
 lierne.no
-life
 lifeinsurance
 lifestyle
 lig.it
@@ -23138,7 +23132,6 @@ objectName
 objectNameChanged
 obninsk.su
 oboOo
-observer
 obsolete error (should not occur)
 obu.aichi.jp
 obuse.nagano.jp
@@ -23496,7 +23489,6 @@ organizationDomainChanged
 organizationName
 organizationNameChanged
 ori.nz
-orientation
 origins
 oristano.it
 orkanger.no
@@ -24946,7 +24938,6 @@ ski.no
 skien.no
 skierv
 skierva.no
-skin
 skip
 skiptvet.no
 skjak.no
@@ -25160,7 +25151,6 @@ stuff-4-sale.org
 stuff-4-sale.us
 stufftoread.com
 stuttgart.museum
-style
 sub-class-of
 submit
 subpattern name is too long (maximum 32 code units)

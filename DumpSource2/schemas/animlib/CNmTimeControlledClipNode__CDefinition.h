@@ -9,6 +9,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmTimeControlledClipNode::CDefinition : public CNmPoseNode::CDefinition
 {
 	int16 m_nPlayInReverseValueNodeIdx;

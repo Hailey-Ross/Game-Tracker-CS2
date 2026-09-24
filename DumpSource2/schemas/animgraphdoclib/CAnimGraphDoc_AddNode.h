@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,22 +16,22 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_additiveInput":
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_timingBehavior": "UseChild2",
@@ -45,6 +45,7 @@
 //	"m_bApplyScale": false
 //}
 // MPropertyFriendlyName = "Add"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_AddNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

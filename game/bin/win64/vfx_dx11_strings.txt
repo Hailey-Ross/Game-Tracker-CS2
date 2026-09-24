@@ -871,7 +871,6 @@ slang.dll
 slang_createGlobalSession2
 smoothstep
 snorm float
-source
 sourceArg
 space%d
 specconstant

@@ -65,6 +65,7 @@
 //		}
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMixDynamicsCompressorProcessorDesc : public CVMixBaseProcessorDesc
 {
 	VMixDynamicsCompressorDesc_t m_desc;

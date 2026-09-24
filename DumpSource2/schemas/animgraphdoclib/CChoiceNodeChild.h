@@ -3,11 +3,11 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_name": "",

@@ -2616,7 +2616,6 @@ And R%d <- R%d && R%d
 AngleA
 AngleB
 AnimatableSceneObjectDesc
-Animation 2
 AntiAliasStrength
 Any Other Cursors Have Tag
 Any request for a duplicate dispatch/mesh shader primitive in an outputbuffer must previously set the dispatch buffer
@@ -2693,7 +2692,6 @@ BankID%d
 Base
 Base-10 logarithm
 Base-2 logarithm
-BaseEditor
 BaselineExposure
 BaselineNoise
 BaselineSharpness
@@ -3139,7 +3137,6 @@ CameraCalibration2
 CameraLookAtSelection
 CameraSerialNumber
 Can not read scanlines from a tiled image
-Cancel
 Cancel and keep my changes
 CancelClicked
 Cannot Debug
@@ -3370,7 +3367,6 @@ DragUpdated
 Draw Shadows
 DrawBoneNamesChanged
 DrawSkyboxChanged
-DualHull
 DummyNoOp
 DumpModeDecode: Not enough data for scanline %d
 E&xit
@@ -3677,7 +3673,6 @@ InkSet
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 Insert 'element' in the given index in 'a', increasing its count by one and moving the elements after index.
 Insufficient data length.\n
 Insufficient data size for attributes.\n
@@ -4114,7 +4109,6 @@ OnWhitespaceWarningClicked
 OnWhitespaceWarningClickedDelayed
 One of the client procedures is NULL pointer.
 Only wrote %d (of %d) values when saving map!
-Open
 Open Color Lookup Image File
 Open Containing Folder
 Open File
@@ -4159,7 +4153,6 @@ ParseEXRHeaderFromMemory failed! Error message: %s\n
 ParseImageDataSection failed
 Particle Binding
 Particle Binding (Real)
-ParticlesLib
 Pass Outflow
 Paste
 Paste (Overwrite)
@@ -4177,7 +4170,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Debug Draw
 Pick
 Pick Global Background
@@ -4192,7 +4184,6 @@ Planarconfig tag value assumed incorrect, assuming data is contig instead of chu
 Policy
 PopupClosed
 PopupOpened
-PostProcessEditor
 PostProcessEditorApp
 PostProcessEditorSession
 PostProcessingEditor/compute_bloom
@@ -4336,7 +4327,6 @@ ReferenceBlackWhite
 Register Test Checkpoint
 Registering anonymous field with tag %d (0x%x) failed
 Reinterpret Instance %s R%d <- %s R%d
-Reload
 Reload this file?<br><pre>"%1"</pre>
 Reload?
 ReloadLightRigDefinitions
@@ -4344,7 +4334,6 @@ Reloading
 Reloading...
 Remap Clamped Float
 Remap and clamp input value from input range to output range (float)
-Remove
 Remove Flags
 Remove Mask
 Remove Tag From Cursor
@@ -4476,7 +4465,6 @@ Scale R%d <- R%d * R%d
 Scene:
 SceneCameraChanged
 ScenePreview
-SceneSystem
 ScrLk
 ScrToggle
 Seek error at scanline %lu
@@ -4500,7 +4488,6 @@ SetBackStyleCapsule
 SetBackStyleSlot
 SetBackgroundEnabledDBG
 SetBlackboardReference BR%d (%s) <- R%d 
-SetColor
 SetColorAt
 SetColorSetSize
 SetCurrentAsset
@@ -4558,7 +4545,6 @@ ShowInputDebugger
 ShowMenuForAsset
 ShowWidgetDebugger
 ShowWindowsList
-Shutdown
 Sign Float
 Sign Int
 Signal '%s' not compatible with slot '%s'
@@ -4724,12 +4710,10 @@ Too much
 ToolBarArea
 ToolDock
 ToolFramework
-ToolScene
 ToolSceneDebugOverlays
 ToolSceneTraceResult_t*
 ToolSceneWidget
 ToolSceneWidget%d
-ToolSystem2_001
 ToolWindowGrid
 Tools  
 Tools audio currently muted
@@ -4751,7 +4735,6 @@ Tools_Unlit_Translucent
 Tools_Unlit_TranslucentNOZ
 Tools_Unlit_Wireframe
 Toolscene screen space view
-Toolutils
 Track Mouse & Focus
 TransferFunction
 Transform Inverse
@@ -4836,7 +4819,6 @@ V?removeRows@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 VConsole
 VData:%s
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -5644,7 +5626,6 @@ newValue
 next_cursor_id
 no composite (not saved with Maximize Compatibility)
 no memory during frame initialization.
-node_id
 none 
 not saved
 null VP8Io passed to VP8GetHeaders()
@@ -5658,7 +5639,6 @@ observer_cursors
 offsetDelta
 opqMU
 optionallycompressedtangentframe
-orientation
 outputcolor
 p>,m0
 p>\rm0
@@ -5721,7 +5701,6 @@ requested_cancel
 return_values
 rigIdx
 right
-root
 rotateVector
 rotateVectorToLocal
 rotateVectorToWorld

@@ -1,3 +1,4 @@
+// MNetworkNoBase
 class C_AttributeContainer : public CAttributeManager
 {
 	C_EconItemView m_Item;

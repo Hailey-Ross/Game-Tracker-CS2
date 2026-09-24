@@ -40,6 +40,7 @@
 //	"m_nAssetThumbnailVersion": 0,
 //	"m_Test_InjectSearchable": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMMDAssetTypeInfo : public CSimpleAssetTypeInfo
 {
 };

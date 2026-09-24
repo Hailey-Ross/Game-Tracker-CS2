@@ -58,7 +58,6 @@ Rejecting registering message '%s'. Already registered to an alternate handler.\
 SetHandleInformation
 TCP Local Port %d, Remote Port %d (State %d)\n
 Unknown protocol.
-VConComm
 VConComm Discarding Oversized Outgoing Message: '%s' (%d bytes)\n
 VConComm failed to get expected listening endpoint on port %d!\n
 VConComm failed to initialize server side TCP socket!\n

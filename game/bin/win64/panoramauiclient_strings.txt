@@ -1138,7 +1138,6 @@ PanelRequestedSecondaryLayout
 PanelStart
 PanelStyleChanged
 PanelStylesInvalidated
-Panorama
 Panorama Console
 Panorama configuration missing NamedPaths\n
 Panorama engine not set\n
@@ -1149,7 +1148,6 @@ PanoramaMovie.Default
 PanoramaUI
 PanoramaUIEngine interface not set up\n
 PanoramaUIEngine setup failed\n
-PanoramaVideoPlayer
 ParentWithProperties
 Picked
 PjPb
@@ -1313,7 +1311,6 @@ SetMovie
 SetPanelEnabled
 SetPanelEvent
 SetPanelSelected
-SetParent
 SetPlaybackVolume
 SetPositionInPixels
 SetRangeValues
@@ -2119,7 +2116,6 @@ opacity-mask-position
 opacity-mask-scale
 opacity-mask-threshold
 opacity-transform
-opaque
 orange
 orangered
 orchid
@@ -2216,7 +2212,6 @@ repeat-y
 repeatCount
 replacechar
 requests
-resolution
 reverse
 right
 right-wrap
@@ -2272,7 +2267,6 @@ slategray
 slategrey
 slot, class
 snow
-solid
 sound-out
 spacerperiod
 spacersize
@@ -2310,7 +2304,6 @@ stretchx
 stretchy
 strictclamptranslation
 strong
-style
 stylefile
 svgfill
 svgfillopacity
@@ -2347,7 +2340,6 @@ texturewidth
 texturewidth and textureheight can be used to override the size of vector graphics. Default value of -1 indicates texture width/height to be determined from source file
 thin
 thistle
-title
 tomato
 tooltip-arrow-position
 tooltip-body-position

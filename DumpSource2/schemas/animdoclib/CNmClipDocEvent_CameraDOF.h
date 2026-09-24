@@ -42,6 +42,7 @@
 //		]
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_CameraDOF : public CNmClipDocEvent
 {
 	CPiecewiseCurve m_curve;

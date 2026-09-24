@@ -3102,7 +3102,6 @@ Always
 And R%d <- R%d && R%d
 AngleA
 AngleB
-Animation 2
 Any Other Cursors Have Tag
 Any request for a duplicate dispatch/mesh shader primitive in an outputbuffer must previously set the dispatch buffer
 Append to %s
@@ -3151,7 +3150,6 @@ Asset Warning Scan
 Asset Weak-Referencing Me
 Asset info keys
 AssetBrowse
-AssetBrowser
 AssetBrowserCommands
 AssetBrowserMainWnd
 AssetBrowserSavedSearches.kv3
@@ -3159,7 +3157,6 @@ AssetBrowser_PreviewDock
 AssetBrowser_WorkingSetsDock
 AssetCleanup
 AssetDoubleClicked
-AssetFileHelper
 AssetGraph
 AssetGraphView
 AssetGridPanel
@@ -3170,7 +3167,6 @@ AssetLink_Dep
 AssetLink_Strong
 AssetLink_Subasset
 AssetLink_Weak
-AssetListModel
 AssetMenu
 AssetSelectionChanged
 AssetStats
@@ -3667,7 +3663,6 @@ CUtlVectorFixedGrowable
 Call C%d:I%d (%s)
 CameraLookAtSelection
 Can't connect to perforce server.
-Cancel
 CancelClicked
 Cannot Debug
 Cannot add multiple root layouts to the same widget
@@ -3717,7 +3712,6 @@ Client Exclusions Active: %s
 Clone Set
 Clone the selected working set
 CloneWorkingSetAction
-Close
 Close the Asset Browser. (Does NOT shut down the engine or other tools.)
 Close the group automatically after a short wait (good for 'success' messages)
 Close the group automatically when the associated parent process exits (good for sticky 'error' messages)
@@ -3877,7 +3871,6 @@ DragStarted
 DragUpdated
 DrawBoneNamesChanged
 DrawSkyboxChanged
-DualHull
 DummyNoOp
 Duplicate Tab
 Duplicate tab
@@ -4189,7 +4182,6 @@ InitItem
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 Insert 'element' in the given index in 'a', increasing its count by one and moving the elements after index.
 Integer Divide
 Integer division - unlike the divide (/) node, this will truncate any remainder (floor) and return an integer.
@@ -4623,7 +4615,6 @@ OnRangeToggled
 OnRefreshClicked
 OnRelationChanged
 OnReloadTimeout
-OnRemove
 OnRemoveClicked
 OnRemoveSavedSearchClicked
 OnRemoveTag
@@ -4693,7 +4684,6 @@ OnWorkingSetRenamed
 OnWorkingSetRenamed_Internal
 OnYearEdited
 Only wrote %d (of %d) values when saving map!
-Open
 Open %1 %2 file%3 in %4
 Open %d file(s) for delete?
 Open '%1' in %2
@@ -4769,7 +4759,6 @@ ParentChildAssetSelected
 ParticipatesInBoxSelection
 Particle Binding
 Particle Binding (Real)
-ParticlesLib
 Pass Outflow
 Paste
 Paste (Overwrite)
@@ -4795,7 +4784,6 @@ Permanently delete %1 local files? (They are NOT checkd in!)
 Permanently delete %d local files? (They are NOT checked in!)
 PgDn
 PgUp
-Physics
 Pick
 PickCancelled
 PickColor
@@ -4941,7 +4929,6 @@ Refs
 Register Test Checkpoint
 Reinterpret Instance %s R%d <- %s R%d
 Related Files
-Reload
 Reload Shaders
 Reload Style
 Reload Thumbnail Config
@@ -4955,7 +4942,6 @@ ReloadThumbnailConfig
 Reloading...
 Remap Clamped Float
 Remap and clamp input value from input range to output range (float)
-Remove
 Remove All
 Remove Flags
 Remove From Most Recently Used
@@ -5091,7 +5077,6 @@ Scale INV R%d <- R%d / R%d
 Scale R%d <- R%d * R%d
 Scan for assets that require specific attention.
 SceneCameraChanged
-SceneSystem
 ScrLk
 ScrToggle
 Search Inside Files
@@ -5132,7 +5117,6 @@ SetBackStyleCapsule
 SetBackStyleSlot
 SetBackgroundEnabledDBG
 SetBlackboardReference BR%d (%s) <- R%d 
-SetColor
 SetContentOnly
 SetCurrentAsset
 SetCurrentAssetFromResource
@@ -5212,7 +5196,6 @@ ShowOptionsDialog
 ShowSubassetDefinitions
 ShowSubassetReferences
 ShowWidgetDebugger
-Shutdown
 Shutdown all tools and the engine.
 ShutdownEngine
 Sign Float
@@ -5325,7 +5308,6 @@ Too many values (at most 4)
 ToolBarArea
 ToolEditContext_AssetBrowserExtraFilter
 ToolFramework
-ToolScene
 ToolSceneTraceResult_t*
 ToolSceneWidget
 Tools  
@@ -5427,7 +5409,6 @@ VAlign
 VConsole
 VData:%s
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -6492,7 +6473,6 @@ options.m_bUsePerforceIntegration
 orange
 orangered
 orchid
-orientation
 p4 integ %s %s\n
 p4FileInfoCache
 p4v.exe -p4vc history "%s"
@@ -6560,7 +6540,6 @@ render
 require_all_include
 rigIdx
 right
-root
 root_asset_name
 root_asset_unqualified_name
 rosybrown

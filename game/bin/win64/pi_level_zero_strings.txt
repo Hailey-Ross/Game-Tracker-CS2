@@ -458,7 +458,6 @@ Freed
 Frees
 GetFileInformationByHandleEx
 GetFinalPathNameByHandleW
-Host
 Intel(R) Corporation
 Intel(R) Level-Zero
 Intel(R) oneAPI Unified Runtime over Level-Zero

@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,11 +16,11 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_ikChainName": "",
@@ -33,18 +33,19 @@
 //	"m_targetParamName": "",
 //	"m_targetParam":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bMatchTargetOrientation": false,
 //	"m_rotationParamName": "",
 //	"m_rotationParam":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bConstrainTwist": false,
 //	"m_flMaxTwist": 15.000000
 //}
 // MPropertyFriendlyName = "Two-Bone IK"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_TwoBoneIKNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

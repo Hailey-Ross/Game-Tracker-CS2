@@ -10,6 +10,7 @@
 // MVDataComponentValidGrandParents = "CSmartPropElement_PlaceOnPath"
 // MPropertyFriendlyName = "Valid Path Positions"
 // MPropertyDescription = "Specifies the path positions at which this element may appear."
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropSelectionCriteria_PathPosition : public CSmartPropSelectionCriteria
 {
 	// MPropertyDescription = "Specifies the method to use to determine which positions this element should be placed at along the path."

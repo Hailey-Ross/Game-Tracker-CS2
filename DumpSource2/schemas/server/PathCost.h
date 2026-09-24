@@ -20,6 +20,7 @@
 //	"m_damagingAreasPenaltyCost": 0.000000,
 //	"m_flAgentMaxClimb": 0.000000
 //}
+// MHasKV3TransferPolymorphicClassname
 class PathCost : public CNavPathCost
 {
 	float32 m_dangerFactor;

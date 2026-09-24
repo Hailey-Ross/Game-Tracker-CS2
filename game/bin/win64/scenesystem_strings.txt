@@ -1327,7 +1327,6 @@ Always On
 Always On (Advanced)
 Always On (Simple)
 AlwaysAutoResize
-Amplitude
 An extra line here.
 And now some textured buttons..
 Angled headers
@@ -1792,7 +1791,6 @@ Calling PopStyleVar() too many times!
 Calling PopTextWrapPos() too many times!
 Calling PushStyleVar() variant with wrong type!
 Can't read a rendertarget from a view with a higher priority.\n
-Cancel
 CancelPlotSelection() needs to be called between BeginPlot() and EndPlot()!
 Candlestick Chart
 Cannot add a resolve layer as the first layer in a view!\n
@@ -1834,7 +1832,6 @@ CharWidth
 CharacterDecal
 CharacterDecalMonitorViewDS.vtex
 CharacterDecalMonitorViewRT.vtex
-CharacterDecalRenderer
 CharacterDecalRendererManifest
 CharacterSet
 Characters
@@ -1909,7 +1906,6 @@ Clipper: Step(): End.\n
 Clipper: Step(): computed ItemsHeight: %.2f.\n
 Clipper: Step(): display %d to %d.\n
 Clipper: Step(): inside frozen table row.\n
-Close
 Close All Documents
 Close Console
 Close this window
@@ -2181,7 +2177,6 @@ DecalNormals_%d.vtex
 DecalRenderTarget_Staging.vtex
 DecalRenderingLayer
 DecalRenderingView
-Decals
 Declared shortcut routes automatically set key owner when mods matches.
 DecompressTextureBits
 Decoration
@@ -2204,7 +2199,6 @@ Delete..
 Delete?
 Demonstrate mixing table context menu (over header), item context button (over button) and custom per-column context menu (over column body).
 Demonstrate using BeginDisabled()/EndDisabled() across other sections.
-Density
 Depth
 DepthCopy
 Descender
@@ -2338,7 +2332,6 @@ Drawing aggregates without valid meshlets, please recompile the map!
 Drawing instanced meshes without meshlets, please recompile the map!
 Draws/Dispatches
 Dsmall
-DualHull
 Dummy
 Dynamic Decals
 Dynamic list with Delete key support.
@@ -2552,7 +2545,6 @@ Filter usage:\n  ""         display all lines\n  "xxx"      display lines contai
 Filtered Text Input
 Final Exam
 FinishRenderingViews has been called without a call to begin!!!
-Fire
 First calls to Begin()/BeginChild() will return false.\n\nTHIS OPTION IS DISABLED because it needs to be set at application boot-time to make sense. Showing the disabled option is a way to make this feature easier to discover.
 First group hovered
 FitPadding
@@ -2636,7 +2628,6 @@ FrameRounding
 FrameUpdate
 FreeType
 FreeType Loader Flags: 0x%08X
-Frequency
 Frogs
 Frozen columns
 Frozen rows
@@ -3342,7 +3333,6 @@ L@33
 LATE_FRAGMENT_TESTS
 LEVERAGE\nBUZZWORD
 LHLQ
-LIGHTBINNER
 LIGHTING & SHADOWS
 LLLLLLL
 LOD Debugging
@@ -3417,7 +3407,6 @@ LightmapUVW
 Like this one
 Limits
 Limits Constraints
-Line
 Line #
 Line %04d
 Line %d
@@ -3889,7 +3878,6 @@ Only makes a difference if the popup is larger than the combo
 Only using TableNextColumn(), which tends to be convenient for tables where every cell contains the same type of contents.\n This is also more similar to the old NextColumn() function of the Columns API, and provided to facilitate the Columns->Tables API transition.
 OpOti
 Opaque
-Open
 Open '%s'
 Open Markers
 Open Popup
@@ -3988,7 +3976,6 @@ PerViewLightProbeVolumeConstantBuffer_t
 PerViewLightingConstantBufferGpu_t
 Period
 Perry
-Physics
 PiYG
 Picker Mode
 Pie Charts
@@ -4268,7 +4255,6 @@ Reloaded %s into textureset\n
 Remaining
 Remaining contents
 Remap w/ Ctrl+Shift: click anywhere to select new mouse button.
-Remove
 Remove 20 items
 Remove all
 Remove one
@@ -4285,12 +4271,10 @@ Render3DLineOverlays
 Render3DSolidSphereOverlays
 Render3DSphereOverlays
 Render3DVectorTextOverlays
-RenderGraph
 RenderLayerDrawListPart
 RenderPipelineAliases
 Rendering more items on the same line
 RenderingPipelineForwardManifest
-RenderingPipelines_001
 Reorderable Tabs
 Reorderable, hideable, with headers
 Requested Blend Weight Limit of %d is too large, setting to system max of %d
@@ -4418,7 +4402,6 @@ Sample count
 Sampler
 Sanders
 Santorum
-Save
 Save %s
 Save As..
 Save Ref
@@ -4441,7 +4424,6 @@ SceneGfxResources_RayTracing
 SceneLPVDebugGridObjectDesc
 SceneLPVDebugGridObjectVB
 SceneObjects
-SceneSystem
 SceneSystem/AssertViewportWithinFramebuffer
 SceneSystem/CMTAtlasHeight
 SceneSystem/CMTAtlasWidth
@@ -4766,7 +4748,6 @@ SourceIdx: %d
 South
 Space
 Space to activate a widget.
-SparseShadowTree
 SparseShadowTreeManifest
 Specify height of the Selectable item.
 Spectral
@@ -4787,7 +4768,6 @@ StartAxis
 StartCharMetrics
 StartComposites
 StartData
-StartDirection
 StartFontMetrics
 StartKernData
 StartKernPairs
@@ -5065,7 +5045,6 @@ To TTY
 To call IM_DEBUG_BREAK() %s:
 Toggle..
 Tomato
-ToneMapping
 TonemapManifest
 Tonemapping_DefaultAutoExposureMax
 Tonemapping_DefaultAutoExposureMin
@@ -5287,7 +5266,6 @@ VisualizeCulled
 Voltage
 VolumeMaxs
 VolumeMins
-VolumetricFog
 VolumetricFogManifest
 Voxelize Density
 Voxelize Tangents
@@ -5440,7 +5418,6 @@ WidthStretch
 Wiki
 Wiki page:
 Will call the IM_DEBUG_BREAK() macro to break in debugger.\nWarning: If you don't have a debugger attached, this will probably crash.
-Wind
 WindControllerManifest
 Window
 Window '%s' -> DockId %08X DockOrder=%d
@@ -6689,7 +6666,6 @@ ride
 right-align
 ring
 rk\vA
-root
 rot, inv
 rotated
 row bg target
@@ -6897,7 +6873,6 @@ threesuperior
 tied
 tilde
 tile cull items
-tint_color
 tlt~
 tom-hi
 tom-low

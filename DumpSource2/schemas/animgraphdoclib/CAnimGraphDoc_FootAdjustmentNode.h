@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,17 +16,17 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_facingTargetParam": "",
 //	"m_facingTarget":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bResetChild": true,
 //	"m_bAnimationDriven": false,
@@ -40,6 +40,7 @@
 //	"m_flStepHeightMaxAngle": 90.000000
 //}
 // MPropertyFriendlyName = "Foot Adjustment"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_FootAdjustmentNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

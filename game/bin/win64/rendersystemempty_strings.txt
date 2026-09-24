@@ -558,7 +558,6 @@ Render Device Empty\n
 Render system:  %s (initialized by %s)\n
 Render system:  %s\n
 RenderDoc is not active, did you forget to add -renderdoc to the command-line? Is RenderDoc installed?\n
-RenderSystem
 RenderSystem/AllowPartialMipChainImmediateTexLoads
 RenderSystem/MaxPreloadTextureResolution
 RenderSystem/MinStreamingPoolSizeMB

@@ -244,7 +244,6 @@ Data_Branch1zBranch2x
 Data_Branch2yz
 Dense voxels
 Distance Field
-DualHull
 ERROR: Ladders starting at index %d are lacking connectivity info during IslandRemoval.\n
 ERROR: Unable to compute distance to poly %d from point at ( %g, %g, %g )\n
 ERROR: Unconnected ladder bottom at ( %g, %g, %g )\n
@@ -340,7 +339,6 @@ P8j\r
 PathFind_NavAreaBuildPath
 Pathfind_NavAreaBuildPath
 PerVertexLighting
-Physics
 PivotPaint
 Please move your current gameinfo.gi agent settings to a %s file and create a %s file with a 'default' entry containing all the nav nulls. Then add "NavHullsPreset" "default" to your gameinfo.gi file. For now we'll continue to load the agent settings but this path is deprecated ( antonioc@ ).
 Polyclip : Adding Jumps...
@@ -381,7 +379,6 @@ TrySendVNotify - SendKV3 failed\n
 UnTransformRecastNonZup
 VData:%s
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n

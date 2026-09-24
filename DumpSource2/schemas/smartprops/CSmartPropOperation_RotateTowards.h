@@ -28,6 +28,7 @@
 // MPropertyDescription = "Apply a rotation to the current transform according to the alignment of two points."
 // MVDataClassGroup = "Transform"
 // MVDataExperimentalNodeSet = "smartprops"
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropOperation_RotateTowards : public CSmartPropTransformOperation
 {
 	// MPropertyDescription = "Position of origin point."

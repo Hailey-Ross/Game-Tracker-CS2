@@ -25,6 +25,7 @@
 //		"m_soundeventOverrideID": ""
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmContactEvent : public CNmEvent
 {
 	CGlobalSymbol m_configID;

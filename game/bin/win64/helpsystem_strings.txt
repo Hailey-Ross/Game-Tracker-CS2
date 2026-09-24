@@ -1553,7 +1553,6 @@ CQTreeWidgetWithHover
 CQWidgetDebugHighlight
 CQWidgetDebugger
 CUtlDict<struct CQInputBindEditor::BindingContextInfo_t *,class CDefFastCaselessStringLess>::Insert
-Cancel
 Cannot Debug
 Cannot Edit Help
 Cannot add multiple root layouts to the same widget
@@ -1655,7 +1654,6 @@ Help Display
 Help Editing Disabled!
 Help Editor
 HelpEditorWidget
-HelpSystem
 HelpSystem_AssociatedContextPointer
 HelpSystem_AssociatedHelpId
 Hide unless error/warning occurs
@@ -1676,7 +1674,6 @@ Include Inactive
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 InsertAssetLink
 InsertBold
 InsertImage
@@ -1848,7 +1845,6 @@ Resettable
 S?movePosition@QTextCursor@@QEAA_NW4MoveOperation@1@W4MoveMode@1@H@Z
 S?openUrl@QDesktopServices@@SA_NAEBVQUrl@@@Z
 STANDIN: %1
-Save
 ScrLk
 ScrToggle
 SelectFirstItemAfterFilter
@@ -1899,7 +1895,6 @@ V?redF@QColor@@QEBANXZ
 V?removeColumns@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 V?removeRows@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -2212,7 +2207,6 @@ n\v?event@QToolButton@@MEAA_NPEAVQEvent@@@Z
 name_ref
 o\n?dragEnterEvent@QWidget@@MEAAXPEAVQDragEnterEvent@@@Z
 o\v?event@QTreeWidget@@MEAA_NPEAVQEvent@@@Z
-orientation
 pCurrentFocusWidget
 pFilter
 pPrevFocusWidget

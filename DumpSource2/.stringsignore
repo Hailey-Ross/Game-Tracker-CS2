@@ -376,6 +376,7 @@ A value between 1 and 99 will set predictions in favor of first team.
 A value between 1 and 99 will show predictions in favor of CT team.
 A vote that fails cannot be re-submitted for this long
 A weight determining the frequency at which this model is placed relative to other models within the detail type. The weights of all models are summed and the probability of selecting this model is its weight divided by the sum weight.
+AABBDirection
 AABBWS_t
 AABB_t
 ABORT_DO_NOT_APPLY_DAMAGE
@@ -559,8 +560,13 @@ AccelerationFrontBack
 AccelerationHeading
 AccelerationLeftRight
 AccelerationSpeed
+AcceptUserInput
+AchievementEvent
+Activate
 Activate diffcheck system.
 Activate the 'boundary edges only' constraint when testing the 'on path' search mode for tactical searches.
+ActivateSkybox
+ActivateSpawnGroup
 Activates SourceTV on server.
 Activates SourceTV[1] on server.
 Activates/deactivates net message validation
@@ -569,6 +575,8 @@ Active When Listening
 Active When Talking
 Active While Current
 ActiveModelConfig_t
+ActivityEventGameSystem
+ActivityEventType
 Actor Name
 ActorClipEntry_t
 ActorMapping_t
@@ -592,7 +600,19 @@ Add current area to the selected set.
 Add specified area id to the selected set.
 Add to Current Value Raw
 Add to Initial Value
+AddAttribute
+AddCSSClass
+AddContext
 AddCorrectionDelta
+AddFilter
+AddHealth
+AddMoneyPlayer
+AddOutput
+AddRestLength
+AddTeamMoneyCT
+AddTeamMoneyTerrorist
+AddToCounter
+AddToTimer
 Additional amp on the depth dimension reflections.  Note negative numbers mean this feedback bypasses the filter (predelay).
 Additional amp on the height dimension reflections.  Note negative numbers mean this feedback bypasses the filter (predelay).
 Additional amp on the width dimension reflections.  Note negative numbers mean this feedback bypasses the filter (predelay).
@@ -625,6 +645,7 @@ Adjusts bone transforms so that physics joints don't appear violated (limits)
 Adjusts bone transforms so that physics joints don't appear violated (orientation)
 Adjusts bone transforms so that physics joints don't appear violated (translation)
 Advanced
+AffectInvulnerableEnts
 After a competitive match finishes rematch voting extra time is given for rankings.
 After hitting throttling limits for streamout, allow it to continue up to this number of milliseconds.
 After this many seconds of being basically stationary, the ragdoll will go to sleep.
@@ -689,6 +710,7 @@ Allow use of dithered lod transitions
 Allow voting during warmup?
 Allow voting?
 AllowFacingPitch
+AllowMovableNavMeshDockingOnEntireEntity
 AllowMoveX
 AllowMoveY
 AllowMoveZ
@@ -757,6 +779,7 @@ Amount spawn interval increases for each child
 Amount to dampen perpendicular movement on a ladder
 Amplification at output in dB for tuning, applied after Wet/Dry mix
 Amplification at output in dB for tuning.
+Amplitude
 An angle relative to the entity's forward. ( Facing Heading, Look Heading ... )
 An array of containers
 An array of containers that are played all at once.
@@ -781,9 +804,11 @@ Angle Parameter
 Angle Traces with Slope
 Angle at closed edge of face.
 AngleHorizontal
+AngleSpeedThreshold
 AngleVertical
 Angles
 Angular change from parent
+AngularVelocity
 Anim Driven Settings
 Anim Sequence
 AnimComponentID
@@ -805,13 +830,16 @@ AnimParamID
 AnimParamNetworkSetting
 AnimParamType_t
 AnimParamVectorType_t
+AnimResource
 AnimScriptHandle
 AnimScriptType
 AnimStateID
 AnimTagID
 AnimValueSource
 AnimVectorSource
+AnimateDuringGameplayPause
 Animation
+Animation 2
 Animation Clip
 Animation Cycle
 Animation Driven
@@ -828,14 +856,21 @@ AnimationAlgorithm_t
 AnimationDecodeDebugDumpElement_t
 AnimationDecodeDebugDump_t
 AnimationEndFacing
+AnimationGraph
 AnimationProcessingType_t
 AnimationSnapshotBase_t
 AnimationSnapshotType_t
 AnimationSnapshot_t
+AnimationSystem
+AnimationSystem: IK
+AnimationSystemUtils_001
+AnimationSystem_001
 AnimationType_t
+Animgraph
 Animgraph Orientation Parameter
 Animgraph Parameter
 Animgraph Position Parameter
+Anisotropy
 Anticipation Distance
 Anticipation Heading Parameter
 Anticipation Position Parameter
@@ -925,6 +960,7 @@ Array
 As an observer, lock the spectator target to the currently observed target
 As an observer, lock the spectator target to the given accountid.
 Asleep
+Assert
 Assert if peak memory use is over the limit.
 Assert on shader used based on substring of shader name
 AssetBrowse( as )
@@ -944,12 +980,24 @@ AssetBrowse( vpost, *showassetpreview )
 AssetBrowse( vsnd )
 AssetBrowse( vsubgrph, *requiredoubleclick  )
 AssetBrowse( vtex, *showassetpreview )
+AssetBrowser
+AssetBrowserSystem_001
 AssetEngineCommand_t
+AssetFileHelper
+AssetListModel
+AssetPreviewSystem_001
+AssetRenameSystem_001
+AssetSystem
+AssetSystem001
+AssetSystemTest001
+AssetThumbnail
+AssetThumbnailWebClient
 AssetWarningFixType_t
 Associated emitter Index
 Assume that a reliable entity delta will be ack'ed and send future deltas relative to the last reliable delta.
 AsymmetricSpring
 Async Texture hookup uses its own threadpool instead of the global pool.
+AsyncObstacleUpdate
 Asynchronous - This node executes independently using a new Cursor. Formerly 'Fire and Forget'. Equivalent to scheduling using an additional 'Fire Child Cursors' node.
 At the end of the match, perform a changelevel even if next map is the same
 At the end of the match, perform a restart instead of loading a new map
@@ -1001,6 +1049,7 @@ Auto-help
 Auto-pick value of cl_lagcompensation_test_target.
 Auto-rezoom snipers after a shot
 Auto-start Killer Replay when available
+AutoRideSpeed
 AutoRoomDoorwayPairs_t
 AutoSaveDangerous
 AutoTagVDataCondition_t
@@ -1020,6 +1069,7 @@ Average Hitbox Speed
 Average lifetime of each flame in seconds
 Average lifetime of each flame in seconds (incgrenade)
 Avoid Vertical Axis Singularity
+AwardText
 Away from closest point
 Axis around which the rotation will occur
 B
@@ -1099,6 +1149,7 @@ BakedLightingInfo_t::BakedShadowAssignment_t
 Bakes all cubemaps with distinct solid colors, for debugging purposes
 Bandwidth
 Bar
+Barbed
 Barn
 Barn FOV Angle
 Barn light 0
@@ -1117,6 +1168,7 @@ Base for falling back to cheaper effects under load.
 Base name for the created attachment.  A unique suffix is appended if needed.
 Base resolution for dynamic shadowmap sizing.  Shadowmap size of a screen sized light
 Base time scale of Killer Replay.Experimental.
+BaseEditor
 BaseSceneObjectOverride_t
 Batch entity list adds / removes while latching interpolated variables to avoid mutex contention.
 BeamType_t
@@ -1125,9 +1177,11 @@ Beat Pattern Library
 Before triggering a resource recompile, wait for input dependencies to stop being written
 Before triggering a resource reload, wait for input dependencies to stop being written
 BeginDeathLifeStateTransition_t
+BeginSequence
 Beginning
 Behavior
 Below Threshold(dB)
+BenchmarkService001
 Bend Angle
 Bend Deformer
 Bend Point
@@ -1151,6 +1205,7 @@ Bind a key for a particular splitscreen player.
 Bind a key.
 Bind all keys to their default values.
 Bind keys based on keyboard position instead of key name
+BitBuf Error
 Bitfield describing which cascades to generate/use SST for. (OR'd 1UL<<cascadeIndex, default is 1UL<<2 only, i.e. just cascade 2)
 Bitfield of playerslots to listen to voice messages from when connected to SourceTV, default is none
 Black
@@ -1206,6 +1261,8 @@ Block Selection Metric
 Block Tags from Waning States
 Block all communication from players on the enemy team.
 Block loading of the navmesh. Unplayable, only used for memory sampling.
+BlockDamage
+BlockNav
 BlockTransition
 Blocked
 BloodType
@@ -1221,11 +1278,16 @@ Body Group Setting
 Body Group Settings
 Body Group Tag
 Body group to set when this damage level is broken.
+BodyGameSystem
 BodyGroup
 BodyGroup Option
 BodyGroup SubModel
 BodyGroupOption
 BodySectionMutex_t
+BoltWidth
+BombDefused
+BombExplode
+BombPlanted
 Bone
 Bone Mask
 Bone Name
@@ -1241,6 +1303,7 @@ BoneDemoCaptureSettings_t
 BoneMask
 BoneMaskBlendSpace
 BoneMaskID()
+BoneSetup
 BoneTransformSpace_Invalid
 BoneTransformSpace_Model
 BoneTransformSpace_Parent
@@ -1282,10 +1345,19 @@ Branch Split Rate
 Branch Towards Current Direction
 Branch Towards Endpoint
 Branch Twist
+Branch%02d
+Break
 Break Value of >= 1
 Break in debugger when missing resource match is found.\nFormat: cl_break_on_missing_resource <substring> /(empty to break on all) / 0 to turn off.\n
 Break on unknown stall cause
+BreakJointByName
+BreakShardless
+Breakable
+BreakableContentsParticleOverride
+BreakableContentsPropGroupOverride
+BreakableContentsType
 BreakableContentsType_t
+Breakables
 Brightness
 Brightness of player halos
 Broadcast server debug overlays
@@ -1295,11 +1367,17 @@ BrushSolidities_e
 Buddha Mode
 Buffer size for writing string table baselines
 Buffer to add to agent radius before passing to nav gen
+BugBugService001
+BugService001
 Build Cubemaps
 Build Sparse Shadow Tree
 Build information. Leave this enabled when submitting bug screenshots and videos, please!
 Build the full frames on a seperate job thread
+BuildCubemaps
+BuildSparseShadowTree
 Bump Strength
+BurstLocation
+BurstScale
 Buy random primary and secondary. Primarily for deathmatch where cost is not an issue.
 By Mixgroup
 By Named Send
@@ -2126,6 +2204,7 @@ CJiggleBoneUpdateNode
 CJumpHelperUpdateNode
 CKeepUpright
 CKnife
+CL CommandQueue
 CLAMP
 CLAMP_EXTEND
 CLASS_C4_FOR_RADAR
@@ -3248,8 +3327,13 @@ CRotatorTarget
 CRuleBrushEntity
 CRuleEntity
 CRulePointEntity
+CS2BombDamage
+CS2BombDamage_Bake
+CS2ItemEditor
+CS2WorkshopManager
 CSAdditionalMatchStats_t
 CSAdditionalPerRoundStats_t
+CSGO game instructor
 CSGO/Bomb Damage
 CSGO/Bullets
 CSGO/Graphics/GPU Cull Shadow Views
@@ -4592,8 +4676,14 @@ Can people hold votes to surrender?
 Can people hold votes to swap the teams?
 Can people hold votes to time out?
 Can this object be scaled. If enabled the minimum and maximum lengths must be set to specify the size range of allowable scale.
+CanBePickedUp
 CanPlaySequence_t
+CanTakeDamage
+Cancel
+CancelAtNextInterrupt
 CancelOnSucceeded
+CancelPending
+CancelSequence
 Cancels all ent_fire created outputs that are currently waiting for their delay to expire.
 Candelas
 Capsule
@@ -4612,7 +4702,9 @@ Capture in RenderDoc
 CaptureAllBones
 CaptureSelectedBones
 Captures low-level data to replay path culling algorithm behavior in controlled unit test environment
+Case%02d
 Cast Shadows
+CastDynamicShadows
 Casts a ray and starts a sound event where the ray hits. The sound event will retrigger periodically if cl_snd_cast_retrigger is set. The sound event will clear previous snd_cast events if cl_snd_cast_clear is set. Usage: snd_cast <eventname> [<retrigger time>] [<max distance>]. Arguments that are specified will become defaults for the remainder of the session.
 Casts a ray and starts a sound event where the ray hits. The sound event will retrigger periodically. Usage: server_snd_cast <eventname> [<retrigger time>] [<max distance>]. Arguments that are specified will become defaults for the remainder of the session.
 Casual volume of Deathcam Timers
@@ -4648,6 +4740,12 @@ Chance bots will buy a grenade with leftover money (after prim, sec and armor). 
 Change Selection
 Change a server convar if allowed
 ChangeAccessorFieldPathIndex_t
+ChangeFOV
+ChangeLevel
+ChangeOpvarValue
+ChangeOpvarValueAndSet
+ChangeSubclass
+ChangeTeam
 Changelevel to an available workshop map by name
 Changes the subclass of the given entity.\n\tArguments:   \t<new_subclass> {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Changes's player's model
@@ -4655,11 +4753,14 @@ Channel Mix
 Channel Name
 Channel Set
 Channels
+CharacterDecalRenderer
 Chase cam's ideal distance from target
 ChatIgnoreType_t
 Cheat to test regenerative health systems
 Check game code serializers
 Check serializer meta for duplication, add verbose to command for full spew
+CheckCough
+CheckDistance
 Checks to be sure every (or just the marked) nav area can get to every goal area for the map (hostages or bomb site).
 Chest
 Chicken blockertimer
@@ -4707,6 +4808,8 @@ Clamp UVs
 ClampDuration
 ClampTo180
 ClampTo360
+ClassMatches
+ClassNameMatches
 Class_T
 Classic perlin 2-bone solver
 Clavicle Left Joint
@@ -4727,17 +4830,30 @@ Clear the pause state of the server.
 Clear the selected set.
 Clear thumbnail cache
 Clear voice attachment data.
+ClearCollections
 ClearColor
+ClearContext
+ClearFollowMoverEntity
+ClearParent
+ClearPathEnd
+ClearRenderAttribute
+ClearStartFollowingClosestMover
 Clearance Distance
 Clears all debug overlays
 Clears the cache for behavior tree files.
 Clears the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Clears the marked Area or Ladder.
 Clears the shader cache used for dynamic shader compile.
+Client
 Client Simulate
 ClientAndServer
+ClientBugBugServic001_Client
+ClientMessages
 ClientOnly
+ClientServerEngineLoopService_001
+ClientServerSharedHandleSystem001
 ClientSimulate
+ClientToolsInfo_001
 Clientside physics push away (0=off, 1=only localplayer, 1=all players)
 Clip Data
 Clip Data Manager
@@ -4749,6 +4865,7 @@ Clock sync will try to maintain N ms margin between tick arrival and polling net
 Clock sync will try to maintain an additional margin of N ticks.  This is intended to smooth over packet loss, and is a replacement for cl_interp_ratio / cl_interp.  This value is simply added to cl_clock_recvmargin_desired
 Clock sync will use past N seconds
 Clone
+Close
 Close Circle
 Close caption delay before showing caption.
 Close caption linger time.
@@ -4784,6 +4901,7 @@ CnmGraphDocVelocityBasedSpeedScaleNode
 Code
 CodeGenAABB_t
 Coefficient to modulate the rotation
+CollapseToForcePoint
 Collect CPU usage stats
 Collect model names of the entities you're pointing at
 Collection Age
@@ -4791,6 +4909,7 @@ CollectionFloatInput()
 CollectionRendererFloatInput()
 CollectionRendererVecInput()
 CollectionVecInput()
+Collide
 Collide rope with the world
 Collision
 Collision Disabled
@@ -4819,8 +4938,11 @@ Color to be applied if this choice is selected.
 Color to display the rotator handle with.
 Color to use to display the configuration handle.
 Color4
+ColorBlueValue
 ColorChoice_t
+ColorCorrectionName
 ColorGreen
+ColorGreenValue
 ColorOptionsEditableData_t
 ColorRed
 ColorRedLVL2
@@ -4828,6 +4950,7 @@ ColorRedLVL3
 ColorRedLVL4
 ColorRedLVL5
 ColorRedLVL6
+ColorRedValue
 ColorYellow
 Comma delimited list of ip:port of servers used to search for dedicated servers instead of searching for public servers.\nUse syntax `publicip1:port|privateip1:port,publicip2:port|privateip2:port` if your server is behind NAT.\nIf the server is behind NAT, you can specify `0.0.0.0|privateip:port` and if server port is in the list of `mm_server_search_lan_ports` its public address should be automatically detected.
 Comma delimited list of stristr filters for excluding validation messages.  Any messages matching filter will be excluded.
@@ -4836,13 +4959,19 @@ Comma separated list of params to filter against when drawing debug text overlay
 Comma separated list of tags to filter against when drawing debug text overlays
 Comma separated list of xyz locations to force spawn positions, e.g. 'x1 y1 z1,x2 y2 z2'
 Comma separated list of zero based indices to force spawn positions, e.g. '0,2' or '1,6'
+Command
+Command Queue Events
+Command Queue SAMPLES
+CommandLine
 Comment
 CompMatMutatorCondition_t
 CompMatPropertyMutatorConditionType_t
 CompMatPropertyMutatorType_t
 CompMatPropertyMutator_t
 Compacts the heap
+Compare
 Compare the compiled and loaded contents of 2 soundevents.
+CompareValue
 Compares 2 operator stacks and spews any errors
 Compares the current value of a variable to the specified value. If the comparison is false the element evaluation is stopped.
 Comparison Value 1
@@ -4892,6 +5021,7 @@ ConditionallyAllowTransition
 ConditionallyAllowed
 Conditions
 Cone Angle Offset
+ConfigImport
 ConfigIndex
 Configuration
 ConfigurationHandleShape_t
@@ -4909,11 +5039,13 @@ Connect to a remote HLTV server.
 Connect to a remote server.
 Connected
 Connecting
+Console
 Constant
 Constant - No Falloff
 Constant Interpolation
 ConstantInfo_t
 Constrain Twist
+ConstraintBroken
 ConstraintSoundInfo
 Contain
 Container List
@@ -4952,6 +5084,7 @@ Controls whether the compiled in vsnd morph data ease in/out values are used or 
 Convar for toggling foot lock ground tracking.
 Convert From dB
 Convert SteamID into multiple formats
+ConvertToDebrisWhenPossible
 Converts all png avatars in the avatars directory to rgb
 Converts all rgb avatars in the avatars directory to png
 Cookie
@@ -4973,11 +5106,14 @@ Cos of angle of incidence to ladder perpendicular for applying ladder_dampen
 Count
 Count Envelope
 Count Stopped Events
+CountPlayersInZone
 CountdownTimer
+Counter
 Counter Rotation Scale
 CovMatrix3
 Cover
 Crash the client. Optional parameter -- type of crash:\n 0: read from NULL\n 1: write to NULL\n 2: force an Assert\n 3: infinite loop\n 4: stack buffer overrun\n 5: multiple asserts across multiple threads. Optional number of threads (default 5)\n 6: looping memory leak until we're out of memory. Optional allocation size in bytes (default 1048576/1MB)
+CrateType
 Crawl height
 Crawl height of navigating agent capsules if enabled.
 Create
@@ -4996,6 +5132,8 @@ Create and destroy N particle systems for every one created normally
 Create multiple copies of a track at different volumes for processing or mixing separately.
 Create test character proxy
 CreateAttachmentFromVertexOpts_t
+CreateMovableNavMesh
+CreateNavObstacle
 Create_CFG
 Creates a bend deformer that is applied to child elements. The deformation bends the local space x-axis around the local space z-axis. The Angles property can be used to rotate the local axis to change the direction of deformation.
 Creates a dense field of delay/feedback/reflections.  This is basically a sequence of allpass filters and short delay lines.  Can be used to create part of a reverb effect.
@@ -5025,6 +5163,8 @@ Crouch
 Crouch height
 Crouch height of navigating agent capsules if enabled.
 Crouching
+CsIconGenerator
+CsPortraitWorld
 Cubes
 Cubic
 Cull Lifetime
@@ -5052,6 +5192,16 @@ Custom Shader
 Custom death handshake to set when this damage level is destroyed.
 Custom downsample based on Jimenez14, (default enabled, higher quality, decreases bloom aliasing further)
 CustomCameraMode_t
+CustomOutput0
+CustomOutput1
+CustomOutput2
+CustomOutput3
+CustomOutput4
+CustomOutput5
+CustomOutput6
+CustomOutput7
+CustomOutput8
+CustomOutput9
 Cycle Condition
 Cycle Control
 Cycle Control Clip
@@ -5063,6 +5213,7 @@ Cyclic Coordinate Descent solver - A solver that can handle any number of bones 
 Cylinder - Centered (SLOW PERF)
 Cylinder - Ground (SLOW PERF)
 D
+D3D
 DARRYL_DEFEAT
 DEFAULT
 DEFAULT_FORMAT_DMX
@@ -5220,7 +5371,18 @@ Damage per second from CT inferno
 Damage reduces the owner entity but not the part (health is ignored): part can only be destroyed by gibbing or procedurally.
 Damage reduces the part's health pool and the owner entity equally.
 Damage reduces the part's health pool but not the owner entity until destroyed. (i.e., limited armour)
+DamageDelay
+DamageForce
+DamagePositioningEntity
+DamagePositioningEntity02
+DamagePositioningEntity03
+DamagePositioningEntity04
+DamageRadius
+DamageTarget
+DamageType
 DamageTypes_t
+DamagedMaterial
+Damagetype
 Damped Path Motor
 Damped Value
 DampedPathMotorInstanceData_t
@@ -5229,11 +5391,15 @@ Dampening Factor
 Damping
 Damping Settings
 DampingSpeedFunction
+DangerousTime
+DangerousTimer
+Dangling
 Darken
 Dashboard toggle focus
 Dashboard/Pause Game When Activated
 Dashboard/Show Dashboard
 Data center cluster this server lives in.
+Deactivate
 Dead players can hear all dead enemy communication (voice, chat)
 Dead players can speak (voice, text) to the living
 Deathmatch volume of Deathcam Timers
@@ -5270,6 +5436,7 @@ Debug test scripts.
 Debug the NPC dynamic interaction system.
 Debug visualization of VR closed caption placement
 DebugDrawBoneTransforms_t
+DebugDrawQueueManager001
 DebugOverlayBits_t
 DebugSnapshotBaseStructuredData_t
 Debugging convar to force late dispatch of game events.
@@ -5281,6 +5448,7 @@ Decal to use when this explosion occurs
 DecalFlags_t
 DecalGroupOption_t
 DecalRtEncoding_t
+Decals
 Decay
 Decay From Wake
 Decay Time (Seconds)
@@ -5317,6 +5485,8 @@ Default size of stack region v8 is allowed to use (in kBytes)
 Default solid entity to create when using tie to entity
 Default team (non Terrorist or Counter-Terrorist) 'row' to display this weapon in the HUD.
 Default volume scale (0-1) if not automated by connecting the volume input.
+DefaultAnim
+DefaultAnimLoopMode
 Define a control array variable that can be set by code or an operator stack.  This can be used to control steamaudio pathing or steamaudio reverb for example.
 Define a control input that outputs a dynamic impulse response, which can be used by the Steam Audio hybrid reverb processor.
 Define a control variable that can be set by code or an operator stack.
@@ -5327,6 +5497,8 @@ Defines a color gradient from which a random color will be piked.
 Defines how frequently the server notifies clients that a player damaged a friend
 Defines the skill of bots joining the game.  Values are: 0=easy, 1=normal, 2=hard, 3=expert.
 Deformable Entity Settings
+DeformableSurfaceBuilder
+DeformableSurfaceBuilderSystem
 Deformation Enabled
 Defrag algorithm 0=Fast 1=Balanced 2=full 3=Extensive
 Degrees
@@ -5340,15 +5512,20 @@ Delay player slowdown when damaged by # ticks to reduce misprediction effects
 DelayGain (dB)
 Delays map change until broadcast is complete
 Delete the last node set created
+DeleteCreatedSpawnGroups
+DeleteFollowMoverSpringConstraint
 Deletes the currently highlighted Area.
 Delta
 Delta encode svc_UserCmds message
 DeltaOrientationX
 DeltaOrientationY
 DeltaOrientationZ
+Demo
+DemoFile
 Demonstrates finding random points that are connected in the nav mesh to the start point.
 Demonstrates searching hexagonal lattice over nav mesh.
 Denominator
+Density
 Density Scale
 Density of Particle Rain 0-1
 Density value to map to max value
@@ -5370,13 +5547,18 @@ Description
 Description of how this is used  the graph for people reading the graph
 Desired Move Heading
 Desired commentary mode state.
+Destination
 Destination Value
 Destroy Fake Entity
+DestroyEntities
+DestroyImmediately
 Destroys all client-side ragdolls
 Destroys all particle systems matching the specified name.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Destructible Parts
+DestructibleHitGroupDestroy
 DestructiblePartDamageRequest_t
 DestructiblePartDestructionDeathBehavior_t
+Detach
 Detach From Owner
 Detail Prop Type
 Detail2Combo_t
@@ -5409,6 +5591,9 @@ Determines which team, if any, can purchase Pistols. -1 = any; 0 = non; 2 = Ts; 
 Determines which team, if any, can purchase Rifles. -1 = any; 0 = non; 2 = Ts; 3 = CTs.
 Determines which team, if any, can purchase SMGs. -1 = any; 0 = non; 2 = Ts; 3 = CTs.
 Determines who spectators can hear: 0: only spectators; 1: all players; 2: spectated team; 3: self only; 4: nobody
+Developer
+DeveloperConsole
+DeveloperVerbose
 Development search key token.
 Diamond
 Difference in Z increases toward the middle of the slack ladder.\n
@@ -5454,6 +5639,28 @@ Disable teamselect menu on clients
 Disable to get a better look at what's happening offscreen
 Disable vprof
 Disable weapon inaccuracy spread
+DisableAccelDecel
+DisableAlternatePath
+DisableAngularConstraint
+DisableAnimEventSounds
+DisableAutoSleeping
+DisableCollision
+DisableCollisions
+DisableCollisionsWith
+DisableDOF
+DisableDamageForces
+DisableDrag
+DisableGravity
+DisableLights
+DisableLimit
+DisableLinearConstraint
+DisableMotion
+DisablePath
+DisablePin
+DisablePlatform
+DisablePuntSound
+DisablePushClamp
+DisableShadow
 DisableShadows_t
 Disabled
 Disabled During Endcap
@@ -5464,11 +5671,14 @@ Disallow backtracking a player for lag compensation if it will cause them to bec
 Disallow interpolating between observer targets on this server.
 Disallow vote kicking on the match point round.
 Disconnect from server
+DisconnectFromPath
 Disconnected
 Disconnecting
 Dispatch clients to relay proxies: 0=never, 1=if appropriate, 2=always
 Dispatch the event defined by the argument string. No creating panel is specified.
+DispatchResponse
 Dispatches the test particle system with the parameters specified in particle_test_file,\n particle_test_attach_mode and particle_test_attach_param on the entity the player is looking at.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
+Display
 Display GPU memory usage.
 Display Model
 Display all thinking scene entities and its data.
@@ -5517,6 +5727,7 @@ Displays the skeleton for the given entity(ies).\n\tArguments:   \t{entity_name}
 Displays the total bounding box for the given entity(s) in green.  Some entites will also display entity specific overlays.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Displays visibility traces for the given entity\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Disposition_t
+Dissolve
 Distance
 Distance - Nearest
 Distance Between
@@ -5539,6 +5750,7 @@ Distance to Particle System Center
 Distance to alpha coding
 Distance to cull the AO proxy as a factor of size
 DistanceHorizontalOnly
+DistanceToPlayer
 DistanceVerticalOnly
 Distortion Amount
 Distribute evenly
@@ -5585,9 +5797,15 @@ Don't skip more than N messages in a row when skipping in a demo file.
 Don't test validity of a lag comp restore, just do it.
 Don't use CPU applying small wind gusts to ropes when they're past this distance.
 Dont Apply Decals to Owner
+DontMessageParent
 DoorState_t
 Dop26_t
 Dot Product
+DotaHeroListCompiler
+DotaItemCompiler
+DotaItemSetCompiler
+DotaPatchNotesCompiler
+DotaVisualNovelsCompiler
 Double Buffer Source Audio
 Downloads a match via serial code and starts playback
 Downward Ratio
@@ -5629,6 +5847,7 @@ Draw the name of a rendered joint.
 Draw the nearby-vertex point cloud while hovering.  Turn off if the attachment axis preview alone is enough.
 Draw trajectory of the deployed grenade if thrown from this position. Takes an optional parameter for how long the drawn trajectory will last.
 Draw water volumes when they change
+DrawDistance
 Draws HUD radar
 Draws a circle representing the effective range with every shot.
 Draws a cross at the given location\n\tArguments: x y z
@@ -5642,6 +5861,7 @@ Drop healthshot on player death
 Drop taser on player death
 Dropped grenades detonate when shot.
 Dry/Wet
+DualHull
 Dump .json file for use by GpuMemDumpVis.py
 Dump UDP packets summary to console
 Dump a list of the objects in a sceneworld (Usage: sc_dumpworld <world_index>)
@@ -5693,6 +5913,7 @@ Duration of ent_skeleton display
 Duration of the fade in and of the fade out transitions (fade in + fade out is 2x this value).
 Duration value for path point
 Duration, in seconds, to hold onto the data of disconnected players, for scoreboard display.
+DurationValue
 During Outro
 During a VMA defrag, number of MB in moves per pass.
 During a VMA defrag, number of moves per pass.
@@ -5876,6 +6097,7 @@ EWT_Unknown
 EWaveform
 EWeaponType
 EXPAND_ITEM
+EXPORTSYSTEM_INTERFACE_VERSION_001
 EXPORT_ENCODING_BINARY
 EXPORT_ENCODING_TEXT
 EXPRESSION
@@ -5901,6 +6123,7 @@ Effect Size
 Effect to actually fire into the world from this weapon
 Effect when firing this weapon
 Effector
+Elapsed
 Elapsed Time
 ElapsedTime
 Electrified
@@ -5911,10 +6134,14 @@ Embedded stream video playing state
 Emission
 Emit a warning if we spend more than N ms executing user commands for a single player
 Emit the last grenade thrown on the server.
+EmitBlood
+EmitSound
 Emits a closed caption
 Emitter Index
 Empty Resource Spacer
 EmptyTestScript
+EmptyWorldService001_Client
+EmptyWorldService001_Server
 Enable
 Enable 'TrueView' when spectating another player, which attempts to recreate the client's experience more accurately.  The server may not allow this at certain times.
 Enable 'TrueView' when watching a demo, which attempts to recreate the client's experience more accurately.  0=disable, 1=only if demo version match, 2=always
@@ -6022,8 +6249,25 @@ Enable/disable ragdoll physics.
 Enable/disable rcon logging.
 Enable/disable text messages printing on the screen.
 Enable/disable voice in this mod.
+EnableAccelDecel
+EnableAlternatePath
+EnableAngularConstraint
+EnableAutoSleeping
+EnableCollision
+EnableCollisions
+EnableDOF
+EnableDamageForces
 EnableFilter
 EnableFlinches
+EnableIndirect
+EnableLimit
+EnableLinearConstraint
+EnableMotion
+EnablePath
+EnablePlatform
+EnablePuntSound
+EnableRefire
+EnableShadow
 Enabled
 Enables GOTV theater mode for the specified container, setting it to 'live' will play top live matches
 Enables an alternate interpolation method that doesnt deform endpoint tangents.
@@ -6052,6 +6296,10 @@ End point of the line to trace to.
 End point space
 End the current round.
 End warmup immediately.
+EndGame
+EndHint
+EndSprite
+EndTouch
 Endcap
 Endcap Vsnd (Stop)
 Ending
@@ -6060,7 +6308,10 @@ Ends timedemo on given tick.
 Enforce Limits
 Enforce Shared Vert
 EngineCountdownTimer
+EngineGameUI001
 EngineLoopState_t
+EngineServiceManager
+EngineServiceMgr001
 Enhance edges of smokes to eliminate bad pixels
 Ensure that interactive film clip operations always stay on frame
 Ent Text
@@ -6071,14 +6322,19 @@ Enter a country's alpha 2 code to show that flag next to team 2's name in the sp
 Enter a team's shorthand image name to display their logo. Images can be found here: 'resource/flash/econ/tournaments/teams'
 Entire Path
 Entities That Block LOS
+Entity Dump
 Entity Handle
 Entity Hitbox Cache Field (Requires Stick on Collision)
+Entity Load Unserialize
 Entity Name
 Entity Normal Cache Field (Requires Stick on Collision)
+Entity System
 Entity to watch for prediction system changes.
 Entity variable to watch in prediction system for changes.
+EntityAName
 EntityAttachment
 EntityAttachmentType_t
+EntityBName
 EntityDissolveType_t
 EntityDistanceMode_t
 EntityDormancyType_t
@@ -6093,6 +6349,8 @@ EntityPos
 EntityRenderAttribute_t
 EntitySpottedState_t
 EntitySubclassScope_t
+EntitySubclassUtilsV001
+EntityTemplate
 Entry
 EntryOverrideTree
 Enum
@@ -6141,6 +6399,7 @@ EventClientSceneSystemThreadStateChange_t
 EventClientSimulate_t
 EventFrameBoundary_t
 EventModInitialized_t
+EventName
 EventPostAdvanceTick_t
 EventPostDataUpdate_t
 EventPreDataUpdate_t
@@ -6191,6 +6450,9 @@ Experimental: Set to 1 to enable full GPU pipeline flushing after each command l
 Experimental: Set to 1 to enable full GPU pipeline flushing after each present.
 Experimental: Set to 1 to use the ID3D11DeviceContext11::Flush() to flush the GPU pipeline instead of queries.
 Expiration Time (seconds)
+Explode
+ExplodeDamage
+ExplodeRadius
 Explosion
 Explosion where you're looking, or at x y z, with a real explosion's physics force (unlike create_radius_damage).
 Explosions
@@ -6222,6 +6484,7 @@ Extent
 External Connections
 ExternalAnimGraphHandle_t
 ExternalAnimGraphInactiveBehavior_t
+Extinguish
 Extra Arc Data Point
 Extra Tap Scale
 Extra starting equipment for CT players in guardian modes
@@ -6484,6 +6747,8 @@ FORCEDCROUCH_NONE
 FORCEDCROUCH_UNCROUCHED
 FORWARD
 FORWARD_NORMAL
+FOV
+FOV2D
 FUNC_DOOR_SPAWN_CLOSED
 FUNC_DOOR_SPAWN_OPEN
 FX Light
@@ -6501,22 +6766,33 @@ FacingMode_LookTarget
 FacingMode_Manual
 FacingMode_ManualPosition
 FacingMode_Path
+FacingPercentage
 FacingPosition
+Fade
 Fade End
 Fade Level
 Fade Out (sec)
 Fade Start
 Fade in time of the animation
 Fade out time of the animation
+FadeAndRemove
+FadeIn
+FadeInEnd
+FadeInStart
+FadeOut
+FadeSpeed
 Fading and culling
 Fake Ent-Fire
 Fallback World Position
 Falling Speed Scale
 Falloff
+FalloffExponent
 False
 Fan
 Fast
+FastRetrigger
 Faster way of placing icons on the mini map.
+FbxSystem
 FeAnimStrayRadius_t
 FeAntiTunnelGroupBuild_t
 FeAntiTunnelProbeBuild_t
@@ -6588,8 +6864,10 @@ FeedbackGain (dB)
 Feet
 Field of View (degrees)
 FieldNetworkOption
+FieldOfView
 Fifty Percent/Zero Percent Distance
 File
+Filesystem
 Fill
 Fill light
 Fill the area based on the largest bounds of child elements as specified in their selection criteria.
@@ -6606,6 +6884,7 @@ Filter Gain (dB)
 Filter Type
 Filter setting for animgraph_debug_variables output. If set to -1, show debug for all entities. If set to 0, show debug for any NPCs that have been npc_selected. If set to >0, something other than 0, show debug for the entity with the matching entindex.
 Filter slope
+Filter%02d
 Filter: Expression
 Filter: Material Attributes
 Filter: Probability
@@ -6614,6 +6893,7 @@ Filter: Surface Properties
 Filter: Variable Value
 FilterDamageType
 FilterHealth
+FilterType
 Final Pose
 Find Fake Entity
 Find Suffix
@@ -6626,6 +6906,9 @@ Find help about a convar/concommand.
 Find key bound to specified command string.
 Find or clear the vis LOS to here
 Find the number of assets registered with the asset system
+FindEntitiesInTrigger
+FindEntity
+FindModelConfigEntity
 Finger Curl - Index
 Finger Curl - Middle
 Finger Curl - Pinky
@@ -6651,9 +6934,17 @@ Finished Condition
 FinishedConditionOption
 FinishedConditionOption_OnAlmostFinished
 FinishedConditionOption_OnFinished
+Fire
 Fire a fatal error
 Fire an assertion failure
 Fire input {m_Input}
+FireEvent
+FireTimer
+FireUser1
+FireUser2
+FireUser3
+FireUser4
+FireWinCondition
 Fired
 Fired when the observable boolean is false, and killed when true.
 Fired when the observable boolean is true, and killed when false.
@@ -6686,7 +6977,9 @@ Flag to enable spatial audio in Dota 2.
 Flags
 Flags_t
 Flashlight
+FlattenedSerializersVersion001
 FlexOpCode_t
+FlickerLights
 Flip U or V texcoords if pitch or yaw go over PI
 FlipHemisphere
 FlipHemisphereNegate
@@ -6713,6 +7006,11 @@ Fog
 Fog Scale
 Fog end for Free Camera.
 Fog start for Free Camera.
+FogIndirectStrength
+FogName
+FogNoiseStrength
+FogStrength
+FogSunLightStrength
 Folder in the game directory where server logs will be stored.
 Follow Attachment
 Follow Direction
@@ -6720,11 +7018,13 @@ Follow Path
 Follow Target
 FollowAttachmentData
 FollowAttachmentSettings_t
+FollowEntity
 FollowTargetOpFixedSettings_t
 Font
 Font size for text in 2d and 3d viewports
 Font size for the debug font
 Font()
+FontManager_001
 Foot
 Foot 3
 Foot 4
@@ -6798,8 +7098,16 @@ Force uncompressed update
 Force user input to this split screen player.
 Force weapon inaccuracy to be in exactly the up direction
 ForceDamageApply
+ForceDirectionIsInLocalSpace
 ForceDisable
+ForceDrop
 ForceEnable
+ForceRefresh
+ForceSpawn
+ForceSpawnAtEntityOrigin
+ForceSpawnAtLocation
+ForceSpawnReturnEntities
+ForceTarget
 ForcedCrouchState_t
 Forces a button to be a particular state - WHEN PROCESSING USERCOMMANDS
 Forces a button to be a particular state -- WHEN SAMPLING INPUT
@@ -6824,6 +7132,8 @@ Frame Selection
 Frame rate limiter while the game UI is displayed.  0=no limit.  Does not apply to dedicated server.
 Frame rate limiter.  0=no limit.  Does not apply to dedicated server.
 Frame time greater than this is considered 'poor'.
+Freeze
+Frequency
 Frequency (Hz)
 Frequency End
 Frequency Start
@@ -6900,6 +7210,7 @@ GAME_PARTICLE_MANAGER_EVENT_UPDATE_FORWARD
 GAME_PARTICLE_MANAGER_EVENT_UPDATE_OFFSET
 GAME_PARTICLE_MANAGER_EVENT_UPDATE_ORIENTATION
 GAME_PARTICLE_MANAGER_EVENT_UPDATE_TRANSFORM
+GCClient
 GCClientLauncherType
 GCClientLauncherType_DEFAULT
 GCClientLauncherType_PERFECTWORLD
@@ -7005,8 +7316,18 @@ Game/Granulator Debugger
 Game/Sound System Debugger
 GameAmmoTypeInfo_t
 GameAnimEventIndex_t
+GameClientExports001
+GameEventSystem
+GameEventSystemClientV001
+GameEventSystemServerV001
+GameModelInfo001
+GameResourceServiceClientV001
+GameResourceServiceServerV001
+GameSystem2HostHook
 GameTick_t
 GameTime_t
+GameTypes001
+GameUIService_001
 Gameplay Effect
 Gameplay State High
 Gameplay State Low
@@ -7037,6 +7358,7 @@ Generate the diffuse warp lookup texture used for pre-integrated skin shading.
 Generate the grid by placing N x N children.
 Generate the shadow warp lookup texture used for pre-integrated skin shading.
 GenerateBreakpieces
+GenerateGameEvent
 Generated Composite Material
 Generated Composite Materials
 Generated Texture
@@ -7062,30 +7384,90 @@ Get physics surface properties for all the materials.
 Get physics surface property of models.
 Get request X-Origin-Auth string
 Get the latest version of the map and host it on this server.
+GetAbsAngles
+GetAbsOrigin
+GetAbsScale
+GetAbsTransform
+GetActualSpeed
+GetAllChildren
+GetAttachmentAngle
+GetAttachmentForward
+GetAttachmentLeft
+GetAttachmentOrigin
+GetAttachmentUp
 GetChoreoServicesSaveRestoreOps
+GetClassName
+GetClosestDirToEntity
+GetClosestPosToEntity
+GetClosestTValueToEntity
+GetCounter
+GetCurrentMoverSpeed
+GetDebugString
+GetDirAtTValue
+GetDistanceBetweenEntitiesAlongPath
 GetEngineTickSaveRestoreOps
 GetEngineTimeSaveRestoreOps
+GetEyePosition
+GetForward
 GetGlobalSymbolDataOps
+GetGravityDirection
 GetHitgroupDisableListSaveRestoreOps
+GetIntactDestructibleHitGroups
+GetJointLimitAngles
+GetLayerCycle
+GetLeft
+GetLocalAngles
+GetLocalOrigin
+GetLocalScale
+GetLocalTransform
+GetMoveParent
+GetMoverOffsetFromPath
+GetMoverT
+GetName
+GetOrigin
+GetPathRelativeTransform
+GetPlayerSlot
+GetPosAtTValue
 GetPulseInstanceSaveRestoreOps
+GetRelayInterfaceSources
+GetRenderAlpha
+GetRenderColor
+GetRootMoveParent
+GetSpawnNumber
+GetSpawnedEntities
+GetTValueAtDistanceOffset
 GetTakeDamageConstPtrSaveRestoreOps
+GetTeamNumber
+GetTestIntValue
+GetUp
+GetValue
 GetVarTarget_t
 GetVariantSaveDataOps
+GetVelocity
+GetWorldSpaceCenter
 Gibs the given entity(s)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Give a supply of ammo for current weapon..\n
 Give item oriented to player angles.\n\tArguments: <item_name>
 Give item to player.\n\tArguments: <item_name>
 Give weapon required by annotation
+GiveAmmo
 Given a bot will buy a grenade, controls the odds of the grenade type. Proportional to all other sv_bot_buy_*_weight convars.
 Given a mapname and hammer uniqueid, reveal it in Hammer
 Gives a list of all currently open lessons.
 Gives a list of lessons that been completed or shown
 Gives the game time in seconds (server's curtime)
+GlassInFrame
+GlassNavIgnore
+GlassThickness
 Glide
 Glide Time (ms)
 Global UI
+GlobalState
 GlobalTransitionConduit
 Glow chickens with a green outline.
+GlowProxySize
+GoDown
+GoUp
 Goal Assist
 Goal Assist Distance
 Goal Assist Tolerance
@@ -7147,6 +7529,23 @@ Ground Root Motion Motor
 Group
 Group Input
 Group Output
+Group00
+Group01
+Group02
+Group03
+Group04
+Group05
+Group06
+Group07
+Group08
+Group09
+Group10
+Group11
+Group12
+Group13
+Group14
+Group15
+Group16
 Groups a set of nodes.  Comments/colors will get displayed in the graph and on node editors.  A group box allows the user to drag the entire group as one object.
 HBOX
 HBOX_REVERSE
@@ -7177,6 +7576,8 @@ HITGROUP_RIGHTLEG
 HITGROUP_SPECIAL
 HITGROUP_STOMACH
 HITGROUP_UNUSED
+HLTV Broadcast
+HLTV Server
 HLTV streams will include player usercommands each tick
 HOLSTERED
 HORIZ_JUSTIFICATION_CENTER
@@ -7214,6 +7615,7 @@ HULL_TINY
 HULL_TINY_CENTERED
 HULL_WIDE_HUMAN
 Half Blend Add
+Hammer
 Handle Settings
 HandshakeTagState_t
 HandshakeTagType_t
@@ -7221,6 +7623,8 @@ Hard limit for the v8 heap size (in mBytes)
 Hard limit on maximum number of rounds (per half) that annotations can be seen in a live match
 HardCancel
 Harmonics
+HasActivityEventType
+HasSlack
 HaticsType_Default
 HaticsType_None
 Have closed caption Panorama panel perform depth testing against the scene
@@ -7235,7 +7639,11 @@ Height Reflectivity
 Height of navigating agent capsule.
 Height of volume fog texture
 Height to place samples to query occlusion for visualization.
+HeightFogDepth
+HeightFogEdgeWidth
 HeldItem
+HelpSystem
+HelpSystem_001
 Helper_PlayVOLine
 Hermite
 HermiteFeaturePreserving
@@ -7244,6 +7652,10 @@ Hide avatar images for other players. \n\t0 - Off.\n\t1 - Block All\n\t2 - Block
 Hide names and avatars of muted players.
 Hide text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Hide the console.
+HideHudHint
+HideSprite
+HideWorldLayer
+HideWorldLayerAndDestroyEntities
 Hides HUD radar
 Hides the game UI
 Hides the overlay.
@@ -7271,6 +7683,7 @@ Hip Dip Spring Strength
 Hip Shift
 Hip Shift Scale
 Hip Translation Scale
+Hit
 Hit Bone Parameter
 Hit Direction Parameter
 Hit Offset Parameter
@@ -7283,19 +7696,25 @@ Hitboxes
 Hitboxes fall back to collision hulls
 Hitboxes fall back to render bounds
 Hitboxes fall back to snapshot
+Hltv Director
 Hold Time (seconds)
 Hold time (ms)
+HoldAnimation
 Holds game events until client has received the tick the event was fired on.
 Honors the per-particle radius (multiplied by radius scale) but is more expensive to render.  Some particles with large radii can make things much costlier
 HorizJustification_e
 Horizontal Axis
 Horizontal FOV
 Horizontal Parameter
+Host
 Host SourceTV[0] port
 Host SourceTV[1] port
 Host a workshop map collection as a mapgroup
 Host game server ip
 Host game server port
+HostStateManager
+HostStateMgr001
+HostUtils001
 HostagePathCost
 Hostname for server.
 HoverPoseFlags_t
@@ -7362,6 +7781,7 @@ How to allocate defusers to CTs at start or round: 0=none, 1=random, 2=everyone
 However the end effector ends up after the solve, it's rotation will remain unchanged.
 HullFlags_t
 Hull_t
+Hurt
 Hurts the enemy in front of you.\n\tArguments: <health to lose>
 Hurts the player.\n\tArguments: <health to lose>
 Hybrid Box/Capsule
@@ -7405,6 +7825,8 @@ IKTARGETSOURCE_COUNT
 IKTargetCoordinateSystem
 IKTargetSettings_t
 IKTargetSource
+IME
+IMEManager001
 IMMEDIATE_HALT
 IMPORT
 IMPULSE_TYPE_EXPLOSION
@@ -7414,6 +7836,7 @@ IMPULSE_TYPE_NONE
 IMPULSE_TYPE_PARTICLE_SYSTEM
 IMPULSE_TYPE_ROPE
 INCLUDE
+INETSUPPORT_001
 INHERITABLE_BOOL_FALSE
 INHERITABLE_BOOL_INHERIT
 INHERITABLE_BOOL_TRUE
@@ -7488,6 +7911,7 @@ IPhysicsMotionController
 IPhysicsParticleRope
 IPhysicsPlayerController
 IPhysicsRagdollControl
+IPulseSystem_001
 IRagdoll
 ISkeletonAnimationController
 ISndSeqInstruments
@@ -7502,6 +7926,8 @@ ITEM_FLAG_NOITEMPICKUP
 ITEM_FLAG_NONE
 Icon associated with the tag
 Idle
+IdleAnim
+IdleAnimationLoopMode
 If 0, the 360controller.cfg file will be executed on startup & option changes.
 If 1, player pinging will make a sound, if 0, pings will be silent
 If > 0, show lag compensation hitboxes as they're recorded. Value is for how long.
@@ -7659,6 +8085,10 @@ If using mp_randomspawn, determines whether to test distance when selecting this
 If we should draw normal silhouette or minkowski sum silhouette
 If width, height, or depth is set min/max size will be ignored.  These dimensions are the size of the room in milliseconds to first reflection.
 If zero there are no extra taps.  If non-zero there will be 3 extra taps and this value will adjust their relative phase.
+Ignite
+IgniteHitboxFireScale
+IgniteLifetime
+IgniteNumHitboxFires
 Ignore
 Ignore Slope
 Ignore VAC and auth errors for client connected via localhost address or in-engine loopback
@@ -7670,6 +8100,7 @@ IgnoreInactiveEvents
 IgnoreKillEntityFlag
 IgnoreSource
 IgnoreTarget
+IgnoreUserInput
 IkEndEffectorType
 IkEndEffector_Attachment
 IkEndEffector_Bone
@@ -7679,8 +8110,11 @@ IkTarget_Bone
 IkTarget_Parameter_ModelSpace
 IkTarget_Parameter_WorldSpace
 Illumination Gradient
+ImageCompiler
 Immediate
+Impact
 Impact Options
+ImpactForce
 ImportExportOptionsEditableData_t
 ImportExportOptionsEditableData_t::ExportDefaultFormat_t
 ImportExportOptionsEditableData_t::ExportEncoding_t
@@ -7703,14 +8137,20 @@ InOutQuad
 InOutQuart
 InOutQuint
 InOutSine
+InPass
 InQuad
 InQuart
 InQuint
 InSine
+InValue
+InZone1
+InZone2
+InZone3
 Inactive
 Inches
 Includes
 Increase texture memory pool size by this many MB / s when under budget.
+Increment
 Increment Index
 Increment specified convar value.
 Increment the timescale by one step
@@ -7722,6 +8162,12 @@ Indicate to a test script that a checkpoint has been reached
 Indicates whether or not the tv should use delta frames for storage of intermediate frames. This takes more CPU but significantly less memory.
 Indicates whether to keep any loaded ammo in the weapon on reload
 Indicates whether to treat reserve ammo as clips (reloads) instead of raw bullets
+IndirectEnabled
+IndirectStrength
+IndirectUseLPVs
+IndirectVoxelDimX
+IndirectVoxelDimY
+IndirectVoxelDimZ
 Inferno dlights are at least this far apart
 Inferno_concav_plane_threshold
 Infinite Zoom Scale
@@ -7783,6 +8229,9 @@ Initial Container
 Initial Trace Down
 Initial buffer size for buffers in the WebAPIValues buffer pool
 Initial upward velocity for player jumps; sqrt(2*gravity*height).
+InitialDelay
+InitialOwner
+InitialValue
 Injection delay request for CDN rebroadcast frameworks, seconds
 Inner Angle
 Inner Cone Angle
@@ -7813,14 +8262,22 @@ Input Type
 Input Vars
 Input Vector
 Input toggle control
+InputBindSystem
 InputBitMask_t
+InputFilter
 InputLayoutVariation_t
+InputService
+InputService_001
+InputStackSystemVersion001
+InputSystem
+InputSystemVersion001
 InputType_PlayerShootPosition
 InputType_PlayerShootPositionAroundAxis
 Inside
 Inspect background map
 Instant Impulse On Each Particle Event
 Instant Stop
+InstantReplay
 Int Parameter
 IntParameter
 Integer
@@ -7830,7 +8287,24 @@ Integer4
 IntegerPart
 Intensity of the animation
 Interactive
+InteractsAs
+InteractsWith
+InterjectResponse
 Internal Tag
+InternalTestBool
+InternalTestColor
+InternalTestEntityHandle
+InternalTestEntityHandleInt
+InternalTestEntityName
+InternalTestEntityNameString
+InternalTestFloat
+InternalTestFloatString
+InternalTestInt
+InternalTestSchemaEnum
+InternalTestString
+InternalTestStringStringString
+InternalTestVector
+InternalTestVoid
 Interpolate
 Interpolate LATCH_ANIMATION_BIT vars if interpolation interval is greater than simulation interval
 Interpolate LATCH_SIMULATION_BIT vars if interpolation interval is greater than animation interval
@@ -7850,6 +8324,7 @@ Interval time in seconds to write full updates to demo.
 IntervalTimer
 Invalid
 Invalid Color Control Point
+Inventory
 Inventory Image Data
 InventoryNodeType_t
 InverseFractionalPart
@@ -7873,11 +8348,24 @@ Is this agent enabled for generation? ( will result in 0 nav areas for this agen
 Is this an element which should be placed at the end of the line.
 Is this an element which should be placed at the start of the line.
 Is this element enabled? If not enabled, this element will not be evaluted and will have no effect on the result.
+IsAnimEventActive
 IsAutomaticDSP
+IsDestructibleHitGroupIntact
+IsEnabled
+IsExternalChoreoGraphActive
+IsFakeClient
+IsMaster
+IsModel
+IsMotionEnabled
+IsPathClosedLoop
+IsTouching
+IsTouchingAny
 Issue an rcon command.
 It will be evaluated against vdata entries where the key matches the asset - if any of them evaluate to true the tag will be applied.
 Item
 Item Name
+ItemClass%d
+ItemCount%d
 ItemFlagTypes_t
 Items
 Iterate
@@ -7896,6 +8384,7 @@ JOINT_MOTION_FREE
 JOINT_MOTION_LOCKED
 JUMP
 JUMP_COND
+JavaScriptCompiler
 Jiggle Bone
 Jiggle Bones
 JiggleBoneSettingsList_t
@@ -7930,6 +8419,7 @@ Key for when posting to vac related webapis.
 Key to decrypt encrypted GOTV messages
 Key to decrypt public encrypted GOTV messages
 KeyGroup_t
+KeyValueCache001
 Keyed Floats
 Keyed Midi
 Keyed Sound Events
@@ -7939,11 +8429,14 @@ Kick a player by userid or uniqueid, with a message.
 Kick a previously connected player with the same steamID if a replacement comes along
 Kick idle/team-killing/team-damaging players
 Kick players who team-kill within this many seconds of a round restart.
+Kill
 Kill After.
 Kill Elegantly.
 Kill Immediately.
 Kill Particle
 Kill players with fall damage at negative coord min
+KillConstrained
+KillHierarchy
 Killed
 Killed by Cull
 Killed on Collision
@@ -7959,6 +8452,7 @@ Kills the player with generic damage
 Knee Twist Limits
 Knee Width (dB)
 Knee width (dB) 0 = hard knee
+KubeJobs
 LARGEST_FIRST
 LAST_CHILD
 LAST_SERIALIZED_CODE
@@ -8021,9 +8515,11 @@ LIFE_DEAD
 LIFE_DYING
 LIFE_RESPAWNABLE
 LIFE_RESPAWNING
+LIGHTBINNER
 LIGHT_STYLE_NEW
 LIGHT_STYLE_OLD
 LINE
+LOADING
 LOADOUT_SLOT_C4
 LOADOUT_SLOT_CLOTHING_APPEARANCE
 LOADOUT_SLOT_CLOTHING_CUSTOMHEAD
@@ -8133,12 +8629,14 @@ LT_GAMETIME
 LT_INT
 Label
 Ladder
+LagCompensate
 Land
 Landing
 Landing on a another player's head gives them this ratio of the damage.
 Language
 Largest fitting
 Largest time interval for child flame spawning
+LaserTarget
 Last Bone in Chain
 Last Frame
 Last/Newest Particle
@@ -8176,6 +8674,7 @@ LeftFootPassing
 LeftPhase
 Leg Extension Scale
 Legacy VMix Shoebox Reverb Node
+LegacyGameUI001
 Length
 Length (beats)
 Length of each crosshair bar, scaled with screen resolution
@@ -8194,10 +8693,14 @@ Level of validation for nav system.  Higher will be slower.
 LifeState_t
 Light Orientation Type
 Light Radius
+LightMapper
 LightRigType_t
+LightScale
 Lighten
 Lighting and Shadows
 Lightmap set to use, only works on map load
+LightningEnd
+LightningStart
 Like net_showmsg, but only spew reliable messages
 Likelyhood we'll re-allocate a timesliced shadowmap (to try to improve packing)
 Limit Count
@@ -8210,12 +8713,14 @@ Limiter
 Limiter Ratio
 Limiter Threshold(dB)
 Limits spectators to chat only every n seconds
+Line
 Line segments
 Linear
 Linear Falloff
 Linear Length
 Linear Root Motion Blend Mode
 Linear Root Motion Mode
+LinearForcePointAt
 LinearRootMotionBlendMode_t
 Lines
 Lines of crash dump console spew to keep.
@@ -8294,6 +8799,11 @@ Local Space
 Local graph expected values
 Local space position translation to apply to the current transform
 Local space rotation (in degrees) to apply to the current transform
+LocalPlayerAddCSSClass
+LocalPlayerRemoveCSSClass
+Localization System
+Localize_001
+Lock
 Lock Blend When Waning
 Lock Blend on Reset
 Lock Break Distance
@@ -8309,6 +8819,7 @@ Lock to input (0-1)
 Lock to inputs.  This makes each input "sticky" instead of smoothly varying between each source it will stick to one for some range of the parameter space.
 Lock to output (0-1)
 Lock vis LOS origin to current
+LockOrientation
 Lod at level at which visemes stops always considering two phonemes, regardless of duration.
 Log FUL_FULL_EDICT_CHANGED calls.
 Log caption names and contents (0 = off, 1 = found captions, 2 = unfound captions, 3 = all captions)
@@ -8349,6 +8860,7 @@ LookHeadingNormalized
 LookPitch
 LookTarget
 LookTarget_WorldSpace
+LookTime
 Looks at the target player's center, instead of his eye position, in chase came mode
 Loop
 Loop XFade
@@ -8370,6 +8882,7 @@ LowOnFood
 Lower bound below Average Human Contribution Score that a bot must be below to change its difficulty
 Lower the bottom of the drag select volume.
 Lower the top of the drag select volume.
+LowerRandomBound
 Lumens
 Lumens Per Meter
 Luminance
@@ -8379,6 +8892,7 @@ MAINTAIN_OFFSET
 MAIN_MENU
 MASK_F
 MATCH
+MATCHFRAMEWORK_001
 MATCH_FILTER_MATERIAL_ATTRIBUTE_EQUALS
 MATCH_FILTER_MATERIAL_ATTRIBUTE_EXISTS
 MATCH_FILTER_MATERIAL_NAME_SUBSTR
@@ -8417,6 +8931,7 @@ MESH_DRAW_FLAGS_USE_COMPRESSED_PER_VERTEX_LIGHTING
 MESH_DRAW_FLAGS_USE_SHADOW_FAST_PATH
 MESH_DRAW_FLAGS_USE_UNCOMPRESSED_PER_VERTEX_LIGHTING
 MESH_DRAW_INPUT_LAYOUT_IS_NOT_MATCHED_TO_MATERIAL
+MET
 MID
 MIRROR_SPACE_BONE_RELATIVE
 MIRROR_SPACE_MODEL_RELATIVE
@@ -8441,6 +8956,7 @@ MODEL_HITBOX_TYPE_RAW_BONES
 MODEL_HITBOX_TYPE_RENDERBOUNDS
 MODEL_HITBOX_TYPE_SNAPSHOT
 MODEL_HITBOX_TYPE_STANDARD
+MODEL_PROCESSING_SERVICES_INTERFACE_001
 MOD_FLOAT
 MOD_INT
 MORE_AGGRESSIVE
@@ -8495,9 +9011,11 @@ MULTIPLY_CURRENT
 MULTIPLY_OBJECT
 MUL_FLOAT
 MUL_INT
+Magnitude
 Magnitude Only
 MagnitudeOnly
 Main menu background movie
+MainSoundscapeName
 Mainly cosmetic, client-only effect: when client doesn't know the last position of another player that spawns a ragdoll, the ragdoll creation is simplified and ragdoll is created in the right place. If you increase this significantly, ragdoll positions on your client may be dramatically wrong, but it won't affect other clients
 Maintain Closest Triangle Offset
 Maintain Parent Orientation
@@ -8515,8 +9033,15 @@ Manual Position
 Manual Snapshot Index
 Manual Target World Space
 Manual Turn Offset
+ManualAccelSpeed
+ManualDecelSpeed
+ManualSpeedChanges
 ManualTarget_WorldSpace
 Map
+MapBuilder
+MapBuilderSystem
+MapListService_001
+MapVisibilityV001RESOURCE_TYPE_COMPILER_002
 Marks the Area or Ladder under the cursor for manipulation by subsequent editing commands.
 Marks the current demo playback tick for later use
 Mask All
@@ -8552,6 +9077,7 @@ MatchSyncEventPercentage
 MatchTargetOrientation
 MatchTimeInSeconds
 Matches
+Matchmaking
 Material
 Material Asset Variable
 Material Attribute Tag
@@ -8563,6 +9089,7 @@ Material from Target Material Attr
 Material group (skin) to assign to use with the model.
 Material group variable to set to the selected choice.
 Material to which color tint is to be applied.
+MaterialCompiler
 MaterialGroupChoice_t
 MaterialGroup_t
 MaterialOverride_t
@@ -8575,6 +9102,8 @@ MaterialParamVector_t
 MaterialParam_t
 MaterialProxyType_t
 MaterialResourceData_t
+MaterialSystem
+MaterialUtils_001
 MaterialVariable_t
 Materials
 MatterialAttributeTagType_t
@@ -8648,7 +9177,10 @@ Max vertical offset at which to create a jump connection ( possibly one-way ).
 Max vertical offset at which to make a jump connection two-way.
 Max vertical offset that the agent simply ignores and walks over.
 Max view roll angle
+MaxDelay
+MaxExposure
 MaxMoveSpeed
+MaxRagdollCount
 Maximize scale
 Maximum Angle
 Maximum Count
@@ -8718,6 +9250,9 @@ Maximum times to multiply the score for getting a streak of taser kills in a sin
 Maximum velocity for a drag scroll flick
 Maximum visible distance
 Mean/Average
+MeasureReference
+MeasureTarget
+MeasureType
 Measures distance along a ray
 Measures distance along a ray, only measuring along XY plane.
 MedalRank_t
@@ -8729,6 +9264,9 @@ Memory Level - Default: High
 MeshDrawPrimitiveFlags_t
 MeshGroup Index
 MeshGroup Mask
+MeshSystem
+MeshSystem001
+MeshUtils
 Message
 Method
 Mid
@@ -8767,6 +9305,8 @@ Min size of the recv margin queue when in tools/debug mode
 Min value property name
 Min velocity for step move.
 Min/Max number parts to destroy when gibbing
+MinExposure
+MinHitPointsToCommit
 Minimal Text
 Minimum Angle
 Minimum Delay Between Hits
@@ -8809,6 +9349,7 @@ Minimum time in seconds that must elapse before printing prediction error summar
 Minimum time that the mouse button must be down before a move is treated as a drag scroll
 Minimum time the bonus time will last (in seconds)
 Minimum velocity that the mouse must be moving as mouse up time to qualify as a drag scroll flick
+MinimumHitPoints
 Mirror Relative To The Bone
 Mirror Relative To The Model
 Mirror Space
@@ -8821,6 +9362,7 @@ Mirror Z Axis / XY Plane
 MirrorSpace_t
 Misc Control Point
 MissingParentInheritBehavior_t
+Missions
 Mix Amp
 Mix Blend Mode
 Mix Down Rule
@@ -8834,6 +9376,7 @@ Mod Depth (milliseconds)
 Mod Frequency (Hz)
 Mod Rate (# of delay intervals before mod)
 Mod2X
+ModTools
 Mode
 Mode for sniper tracers. 0: legacy, 1: hide when more than sv_sniper_tracer_innacuracy inaccurate.
 Model
@@ -8860,14 +9403,18 @@ ModelBoneFlexDriverControl_t
 ModelBoneFlexDriver_t
 ModelConfigAttachmentType_t
 ModelConfigHandle_t
+ModelDoc
 ModelDocAssetBrowse( dmx, fbx, smd, *requiredoubleclick, *ShowRelatedFile )
+ModelDocCompiler
 ModelDocPicker( MODELDOC_PICK_TYPE_BODY_GROUP )
 ModelDocPicker( MODELDOC_PICK_TYPE_BREAKPIECE )
+ModelDocUtils001
 ModelEmbeddedMesh_t
 ModelHitboxType_t
 ModelInput()
 ModelMeshBufferData_t
 ModelMeshBufferUsage_t
+ModelProcessingSystem
 ModelReference_t
 ModelSkeletonData_t
 ModelSkeletonData_t::BoneFlags_t
@@ -8886,6 +9433,7 @@ MomentumType_Friction
 MomentumType_None
 MomentumType_SpringAwayFromSnapValue
 MomentumType_SpringTowardSnapValue
+Money
 Money assigned to all players at start of every overtime half
 Monitor Observable
 MoodAnimationLayer_t
@@ -8931,7 +9479,16 @@ MoveHeading
 MoveHeadingRelativeToLookHeading
 MoveLinearAuthoredPos_t
 MoveMountingAmount_t
+MovePingSound
+MoveSound
+MoveSoundMaxPitch
+MoveSoundMaxTime
+MoveSoundMinPitch
+MoveSoundMinTime
 MoveSpeed
+MoveToPathNode
+MoveToPosition
+MoveType
 MoveType_t
 Movement Direction
 Movement Handshake Tag
@@ -8942,10 +9499,12 @@ MovementCapability_t
 MovementData
 MovementDirection
 Mover
+Movie
 MsDirection
 MsPosition
 Mul
 Multi Blender
+MultiplayerSpawned
 Multiplier for falling back to cheaper effects under load.
 Multiplier for flick velocity off of actual measured velocity
 Multiplier of the animation duration
@@ -9209,6 +9768,12 @@ NPC Task Console Text
 NPC View Cone
 NPCFollowFormation_t
 NPCPhysicsHullType_t
+NPCState1
+NPCState2
+NPCState3
+NPCType1
+NPCType2
+NPCType3
 NTH
 NTH_CHILD
 NTH_LAST_CHILD
@@ -9245,6 +9810,7 @@ Name of the target smart prop resource (.vsmart) to evaluate.
 Name to assign to the saved state, the save state can be restored later using this name.
 Name used to identify the rotator. Must be unique within the parent element.
 Name used to identify the sizer. Must be unique within the paraent element.
+NameMatches
 Named Values
 Namespace
 Natural
@@ -9252,32 +9818,54 @@ Nav Hulls
 NavAttributeDynamicType
 NavAttributeEnum
 NavDirType
+NavGameTest001
 NavGravity_t
 NavHull_t
+NavMesh
 NavScopeFlags_t
 NavScope_t
+NavSystem001
 Navigator
 NearEqual
 Nearest
+NearestEntityDistance
 Nearplane distance
 Negate
+Negated
 Negative Half Blend Add
 Negative X Axis
 Negative Y Axis
 Negative Z Axis
+NetSteamConn
 NetVarConfigIndex
 Network
 Network Facing
 Network Look Target
 Network Mode
 Network Path
+NetworkClientService
+NetworkClientService_001
+NetworkCodeGen
+NetworkMessagesVersion001
+NetworkP2PService
+NetworkP2PService_001
+NetworkServerService
+NetworkServerService_001
+NetworkService
+NetworkService_001
+NetworkSystemVersion001
 Networking
+Networking Reliable
 Never Network
 NeverConnected
 NeverNetwork
 New Material
 New child cursor starts here every time the wait interval elapses
 New material to replace the original material with.
+NewActivityEventCollection
+NewHintGroup
+NewLevelUnit
+NextKey
 NmBoneMaskSetDefinition_t
 NmCachedValueMode_t
 NmCompressionSettings_t
@@ -9318,6 +9906,7 @@ No Shadows.
 No fade out. The object will not fade out, but will still be culled when below the minimum size and will pop at that that point.
 No scaling
 NoDamping
+NoInterpolate
 NoRepeat
 Node
 Node Blend Item
@@ -9326,11 +9915,15 @@ NodeData_t
 Noise
 Noise Gate Threshold(dB)
 Noise animation time scale
+NoiseAmplitude
 NoiseOscillatorDef_t
+NoiseScale
+NoiseSpeed
 NoiseStreamDef_t
 NoiseStreamModifier_t
 NoiseStreamTurbulence_t
 NoiseStreamType_t
+NoiseStrength
 Noisy player xray glow scaling (pop when noise is made).  Make >1 to add a 'spike' to noise-making players
 Noisy players stay at full brightness for this long.
 Nominal radius value
@@ -9351,6 +9944,11 @@ Not allowed to vote for a nextlevel if one has already been set.
 NotJumping
 Note
 Notify render device when rendering a frame with enemy head within threshold distance
+NotifyForceReachedX
+NotifyForceReachedY
+NotifyForceReachedZ
+NotifyMaxLimitReached
+NotifyMinLimitReached
 Null Container
 Num
 Num Iterations 
@@ -9530,12 +10128,298 @@ On deploy, forcibly reset weapon accuracy to zero.
 On, Frequency Dependent Transmission
 On, Frequency Independent Transmission
 On, No Transmission
+OnActionStartOrLoop
+OnAjarOpen
+OnAllFalse
+OnAllTrue
+OnAnimationBegun
+OnAnimationDone
+OnAnimationLoopCycleDone
+OnAnimationReachedEnd
+OnAnimationReachedStart
+OnArrivedAtDestinationNode
+OnAsleep
+OnAttach
+OnAwake
+OnAwakened
+OnBackgroundMap
+OnBeginFade
+OnBeginSequence
+OnBlockedClosing
+OnBlockedOpening
+OnBombBeginDefuse
+OnBombDefuseAborted
+OnBombDefused
+OnBreak
+OnBroken
+OnCacheInteraction
+OnCancelFailedSequence
+OnCancelSequence
+OnCanceled
+OnCase01
+OnCase02
+OnCase03
+OnCase04
+OnCase05
+OnCase06
+OnCase07
+OnCase08
+OnCase09
+OnCase10
+OnCase11
+OnCase12
+OnCase13
+OnCase14
+OnCase15
+OnCase16
+OnCase17
+OnCase18
+OnCase19
+OnCase20
+OnCase21
+OnCase22
+OnCase23
+OnCase24
+OnCase25
+OnCase26
+OnCase27
+OnCase28
+OnCase29
+OnCase30
+OnCase31
+OnCase32
+OnChangeLevel
+OnChangedFromMax
+OnChangedFromMin
+OnClose
+OnCommentaryMidGame
+OnCommentaryMultiplayerSpawn
+OnCommentaryNewGame
+OnCommentaryStarted
+OnCommentaryStopped
+OnCompletion
+OnComponentTestFunc
+OnCreditsDone
 OnCycleEnd
+OnDamaged
+OnDeath
+OnDefault
+OnDemoMapSpawn
+OnDestructibleHitGroupDamageLevelChanged
+OnDetach
+OnDetached
+OnDetectedBulletFire
+OnDetectedExplosion
+OnDisengage
+OnDroppedNotRescued
+OnEndLook
+OnEndSequence
+OnEndTouch
+OnEndTouchAll
+OnEngage
+OnEnter
+OnEntitiesSpawned
+OnEntityFailedSpawn
+OnEntitySpawned
 OnEntry
+OnEqualTo
+OnEventFired
 OnExit
+OnExplode
+OnFacingLookat
+OnFactor1
+OnFactor2
+OnFactor3
+OnFactorAll
+OnFail
+OnFalse
+OnFellBelowMax
+OnFellBelowMin
+OnFired
+OnFirstPickedUp
+OnFoundEntity
 OnFrame
+OnFullyClosed
+OnFullyOpen
+OnGetValue
+OnGlovePulled
+OnGreaterThan
+OnGreaterThanOrEqualTo
+OnGustEnd
+OnGustStart
+OnHealthChanged
+OnHitMax
+OnHitMin
+OnHostageBeginGrab
+OnHurt
+OnHurtPlayer
+OnIgnite
+OnIn
+OnInternalTestBool
+OnInternalTestColor
+OnInternalTestEntityHandle
+OnInternalTestEntityHandleInt
+OnInternalTestEntityName
+OnInternalTestEntityNameString
+OnInternalTestFloat
+OnInternalTestFloatString
+OnInternalTestInt
+OnInternalTestSchemaEnum
+OnInternalTestString
+OnInternalTestStringStringString
+OnInternalTestVector
+OnInternalTestVoid
+OnKilled
+OnLayerCycleUpdated
+OnLerpFinished
+OnLerpStarted
+OnLessThan
+OnLessThanOrEqualTo
+OnLevelTransition
+OnLoadGame
+OnLockedUse
+OnMapPicked
+OnMapSpawn
+OnMapTransition
+OnMapVetoed
+OnMaxCount1
+OnMaxCount2
+OnMaxCount3
+OnMaxCountAll
+OnMinCount1
+OnMinCount2
+OnMinCount3
+OnMinCountAll
+OnMinPlayerDist1
+OnMinPlayerDist2
+OnMinPlayerDist3
+OnMinPlayerDistAll
+OnMixed
+OnMoneySpent
+OnMoneySpentFail
+OnMotionEnabled
+OnMovementEnd
+OnMultiNewMap
+OnMultiNewRound
+OnNewGame
+OnNewPhaseStarted
+OnNextPoint
+OnNodePassed
+OnNotEqualTo
+OnNotFacingLookat
+OnNotTouching
+OnOpen
+OnOscillate
+OnOscillateEndArrive
+OnOscillateEndDepart
+OnOscillateStartArrive
+OnOscillateStartDepart
+OnOut
+OnOutOfWorld
+OnPass
+OnPassThrough
+OnPassThroughForward
+OnPassThroughReverse
+OnPaused
+OnPickup
+OnPlay
+OnPlayerGotOffLadder
+OnPlayerGotOnLadder
+OnPlayerInZone
+OnPlayerOutZone
+OnPlayerPickup
+OnPlayerTouch
+OnPlayerUse
+OnPostIdleEndSequence
+OnPressed
+OnPulseRequirement
+OnPushedPlayer
+OnReachedPosition
+OnReachedStart
+OnReachedValueCustom
+OnReachedValueOne
+OnReachedValueZero
+OnRemove
+OnRescueZoneTouch
+OnRescued
 OnReset
 OnResetOrCycleEnd
+OnResumed
+OnRoseAboveMax
+OnRoseAboveMin
+OnRotationCompleted
+OnRotationStarted
+OnScriptEvent01
+OnScriptEvent02
+OnScriptEvent03
+OnScriptEvent04
+OnScriptEvent05
+OnScriptEvent06
+OnScriptEvent07
+OnScriptEvent08
+OnShowMessage
+OnSidesPicked
+OnSoundFinished
+OnSpark
+OnSpawn
+OnSpawnGroupLoadFinished
+OnSpawnGroupLoadStarted
+OnSpawnGroupUnloadFinished
+OnSpawnGroupUnloadStarted
+OnStart
+OnStartDeath
+OnStartForward
+OnStartFromOrInSegment
+OnStartLook
+OnStartMoving
+OnStartReverse
+OnStartTouch
+OnStartTouchAll
+OnStarted
+OnStop
+OnStopMoving
+OnStopped
+OnStoppedOnOrInSegment
+OnStyleEvent0
+OnStyleEvent1
+OnStyleEvent2
+OnStyleEvent3
+OnTakeDamage
+OnTemplateGroupSpawned
+OnTemplateSpawned
+OnTimeout
+OnTimer
+OnTimerHigh
+OnTimerLow
+OnTouchedActiveWeapon
+OnTouchedByEntity
+OnTouching
+OnTouchingChanged
+OnTouchingEachEntity
+OnTransitionToPathNodeComplete
+OnTrigger
+OnTriggerEndTouch
+OnTriggerStartTouch
+OnTriggerTouch
+OnTrue
+OnUnblockedClosing
+OnUnblockedOpening
+OnUnpressed
+OnUse
+OnUseLocked
+OnUser1
+OnUser2
+OnUser3
+OnUser4
+OnVREnabled
+OnVRNotEnabled
+OnVariantBool
+OnVariantColor
+OnVariantFloat
+OnVariantInt
+OnVariantString
+OnVariantVector
+OnVariantVoid
 One Bone
 One Bone + Translate
 One shot trigger to duck reverb for a few seconds.
@@ -9562,8 +10446,11 @@ OnlySearchAnimEvents
 OnlySearchGraphEvents
 Opaque Handle
 Opaque refract quality in viewmodel: 0 = no background copy, no depth, 1= background copy, depth if enabled 
+Open
 Open a VConsole subtool.
 Open a specific graph instance by id
+OpenAwayFrom
+OpenAwayFromActivator
 Opens Perfect World funds replenishment page for account.
 Opens a graph referencing the selected entity. If it is referenced by more than 1 graph, list all the active pulse graph instances referring to that entity so you can pick which one you want.
 Opens a radio menu
@@ -9610,12 +10497,14 @@ Original material to replace. This is the material specified in the model, inclu
 Oscillate
 Other hitgroups to destroy when this one is fully destroyed.  Useful for chaining destructibles like blowing up the lower arm when the upper arm dies.
 OutCirc
+OutColor
 OutCubic
 OutExpo
 OutQuad
 OutQuart
 OutQuint
 OutSine
+OutValue
 Outer Angle
 Outer Cone Angle
 Outer Stopping Radius
@@ -9678,12 +10567,18 @@ Override width/height of individual cascades in the CSM
 Override. Old default was 3.0
 Override. Old default was 45.
 Override. Old value was 1.0
+OverrideFogIndirectStrength
+OverrideFogNoiseStrength
+OverrideFogSunLightStrength
+OverrideTintColor
 Overrides IP for multihomed hosts
 Overrides the SourceTV master root address.
 Overrides the map's fog settings (-1 populates fog_ vars with map's values)
 Overrides the max players reported to prospective clients
 Oversampling
+P2P Voice
 P2P_Messages
+P4File
 PANEL
 PANEL_ATTRIBUTE
 PANEL_ATTRIBUTE_VALUE
@@ -10151,8 +11046,16 @@ PairedSequence_t
 Pan Speed
 Panic
 Panning Control Input Name
+Panorama
 Panorama Panel Handle
 Panorama Render
+PanoramaCompiler
+PanoramaContent
+PanoramaScript
+PanoramaTextServices001
+PanoramaUIClient001
+PanoramaUIEngine001
+PanoramaVideoPlayer
 Parallalelize Filter
 ParamSpanSample_t
 ParamSpan_t
@@ -10214,6 +11117,7 @@ ParticleFloatType_t
 ParticleFogType_t
 ParticleHitboxBiasType_t
 ParticleHitboxDataSelection_t
+ParticleImport
 ParticleImpulseType_t
 ParticleIndex_t
 ParticleLightBehaviorChoiceList_t
@@ -10247,6 +11151,7 @@ ParticleSelection_t
 ParticleSequenceCropOverride_t
 ParticleSetMethod_t
 ParticleSortingChoiceList_t
+ParticleSystemMgr003
 ParticleTextureLayerBlendType_t
 ParticleToolsState_t
 ParticleTopology_t
@@ -10258,10 +11163,13 @@ ParticleVariableRef()
 ParticleVecType_t
 ParticleVolumetricSmokeCreationType_t
 ParticleVolumetricSmokeType_t
+Particles
+ParticlesLib
 Party!!
 Pass when True
 Passthrough
 Passthrough Root Motion
+PassthroughCaller
 Path
 Path Evaluation Space
 Path Helper
@@ -10280,14 +11188,20 @@ Pathing Mix Level
 Pattern Name
 Pattern Priority
 Patterns
+Pause
 Pause demo playback when the end of the file is reached, otherwise quit to main menu.
 Pause particle simulation
 Pause the game when hammer is activated
 Pause the match in the next freeze time
 Pause the specified soundevent in the list
+PauseAfterFiring
+PauseAtNextInterrupt
+PauseSound
+PauseTimer
 Pauses demo playback.
 Pauses instant replay.
 Pauses when the 'render time' reaches the specified tick.
+PawnSubclass
 Peak
 Peak Mode
 Peak mode
@@ -10318,6 +11232,7 @@ Perform a trace in a direction from a specified origin and stop when a surface i
 Perform bot threat detection in parallel
 Perform the additional 'stuck' traces on the client side during prediction.
 Performance Options
+PerformanceMode
 PerformanceMode_t
 Performs a bind <key> "increment var <cvar> 0 1 1".
 Perlin
@@ -10328,6 +11243,7 @@ PermModelExtPart_t
 PermModelInfo_t
 PermModelInfo_t::FlagEnum
 Perspective correction factor, ratio of screen size and view depth from screen, for 3D audio.
+Pet
 PetGroundType_t
 Phase ( 0 - 1 )
 Phase (degrees)
@@ -10340,7 +11256,9 @@ PhysInterfaceId_t
 PhysObjectHeader_t
 PhysShapeMarkup_t
 PhysSoftbodyDesc_t
+Physics
 Physics Body Data By Bone Name
+PhysicsBuilderMgr001
 PhysicsParticleId_t
 PhysicsRagdollPose_t
 Pick a choice specified by an additional authored value.
@@ -10349,6 +11267,8 @@ Pick a random color from anywhere on the authored color gradient
 Pick the first valid choice. Selection criteria may be added to a choice to determine if it is valid.
 Pick the largest child element that will fit in the remaining length of the line, repeat this process until the line is full or no child will fit in the remaining length.
 PickMode_t
+PickRandom
+PickRandomShuffle
 Picks a material group from a set of choices and assigns that material group to a specified variable.
 Ping a peer.
 Ping higher than this (ms) is considered 'poor'.
@@ -10356,6 +11276,7 @@ Pitch
 Pitch Limit
 Pitch Offset Angle
 Pitch Scale
+PitchShift
 Pivot
 Pivot Tool Snap To Bounding Box
 Place Children on Mesh Components.
@@ -10380,6 +11301,8 @@ Plant a bomb where the player is looking.
 PlantAndTurn
 Planted Turn
 Platform the engine is running on.
+PlatformFollowYaw
+PlatformIgnoreYaw
 Play All Instances In Sync
 Play Sequence
 Play VO Line
@@ -10399,6 +11322,8 @@ Play on Server
 Play the given VCD as an instanced scripted scene.
 Play the specified animation sequence on a NON-ANIMGRAPH entity, and wait for it to complete.
 PlayBackMode_t
+PlaySequence
+PlaySound
 Playback
 Playback Event Beat/Bar/Phrase/Length Multiplier
 Playback Event Type
@@ -10412,14 +11337,22 @@ Player whose head is tracked to test lag compensation.
 Player will automatically receive a random weapon on spawn in deathmatch if this is set to 1 (otherwise, they will receive the last weapon)
 Player's active weapon will never run out of ammo
 Player's extra item to give
+PlayerClose
 PlayerConnectedState
+PlayerDied
+PlayerHasAmmo
+PlayerHasNoAmmo
+PlayerHealth
 PlayerInputMotorInstanceData_t
+PlayerOpen
 PlayerWeapon
 Players automatically re-jump while holding jump button
 Players can earn money by performing in-game actions
 Players can hear all other players' voice communication, no team restrictions
 Players can receive all other players' text chat, no death restrictions
 Players that have never moved since they spawned will drop the bomb after this amount of time.
+PlayersInCount
+PlayersOutCount
 Plays a selected vsnd on playback.
 Plays a single channel of silence.
 Plays a vmix graph and its containers.
@@ -10456,17 +11389,26 @@ Position Offset
 Position Parameter
 Position also sets Previous Position
 Position of origin point.
+PositionDelta
 Possible Values: 'start_at_attachment', 'follow_attachment', 'start_at_origin', 'follow_origin'
 Post Processing File
 Post Processing Priority Group
 Post Processing Strength
+PostProcessEditor
+PostProcessName
+PostProcessing
 PostProcessingBloomParameters_t
 PostProcessingFogScatteringParameters_t
 PostProcessingLocalContrastParameters_t
 PostProcessingLocalExposureParameters_t
 PostProcessingResource_t
+PostProcessingSystem_001
 PostProcessingTonemapParameters_t
 PostProcessingVignetteParameters_t
+PostSpawnDirection
+PostSpawnDirectionVariance
+PostSpawnInheritAngles
+PostSpawnSpeed
 Power used when applying the taser effect.
 Pre Evaluate Passthrough Transition Path
 Pre-Generated Output Material
@@ -10482,6 +11424,8 @@ PreDelayMS:6
 PreDelayMS:7
 Precipitation
 PrecipitationFilter_t
+Prediction
+PredictionDiffManager001
 Prefer shader loop unrolling.
 PreferClosestSyncEventID
 PreferHighestProgress
@@ -10495,7 +11439,11 @@ Preload adjacennt level data - will override regular changelevel code -- PROTOTY
 Prepend Empty Digits
 Prescale the clock by this amount.
 Present players with a list of lowest playtime maps to choose from?
+Press
+PressIn
+PressOut
 Pressing the +use key will open the buy menu if in a buy zone (just as if you pressed the 'buy' key).
+PressureDelay
 Prevent Overshoot
 Prevent Undershoot
 Prevents a userid from being auto-kicked
@@ -10633,9 +11581,12 @@ PropDoorRotatingOpenDirection_e
 PropDoorRotatingSpawnPos_t
 Propagation Scale
 Property Mutators
+PropertyEditor
+PropertyEditorSystem_001
 Props
 Public field 'delay' name.
 Public field name to query.
+Pulse
 PulseApiFeature_t
 PulseBestOutflowRules_t
 PulseCollisionGroup_t
@@ -10700,6 +11651,7 @@ QUEST_REASON_MAX
 QUEST_WARMUP
 QUEST_WRONG_MAP
 QUEST_WRONG_MODE
+Qt
 Quad
 Quadratic/Linear Bias
 Quadrilaterals
@@ -10730,6 +11682,7 @@ RADIUS_DMG_OVERRIDE_POSITION_SKIP_TRACES
 RANDOM
 RBox
 RCAS sharpness when using FSR + RCAS upsample.
+RCon
 READ_ONLY
 RED
 REFERENCE_COMPILED
@@ -10809,6 +11762,8 @@ RESOURCE_ENCODING_TEXT
 RESOURCE_ENCODING_VRMAN
 RESOURCE_ENCODING_VSNAP
 RESOURCE_ENCODING_VTEX
+RESPONSEDOC_LIB
+RESPONSE_RULES
 RETURN
 RETURN_VALUE
 RETURN_VOID
@@ -10867,6 +11822,7 @@ RTPROXY_INSTANCE_UNIQUE_MESH
 RTProxyBLAS_t
 RTProxyInstanceFlags_t
 RTProxyInstanceInfo_t
+RTX
 RUMBLE_357
 RUMBLE_AIRBOAT_GUN
 RUMBLE_AR2
@@ -10992,10 +11948,12 @@ Reference dB at snd_refdist
 Reference distance for snd_refdb
 Reference to a vsnd file or another container.
 Reference to list of vsnd files or other containers.
+RefireTime
 Refraction
 Regardless of ammo position, we'll always use clip1 as where our bullets come from
 Regular
 Reinitializes all loaded materials, reloading their shaders.
+Relationship
 RelationshipOverride_t
 Relationship_t
 Relative
@@ -11017,6 +11975,7 @@ Relay text chat data to GOTV: 0=off, 1=say, 2=say+say_team
 Relay voice data: 0=off, 1=on
 Release Time (seconds)
 Release time (ms)
+Reload
 Reload scripts
 Reload soundmixers.txt file.
 Reload the annotation file
@@ -11034,6 +11993,7 @@ RemapFloatInput()
 RemapValueType
 Remapped width of the shadow penumbra
 Remaps a vsnd to an impulse response.
+Remove
 Remove a filter from the game debug overlay
 Remove a user ID from the ban list.
 Remove a watch from the game debug overlay
@@ -11048,6 +12008,13 @@ Remove http listener by URI. Wrap URI in double quotes.
 Remove the decals from the entity under the crosshair.
 Remove the specified soundevent
 Remove weapon given by annotation
+RemoveAttribute
+RemoveCSSClass
+RemoveContext
+RemoveFilter
+RemoveFromTemplate
+RemoveHealth
+RemoveRestLength
 Removes a splitscreen user.
 Removes all entities of the specified type\n\tArguments:   \t{entity_name} / {class_name} 
 Removes from the list of names to display text debugging information about the given entity(ies) on top of the entity (See Overlay Text)\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
@@ -11067,21 +12034,31 @@ Render the world.
 Render unlit maps as fullbright
 Render view model
 RenderBufferFlags_t
+RenderDeviceMgr001
 RenderFx_t
+RenderGraph
 RenderHairStrandInfo_t
 RenderInputLayoutField_t
 RenderMeshSlotType_t
 RenderMode_t
 RenderModelSubModelFieldType_t
 RenderMultisampleType_t
+RenderOrder
+RenderPipelineCsgo
+RenderPipelineCsgoPostHud
 RenderPrimitiveType_t
 RenderProjectedMaterial_t
+RenderService
+RenderService_001
 RenderSkeletonBone_t
 RenderSlotType_t
+RenderSystem
+RenderUtils_001
 Renderer Modifiers
 Rendering
 Rendering Options
 Rendering filter
+RenderingPipelines_001
 Renders and saves images for all models in a collection.
 Rendersystem option in use (changing this does not change the rendersystem).
 Rendersystem option requested (changing this does not change the rendersystem).
@@ -11138,6 +12115,9 @@ Reset the current scale such the element only inherits the object level scale, b
 Reset the stats in VProf profiler
 Reset tracked time spent in Allocate (see resource_log_allocate_timing)
 ResetCycleOption
+ResetPosition
+ResetShuffle
+ResetTimer
 Resets all display and success counts to zero.
 Resets stats for the specified CUtlLRUCaches (or all if none specified)
 Resets the panorama console to its default size and position
@@ -11151,16 +12131,24 @@ Resonant filter with adjustable slope. NOTE: This is a clean filter, not an anal
 Resource
 Resource Name
 ResourceBlockTypeInfo_t
+ResourceCompilerSystem
+ResourceCompilerSystem001
 ResourceDataEncodingType_t
 ResourceId_t
+ResourceSystem
+ResourceSystem013
+RespawnTime
 Respawns the player from death!\n
+ResponseContext
 ResponseContext_t
 ResponseFollowup
 ResponseParams
+ResponseRulesCache001
 Restart
 Restart in insecure mode
 Restart in trusted mode
 Restart in untrusted mode
+Restore
 Restore State
 Restore previously pushed convars and config values
 Restores audio DSP state for the UI.
@@ -11176,15 +12164,19 @@ Restricts the bots to only using sniper rifles
 Restricts vote to change level to rounds prior to match point (default 0, vote is never disallowed)
 Result Current Count
 Result Variable Name
+Resume
 Resume the match
 Resumes demo playback.
 Resumes instant replay.
 Retain Initial Velocity 
+RetriggerDelay
 Return back to the last active tool from the engine.
+ReturnToInitialOrientation
 Reverb Time
 Reverb Time (RT60), High Frequency
 Reverb Time (RT60), Low Frequency
 Reverb Time (RT60), Mid Frequency
+Reverse
 Reverse Y
 Rewards gameplay time is always accumulated for players, but drops at the end of the match can be prevented
 Right
@@ -11223,6 +12215,8 @@ RnTriangle_t
 RnVertex_t
 RnWing_t
 Roll
+RollCredits
+RollOutroCredits
 Room Voices
 Root Height Damping
 Root Motion Blend
@@ -11240,6 +12234,8 @@ Rope Global UV Controls/CP Scaling
 Rope Order Controls
 Rope Tesselation
 Rope subdivision amount
+RopeMaterial
+RopeShader
 Rotate Through Forward
 Rotate Tool Use Relative Mode
 Rotate the center of the deformation region.
@@ -11273,6 +12269,7 @@ Run heap check at end of every frame
 Run interpolation in parallel for entities with no children.
 Run one usercmd per server tick and maintain a buffer.  Client speeds up/slows down it's usercmd tick rate to maintain server command queue buffering.
 Run simulation from both source and listner and average the results. Potential way to reduce noise.
+RunScriptInput
 Runs the final server tick of the frame in parallel with client work
 Rush volume of Deathcam Timers
 Rush volume of MVP Music
@@ -11369,6 +12366,7 @@ SET_TEMPVAR_OBSERVABLE
 SET_VAR
 SET_VAR_ARRAY_ELEMENT_1D
 SET_VAR_OBSERVABLE
+SFM
 SHADOWS_NONE
 SHADOWS_SIMPLE
 SHAKE_AMPLITUDE
@@ -11407,6 +12405,7 @@ SLERP
 SNAP
 SNAPSHOT_INDEX_DIRECT
 SNAPSHOT_INDEX_INCREMENT
+SND
 SNDLVL_100dB
 SNDLVL_105dB
 SNDLVL_110dB
@@ -11439,6 +12438,7 @@ SNDLVL_STATIC
 SNDLVL_TALKING
 SNIPPET
 SNIPPETS
+SOCache
 SOLID
 SOLID_BBOX
 SOLID_BSP
@@ -11620,6 +12620,7 @@ SUB_VEC3WS_VEC3WS
 SUB_VEC4
 SUM
 SURROUNDING_TYPE_BIT_COUNT
+SV CommandQueue
 SVC_Messages
 SVC_Messages_LowFrequency
 SW
@@ -11637,6 +12638,7 @@ SampleCode
 SamplerVoice_t
 Samples Times
 Saturate color pre alphablend
+Save
 Save Current Color
 Save Current Position
 Save Current Scale
@@ -11657,6 +12659,14 @@ Save the current surface normal to a specified variable in the requested coordin
 Save the results of a control value (e.g. envelope level) so that code/stack can query it by name.
 Save the specified direction vector to a specified variable, in the requested coordinate space
 Save/Load debug snapshot data
+SaveDangerous
+SaveImportant
+SaveRestore
+SaveRestoreDataVersion001
+SaveRestoreIO
+SaveRestoreIOFiltered
+SaveRestoreSpawnKeys
+SaveRestoreSyncIO
 SaveRestoreTableFlags_t
 Saves current key bindings to disk.
 Saves out the user config values.
@@ -11706,9 +12716,14 @@ Scales the damage a T player takes by this much when they take damage in the hea
 Scaling for falloff of weapon firing sounds
 Scan all of the loaded modules and validate any resource manifests found
 SceneEventId_t
+SceneFile
+SceneFileCache
+SceneFileCache002
 SceneObject_t
 SceneOnPlayerDeath_t
+ScenePrint
 SceneStatsSections_t
+SceneSystem
 SceneSystem/Aggregates/Debug Visualizer
 SceneSystem/Aggregates/Draw Aggregates
 SceneSystem/Aggregates/RT Proxy Debug Visualizer
@@ -11750,8 +12765,12 @@ SceneSystem/View Profiler
 SceneSystem/Visualize Base SceneObject Meshlets
 SceneSystem/Visualize SceneObject Mode
 SceneSystem/Vulkan GPU Memory Visualizer
+SceneSystem_002
+SceneUtils_001
 SceneViewId_t
 Schema Enum
+SchemaSystem
+SchemaSystem_001
 Scramble the teams and restart the game
 Scratch Target
 Screen
@@ -11763,17 +12782,22 @@ Screen space size [ 0, 1 ] (where 1 is the whole screen) at which the model will
 Screen-Z Align
 Screen-size where clutter will be full density
 Screen-size where clutter will be gone
+ScreenShot
 Screenshot height. -1 for screen height.
 Screenshot width. -1 for screen width.
+ScreenshotService001
 Screenspace Fading and culling
 Script File
 ScriptInfo_t
+ScriptPlayerDeath
 ScriptedConflictResponse_t
 ScriptedHeldWeaponBehavior_t
 ScriptedMoveTo_t
+ScriptedMovement
 ScriptedOnDeath_t
 Scripts
 Scroll Offset
+ScrollSpeed
 Scrub system off - not a dev build
 Search Every Update
 Search Frequency
@@ -11783,8 +12807,10 @@ Search when goal changes
 Search when motion ends
 SearchAll
 SearchBothGraphAndAnimEvents
+SearchName
 SearchOnlyAnimEvents
 SearchOnlyGraphEvents
+SearchType
 Second
 Second Control point to set
 Second Curve
@@ -11803,6 +12829,7 @@ Seek to a moment this amount of seconds leading up to a player death instead of 
 Segment Break
 Segment Count
 Segment Special Character
+SegmentCount
 Select Best Exit
 Select Example Criteria
 Select Headphone EQ Preset
@@ -11878,6 +12905,8 @@ SequencePicker( 1 )
 SequencePicker( 2 )
 SequenceWeightedList_t
 Sequential
+SerializedEntitiesVersion001
+Server
 Server Authoritative
 Server is a lan server ( no heartbeat, no authentication, no non-class C addresses )
 Server min buffer size.
@@ -11893,7 +12922,9 @@ Server will reject packets with more than N segments
 Server will stop generating substitute commands if client hasn't sent one, after N in a row
 ServerAuthoritative
 ServerAuthoritativeWeaponSlot_t
+ServerLog
 ServerOnly
+ServerToolsInfo_001
 Set Alpha
 Set Color
 Set Enabled
@@ -11993,9 +13024,302 @@ Set to use screen-space ambient occlusion
 Set to zero do disable hermite interpolation.
 Set up debug-draw of physics internal state
 Set which ent_text filters you want: 
+Set2DSkyboxFogFactor
+Set2DSkyboxFogFactorLerpTo
+SetAbsAngles
+SetAbsOrigin
+SetAbsScale
+SetActionSequence
+SetActive
+SetAmmoAmount
+SetAngVelocityDamping
+SetAngVelocityLimit
+SetAngles
+SetAngularDampingRatio
+SetAngularDampingRatioX
+SetAngularDampingRatioY
+SetAngularDampingRatioZ
+SetAngularFrequency
+SetAngularFrequencyX
+SetAngularFrequencyY
+SetAngularFrequencyZ
+SetAngularLimit
+SetAngularMotionLockedX
+SetAngularMotionLockedY
+SetAngularMotionLockedZ
+SetAngularVelocity
+SetAnimation
+SetAnimationLooping
+SetAnimationNoReset
+SetAnimationNoResetLooping
+SetAnimationNoResetNotLooping
+SetAnimationNotLooping
+SetAnisotropy
+SetAppearance
+SetAttached
+SetAutoConvertBackFromDebris
 SetBodyGroupAndCollisionState
+SetBodyGroupValue
+SetBodygroup
+SetBounceScale
+SetBreakable
+SetBrightness
+SetBrightnessDelta
+SetBrightnessScale
+SetCamera
+SetClipPrimary
+SetClipSecondary
+SetColor
+SetColorLerpTo
+SetColorSecondary
+SetColorSecondaryLerpTo
+SetColorTemperature
+SetCompareValue
+SetControlPoint
+SetCounter
+SetCustomAppearance
+SetDOFFarBlurry
+SetDOFFarCrisp
+SetDOFNearBlurry
+SetDOFNearCrisp
+SetDOFTiltToGround
+SetDamage
+SetDamageFilter
+SetDampingRatio
+SetDataControlPointX
+SetDataControlPointY
+SetDataControlPointZ
+SetDefaultAnimation
+SetDefaultAnimationLooping
+SetDefaultAnimationNotLooping
+SetDisabled
+SetDisabledValue
+SetDisengageistance
+SetDistanceMapMax
+SetDistanceMapMin
+SetDistanceToReachMaxSpeed
+SetDistanceToReachZeroSpeed
+SetDragEnabled
+SetDrawDistance
+SetEnableBreaking
+SetEnableCollisions
+SetEnabled
+SetEndDist
+SetEndDistLerpTo
+SetEndTouchEvent
+SetEngageDistance
+SetEntityAtTValue
+SetExcluded
+SetExposureAdaptationSpeedDown
+SetExposureAdaptationSpeedUp
+SetFaceEntity
+SetFadeInDuration
+SetFadeOutDuration
+SetFadeSpeed
+SetFarZ
+SetFloatValue
+SetFluidDensity
+SetFogColor
+SetFogController
+SetFogEndDistance
+SetFogEndHeight
+SetFogFalloffExponent
+SetFogMaxOpacity
+SetFogScale
+SetFogStartDistance
+SetFogStartHeight
+SetFogStrength
+SetFogVerticalExponent
+SetFollowDistance
+SetFollowEntity
+SetFollowEntityForward
+SetFollowEntityReverse
+SetFollowMinimumSpeed
+SetFollowMoverConstraintType
+SetFollowMoverEntity
+SetFollowMoverEntityToClosestOnSpline
+SetFollowMoverSpringStrength
+SetForce
+SetFrequency
+SetFriction
+SetGlowOverride
+SetGlowRange
+SetGravityEnabled
+SetGravityScale
+SetHUDVisibility
+SetHealth
+SetHingeFriction
+SetHitMax
+SetHitMin
+SetIdleAnimationLooping
+SetIdleAnimationNotLooping
+SetIntMessage
+SetInvert
+SetItem
+SetJointLimitAngles
+SetJointLimitEnabled
+SetKinematic
+SetLightBrightness
+SetLightColor
+SetLightEnabled
+SetLightsBrightnessMultiplier
+SetLinearDampingRatio
+SetLinearDampingRatioX
+SetLinearDampingRatioY
+SetLinearDampingRatioZ
+SetLinearForce
+SetLinearForcePointAt
+SetLinearFrequency
+SetLinearFrequencyX
+SetLinearFrequencyY
+SetLinearFrequencyZ
+SetLinearMotionLockedX
+SetLinearMotionLockedY
+SetLinearMotionLockedZ
+SetLocalAngles
+SetLocalOrigin
+SetLocalScale
+SetLogoLength
+SetMagnitude
+SetMass
+SetMaterialGroup
+SetMaxDensity
+SetMaxDensityLerpTo
+SetMaxExposure
+SetMaxLimit
+SetMaxPieces
+SetMaxPiecesDX8
+SetMaxRagdollCount
+SetMaxSpeed
+SetMaxSuspensionOffset
+SetMeasureReference
+SetMeasureTarget
+SetMessage
+SetMinExposure
+SetMinHitpointsThreshold
+SetMinLimit
+SetMinSuspensionOffset
+SetModel
+SetMomentumModifier
+SetMomentumType
+SetMoneyAmount
+SetMotorTargetAngle
+SetMotorTargetVelocity
+SetMotorTorqueFactor
+SetMoveDistanceFromEnd
+SetMoveDistanceFromStart
+SetMoveType
+SetMoveTypeEnum
+SetMoverFaceEntity
+SetMoverIndex
+SetMoverOffsetFromPath
+SetName
+SetNavIgnore
+SetNextPathCorner
+SetNoNPCs
+SetNonsolid
+SetOff
+SetOffset
+SetOffsetFromPath
+SetOn
+SetOnAndTurnOthersOff
+SetOnSpawn
+SetOperatorName
+SetOpvar
+SetOpvarIndex
+SetOpvarName
+SetOrientationMode
+SetParamName
+SetParent
+SetParentAttachment
+SetParentAttachmentMaintainOffset
+SetParentMaintainOffset
+SetParentWithOffset
+SetPathNodeStart
+SetPlaybackRate
+SetPlayerFogDistanceMultiplier
+SetPlayerFogMaxDensityMultiplier
+SetPlayerVisibilityStrength
+SetPosition
+SetPositionImmediately
+SetPushDirection
+SetPushSpeed
+SetRadius
+SetRelationship
+SetRenderAlpha
+SetRenderAttribute
+SetRenderAttribute4Floats
+SetRenderAttributeFloat
+SetRenderAttributeVector
+SetRenderColor
+SetReserveAmmoAmount
+SetRestLength
+SetRotateType
+SetRotationDistance
+SetRotatorTarget
+SetScale
+SetScrollSpeed
+SetSize
+SetSlack
+SetSlideFriction
+SetSnapValue
+SetSolid
+SetSoundEventGUID
+SetSoundEventName
+SetSourceEntity
+SetSpawnGroup
+SetSpeed
+SetSpeedDir
+SetSpeedDirAccel
+SetSpeedImmediate
+SetSpeedReal
+SetSpinDownTime
+SetSpinUpTime
+SetSplineEntity
+SetStackName
+SetStartDist
+SetStartDistLerpTo
+SetStartPos
+SetStartTouchEvent
 SetStatisticExpressionType_t
+SetSteeringMimicsEntity
+SetStyle
+SetSystemInertiaScale
+SetTarget
+SetTarget1
+SetTarget2
+SetTargetEntity
+SetTargetPlayerToActivator
+SetTargetReference
+SetTargetScale
+SetTeam
+SetTeam_AllTeams
+SetTeam_CTOnly
+SetTeam_None
+SetTeam_TerroristOnly
+SetText
+SetTextColor
+SetTextString
+SetTimeToBlendToNewOrientation
+SetTimeToCompleteRotation
+SetTimeToReachMaxSpeed
+SetTimeToReachZeroSpeed
+SetTimer
+SetToDefaults
+SetToggleState
+SetTotalDirections
+SetTracesPerFrame
+SetTransitionDuration
+SetTransitionTime
+SetUnbreakable
+SetValue
+SetValueCompare
+SetValueNoFire
+SetValueTest
 SetVarTarget_t
+SetVelocity
+SetVelocityDamping
+SetVelocityLimit
 Sets ImGui header status text
 Sets ImGui selection
 Sets a control input every time it's instantiated
@@ -12044,6 +13368,7 @@ Shape
 Shape of the configuration handle to display.
 ShardSolid_t
 SharedMovementGait_t
+Shatter
 ShatterDamageCause
 ShatterGlassEntityPoolState_t
 ShatterGlassStressType
@@ -12052,6 +13377,7 @@ SheetSequenceFrame
 SheetSequenceIntegerId_t
 Shifts every other cell row and/or column.
 Shoot out a decal spray that shoots blood.
+Shooting
 Shoots a phys object.
 Shortcut to set both FakePacketLag_Recv and FakePacketLag_Send net options
 Shortcut to set both FakePacketLoss_Recv and FakePacketLoss_Send net options
@@ -12188,8 +13514,15 @@ Show which entities are having their bones setup each frame.
 Show/hide demo playback ui
 Show/hide the console.
 Show/hide the vis debug visualization
+ShowHint
+ShowHudHint
 ShowInContextMenu
+ShowLogo
+ShowMessage
+ShowSprite
 ShowSteamStatsSessionID
+ShowWorldLayer
+ShowWorldLayerAndSpawnEntities
 Showing clusters for sun/csm rendering. Red (full sun csm & lighting), Orange (no viewmodel sun or csm), Green (no sun at all)
 Shows all player names (including bots) as 16 W's.
 Shows bomb radius from the center of each bomb site and planted bomb.
@@ -12205,6 +13538,7 @@ Shows teamID over player's heads.  0 = off, 1 = on
 Shows the entity browser, focused on the entity you specify.\n\tArguments:   \t{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 Shows the game UI
 Shuffle
+Shutdown
 Shuts down all open lessons and reloads them from the script file.
 Side
 Side Only
@@ -12212,6 +13546,7 @@ SideChain Highpass
 Sidekick
 SignatureOutflow_Continue
 SignatureOutflow_Resume
+SignonState
 SignonState_t
 Silence voice and other distracting sounds until the end of round or next death.
 Sim Rate (FPS)
@@ -12221,6 +13556,7 @@ SimSpace_Model
 SimSpace_World
 Similar to tv_grouprelaydata, but controls whether or not the voice channels should be routed into the grouped data for the relays
 SimpleConstraintSoundProfile
+SimpleEngineLoopService_001
 Simplex
 Simulation Options
 Sine
@@ -12228,6 +13564,7 @@ Single Blend Time
 Single Frame
 SingleBlendTime
 SingleFrameSelection
+SinglePlayerSharedMemory001
 Sink
 Size
 Size (in KBs) above which textures should be allocated in dedicated memory (NV-only).
@@ -12245,6 +13582,7 @@ SkeletonAnimCapture_t::FrameStamp_t
 SkeletonAnimCapture_t::Frame_t
 SkeletonBoneBounds_t
 SkeletonDemoDb_t
+Skin
 Skip this node after the limit. Check Type does not apply, the limit will always be checked.
 Skip updating hierarchy information in PostDataUpdate for entities that have not changed
 Skips the current demo playback to the marked tick
@@ -12252,6 +13590,8 @@ Skips to a tick in demo.
 Skips to location in demo.
 Skirt
 Skirt (far falloff)
+SkyboxBlurEffect
+Slack
 Slams viewport size to a specified value.
 Sleep
 Sleep randomly 0..net_async_job_random_sleep ms in the parallel server jobs; sleep is per job
@@ -12315,6 +13655,7 @@ SmartPropPathPositions_t
 SmartPropPlaceMeshOrientationMode_t
 SmartPropRadiusPlacementMode_t
 SmartPropSpace_t
+SmartPropsSystem_001
 Smear boneflags across the model.  Costs computation, but tests to make sure your bone flags are consistent.
 Smoke density at the eye position above which a button's use prompt is suppressed.
 Smooth client's view after prediction error over this many seconds
@@ -12324,6 +13665,7 @@ Smoothing amount, if != 0, smooths lighting at vertex.
 Snap player eyes and orientation to specified pitch yaw <roll:optional> (must have sv_cheats).
 Snap player eyes to specified pitch yaw <roll:optional> (must have sv_cheats).
 Snap to Surface
+SnapToStartPos
 Snapshot Index
 Snapshot Index T Value
 Snapshot Options
@@ -12331,6 +13673,7 @@ Snapshot Read Type
 Snapshot increment amount
 Snapshot start point
 SnapshotIndexType_t
+SnapshotVertexExtraction
 SndBeatEventKeyedFloats_t
 SndBeatEventKeyedMidiNotes_t
 SndBeatEventKeyedSndEvts_t
@@ -12342,6 +13685,8 @@ SndBeatSyncStartType_t
 SndBeatSyncType_t
 SndBeatTimeSignature_t
 SndBeatTrackPlaybackType_t
+SndEmitterSystem
+SndOperators
 SndSeqInstrumentType_t
 SndSeqMidiStatusChannelPressure
 SndSeqMidiStatusCtrlChange
@@ -12354,6 +13699,7 @@ Soft deform the center of a volume defined by two endpoints.
 SoftCancel
 SolidEntity
 SolidType_t
+Solidity
 Solo
 Solve IK Chain
 SolveIKChainAnimNodeDebugSetting
@@ -12378,14 +13724,24 @@ Sound device synchronization max delay (ms)
 Sound device synchronization shift (ms)
 Sound merge method (0 == sum and clip, 1 == max, 2 == avg).
 Sound volume
+SoundBugBugService001_Client
 SoundCommand_t
 SoundEvent
 SoundEvent Instance Handle
 SoundEvent Name
 SoundEvent on Start
+SoundEventGuid
 SoundEventStartType_t
+SoundOpGameSystem
+SoundOpSystem001
+SoundOpSystemEdit001
+SoundOperatorSystem
 SoundOpvarTraceResult_t
 SoundPicker()
+SoundService_001
+SoundSystem
+SoundSystem001
+SoundSystemLowLevel
 Soundevent Cluster
 Soundevent Count
 Soundevent Min/Max Values
@@ -12396,9 +13752,24 @@ Sounds
 Sounds To Blend
 Sounds To Play
 Sounds To play
+Source
 Source Control Point offset
 Source State Blend Weight
+Source1Import
 Source2/Composite Material Debug
+Source2Client002
+Source2ClientConfig001
+Source2ClientPrediction001
+Source2ClientUI001
+Source2EngineToClient001
+Source2EngineToClientStringTable001
+Source2EngineToServer001
+Source2EngineToServerStringTable001
+Source2GameClients001
+Source2GameDirector001
+Source2GameEntities001
+Source2Host001
+Source2ModTools001
 Source2PlayStats_Bool
 Source2PlayStats_Float32
 Source2PlayStats_Float64
@@ -12417,6 +13788,10 @@ Source2PlayStats_UInt32
 Source2PlayStats_UInt64
 Source2PlayStats_UInt8
 Source2PlayStats_UTCDateTime
+Source2Server001
+Source2ServerConfig001
+Source2V8System001
+SourceEntityName
 SourceStateBlendWeight
 SourceTV broadcast delay in seconds
 SourceTV connection timeout in seconds.
@@ -12433,9 +13808,16 @@ Space in which the up target is defined.
 Spacing Scale
 Spacing between points on the path
 Spacing between ticks on the grenade throw crosshair
+SparkOnce
+SparkType
+SparseShadowTree
+Spawn
 Spawn Fake Entity
 SpawnDialog
+SpawnEntities
+SpawnGroup
 SpawnGroupFlags_t
+SpawnInvulnerability
 SpawnModalDialog
 SpawnPoint
 Spawned
@@ -12540,6 +13922,7 @@ Speed above which surf sounds are played.
 Speed to stop when sticking
 Speed up the spread rate of the Incendiary until max number of nodes are created. slowdown < 1 > Speedup
 Speed up the spreadrate of the Molotov until max number of nodes are created.  slowdown < 1 > Speedup
+SpendMoneyFromPlayer
 Spew CSerializedEntity memory
 Spew CSerializedEntity metadata information
 Spew IME info.
@@ -12574,9 +13957,12 @@ Spherical Harmonics A
 Spherical Harmonics B
 Spherical Harmonics C
 Spine IK Chain
+Splash
 Splat Debug info on Texture
 Split SST tile generation into threadjobs (0 - disabled, 1 - wait on readpixels for job batch, 2 - async readpixels).
 Split screen users mimic base player's CUserCmds
+SplitScreen
+SplitScreenService_001
 Spot Light
 Spring
 Spring Constant
@@ -12591,6 +13977,7 @@ Square
 Squat
 Ss Pos and Dot OUT CP
 Stabilize camera orientation/position during demo playback.  1 == remove roll, 2 == steadycam
+Stack unwinding
 StackStats_Dump
 Stance Override
 Stance Scale
@@ -12624,8 +14011,31 @@ Start recording bug voice attachment.
 Start recording movie frames.
 Start recording to a desired wav.
 Start warmup.
+StartAmbientSound
+StartBackward
+StartBroken
+StartCommentary
+StartDirection
+StartDisabled
+StartEnabled
 StartFall
+StartFogTransition
+StartForward
+StartGlowing
+StartPosition
+StartReverse
+StartShake
+StartSound
+StartSoundOnSingleClient
+StartSpark
+StartSpawnGroupLoad
+StartSpawnGroupUnload
+StartTilt
+StartTouch
+StartUnstoppableCommentary
 Starting health in guardian modes.
+StartingAnim
+StartingAnimationLoopMode
 Starts SourceTV demo recording.
 Starts a sound event at a given position. The sound event will retrigger periodically. Usage: server_snd_pos <eventname> <retrigger time> <x> <y> <z>.
 Starts a sound event on a speaker, and waits for its completion. Keywords: Voice Over, Choreo
@@ -12650,14 +14060,18 @@ StateValue
 Static
 Static World Only
 Static World and Kinematic/Keyframed Only
+StatsService_001
 Status
 Status Effect
 Status Tag
 Steal focus on mouse hover
+Steam
 Steam clan ID to allow members to set some convars
 Steam overlay notification position
 Steam overlay notification position horizontal offset
 Steam overlay notification position vertical offset
+SteamAudio
+SteamAudio001
 SteamAudioCustomDataDimensionsSettings_t
 SteamAudioCustomDataOcclusionSettings_t
 SteamAudioHRTFInterpolationType_t
@@ -12666,6 +14080,8 @@ SteamAudioPathSettings_t
 SteamAudioReverbClusteringSettings_t
 SteamAudioReverbCompressionSettings_t
 SteamAudioReverbSettings_t
+SteamNetSockets
+SteamUnifiedMessages
 Stencil
 Step
 Step Height
@@ -12704,6 +14120,16 @@ Stop the node action without any wind-down, then proceed afterwards.
 Stop the specified track and it's queue.
 Stop without any wind-down.
 Stop/Start Planted Turn
+StopAmbientSound
+StopAtStartPos
+StopGlowing
+StopImmediate
+StopPlayEndCap
+StopShake
+StopSound
+StopSpark
+StopTilt
+StopWaitingForActor
 Stopped on Collision
 Stopping Distance
 Stopping Min Speed Scale
@@ -12728,6 +14154,8 @@ StrafeSpeed
 Strength
 Stretch
 Stride Retargeting
+StrikeOnce
+StrikeTime
 String
 Style 2 only: alpha multiplier for the INNER crosshair bars once they have split. [0 - 1]
 Style 2 only: alpha multiplier for the OUTER crosshair bars once they have split. [0.3 - 1]
@@ -12739,12 +14167,15 @@ SubGraph
 SubGraph File
 SubModel Field Type
 SubclassVDataChangeType_t
+Subdiv
 Submit annotation to workshop. To update an existing submission add its ID number from the workshop URL as a second argument.
 Subsurface sample count
 Subtitle offset distance (forward, in front of player)
 Subtitle vertical offset distance (positive is up)
+Subtitles and Captions
 Subtract
 Subtract Foot Motion
+SubtractFromTimer
 Suffix to append to the console log, may be changed to reopen the log
 Sum
 SummaryTakeDamageInfo_t
@@ -12766,6 +14197,7 @@ Switch to thirdperson-shoulder camera.
 Switches between a selection of vsnds based on a provided index.
 Switches to navmesh for the specified spawngroup
 Symbol Parameter
+Symbols
 Sync Cycles
 Sync Start Type
 Sync To Voice
@@ -12918,8 +14350,13 @@ Target density
 Target material name.
 Target number of seconds that halftime lasts; shortened if team intros are active
 Target with Roll
+TargetDir
+TargetEntity
+TargetEntityName
 TargetMoveHeading
 TargetMoveSpeed
+TargetReference
+TargetScale
 TargetSelectorAngleMode_t
 TargetSelectorInstanceData_t
 TargetStateBlendWeight
@@ -12934,10 +14371,19 @@ Team deathmatch victory points to award for collecting enemy dogtags
 Team deathmatch victory points to award for enemy kill
 Team deathmatch victory points to award for kill with bonus weapon
 Team search will fake cancel before searching for server
+TeamNum
 Teams can earn money by performing in-game actions
+Teleport
 Teleport joint anchors if connected to world
 Teleport other splitscreen player to my location.
 Teleport the specified entity to where the player is looking.\n\tFormat: ent_teleport <entity name>
+TeleportEntity
+TeleportEntityToCurrentPos
+TeleportToCurrentPos
+TeleportToPathNode
+TeleportToPoint
+TeleportToTarget
+TeleportToTransform
 Tells camera to change modes
 Temp counter for measuring performance impact of some network changes. To be removed by the end of Sept 2026
 Temporal filtering weight
@@ -12964,8 +14410,12 @@ Test swim paths
 Test the 'on path' search mode for tactical searches using SetGoal w/ possible path clipping (flips between 2 searches). Requires a selected NPC.
 Test the 'on path' search mode for tactical searches. Requires a selected NPC with a current path.
 Test voice and status notices
+TestActivator
+TestComponentFunc
 TestComponent_t
 TestInputOutputCombinationsEnum_t
+TestScriptMgr001
+TestWithInterval
 Test_Checkpoint
 Test_CreateEntity
 Test_EHandle
@@ -12999,17 +14449,22 @@ Text Color
 Text Input
 Text Position
 TextBlock()
+TextLayout_001
 Texture
 Texture Controls
 Texture Generation Instructions
 Texture Type
 Texture compression quality used in tools mode
 Texture stats
+TextureCompiler
 TextureControls_t
 TextureGroup_t
 TextureRepetitionMode_t
+TextureScale
+TextureScroll
 Textures
 TexturesOptionsEditableData_t
+Thaw
 The HOST file to load.
 The ID of the steam group that this server belongs to. You can find your group's ID on the admin profile page in the steam community.
 The MOTD file to load.
@@ -13203,6 +14658,7 @@ Time to max speed (ms)
 Time to move between crouch and stand
 TimeElapsed
 TimeRemaining
+TimeToTrigger
 Timed
 Timed Block Limiter
 Timed Decay
@@ -13215,8 +14671,10 @@ Tint Color Choice
 Tint Color Gradient
 Tint Mode
 Tint Only
+TintColor
 To alleviate intermittent network connectivity problems, this is the number of seconds to wait before actually re-syncing the stream after failure
 To split an Area into two, align the split line using your cursor and invoke the split command.
+Toggle
 Toggle by default, or 0 to disable and 1 to enable. Player becomes invulnerable.
 Toggle clutch mode convar
 Toggle display of box around text
@@ -13233,6 +14691,16 @@ Toggle visibility of first person weapon tracers
 Toggle whether to use sunlight PVS for sunlight views (0 = sky PVS, 1 = sunlight PVS)
 Toggle. Player becomes hidden to NPCs.
 Toggle. Player becomes non-solid and flies.  Optional argument of 0 or 1 to force enable/disable
+ToggleAlternatePath
+ToggleAmbientSound
+ToggleCanBePickedUp
+ToggleDirection
+ToggleEnabled
+TogglePath
+ToggleSound
+ToggleSpark
+ToggleSprite
+ToggleTest
 Toggledebugger key operation : 0 = open/inspect, 1 = open/close
 Toggles 'picker' mode.  When picker is on, the bounding box, pivot and debugging text is displayed for whatever entity the player is looking at.\n\tArguments:\tfull - enables all debug information
 Toggles GPU culling of aggregate meshes
@@ -13258,12 +14726,25 @@ Toggles viewport size between small + full window.
 Toggles visibility of the debug overlay system.
 Toggles whether mesh shader instanced can batch on reflectivity
 Tolerance
+ToneMapping
+TonemapName
 ToolEditContext_ID_SmartProp_Variable
 ToolEditContext_ID_VMDL
 ToolEditContext_ID_VPCF
+ToolEvents
+ToolFramework2
+ToolFramework2_002
 ToolImage( 16 )
 ToolImage( 64 )
+ToolScene
+ToolSceneNodeFactory_001
+ToolService_001
+ToolServices_002
+ToolSystem2_001
+ToolSystem2_ModelDoc
 ToolsOptionsEditableData_t
+ToolsStallMonitor
+Toolutils
 Top
 Topdown games set this to handle distance and offscreen location differently.
 Total Translation (Source State)
@@ -13272,6 +14753,8 @@ Total health of this damage level. When it reaches 0, the damage level is 'broke
 Total size of the texture pool in MB
 TotalTranslation_SourceState
 TotalTranslation_TargetState
+TouchTest
+TouchType
 Touch_t
 Towards closest point
 Trace
@@ -13297,9 +14780,11 @@ TrackOrientation_FacePathAngles
 TrackOrientation_Fixed
 Tracks
 Tracks an entity in spec mode
+Tracy
 Trail Head & Tail
 Trail UV Controls
 Trail forward shift (fraction)
+TrailLength
 Trails
 TrainOrientationType_t
 TrainOrientation_AtPathTracks
@@ -13332,6 +14817,12 @@ Transition
 Transition Behavior
 Transition time (seconds)
 TransitionConduit
+TransitionToPath
+TransitionToPathNode
+TransitionToPathNodeStartForward
+TransitionToPathNodeStartReverse
+TransitionToPathStartForward
+TransitionToPathStartReverse
 Translate Tool Align To Surface
 Translate X
 Translate Y
@@ -13355,6 +14846,10 @@ Trigger
 Trigger Bounds
 Trigger Parameter
 Trigger Phase
+TriggerForActivatedPlayer
+TriggerForAllPlayers
+TriggerHitPoints
+TriggerOnce
 Triggers a RenderDoc capture
 Triggers a RenderDoc capture of a specific Window
 Triggers impulse command
@@ -13385,6 +14880,10 @@ Turn to Face
 Turn to Face Limit
 Turn to Face Offset
 TurnInPlace
+TurnMotorOff
+TurnMotorOn
+TurnOff
+TurnOn
 TurnOnSpot
 TurnOnSpotLoop
 Turns off interactive fish behavior. Fish become immobile and unresponsive.
@@ -13409,12 +14908,16 @@ Type
 Type 0=time domain, 1 = freq domain
 Type of anim event
 Type of mood
+TypeManager
+TypeScriptCompiler
 Typesafe Int
 Typesafe Int64
 U
 U Spacing
 UI
+UI Map Previews
 UI mode for demo playback. 0 = disabled, 1 = minimal, 2 = full
+UIMemory
 UINT16
 UINT32
 UINT8
@@ -13502,15 +15005,21 @@ UVMAP1
 UVMAP2
 Ultra
 UnPause the first soundevent in the list
+UnPauseSound
 Unbind a key.
 Unbind all keys.
+UnblockNav
 Underwater Explosion
 Uniform scale to be applied to the model, certain properties like detail object mean only uniform scale may be applied to the model.
 Uninitialized
 Unknown
 Unlit SSAO Power Scale
 Unlit SSAO Radius Scale
+Unlock
+UnlockOrientation
 Unpack mode in cs, 0 - one leaf per thread (16 output pixels), 1 (default) - one leaf row per thread (4 output pixels), 2 - one pixel out per thread.
+Unpause
+UnpauseTimer
 Up direction (+z)
 Up to 8 bands of EQ.  Boost/cut up to 8 bands with adjustable Q.  Filters can also be configured as low/high pass or low/high shelf.
 Up vector which is used to determine the rotation of each element around the line.
@@ -13521,6 +15030,7 @@ Updates physics surface property of models from default to the ones associated i
 Updates visibility bits.
 Upper bound above Average Human Contribution Score that a bot must be above to change its difficulty
 Upper limit on texture pool size.
+UpperRandomBound
 UpscalerType_t
 Upward Ratio
 Usage:  dumpstringtable <tablename |all> <sv | cl> <verbose | simple> <element>      Print string tables to console, verbose to dump data, simple to show name and count only, can specifiy a single numeric element index to restrict spew.
@@ -13596,6 +15106,9 @@ Use this to tell Steam to relaunch the app right after existing
 Use to debug break on any soundevent that is started matching this name
 UseChild1
 UseChild2
+UseRandomTime
+UseScreenAspectRatio
+UseWind
 Used by the client to inform the server of their desired queue length.  Derived from cl_tickpacket_recvmargin_desired and cl_tickpacket_desired_queuelength
 Used to create reverb effects based on a model of a reverb plate.
 Used to create reverb effects based on a symmetrical room.
@@ -13607,12 +15120,23 @@ User Event 3
 User Event 4
 User-facing description of the tag
 User-facing tag name
+UserMessages
 UserSpecifiedFrame
 Using mesh shaders if available instead of drawcalls
 V
 V Spacing
+V8System
+VAsyncFileSystem2_001
+VAvi001
 VBOX
 VBOX_REVERSE
+VConComm
+VConComm001
+VConsole_SubTool_001_ConvarHelperTool
+VConsole_SubTool_001_DashboardTool
+VConsole_SubTool_001_NetGraphTool
+VConsole_SubTool_001_ShowBudgetTool
+VConsole_SubTool_001_SoundViewerTool
 VDATA
 VData Choice
 VDataChoice( scripts/ammo.vdata )
@@ -13640,6 +15164,7 @@ VECTOR_FLOAT_EXPRESSION_INPUT1_LENGTH
 VECTOR_FLOAT_EXPRESSION_INPUT1_LENGTHSQR
 VECTOR_FLOAT_EXPRESSION_INPUT1_NOISE
 VECTOR_FLOAT_EXPRESSION_UNINITIALIZED
+VENGINE_GAMEUIFUNCS_VERSION005
 VERTEX_ALBEDO_565
 VERTEX_ALBEDO_8888
 VERTEX_ALBEDO_NONE
@@ -13648,6 +15173,8 @@ VERT_JUSTIFICATION_CENTER
 VERT_JUSTIFICATION_NONE
 VERT_JUSTIFICATION_TOP
 VERY EXPENSIVE: serialize non-delta-encoded commands along with delta-encoded for validation
+VEngineCvar007
+VFileSystem017
 VIEW_FADE_CONSTANT_COLOR
 VIEW_FADE_MOD2X
 VIEW_FADE_MODULATE
@@ -13681,6 +15208,8 @@ VMIX_CHAN_RIGHT
 VMIX_CHAN_STEREO
 VMIX_CHAN_SWAP
 VMapResourceData_t
+VMaterialSystem2_001
+VMediaFoundation001
 VMix 3 Band Dynamics Node
 VMix Apply Pre-Delay to Impulse Response Node
 VMix Audio Convolution Node
@@ -13753,6 +15282,7 @@ VMixDynamicsCompressorDesc_t
 VMixDynamicsDesc_t
 VMixEQ8Desc_t
 VMixEQFilterDesc_t
+VMixEditTool001
 VMixEffectChainDesc_t
 VMixEnvelopeDesc_t
 VMixFilterChannelSet_t
@@ -13781,6 +15311,7 @@ VMixSubgraphSwitchDesc_t
 VMixSubgraphSwitchInterpolationType_t
 VMixUtilityDesc_t
 VMixVocoderDesc_t
+VNotify
 VOICEDATA_FORMAT_ENGINE
 VOICEDATA_FORMAT_OPUS
 VOICEDATA_FORMAT_STEAM
@@ -13832,6 +15363,7 @@ VO_TYPE_COUNT
 VO_UINT32
 VO_VECTOR
 VO_VSND_INPUT
+VP4003
 VPhysEntityId_t
 VPhysXAggregateData_t
 VPhysXAggregateData_t::VPhysXFlagEnum_t
@@ -13845,12 +15377,23 @@ VPhysXJoint_t
 VPhysXJoint_t::Flags_t
 VPhysXRange_t
 VPhysics2ShapeDef_t
+VPhysics2_Interface_001
 VPhysicsCollisionAttribute_t
+VProcessUtils002
+VProf
+VProfService_001
+VR
 VR_HAND_HAPTIC_PULSE_LIGHT
 VR_HAND_HAPTIC_PULSE_MEDIUM
 VR_HAND_HAPTIC_PULSE_STRONG
+VRenderDeviceMgrBackdoor001
 VSND Container
 VSND Enum
+VScript
+VScriptDbg
+VScriptManager010
+VScriptScripts
+VStringTokenSystem001
 VTX_ATTACH_ALIGN_MODEL
 VTX_ATTACH_ALIGN_NORMAL
 VYPA_DEFEAT
@@ -13882,6 +15425,13 @@ Variable from Target Material Attr
 VariableInfo_t
 Variables
 Variant
+VariantBool
+VariantColor
+VariantFloat
+VariantInt
+VariantString
+VariantVector
+VariantVoid
 Vary cell shift in X.
 Vary cell shift in Y.
 VecInputMaterialVariable_t
@@ -13926,15 +15476,21 @@ Vertical FOV
 Vertical Parameter
 Vertical offset for drawing the mesh (useful for flat planes where the mesh is often a fixed offset from the physical ground
 Vertical view fixup when eyes are near water plane.
+VerticalFOV
 VeryFast
+Vfx
 View Offset
 View offset during demo playback (+/- 1.25 is a good default for human average left/right eye offset)
 View2DOptionsEditableData_t
 View3DOptionsEditableData_t
 ViewAngleServerChange_t
 ViewFadeMode_t
+ViewPunch
+Viewkick
 Viewmodel FOV
 VirtualParameterValueTree
+VisBuilder
+VisBuilder_001
 VisibilityInputs
 Visualization Box
 Visualization Cylinder
@@ -13949,6 +15505,8 @@ Visualize shading complexity
 Visualizes +use logic. Green cross=trace success, Red cross=trace too far, Green box=radius success
 Visualizes all entity input/output activity.
 Visuals
+VmfToVmap
+VmtToVmat
 Vocoder Band Count
 Voice Container Base
 Voice Container Default
@@ -13987,8 +15545,10 @@ Volume:5
 Volume:6
 Volume:7
 Volume:8
+VolumetricFog
 Votes for the next map at the end of the match
 VoxelVisBlockOffset_t
+Vrad3_001
 VsInputSignatureElement_t
 VsInputSignature_t
 Vsnd
@@ -14201,6 +15761,7 @@ Wait and Trace
 Wait for Entity Output
 Wait for a duration, firing a child cursor at regular (or randomized) intervals
 Waits for the entity to fire a specific output. By default, this listens once, but can be configured to listen until canceled.
+Wake
 Wake all physics objects in the Main physics up
 WakeElegantly
 WakeImmediate
@@ -14217,6 +15778,7 @@ WarpXY
 WarpXYZ
 WarpZ
 Was the weapon was built right-handed?
+WasThrownByPlayer
 Water
 WaterLevel_t
 WaterWheelDrag_t
@@ -14241,6 +15803,8 @@ WeaponPurchaseCount_t
 WeaponPurchaseTracker_t
 WeaponSound_t
 WeaponSwitchReason_t
+Wearable
+WebApi
 Weight
 Weight Parameter
 Weight of the animation, higher numbers get picked more
@@ -14418,11 +15982,15 @@ Will TK'ers and team damagers be punished in the next round?  {0=no,  1=yes}
 Will offset the warped root motion if we are pass warp events
 Will spew if a job takes longer than the specified number of microseconds
 Will transmit all entities to client, regardless of PVS conditions (will still skip based on transmit flags, however).
+Wind
 Wind Generator Container
+WindDirection
+WindSpeed
 Window over which to average queries per second averages.
 With Cloth Effect
 Within-Cluster Fire Count Before Cooldown
 Within-Cluster Refire Time
+Workshop
 World
 World Only
 World Position
@@ -14439,6 +16007,9 @@ World-Z Align
 WorldBuilderParams_t
 WorldNodeOnDiskBufferData_t
 WorldNode_t
+WorldRenderer
+WorldRendererBuilder
+WorldRendererMgr001
 WorldSpace
 WorldTextPanelHorizontalAlign_t
 WorldTextPanelOrientation_t
@@ -14495,9 +16066,13 @@ Z Value
 Z axis scaling scalar field
 Z-Axis Size
 ZERO
+ZFar
+ZNear
 Zero Gravity
 Zero Gravity Duration
 Zero Pose
+Zone1Distance
+Zone2Distance
 Zoom sensitivity using mouse move
 Zoom sensitivity using mousewheel
 Zooming
@@ -14506,25 +16081,38 @@ Zooming
 [Test] Explicit Yes/No Outflow
 [Test] Int Value 50
 [Test] Random Yes/No Outflow
+_DisableUpdateTarget
+_EnableUpdateTarget
+_OnLogicBranchChanged
+_OnLogicBranchRemoved
 __m_pChainEntity
+_cone
 _editor/next_element_id
 _fov
+_inner_cone
+_light
 _record
 _resetgamestats
 absolute value
 accelerate position
+acceleration
 accept decals
+acceptdamagefromheldobjects
 active_motor
 activity
 activity override
 adaptive retest on moving surface
 add self amount over alphablend
 add test object
+add_attribute
+addangaccel
 addip
 additive
+addlength
 addons
 adjacent_levels
 adjacent_preload
+adrenalinepresence
 adsp_alley_min
 adsp_courtyard_min
 adsp_debug
@@ -14546,6 +16134,7 @@ ag2_update_id
 ag2_use_networked_serialization_context_demo
 ag2_use_networked_serialization_context_game
 aggregation radius
+ai_changehintgroup
 ai_debug_dyninteractions
 ai_debug_los
 ai_debug_ragdoll_magnets
@@ -14558,11 +16147,19 @@ ai_off_nav_show_nearest
 ai_sequence_debug
 ai_use_visibility_cache
 ai_use_visibility_cache_reciprocation
+ajarangle
+ajarangles
+ajardoorshouldntalwaysopen
 albedo for LPV debug grid
 alias
+align_with_parent
 allow approximate transforms (cpu optimizaiton)
 allow inventory image rendering for use by scaleform
 allowStretch
+allow_empty_inputs
+allow_interaction_from_all_scene_worlds
+allow_pickup_script_func
+allownewgibs
 alpha field
 alpha max
 alpha min
@@ -14575,8 +16172,18 @@ alpha scale
 alpha test point scale field
 alpha test range scale field
 alpha test sharpness scale field
+alphascale
 also set ouput to previous particle
+altcolor
+altcolorbrightness
+altpath
 always_perform_full_spatial_partition_update
+ambient_generic
+ambientcolor1
+ambientcolor2
+ambientcolor3
+ambientscale1
+ambientscale2
 ammo_338mag_headshot_mult
 ammo_338mag_impulse
 ammo_338mag_max
@@ -14616,6 +16223,8 @@ ammo_grenade_limit_flashbang
 ammo_grenade_limit_total
 ammo_item_limit_adrenaline
 ammo_item_limit_healthshot
+ammobalancing_removable
+amount
 amount of bounce
 amount of contribution score added for a kill
 amount of contribution score added for an assist
@@ -14650,7 +16259,26 @@ amplitude field
 amplitude scale
 anchor vector
 angle
+angles
 angular velocity attribute (improves motion blur)
+angularLimit
+angular_damping_ratio_x
+angular_damping_ratio_y
+angular_damping_ratio_z
+angular_fog_max_end
+angular_fog_max_start
+angular_fog_min_end
+angular_fog_min_start
+angular_frequency_x
+angular_frequency_y
+angular_frequency_z
+angular_motion_x
+angular_motion_y
+angular_motion_z
+angulardampingratio
+angularfrequency
+anim_bounds_max
+anim_bounds_min
 anim_decode_forcewritealltransforms
 anim_disable
 anim_eval_stats
@@ -14720,6 +16348,12 @@ annotation_save
 apply radius to ends (capsule)
 apply scales in local model space
 apply_crosshair_code
+areaMax
+areaMin
+areaRadius
+array_index
+arrive_at_destination_sound
+aspectRatio
 asset_thumbnails_server_download
 asset_thumbnails_server_url
 asset_thumbnails_stats_flush_interval
@@ -14747,9 +16381,22 @@ assetsystem_stats
 assetsystem_test_resort
 assetsystem_verbose_fingerprints
 assetthumbnail_old_fingerprint_style
+asynchronous
 at this distance and beyond you need to be point right at someone to see them
+attach1
+attach2
+attach_touching_object
+attachedObject
+attachedTo
 attached_output_stall_ms
+attachedentity1
+attachedentity2
 attachment to follow
+attachment1
+attachment2
+attachpoint
+attenMax
+attenMin
 attenuation type
 attribute to cache to
 attribute to modify
@@ -14767,13 +16414,21 @@ audioparams_t
 audioreflectivity
 audioroughnessfactor
 audiosounds
+authoredposition
+autoDisable
 auto_bug
 auto_bug : create non-interactive bug report.
+auto_convert_back_from_debris
+auto_remove_timeout
+auto_start_ambient_sound
+autoactivate
 autobuy
 autosave
 autosave_fully_async
 autosavedangerous
 autosavedangerousissafe
+avelocity
+avginterval
 avoid overhead of firstpersonlegs layers if not looking down enough to see them
 axis
 bApplyToExternalGraphs
@@ -14820,16 +16475,41 @@ bWasSaved
 bWhiteOnBlack
 b_goal_completion_allowed
 b_has_path
+background_border_height
+background_border_width
+background_clear_not_required
+background_material_name
+background_world_to_uv
 bake_bomb_damage_render_visualization
+bakedshadowindex
+bakespeculartocubemaps
+bakespeculartocubemaps_scale
+bakespeculartocubemaps_size
 banid
 banip
+bank
+base_clientui_entity
+base_combat_character
+base_plat_train
+base_player_pawn
+base_player_weapon
+base_prop
+base_prop_door
+base_toggle
+baseanimating
+baseanimgraph
+basemodelentity
+baseplayerpawn
+basevelocity
 batch particle systems (DO NOT USE)
 bbox
+beam
 behavior if parent particle dies
 behindness output field
 behindness output remap
 behindness set value method
 benchframe
+beveragetype
 bi_GameEvent_DEPRECATED
 bi_PredictionEvent
 bi_RebroadcastGameEvent
@@ -14856,13 +16536,22 @@ bitmask: 1=weapon selection, 2=flashlight, 4=all, 8=health, 16=player dead, 32=n
 blend
 blend over this many frames
 blend sequence animation frames
+blendDeltaMultiplier
 blendtobackground
 blink
+blocker
 bloom mip up-sample filtering radius (using 3x3 tent filter, radius in mip level texels), 0.0 radius => box (2x2) filter with (fixed) 1.0 radius
+blur_origin
 bodyMassScale
 bodygroup field
+bodygroups
+bomb_mount_target
+bomb_site_designation
 bone
 boneIndex
+bonename1
+bonename2
+bot
 bot_add
 bot_add <t|ct> <type> <difficulty> <name> - Adds a bot matching the given criteria.
 bot_add_ct
@@ -14938,13 +16627,25 @@ bot_strafe
 bot_traceview
 bot_walk
 bot_zombie
+botmaxvisiondistance
 bots are given these items at round start
+bottomtrack
 bounce scale
 bounceFactor
+bouncelight
+bouncescale
 bounding box bloat max
 bounding box bloat min
 bounding box depth sort bias
 box
+boxEntity%02d
+box_inner_maxs
+box_inner_mins
+box_maxs
+box_mins
+box_outer_maxs
+box_outer_mins
+box_size
 break
 break age
 break comparison control point 1
@@ -14957,7 +16658,18 @@ break_invulnerable_spawn_duration
 breakable_debug_spawn_transform_time
 breakable_force_break
 breakable_multiplayer
+breakable_prop
+breakaftertime_x
+breakaftertime_y
+breakaftertime_z
+breakaftertimethreshold_x
+breakaftertimethreshold_y
+breakaftertimethreshold_z
+breaksound
 brightness
+brightness_delta
+brightnessscale
+broken_glass_trap
 brush only
 buddha
 buddha_ignore_bots
@@ -14972,8 +16684,12 @@ buildcubemaps
 buildcubemaps_renderdoc_capture
 buildsparseshadowtree
 bulge control 0=random 1=orientation of start pnt 2=orientation of end point
+bullet_direction
 bulletimpact
 buoyancy force
+buoyancyScale
+buoyancyscale
+busyactor
 button_info
 buymenu
 buyrandom
@@ -14981,6 +16697,8 @@ c01
 c02
 c03
 c04
+c_cs_observer_for_precache
+c_cs_player_for_precache
 c_maxdistance
 c_maxpitch
 c_maxyaw
@@ -14997,6 +16715,7 @@ c_thirdpersonshoulderoffset
 cable end cap offset amount
 cable end cap shape factor
 cable material
+cable_dynamic
 cache attribute to read from
 cachedvalue_count_partybrowser
 cachedvalue_count_teammates
@@ -15016,6 +16735,7 @@ camera depth bias
 camera_cut_to_datadriven_camera
 camera_datadriven_debug
 camera_datadriven_disable_cache
+camera_name
 camera_path_add
 camera_path_clear_all
 camera_path_delete
@@ -15026,6 +16746,7 @@ camera_path_save
 camerazoomin
 camerazoomout
 camortho
+can_override_npc_state
 cancelselect
 capsule behavior
 capsule height
@@ -15044,6 +16765,7 @@ cash_player_killed_hostage
 cash_player_killed_teammate
 cash_player_rescued_hostage
 cash_player_respawn_amount
+cash_stack
 cash_team_bonus_shorthanded
 cash_team_elimination_bomb_map
 cash_team_elimination_hostage_map_ct
@@ -15072,6 +16794,8 @@ cast_obb
 cast_physics
 cast_ray
 cast_sphere
+caster
+castshadows
 cc_captiontrace
 cc_delay_time
 cc_emit
@@ -15094,24 +16818,32 @@ center around control point
 center core radius
 center mesh
 center offset
+centersize
+chainstodoor
 change callback msec warning limit
 changelevel
 changelevel <mapname> :Multiplayer change level.
 channel
 channel type
 channel_count
+character_mode
 character_patches
 check full bbox only
 check_collision_saveload
 check_collision_saveload_dir
+check_if_dest_clear_for_player
 check_nofilefd
 check_transmit_dump_ents
+chicken
+chicken_model
 chicken_stop
 child
 child group ID
 child group ID to affect
 childID
 childIndex
+childSpawnGroup
+citadel_snd_opvar_set_obb
 cl_ShowBoneSetupEnts
 cl_access_all_missions
 cl_ag2_record_entity_graph
@@ -15810,8 +17542,14 @@ cli_ent_pivot
 cli_ent_skeleton
 cli_ent_vcollide_wireframe
 client physics type
+clientCullRadius
+client_ragdoll
 clientport
+clip_3D_skybox_near_to_world_far
+clip_3D_skybox_near_to_world_far_offset
 closecaption
+closed_loop
+closesound
 closest point test type
 cloth_debug_draw
 cloth_filter_transform_stateless
@@ -15832,6 +17570,9 @@ clrGrid1024
 clrGridFractional
 clrSelection
 clrToolSelection
+clusterBlend
+clusterK
+clusterP
 clutch_mode_toggle
 cmd
 cohesion strength
@@ -15842,6 +17583,7 @@ collect_entity_model_name
 collide with water
 collision group
 collision mode
+collisionGroup
 color
 color blend
 color blend type
@@ -15865,15 +17607,25 @@ colorPrimary
 colorPrimaryLerpTo
 colorSecondary
 colorSecondaryLerpTo
+color_correction
+color_correction_volume
+color_tint
+colormax
+colormin
+colormode
+colortemperature
+colortint
 command
 command queue logging of events.
 command queue logging per player stats every N seconds, 0 to disable.
 command_number
 commentary
+commentary_auto
 commentary_available
 commentary_cvarsnotchanging
 commentary_finishnode
 commentary_node_use_viewfacing
+commentaryfile
 compare game events across all mods
 comparison velocity
 component 0/1/2 X/Y/Z
@@ -15898,16 +17650,21 @@ confirm_join_friend_session_exit_current
 confirm_join_new_session_exit_current
 confirm_join_party_session_exit_current
 confirm_watch_friend_session_exit_current
+conflict_response
 connect
 connect_hltv
 connect_lobby
 console_test
 consoletool
+constant_speed
 constrain radius to no more than this times the length
 constraint
 constraint_axislimit_t
 constraint_breakableparams_t
 constraint_hingeparams_t
+constraint_type
+contactshadow
+continue_on_death
 contributionscore_assist
 contributionscore_assist_reqs
 contributionscore_bomb_defuse_major
@@ -15970,13 +17727,21 @@ control point to set
 control point to trace from
 control point with snapshot data
 control points to broadcast to children (n + 1)
+controller
 convars_echo_toggle_changes
 convert_steamid
+conveyor_models
 copy already resolved depth for use by waterrefraction layers, instead of resolving main depth again (avoids msaa samples)
+copy_diffuse_from_default_cubemap
 count back from last particle
 count to maintain
 counter
+counterterrorist_rush_intro_camera
+counterterrorist_team_intro_camera
+counterterrorist_wingman_intro_camera
 cp field
+cpoint%d
+cpoint%d_value
 cpu_level
 cpuinfo
 cq_buffer_bloat_msecs_max
@@ -15997,27 +17762,43 @@ crash_error_job
 crash_error_thread
 crash_job
 crash_thread
+createClientOnlyEntities
+create_debris
 create_explosion_damage
 create_radius_damage
+create_surface_graph
 creation control point number
 creation type
 creditsdone
 crosshair
 cs2_bomb_damage_showdebugwindow
+cs2_hudmodel_addon
+cs2_hudmodel_arms
+cs2_hudmodel_weapon
+cs2_weapon_module
 cs_AssistDamageThreshold
 cs_AssistDamageThreshold defines the amount of damage needed to score an assist
 cs_ShowStateTransitions
 cs_ShowStateTransitions <ent index or -1 for all>. Show player state transitions.
+cs_gamerules
 cs_hostage_near_rescue_music_distance
 cs_logtouchexpansion
 cs_logtouchexpansion <ent index or -1 for all>. Log player touch expansion component.
+cs_minimap_boundary
 cs_minimap_create_output_size
 cs_minimap_renderdoc_capture_enabled
 cs_minimap_rendering_msaa_mode
+cs_minimap_volume
+cs_pet_placement
+cs_player_controller
+cs_player_manager
+cs_portrait_world_callback_handler
 cs_quit_prompt
+cs_script
 cs_steamvideo_max_kills_per_multikill
 cs_steamvideo_max_time_between_multikill_events
 cs_steamvideo_multikill_padding_time
+cs_team_manager
 csgo_3d_skybox
 csgo_demoui_playbeck_timestep_value
 csgo_demoui_player_death_seek_lead_up_time
@@ -16028,8 +17809,12 @@ csgo_econ_action_preview
 csgo_fatdemo_enable
 csgo_fatdemo_output
 csgo_inv_image_preview
+csgo_item_previewmodel
 csgo_map_preview_scale
 csgo_nav_jump_link_detour_threshold
+csgo_player_previewmodel
+csgo_previewmodel
+csgo_previewplayer
 csgo_use_fullsort_for_opaque
 csgo_watch_friend_session_exit_current
 csm pushback distance, should be much shorter/disabled for icon rendering
@@ -16042,6 +17827,7 @@ csm_cascade1_override_dist
 csm_cascade2_override_dist
 csm_cascade3_override_dist
 csm_cascade_viewdir_shadow_bias_scale
+csm_fov_override
 csm_max_dist_between_caster_and_receiver
 csm_max_num_cascades_override
 csm_max_shadow_dist_override
@@ -16065,8 +17851,30 @@ csm_viewmodel_nearz
 csm_viewmodel_shadows
 cspincount
 cspinup
+css_class
 cube root of volume
 cube width
+cubemapfogdistancecurve
+cubemapfogdistancetype
+cubemapfogenddistance
+cubemapfogfalloffexponent
+cubemapfogheightblendmode
+cubemapfogheightcoordinatespace
+cubemapfogheightcurve
+cubemapfogheightend
+cubemapfogheightexponent
+cubemapfogheightstart
+cubemapfogheighttype
+cubemapfogheightwidth
+cubemapfoglodbiase
+cubemapfogmaxopacity
+cubemapfogskyentity
+cubemapfogskymaterial
+cubemapfogsource
+cubemapfogstartdistance
+cubemapfogtexture
+cubemapheightfog
+cubemaptexture
 cull characters nearer than this
 cull control point
 cull cost
@@ -16084,11 +17892,18 @@ cull radius
 cull replacement definition
 cull start time
 cull time exponent
+cull_mode
 current anim time output field
 current_enemy
 current_movement_gait
 current_movement_gait_set
+customOutputValue
 custom_bot_difficulty
+custom_hud
+custom_hud_layout
+custom_player_camera
+customcubemaptexture
+customnavsystem001
 cutoff radius
 cv_bot_ai_bt_debug_target
 cv_bot_ai_bt_hiding_spot_show
@@ -16102,13 +17917,28 @@ cylinder outer radius
 cylindrical bottom transform
 cylindrical top transform
 dB gain for modulation signal
+dac_dof_far_blurry
+dac_dof_far_crisp
+dac_dof_tilt_to_ground
+damage
 damage_impact_heavy
 damage_impact_medium
+damagecap
+damagefilter
+damageforce
+damagemodel
+damagetoenablemotion
+damagetype
+dampAllRotation
 dampen gravity/buoyancy near water plane
 dampen on only one side of plane
 dampen outside instead of inside
 dampen scale
 dampening
+damping
+damping_override
+data_cp
+data_cp_value
 dbghist_addline
 dbghist_dump
 death_chase_distance
@@ -16149,18 +17979,25 @@ debugoverlay_text_scale
 debugoverlay_toggle
 decal name
 decalfrequency
+decalname
 decay delay
 decay on lifespan
 decay time
 decibel level field
 decibel level scale
 decibel threshold for how loud the talker's input signal is before we think they are talking.
+decoy_projectile
 default pushback
 default rate for relays
 default text
 default value
+defaultDist1
+defaultDist2
+defaultDist3
 defaultSubgraph
+default_env_map
 default_fov
+default_spec_env_map
 delay
 delete physics sim when stopped
 demo_allow_game_mismatch
@@ -16194,8 +18031,12 @@ demo_writemetafile
 demolist
 demoui
 density
+depth
 depth comparison bias
 depth to increment candidate plane values per iteration to satisfy selection.
+depth_offset
+depth_render_offset
+depthsortbias
 desaturation amount
 description
 desired height is relative to water
@@ -16203,6 +18044,7 @@ desired hitbox
 desired offset
 desired velocity CP
 desired velocity CP field override(for speed only)
+desiredTimescale
 desired_movement_gait
 desired_movement_gait_set
 desired_speed
@@ -16211,6 +18053,22 @@ dest control point component
 destination scalar field
 destroy all particles immediately
 destroy particles immediately when child is removed
+destroy_mover_at_end
+destructible_part_initial_state_destructed_1
+destructible_part_initial_state_destructed_1_generate_breakpieces
+destructible_part_initial_state_destructed_1_part_index
+destructible_part_initial_state_destructed_2
+destructible_part_initial_state_destructed_2_generate_breakpieces
+destructible_part_initial_state_destructed_2_part_index
+destructible_part_initial_state_destructed_3
+destructible_part_initial_state_destructed_3_generate_breakpieces
+destructible_part_initial_state_destructed_3_part_index
+destructible_part_initial_state_destructed_4
+destructible_part_initial_state_destructed_4_generate_breakpieces
+destructible_part_initial_state_destructed_4_part_index
+destructible_part_initial_state_destructed_5
+destructible_part_initial_state_destructed_5_generate_breakpieces
+destructible_part_initial_state_destructed_5_part_index
 destructible_parts_destroy_parts_when_gibbing
 detail 2 texture
 detail texture
@@ -16234,11 +18092,13 @@ dev_send_gc_message
 dev_send_gc_message_server
 dev_simulate_gcdown
 developer
+developeronly
 devonly_chicken_activity_debug
 devonly_chicken_blocktimer
 devonly_chicken_feeler_distance
 devonly_chicken_feeler_height
 devonly_chicken_feeler_pitch
+dialog_layout_name
 die
 diffcheck
 diffcheck_playerslot
@@ -16253,25 +18113,39 @@ diffuse lighting origin
 diffuse lighting origin Control Point
 diffuse max contribution clamp
 diffuse warp texture (3d)
+diffuse_scale
 dirPrimary
 direction
 direction bias
 direction input
 direction matching strength
 direction only
+directionentityname
+directlight
 disable at detail levels below
 disable depth prepass
 disable motion blur
 disable shadows
 disable z-buffer test
+disable_aim_while_moving
+disable_deceleration_to_stop
 disable_dynamic_prop_loading
+disable_mip_gen
 disable_priority_boost
 disable_source_soundscape_trace
+disableautogenerateddmspawns
+disabledValue
+disablelowviolence
+disablereceiveshadows
+disableshadows
 disconnect
 display up-to-date elapsed play time
 display_convars_onscreen_in_big_text
 display_game_events
+displaytext
 disposition
+dissolvetype
+distance
 distance alpha
 distance at which proxy scale is maximized
 distance bias
@@ -16285,19 +18159,36 @@ distance maximum
 distance min
 distance minimum
 distance squared output attribute
+distanceMapMax
+distanceMapMin
+distanceMax
+distanceMin
+distance_to_reach_max_speed
+distance_to_reach_zero_speed
 distribution bias
 divide by deltatime (for comparing motion since last simulation)
 dlight_debug
 dm_reset_spawns
 dm_togglerandomweapons
+dmg
 do not draw in particle pass
+dof_enabled
+dof_far_blurry
+dof_far_crisp
+dof_near_blurry
+dof_near_crisp
+dof_tilt_to_ground
+domeMode
 don't traverse a jump link if there's a detour that costs less than this amount
+dont_rotate_other
 doorCheck_e
+dotProductMax
 dota_enable_spatial_audio
 dota_spatial_audio_mix
 dota_teammate_max_invis
 dota_use_heightmap
 drag
+drag_override
 draw as opaque
 draw bone axes for models
 draw bounding boxes for models
@@ -16307,6 +18198,8 @@ draw range indicators for all abilities on the NPC
 draw sound waveforms in the SFM
 draw the route for this npc
 draw wireframe for models
+draw_3dskybox
+draw_background
 drawcross
 drawline
 drawoverviewmap
@@ -16353,6 +18246,12 @@ duration field
 duration scale
 dynamic bounce (RTGI)
 dynamic control point count
+dynamicEntityName
+dynamicMaximumOcclusion
+dynamicProxyPoint
+dynamic_nav_connection_target
+dynamic_prop
+dynamiccontinuouscontactbehavior
 dynpitchvol_base_t
 dynpitchvol_t
 eAbsOrigin
@@ -16514,6 +18413,8 @@ e_movement_handshake_restart
 e_movement_type_desired
 ease in and out
 ease out
+ease_in
+ease_out
 echo
 echoln
 econ_build_pinboard_images_from_collection_name
@@ -16522,11 +18423,21 @@ econ_debug_loadout_ui
 econ_enable_inventory_images
 econ_inventory_image_pinboard
 econ_show_items_with_tag
+edge_fade_dist
+edge_fade_dists
 edictindex
 editor_pos
 editor_size
 effect
+effect_interpenetrate_name
+effect_name
+effect_textureOverride
+effect_zap_name
+effect_zap_source
+effects
 elasticity
+element_color
+element_type
 emission count scale control point
 emission count scale control point field
 emission duration
@@ -16540,6 +18451,7 @@ emission start time
 emit particles for parent particle events
 emitter lifetime end time (seconds)
 emitter lifetime start time (seconds)
+emitterAngle
 enable
 enable ct incendiary experiment
 enable fading and clamping
@@ -16547,7 +18459,24 @@ enable particle outlining
 enable projected depth controls
 enable yaw for particles aligned to normals
 enable_boneflex
+enable_mip_gen
+enable_offscreen_indicator
 enable_priority_boost
+enable_separate_skybox_fog
+enable_steering_limit
+enable_suspension_limit
+enable_swing_limit
+enable_twist_limit
+enableangularconstraint
+enabled
+enableexposure
+enablelateralconstraint
+enablelimit
+enablelinearconstraint
+enableshadows
+enablesoundevent
+enableuseoutput
+enableverticalconstraint
 end
 end alpha
 end cap effect
@@ -16570,6 +18499,11 @@ end time min
 end transform
 end value for soft edges for distance alpha
 endLerpTo
+end_of_match_camera
+end_of_match_character
+end_of_match_lineup_end
+end_of_match_lineup_start
+end_touch_event
 endframe
 ending control point
 ending force
@@ -16577,6 +18511,7 @@ endmatch_votenextmap
 endmovie
 endround
 endtime
+engageDistance
 engine_accurate_input_processing_delta_time
 engine_allow_multiple_simulates_per_frame
 engine_allow_multiple_ticks_per_frame
@@ -16603,8 +18538,10 @@ engine_show_frame_pacing
 engine_show_frame_ticks
 engine_sse42
 engine_update_resource_system_during_low_latency_sleep
+enginesound
 english
 ensure line of sight
+ensure_on_navmesh_on_finish
 ent_absbox
 ent_actornames
 ent_actornames font name
@@ -16702,16 +18639,82 @@ ent_viewoffset
 ent_viewpunch
 ent_visibility_traces
 entity
+entityFilterName
+entityIndexSelection
+entityLumpName
+entityUseFastRefreshRate
+entity_blocker
 entity_fgd_print_api_mismatch
 entity_fgd_require_api_declaration
 entity_log_load_unserialize
 entity_lump_list
 entity_lump_spew
+entity_template%02d
+entityfiltername
+entityflame
 entityname
 entitytable_t
 ents
+env_beam
+env_beverage
+env_blood
+env_combined_light_probe_volume
+env_credits
+env_cs_place
+env_cubemap
+env_cubemap_box
+env_cubemap_fog
+env_debughistory
+env_decal
+env_detail_controller
+env_entity_dissolver
+env_entity_igniter
+env_entity_maker
+env_explosion
+env_fade
+env_fog_controller
+env_global
+env_global_light
+env_glow
+env_gradient_fog
+env_hudhint
+env_instructor_hint
+env_instructor_vr_hint
+env_laser
+env_light_probe_volume
+env_message
+env_muzzleflash
+env_particle_glow
+env_physexplosion
+env_physimpact
+env_physwire
+env_player_visibility
+env_shake
 env_shake_debug
+env_shake_volume
+env_sky
+env_soundscape
+env_soundscape_proxy
+env_soundscape_triggerable
+env_spark
+env_splash
+env_sprite
+env_sprite_clientside
+env_sprite_oriented
+env_tilt
+env_tonemap_controller
+env_tonemap_controller2
+env_viewpunch
+env_volumetric_fog_controller
+env_volumetric_fog_volume
+env_wind
+env_wind_clientside
 environment map texture
+envpuddlerippledirection
+envpuddleripplestrength
+envrainstrength
+envwetnesscoverage
+envwetnessdryingamount
 eom_local_player_defeat_anim_enabled
 equip gloves on player for icon rendering from loadout, or use default gloves
 error_message_explain_pure
@@ -16723,6 +18726,12 @@ even distribution count
 even distribution within boxes
 event horizon threshold distance for max force
 event type
+eventName
+event_name
+exact_positioning
+exclude_from_save_games
+excludednpc
+exclusive
 exec
 exec_async
 execifexists
@@ -16730,15 +18739,27 @@ execute_command_every_frame
 expDirected
 expRandom
 expUsePrecise
+expand_render_bounds_to_include_cloth
+explicit_image_layout
 explode
+explodeonspawn
 explodes molotov(0) or Incendiary (1) at crosshair location with single param
 explodes smoke grenade at crosshair location
 explodevector
+explosion
+explosion_custom_effect
+explosion_custom_sound
+explosion_type
 explosions
 exponent
 exponential falloff exponent
+exposurecompensation
+exposuresmoothingrange
+exposurespeeddown
+exposurespeedup
 expression
 expression type
+extent
 extra requirements to earn contribution score for a kill
 extra requirements to earn contribution score for an assist
 extra velocity field to write
@@ -16772,14 +18793,27 @@ fade out time exponent
 fade out time max
 fade out time min
 fade start time
+fadeDuration
+fadeInDuration
+fadeOutDuration
 fadeSpeed
 fade_debug_splitscreen_slot
+fade_size_end
+fade_size_start
 fadein
 fadein {time r g b}: Fades the screen in from black or from the specified color over the given number of seconds.
 fadeinsav
+fadeinsecs
+fademaxdist
+fademindist
 fadeout
 fadeout {time r g b}: Fades the screen to black or to the specified color over the given number of seconds.
 fadeoutsav
+fadeoutsecs
+fadeplayervisibilityfarz
+fadescale
+fadetime
+fakeclient
 fallback max count
 fallback names when the input doesn't match
 fallback replacement definition
@@ -16792,6 +18826,28 @@ falloff linearity
 falloff power
 falloff range
 falloff zero percent
+falloff_distance
+fan_end
+fan_falloff
+fan_force
+fan_force_curve
+fan_force_max_radius
+fan_force_min_radius
+fan_info_fan
+fan_noise_direction_degrees
+fan_noise_speed
+fan_npc_force
+fan_origin
+fan_particle_force_scale
+fan_player_force
+fan_player_windblock
+fan_push_away_from_info_fan
+fan_push_player
+fan_push_towards_info_fan
+fan_ramp_time
+fan_rampdown
+fan_rope_force_scale
+fanfriction
 farz
 ff_damage_bullet_penetration
 ff_damage_decoy_explosion
@@ -16805,6 +18861,7 @@ field to write
 fieldName
 fieldtype_t
 file
+filename
 filesystem_buffer_size
 filesystem_fake_latency
 filesystem_max_stdio_read
@@ -16812,14 +18869,38 @@ filesystem_native
 filesystem_report_buffered_io
 filesystem_unbuffered_io
 filter explosion to single simulation id
+filter_activator_attribute_int
+filter_activator_class
+filter_activator_context
+filter_activator_mass_greater
+filter_activator_model
+filter_activator_name
+filter_activator_team
+filter_base
+filter_damage_type
+filter_enemy
+filter_health
+filter_los
+filter_max_per_enemy
+filter_multi
+filter_outer_radius
 filter_player_simulation_time
+filter_proximity
+filter_radius
 filter_t
 filter_type
+filterattribute
+filterclass
+filtermass
+filtername
+filterteam
 final per component scale
 find
 findflags
 fire a response concept directly at a given character.\nUSAGE: rr_forceconcept <target name or index> <concept> "criteria1:value1,criteria2:value2,..."\ncriteria values are optional.\n
 fire_use_modifier
+fireeventsonpath
+fireinterval
 firetarget
 first child to enable
 first control point location
@@ -16831,8 +18912,11 @@ first parent control point to set from
 first particle to copy
 first vector
 firstperson
+fish
+fish_count
 fish_debug
 fish_dormant
+fixupNames
 flActivationDistance
 flAlpha
 flAngleCenter
@@ -16903,6 +18987,7 @@ flWeight4
 flWeight5
 flWorldFriction
 flags
+flashbang_projectile
 flashlight radius CP
 flashlight radius control point component
 flattening strength
@@ -16910,10 +18995,19 @@ flip cull normal
 flip horizontal
 flip percentage
 flip twist axis with yaw
+floatValue
+flood_fill_attribute
+fluid_density
+fluiddragscale
 flwaitSound
 fog
 fog contribution
 fog lighting mode
+fogColor
+fogEnable
+fogEnd
+fogMaxDensity
+fogStart
 fog_color
 fog_colorskybox
 fog_enable
@@ -16933,19 +19027,52 @@ fog_override_max_density
 fog_override_start
 fog_start
 fog_startskybox
+fog_type
+fog_volume
 fog_volume_debug
+fogblend
+fogcolor
+fogcolor2
+fogdir
+fogenable
+fogend
+fogendheight
+fogexponent
+fogfalloffexponent
+fogirradiancevolume
+foglerptime
+fogmaxdensity
+fogmaxopacity
 fogparams_t
 fogplayerparams_t
+fogscale
+fogshadows
+fogstart
+fogstartheight
+fogstrength
+fogverticalexponent
 foliage dB loss per 1200 units
 follow attachment
+follow_entity
+follow_other_mover_constraint
+follow_other_mover_constraint_priority
+follow_other_mover_coupler_range
+follow_other_mover_distance
+follow_other_mover_entity
+follow_other_mover_ratio
+follow_other_mover_spring_strength
+follow_player_across_teleport
 followup_concept
 followup_contexts
 followup_delay
 followup_target
+font_name
 font_show_glyph_miss
+font_size
 footstep_audible_threshold
 footstep_debug
 footstep_force_volume
+force
 force at max distance
 force at min distance
 force creation height to desired height
@@ -16959,16 +19086,32 @@ force scale
 force to apply
 force to be inside model
 forceLimit
+forceWorldGroupID
 force_assert
 force_fatal_error
 force_floating_point_exceptions
 force_spectator_only_tools
+forceclosed
 forced status effect flags
+forced_crouch_state
 forcedrawinterlevedwithsiblings
+forcelimit
+forcelimit_x
+forcelimit_y
+forcelimit_z
+forcemotiondisabled
+forcenavcut
+forcenavignore
+forcenpcexclude
+forceshadowsenabled
+forcetime
+forcetoenablemotion
 forcibly prevent players from moving
+forgivedelay
 forward angle
 fourth control point location
 fourth control point number
+fov
 fov_cs_debug
 fov_cs_near_z
 fov_cs_super_ultrawide_near_z
@@ -16976,14 +19119,18 @@ fov_cs_ultrawide_near_z
 fov_desired
 fov_h
 fov_v
+fow_darkness
 fp_trace
 fps
 fps_max
 fps_max_tools
 fps_max_ui
 frag_grenade_blip_frequency
+frame
+framerate
 frames per second
 framestalltime
+framestart
 freecamera_accel
 freecamera_fog_end
 freecamera_fog_start
@@ -16998,6 +19145,7 @@ frequency field
 fresnel color warp texture (3d)
 fresnel warp texture
 friction
+friction_scale
 friendlyname
 fs_async_threads
 fs_clear_open_duplicate_times
@@ -17008,12 +19156,34 @@ fs_report_long_reads
 fs_report_sync_opens
 fs_spew_readfieldlist
 fs_warning_mode
+fullbright
 fullsort the opaque pass when there wasn't a depth prepass
+func_bomb_target
 func_break_max_pieces
 func_break_reduction_factor
+func_breakable
 func_breakdmg_bullet
 func_breakdmg_club
 func_breakdmg_explosive
+func_brush
+func_button
+func_buyzone
+func_clip_interaction_layer
+func_clip_vphysics
+func_combined_light_probe_volume
+func_conveyor
+func_door
+func_door_rotating
+func_electrified_volume
+func_fish_pool
+func_footstep_control
+func_guntarget
+func_hostage_rescue
+func_illusionary
+func_ladder
+func_monitor
+func_movelinear
+func_mover
 func_mover_async_movable_navmesh_updates
 func_mover_count
 func_mover_debug
@@ -17027,10 +19197,41 @@ func_mover_enable_debug_all
 func_mover_force_transition_start_direction
 func_mover_get_speed_override
 func_mover_imgui_log_count
+func_mover_router
 func_mover_run_parallel
 func_mover_step_movement
+func_nav_avoidance_obstacle
+func_nav_blocker
+func_nav_dynamic_connections
+func_nav_markup
+func_nav_markup_game
+func_physbox
+func_physical_button
+func_plat
+func_platrot
+func_precipitation
+func_precipitation_blocker
+func_proprrespawnzone
+func_pushable
+func_retakebarrier
+func_rot_button
+func_rotating
+func_rotator
 func_rotator_debug
 func_rotator_run_parallel
+func_shatterglass
+func_tanktrain
+func_timescale
+func_trackautochange
+func_trackchange
+func_tracktrain
+func_train
+func_traincontrols
+func_useableladder
+func_vehicleclip
+func_wall
+func_wall_toggle
+func_water
 fx_drawmetalspark
 g_debug_angularsensor
 g_debug_constraint_sounds
@@ -17047,13 +19248,22 @@ game time per map in minutes
 game_alias
 game_data_list{ key = 'CDestructiblePart' }
 game_data_list{ key = 'CNPCPhysicsHull' }
+game_end
+game_gib_manager
 game_mode
+game_money
 game_online
 game_particle_manager_dump_requeue
 game_particle_manager_list_active
 game_particle_manager_requeue_messages
+game_player_equip
 game_public
+game_ragdoll_manager
+game_text
 game_type
+game_zone_player
+gameeventitem
+gameeventname
 gameevents_analyze
 gameevents_dumptofile
 gameevents_showeventlisteners
@@ -17068,6 +19278,7 @@ gameinstructor_start_sound_cooldown
 gameinstructor_teach_lesson
 gameinstructor_verbose
 gameinstructor_verbose_lesson
+gamemass
 gamestats_file_output_directory
 gameui_activate
 gameui_allowescape
@@ -17078,6 +19289,7 @@ gameui_preventescapetoshow
 gamma_to_linear
 gcmd
 gear_slot_t
+gearratio
 generate mips for runtime
 generate mips via sidecar file for offline
 generate normals for cylinder
@@ -17134,16 +19346,30 @@ global_set <globalname> <state>: Sets the state of the given env_global (0 = OFF
 globalentity_t
 globalentitydatabase_t
 globalname
+globalstate
+glow
 glow_chickens
+glow_in_trigger_radius
 glow_outline_width
 glow_use_tolerance
+glowbackfacemult
+glowcolor
+glowrange
+glowrangemin
+glowstate
+glowteam
+goal_direction_type
 goal_location
 god
 golden angle (is 137.508)
 gotv_theater_container
 gpu_level
 gpu_mem_level
+gpucullskybox
+grabbable
 grabs the object in front of the player. Options: -loose -multiple -toggle
+gradientfogtexture
+graph_def
 graph_names
 graphcanvas_auto_repaint_tick_ms
 graphcanvas_auto_repaints_ticks_when_inactive
@@ -17167,13 +19393,22 @@ graphcontroller_dumpparams
 gravity
 gravity force
 gravity scale
+grenade
+grenade_tracer
+grenade_type
 grep
 grep line for pattern, print out matching lines only
 ground_entity_debug_name
 groundlist
+groundscale
 group ID to affect
 group emission times for new particles
 group id
+groupbyprefab
+groupbyvolume
+groupothergroups
+gustdirchange
+gustduration
 hEntity
 hMover
 hPathMover
@@ -17276,27 +19511,73 @@ hammer_world_trace_pack_rays
 hand
 hand control point number
 handleA
+handle_dummy
+handle_test
+handshake
 haptic hand
+hapticsType
+hardware
 harmonics
 head alpha scale
 head color scale
 head taper scale
 healme
+health
+healthmax
+healthmin
 healthshot_allow_use_at_full
 healthshot_health
 healthshot_healthboost_damage_multiplier
 healthshot_healthboost_speed_multiplier
 healthshot_healthboost_time
+hegrenade_projectile
+height
 height override control point number
+height_tolerance
+heightfog
+heistbomb
+held_weapon_behavior
 help
 hi
 hidden
+hide_debug_complaints
 hideconsole
 hidehud
 hideoverviewmap
 hideradar
 hierarchyJoints
+high_priority
 hingeAxis
+hingefriction
+hint_activator_caption
+hint_allow_nodraw_target
+hint_alphaoption
+hint_auto_start
+hint_binding
+hint_caption
+hint_color
+hint_custom_layoutfile
+hint_display_limit
+hint_forcecaption
+hint_icon_offscreen
+hint_icon_offset
+hint_icon_onscreen
+hint_instance_type
+hint_layoutfiletype
+hint_local_player_only
+hint_name
+hint_nooffscreen
+hint_pulseoption
+hint_range
+hint_replace_key
+hint_shakeoption
+hint_start_sound
+hint_static
+hint_suppress_rest
+hint_target
+hint_timeout
+hint_vr_height_offset
+hint_vr_panel_type
 hinttext_displaytime
 hitSound
 hitbox data
@@ -17304,10 +19585,14 @@ hitbox scale
 hitbox set
 hitbox shell thickness
 hitbox velocity inherited scale
+hl_vr_texture_based_animatable
 hltv memory statistics. Use with "ent 10" (dump entity 10 memory usage) or "top 8" (dump top 8 memory users) or "class" CWorld (dump CWorld class)
+hltvUsable
+holdtime
 hollow
 horizontal texture offset
 horizontal texture scale
+horizontal_align
 host_force_frametime_to_equal_tick_interval
 host_force_max_frametime_to_tick_interval
 host_framerate
@@ -17321,12 +19606,17 @@ host_writeconfig
 host_writeconfig_with_prompt
 hostage_debug
 hostage_drop_time
+hostage_entity
 hostage_is_silent
+hostagecount
 hostfile
 hostip
 hostname
 hostname_in_client_status
 hostport
+hoverposeangles
+hoverposeflags
+hoverposeposition
 how closely you have to point at someone to see them beyond max distance
 how fast to run (1 to use player max run speed).
 how long before a trail grows to its full length
@@ -17350,6 +19640,8 @@ iAttribHook
 iBackPlane
 iCollide
 iGridIntensity
+iMagnitude
+iRadiusOverride
 iUndoLevels
 ic
 icon rendering height
@@ -17368,6 +19660,16 @@ if using high contrast postprocessing, use this weight (weight = 1.0 for charact
 ignore delta time
 ignore normal
 ignore radius
+ignore_depth
+ignore_end_node
+ignore_input
+ignore_parent_orientation
+ignore_parent_rotation
+ignore_rotation
+ignoredClass
+ignoredEntity
+ignoredebris
+ignoreentityname
 ik_constraints_enabled
 ik_debug_all_chains_unique_color_per_chain
 ik_debug_ccd
@@ -17417,6 +19719,7 @@ impacthard
 impactsoft
 import_csgo_config
 import_wizard_spew
+importance
 impulse
 impulse is wind
 impulse magnitude
@@ -17426,6 +19729,8 @@ impulse type
 impulse wave roundness
 impulse wind speed (when wind is true)
 impulse wobble radius
+in1
+in2
 in_button_double_press_window
 in_forcebuttonstate
 in_forceinput
@@ -17433,11 +19738,16 @@ in_spewbuttondelta
 in_spewbuttonhold
 in_spewent
 in_spewinput
+in_tangent_local
 include default contents trace hulls
 include particle radius
 include water
+include_hierarchy
 incrementvar
 index <threshold bytes>: spew changes to ent index, optionally only spewing if update is > than threshold bytes
+indoor_outdoor_level
+inertiafactor
+inferno
 inferno_batched_rays
 inferno_child_spawn_interval_multiplier
 inferno_child_spawn_max_depth
@@ -17471,7 +19781,44 @@ inferno_velocity_factor
 inferno_velocity_factor_ct
 inferno_velocity_normal_factor
 infinite bounds - don't cull
+influence_cone
+influenceradius
 info
+info_bomb_target_hint_A
+info_bomb_target_hint_B
+info_choreo_anchor
+info_constraint_anchor
+info_data
+info_deathmatch_spawn
+info_dynamic_shadow_hint
+info_dynamic_shadow_hint_box
+info_game_event_proxy
+info_hostage_rescue_zone_hint
+info_hostage_spawn
+info_ladder_dismount
+info_landmark
+info_map_parameters
+info_map_preview_particle_system
+info_nav_space
+info_null
+info_offscreen_panorama_texture
+info_particle_system
+info_particle_target
+info_player_counterterrorist
+info_player_deathmatch
+info_player_ping
+info_player_start
+info_player_terrorist
+info_spawngroup_landmark
+info_spawngroup_load_unload
+info_target
+info_target_choreo
+info_target_instructor_hint
+info_target_server_only
+info_teleport_destination
+info_trigger_fan
+info_visibility_box
+info_world_layer
 inherit CP orientation
 inherit from parent
 inherited bone velocity
@@ -17482,8 +19829,16 @@ inheritedVariableValues
 initial color bias
 initial particles
 initial radius
+initial_rotation
+initially_populate_interp_history
+initialoffset
+initialstate
+inmax
+inmin
 inner angle
 inner cone angle
+inner_angle
+inner_radius
 input
 input 1
 input 2
@@ -17529,8 +19884,10 @@ input volume maximum
 input volume maximum in cubic units
 input volume minimum
 input volume minimum in cubic units
+inputOffset
 inputSubmix0
 inputSubmix1
+inputType
 input_button_code_is_scan_code_scd
 input_downimpulsevalue
 input_filter_relative_analog_inputs
@@ -17538,6 +19895,7 @@ input_forceuser
 input_state
 input_upimpulsevalue
 install_dlc_workshoptools_cvar
+instanced_scripted_scene
 instant jump threshold
 instant_replay
 instant_replay_goto_tick
@@ -17551,7 +19909,11 @@ instant_replay_skip_live
 instant_replay_timescale
 instant_replay_togglepause
 intensity
+interact_distance
 interaction type
+interactsAs
+interactsExclude
+interactsWith
 interp entity count\n
 interploation distance tolerance cp
 interpolation
@@ -17573,14 +19935,20 @@ inventory_image_data
 invert abs value
 invert absolute value
 invert input from total particle count
+invertState1
+invertState2
+invertState3
+invert_exclusion
 invnext
 invnextselect
 invprev
 invprevselect
 ip
+is2d
 isActive
 is_gpu_particle_system
 is_gpu_particle_system || m_nTraceSet == PARTICLE_TRACE_SET_STATIC
+is_hltv
 is_pathcorner
 item
 itemKVString
@@ -17588,6 +19956,13 @@ itemName
 itemPos
 itemType
 itemTypeName
+item_assaultsuit
+item_cutters
+item_defuser
+item_generic
+item_generic_trigger_helper
+item_kevlar
+item_sodacan
 iv_debug
 iv_debugbone
 iv_interp
@@ -17596,6 +19971,8 @@ iv_on
 iv_parallel_latch
 iv_parallel_restore
 iv_wrapped_parallel_latch
+joint_friction
+jointfriction
 joy_accel_filter
 joy_accelmax
 joy_accelscale
@@ -17648,6 +20025,8 @@ joy_yawsensitivity
 joystick
 jpeg_quality
 jpeg_screenshot
+justify_horizontal
+justify_vertical
 kBranch
 kDecalBlood
 kDecalCloak
@@ -18189,9 +20568,12 @@ key_findbinding
 key_listboundkeys
 key_updatelayout
 keychain_animation_reactivity
+keychain_module
 keychain_preview_limit_step
 keychain_reactivity
 keychain_wmul
+keyframe_rope
+keyframe_track
 kick
 kickid
 kickid_hltv
@@ -18211,6 +20593,8 @@ labelled_debug_helper_scale
 labelled_debug_helper_show_position
 labelled_debug_helper_show_text
 labelled_debug_helper_skeleton_show_bone_names
+ladderSurfaceProperties
+landmark
 landmarkModelSpace
 last_waypoint_pos
 lastinv
@@ -18218,6 +20602,10 @@ latency CP
 latency CP field
 launch_training_map
 launch_warmup_map
+launchable_dll_1
+layerName
+layout
+layout_file
 lb_allow_shadow_rotation
 lb_barnlight_shadow_use_precomputed_vis
 lb_barnlight_shadowmap_scale
@@ -18289,12 +20677,21 @@ lb_use_illumination_silhouette
 lb_use_illumination_volume
 leaderboards_cache_duration
 legacy_models_supported
+length
 length max
 length min
 length random exponent
+lengthscale
 lerp time
 lerp type
 lerp value
+lerp_distance
+lerp_duration
+lerp_effect
+lerp_restore_movetype
+lerp_sound
+lerp_target
+lerp_target_attachment
 lerpdata_t
 lerptime
 levelName
@@ -18305,6 +20702,7 @@ lfomodvol
 lfomult
 lforate
 lfotype
+life
 lifespan overlap percentage
 lifetime
 lifetime fade end
@@ -18353,20 +20751,65 @@ light style time
 light type
 light0
 light1
+light_barn
+light_class
+light_directional
+light_dynamic
+light_environment
+light_map_uniqueid
+light_name
+light_omni
+light_omni2
+light_ortho
+light_path_uniqueid
+light_probe_atlas_x
+light_probe_atlas_y
+light_probe_atlas_z
+light_probe_size_x
+light_probe_size_y
+light_probe_size_z
+light_radius
+light_rect
+light_spot
+light_style
 lightbinner_precompute
 lightbinner_test_computespheresilhouette
 lightbinner_test_computesumsilhouette
+lightchoice
+lightcookie
 lightfill
 lighting directionality
 lighting mode
 lighting override
+lighting_only_tint_color
 lightness adjust
+lightprobetexture
+lightprobetexture_dli
+lightprobetexture_dls
+lightprobetexture_dlshd
+lightprobetexture_sdf
+lightprobetexture_sh2_dc
+lightprobetexture_sh2_l1
+lightscale
 lightsun
 limit active children to parent particle count
 limit per update
 limit rope impulses to Z
+limittoentity
 linear
+linear_damping_ratio_x
+linear_damping_ratio_y
+linear_damping_ratio_z
+linear_frequency_x
+linear_frequency_y
+linear_frequency_z
+linear_motion_x
+linear_motion_y
+linear_motion_z
 linear_to_gamma
+lineardampingratio
+linearfrequency
+lip
 list
 list current addon info.
 listRecentNPCSpeech
@@ -18374,10 +20817,12 @@ listdemo
 listid
 listip
 listissues
+lit
 lit segment color
 lo
 load
 loadout_slot_t
+loadtime
 lobby_default_privacy_bits2
 lobby_gamesearch_fake
 lobby_stats_fake
@@ -18395,13 +20840,16 @@ local space scale
 local space transform
 localBits
 localSound
+local_temp_entity
 localization_quest_item_string_printout
 locallightscale
 location
+locator_origin_entity
 locator_topdown_style
 lock rotation
 lock rotations to bone orientation
 lockMoveControllerRet
+locked_sound
 locksound_t
 log
 log_color
@@ -18415,19 +20863,60 @@ logaddress_del_http
 logaddress_delall_http
 logaddress_list_http
 logaddress_token_secret
+logic_achievement
+logic_active_autosave
+logic_activityevent
+logic_auto
+logic_autosave
+logic_branch
+logic_branch_listener
+logic_case
+logic_choreographed_scene
+logic_collision_pair
+logic_compare
+logic_distance_autosave
+logic_distance_check
 logic_entity_analyzer_debug
+logic_eventlistener
+logic_game_event
+logic_gameevent_listener
+logic_gamestate_report
+logic_lineto
+logic_measure_movement
+logic_multilight_proxy
+logic_navigation
+logic_npc_counter_aabb
 logic_npc_counter_debug
+logic_npc_counter_obb
+logic_npc_counter_radius
+logic_playerproxy
+logic_playerproxy_base
+logic_proximity
+logic_relay
+logic_scene_list_manager
+logic_script
+logic_timer
+lookatname
+loop
 loop_dump
+loop_forward_sound
+loop_reverse_sound
+loop_sound
+loopmovesound
 low violence definition
 lrucache_flush
 lrucache_reset_stats
 lrucache_set_size
 lrucache_stats
 lservercfgfile
+ltime
 lua_assert_on_error
 lua_is_currently_executing
 lua_report_memory
 lua_shipping_assert_on_error
+luminaire_anisotropy
+luminaire_shape
+luminaire_size
 mTeamDMLastThinkTime
 mTeamDMLastWinningTeamNumber
 m_ActionTimer
@@ -22405,6 +24894,7 @@ m_fMinRad
 m_fMinValue
 m_fMinimumDistance
 m_fMolotovDamageTime
+m_fMoveTo
 m_fNewestAlphaThinkTime
 m_fNextCheckDisableMotionContactsTime
 m_fNextEvent
@@ -25625,6 +28115,7 @@ m_iszGameEventName
 m_iszHintTargetEntity
 m_iszIcon_Offscreen
 m_iszIcon_Onscreen
+m_iszIdle
 m_iszIdleAnim
 m_iszInfoFan
 m_iszInteractsAs
@@ -29707,22 +32198,35 @@ map
 map <mapname> :Load a new map.
 map_enable_portrait_worlds
 map_name
+map_preview_camera_path
+map_preview_camera_path_node
 map_rotation
 map_setbombradius
+map_shared_environment
 map_showbombradius
 map_showspawnpoints
 map_workshop
 mapcyclefile
 mapgroup
+mapname
 mapoverview_allow_client_draw
 mapoverview_icon_scale
 maps
+mapvetopick_controller
 markup_group_ent_bbox
 markup_group_ent_bbox <markup_group name> -> toggle ent_bbox for all members of the named markup group
 markup_group_ent_text
 markup_group_ent_text <markup_group name> -> toggle ent_text for all members of the named markup group
 markup_group_spew
+markup_volume
 markup_volume_ref_cone_angle
+markup_volume_tagged
+markup_volume_tagged_base
+markup_volume_with_ref
+massScale
+masscenteroffset
+massscale
+master
 matCeilingTile
 matCinderBlock
 matComputer
@@ -29803,6 +32307,7 @@ mat_viewportscale
 mat_warn_bad_modes
 mat_wireframe
 matchdraft_debug_sendlog
+material
 material float variables
 material override
 material override enable
@@ -29811,6 +32316,9 @@ material variable
 material variables
 material vector variables
 materials
+math_colorblend
+math_counter
+math_remap
 max
 max # of children to enable (-1 for max particle count)
 max active CP
@@ -29839,8 +32347,32 @@ max repulsion distance
 max repulsion force
 max row/particle index to affect
 max trace length
+maxCount1
+maxCount2
+maxCount3
+maxCountAll
+maxFactor1
+maxFactor2
+maxFactor3
+maxFactorAll
+maxSoundThreshold
+max_active
+max_connection_distance
+max_health
+max_range
+max_rotation
+max_simulation_time
+max_steering_angle
+max_suspension_offset
+max_turn_rate
+max_twist_angle
+max_yaw_rotation
 maxdensity
 maxdensityLerpTo
+maxexposure
+maxfalloff
+maxgust
+maxgustdelay
 maximum
 maximum amount of money allowed in a player's account
 maximum creation distance
@@ -29866,7 +32398,18 @@ maximum velocity
 maximum visual screen size
 maximum visual screen-size
 maximum visual size
+maximumChangePerSecond
+maximumDistanceFromLine
+maximum_value
+maxlogexposure
+maxobjects
+maxpieces
 maxres for custommaterials when rendering icons
+maxs
+maxspeed
+maxweight
+maxwind
+measuretarget
 meleeimpact
 mem_compact
 mem_dump
@@ -29882,8 +32425,13 @@ mesh_calculate_curvature_smooth_invert
 mesh_calculate_curvature_smooth_pass_count
 mesh_calculate_curvature_smooth_weight
 mesh_trace_data_memory_report
+message
+messageattenuation
+messagesound
+messagevolume
 metalness for LPV debug grid
 metalness texture
+method
 mic_listen_while_nonfocused
 mid control point number
 mid point position
@@ -29900,7 +32448,29 @@ min length
 min projection depth
 min repulsion distance
 min row/particle index to affect
+minBlendRate
+minCount1
+minCount2
+minCount3
+minCountAll
+minFactor1
+minFactor2
+minFactor3
+minFactorAll
+minSoundThreshold
+min_detach_distance
+min_rotation
+min_steering_angle
+min_suspension_offset
+min_twist_angle
+min_yaw_rotation
+minexposure
+minfalloff
+mingust
+mingustdelay
+minhealthdmg
 minimap_create
+minimap_name
 minimum
 minimum CPU level
 minimum GPU level
@@ -29924,7 +32494,14 @@ minimum velocity
 minimum visual screen size
 minimum visual screen-size
 minimum visual size
+minimum_value
 minium number of quads per render segment
+minlength
+minlogexposure
+minroughness
+mins
+minwind
+mirror_player
 mks
 mm_csgo_community_search_players_min
 mm_debug_friend_rp
@@ -29995,15 +32572,22 @@ model tint blend type
 modelName
 model_default_preview_sequence_name
 model_dump_convert_info
+model_scale
 modeldoc_fgd_debug_path
 modeldoc_rotate_max
 modeldoc_rotate_power
 modeldoc_rotate_scale
+modellib
 models
 modifiedconvars_t
 modify amount
+molotov_projectile
 molotov_throw_detonate_time
 molotov_usethrow_direction
+momentary_door
+momentary_rot_button
+momentumModifier
+momentumType
 motdfile
 motion vector scale U
 motion vector scale V
@@ -30011,14 +32595,24 @@ motionflags
 motorServices
 motor_path
 motor_velocity
+motordampingratio
+motorfrequency
 mouse_disableinput
 mouse_inverty
+move_rope
+move_to_gait
 move_type
+moveable
+movedir
 movement_id
 movement_setting_id
 movement_stats_debug_draw
 movement_stats_force_calculate
+movementsound
+mover_index
+movewithoutpushingblockers
 movie_fixwave
+moving_entity
 mp_afterroundmoney
 mp_allowspectators
 mp_anyone_can_pickup_c4
@@ -30269,13 +32863,17 @@ mp_weapons_max_gun_purchases_per_weapon_per_match
 mp_weaponstay
 mp_win_panel_display_time
 mp_winlimit
+multiWall
 multi_float( 4 )
 multi_float(2)
 multi_int( 4 )
 multi_int(2)
 multigpu_skip_semaphores
 multigpu_skip_transfers
+multimeter
+multisource
 multvar
+mute_impact_effects
 muzzle_flash_debug
 nBegin
 nBeginDynamic
@@ -30364,6 +32962,9 @@ name
 name == ""
 nameA
 names
+nametag_module
+navProperty_NavAttributes
+navProperty_NavAttributesGame
 nav_add_to_selected_set
 nav_add_to_selected_set_by_id
 nav_approach_points_area_size_threshold
@@ -30672,6 +33273,7 @@ nav_unmark
 nav_validate
 nav_volume_debug
 navigator
+navprop
 navproperties_t
 navspace_create_water_smooth_connections
 navspace_create_water_surface_connections
@@ -30683,6 +33285,7 @@ navspace_debug_transition_calc
 navspace_draw_changes_blocks
 navspace_draw_changes_waters
 navspace_path_use_water_level_locator
+nearz
 needsprocessing
 neighbor distance
 net_DebugOverlay
@@ -30750,16 +33353,27 @@ net_spewcounts
 net_spewserializer
 net_stats_json
 net_status
+net_test_basecombatcharacter
 net_use_packet_compression
 net_validatemessages
 net_why_field_excluded
+newtarget
 nextShake
 nextdemo
 nextlevel
 nextmap_print_enabled
 nextmode
+nextthink
+no_freeze
+no_interrupts
+no_ramp
+no_save
+no_teleport_at_end
 noclip
 noclip_fixup
+nodamageforces
+node_id
+nodmgforce
 noise amount 0
 noise amount 1
 noise amount 2
@@ -30772,8 +33386,11 @@ noise scale 1
 noise scale 2
 noise scale 3
 noise type
+noise1
+noise2
 noise_stream
 non-uniform scaling
+nonavmeshblocker
 none, normal, wingman, rush, or auto (implies normal if mp_halftime is set, none otherwise)
 normal
 normal map offset along path
@@ -30788,6 +33405,13 @@ normalize output
 normalize output 0/1
 normalize result
 notarget
+notifyforce_x
+notifyforce_y
+notifyforce_z
+notifyforcemintime_x
+notifyforcemintime_y
+notifyforcemintime_z
+notsolid
 npc_position
 npc_record_skeleton_snapshot
 npc_record_snapshot_data
@@ -30816,7 +33440,17 @@ num to emit
 number of previous rounds that a team needs to have been shorthanded before they are eligible for the short-handed bonus
 number of steps to push candidate plane behind depths.
 object local space axis 0/1
+object_culling
+observable
+observable_element
+observable_entmodel
+observable_entmodel2
+observable_entname
+observer
 occlusionFactor
+occlusionMax
+occlusionMin
+occlusionRadius
 odds
 offset
 offset amount
@@ -30840,6 +33474,8 @@ offset propotional to radius
 offset rate
 offset rotation
 offset start point amount
+offset_from_path
+okifnomodel
 only active within input range
 only active within specified difference
 only active within specified distance
@@ -30850,9 +33486,15 @@ only set distance once
 only set orientation once
 only set position once
 only write where stencil is NOT stencil test ID
+only_render_to_texture
+onnpcdeath
+onplayerdeath
+opaque
 open_asset
 open_current_map_in_hammer
 open_current_map_pulse_in_tool
+opendir
+opennessExponent
 opens the current map in hammer.
 operator enabled in tools or game only
 operator end cap state
@@ -30869,23 +33511,42 @@ operator help and notes
 operator start fadein
 operator start fadeout
 operator strength
+operatorName
+operatorname
 optimize layers for decals on translucent geo, avoid one resolve and some fullscreen passes
 option_duck_method
 option_speed_method
 opus_decode_test_signal
 opus_encode_test_signal
 opus_unittest_test_signal
+opvarArrayIndex
+opvarIndex
+opvarName
+opvarUseAutoCompare
+opvarValue
+opvarValueString
+opvarValueType
+opvarname
 orbit_distance
+ordinal
 orient model z to normal
 orient to normal
+orient_towards
+orientation
 orientation control point
 orientation set method
 orientation style
 orientation type
 orientation vector
+orientation_face_entity
+orientation_match_entity
 orientation_type
+orientation_update
+orientationtype
 origin
 originParentSpace
+original_controller
+orphan_children_on_remove
 oscType
 oscillation field
 oscillation frequency
@@ -30896,8 +33557,12 @@ oscillation rate
 oscillation rate max
 oscillation rate min
 oscillation start phase
+out1
+out2
+out_tangent_local
 outer angle
 outer cone angle
+outer_angle
 outline alpha
 outline color
 outline end 0
@@ -30936,10 +33601,20 @@ output starting control point field 0-2 X/Y/Z
 output starting control point number
 output value at max distance
 output value at min distance
+outputEntity
+outputEntity2
+outputEntity3
+outputEntity4
 outputSubmix
+outputType
 overall size multiplier (-1 count based distribution)
 overbright factor
 override translucent materials
+overrideBlockLOS
+override_anticipation_name
+owner
+owner_context
+ownername
 p2p_FightingGame_Connection
 p2p_FightingGame_GameData
 p2p_Ping
@@ -30953,6 +33628,10 @@ pItem
 pSamples
 pVelocityZones
 pWorldObject
+panel_class_name
+panel_dpi
+panel_id
+panel_type
 panorama_2d_translate_no_comp_layer
 panorama_alignment_fixes
 panorama_allow_texture_composition_layer_fast_path
@@ -31063,8 +33742,11 @@ panorama_worldpanel_update_culling
 parallel_perform_invalidate_physics
 parallel_update_surrounding_bounds_in_spatial_partition_update
 paramName
+param_template%02d
+parameterName
 parent particle radius scale
 parentIndex
+parentattachment
 particle density
 particle feathering alpha filter
 particle feathering closest distance to surface
@@ -31091,6 +33773,7 @@ particle_profile_filter
 particle_profile_spike
 particle_reset_assertions
 particle_snapshot_allow_combined_models
+particle_spacing
 particle_stop_all
 particle_stop_specified
 particle_stop_unspecified
@@ -31114,16 +33797,44 @@ partybrowser_timeout
 password
 path
 path points
+pathCornerEntity
+pathCornerEntityName
+pathNodes
 path_closest_point_debug
+path_corner
+path_corner_crash
+path_end_distance_from_goal
+path_index
+path_mover
 path_mover_enable_high_resolution_debug_rendering
+path_mover_entity_spawner
 path_mover_entity_spawner_debug
+path_mover_name
+path_mover_router_name
+path_mover_spawner_name
+path_name
+path_node
+path_node_end
 path_node_evaluation_debug
+path_node_mover
+path_node_start
+path_node_start_name
+path_parameter_string
+path_particle_rope
+path_particle_rope_clientside
 path_queries_speculative
 path_query
+path_rebuild_strategy
+path_simple
+path_simple_push_dir
+path_track
+path_uniqueid
+path_with_dynamic_nodes
 pause
 pawn_mimic_all
 peak strength
 peak strength field override
+pendingteamnumber
 per particle scale
 per particle spatial offset
 per particle world collision tests
@@ -31148,11 +33859,15 @@ pet_named_value_cache_debug
 pet_preview_gravity
 pet_preview_underwater
 pet_preview_wind
+petpopulation
 phonemedelay
 phonemefilter
 phonemesnap
 phys_agg_world_compounds
+phys_ballsocket
 phys_batch_ray_test
+phys_constraint
+phys_constraint_base
 phys_continuous_kinematic_update
 phys_create_test_character_proxy
 phys_cull_internal_mesh_contacts
@@ -31162,46 +33877,67 @@ phys_dump_main_world
 phys_dump_memory
 phys_dynamic_scaling
 phys_expensive_shape_threshold
+phys_force
 phys_force_controller_debug
+phys_genericconstraint
 phys_get_model_materials
 phys_headshotscale
 phys_highlight_expensive_objects
 phys_highlight_expensive_objects_strength
+phys_hinge
+phys_hinge_local
 phys_impactforcescale
 phys_joint_teleport
+phys_keepupright
 phys_length_damping_ratio
 phys_length_frequency
+phys_lengthconstraint
 phys_list
 phys_log_updaters
 phys_log_updaters_exclude
 phys_log_updaters_include
+phys_magnet
 phys_min_motion_controller_count_to_run_in_job
+phys_motor
 phys_multithreading_enabled
 phys_playerscale
 phys_powered_ragdoll_debug
+phys_pulleyconstraint
 phys_pushscale
+phys_ragdollconstraint
+phys_ragdollmagnet
 phys_set_model_materials
 phys_shoot
 phys_shoot_angular_speed
 phys_shoot_speed
 phys_show_stats
 phys_sleep
+phys_slideconstraint
+phys_splineconstraint
+phys_spring
+phys_start_asleep
 phys_step_threaded
 phys_stressbodyweights
 phys_threaded_cloth_bone_update
 phys_threaded_kinematic_bone_update
 phys_threaded_transform_update
+phys_thruster
 phys_timescale
+phys_torque
 phys_upimpactforcescale
 phys_use_block_solver
 phys_vehicleimpactforcescale
 phys_visualize_awake_dynamic_only
 phys_visualize_awake_unattached_only
 phys_wakeup
+phys_wheelconstraint
+physdamagescale
 physics
 physics_add_test
 physics_debug_entity
+physics_entity_solver
 physics_highlight_active
+physics_prop_ragdoll
 physics_remove_test
 physics_report_active
 physics_save_sphere_t
@@ -31210,6 +33946,11 @@ pickover B parameter
 pickover C parameter
 pickover D parameter
 pickup_check_period
+pickup_filter_name
+pickup_particles
+pickup_radius_override
+pickup_script_func
+pickup_sound
 pin break type
 pitch
 pitch field
@@ -31220,30 +33961,45 @@ pitchfrac
 pitchrun
 pitchstart
 pixelvis_debug
+place_anchors_at_constraint_transform
+place_name
 plane cache retest rate
 plane normal
 plane point
 plant_bomb
+planted_c4
+plat_trigger
+platform_type
 play
 play end cap effect
 play endcap when children are removed
 play when emission ends
 playcast
 playdemo
+player
 player0_using_joystick
 player_botdifflast_s
 player_competitive_maplist_2v2_10_0_D684D4E1
 player_competitive_maplist_8_10_0_A062AC6A
+player_controller
 player_debug_off_nav
 player_debug_print_damage
+player_fire_only
+player_loadsaved
 player_nevershow_communityservermessage
+player_pawn_base
 player_ping
 player_ping_token_cooldown
+player_spray_decal
 player_survival_list_10_0_303
 player_teamplayedlast
 player_use_radius
 player_wargames_list2_10_0_0
+playerfogdistancemultiplier
+playerfogmaxdensitymultiplier
+playername
 playerradio commands may only use responses from an allow list of commands.
+playervisibilitystrength
 playsound
 playsound <soundname>
 playsoundscape
@@ -31253,8 +34009,48 @@ plug1
 png_screenshot
 point list
 point offset
+point1
+point_anglesensor
+point_angularvelocitysensor
+point_broadcastclientcommand
+point_camera
+point_camera_vertical_fov
+point_childmodifier
+point_clientcommand
+point_clientui_dialog
+point_clientui_hud
+point_clientui_world_panel
+point_clientui_world_text_panel
+point_commentary_node
+point_commentary_viewpoint
+point_deathcam_bounds
+point_enable_motion_fixup
+point_entity
+point_entity_finder
+point_gamestats_counter
+point_give_ammo
+point_hurt
+point_instructor_event
+point_message
+point_nav_walkable
+point_offscreen_indicator_ui
+point_orient
+point_prefab
+point_proximity_sensor
+point_pulse
+point_push
+point_script
+point_servercommand
+point_soundevent
+point_teleport
+point_template
+point_value_remapper
+point_velocitysensor
+point_worldtext
+points
 pop_var_values
 population_distribution_debug
+portrait_world_callback_handler
 pose_sequence
 position
 position cache attribute
@@ -31263,8 +34059,40 @@ position of target point.
 position of up point.
 position t value
 position to get
+position%d
+position2
+post_processing_volume
+postcommands
+postprocessing
 pre-simulation time
+pre_sim_time
 precision for depth compression at SST leaf nodes.
+precommands
+precomputedboundsmaxs
+precomputedboundsmins
+precomputedfieldsvalid
+precomputedobbangles
+precomputedobbangles0
+precomputedobbangles1
+precomputedobbangles2
+precomputedobbangles3
+precomputedobbangles4
+precomputedobbangles5
+precomputedobbextent
+precomputedobbextent0
+precomputedobbextent1
+precomputedobbextent2
+precomputedobbextent3
+precomputedobbextent4
+precomputedobbextent5
+precomputedobborigin
+precomputedobborigin0
+precomputedobborigin1
+precomputedobborigin2
+precomputedobborigin3
+precomputedobborigin4
+precomputedobborigin5
+precomputedsubfrusta
 pred_cloth_pos_max
 pred_cloth_pos_multiplier
 pred_cloth_pos_strength
@@ -31274,14 +34102,21 @@ pred_cloth_rot_multiplier
 pred_cloth_smooth_motion
 pred_cloth_vmax
 pred_cloth_vw
+prefab_associated_relay
+prefab_load_dynamic
+preferred_direction
+preferredcarryangles
 prepare for rigid lock
 prepend controller playerslot to names for debugging
+prepopulate_on_spawn
 preserve initial Z-offset relative to cp
 preset
 presets
 presettle_cloth_iterations
 prev position
 prevent spawning in exclusion volumes
+prevent_movement
+prevent_update_yaw_on_finish
 previous position sacale
 previous position scale
 print all response symbols to the console
@@ -31302,9 +34137,17 @@ progress_enable
 project on characters
 project on water
 project on world
+projectoncharacters
+projectonwater
+projectonworld
 prop_debug
 prop_debug_collision
+prop_door_rotating
+prop_door_rotating_base
+prop_dynamic
 prop_dynamic_create
+prop_dynamic_ornament
+prop_dynamic_override
 prop_nav_ignore_edge_len
 prop_nav_ignore_mass
 prop_nav_obstacle_avoid_mass
@@ -31315,7 +34158,15 @@ prop_nav_obstacle_block_edge_min_c
 prop_nav_obstacle_block_mass_a
 prop_nav_obstacle_block_mass_b
 prop_nav_obstacle_block_mass_c
+prop_physics
 prop_physics_create
+prop_physics_multiplayer
+prop_physics_override
+prop_physics_respawnable
+prop_ragdoll
+prop_ragdoll_attached
+propdata
+propdata_override
 proped_attr_logging
 proped_debug_margin
 proped_debug_splitter
@@ -31337,6 +34188,7 @@ pulse_cursor_infinite_loop_detection_threshold
 pulse_debug_entity
 pulse_debug_print
 pulse_fgd_debug_path
+pulse_game_blackboard
 pulse_list_game_blackboards
 pulse_list_graphs
 pulse_model_sequence_name
@@ -31344,10 +34196,15 @@ pulse_open_graph_id
 pulse_print_graph_execution_history
 pulse_save_execution_history
 pulse_save_execution_history_limit
+punchangle
+puntsound
 push_var_values
+pushdir
 pushoff
+pushscale
 pvs_debugentity
 pvs_flowtype
+pvs_modify_entity
 pwatchent
 pwatchvar
 qAdjust
@@ -31836,6 +34693,7 @@ r_world_wind_frequency_trees
 r_world_wind_offset_speed
 r_world_wind_smooth_time
 r_world_wind_strength
+radar_element
 radarvisdistance
 radarvismaxdot
 radarvismethod
@@ -31890,6 +34748,7 @@ ragdoll_visualize_creation_skeleton
 ragdoll_vphysics_scale
 ragdollelement_t
 ragdollhierarchyjoint_t
+raintracetoskyenabled
 ramp field
 ramp rate
 ramp rate max
@@ -31903,10 +34762,13 @@ random seed
 random speed max
 random speed min
 randomize
+randomizecycle
 randomly flip direction
 randomly select sequential CP pairs between start and end points
+range
 rangefinder
 rangefinder2d
+ratchetType
 rate
 rate scale
 ray trace environment cp
@@ -31926,9 +34788,11 @@ recast_partitioning
 record
 redirectend
 redirectstart
+ref_position
 reference CP 1
 reference CP 2
 reference replacement definition
+referencename
 refract amount
 refract background
 refract blur radius
@@ -31945,10 +34809,13 @@ remap bias
 remap time
 remap time proportional
 remap values for names
+remapLineEnd
+remapLineStart
 remote console password.
 remove children when particle count lowers
 remove test object
 remove unused resolve
+remove_on_completion
 remove_weapon
 removeid
 removeip
@@ -31958,7 +34825,20 @@ render filter
 render particles 100 times and show perf
 render radius
 render specular
+renderWithViewModels
+render_attr_name
+render_backface
+render_depth_map
+render_shadows
+renderamt
+rendercolor
+rendercolor32
+renderfx
+rendermode
+rendertocubemaps
+reorient_mode
 repeat_last_console_command
+repeatable
 replant_bomb
 replay_death
 replay_debug
@@ -31972,11 +34852,16 @@ report_simthinklist
 report_soundpatch
 reports client-side sound patch count
 reports sound patch count
+requiresUseKey
 resend broadcast data to broadcast relay
+reserving
 reset animation frame on stop
 reset rate
 reset_gameconvars
 reset_voice_on_input_stallout
+resolution
+resolution_x
+resolution_y
 resonant
 resource_leaks
 resource_leaks <resource_name>: Show resource leaks for the named resource
@@ -32001,6 +34886,14 @@ retake_barrier_point
 retake_barrier_spawn
 retest rate
 return_to_tools_from_engine
+returndelay
+returnspeed
+reversalsoundLarge
+reversalsoundMedium
+reversalsoundSmall
+reversalsoundthresholdLarge
+reversalsoundthresholdMedium
+reversalsoundthresholdSmall
 reverse order
 reverse point order
 reverse warp (0/1)
@@ -32012,7 +34905,9 @@ rigid set rotation from bones
 rising edge event type
 rising edge value
 roll
+roll_scale
 rolling
+root
 rope shake
 rope_averagelight
 rope_collide
@@ -32026,6 +34921,7 @@ rope_subdiv
 rope_wind_dist
 rotate normals
 rotate rate(dps)
+rotate_type
 rotation
 rotation axis
 rotation axis max
@@ -32041,9 +34937,13 @@ rotation rate max
 rotation rate min
 rotation roll scale
 rotation speed
+rotation_distance
+rotator_target
+rotator_target_entity
 roughness for LPV debug grid
 roughness texture
 roundness factor
+route_to_all_movers
 rr_debugclassname
 rr_debugresponseconcept
 rr_debugresponses
@@ -32064,9 +34964,13 @@ rtx_force_default_hitgroup
 rtx_perf_stats
 rtx_show_bounce
 rtx_texture_resolution
+rule_entity
+rule_point_entity
 run in a square, # represents how many usercommands to run before turning.
 run_perftest
 run_voicecontainer_async
+rush_intro_counterterrorist
+rush_intro_terrorist
 sLockedSound
 sName
 sParamName
@@ -32091,10 +34995,12 @@ sample local gravity
 sample position
 sample water current
 sample wind
+sample_spacing
 saturation adjust
 save
 save current meta file demo_<version>.meta file for use in demo upconversion.
 save offset
+saveAndRestore
 save_async
 save_clear_subdirectory
 save_debug_snapshots
@@ -32260,7 +35166,9 @@ scale size multiplier from CP
 scale value to map attribute to texture coordinate
 scale velocity
 scattering
+scene%d
 scene_clientflex
+scene_owner
 scene_playvcd
 scene_print
 scene_vcdautosave
@@ -32284,6 +35192,7 @@ screen edge alignment distance
 screen size to fade away
 screen size to start fading
 screen space effect
+screen_fade
 screenfade_t
 screenmessage_notifytime
 screenmessage_show
@@ -32305,6 +35214,7 @@ script_dump_all
 script_find
 script_help
 script_help2
+script_nav_blocker
 script_reload
 script_reload_code
 script_reload_entity_code
@@ -32318,6 +35228,13 @@ script_trace_disable_key
 script_trace_enable
 script_trace_enable_all
 script_trace_enable_key
+script_trigger_hurt
+script_trigger_multiple
+script_trigger_once
+script_trigger_push
+scripted_item_drop
+scripted_scene
+scripted_sequence
 scripts/detail_prop_types.vdata
 scripts/explosion_types.vdata
 scripts/nm_contact_audio_actions.vdata
@@ -32334,6 +35251,7 @@ second input control point
 second vector
 self illum amount
 self illum texture
+selfillumscale
 sellbackall
 send message to remote client console when tests change.
 send_round_backup_file_list
@@ -32348,6 +35266,7 @@ sequence min
 sequence number
 sequence number 1
 sequence override
+sequence_for_scene
 server_game_time
 server_snd_cast
 server_snd_pos
@@ -32374,15 +35293,19 @@ set radius
 set rope segment id
 set to trace endpoint if no collision
 set value method
+setToValueOnDisable
 set_server_cvar
+setalphascale
 setang
 setang_exact
+setcolortint
 setinfo
 setmodel
 setpause
 setpos
 setpos_exact
 setpos_player
+setscale
 sfm_bone_display_center_color
 sfm_bone_display_highlight_color
 sfm_bone_display_left_color
@@ -32408,11 +35331,16 @@ sfm_render_half_float
 sfm_show_ao_proxies
 sfm_sound_event_picker_delay
 sfm_vis_mode
+shadowfade_size_end
+shadowfade_size_start
+shadowmapsize
+shadowpriority
 shake
 shake duration after end
 shake_show
 shake_stop
 shake_testpunch
+shape
 shape restoration time
 shard_model_desc_t
 shatterglass_break
@@ -32421,10 +35349,14 @@ shatterglass_cleanup_max
 shatterglass_debug
 shatterglass_hit_tolerance
 shatterglass_restore
+shatterglass_shard
 shatterglass_shard_lifetime
+shear
 sheet animation time scale
 sheet_file_preview
 should bots ignore their prefered weapons and just buy weapons at random?
+should_leave_corpse
+shoulderExponent
 show NPC's current conditions
 show abs bounding box overlay
 show attachment points
@@ -32463,15 +35395,19 @@ show_untrusted_warning_again
 show_visibility_boxes
 showconsole
 showents
+showlight
 showtriggers
 showtriggers_toggle
 shuffle
 silence_dsp
 simulated on the GPU
 simulation timescale
+simulationMode
+size
 size at which to fade away
 size at which to start fading
 size cull scale
+size_params
 sk_autoaim_mode
 sk_player_arm
 sk_player_chest
@@ -32487,12 +35423,28 @@ skeleton_instance_smear_boneflags
 skeleton_physics_joint_fixup
 skidstop
 skill
+skin
 skin number
+skirt
+skirt_near
 sky3dparams_t
+sky_camera
+sky_camera_volume
 sky_camera_volume_debug
+sky_camera_volume_target
+sky_lightingonly_name
+sky_material
 skyboxFogFactor
 skyboxFogFactorLerpTo
+skybox_receives_world_csm
+skybox_reference
+skyname
 slack
+slavename
+slideaxis
+slidefriction
+slidesoundback
+slidesoundfwd
 slope_drop_enable
 slope_drop_max_offset
 slope_drop_off_ground_blend_speed
@@ -32524,10 +35476,16 @@ smoke_param4
 smoke_param5
 smoke_use_noise_texture
 smoke_volume_lod_ratio_change
+smokegrenade_projectile
+smoothHalfLife
+smooth_arrival
 smoothstairs
+snapValue
+snapobjectpositions
 snapshot control point for count
 snapshot control point number
 snapshot subset
+snapshot_file
 snapto
 snd__beatpattern_stop_track
 snd_async_flush
@@ -32581,13 +35539,23 @@ snd_eq_competitive
 snd_eq_deathmatch
 snd_eq_spectator
 snd_eq_warmup
+snd_event_alignedbox
+snd_event_box_helper
 snd_event_browser_default_stack
 snd_event_browser_default_vsnd_field
 snd_event_browser_focus_events
+snd_event_cone
 snd_event_cone_debug
+snd_event_multipoint
 snd_event_oriented_box_debug
+snd_event_oriented_boxes
 snd_event_oriented_lerp_max_distance
 snd_event_oriented_lerp_min_distance
+snd_event_orientedbox
+snd_event_param
+snd_event_path_corner
+snd_event_point
+snd_event_sphere
 snd_filter
 snd_foliage_db_loss
 snd_front_headphone_position
@@ -32657,13 +35625,23 @@ snd_occlusion_rays
 snd_occlusion_report
 snd_occlusion_visualize
 snd_op_test_convar
+snd_opvar_set
+snd_opvar_set_aabb
+snd_opvar_set_auto_room
+snd_opvar_set_box_base
+snd_opvar_set_dome
 snd_opvar_set_dome_catchup_distance
 snd_opvar_set_dome_catchup_rate
 snd_opvar_set_dome_churn_fraction
 snd_opvar_set_dome_cluster_steps_per_think
+snd_opvar_set_obb
+snd_opvar_set_path_corner
+snd_opvar_set_point
+snd_opvar_set_point_base
 snd_opvar_set_point_debug
 snd_opvar_set_point_update_interval
 snd_opvar_set_point_update_interval_fast
+snd_opvar_set_wind_obb
 snd_print_current_mixer_mixgroup
 snd_print_samplers
 snd_print_soundevent
@@ -32791,6 +35769,9 @@ snd_sos_sv_test_gender
 snd_sos_test_soundmessage
 snd_sos_tools_detailed_debugging
 snd_sos_unpause_soundevent
+snd_sound_area_base
+snd_sound_area_obb
+snd_sound_area_sphere
 snd_sound_areas_debug
 snd_sound_areas_debug_interval
 snd_soundevent_clear_deferred
@@ -32803,7 +35784,11 @@ snd_soundmixer_set_trigger_factor
 snd_soundmixer_setmixlayer_amount
 snd_soundmixer_update_maximum_frame_rate
 snd_soundmixer_version
+snd_soundscape
+snd_soundscape_proxy
+snd_soundscape_triggerable
 snd_spatialize_lerp
+snd_stack_save
 snd_steamaudio_active_hrtf
 snd_steamaudio_ambisonics_correction_type
 snd_steamaudio_baked_data_stats
@@ -32915,8 +35900,12 @@ snd_vol_spectator
 snd_vol_warmup
 sndopvarlatchdata_t
 sndplaydelay
+soft_x
+soft_y
 softcontactdampingratio
 softcontactfrequency
+solid
+solidbsp
 sort by rope segment id
 sort override position CP
 sort particles (DEPRECATED - USE RENDERER OPTION)
@@ -32928,15 +35917,31 @@ sound control point number
 sound field name
 sound operator name
 sound stack name
+soundAreaType
+soundDisengage
+soundEngage
 soundEventHash
+soundMovingLoop
+soundName
+soundReachedValueOne
+soundReachedValueZero
 sound_channel
 sound_device_override
+sound_for_scene
+soundcloseoverride
 soundcommands_t
+soundevent
+soundeventCountMax
 soundevent_check_networked_entity
 soundinfo
+soundjiggleoverride
+soundlatchoverride
 soundlevel_t
 soundlist
+soundmoveoverride
+soundopenoverride
 soundpatch_captionlength
+soundscape
 soundscapeEntityListIndex
 soundscapeIndex
 soundscape_debug
@@ -32946,14 +35951,20 @@ soundscape_flush
 soundscape_message
 soundscape_radius_debug
 soundscape_update_include_bots
+soundsetlockedoverride
+soundsetunlockedoverride
 soundsystem_device_used
 soundsystem_update_async
 soundsysteminfo
+source
 source CP
 source Control Point in World
 source alpha value to map to alpha of 1
 source alpha value to map to alpha of zero
+sourceEntityAttachment
+sourceEntityName
 space points along path
+spark_shower
 sparseshadowtree_cascade_mask
 sparseshadowtree_copy_to_shadow_atlas_ps
 sparseshadowtree_cs_debug_colors
@@ -32985,8 +35996,19 @@ spatial noise coordinate scale
 spawn client glass shards asynchronously during demos or when remotely connected.
 spawnBrokenGlass
 spawnCashStack
+spawnGroupType
+spawn_frequency_dist_to_nearest
+spawn_frequency_seconds
+spawn_particles
+spawn_script_func
+spawn_sound
+spawnflags
 spawngroup_ignore_timeouts
+spawnobject
+spawnpoint
+spawnpos
 speaker_config
+speakers
 spec_autodirector
 spec_autodirector_cameraman
 spec_centerchasecam
@@ -33038,6 +36060,9 @@ spec_track
 spec_usenumberkeys_nobinds
 specific sim id
 specular warp texture
+specularcolor
+specularindependence
+specularpower
 speed
 speed in local coordinate system max
 speed in local coordinate system min
@@ -33052,21 +36077,31 @@ spin rate degrees
 spin rate min
 spin stop time
 spin strength
+spin_axis_friction
 spindown
 spindownsav
 spinup
 spinupsav
+spline_push_type
+split_nav_space
 splitscreen_mode
 splitscreen_testreadconfigconflict
 spotlight FoV
 spotlight distance
 spotlight distance falloff
+spotlight_end
+spotlight_radius
+spraydir
+springaxis
 srgb_to_xyz
 ss_add
 ss_mimic
 ss_remove
 ss_teleport
 ss_voice_hearpartner
+stackName
+stackToSave
+stackname
 start
 start age maximum
 start age minimum
@@ -33093,13 +36128,37 @@ start time min
 start value
 start value for soft edges for distance alpha
 start/end proportional
+startDisabled
 startLerpTo
+startOnSpawn
+start_active
+start_disabled
+start_enabled
+start_forward_sound
+start_on_spawn
 start_rec_mic
+start_reverse_sound
+start_sound
+start_touch_event
+startclosesound
 startdemos
+startdisabled
 starting control point
 starting force
 startmovie
+starts_at_closest_point
+starts_at_end
+starts_following_closest_mover
+starts_following_closest_mover_strategy
+starts_following_closest_mover_when_outside_distance
+starts_following_closest_mover_when_within_distance
+starts_in_reverse
+starts_moving
+starts_rotating
+startsound
+startspeed
 starttime
+startvalue
 state
 staticImpactVolume
 stats
@@ -33108,21 +36167,28 @@ stats_display
 stats_highlight_interval
 stats_print
 stats_print_gpu
+stattrak_module
 status
 status_json
 steam_controller_haptics
 steamaudio_customdata_dimensions_numrays
+steamid
 steamvrevent_quit
 steamworks_sessionid_client
 steamworks_sessionid_server
+steering_axis_friction
 stencil test ID
 stencil write ID
 stick instead of cull
 sticky_tooltips
 stop
 stop hltv replay
+stopOnNew
+stop_forward_sound
 stop_rec_mic
 stop_rec_mic_all
+stop_reverse_sound
+stop_sound
 stopdemos
 stopsound
 stopsoundscape
@@ -33143,21 +36209,31 @@ strength
 strength field
 strength field override
 string
+stringtables
+style
 sub frame interpolation
 sub-pixel AA scale
 sub-sample parent particles
 subclass_change
 subclass_create
+subclass_id
+subclass_name
 subgraphFile
 subgraphName
 subgraphs
 submodel field
+support_multiple_entities_with_same_name
 suppress stop event
 suppress tinting of the model
+suppress_anim_event_sounds
 surf_speed_slow
 surfacePropertyName
 surface_properties
+surface_type
 surfaceprop
+suspension_damping_ratio
+suspension_frequency
+suspension_height_offset
 suspicious_hit_odds_threshold
 suspicious_hit_player_radius
 suspicious_hit_strategy
@@ -33669,12 +36745,16 @@ svc_UserMessage
 svc_VoiceData
 svc_VoiceInit
 svc_dummy
+sweetSpotAngle
+swing_limit
 switchhands
 switchhandsleft
 switchhandsright
+sync_group
 sys_info
 sys_minidumpexpandedspew
 sys_minidumpspewlines
+systemloadscale
 szResolutionGate
 t
 tactic_interrupt_conditions
@@ -33683,22 +36763,59 @@ tail alpha scale
 tail color scale
 tail taper scale
 take min of lb_dynamic_shadow_resolution and barnlight shadowmapsize as base shadowmapsize
+tanktrain_ai
+tanktrain_aitarget
 target
 target layer ID for rendering
 target position
+target1
+target2
+target3
+target4
+target5
+target6
+target7
+target8
+targetMapName
 targetNodes
+target_area_search_radius
+target_attachment
 target_nudge
 target_scan_use_query_cache
+targetentityname
+targetpoint
+targets
 te
 team
+teamToBlock
+team_filter
+team_intro_counterterrorist
+team_intro_terrorist
+team_manager
+team_preview_camera
+team_preview_character_position
+team_previewmodel
+team_select_camera
+team_select_counterterrorist
+team_select_terrorist
 teammenu
+teamname
+teamnumber
 telemetry_message
 telemetry_toggle_timespan
+teleport_origin
+teleport_parented_entities
 teleport_trigger_debug
+teleport_use_current_angle
+teleportfollowdistance
 tempent_renderamt
 temperature
+template_selection_strategy
 temporary cvar to control new GPU optimzations (depth resolves, etc)
 tentOffset
+terrorist_rush_intro_camera
+terrorist_team_intro_camera
+terrorist_wingman_intro_camera
 tesselation resolution scale factor
 tessellation scale factor
 test
@@ -33706,9 +36823,13 @@ test direction
 test position offset
 test-list entities
 test_dispatcheffect
+test_effect
 test_entity_blocker
+test_io_combinations
 test_list_entities
+test_occlusion
 test_shipping_assert
+test_visible_occlusion
 test_voice_container_nesting
 test_voice_containers
 test_vqlayout
@@ -33720,9 +36841,12 @@ texture repetition mode
 texture repetitions
 texture repetitions around cable
 texture rotation / animation rate scale
+texture_based_animation_position_keys
+texture_based_animation_rotation_keys
 the degree to which you can point away from a target, and still see them on radar.
 thickness
 think_limit
+thinkalways
 thinkfunc_t
 third control point location
 third control point number
@@ -33730,12 +36854,14 @@ thirdperson
 thirdperson_mayamode
 thirdpersonshoulder
 thread_pool_option
+threshold
 throttle_expensive_ai
 throw HEgrenade with parmas.
 throw decoy grenade with parmas.
 throw flash grenade with parmas.
 throw molotov grenade with parmas.
 throw smoke grenade with parmas.
+tilttime
 time coordinate offset
 time noise coordinate scale
 time to end transition
@@ -33743,12 +36869,21 @@ time to freeze mouse/pointer motion after a mouse button press
 time to sleep when not drawn
 time to start transition
 time-of-day parameter
+time_to_blend_to_new_orientation
+time_to_complete_rotation
+time_to_reach_max_speed
+time_to_reach_zero_speed
 timedemo
 timedemo_end
 timedemo_start
 timedemoquit
 timeleft
+timeout
+timeoutInterval
 timeout_ct_start
+timeout_particles
+timeout_script_func
+timeout_sound
 timeout_terrorist_start
 tint blend (color vs prop group gradient)
 tint blend mode
@@ -33757,7 +36892,13 @@ tint clamp min
 tint control point
 tint perc
 tint update movement threshold
+tint_color
+tint_controller
+tint_cp
+tint_cp_color
+title
 tmFrame2
+toLocalPlayer
 toast_manager_override_duration
 toggle
 toggleRdrOpt
@@ -33765,6 +36906,7 @@ toggleconsole
 toggleradarscale
 toggles whether the server allows spectator mode or not
 token\nSet game server account token to use for logging in to a persistent game server account
+tolerance
 tool_request
 tool_spawned_model_scales
 toolhud_enable
@@ -33781,13 +36923,20 @@ tools_renderscenes
 tools_stall_monitor_break_on_unknown_cause
 toolscene_gizmo_algorithm
 toolscenelightrigs.vdata
+toptrack
 torqueLimit
+torquelimit
+torquelimit_x
+torquelimit_y
+torquelimit_z
 total count scale
+totalDirections
 touch_none
 touch_npc_only
 touch_player_only
 touch_player_or_npc
 touch_player_or_npc_or_physicsprop
+touchoutputperentitydelay
 trace accuracy tolerance
 trace collision group
 trace direction
@@ -33799,17 +36948,61 @@ trace to closest surface along all cardinal directions
 trace update rate
 traceattack
 traceattack damage hitgroup
+tracer_duration
+tracesPerFrame
 trade more sharpness for reduced antialiasing
+train
 transform input
 transform to offset positions from
+transition_anim
+transition_duration
+transitiontime
+transmit_always
 travel time
 travel time scale field
 treat distance between points as radius
 treat offset as scalar of particle radius
 treat offset as scale of total distance
+treat_entity1_as_infinite_mass
+trigger
+trigger_active_weapon_detect
+trigger_autosave
+trigger_bomb_reset
+trigger_brush
+trigger_buoyancy
+trigger_callback
+trigger_changelevel
+trigger_detect_bullet_fire
+trigger_detect_explosion
+trigger_fan
 trigger_fan_debug
 trigger_fan_player_windblock_debug
+trigger_fog
+trigger_game_event
+trigger_gravity
+trigger_hostage_reset
+trigger_hurt
+trigger_id
+trigger_impact
+trigger_lerp_object
+trigger_locomotion_stop
+trigger_look
+trigger_multiple
+trigger_once
+trigger_physics
 trigger_physics_debug
+trigger_proximity
+trigger_push
+trigger_radius
+trigger_remove
+trigger_serverragdoll
+trigger_snd_sos_opvar
+trigger_sound
+trigger_soundscape
+trigger_teleport
+trigger_tonemap
+trigger_transition
+triggeronstarttouch
 true
 trusted_launch
 turn on optimized particle init
@@ -33998,14 +37191,18 @@ unSlot
 unbind
 unbindall
 uniform speed
+unique_target
 unlit segment color
 unload the specified tool
 unloadTool
+unlocked_sound
 unpack SST directly into shadow atlas cascade vs via staging texture PS copy (NOTE - rendersystem fix reqd for AMD + driver fix required for NV + VK only.
 unpause
 unused
+updateOnClient
 update_all_keyframed_in_spatial_partition_update
 update_voices_low_priority
+updatenavwhenmoving
 url_execute
 use AABB
 use Movement Basic for Local Gravity & Buoyancy Scale
@@ -34045,6 +37242,18 @@ use the derivative
 use velocity for test direction
 use vertical velocity for weighting
 use with r_csgo_gpu_opt_prepass_characters
+useEntityPivot
+useParentedPath
+useVerticalFOV
+use_angles
+use_animgraph
+use_landmark_angles
+use_ref_position
+use_sound
+useable
+useasyncqueries
+usehelper
+usenormalspawnsfordm
 users
 uv x offset during copy to cascade.
 uv y offset during copy to cascade.
@@ -34079,6 +37288,7 @@ value
 value to lerp to
 valueB
 var change info histogram\n
+variant
 vcon_clear_buffered_log
 vcon_clients
 vconsole_rcon_server_details
@@ -34099,10 +37309,12 @@ velocity maximum
 velocity minimum
 velocity scale
 velocity test adjust lifespan
+velocitytype
 version
 vertex lighting tessellation (0-5)
 vertical texture offset
 vertical texture scale
+vertical_align
 videocfg_ao_detail
 videocfg_fsr_detail
 videocfg_hdr_detail
@@ -34110,12 +37322,15 @@ videocfg_particle_detail
 videocfg_shadow_quality
 videocfg_texture_detail
 view model effect
+view_ofs
 view_punch_decay
 viewmodel_fov
 viewmodel_offset_x
 viewmodel_offset_y
 viewmodel_offset_z
 viewmodel_presetpos
+viewposition
+viewtarget
 violence_ablood
 violence_agibs
 violence_hblood
@@ -34136,12 +37351,15 @@ vis_sunlight_enable
 visibility maximum
 visibility minimum
 visibility radius
+visibilitySamples
+visible_when_parent_nodraw
 vismon_poll_frequency
 vismon_trace_limit
 vmem_dump
 vmix_debug_list
 vmix_input
 vmix_output
+vmixtool
 voice_all_icons
 voice_always_sample_mic
 voice_bypass_noise_gate
@@ -34181,6 +37399,8 @@ volstart
 volume
 volume field
 volume scale
+volume_depth_override
+volume_first_slice_thickness
 volume_fog_debug_volumes
 volume_fog_density_scale
 volume_fog_depth
@@ -34194,6 +37414,7 @@ volume_fog_shadow_penumbra_multiplier
 volume_fog_temporal_filter
 volume_fog_temporal_weight
 volume_fog_width
+vote_controller
 vote_create_failed_t
 vphysics_save_cphysicsbody_t
 vphysics_save_ragdoll_control_t
@@ -34216,6 +37437,7 @@ vprof_scope_entity_thinks
 vprof_think_limit
 vprof_time_scale
 vr camera right eye
+vscripts
 vsmart
 vsnd
 vt_sim_streaming_delay_ms
@@ -34237,17 +37459,25 @@ vulkan_vma_gpu_mem_dump
 w
 w1
 w2
+wait
 wait for children to finish
+wallTransmission
 warp amount
 warp max
 warp min
 warp scale control point number
 warp transition start time
 warp transition time (treats min/max as start/end sizes)
+water_splasher
+waterbullet
 wave length
 wave maximum
 wave minimum
+waypoint_success_radius
+waypoint_success_radius_when_blocked
 waypoints
+weapon
+weapon%d
 weapon_accuracy_forcespread
 weapon_accuracy_logging
 weapon_accuracy_nospread
@@ -34255,23 +37485,73 @@ weapon_accuracy_reset_on_deploy
 weapon_accuracy_shotgun_spread_patterns
 weapon_accuracy_stack_boost_limit
 weapon_air_spread_scale
+weapon_ak47
 weapon_all_nametag
 weapon_all_stattrak
+weapon_aug
 weapon_auto_cleanup_time
+weapon_awp
+weapon_basecsgrenade
+weapon_bizon
+weapon_c4
+weapon_cs_base
+weapon_csbase
+weapon_cz75a
+weapon_deagle
 weapon_debug_inaccuracy_only_up
 weapon_debug_max_inaccuracy
 weapon_debug_spread_show
+weapon_decoy
+weapon_elite
+weapon_famas
+weapon_fiveseven
+weapon_flashbang
+weapon_g3sg1
+weapon_galilar
+weapon_glock
+weapon_healthshot
+weapon_hegrenade
+weapon_hkp2000
+weapon_incgrenade
+weapon_knife
 weapon_land_dip_amt
+weapon_m249
+weapon_m4a1
+weapon_m4a1_silencer
+weapon_mac10
+weapon_mag7
 weapon_max_before_cleanup
+weapon_molotov
 weapon_molotov_maxdetonateslope
+weapon_mp5sd
+weapon_mp7
+weapon_mp9
 weapon_near_empty_sound
+weapon_negev
+weapon_nova
+weapon_p250
+weapon_p90
 weapon_random_stickers
 weapon_reticle_knife_show
+weapon_revolver
+weapon_sawedoff
+weapon_scar20
+weapon_sg556
 weapon_skin_force_legacy
 weapon_skins
 weapon_skins_on_default
+weapon_smokegrenade
 weapon_sound_falloff_multiplier
+weapon_ssg08
+weapon_state
 weapon_switch
+weapon_taser
+weapon_tec9
+weapon_ump45
+weapon_usp_silencer
+weapon_xm1014
+weaponclassname
+wearable_item
 webapi_values_init_buffer_size
 webapi_values_max_pool_size_mb
 weight
@@ -34279,14 +37559,24 @@ weight update control point
 weighted list
 wheeldrag
 wheelfrictionscale
+wheels
 when non-empty allows for easy vconsole connection to the dedicated server.
 when set request key focus when a world panel is enabled
 when set to 0, ragdolls will settle dynamically before and after Killer Replay
+width
 wind scale
+wind_map_max
+wind_map_min
+wind_max
+wind_min
 wind_system_default_resolution_xy
 wind_system_default_resolution_z
 wind_system_default_sample_min_spacing
 wind_system_temporal_smoothing
+window_ui_scale
+windradius
+wingman_intro_counterterrorist
+wingman_intro_terrorist
 workshop_annotation_submit
 workshop_clear_cloud_save
 workshop_dump_cloud_contents
@@ -34296,10 +37586,16 @@ world noise scale control point
 world spatial noise coordinate scale
 world time noise coordinate scale
 worldAxisDirection
+worldGroupID
+worldName
 worldPosition
 world_dump_loaded_worlds
 world_layer_list
 world_layer_set_visible
+world_receives_skybox_csm
+world_units_per_pixel
+worldent
+worldmodel_gloves
 worley jitter
 worley seed
 wrap input
@@ -34312,11 +37608,22 @@ writekeybindings
 written field
 x
 x,y,z to display an X for the bomb plant in guardian missions with custom bomb plant boundaries.
+xfriction
+xmax
+xmin
 xxBEAM_HOSExxunused
 y
 yaw
+yfriction
+ymax
+ymin
 z
+zFar
+zNear
 zfar
+zfriction
+zmax
+zmin
 znear
 zoom_sensitivity_ratio
 { 'Output'='m_strEntityOutput' 'Until Canceled'='m_bListenUntilCanceled' }

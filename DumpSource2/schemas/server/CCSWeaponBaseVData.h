@@ -136,6 +136,7 @@
 //}
 // MPropertySuppressBaseClassField = "m_iSlot"
 // MPropertySuppressBaseClassField = "m_iPosition"
+// MHasKV3TransferPolymorphicClassname
 class CCSWeaponBaseVData : public CBasePlayerWeaponVData
 {
 	CSWeaponType m_WeaponType;

@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,24 +16,24 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_bApplyMovement": true,
 //	"m_moveVectorParamName": "",
 //	"m_moveVectorParam":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bOrientMovement": false,
 //	"m_moveHeadingParamName": "",
 //	"m_moveHeadingParam":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bAdditive": false,
 //	"m_bTurnToFace": false,
@@ -41,7 +41,7 @@
 //	"m_paramName": "",
 //	"m_param":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bLimitOnly": false,
 //	"m_flTurnToFaceOffset": 0.000000,
@@ -55,6 +55,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Mover"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_MoverNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

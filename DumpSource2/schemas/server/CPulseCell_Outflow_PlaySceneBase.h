@@ -23,6 +23,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CPulseCell_Outflow_PlaySceneBase : public CPulseCell_BaseYieldingInflow
 {
 	CPulse_ResumePoint m_OnFinished;

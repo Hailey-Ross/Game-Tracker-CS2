@@ -5512,7 +5512,6 @@ And R%d <- R%d && R%d
 AngleA
 AngleB
 AnimatableSceneObjectDesc
-Animation 2
 Animation Bone Flags
 Animation Configuration File
 Animgraph Model base mismatch %s, %s\n
@@ -5804,7 +5803,6 @@ Base Size
 Base Width
 Base-10 logarithm
 Base-2 logarithm
-BaseEditor
 BaseItem
 BaseItem "%s" in item "%s" not found.\n
 BasePhysicsSimulated
@@ -7297,7 +7295,6 @@ Delete Widget
 DeleteEdges
 DeleteFaces
 DeleteVertices
-Density
 Density Layer
 Dependent on context, single convex if part of an entity, mesh if world geometry
 DeregisterEventSource
@@ -7514,7 +7511,6 @@ DrawMaterialSamplePoints: no ToolsVis mode for shader?\n
 DrawMeshEdges
 DrawSelectionOverlay
 DsBV
-DualHull
 DummyNoOp
 DumpModeDecode: Not enough data for scanline %d
 E"Y6
@@ -8417,7 +8413,6 @@ HWyn
 H\tV_cosd
 HalfLife
 HalftoneHints
-Hammer
 Hammer Map File Load
 Hammer temp export
 Hammer/ForceHighPrecisionTexcoords
@@ -8635,7 +8630,6 @@ Input Binding Error
 Input Debugger [%1]
 Input Sequence
 Input Shapes
-InputBindSystem
 InputLayoutBuilder
 Inputs
 Insert 'element' in the given index in 'a', increasing its count by one and moving the elements after index.
@@ -8877,7 +8871,6 @@ Light Probe %s
 LightCookie
 LightMapMipCount
 LightMapResolution
-LightMapper
 Lightbinner Setup
 Lighting
 Lighting Dummy
@@ -8887,7 +8880,6 @@ LightmapUV
 LightmapUVW
 Lightmapped
 Lightprobed
-Line
 Line length mismatch
 LineColor
 Linear Interp.
@@ -9021,7 +9013,6 @@ Management
 Map File
 Map Type
 MapAtom
-MapBuilder
 MapClass
 MapDoc Cloth World
 MapDocLib PhysicsObject
@@ -9067,7 +9058,6 @@ Max Float
 Max Int
 Max Velocity
 Max number of Nav Areas limit reached (%i).
-MaxExposure
 MaxSampleValue
 Maximum
 Maximum Size Scale
@@ -9111,7 +9101,6 @@ Microsoft Trust List Signing
 Microsoft Universal Principal Name
 Min Float
 Min Int
-MinExposure
 MinSampleValue
 MinSize
 MinSizeHint
@@ -9818,7 +9807,6 @@ Particle Configuration File
 Particle Snapshot Spacing
 Particle snapshot data for file %s is empty. File will not be generated.\n
 ParticleCompileBinaryIdenticalHack_underlying_struct
-ParticlesLib
 Pass Outflow
 Path Deformer
 Path Locator
@@ -9847,7 +9835,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Pin
 Physics Pin: %s\n
 Physics Simplification Error
@@ -10296,7 +10283,6 @@ Render With Dynamic
 Render this object with other dynamic objects
 Render to Cubemaps
 Render with Dynamic Objects
-RenderOrder
 RepeatBackground
 ReportEventW
 Requested Blend Weight Limit of %d is too large, setting to system max of %d
@@ -10616,7 +10602,6 @@ ScaleGrid1024
 ScaleGridDot
 ScaleToolUseRelativeMode
 ScalpD
-SceneSystem
 Schema description file
 ScrLk
 ScrToggle
@@ -10655,7 +10640,6 @@ SessionCycleWidget
 Set As Source
 Set the number of elements in the array.
 Set the probe as source.
-SetAngles
 SetAsSource
 SetBlackboardReference BR%d (%s) <- R%d 
 SetConsoleMode
@@ -10820,7 +10804,6 @@ Standard
 Start Fade Dist
 Start Target
 Start a timer with the specified duration, fire the OnInterval output 
-StartDisabled
 Static Overlay
 Static Overlay %s
 Steam Audio Data
@@ -11104,7 +11087,6 @@ TimeToMaxSpeed
 Tint
 Tint Color
 Tint Layer
-TintColor
 To the left of the attribute label
 To the right of the attribute editor
 ToggleTabbedMode
@@ -11123,9 +11105,7 @@ Took %llums to rebuild surface mesh\n
 Tool Brushes
 ToolBarArea
 ToolDrag
-ToolEvents
 ToolFramework
-ToolScene
 ToolSelect
 Tools - Hammer
 ToolsVisSSAOPowerScale
@@ -11351,7 +11331,6 @@ VMS_LOAD
 VMS_MERGER
 VMS_UNLOAD
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -11406,7 +11385,6 @@ VertexPaintTintColor$0
 VertexSnapRadius
 VertexSnappingEnabled
 Vertical (V along path)
-VerticalFOV
 Vg3LE
 VggjeK uO5n
 Vgui editor file
@@ -11425,7 +11403,6 @@ Visible across prefabs
 Visit Developer Help URL
 Visualize Values
 VisualizeWindSceneObject
-VolumetricFog
 Voxel volume (%i components)
 Vp>u
 Vt_9
@@ -12087,7 +12064,6 @@ _fgd
 _flt.vpk
 _g@Cg
 _jPo
-_light
 _linked_type_
 _name
 _procedural_connection_world_target
@@ -12235,8 +12211,6 @@ alpha_fade_in_random
 alpha_fade_out_random
 alpha_random
 already loaded
-altcolor
-altcolorbrightness
 altrendercolor
 always
 alwaysOrientUp
@@ -12245,16 +12219,10 @@ always_draw_handles
 always_hit_test
 ambientOcclusionMode
 ambient_occlusion
-ambientcolor2
-ambientcolor3
 an attr
 ang2vec
 angle_key
 angles_key
-angular_fog_max_end
-angular_fog_max_start
-angular_fog_min_end
-angular_fog_min_start
 angulardiameter
 anim
 animSetList
@@ -12305,7 +12273,6 @@ asn1 lib
 asn1 parse error
 asn1 sig parse error
 asn1 unknown field
-aspectRatio
 assetTag
 asset_keys_indirect_model_gamedata_key
 asset_keys_indirect_model_gamedata_subkey
@@ -12458,13 +12425,9 @@ bakeambientocclusion
 bakedLigthtingMode
 baked_light_indexing
 bakedlighting
-bakedshadowindex
 bakelightdoublesided
 bakelighting
 bakeskylight
-bakespeculartocubemaps
-bakespeculartocubemaps_scale
-bakespeculartocubemaps_size
 baketoworld
 balance
 balance$0
@@ -12564,7 +12527,6 @@ bn to asn1 integer error
 bn_expand2
 body_groups
 bodygroupchoices
-bodygroups
 bold
 boneNames
 bonePositions
@@ -12582,15 +12544,10 @@ bool log
 bool_array
 boolean is wrong length
 bottom
-bouncelight
-bouncescale
 boundary
 box_max
-box_maxs
 box_min
-box_mins
 box_oriented
-box_size
 boxproject_maxs
 boxproject_mins
 bpFh
@@ -12613,7 +12570,6 @@ brightness_legacy
 brightness_lumens
 brightness_nits
 brightness_units
-brightnessscale
 bspline
 bt1+
 bu\N
@@ -12659,7 +12615,6 @@ ca dn too long
 caIssuers
 caRepository
 cable_deformable
-cable_dynamic
 cable_static
 cableclass
 called a function that was disabled at compile-time
@@ -12691,7 +12646,6 @@ cameraName
 cameras
 can't find SRP server param
 can_change_model
-can_override_npc_state
 candle_1
 candle_2
 candle_3
@@ -12718,7 +12672,6 @@ cast5-cfb
 cast5-ecb
 cast5-ofb
 castShadows
-castshadows
 catmullrom
 catmullrom_normalize
 catmullrom_tangent
@@ -12809,7 +12762,6 @@ clipType
 clipmap_levels
 closed
 closedLoop
-closed_loop
 cloth
 cloth_enable
 cloth_enable$0
@@ -12844,7 +12796,6 @@ coefficient:
 cofactor
 collapsed
 collisionEnabled
-collisionGroup
 collisionMode
 collisionPropertyOverride
 collision_override
@@ -12867,10 +12818,7 @@ color_key
 color_pack
 color_random
 color_red
-color_tint
-colormode
 colorsIndices
-colortemperature
 colspan
 combo
 command not supported
@@ -12930,7 +12878,6 @@ constrainVelocity
 constrain_to_origin
 constrain_velocity
 cont [ %d ]
-contactshadow
 content and data present
 content not found
 content type mismatch
@@ -12950,7 +12897,6 @@ contents
 contentsDeform
 contentsMargins
 context not initialised
-continue_on_death
 control command failed
 controlColor
 controlPoints
@@ -13140,8 +13086,6 @@ dataEncipherment
 dataStateFlags
 dataTypes
 dataWindow
-data_cp
-data_cp_value
 data_height = 
 data_plus_mac_plus_padding_size < 1024 * 1024
 data_with or data_height too large. data_width: 
@@ -13190,7 +13134,6 @@ deltaStateWeightsLagged
 deltaStates
 densityInput
 densityValues
-depth
 depth exceeded
 depthOfFieldSamples
 des(%s,%s,%s,%s)
@@ -13266,7 +13209,6 @@ digitalSignature
 dimmer
 dinfo
 dirName
-directlight
 directory services (X.500)
 directory services - algorithms
 dirname error
@@ -13281,7 +13223,6 @@ disabledInLowQuality
 disableinlowquality
 disablemerging
 disablemultiplegravitygrab
-disableshadows
 disallowOverride
 discriminant is zero
 displacement
@@ -13509,7 +13450,6 @@ editormodel
 editorobject
 editorversion
 effect_configuration
-effect_name
 egUkr
 element
 elementList
@@ -13543,7 +13483,6 @@ enable_handle_min_x
 enable_handle_min_y
 enable_handle_min_z
 enablemotionongravitygrab
-enableuseoutput
 enc->iv_len <= (int)sizeof(iv)
 enc_data
 enc_digest
@@ -13584,12 +13523,6 @@ entity_name_fixup_persist
 entity_properties
 entitygroup
 enum_array
-env_combined_light_probe_volume
-env_cubemap_box
-env_global_light
-env_light_probe_volume
-env_sky
-env_volumetric_fog_volume
 env_wind_volume
 enveloped-data
 err asn1 lib
@@ -13724,10 +13657,6 @@ fadeStartDistance
 fade_group_id
 fade_origin
 fade_origin_offset
-fade_size_end
-fade_size_start
-fademaxdist
-fademindist
 failed loading private key
 failed loading public key
 falloff_left
@@ -13752,7 +13681,6 @@ filePath
 filename too big
 filenameBase
 filter
-filterclass
 finalTime
 final_time
 finish failed
@@ -13768,7 +13696,6 @@ fixed_width
 fixedbounds
 fixupEntityNames
 fixupEntityNames == false || targetName == ""
-fixupNames
 fj".T\CMek2>x
 flDegrees
 flDuration
@@ -13820,20 +13747,7 @@ fogFlowMap
 fogFlowMapValues
 fogOpacity
 fog_lighting
-fog_type
-fogblend
-fogcolor
-fogcolor2
 fogcontributionstrength
-fogdir
-fogenable
-fogend
-fogexponent
-foglerptime
-fogmaxdensity
-fogshadows
-fogstart
-fogstrength
 fontfamily
 fontstyle
 fopen
@@ -13851,7 +13765,6 @@ forceHighPrecisionTexcoords
 force_cubemap_array
 force_hidden
 forcemultitrack
-forceshadowsenabled
 foreground
 forever
 format error in CRL's lastUpdate field
@@ -13876,9 +13789,6 @@ frustum
 fullname
 fully_occluded_fraction
 func(%lu)
-func_combined_light_probe_volume
-func_nav_markup
-func_physbox
 function
 functionName
 functionParams
@@ -13998,8 +13908,6 @@ group2pkparameters failure
 group=
 groupColor
 group_title
-gustdirchange
-gustduration
 gxv>
 g{syW*
 g|FeW\v
@@ -14034,7 +13942,6 @@ hammerMeshDataBuffer
 hammerUniqueId
 hammer_embedded_properties
 hammer_preview_lighting
-handshake
 hasLimits
 has_static_mesh
 hash
@@ -14072,9 +13979,7 @@ hhwi
 hiddenFlags
 hiddenGroups
 hidden_when_readonly
-hide_debug_complaints
 hide_interpolation_type
-high_priority
 hitNormal
 hitbox
 hl5v
@@ -14428,7 +14333,6 @@ important
 in use
 inTangent
 inTangentType
-in_tangent_local
 inappropriate fallback
 include
 incompatible objects
@@ -14450,7 +14354,6 @@ infinite
 info_blob_spit_path
 info_node
 info_node_link
-info_particle_system
 inhibitAnyPolicy
 inhibitPolicyMapping
 init failed
@@ -14461,7 +14364,6 @@ initial_mass
 initialization error
 initialized
 initials
-inner_angle
 innerconeangle
 input not initialized
 input not reduced
@@ -14815,7 +14717,6 @@ layerData0
 layerData1
 layerData2
 layerData3
-layerName
 layers
 lcO/<1\r=,!\r-@@@
 leansphere
@@ -14850,25 +14751,14 @@ lifetime_random
 light
 lightModeTint
 lightModeTint2
-light_barn
 light_capsule
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_probe_volume_from_cubemap
-light_rect
 light_sky
-light_spot
-light_style
 light_sun
 lightcone
-lightcookie
 lightgroup
 lightingDummy
 lightingOriginName
-lighting_only_tint_color
 lightingorigin
 lightmap
 lightmapScaleBias
@@ -14915,9 +14805,6 @@ loud
 lower_hemisphere_is_black
 lowprecisionuv
 lowprecisionuv1
-luminaire_anisotropy
-luminaire_shape
-luminaire_size
 lumpMode
 m&9W
 m*Zu
@@ -14989,7 +14876,6 @@ m_bRenderProbeRadius
 m_bShowCompressedIR
 m_bShowInUI
 m_baseMetrics
-m_fMoveTo
 m_flAngleDegrees
 m_flDeltaValue
 m_flDimensionsInOutValue
@@ -15167,11 +15053,8 @@ maxScale
 maxThrust
 max_occlusion_distance
 max_thrust
-maxgust
-maxgustdelay
 maxsize=
 maxvalue
-maxwind
 maya
 md bio init error
 md2WithRSAEncryption
@@ -15227,14 +15110,10 @@ mime-mhs-headings
 minScale
 minThrust
 min_thrust
-mingust
-mingustdelay
 minigame
 minimized
-minroughness
 minsize=
 minvalue
-minwind
 missing asn1 eos
 missing ceripend info
 missing close square bracket
@@ -15287,7 +15166,6 @@ model_state
 modelanimevent
 modelbreakcommand
 modelgamedata
-modellib
 models/editor/axis_helper.vmdl
 models/editor/axis_helper_disabled.vmdl
 models/editor/axis_helper_thick.vmdl
@@ -15308,7 +15186,6 @@ morph
 motionBlurSamples
 movable_mesh_gravity_follows_rotation
 move
-move_to_gait
 moveclass
 movieSettings
 movieobjects
@@ -15518,9 +15395,7 @@ no:7
 noCheck
 noRevAvail
 no_help_info
-no_interrupts
 no_lasso_select
-no_teleport_at_end
 nobounds
 nodeData
 nodeID
@@ -15528,7 +15403,6 @@ nodeId
 nodeInstanceData
 node_dest
 node_entity_class
-node_id
 node_id_List
 node_name
 nodeid
@@ -15645,7 +15519,6 @@ objectConfiguration
 objectConfigurationByName
 objectSelectionSetData
 objectSpacing
-object_culling
 objectsPitch
 objectsPlantType
 objectsPropType
@@ -15692,7 +15565,6 @@ opaque PRF input too long
 open
 openGround
 open_or_different_tileset
-opendir
 openssl.cnf
 openssl_conf
 operation not allowed in fips mode
@@ -15715,7 +15587,6 @@ organizationalUnitName
 oriType
 oriValue
 orientToSurface
-orientation
 orientationChannel
 orig_len >= md_size
 origin  {   "x" "%f"  "y" "%f"  "z" "%f" }
@@ -15746,8 +15617,6 @@ othername:<unsupported>
 out of memory
 outTangent
 outTangentType
-out_tangent_local
-outer_angle
 outerconeangle
 outputFormat
 outputName
@@ -15760,7 +15629,6 @@ override_description
 override_help_context_name
 override_help_id
 overrideclass
-owner
 ownerlog
 owns_polymorphic_data
 p is not prime
@@ -15813,7 +15681,6 @@ paramMap
 parameter
 parameter encoding error
 parameterID
-parameterName
 parameterValues
 parameters
 parentAttachment
@@ -15840,25 +15707,20 @@ pathNodeName
 pathNodeNames
 pathNodeRadiusHeightScales
 pathNodeRadiusScales
-pathNodes
 pathParameter
 pathTangents
 path_Index
-path_corner
 path_generic
 path_node_cable
 path_node_class
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_pos_%d
 path_position
 path_rad_height_%d
 path_rad_width_%d
-path_track
 path_trajectory
-path_uniqueid
 pathclass
 pathlen
 pathnode
@@ -15969,9 +15831,6 @@ point
 point arithmetic failure
 point at infinity
 point is not on curve
-point_prefab
-point_pulse
-point_template
 pointclass
 pointentityclass
 pointer != NULL
@@ -16013,7 +15872,6 @@ postalCode
 posterSettings
 postion_lock_to_controlpoint
 postocclusionquery
-postprocessing
 posxyz
 powf
 pp == NULL || *pp != NULL
@@ -16021,18 +15879,10 @@ pp&c
 ppBasis
 pqualid
 pre mac length too long
-precomputedboundsmaxs
-precomputedboundsmins
-precomputedfieldsvalid
 precomputedmaxrange
 precomputedminrange
-precomputedobbangles
-precomputedobbextent
-precomputedobborigin
 prefabRuntimeEntity
-prefab_associated_relay
 prefab_has_runtime_entity_by_default
-prefab_load_dynamic
 prefab_relay_interface
 prefab_relays
 prefab_root
@@ -16084,8 +15934,6 @@ projectionMode
 projectionTargets
 propTypes
 prop_dynamic_client_fadeout
-prop_physics_override
-prop_physics_respawnable
 prop_static
 propattr_flatten_into_parent_row
 propattr_force_readonly
@@ -16197,7 +16045,6 @@ randomAmount
 randomSeed
 random_position
 randomizable
-range
 rawControlNames
 rc2-40-cbc
 rc2-64-cbc
@@ -16260,19 +16107,15 @@ renderToCubemaps
 renderVerts
 renderWithDynamic
 render_as_world_but_physics_as_entity
-renderamt
-rendercolor
 renderdiffuse
 renderorder
 renderspecular
-rendertocubemaps
 rendertransmissive
 renderwithdynamic
 renegotiate ext too long
 renegotiation encoding err
 renegotiation mismatch
 reorientCamera
-repeatable
 replacedParentField
 replacedParentIndex
 replacedSoundEvents
@@ -16290,7 +16133,6 @@ required cipher missing
 required compresssion algorithm missing
 required_parent_class
 resampleinterval
-resolution
 responderId
 response
 response contains no revocation data
@@ -16337,7 +16179,6 @@ role
 roleOccupant
 room
 roomNumber
-root
 root ca not trusted
 rootControlGroup
 rootGroup
@@ -16431,7 +16272,6 @@ scanline
 scene
 screenWindowCenter
 screenWindowWidth
-scripted_sequence
 scriptlist
 scripts/activity_modifier_weights.txt
 scripts/collision_detail_layers.vdata
@@ -16738,15 +16578,10 @@ shadowcascaderesolution0
 shadowcascaderesolution1
 shadowcascaderesolution2
 shadowcascaderesolution3
-shadowfade_size_end
-shadowfade_size_start
 shadowfademaxdist
 shadowfademindist
-shadowmapsize
-shadowpriority
 shadowtextureheight
 shadowtexturewidth
-shape
 shapeReferences
 shapeType != CMapChoreoLocatorShapeType_t::LINE
 shapeType != CMapChoreoLocatorShapeType_t::RADIUS
@@ -16754,12 +16589,10 @@ shapetype
 shared
 shared info error
 sharedenvironment
-shear
 short header
 short line
 short read
 should retry
-should_leave_corpse
 showAmbientOcclusion
 showCameraFrustum
 showEvent
@@ -16768,7 +16601,6 @@ showPreview
 showViewTargets
 show_editor_objects
 show_lpv_sample_grid
-showlight
 showwave
 shutdown while in init
 shutterSpeed
@@ -16806,27 +16638,19 @@ singleLevelQuality
 singleRequestExtensions
 singleSelect
 size_box_oriented
-size_params
 skeleton
 sketchup
 skewAngle
 skewBrightnessValues
 skewStrength
 skewVariance
-skin
 skinned_physics_mesh_key_name
-skirt
-skirt_near
-sky_camera
-sky_lightingonly_name
 skyambientbounce
 skybouncescale
 skyboxMapPath%i
 skybox_map
-skybox_reference
 skycolor
 skyintensity
-skyname
 skytexture
 skytexturescale
 slave
@@ -16859,15 +16683,10 @@ snapangle_key
 snappable
 snapshot
 snapshotOverride
-snapshot_file
 snapshot_mesh
-snd_event_box_helper
 snmpv2
 so=H*m
 socket
-soft_x
-soft_y
-solid
 solidclass
 solidity
 sort_priority
@@ -16884,7 +16703,6 @@ source_file_searchpath
 source_key
 spacing
 spawnFlags
-spawnflags
 specificImpulse
 specific_impulse
 specific_type
@@ -17051,7 +16869,6 @@ startOffset
 startTime
 startUp
 start_expanded
-start_on_spawn
 stateOrProvinceName
 static
 static_collision
@@ -17088,10 +16905,8 @@ strips
 strlen(objstr) + 23 + 2 * enc->iv_len + 13 <= sizeof buf
 struct
 studioprop
-style
 subClipTrackGroup
 subclass_choice
-subclass_name
 subdivisionBinding
 subdivisionData
 subdivisionLevels
@@ -17167,7 +16982,6 @@ targetGroupNodeID
 targetGroupReferenceID
 targetInformation
 targetLumpKey
-targetMapName
 targetMapPath
 targetMapPath%i
 targetName
@@ -17189,7 +17003,6 @@ target_name_or_class
 target_source
 target_warp
 targetname
-targets
 tbsRequest
 tbsResponseData
 td5)
@@ -17232,9 +17045,7 @@ textureOrientation
 textureRepeatsCircumference
 textureScale
 textureScale1
-texture_based_animation_position_keys
 texture_based_animation_preview_sequence
-texture_based_animation_rotation_keys
 tfjgvmfv
 the asn1 object identifier is not known for this md
 the meth_data stack is corrupt
@@ -17242,7 +17053,6 @@ there must be one signer
 thisUpdate
 thread initialization failed.
 thread=%lu, 
-threshold
 tile
 tile requirements
 tileConfiguration
@@ -17271,10 +17081,6 @@ tintColor
 tintInput
 tintKey
 tintValues
-tint_color
-tint_cp
-tint_cp_color
-title
 tls client cert req with anon cipher
 tls illegal exporter label
 tls invalid ecpointformat list
@@ -17571,7 +17377,6 @@ useBaseNormals
 useEdgeInfo
 useLocalOffset
 useTargetNameAsPrefix
-use_animgraph
 use_secondary_color
 usecurvetypes
 usedefaultvalue

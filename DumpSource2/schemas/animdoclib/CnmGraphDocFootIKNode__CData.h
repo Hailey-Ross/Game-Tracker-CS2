@@ -4,6 +4,7 @@
 //	"m_rightEffectorBoneName": "",
 //	"m_flBlendTimeSeconds": 0.000000
 //}
+// MHasKV3TransferPolymorphicClassname
 class CnmGraphDocFootIKNode::CData : public CNmGraphDocVariationDataNode::CData
 {
 	CUtlString m_leftEffectorBoneName;

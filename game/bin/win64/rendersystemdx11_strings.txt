@@ -1363,7 +1363,6 @@ Render system:  %s (initialized by %s)\n
 Render system:  %s\n
 RenderDoc capture window '%s'.\n
 RenderDoc is not active, did you forget to add -renderdoc to the command-line? Is RenderDoc installed?\n
-RenderSystem
 RenderSystem/AllowPartialMipChainImmediateTexLoads
 RenderSystem/IndexBufferPoolSizeMB
 RenderSystem/LowLatency
@@ -1616,7 +1615,6 @@ VBPool
 VFX_DLL_001
 VFX_PROGRAM_MAX
 VR - ERROR creating pSwapChain->m_pVrQueryGpuTime[ %d ] query!\n
-VRenderDeviceMgrBackdoor001
 VS_MS_RTX
 VS_RTX
 VULKAN
@@ -2189,7 +2187,6 @@ struct VS_INPUT
 tOt'F
 texcoord
 thread initialization failed.
-threshold
 tile
 tiles
 to fetch array of rationals

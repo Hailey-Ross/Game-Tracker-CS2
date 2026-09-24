@@ -15674,7 +15674,6 @@ Ambient Occlusion Map Power
 Ambisonics field of how to reach to nearby inside probes in small spaces.
 Ambisonics field of how to reach to nearby outside probes.
 Amount to modify vertex normals (0-none, 1-completely)
-Amplitude
 An IK chain describes a section of a model that you want to control procedurally.
 An SDF shape which cloth collides with.
 An animation to composite over top of this animation.  The cycle of the composited animation will be the same as this animation.
@@ -15786,7 +15785,6 @@ Animated Length
 AnimatedMaterialAttribute
 AnimatedMaterialAttributeColor
 AnimatedMaterialAttributeValue
-Animation 2
 Animation Bone Flags
 Animation Configuration File
 Animation Order
@@ -15795,11 +15793,8 @@ Animation Stack Information\n
 Animation references itself as blend target
 Animation references itself as the source animation
 Animation/AccumulatePose
-AnimationGraph
 AnimationSystem/DisableMoveMgrNetworkVars
-AnimationSystem: IK
 Animations from the specified model will be loaded and merged into this model at runtime.  Akin to QC's $includemodel
-Animgraph
 Animgraph File saved: %s<br>\n
 Animgraph Model base mismatch %s, %s\n
 AnimgraphPicker()
@@ -16208,7 +16203,6 @@ BoneName
 BoneOverlay
 BoneRelativeNode
 BoneReplacements
-BoneSetup
 Bonemerged
 Bonemerged With Morphs
 Bones to discard the specified motion from.  If no bones are specified, motion is discarded from all root bones, i.e. bones without a parent.
@@ -17380,7 +17374,6 @@ Can not read scanlines from a tiled image
 Can't find bone named '%s'.
 Can't find helper '%s' - fgd error?\n
 Can't find this node in the list of all groom group nodes.
-Cancel
 Cannot CDmAttribute::GetValueAsString(%p, %u)\n
 Cannot Find "%s" Stream On Mesh
 Cannot Find "%s" Vertex Map On Mesh
@@ -18028,7 +18021,6 @@ Delta & WorldSpace are mutually exclusive, only check one of them
 Delta Min/Max :: %8.4f, %8.4f R :: %8.4f %8.4f C :: %8.4f %8.4f :: %s\n
 Demo Component
 Demo Settings Component
-Density
 Density Layer
 Depend
 Dependencies Updated
@@ -18045,7 +18037,6 @@ Deselect Faces
 Deselect Vertices
 Desired Kill Priority
 Dest node has no mesh data
-Destination
 Destination FaceVertex Stream Name
 Destination Folder:
 Destination Mesh
@@ -18324,7 +18315,6 @@ DrawMeshEdges
 DrawSelectionOverlay
 Drive a morph channel based on a remapped range of the angle between a bone's up-vector and the direction to a target bone.
 DriverBone
-DualHull
 DumpModeDecode: Not enough data for scanline %d
 Duplicate Faces
 Duplicate Faces Reset Pivot
@@ -18975,7 +18965,6 @@ FaxMode
 FaxRecvParams
 FaxRecvTime
 FaxSubAddress
-FbxSystem
 FeEffectName
 Features
 FeetSettings
@@ -19313,7 +19302,6 @@ HairShader
 Half-Angle
 HalfLife
 HalftoneHints
-Hammer
 Hammer Map File Load
 Hammer temp export
 Hammer/ForceHighPrecisionTexcoords
@@ -19978,7 +19966,6 @@ Light Probe %s
 LightCookie
 LightMapMipCount
 LightMapResolution
-LightMapper
 Lightbinner Setup
 Lighting
 Lighting Dummy
@@ -19990,7 +19977,6 @@ LightmapUVW
 Lightmapped
 Lightprobed
 Limit SDF to a subset of RenderMesh nodes (otherwise use all RenderMesh nodes)
-Line
 Line length mismatch
 LineColor
 Linear Damping
@@ -20204,7 +20190,6 @@ Map File
 Map Name
 Map Type
 MapAtom
-MapBuilder
 MapClass
 MapDoc Cloth World
 MapDocLib PhysicsObject
@@ -21066,7 +21051,6 @@ Particle snapshot data for file %s is empty. File will not be generated.\n
 Particle system that handles the generated model/snapshot (Must be authored specifically for this case to work properly)
 ParticleCompileBinaryIdenticalHack_underlying_struct
 ParticleParamID_t
-ParticlesLib
 Pass Outflow
 Path Deformer
 Path Locator
@@ -21102,7 +21086,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Joint Modification Mode
 Physics Particle
 Physics Pin
@@ -21693,7 +21676,6 @@ Reverb Scales
 Reverb Times
 Reverb impulse response for the probe.
 Reverb scale for low, mid, and high frequency bands for the probe.
-Reverse
 Reverse Preview Unit
 Reverse the direction of the animation.  This happens after the frame range is truncated.
 Revolute joint.
@@ -21841,7 +21823,6 @@ Scales existing wrinkle map values on morphs
 ScalpD
 Scene
 SceneInfo
-SceneSystem
 SceneSystem/ComputeShaderSkinning
 Schema description file
 Scratch Float
@@ -21969,7 +21950,6 @@ Set the target height for the morph texture.  It will automatically grow if nece
 Set the target width for the morph texture.  It will automatically grow if necessary.  This is the starting size for the best fit atlas algorithm, setting it close to the best atlas size will speed up compilation if best fit atlas is true.
 Set true if this is a break piece the player should be able to pickup.
 SetAllFilesToOp
-SetAngles
 SetAsSource
 SetBlackboardReference BR%d (%s) <- R%d 
 SetCameraDistanceBasedOnLODSwitchThreshold
@@ -22164,7 +22144,6 @@ Smoothing Angle
 Snap to grid
 SnappingEnabled
 SnapshotFile
-SnapshotVertexExtraction
 Soft Link
 Softbody
 Software
@@ -22183,7 +22162,6 @@ Sorting assets for statistics.
 Sound Event On Spawn
 Sound event attached to an attach point, and driven off of physical parameters.
 SoundeventList
-Source
 Source Animation Name
 Source Data Layers
 Source FaceVertex Stream Name
@@ -22296,7 +22274,6 @@ Start Loop Frame
 Start Target
 Start a timer with the specified duration, fire the OnInterval output 
 Start frame :: %d > End frame :: %d, will result in an empty animation
-StartDisabled
 State Action
 State Machine Component
 State Machine has more than one start state
@@ -22705,7 +22682,6 @@ Tint
 Tint CP
 Tint Color
 Tint Layer
-TintColor
 TinyBVH Fatal Error: %s at %s:%d
 TinyBVHFatalError
 Tip Mass
@@ -22742,7 +22718,6 @@ Tool Brushes
 Tool Material
 ToolAttributes
 ToolDrag
-ToolEvents
 ToolSelect
 Tools - Hammer
 Tools Auto-Checkout
@@ -23037,7 +23012,6 @@ VFX_RULE_UNKNOWN
 VLJN
 VMAP %d Char/Wpn %d
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -23121,7 +23095,6 @@ Vertical (V along path)
 Vertical Pose Param
 Vertical Segments
 Vertical Speed
-VerticalFOV
 Vertices
 Vertices in the island need to be at least this close to triangles that support them
 Vertices, 
@@ -23163,7 +23136,6 @@ Visualize Values
 Volume Random Minimum Scale - to randomize the amount of contents - 0 = none to full range
 Volume scale - to have more or less contents
 Volumetric Solve Strength
-VolumetricFog
 Voronoi Plane Primitive
 Vortices
 Voxel volume (%i components)
@@ -23618,7 +23590,6 @@ _inFrameArms
 _inLoopDelta
 _left
 _legacy
-_light
 _linked_type_
 _lod%d
 _loop
@@ -23660,7 +23631,6 @@ aaaaaaaazzzzzzzz
 abcdefghijklmnopqrrqponmlkjihgfedcba
 abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedcba
 absolute
-acceleration
 accent
 accent_frame
 accept
@@ -23741,9 +23711,6 @@ always_draw_handles
 always_hit_test
 ambientOcclusionMode
 ambient_occlusion
-ambientcolor2
-ambientcolor3
-amount
 an attr
 anchor
 anchor_origin
@@ -23820,7 +23787,6 @@ are_effects_mutually_exclude
 arrayElement_%i
 array_%i
 arrowDirection
-aspectRatio
 assetTag
 asset_keys_indirect_model_gamedata_key
 asset_keys_indirect_model_gamedata_subkey
@@ -23936,7 +23902,6 @@ bakedLigthtingMode
 baked_light_indexing
 bakedin
 bakedlighting
-bakedshadowindex
 bakelightdoublesided
 bakelighting
 bakeskylight
@@ -24039,7 +24004,6 @@ body_group_name
 body_groups
 body_order
 bodygroupchoices
-bodygroups
 boneIndicesAndWeights
 boneIndicesAndWeights$0
 boneNames
@@ -24082,17 +24046,12 @@ bool log
 boolParamID
 bool_array
 bool_t
-bouncelight
-bouncescale
 bounciness
 box_angles
 box_dimensions
 box_max
-box_maxs
 box_min
-box_mins
 box_oriented
-box_size
 boxproject_maxs
 boxproject_mins
 break_command
@@ -24102,7 +24061,6 @@ break_create_particle
 break_particles
 brick_ext_04_color_psd_549131f3.
 brightness_units
-brightnessscale
 bspline
 build_backfaces
 build_sides
@@ -24110,12 +24068,10 @@ burst_offset_cp
 burst_params_cp
 button_zone
 cable_deformable
-cable_dynamic
 cable_static
 cableclass
 calc_per_vertex_curvature
 cameraName
-camera_name
 cameras
 can_change_model
 can_collide_with_ground_plane
@@ -24123,7 +24079,6 @@ can_collide_with_moving_bodies
 can_collide_with_world_capsule_and_spheres
 can_collide_with_world_hulls
 can_collide_with_world_meshes
-can_override_npc_state
 can_player_pickup_piece
 candle_1
 candle_2
@@ -24145,7 +24100,6 @@ cascadecrossfade
 cascadedistancefade
 cascaderenderstaticobj
 castShadows
-castshadows
 catmullrom
 catmullrom_normalize
 catmullrom_tangent
@@ -24197,7 +24151,6 @@ clock_tower_clock.vmat
 close_outline_at_hard_edges
 closed
 closedLoop
-closed_loop
 cloth
 cloth_air_density
 cloth_anchor_free_rotate
@@ -24283,7 +24236,6 @@ collide_outside_hierarchy
 collide_with_hierarchy
 collision
 collisionEnabled
-collisionGroup
 collisionMode
 collisionPropertyOverride
 collision_algorithm
@@ -24315,7 +24267,6 @@ color_key
 color_pack
 color_random
 color_red
-color_tint
 colorsIndices
 combo
 comment
@@ -24872,7 +24823,6 @@ content/
 content_export_fbx_suffix
 contentsDeform
 contents_group_id
-continue_on_death
 control
 controlColor
 controlPoints
@@ -24953,15 +24903,12 @@ d\f?convertToFormat_helper@QImage@@IEBA?AV1@W4Format@1@V?$QFlags@W4ImageConversi
 d\tV_frexpf
 damage_direction_cp
 damage_position_cp
-damping
 data height too large.
 data width or data height is negative.
 data width too large.
 dataStateFlags
 dataTypes
 dataWindow
-data_cp
-data_cp_value
 data_height = 
 data_with or data_height too large. data_width: 
 date
@@ -25041,7 +24988,6 @@ dilation
 dimensions
 dimensions_key
 dimmer
-directlight
 disableDynamicDeformable
 disableHeightDisplacement
 disableMerging
@@ -25057,7 +25003,6 @@ disabledInLowQuality
 disableinlowquality
 disablemerging
 disablemultiplegravitygrab
-disableshadows
 disallowOverride
 discard_any_channels
 discard_bone_channels
@@ -25177,7 +25122,6 @@ editorobject
 editorversion
 effect_configuration
 effect_contents
-effect_name
 effect_packing_material
 elastic
 elastic_damping
@@ -25210,13 +25154,8 @@ enable_handle_min_x
 enable_handle_min_y
 enable_handle_min_z
 enable_simulation
-enable_steering_limit
-enable_suspension_limit
-enable_swing_limit
-enable_twist_limit
 enabled_key
 enablemotionongravitygrab
-enableuseoutput
 encoding %s %d format %s %d\n
 endCycle
 endJoint
@@ -25246,12 +25185,6 @@ entry
 entrytag
 enumParamID
 enum_array
-env_combined_light_probe_volume
-env_cubemap_box
-env_global_light
-env_light_probe_volume
-env_sky
-env_volumetric_fog_volume
 env_wind_controller
 equal_to
 error_indicator
@@ -25343,9 +25276,6 @@ fade_in_time
 fade_origin
 fade_origin_offset
 fade_out_time
-fademaxdist
-fademindist
-fadetime
 fail_on_empty
 falloff_left
 falloff_right
@@ -25369,7 +25299,6 @@ filenameBase
 filter
 filter_bone_influence_threshold
 filter_bones
-filterclass
 finalTime
 final_time
 find_str
@@ -25380,7 +25309,6 @@ fixed_blend_val
 fixedbounds
 fixupEntityNames
 fixupEntityNames == false || targetName == ""
-fixupNames
 fj".T\CMek2>x
 flAnticipationDistance
 flAnticipationTime
@@ -25446,9 +25374,6 @@ fogFlowMapValues
 fogOpacity
 fog_lighting
 fogcontributionstrength
-fogenable
-fogshadows
-fogstrength
 folder_name
 follow_the_lead
 follower_bone
@@ -25501,9 +25426,6 @@ from_name
 frustum
 full_frame_range
 full_sphere
-func_combined_light_probe_volume
-func_nav_markup
-func_physbox
 function
 functionName
 functionParams
@@ -25681,7 +25603,6 @@ hammerMeshDataBuffer
 hammerUniqueId
 hammer_embedded_properties
 hammer_preview_lighting
-handshake
 handshakeTypes
 hard_lock
 hasLimits
@@ -25726,14 +25647,12 @@ hiddenFlags
 hiddenGroups
 hidden_in_tools
 hidden_when_readonly
-hide_debug_complaints
 hide_if_child_selected
 hide_interpolation_type
 hide_materialgroup_in_tools
 hide_rendercolor_in_tools
 high_high_precision_texcoords
 high_precision_blendweights
-high_priority
 high_quality
 hinge_axis
 hinge_vector
@@ -25767,7 +25686,6 @@ ignore_Translation
 ignore_backfaces
 ignore_missing_target_nodes
 ignore_outro
-ignore_rotation
 ignore_scale
 ik_chain_name
 ikchain
@@ -25791,7 +25709,6 @@ importer_notes
 inTangent
 inTangentType
 in_frame
-in_tangent_local
 inbound
 include
 include_is_exclusive
@@ -25810,7 +25727,6 @@ inertia_scale
 info_blob_spit_path
 info_node
 info_node_link
-info_particle_system
 inherit_all_joints
 inherit_owner
 inherit_owner_index
@@ -25983,7 +25899,6 @@ layerData0
 layerData1
 layerData2
 layerData3
-layerName
 layers
 leader_bone
 leader_type
@@ -26018,19 +25933,10 @@ lifetime_random
 light
 lightModeTint
 lightModeTint2
-light_barn
 light_capsule
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_probe_volume_from_cubemap
 light_sky
-light_spot
-light_style
 light_sun
-lightcookie
 lightgroup
 lightingDummy
 lightingOriginName
@@ -26265,7 +26171,6 @@ m_dynamicComboVars
 m_dynamicComboVarsRef
 m_eRbfType
 m_expr
-m_fMoveTo
 m_flAngleDegrees
 m_flDefault
 m_flDeltaValue
@@ -26555,16 +26460,12 @@ max_offset
 max_pitch
 max_radians
 max_shape
-max_steering_angle
-max_suspension_offset
 max_thrust
-max_twist_angle
 max_u
 max_v
 max_value
 max_yaw
 maxangle
-maxs
 maxvalue
 maya
 medium
@@ -26601,18 +26502,13 @@ min_offset
 min_pitch
 min_radians
 min_shape
-min_steering_angle
-min_suspension_offset
 min_thrust
 min_turn_radius
-min_twist_angle
 min_value
 min_yaw
 minangle
 minigame
 minimized
-minroughness
-mins
 minvalue
 mirror
 mirror_x
@@ -26645,7 +26541,6 @@ model_morphchannel
 model_path
 model_physics_shape
 model_runtime_cloth_node
-model_scale
 model_state
 model_subkey
 modelanimevent
@@ -26656,7 +26551,6 @@ modeldoc_utils
 modeldocattr
 modeldocnode.%s
 modelgamedata
-modellib
 models/editor/axis_helper.vmdl
 models/editor/axis_helper_disabled.vmdl
 models/editor/axis_helper_thick.vmdl
@@ -26689,7 +26583,6 @@ motion_type
 movable_mesh_gravity_follows_rotation
 move
 move_to
-move_to_gait
 moveclass
 movementsettings
 movieSettings
@@ -26767,12 +26660,10 @@ no memory during frame initialization.
 no_blend
 no_forced_fade
 no_help_info
-no_interrupts
 no_lasso_select
 no_member_int_a
 no_member_int_b
 no_shadows
-no_teleport_at_end
 noalphacrop
 nobounds
 nodeCount
@@ -26786,7 +26677,6 @@ node_base_y0
 node_base_y1
 node_dest
 node_entity_class
-node_id
 node_id_List
 node_name
 node_name_key
@@ -26834,7 +26724,6 @@ objectConfiguration
 objectConfigurationByName
 objectSelectionSetData
 objectSpacing
-object_culling
 objectsPitch
 objectsPlantType
 objectsPropType
@@ -26880,7 +26769,6 @@ option
 optional_toggle_cmd
 optionallycompressedtangentframe
 orientToSurface
-orientation
 orientationChannel
 origin  {   "x" "%f"  "y" "%f"  "z" "%f" }
 origin_key
@@ -26895,7 +26783,6 @@ oscillate_vector
 outTangent
 outTangentType
 out_frame
-out_tangent_local
 outbound
 outerconeangle
 outliner_icon
@@ -26947,7 +26834,6 @@ paramMap
 paramValue
 parameter
 parameterID
-parameterName
 parameterValues
 parameters
 params
@@ -26987,25 +26873,20 @@ pathNodeName
 pathNodeNames
 pathNodeRadiusHeightScales
 pathNodeRadiusScales
-pathNodes
 pathParameter
 pathTangents
 path_Index
-path_corner
 path_generic
 path_node_cable
 path_node_class
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_pos_%d
 path_position
 path_rad_height_%d
 path_rad_width_%d
-path_track
 path_trajectory
-path_uniqueid
 pathclass
 pathnode
 pathnodeclass
@@ -27078,9 +26959,6 @@ plugTypes
 point
 point0_key
 point1_key
-point_prefab
-point_pulse
-point_template
 point_type
 point_upwards
 pointclass
@@ -27122,7 +27000,6 @@ positionsIndices
 posterSettings
 postion_lock_to_controlpoint
 postocclusionquery
-postprocessing
 posture
 posture_nohands
 posxyz
@@ -27131,18 +27008,10 @@ preMerge face 0
 preMerge face 1
 precision_degrees
 precomputed_transmission
-precomputedboundsmaxs
-precomputedboundsmins
-precomputedfieldsvalid
 precomputedmaxrange
 precomputedminrange
-precomputedobbangles
-precomputedobbextent
-precomputedobborigin
 prefabRuntimeEntity
-prefab_associated_relay
 prefab_has_runtime_entity_by_default
-prefab_load_dynamic
 prefab_relay_interface
 prefab_relays
 prefab_root
@@ -27179,14 +27048,11 @@ projectionFar
 projectionMode
 projectionTargets
 propTypes
-prop_dynamic
 prop_dynamic_client_fadeout
 prop_group
 prop_group_contents
 prop_group_contents_list
 prop_group_packing_material
-prop_physics_override
-prop_physics_respawnable
 prop_static
 propattr_flatten_include_label
 propattr_flatten_into_parent_row
@@ -27248,7 +27114,6 @@ randomSeed
 random_position
 random_spawn_chance
 randomizable
-range
 rasterizerStateDesc
 rawControlNames
 rbf_type
@@ -27298,16 +27163,12 @@ render_mesh_name
 render_mode
 render_res
 render_resolution
-renderamt
-rendercolor
 renderdiffuse
 rendermesh_node_name
 renderspecular
-rendertocubemaps
 rendertransmissive
 renderwithdynamic
 reorientCamera
-repeatable
 replace_specific_bodys_joints
 replace_str
 replacedParentField
@@ -27322,7 +27183,6 @@ required_parent_class
 res_width
 resampleinterval
 resetCycleOption
-resolution
 resourceinfo
 result_left
 result_right
@@ -27348,7 +27208,6 @@ rigidConstraint
 rigid_edge_hinges
 rnd_seed
 rod_attrs
-root
 rootControlGroup
 rootDCCObjects
 rootGroup
@@ -27412,7 +27271,6 @@ screen_height
 screen_height_for_aspect
 screen_width
 screen_width_for_aspect
-scripted_sequence
 scriptlist
 scripts/activity_modifier_weights.txt
 scripts/collision_detail_layers.vdata
@@ -27546,10 +27404,8 @@ shadowcascaderesolution2
 shadowcascaderesolution3
 shadowfademaxdist
 shadowfademindist
-shadowpriority
 shadowtextureheight
 shadowtexturewidth
-shape
 shapeReferences
 shapeType != CMapChoreoLocatorShapeType_t::LINE
 shapeType != CMapChoreoLocatorShapeType_t::RADIUS
@@ -27561,7 +27417,6 @@ sharedenvironment
 sharpStartAngle
 shell_proxy
 should be cyclic
-should_leave_corpse
 show
 showAmbientOcclusion
 showCameraFrustum
@@ -27587,7 +27442,6 @@ simulationTime
 simulationTimeScale
 single_override_material
 size_box_oriented
-size_params
 skeleton
 skeleton_only
 skeletonfilereference
@@ -27597,7 +27451,6 @@ skewBrightnessValues
 skewStrength
 skewVariance
 skew_normals
-skin
 skin%d
 skin_parented_transforms
 skin_threshold
@@ -27606,15 +27459,12 @@ skinned_physics_mesh_key_name
 skip_edge_rendering
 skip_face_rendering
 skip_vertex_rendering
-sky_camera
-sky_lightingonly_name
 skyambientbounce
 skybouncescale
 skybox
 skyboxMapPath%i
 skycolor
 skyintensity
-skyname
 skytexture
 skytexturescale
 slave
@@ -27648,13 +27498,8 @@ snapangle_key
 snappable
 snapshot
 snapshotOverride
-snapshot_file
 snapshot_mesh
-snd_event_box_helper
 soft_hinge_link
-soft_x
-soft_y
-solid
 solidCollisionAtZeroWeight
 solidclass
 solidity
@@ -27680,7 +27525,6 @@ source_mesh
 source_node
 sources
 spawnFlags
-spawnflags
 special key
 special_identifier
 specificImpulse
@@ -27698,7 +27542,6 @@ speed_range
 speeds
 spew_stats
 spewresult
-spin_axis_friction
 spin_degrees
 splayaxis
 splaymax
@@ -27728,7 +27571,6 @@ start_distance
 start_expanded
 start_loop
 start_loop_frame
-start_on_spawn
 startloop
 stateValue
 static
@@ -27776,10 +27618,8 @@ struct GS_INPUT
 struct PS_INPUT
 struct VS_INPUT
 studioprop
-style
 subClipTrackGroup
 subclass_choice
-subclass_name
 subdivisionBinding
 subdivisionData
 subdivisionLevels
@@ -27803,7 +27643,6 @@ surface_property
 surface_property_override
 suspender
 swap_left_and_right_bones
-swing_limit
 swing_offset_angle
 switch_threshold
 syncEngineFramerate
@@ -27839,7 +27678,6 @@ targetGroup
 targetGroupNodeID
 targetGroupReferenceID
 targetLumpKey
-targetMapName
 targetMapPath
 targetMapPath%i
 targetName
@@ -27871,7 +27709,6 @@ target_source
 target_value
 target_warp
 targetname
-targets
 teleportclip
 temp_var_banks
 template
@@ -27909,13 +27746,10 @@ textureOrientation
 textureRepeatsCircumference
 textureScale
 textureScale1
-texture_based_animation_position_keys
 texture_based_animation_preview_sequence
-texture_based_animation_rotation_keys
 texture_generator_preview
 texture_map
 thread initialization failed.
-threshold
 thumbnail grid
 thumbnail_frame
 tiff
@@ -27943,8 +27777,6 @@ tint
 tintColor
 tintInput
 tintValues
-tint_cp
-tint_cp_color
 tip_mass
 tipoffset
 tipparentbone
@@ -28356,7 +28188,6 @@ useEdgeInfo
 useLocalOffset
 useSmoothPaths
 useTargetNameAsPrefix
-use_animgraph
 use_block_solver
 use_curvature_drop
 use_default_material

@@ -2690,7 +2690,6 @@ And R%d <- R%d && R%d
 AngleA
 AngleB
 AngularSpan
-Animation 2
 Annotate Favorite...
 AntiAliasStrength
 Any Other Cursors Have Tag
@@ -3157,7 +3156,6 @@ CameraCalibration1
 CameraCalibration2
 CameraSerialNumber
 Can not read scanlines from a tiled image
-Cancel
 Cannot Debug
 Cannot add multiple root layouts to the same widget
 Cannot break - no debugger attached!
@@ -3212,7 +3210,6 @@ Clear History
 Clear all states except favorites.
 ClearInputHistory
 ClipPath
-Close
 Close (Esc)
 Close the group automatically after a short wait (good for 'success' messages)
 Close the group automatically when the associated parent process exits (good for sticky 'error' messages)
@@ -3396,7 +3393,6 @@ DragOffsetRelativeStart
 DragOffsetRelativeUpdate
 DragStarted
 DragUpdated
-DualHull
 DummyNoOp
 DumpModeDecode: Not enough data for scanline %d
 Dynamic Expression
@@ -3732,7 +3728,6 @@ InkSet
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 Insert 'element' in the given index in 'a', increasing its count by one and moving the elements after index.
 Insufficient data length.\n
 Insufficient data size for attributes.\n
@@ -4344,7 +4339,6 @@ ParseImageDataSection failed
 Parser encountered %i errors parsing compile targets expression "%s"\n
 Particle Binding
 Particle Binding (Real)
-ParticlesLib
 Pass Outflow
 Paste
 Paste (Overwrite)
@@ -4360,7 +4354,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 PhysicsSurfaceProperties
 PhysicsSurfaceProperties%d
 PhysicsSurfaceProperties1
@@ -4510,7 +4503,6 @@ Remap and clamp input value from input range to output range (float)
 Remap01ScaleOffset
 RemapVal
 RemapValClamped
-Remove
 Remove Flags
 Remove Tag From Cursor
 Remove all elements from 'a' which are invalid instances.
@@ -4652,7 +4644,6 @@ Sanitize batch materials.
 Sanitize: %d/%d - "%s"
 Saturate
 Saturate (clamps float between 0 and 1)
-Save
 Save &As...
 Save All...
 Save As...
@@ -4694,7 +4685,6 @@ SetBackStyleCapsule
 SetBackStyleSlot
 SetBackgroundEnabledDBG
 SetBlackboardReference BR%d (%s) <- R%d 
-SetColor
 SetCursorPos
 SetDragEnd
 SetDragStart
@@ -4776,7 +4766,6 @@ ShowRawOutput
 ShowShaderAttributes
 ShowVariableSortKeys
 ShowWidgetDebugger
-Shutdown
 Sign Float
 Sign Int
 Signal '%s' not compatible with slot '%s'
@@ -4932,8 +4921,6 @@ Tool
 ToolAttributes
 ToolBarArea
 ToolFramework
-ToolScene
-ToolSystem2_001
 ToolTip - "%s" not found.
 ToolTips
 Tools  
@@ -5041,7 +5028,6 @@ VFX_RULE_TYPE_STATIC
 VFX_RULE_TYPE_UNKNOWN
 VFX_RULE_UNKNOWN
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -5754,7 +5740,6 @@ e\v?event@QStatusBar@@MEAA_NPEAVQEvent@@@Z
 element
 end_as_info
 end_group
-exclusive
 exp2
 expected an integer or the name of a #define
 expected an integer, got "%.*s" ( #define names can be used in combo declarations and rules, but not in FEATURES )
@@ -6188,7 +6173,6 @@ o\v?event@QTreeWidget@@MEAA_NPEAVQEvent@@@Z
 offsetDelta
 opqMU
 optionallycompressedtangentframe
-orientation
 originalColor
 p>uX0
 pAction
@@ -6231,7 +6215,6 @@ read past end of file (truncated/corrupt)
 rect
 remap
 right
-root
 rotate2d
 rotateVector
 rotateVectorToLocal

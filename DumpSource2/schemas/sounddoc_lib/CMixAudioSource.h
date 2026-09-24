@@ -22,6 +22,7 @@
 //}
 // MPropertyFriendlyName = "VMix Source Audio Node"
 // MPropertyDescription = "Plays a vsnd container."
+// MHasKV3TransferPolymorphicClassname
 class CMixAudioSource : public CMixPropertyBase
 {
 	KeyValues3 m_kvContainer;

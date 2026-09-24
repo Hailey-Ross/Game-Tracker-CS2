@@ -19,6 +19,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CnmGraphDocChainLookatNode::CData : public CNmGraphDocVariationDataNode::CData
 {
 	CUtlString m_endEffectorBoneName;

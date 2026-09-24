@@ -34,6 +34,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CTakeDamageInfo
 {
 	Vector m_vecDamageForce;

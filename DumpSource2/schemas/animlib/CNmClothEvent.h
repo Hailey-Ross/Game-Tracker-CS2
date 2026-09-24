@@ -17,6 +17,7 @@
 //	"m_vertexSetName": "",
 //	"m_effectName": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClothEvent : public CNmEvent
 {
 	CNmClothEvent::Type_t m_type;

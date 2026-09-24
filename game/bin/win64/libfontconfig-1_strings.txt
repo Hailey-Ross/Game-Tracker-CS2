@@ -952,7 +952,6 @@ proportional
 ps-af
 ps-pk
 qual
-range
 rasterizer
 recursive entity reference
 reference to binary entity
@@ -988,7 +987,6 @@ slant
 spacing
 standalone
 strong
-style
 stylelang
 superblack
 superbold

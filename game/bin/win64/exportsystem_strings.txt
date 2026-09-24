@@ -976,7 +976,6 @@ Alpha Random
 Animation Bone Flags
 Animation Configuration File
 Animation/AccumulatePose
-AnimationSystem: IK
 ApplicationNativeFile
 Arms
 Attempted to add two format updaters with the same file format (%s)!\n
@@ -1379,7 +1378,6 @@ DmeXSIMakefile
 DmxSemanticName
 DmxSourceFile
 DmxSourceFileRelative
-DualHull
 ERROR: Specified full path %s does not lie under the mod search path!)\n
 ERROR: Specified path %s could not be made content-relative\n
 ERROR: Unable to create an attribute handle! Save, quit, restart and clean up your file to have fewer elements!\n
@@ -1429,7 +1427,6 @@ Failed to load DMX file :: %s
 Failed to load DMX file: %s
 Fbx2Material :: Color Texture Replacment :: %s :: %s\n
 Fbx2Material::FbxProperty::Invalid :: "%s"\n
-FbxSystem
 Film
 FindAttrNode
 Fingers
@@ -1522,7 +1519,6 @@ Max Velocity
 Maya
 Mesh
 Mesh     :: 
-MeshUtils
 Model    :: 
 MorphOperator::Operate: invalid delta state name: %s\n
 Movement Basic
@@ -1577,7 +1573,6 @@ Particle Configuration File
 PerVertexLighting
 Pf\n%d %d\n-1.000000\n
 Phong
-Physics
 PivotPaint
 Pole vector (raw dir: {%.2f, %.2f, %.2f})
 Position Along Path Random
@@ -1748,7 +1743,6 @@ _detailmask_
 _diffusemask_
 _flex_channel
 _layer0
-_light
 _linked_type_
 _mesh%d
 _metalnessmask_
@@ -1770,8 +1764,6 @@ alpha_fade_in_random
 alpha_fade_out_random
 alpha_random
 ambientOcclusionMode
-ambientcolor2
-ambientcolor3
 angulardiameter
 anim
 animSetList
@@ -1844,24 +1836,17 @@ bookmarksY
 bookmarksZ
 bool log
 bool_array
-bouncelight
-bouncescale
 box2i
-box_maxs
-box_mins
 boxproject_maxs
 boxproject_mins
 brightness_units
-brightnessscale
 bspline
 cable_static
-can_override_npc_state
 candle_1
 candle_2
 candle_3
 cannotgravitygrab
 cannotgravitypunt
-castshadows
 catmullrom
 catmullrom_normalize
 catmullrom_normalize_x
@@ -1892,7 +1877,6 @@ color_hdr
 color_pack
 color_random
 color_red
-color_tint
 colorsIndices
 combinationOperator
 combo
@@ -1911,7 +1895,6 @@ constantAttenuation
 constrainVelocity
 constrain_velocity
 content
-continue_on_death
 controlColor
 controlValues
 controlValuesLagged
@@ -1948,7 +1931,6 @@ deltaStateWeights
 deltaStateWeightsLagged
 deltaStates
 depthOfFieldSamples
-directlight
 disableOverride
 disableShadows
 disableShadows2
@@ -1979,16 +1961,12 @@ embeddedTarget
 emissionStopTime
 emitting
 enablemotionongravitygrab
-enableuseoutput
 encoding %s %d format %s %d\n
 endJoint
 endTime
 endUp
 ent_dota_lightinfo
 entity_properties
-env_cubemap_box
-env_global_light
-env_sky
 exponential_decay
 exportTags
 exportType
@@ -2011,7 +1989,6 @@ fbx2dmx
 fetched: %s : %.3f\n
 fieldOfView
 filenameBase
-filterclass
 finalTime
 final_time
 flatten log %p lc[%d]
@@ -2028,8 +2005,6 @@ fluorescent_flicker
 focalDistance
 fog_lighting
 fogcontributionstrength
-fogshadows
-fogstrength
 forcemultitrack
 forwardParity
 frameEnd
@@ -2039,7 +2014,6 @@ frameStart
 fromAttribute
 fromElement
 fromIndex
-func_physbox
 functionName
 game:tools/images/assettypes/generic_lg.png
 game:tools/images/assettypes/generic_sm.png
@@ -2061,8 +2035,6 @@ hiddenFlags
 hiddenGroups
 hideType
 hideValue
-hide_debug_complaints
-high_priority
 hitbox
 hold
 hold_left
@@ -2071,7 +2043,6 @@ houdini
 index
 indices
 indirectlight
-info_particle_system
 initialMass
 initial_mass
 innerconeangle
@@ -2141,15 +2112,7 @@ libfbxsdk_2020_3_1.dll
 lifespan_decay
 lifetime_random
 light
-light_barn
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_sky
-light_spot
-light_style
 light_sun
 lightgroup
 lights
@@ -2185,7 +2148,6 @@ m_WeakReferenceList
 m_bFileExists
 m_bIsGameFile
 m_bOptional
-m_fMoveTo
 m_nFileCRC
 m_nFingerprint
 m_nFingerprintDefault
@@ -2226,14 +2188,12 @@ modelPath
 model_attachment
 model_bone
 model_path
-model_scale
 modo
 morph
 morph_controls_name
 morph_rules
 morph_rules_name
 motionBlurSamples
-move_to_gait
 movieSettings
 movieobjects
 mp_anim
@@ -2256,11 +2216,8 @@ nCompressedSize == nUncompressedSize
 nDataSize > 0
 nLayoffState
 nearclipplane
-no_interrupts
-no_teleport_at_end
 nodeID
 node_dest
-node_id
 node_id_List
 node_name
 nodes
@@ -2277,7 +2234,6 @@ offseTime
 offsetTime
 operators
 optionallycompressedtangentframe
-orientation
 orientationChannel
 orientationW
 orientationX
@@ -2301,7 +2257,6 @@ path_node_cable
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_trajectory
 pattern
 phonememap
@@ -2329,15 +2284,12 @@ positions
 positionsIndices
 posterSettings
 postion_lock_to_controlpoint
-postprocessing
 posxyz
 prefab_has_runtime_entity_by_default
 prefab_root
 presetGroups
 presetRemap
 procedural
-prop_physics_override
-prop_physics_respawnable
 propdataname
 pvTarget
 q)?SetRow@FbxAMatrix@fbxsdk@@QEAAXHAEBVFbxVector4@2@@Z
@@ -2354,7 +2306,6 @@ random position along path
 random position on model
 random yaw
 randomSeed
-range
 rawControlNames
 readonly
 recordingstate
@@ -2366,7 +2317,6 @@ renderMeshShape%d
 renderOnlySelectedClips
 renderSettings
 renderVerts
-repeatable
 replacedParentField
 replacedParentIndex
 replacedSoundEvents
@@ -2386,7 +2336,6 @@ right_edge_curvetype
 right_edge_value
 rightedgetime
 rightvaluechannel
-root
 rootControlGroup
 rootDCCObjects
 rootGroup
@@ -2403,7 +2352,6 @@ scene
 schemasystem
 screenWindowCenter
 screenWindowWidth
-scripted_sequence
 scriptlist
 second_sequence_random
 selectable
@@ -2433,9 +2381,7 @@ shadow_secondary_color_day
 shadow_secondary_color_night
 shadowtextureheight
 shadowtexturewidth
-shape
 shared
-should_leave_corpse
 showAmbientOcclusion
 showCameraFrustum
 showFocalPlane
@@ -2448,12 +2394,10 @@ simple_cubic
 simulating
 simulationTime
 simulationTimeScale
-size_params
 skeleton
 sketchup
 skycolor
 skyintensity
-skyname
 slave
 slaveOffsets
 slaves
@@ -2466,15 +2410,11 @@ smoothscale
 smoothscale_vector
 snappable
 snapshotOverride
-snapshot_file
-soft_x
-soft_y
 soundEventScript
 soundname
 sourceDag
 sources
 spawnFlags
-spawnflags
 specificImpulse
 specific_impulse
 specular_direction_day
@@ -2493,7 +2433,6 @@ startJoint
 startOffset
 startTime
 startUp
-start_on_spawn
 static
 stereo
 stereoSingleFile
@@ -2501,7 +2440,6 @@ stereoscopic
 string log
 string_array
 string_instanced
-style
 subClipTrackGroup
 subkeys
 suppressed
@@ -2526,7 +2464,6 @@ target_destination
 target_name_or_class
 target_source
 targetname
-targets
 texcoord
 texcoord$0
 texcoord$0Indices
@@ -2535,7 +2472,6 @@ text_block
 textureCoordinates
 textureCoordinatesIndices
 textureFrame
-threshold
 time log
 timeFrame
 time_array

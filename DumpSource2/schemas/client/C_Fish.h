@@ -1,3 +1,4 @@
+// MNetworkNoBase
 class C_Fish : public CBaseAnimGraph
 {
 	// MNotSaved

@@ -52,6 +52,7 @@
 //	"m_bPrefersIconForThumbnail": false,
 //	"m_bAllowedToCompileInTestMode": false
 //}
+// MHasKV3TransferPolymorphicClassname
 class CMapAssetTypeInfo : public CResourceAssetTypeInfo
 {
 };

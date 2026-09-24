@@ -1,3 +1,4 @@
+// MNetworkNoBase
 class C_CSPlayerResource : public C_BaseEntity
 {
 	bool[12] m_bHostageAlive;

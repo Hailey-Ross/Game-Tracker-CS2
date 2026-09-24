@@ -6,6 +6,7 @@
 //	],
 //	"m_KVthumbnail": null
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCompositeMaterialEditorDoc
 {
 	int32 m_nVersion;

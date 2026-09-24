@@ -439,7 +439,6 @@ Halfspace-about
 HavokConsole
 Hinged on %s axis\n
 Ht=c
-IMEManager001
 IND)ind)m
 IT=_9
 Inertia: %.2f, %.2f, %.2f (inv %.3f, %.3f, %.3f)\n
@@ -833,7 +832,6 @@ cycles of facets merged into coplanar horizon
 damageLossPercentPerPenetration
 damagemodifier
 dampFactor
-damping
 degenerate facets due to dropped neighbors
 degenerate hyperplanes recomputed with gaussian elimination
 degreesBoost
@@ -1008,7 +1006,6 @@ maxbodyforce
 maximum number of neighbors
 maximum number of ridges
 maximum number of vertices
-maxspeed
 maxspeedfactor
 memory usage statistics (in bytes)
 merge iterations
@@ -1075,7 +1072,6 @@ phys_enable_query_cache
 phys_enable_simd_optimizations
 physcollideheader_t
 pnJ=
-points
 points checked for facets' outer planes
 points ignored (didn't create a good new facet)
 points ignored (not above a good facet)
@@ -1573,7 +1569,6 @@ skidmaterial
 slideAxisRef
 slowcarspeed
 slowsteeringrate
-solid
 speedDamping
 speedFast
 speedSlow
@@ -1702,20 +1697,13 @@ water
 wheel
 wheelOffset
 wheeloffset
-wheels
 wheelsInContact
 wheelsNotInContact
 wheelsPerAxle
 wheelsperaxle
 with
-xfriction
-xmax
-xmin
 xpxxxx
 y>1g
-yfriction
-ymax
-ymin
 z*va
 z1}B
 zJO>
@@ -1723,9 +1711,6 @@ zero diagonal on back substitution
 zero divisors during back substitute
 zero divisors during gaussian elimination
 zero pivot for Gaussian elimination
-zfriction
-zmax
-zmin
 zw?C6w?
 zyC7
 { OFF %d 1 1 # f%d\n

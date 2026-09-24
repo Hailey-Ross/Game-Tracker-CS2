@@ -7,6 +7,7 @@
 // MVDataComponentValidGrandParents = "CSmartPropElement_PlaceOnMesh"
 // MPropertyFriendlyName = "Filter Faces By Material"
 // MPropertyDescription = ""
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropSelectionCriteria_MaterialCriteria : public CSmartPropSelectionCriteria
 {
 	// MPropertyFriendlyName = "Material"

@@ -7997,7 +7997,6 @@ Amount of damping of changes
 Amount to modify vertex normals (0-none, 1-completely)
 Amount to multiply light brightness by
 Amount to multiply particle system radius by to get light radius
-Amplitude
 An IK chain describes a section of a model that you want to control procedurally.
 An SDF shape which cloth collides with.
 An animation to composite over top of this animation.  The cycle of the composited animation will be the same as this animation.
@@ -8098,7 +8097,6 @@ Animated Length
 AnimatedMaterialAttribute
 AnimatedMaterialAttributeColor
 AnimatedMaterialAttributeValue
-Animation 2
 Animation Bone Flags
 Animation Configuration File
 Animation Order
@@ -10083,7 +10081,6 @@ Draw as opaque
 Drive a morph channel based on a remapped range of the angle between a bone's up-vector and the direction to a target bone.
 DriverBone
 Dual sequence combine mode
-DualHull
 DumpModeDecode: Not enough data for scanline %d
 Duplicate Bone: 
 Duplicate Faces
@@ -12072,10 +12069,7 @@ Particle feathering closest distance to surface
 Particle feathering farthest distance to surface
 Particle system that handles the generated model/snapshot (Must be authored specifically for this case to work properly)
 ParticleCompileBinaryIdenticalHack_underlying_struct
-ParticleImport
 ParticleParamID_t
-Particles
-ParticlesLib
 Pass Outflow
 Password protected FBX files unsupported for file: %s
 Path Overflow, must be less than 260 characters.
@@ -12093,7 +12087,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Joint Modification Mode
 Physics Particle
 Physics Prop
@@ -12604,7 +12597,6 @@ Returns the inverse of a world transform.
 Returns true if the Vector is valid
 Returns true if the World Vector is valid
 Returns up to the maximum requested elements. Never grows the array (unlike SetCount).
-Reverse
 Reverse point order
 Reverse the direction of the animation.  This happens after the frame range is truncated.
 Reverse z-buffer test
@@ -12948,7 +12940,6 @@ Smooth Normals Across UV Seams
 Smooth Rate
 Smooth Vertex Normals
 Snap to grid
-SnapshotVertexExtraction
 Soft Link
 Softbody
 Software
@@ -13238,7 +13229,6 @@ TextureGenerator_FaceVertexColor
 TextureGenerator_ObjectSpaceNormalMap
 TextureGenerator_PointOcclusionMap
 TextureGenerator_PositionMap
-TextureScale
 TextureWrapModes
 The <b>Parent</b> animation constraint is a little different in that it expects the bone to be constrained along with any offset to be specified directly on the node itself rather than via an output child node.  Also to note is that the rotation offset on the node is specified as an Euler rotation in degrees in XYZ order rather than the QAngle everywhere else.  If the <b>Constrained Bone</b> field is empty and there is an output child node, the first output node will be used.  If the <b>Constrained Bone</b> field is not empty, all output child nodes will be ignored.
 The Impostor LOD Group takes another Source LOD Group as input. Generating an impostor will output mesh and texture content files and set up the ModelDoc document to use them.\n\nImpostors need to be manually re-generated when any source content changes.
@@ -13320,7 +13310,6 @@ Time in seconds from the start of the animation over which it will fade int when
 Time since the start of the timer
 Time-of-Day Parameter
 Tint CP
-TintColor
 TinyBVH Fatal Error: %s at %s:%d
 TinyBVHFatalError
 Tip Mass
@@ -13341,7 +13330,6 @@ TongueV
 TongueWidth
 Too much
 Tool Material
-ToolEvents
 Top Vortex Wind Speed, mph
 Torsion Stiffness
 Total1
@@ -13883,7 +13871,6 @@ _inFrameArms
 _inLoopDelta
 _left
 _legacy
-_light
 _linked_type_
 _lod%d
 _lookFrame_0
@@ -13917,7 +13904,6 @@ a:typeparam
 absolute
 absorigin
 absorigin_follow
-acceleration
 accent
 accent_frame
 acosf() heavily exaggerates floating point precision errors. Threshold is high (1e-2f) for this reason. This can probably stay fixed. Increase for Stability at the cost of Accuracy.
@@ -13991,9 +13977,6 @@ always_active
 always_run
 ambientOcclusionMode
 ambient_occlusion
-ambientcolor2
-ambientcolor3
-amount
 anchor
 anchor_origin
 ang2vec
@@ -14236,15 +14219,11 @@ bookmarksZ
 bool log
 bool_array
 bool_t
-bouncelight
-bouncescale
 bounciness
 bounding_box_max
 bounding_box_min
 box_angles
 box_dimensions
-box_maxs
-box_mins
 boxproject_maxs
 boxproject_mins
 break_command
@@ -14253,7 +14232,6 @@ break_create_contents
 break_create_particle
 break_particles
 brightness_units
-brightnessscale
 bspline
 build_backfaces
 build_sides
@@ -14265,13 +14243,11 @@ cable_static
 cableclass
 cables_list
 calc_per_vertex_curvature
-camera_name
 can_collide_with_ground_plane
 can_collide_with_moving_bodies
 can_collide_with_world_capsule_and_spheres
 can_collide_with_world_hulls
 can_collide_with_world_meshes
-can_override_npc_state
 can_player_pickup_piece
 candle_1
 candle_2
@@ -14292,7 +14268,6 @@ capsulepos1
 capsulepos2
 capture_region
 capture_renderdoc
-castshadows
 catmullrom
 catmullrom_normalize
 catmullrom_tangent
@@ -14446,7 +14421,6 @@ color_int
 color_pack
 color_random
 color_red
-color_tint
 colorsIndices
 combinationOperator
 combo
@@ -14481,7 +14455,6 @@ content
 content/
 content_export_fbx_suffix
 contents_group_id
-continue_on_death
 control
 control point number (ignored if per particle)
 control point number 0
@@ -14563,7 +14536,6 @@ d\tV_frexpf
 damage_direction_cp
 damage_position_cp
 damage_table
-damping
 damping constant Kd
 data height too large.
 data width or data height is negative.
@@ -14622,7 +14594,6 @@ diffuse warp texture
 dilation
 dimensions
 dimensions_key
-directlight
 disable child
 disableOverride
 disableShadows
@@ -14703,7 +14674,6 @@ editor_camera_presets
 editorconfig
 editparams
 effect_contents
-effect_name
 effect_packing_material
 elastic
 elastic_damping
@@ -14735,13 +14705,8 @@ enable_crouch_speeds
 enable_dynamic_mesh_tension
 enable_dynamic_smooth_normals
 enable_simulation
-enable_steering_limit
-enable_suspension_limit
-enable_swing_limit
-enable_twist_limit
 enabled_key
 enablemotionongravitygrab
-enableuseoutput
 encoding %s %d format %s %d\n
 endJoint
 endTime
@@ -14770,9 +14735,6 @@ entries will be ordered first, unspecified entries will be added after ordered e
 entry
 entrytag
 enum_array
-env_cubemap_box
-env_global_light
-env_sky
 env_wind_controller
 equal_to
 error_on_failure
@@ -14853,7 +14815,6 @@ fade_out_time
 fade_start_time
 fadeintime
 fadeouttime
-fadetime
 fail_on_empty
 falloff_left
 falloff_right
@@ -14874,7 +14835,6 @@ filenameBase
 filter
 filter_bone_influence_threshold
 filter_bones
-filterclass
 finalTime
 final_time
 find_str
@@ -14937,8 +14897,6 @@ fluorescent_flicker
 focalDistance
 fog_lighting
 fogcontributionstrength
-fogshadows
-fogstrength
 folder_name
 foliage
 foliageanimation
@@ -14994,7 +14952,6 @@ fromIndex
 from_name
 full_frame_range
 full_sphere
-func_physbox
 functionName
 g %4096s
 g\v??HFbxTime@fbxsdk@@QEBA?AV01@AEBV01@@Z
@@ -15110,13 +15067,11 @@ hemisphere
 hiddenFlags
 hiddenGroups
 hidden_in_tools
-hide_debug_complaints
 hide_if_child_selected
 hide_materialgroup_in_tools
 hide_rendercolor_in_tools
 high_high_precision_texcoords
 high_precision_blendweights
-high_priority
 high_quality
 hinge_axis
 hinge_vector
@@ -15148,7 +15103,6 @@ ignore_Translation
 ignore_backfaces
 ignore_missing_target_nodes
 ignore_outro
-ignore_rotation
 ignore_scale
 ik_chain_name
 ikchain
@@ -15189,7 +15143,6 @@ indexed document with non 8 bit indices
 indirectlight
 inertia
 inertia_scale
-info_particle_system
 inherit_all_joints
 inherit_owner
 inherit_owner_index
@@ -15359,15 +15312,7 @@ lifetime_random
 lifetime_random_exponent
 light
 light per vertex
-light_barn
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_sky
-light_spot
-light_style
 light_sun
 lightgroup
 lightmap
@@ -15678,7 +15623,6 @@ m_eOffset
 m_eParentBindRotation
 m_eRbfType
 m_eSlaveChannel
-m_fMoveTo
 m_fireInteractions
 m_flAddCurvature
 m_flAddNoise
@@ -15937,16 +15881,12 @@ max_particles
 max_pitch
 max_radians
 max_shape
-max_steering_angle
-max_suspension_offset
 max_thrust
-max_twist_angle
 max_u
 max_v
 max_value
 max_yaw
 maxangle
-maxs
 maxvalue
 maya
 medium
@@ -15978,17 +15918,13 @@ min_offset
 min_pitch
 min_radians
 min_shape
-min_steering_angle
-min_suspension_offset
 min_thrust
 min_turn_radius
-min_twist_angle
 min_value
 min_yaw
 minangle
 minimized
 minimum rendered frames
-mins
 minvalue
 mirror
 mirror_x
@@ -16013,7 +15949,6 @@ model_morphchannel
 model_path
 model_physics_shape
 model_runtime_cloth_node
-model_scale
 model_subkey
 modelanimevent
 modelbreakcommand
@@ -16027,7 +15962,6 @@ modeldoc_utils_write_fbx_mesh
 modeldocattr
 modeldocnode.%s
 modelgamedata
-modellib
 models/
 models/editor/axis_helper_thick.vmdl
 models/editor/camera.vmdl
@@ -16054,7 +15988,6 @@ motion_samples
 motion_smooth_cdt
 motion_type
 move
-move_to_gait
 moveclass
 movementsettings
 movieSettings
@@ -16108,11 +16041,9 @@ no memory during frame initialization.
 no_blend
 no_forced_fade
 no_help_info
-no_interrupts
 no_member_int_a
 no_member_int_b
 no_shadows
-no_teleport_at_end
 nodeCount
 nodeID
 node_base_x0
@@ -16120,7 +16051,6 @@ node_base_x1
 node_base_y0
 node_base_y1
 node_dest
-node_id
 node_id_List
 node_name
 node_name_key
@@ -16185,7 +16115,6 @@ optimization_algorithm
 option
 optional_toggle_cmd
 optionallycompressedtangentframe
-orientation
 orientationChannel
 origin_key
 original_bone_name
@@ -16270,7 +16199,6 @@ path_node_cable
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_trajectory
 pathclass
 pathnode
@@ -16375,7 +16303,6 @@ positions
 positionsIndices
 posterSettings
 postion_lock_to_controlpoint
-postprocessing
 posture
 posture_nohands
 posxyz
@@ -16417,8 +16344,6 @@ prop_group
 prop_group_contents
 prop_group_contents_list
 prop_group_packing_material
-prop_physics_override
-prop_physics_respawnable
 propattr_flatten_include_label
 propattr_flatten_into_parent_row
 propattr_flatten_stretch_factor
@@ -16467,7 +16392,6 @@ randomizable
 randomly distribute to highest supplied Control Point
 randomly distribution growth time
 randomly_flip_direction
-range
 rawControlNames
 rbf_type
 read past end of file (truncated/corrupt)
@@ -16529,7 +16453,6 @@ render_sprites
 renderers
 rendermesh_node_name
 renderorigin_follow
-repeatable
 replace_specific_bodys_joints
 replace_str
 replacedParentField
@@ -16541,7 +16464,6 @@ report
 require_entirely_inside
 res_width
 resampleinterval
-resolution
 rest length U
 rest length V
 result_left
@@ -16565,7 +16487,6 @@ rightvaluechannel
 rigid_edge_hinges
 rnd_seed
 rod_attrs
-root
 rootControlGroup
 rootDCCObjects
 rootGroup
@@ -16636,7 +16557,6 @@ screen_height
 screen_height_for_aspect
 screen_width
 screen_width_for_aspect
-scripted_sequence
 scriptlist
 scripts/activity_modifier_weights.txt
 scripts/collision_detail_layers.vdata
@@ -16713,14 +16633,12 @@ shadow_secondary_color_day
 shadow_secondary_color_night
 shadowtextureheight
 shadowtexturewidth
-shape
 shape_list
 shapes
 shared
 sharpStartAngle
 shell_proxy
 should be cyclic
-should_leave_corpse
 show
 showAmbientOcclusion
 showCameraFrustum
@@ -16742,7 +16660,6 @@ simulating
 simulationTime
 simulationTimeScale
 single_override_material
-size_params
 skeleton
 skeleton_only
 skeletonfilereference
@@ -16758,7 +16675,6 @@ skip_face_rendering
 skip_vertex_rendering
 skycolor
 skyintensity
-skyname
 slave
 slaveOffsets
 slave_axis
@@ -16783,13 +16699,9 @@ snappable
 snapshot
 snapshotOverride
 snapshot_control_point
-snapshot_file
 soft_hinge_link
-soft_x
-soft_y
 softbody
 softbody_dag
-solid
 solidclass
 solver
 sort_priority
@@ -16798,7 +16710,6 @@ sound_base
 sound_event
 sound_event_on_spawn
 soundname
-source
 sourceDag
 source_lod_group
 source_mesh
@@ -16806,7 +16717,6 @@ source_node
 sourceframe
 sources
 spawnFlags
-spawnflags
 special_identifier
 specificImpulse
 specific_impulse
@@ -16826,7 +16736,6 @@ speed_range
 speeds
 spew_stats
 spewresult
-spin_axis_friction
 spin_degrees
 spin_none
 spin_rate_degrees
@@ -16867,7 +16776,6 @@ start_fadeout_max
 start_fadeout_min
 start_loop
 start_loop_frame
-start_on_spawn
 startattachment
 startframe
 startloop
@@ -16910,7 +16818,6 @@ stringmap
 strip
 strips
 struct
-style
 subClipTrackGroup
 subclass_choice
 subkeys
@@ -16933,7 +16840,6 @@ surface_prop_override
 surface_property
 suspender
 swap_left_and_right_bones
-swing_limit
 swing_offset_angle
 switch_threshold
 syncEngineFramerate
@@ -16973,7 +16879,6 @@ target_name_or_class
 target_source
 target_value
 targetname
-targets
 tension_compress_scale
 tension_stretch_scale
 test_enum
@@ -16997,7 +16902,6 @@ texture_generator_preview
 texture_map
 textures
 thread initialization failed.
-threshold
 thumbnail_frame
 tile
 tiles
@@ -17010,7 +16914,6 @@ time_array
 time_multiplier
 time_steps
 tintColor
-tint_cp
 tint_perc
 tip_mass
 tipoffset
@@ -17618,9 +17521,6 @@ wyS]
 x0Ysqx
 xfade
 xform
-xfriction
-xmax
-xmin
 yaw_bounce
 yaw_damping
 yaw_friction
@@ -17632,16 +17532,10 @@ yaw_rate_degrees
 yaw_rate_min
 yaw_stiffness
 yaw_stop_time
-yfriction
-ymax
-ymin
 z>%.04f
 zero dir
 zero sized document
 zero_unselected
-zfriction
-zmax
-zmin
 { uninitialized }
 {error}
 ~CModelInstance destructor: leaking softbody because physics world disappeared\n

@@ -9,6 +9,7 @@
 // MVDataComponentValidGrandParents = "CSmartPropElement_FitOnLine"
 // MPropertyFriendlyName = "Linear Length"
 // MPropertyDescription = "Specifies the length of this element, used when fitting an element on to a line."
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropSelectionCriteria_LinearLength : public CSmartPropSelectionCriteria
 {
 	// MPropertyDescription = "Specifies the length of the line that will be taken up if this element is selected."

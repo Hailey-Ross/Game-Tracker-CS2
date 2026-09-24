@@ -577,7 +577,6 @@ Idieresissmall
 Idotaccent
 Igrave
 Igravesmall
-Impact
 Inconsolata
 IrisUPC
 IsBaseFont
@@ -796,7 +795,6 @@ StartAxis
 StartCharMetrics
 StartComposites
 StartData
-StartDirection
 StartFontMetrics
 StartKernData
 StartKernPairs

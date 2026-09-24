@@ -32,6 +32,7 @@
 //	[
 //	]
 //}
+// MHasKV3TransferPolymorphicClassname
 class CShatterGlassShard
 {
 	uint32 m_hShardHandle;

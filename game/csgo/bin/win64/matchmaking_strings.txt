@@ -512,7 +512,6 @@ CWorkThreadPool::StartWorkThread: Thread creation failed.\n
 CWorkThreadPool::~CWorkThreadPool: work complete queue not empty, %d items discarded.\n
 CWorkThreadPool::~CWorkThreadPool: work processing queue not empty: %d items discarded.\n
 Cache
-Cancel
 Command::%s
 Connection to server timed out
 Continue
@@ -528,7 +527,6 @@ Created CMatchSessionOnlineSearch:\n
 Created CMatchSessionOnlineTeamSearch:\n
 Created DS searcher\n
 Created lobby id: 0x%llx\n
-DebugDrawQueueManager001
 Dedicated search in progress\n
 Dedicated search not active\n
 Dedicated server list fetched %d servers.\n
@@ -545,7 +543,6 @@ Destroying CMatchSessionOnlineTeamSearch.\n
 DotaMapUtils001
 EconVData001
 EmitBaseMessageV
-EntitySubclassUtilsV001
 Establishing connection with %d search results.\n
 ExpCheck
 ExperienceFormula
@@ -585,15 +582,12 @@ Filter>=/game:ark
 Filter>=/members:numPlayers
 Friend reqd to join lobby
 GAMEEVENTSMANAGER002
-GCClient
 GCHost
 Game alias "%s" is unknown, setting default game type=%d mode=%d\n
 Game alias "%s" resolved game type=%d mode=%d\n
 Game::SetPlayerRanking
 GameDetailsClient
 GameDetailsServer
-GameSystem2HostHook
-GameTypes001
 GameTypes: could not find entry %s.\n
 GameTypes: could not find matching game mode "%s" for type "%s".\n
 GameTypes: could not find matching game mode value of "%d" and type value of "%d".\n
@@ -637,7 +631,6 @@ GamesTypes: unable to set convars. There are no convars for game type/mode (%s:%
 GamesTypes: unable to set game type and mode. Could not find type/mode matching type:%s/mode:%s.\n
 GamesTypes: unable to set game type and mode. Game type value is outside valid range.  (value == %d)\n
 Host settings have bad key %s:%d\n
-HostUtils001
 IND)ind)"
 InitFromPacket
 ItemDescriptionsLanguageBlock
@@ -669,7 +662,6 @@ LookingToPlay
 LookingToTrade
 MakeOnline
 MatchSession: \n
-Matchmaking
 Matchmaking: lobby response %d!\n
 Members
 Migrate
@@ -717,7 +709,6 @@ PartnerItemPaymentRule
 PlayerLocal::UpdateLeaderboardData for %s ...\n
 PlayerLocal::UpdateLeaderboardData for %s finished.\n
 PlayerManager::OnGameUsersChanged\n
-PredictionDiffManager001
 QueueConnect
 RP for %s\n
 R\fp\M
@@ -726,8 +717,6 @@ Received server_pre_shutdown notification - server is shutting down...\n
 Requested join data %.3f sec ago from xuid = %llx\n
 Requesting dedicated server list...\n
 Requesting dedicated whitelist validation...\n
-ResponseRulesCache001
-SOCache
 STARS_
 Search completed empty - creating a new session\n
 Search results outstanding: %d\n
@@ -744,7 +733,6 @@ Settings data:\n
 SetupSteamRankingConfiguration
 SharedObjectCache for %s (%d types):\n
 SingleItemDescription
-SinglePlayerSharedMemory001
 Skill%dCheck
 Skill%dFormula
 Skill%dRange

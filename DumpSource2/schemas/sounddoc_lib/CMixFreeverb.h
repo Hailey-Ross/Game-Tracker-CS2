@@ -13,6 +13,7 @@
 //}
 // MPropertyFriendlyName = "VMix Freeverb Audio Node"
 // MPropertyDescription = "Used to create reverb effects based on a symmetrical room."
+// MHasKV3TransferPolymorphicClassname
 class CMixFreeverb : public CMixPropertyBase
 {
 	// MPropertyFriendlyName = "Size"

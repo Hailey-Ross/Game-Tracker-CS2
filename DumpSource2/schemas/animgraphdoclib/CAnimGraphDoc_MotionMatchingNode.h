@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -23,7 +23,7 @@
 //		"m_flControlPoint1": 0.000000,
 //		"m_flControlPoint2": 1.000000
 //	},
-//	"m_nRandomSeed": <HIDDEN FOR DIFF>,
+//	"m_nRandomSeed": 0,
 //	"m_flSampleRate": 0.100000,
 //	"m_bSearchEveryTick": true,
 //	"m_flSearchInterval": 0.100000,
@@ -51,6 +51,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Motion Matching"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_MotionMatchingNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

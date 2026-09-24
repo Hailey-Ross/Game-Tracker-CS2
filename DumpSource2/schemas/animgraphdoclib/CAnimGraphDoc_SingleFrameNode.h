@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -20,6 +20,7 @@
 //	]
 //}
 // MPropertyFriendlyName = "Single Frame"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_SingleFrameNode : public CAnimGraphDoc_Node
 {
 	// MPropertyFriendlyName = "Sequence"

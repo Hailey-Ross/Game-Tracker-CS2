@@ -9,6 +9,7 @@
 //	"m_flMinExtrapolationSpeed": 2.000000
 //}
 // MPropertyFriendlyName = "Path Metric"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_PathMetric : public CAnimGraphDoc_MotionMetric
 {
 	// MPropertyFriendlyName = "Distance"

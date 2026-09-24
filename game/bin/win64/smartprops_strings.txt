@@ -366,7 +366,6 @@ m_Stops
 materialGroup
 models/dev/error.vmdl
 models/error.vmdl
-prop_dynamic
 rad2deg
 resourcesystem
 round

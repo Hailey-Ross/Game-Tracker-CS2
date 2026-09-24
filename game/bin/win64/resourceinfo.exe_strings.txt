@@ -2422,7 +2422,6 @@ DnRv
 Domain
 Dq;n
 DsBV
-DualHull
 E"Y6
 E)2G\
 E+E1EAEIESEUEaEwE}E
@@ -3662,7 +3661,6 @@ PerVertexLighting
 Permanent Identifier
 Permitted
 Ph7@
-Physics
 Pi8@
 PivotPaint
 Pj5@
@@ -4270,7 +4268,6 @@ TongueD
 TongueH
 TongueV
 TongueWidth
-Toolutils
 Totals
 Trail Length Random
 Trailer Field: 0x
@@ -4991,7 +4988,6 @@ _f%02i
 _flt.vpk
 _g@Cg
 _jPo
-_light
 _linked_type_
 _mip%d
 _name
@@ -5112,8 +5108,6 @@ alpha_random
 already loaded
 always
 ambientOcclusionMode
-ambientcolor2
-ambientcolor3
 angulardiameter
 anim
 animSetList
@@ -5344,12 +5338,8 @@ bookmarks
 bool log
 bool_array
 boolean is wrong length
-bouncelight
-bouncescale
 boundary
 box2i
-box_maxs
-box_mins
 boxproject_maxs
 boxproject_mins
 bpFh
@@ -5368,7 +5358,6 @@ brainpoolP384t1
 brainpoolP512r1
 brainpoolP512t1
 brightness_units
-brightnessscale
 bt1+
 bu\N
 buffer
@@ -5438,7 +5427,6 @@ camellia128
 camellia192
 camellia256
 can't find SRP server param
-can_override_npc_state
 candle_1
 candle_2
 candle_3
@@ -5452,7 +5440,6 @@ cast5-cbc
 cast5-cfb
 cast5-ecb
 cast5-ofb
-castshadows
 ccs received early
 cdP%
 cellConfiguration
@@ -5552,7 +5539,6 @@ color_hdr
 color_pack
 color_random
 color_red
-color_tint
 colorsIndices
 combo
 command not supported
@@ -5601,7 +5587,6 @@ content_type
 contentidentifier mismatch
 contents
 context not initialised
-continue_on_death
 control command failed
 controlColor
 controlValues
@@ -5854,7 +5839,6 @@ digital envelope routines
 digitalSignature
 dinfo
 dirName
-directlight
 directory services (X.500)
 directory services - algorithms
 dirname error
@@ -6036,7 +6020,6 @@ emitting
 empty file structure
 empty srtp protection profile list
 enablemotionongravitygrab
-enableuseoutput
 enc->iv_len <= (int)sizeof(iv)
 enc_data
 enc_digest
@@ -6066,9 +6049,6 @@ ent_dota_lightinfo
 enterprises
 entityUInfo
 entity_properties
-env_cubemap_box
-env_global_light
-env_sky
 enveloped-data
 err asn1 lib
 err ec lib
@@ -6182,7 +6162,6 @@ fieldID
 fieldType
 file:
 filename too big
-filterclass
 finalTime
 final_time
 finish failed
@@ -6200,8 +6179,6 @@ float_array
 fluorescent_flicker
 fog_lighting
 fogcontributionstrength
-fogshadows
-fogstrength
 fopen
 fopen('
 format error in CRL's lastUpdate field
@@ -6221,7 +6198,6 @@ fromAttribute
 fromElement
 fullname
 func(%lu)
-func_physbox
 functionName
 functionality not supported
 fxv^
@@ -6327,8 +6303,6 @@ hh7@
 hhwi
 hiddenFlags
 hiddenGroups
-hide_debug_complaints
-high_priority
 hitbox
 hj5@
 hk4@
@@ -6678,7 +6652,6 @@ index too small
 indirectCRL
 indirectlight
 infinite
-info_particle_system
 inhibitAnyPolicy
 inhibitPolicyMapping
 init failed
@@ -6992,15 +6965,7 @@ library has no ciphers
 lifespan_decay
 lifetime_random
 light
-light_barn
-light_directional
-light_environment
-light_omni
-light_omni2
-light_ortho
 light_sky
-light_spot
-light_style
 light_sun
 lightgroup
 lights
@@ -7058,7 +7023,6 @@ m_WeakReferenceList
 m_bFileExists
 m_bIsGameFile
 m_bOptional
-m_fMoveTo
 m_nFileCRC
 m_nFingerprint
 m_nFingerprintDefault
@@ -7176,7 +7140,6 @@ modulus:
 morph_block
 morph_texture
 move
-move_to_gait
 movieSettings
 movieobjects
 mp_anim
@@ -7350,11 +7313,8 @@ no verify function configured
 no:7
 noCheck
 noRevAvail
-no_interrupts
-no_teleport_at_end
 nodeID
 node_dest
-node_id
 node_id_List
 node_name
 nodes
@@ -7463,7 +7423,6 @@ onlysomereasons
 onlyuser
 opaque PRF input too long
 open
-opendir
 openssl.cnf
 openssl_conf
 operation not allowed in fips mode
@@ -7483,7 +7442,6 @@ organizationalStatus
 organizationalUnitName
 oriType
 oriValue
-orientation
 orientationChannel
 orig_len >= md_size
 originator
@@ -7508,7 +7466,6 @@ othername error
 othername:<unsupported>
 out of memory
 outerconeangle
-owner
 ownerlog
 p is not prime
 p not prime
@@ -7585,7 +7542,6 @@ path_node_cable
 path_node_generic
 path_node_particle_rope
 path_node_trajectory
-path_particle_rope
 path_trajectory
 pathlen
 pattern
@@ -7716,7 +7672,6 @@ postalAddress
 postalCode
 posterSettings
 postion_lock_to_controlpoint
-postprocessing
 posxyz
 pp == NULL || *pp != NULL
 pp&c
@@ -7763,8 +7718,6 @@ problems getting password
 problems mapping cipher functions
 procedural
 producedAt
-prop_physics_override
-prop_physics_respawnable
 propdataname
 protocol is shutdown
 protocolInformation
@@ -7853,7 +7806,6 @@ random number generator
 random position along path
 random position on model
 random yaw
-range
 rawControlNames
 rc2-40-cbc
 rc2-64-cbc
@@ -7896,7 +7848,6 @@ renderSettings
 renegotiate ext too long
 renegotiation encoding err
 renegotiation mismatch
-repeatable
 reqCert
 req_info
 request not signed
@@ -7963,7 +7914,6 @@ role
 roleOccupant
 room
 roomNumber
-root
 root ca not trusted
 rootControlGroup
 rootGroup
@@ -8037,7 +7987,6 @@ scene
 schemasystem
 screenWindowCenter
 screenWindowWidth
-scripted_sequence
 scriptlist
 scsv received when renegotiating
 sdsiCertificate
@@ -8281,14 +8230,12 @@ shadow_secondary_color_day
 shadow_secondary_color_night
 shadowtextureheight
 shadowtexturewidth
-shape
 shared
 shared info error
 short header
 short line
 short read
 should retry
-should_leave_corpse
 showAmbientOcclusion
 showCameraFrustum
 showFocalPlane
@@ -8324,13 +8271,11 @@ simulationTimeScale
 singleExtensions
 singleLevelQuality
 singleRequestExtensions
-size_params
 skeleton
 sketchup
 skinning
 skycolor
 skyintensity
-skyname
 slot full
 slow_pulse_nofade
 slow_strobe
@@ -8345,14 +8290,10 @@ sm{c
 sn_d.
 snappable
 snapshotOverride
-snapshot_file
 snmpv2
 so=H*m
 socket
-soft_x
-soft_y
 spawnFlags
-spawnflags
 specificImpulse
 specific_impulse
 specular_direction_day
@@ -8506,7 +8447,6 @@ stLDp
 staggerinterval
 standard
 startTime
-start_on_spawn
 stateOrProvinceName
 status expired
 status not yet valid
@@ -8526,7 +8466,6 @@ string_instanced
 string_list
 string_to_hex
 strlen(objstr) + 23 + 2 * enc->iv_len + 13 <= sizeof buf
-style
 subassettypes
 subgroup factor:
 subgroup order:
@@ -8622,7 +8561,6 @@ time_array
 time_steps
 timestampsign
 tintColor
-title
 tj4@
 tl4@
 tls client cert req with anon cipher

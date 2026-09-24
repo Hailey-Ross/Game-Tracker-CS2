@@ -64,6 +64,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Base NPC"
+// MHasKV3TransferPolymorphicClassname
 class AI_BaseNPC_DebugSnapshotData_t : public DebugSnapshotBaseStructuredData_t
 {
 	CGlobalSymbol npc_state;

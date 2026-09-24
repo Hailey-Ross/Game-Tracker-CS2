@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,22 +16,23 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_valueSource": "Parameter",
 //	"m_paramName": "",
 //	"m_param":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bLockWhenWaning": false
 //}
 // MPropertyFriendlyName = "Cycle Control"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_CycleControlNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

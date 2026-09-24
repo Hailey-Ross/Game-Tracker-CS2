@@ -1158,7 +1158,6 @@ fakeEnt.m_nHandle.WeakHandle() == PULSE_WEAK_HANDLE_INVALID
 fake_derived_a
 fake_derived_b
 field_name
-filterclass
 flDegrees
 flDistance
 flDuration
@@ -1331,7 +1330,6 @@ nYieldArg1
 navlinkclass
 next_cursor_id
 node_dest
-node_id
 node_id_List
 npc_ability_name
 npcclass
@@ -1407,7 +1405,6 @@ scriptlist
 self
 self_handle
 self_type
-shape
 show_vpulse_file
 side
 sidelist

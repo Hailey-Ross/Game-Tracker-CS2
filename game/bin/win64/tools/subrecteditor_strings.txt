@@ -1801,7 +1801,6 @@ Bad autosave dir
 Bad checkstate (expected eg. 'PartiallyChecked')
 Bad horizontalPolicy "%s"
 Bad verticalPolicy "%s"
-BaseEditor
 Begin mouse capture [%i]: %s\n
 BiggerGrid
 Binding removed due to active drag: %s
@@ -1908,7 +1907,6 @@ CQWidgetDebugger
 CSubrectEditorApp
 CSubrectEditorSession
 CUtlDict<struct CQInputBindEditor::BindingContextInfo_t *,class CDefFastCaselessStringLess>::Insert
-Cancel
 Cancel and keep my changes
 CancelClicked
 Cannot Debug
@@ -2122,7 +2120,6 @@ Increase Grid Size
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 Inset X
 Inset Y
 Invalid 'dockWidgetArea (%s)
@@ -2278,7 +2275,6 @@ OnTreeSelectionChanged
 OnValueChanged
 OnWhitespaceWarningClicked
 OnWhitespaceWarningClickedDelayed
-Open
 Open File
 Open the %1 tool
 OpenAssetBrowser
@@ -2378,7 +2374,6 @@ RectangleFilePreferences
 RectangleSets
 Redo
 Referring Materials:
-Reload
 Reload this file?<br><pre>"%1"</pre>
 Reload?
 Reloading...
@@ -2436,7 +2431,6 @@ ShowFullHelpForBindableCommandUnderMouse
 ShowInputDebugger
 ShowWidgetDebugger
 ShowWindowsList
-Shutdown
 Signal '%s' not compatible with slot '%s'
 SizePolicy
 SizePolicy array must have two elements
@@ -2509,9 +2503,7 @@ Time Between Saves
 ToggleGrid
 ToggleTabbedMode
 ToolBarArea
-ToolEvents
 ToolFramework
-ToolSystem2_001
 Tools  
 Tools audio currently muted
 Track Mouse & Focus
@@ -2546,7 +2538,6 @@ V?removeColumns@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 V?removeRows@QStandardItemModel@@UEAA_NHHAEBVQModelIndex@@@Z
 VConsole
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -2909,7 +2900,6 @@ newValue
 not saved
 o\n?dragEnterEvent@QWidget@@MEAAXPEAVQDragEnterEvent@@@Z
 o\v?event@QTreeWidget@@MEAA_NPEAVQEvent@@@Z
-orientation
 pAction
 pAssetMenuObject
 pCurrentFocusWidget

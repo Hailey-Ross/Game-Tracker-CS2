@@ -50,6 +50,7 @@
 //	"m_flinchBodyRestart": null,
 //	"m_flinchIsOnFire": null
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCS2PawnGraphController : public CCS2WeaponGraphController
 {
 	CAnimGraph2ParamOptionalRef< bool > m_bIsDefusing;

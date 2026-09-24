@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -17,7 +17,7 @@
 //	"m_paramName": "",
 //	"m_param":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bLoop": true,
 //	"m_bLockBlendOnReset": false,
@@ -31,6 +31,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Directional Blend"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_DirectionalBlendNode : public CAnimGraphDoc_Node
 {
 	// MPropertyFriendlyName = "Sequence Names Prefix"

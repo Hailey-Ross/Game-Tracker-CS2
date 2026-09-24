@@ -649,7 +649,6 @@ Cast Face %d Entry
 Choppiness
 Class does not allow allocation from its schema binding
 Cloth: 
-Collide
 Collision Groups
 Collision disabled by owner ID %08x ignored matching shape (OWNER:%08x, ENTITY:%08x).
 Collision filtering: Cannot allocate name '%s' already used %d names\n
@@ -687,7 +686,6 @@ Different physics worlds have different debug draw filters\n
 Dissolved edge
 Drag
 Dslow
-DualHull
 Dyn 
 Dynamic bodies can be moved by contacts, joints, and forces during simulation
 Eiffel tower
@@ -852,7 +850,6 @@ Parameters
 ParametersKV3
 ParentAttachmentName()
 PerVertexLighting
-Physics
 Physics Console Communications is not initialized\n
 Physics Debugger: outdated protocol %d (expected %d). Please restart VConsole2.\n
 Physics RnMeshCreate: cannot create degenerate mesh (%d tris)\n
@@ -947,7 +944,6 @@ SoftbodyProcessor
 Solid Contact
 Solid Contacts: <font color = "cyan">%s</font>, <font color = "green">%s</font>
 Solid contact but %s has solid contacts disabled. Disabling all collision
-Source
 Source Hull
 Source Hull F=%d V=%d hE=%d
 Speedup
@@ -985,7 +981,6 @@ Two compounds may not have collision\n
 Two meshes may not have collision\n
 Two non-dynamics do NOT have a Trigger flag
 Two non-dynamics have a Trigger flag\n
-TypeManager
 UTIL_Find
 Unexpected Keyword %s\n
 Unexpected end of buffer @%p, payload %d bytes, %d extra bytes at the end\n
@@ -1082,7 +1077,6 @@ choreoanchorclass
 client 
 clips
 coarse
-collisionGroup
 collisionGroup 
 collision_group_override
 collision_property
@@ -1112,14 +1106,10 @@ e:%d, %g deg
 elephant
 enable_collision
 excludes
-fademaxdist
-fademindist
-fadetime
 fast
 ff9966;">Can <b>Not</b> Collide: same body</div><span>Both shapes belong to the same body %d <i>%s</i>. Do not collide.</span>
 ff9966;">Can <b>Not</b> Collide: same shape</div>
 ffffcc
-filterclass
 firstJob.GetType() == CRnSolverJob::TYPE_PARALLEL_ITERATION
 flagchoices
 flc_columns
@@ -1363,7 +1353,6 @@ model_runtime_cloth_node
 modelanimevent
 modelbreakcommand
 modelgamedata
-modellib
 models/
 models/%s
 models\
@@ -1377,7 +1366,6 @@ nObjects
 navlinkclass
 never
 node_dest
-node_id
 node_id_List
 nodraw
 nodraw 
@@ -1389,7 +1377,6 @@ npcclass
 npcclip
 omni
 optionallycompressedtangentframe
-orientation
 other
 other 
 outbound
@@ -1468,7 +1455,6 @@ softbody_collision
 softbody_fields
 softbody_indices
 softbody_node_names
-solid
 solidclass
 space shuttle
 stackFilter
@@ -1485,7 +1471,6 @@ suppressed_field
 surface
 surface 
 surfaceproperties/surfaceproperties.vsurf
-swing_limit
 t-rex
 tBVsInputSignature_t
 tag_list
@@ -1508,7 +1493,6 @@ tool_materials_list_cache.txt
 touchall
 transparent
 transparent %d 
-trigger
 triggers
 twist_limit
 type %u, version %u, total size %u. %d data headers:\n
@@ -1528,7 +1512,6 @@ vphysics2.dll
 vphysics_save_aggregate_t
 wakeup
 water
-weapon
 window
 wireframe
 wireframe 

@@ -2,6 +2,7 @@
 //	"_class": "CNmGraphDocBoneMaskNode::CData",
 //	"m_overrideMaskID": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmGraphDocBoneMaskNode::CData : public CNmGraphDocVariationDataNode::CData
 {
 	// MPropertyAttributeEditor = "BoneMaskID()"

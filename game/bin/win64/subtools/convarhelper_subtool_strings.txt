@@ -950,7 +950,6 @@ CQTabbedStyle
 CQTreeWidgetWithArrowEvents
 CToolAttrPropertyDomain
 CToolAttrPropertyDomain::GetVDataChoiceFriendlyNameForValue
-Cancel
 Checkout Page
 CommandName | Command
 ConVar Helper
@@ -1011,7 +1010,6 @@ Gradient()
 Grid
 GridHeight
 GridWidth
-Host
 I\n?compare@QString@@QEBAHAEBV1@W4CaseSensitivity@Qt@@@Z
 I\r?hitButton@QCheckBox@@MEBA_NAEBVQPoint@@@Z
 Import Page
@@ -1120,7 +1118,6 @@ User Page 2
 User Page 3
 User Page 4
 VConsole
-VConsole_SubTool_001_ConvarHelperTool
 VDataChoice( %s )
 VDataChoice()
 Va?width@QPixmap@@QEBAHXZ

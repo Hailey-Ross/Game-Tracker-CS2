@@ -8,6 +8,7 @@
 //	"m_flManualTargetSpeed": 150.000000
 //}
 // MPropertyFriendlyName = "Future Velocity Metric"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_FutureVelocityMetric : public CAnimGraphDoc_MotionMetric
 {
 	// MPropertyFriendlyName = "Distance"

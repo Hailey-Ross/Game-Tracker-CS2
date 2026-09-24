@@ -12,6 +12,7 @@
 //		"m_fBoostLocalContrast": 0.000000
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CLocalExposureLayer : public CColorCorrectionLayer
 {
 	PostProcessingLocalExposureParameters_t m_params;

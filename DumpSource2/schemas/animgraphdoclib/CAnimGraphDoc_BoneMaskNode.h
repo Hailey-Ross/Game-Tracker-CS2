@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -17,22 +17,22 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_inputConnection2":
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_blendSpace": "BlendSpace_Parent",
@@ -41,7 +41,7 @@
 //	"m_blendParameterName": "",
 //	"m_blendParameter":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_timingBehavior": "UseChild2",
 //	"m_flTimingBlend": 0.500000,
@@ -51,6 +51,7 @@
 //	"m_bResetChild2": true
 //}
 // MPropertyFriendlyName = "Bone Mask"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_BoneMaskNode : public CAnimGraphDoc_Node
 {
 	// MPropertyFriendlyName = "Bone Mask"

@@ -1,3 +1,4 @@
+// MNetworkNoBase
 class CFish : public CBaseAnimGraph
 {
 	CHandle< CFishPool > m_pool;

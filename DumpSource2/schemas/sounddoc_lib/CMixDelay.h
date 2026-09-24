@@ -20,6 +20,7 @@
 //}
 // MPropertyFriendlyName = "VMix Delay Audio Node"
 // MPropertyDescription = "Stereo delay with resonant filter on feedback."
+// MHasKV3TransferPolymorphicClassname
 class CMixDelay : public CMixPropertyBase
 {
 	// MPropertyFriendlyName = "Channels"

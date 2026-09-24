@@ -1,3 +1,4 @@
+// MNetworkNoBase
 class CCSCustomHudLayout : public C_BaseEntity
 {
 	CUtlSymbolLarge m_strLayout;

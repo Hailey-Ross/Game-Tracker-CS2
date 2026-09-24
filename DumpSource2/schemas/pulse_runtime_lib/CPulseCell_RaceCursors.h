@@ -23,6 +23,7 @@
 //		"m_nInstruction": -1
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CPulseCell_RaceCursors : public CPulseCell_BaseYieldingInflow
 {
 	CUtlVector< CPulse_OutflowConnection > m_Outflows;

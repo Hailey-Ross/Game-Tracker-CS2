@@ -36,6 +36,7 @@
 //	{
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CBasePlayerWeaponVData : public CEntitySubclassVDataBase
 {
 	// MPropertyStartGroup = "Visuals"

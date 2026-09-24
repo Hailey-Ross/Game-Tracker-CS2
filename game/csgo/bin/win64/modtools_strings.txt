@@ -9353,7 +9353,6 @@ Always Active (Simulate When Not Visible)
 Ambient Occlusion Map
 Ambient Occlusion Map Power
 Amount to modify vertex normals (0-none, 1-completely)
-Amplitude
 An IK chain describes a section of a model that you want to control procedurally.
 An SDF shape which cloth collides with.
 An animation to composite over top of this animation.  The cycle of the composited animation will be the same as this animation.
@@ -10184,8 +10183,6 @@ CPiecewiseCurve
 CRenderMeshSimplifyParams
 CRenderMeshSlotType_t
 CResourceName
-CS2BombDamage
-CS2BombDamage_Bake
 CS2_BOMB_DAMAGE_DATA
 CStrongHandle
 CStrongHandleCopyable
@@ -10674,7 +10671,6 @@ Data_Branch2yz
 DateTime
 De-Select '
 Debug Draw Color
-DebugDrawQueueManager001
 Default (No Name)
 Default (No RGB Tint)
 Default Gravity Scale
@@ -10808,7 +10804,6 @@ Drag
 Draw Order
 Drive a morph channel based on a remapped range of the angle between a bone's up-vector and the direction to a target bone.
 DriverBone
-DualHull
 DumpModeDecode: Not enough data for scanline %d
 Duplicate Faces
 Duplicate Faces Reset Pivot
@@ -11064,7 +11059,6 @@ Entity Attribute Base
 Entity Attribute Float
 Entity Attribute Int
 Entity Class Override
-EntitySubclassUtilsV001
 Entry Overrides
 Entry State
 Entry State Conditions
@@ -11392,7 +11386,6 @@ GShould we try to straighten two faces connected to this edge? (tangent)
 Game Motion Smoothing
 GameDataList
 GameDataNode
-GameSystem2HostHook
 Gameplay Identifier
 Gameplay Relevant Bones
 Generate Sampling Alias Table
@@ -11518,7 +11511,6 @@ Horizontal Pose Param
 Horizontal Segments
 Horizontal differencing "Predictor" not supported with %d-bit samples
 HostComputer
-HostUtils001
 How fast joint velocity is reduced
 How frequently this will show up relative to any of the other options
 How many iterations this solvers hould use. 
@@ -12116,7 +12108,6 @@ MissingRequired
 Mixing skinned and unskinned meshes in model: %s meshes: %s
 MnZ/rs
 Mod by zero in CNmFloatMathNode
-ModTools
 Model Space Blend
 Model Space Target
 Model SubKey
@@ -12129,7 +12120,6 @@ ModelBoneName()
 ModelContentDataList
 ModelDataFlags
 ModelDataList
-ModelDoc
 ModelDoc "%s" node "%s" incompatible with AnimGraph
 ModelDoc "%s" node "%s" incompatible with AnimGraph due to child markup nodes
 ModelDoc "%s" node incompatible with AnimGraph
@@ -12536,7 +12526,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Joint Modification Mode
 Physics Particle
 Physics Prop
@@ -12655,7 +12644,6 @@ PrecomputedTransmissionEditor
 PrecomputedTransmissionFromFile
 PrecomputedTransmissionList
 Precomputes directional distance through a model over the hemisphere into spherical harmonic textures.
-PredictionDiffManager001
 Predictor
 PredictorEncodeTile
 PredictorSetup
@@ -12908,13 +12896,11 @@ Reset Time
 Resets face normals and optionally averages them.
 Resets the starting frame of a looping animation.  This is useful when mixing multiple animations and the animations need to all run together in phase, but the source animations don't match.
 ResolutionUnit
-ResponseRulesCache001
 Result node not connected
 Results
 Return Absolute Result
 Return Negated Result
 Return to Lasso viewpoint
-Reverse
 Reverse the direction of the animation.  This happens after the frame range is truncated.
 Revolute joint.
 RichTIFFIPTC
@@ -13116,7 +13102,6 @@ Single
 Single Bone Skinning
 Single Hull
 SingleHull
-SinglePlayerSharedMemory001
 SkeletalInput
 SkeletalInputSettings
 Skeleton Only
@@ -13169,7 +13154,6 @@ Sound (%s) (%s)
 Sound Event On Spawn
 Sound event attached to an attach point, and driven off of physical parameters.
 SoundeventList
-Source
 Source Animation Name
 Source FaceVertex Stream Name
 Source File
@@ -13487,7 +13471,6 @@ Time in seconds from the start of the animation over which it will fade int when
 Time: %2.f
 Timed State Events
 Tint CP
-TintColor
 TinyBVH Fatal Error: %s at %s:%d
 TinyBVHFatalError
 Tip Mass
@@ -13502,7 +13485,6 @@ Toe Lift Frame
 Tolerance value for determining if an animation channel is static or not.
 Too much
 Tool Material
-ToolEvents
 Top Vortex Wind Speed, mph
 Torsion Stiffness
 Trace Height
@@ -13922,7 +13904,6 @@ _volumeatlas_
 _wjb
 _zero
 absolute
-acceleration
 accent
 accent_frame
 acosf() heavily exaggerates floating point precision errors. Threshold is high (1e-2f) for this reason. This can probably stay fixed. Increase for Stability at the cost of Accuracy.
@@ -13980,7 +13961,6 @@ along_stiffness
 alpha2
 always_active
 ambient_occlusion
-amount
 anchor
 anchor_origin
 angle_dot_product
@@ -14144,8 +14124,6 @@ bones
 bounciness
 box_angles
 box_dimensions
-box_maxs
-box_mins
 break_command
 break_command_list
 break_create_contents
@@ -14158,7 +14136,6 @@ burst_params_cp
 button_zone
 cableclass
 calc_per_vertex_curvature
-camera_name
 can_collide_with_ground_plane
 can_collide_with_moving_bodies
 can_collide_with_world_capsule_and_spheres
@@ -14426,7 +14403,6 @@ edge_to_vertex
 editor_camera
 editor_camera_presets
 effect_contents
-effect_name
 effect_packing_material
 elastic
 elastic_damping
@@ -14438,10 +14414,6 @@ enable_crouch_speeds
 enable_dynamic_mesh_tension
 enable_dynamic_smooth_normals
 enable_simulation
-enable_steering_limit
-enable_suspension_limit
-enable_swing_limit
-enable_twist_limit
 enabled_key
 end_attr
 end_cycle
@@ -14505,7 +14477,6 @@ face_to_vertex
 faceposer
 fade_in_time
 fade_out_time
-fadetime
 fail_on_empty
 far_field_only
 fast
@@ -14515,7 +14486,6 @@ file_type
 filter
 filter_bone_influence_threshold
 filter_bones
-filterclass
 find_str
 fixed_blend
 fixed_blend_val
@@ -14559,7 +14529,6 @@ frames_from_start_of_b
 from
 from_name
 full_sphere
-func_bomb_target
 game:tools/images/modeldoc_editor/outliner_icon_cloth_chain.png
 game:tools/images/modeldoc_editor/outliner_icon_cloth_effect.png
 game:tools/images/modeldoc_editor/outliner_icon_cloth_effect_dampen.png
@@ -14683,7 +14652,6 @@ ignore_Translation
 ignore_backfaces
 ignore_missing_target_nodes
 ignore_outro
-ignore_rotation
 ignore_scale
 ik_chain_name
 ikchain
@@ -15008,15 +14976,11 @@ max_offset
 max_pitch
 max_radians
 max_shape
-max_steering_angle
-max_suspension_offset
-max_twist_angle
 max_u
 max_v
 max_value
 max_yaw
 maxangle
-maxs
 medium
 merge_behavior
 merge_meshes
@@ -15038,14 +15002,10 @@ min_offset
 min_pitch
 min_radians
 min_shape
-min_steering_angle
-min_suspension_offset
 min_turn_radius
-min_twist_angle
 min_value
 min_yaw
 minangle
-mins
 mirror
 mirror_x
 mirror_y
@@ -15066,7 +15026,6 @@ model_import_scale
 model_morphchannel
 model_physics_shape
 model_runtime_cloth_node
-model_scale
 model_subkey
 modelanimevent
 modelbreakcommand
@@ -15074,7 +15033,6 @@ modeldoc_editor
 modeldocattr
 modeldocnode.%s
 modelgamedata
-modellib
 models/editor/axis_helper_thick.vmdl
 models/editor/camera.vmdl
 models_gamedata
@@ -15127,7 +15085,6 @@ node_base_x1
 node_base_y0
 node_base_y1
 node_dest
-node_id
 node_id_List
 node_name
 node_name_key
@@ -15293,7 +15250,6 @@ position_3d
 position_gravity_bias
 position_gravity_bias_cp
 positions
-postprocessing
 posture
 posture_nohands
 posxyz
@@ -15371,7 +15327,6 @@ replacement
 report
 require_entirely_inside
 res_width
-resolution
 reverse
 right_
 right_leg_IKChain
@@ -15379,7 +15334,6 @@ right_to_left
 rigid_edge_hinges
 rnd_seed
 rod_attrs
-root
 root_bone
 root_bone_name
 root_motion
@@ -15452,7 +15406,6 @@ set_initial_value
 set_materialgroup_on_other_models
 shader_extra_data_1
 shader_extra_data_2
-shape
 shape_list
 shapes
 sharpStartAngle
@@ -15488,7 +15441,6 @@ smooth_normals_across_uv_seams
 snap_to_grid
 snapshot
 soft_hinge_link
-solid
 solidclass
 solver
 sort_priority
@@ -15502,7 +15454,6 @@ specific_physics_body_to_replace
 speed_range
 speeds
 spew_stats
-spin_axis_friction
 spin_degrees
 spine_0
 spine_1
@@ -15568,7 +15519,6 @@ surface_prop_override
 surface_property
 suspender
 swap_left_and_right_bones
-swing_limit
 swing_offset_angle
 switch_threshold
 tBVsInputSignature_t
@@ -15611,7 +15561,6 @@ tile
 tiles
 time value must be connected for time controlled clip node
 time_multiplier
-tint_cp
 tip_mass
 tipoffset
 tipparentbone
@@ -16050,12 +15999,7 @@ warnings_as_errors
 wave_amplitude
 wave_length
 wave_offset
-weapon_ak47
-weapon_aug
-weapon_awp
 weapon_bayonet
-weapon_bizon
-weapon_c4
 weapon_category_equipment
 weapon_category_grenade
 weapon_category_knife
@@ -16066,22 +16010,7 @@ weapon_category_shotgun
 weapon_category_smg
 weapon_category_sniper
 weapon_category_unknown
-weapon_cz75a
-weapon_deagle
-weapon_decoy
-weapon_elite
-weapon_famas
-weapon_fiveseven
-weapon_flashbang
-weapon_g3sg1
-weapon_galilar
-weapon_glock
 weapon_hand_l
-weapon_healthshot
-weapon_hegrenade
-weapon_hkp2000
-weapon_incgrenade
-weapon_knife
 weapon_knife_butterfly
 weapon_knife_canis
 weapon_knife_cord
@@ -16103,31 +16032,7 @@ weapon_knife_tactical
 weapon_knife_ursus
 weapon_knife_widowmaker
 weapon_l
-weapon_m249
-weapon_m4a1
-weapon_m4a1_silencer
-weapon_mac10
-weapon_mag7
-weapon_molotov
-weapon_mp5sd
-weapon_mp7
-weapon_mp9
-weapon_negev
-weapon_nova
-weapon_p250
-weapon_p90
-weapon_revolver
-weapon_sawedoff
-weapon_scar20
-weapon_sg556
-weapon_smokegrenade
-weapon_ssg08
-weapon_taser
-weapon_tec9
-weapon_ump45
 weapon_unknown
-weapon_usp_silencer
-weapon_xm1014
 weight_list_name
 weight_threshold
 weighted_bone

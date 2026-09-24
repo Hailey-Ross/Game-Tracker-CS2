@@ -517,7 +517,6 @@ PME Uninitialized.\n
 POWRPROF.dll
 PanoramaTextureDecode0
 Parameter file '%s' not found, skipping...
-Physics
 Plat_Alloc
 Plat_ExitProcessWithError
 Plat_FastVerifyHardwareKey

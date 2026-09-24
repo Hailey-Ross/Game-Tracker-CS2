@@ -11,6 +11,7 @@
 //	"m_bIsWorldSpaceTarget": true,
 //	"m_alignmentBoneID": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmTargetSelectorNode::CDefinition : public CNmClipReferenceNode::CDefinition
 {
 	CUtlLeanVectorFixedGrowable< int16, 8 > m_optionNodeIndices;

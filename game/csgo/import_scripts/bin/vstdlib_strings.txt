@@ -172,7 +172,6 @@ GYM=
 GameUISystemMgr001
 GetConsoleCP
 Ht=c
-IMEManager001
 IOJob
 InstallChangeCallback called with NULL callback, ignoring!!!\n
 InstallChangeCallback ignoring duplicate change callback!!!\n

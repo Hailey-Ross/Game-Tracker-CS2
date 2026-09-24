@@ -18,6 +18,7 @@
 // MVDataExperimentalNodeSet = "smartprops"
 // MPropertyFriendlyName = "Place on Mesh"
 // MPropertyDescription = "Place Children on Mesh Components."
+// MHasKV3TransferPolymorphicClassname
 class CSmartPropElement_PlaceOnMesh : public CSmartPropElement_Deformer
 {
 	// MPropertyStartGroup = ""

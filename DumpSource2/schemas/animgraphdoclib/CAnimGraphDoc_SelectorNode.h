@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -19,11 +19,11 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_tags":
@@ -33,16 +33,16 @@
 //	"m_boolParamName": "",
 //	"m_boolParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_enumParamName": "",
 //	"m_enumParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_tagID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_blendDuration":
 //	{
@@ -51,7 +51,7 @@
 //		"m_paramName": "",
 //		"m_paramID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_eSource": "Constant"
 //	},
@@ -66,6 +66,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Selector"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_SelectorNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

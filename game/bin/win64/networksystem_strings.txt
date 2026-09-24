@@ -602,7 +602,6 @@ NetChanTransmitReliable
 NetChanTransmitUnreliable
 NetChannel '%s':\n
 NetMessage '%s' still using auto-assigned, has to generate id from name CUtlStringToken hashcode = %d\n
-NetSteamConn
 Netchan '%s' closed unexpectedly: %s\n
 Netchan [%s] already associated with hconn #%u, but now we are getting messages on new hconn #%u using the same 'from' address\n
 Netchan queued message new high water mark reached by %s at %d messages\n
@@ -616,7 +615,6 @@ NetworkSystem
 NetworkSystem/CreateListenSocketP2P
 NetworkSystem/SkipRedundantChangeCallbacks
 NetworkSystem/UseSerializedEntityPool
-Networking Reliable
 No SteamNetworkingUtils?\n
 No active net channels.\n
 No steam client; SDR features will be unavailable\n
@@ -705,7 +703,6 @@ RegisterNetMessageHandlerAbstract: Attempted to register a message handler for a
 RegisterNetMessageHandlerAbstract: Must call StartRegisteringMessageHandlers before, and FinishRegisteringMessageHandlers after [message %s]!\n
 ReliableNetSize
 ReliableSize
-Remove
 RemoveArrayElementsOutsideOfArrayMetadataBounds:  %s [ent %d] removing change '%s' for field %s (value '%s') on array that has metadata with only %d array elements!\n
 RemoveFakeFields(%s) restoring clone %s:%d with original at %s:%d\n
 Removed fake field %s at %d\n
@@ -744,7 +741,6 @@ SteamDatagram_SetAppID
 SteamDatagram_SetUniverse
 SteamGameServerNetworkingSockets_LibV12
 SteamGameServer_GetHSteamPipe
-SteamNetSockets
 SteamNetworkingMessages_LibV2
 SteamNetworkingSockets config option not found\n
 SteamNetworkingSockets not initialized.\n

@@ -160,7 +160,6 @@ IE_Quit
 IE_ScreenOrientationChanged
 IE_WindowMove
 IE_WindowSizeChanged
-IMEManager001
 IMM32.dll
 INACTIVE
 INVERTED_EXCLAMATION_MARK
@@ -184,7 +183,6 @@ I_WITH_CIRCUMFLEX
 I_WITH_DIAERESIS
 I_WITH_GRAVE
 ImmIsUIMessageA
-InputSystem
 InputSystem/ButtonCodeIsScanCode
 InputSystem/LockButtonCodeIsScanCode
 JOY1

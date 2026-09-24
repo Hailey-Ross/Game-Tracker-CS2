@@ -41,6 +41,7 @@
 //		"index": 0
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMixConvolutionProcessorDesc : public CVMixBaseProcessorDesc
 {
 	VMixConvolutionDesc_t m_desc;

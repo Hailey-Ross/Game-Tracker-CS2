@@ -1,0 +1,3070 @@
+// Dumped by https://github.com/ValveResourceFormat/DumpSource2
+
+// CEntityInstance
+@BaseClass = root
+[
+	input AddOutput(string) // PVAL_STRING pParam
+	input GetAbsOrigin(void) : "The entity origin (absolute)" // returns PVAL_VEC3_WORLDSPACE retval, Pulse node
+	input GetOrigin(void) : "The entity origin (local)" // returns PVAL_VEC3 retval, Pulse node
+	input GetTeamNumber(void) : "The entity team number" // returns PVAL_INT retval, Pulse node
+	input IsMotionEnabled(void) : "Returns true if the entity is motion-enabled (i.e. its ideal motion type is dynamic). Note that the entity may still end up keyframed in some cases, e.g. if it's hierarchically attached to another keyframed entity." // returns PVAL_BOOL retval, Pulse node
+	input SetScale(float) // PVAL_FLOAT flValue, Pulse node
+]
+
+// C_BaseEntity
+@BaseClass base(root) = C_BaseEntity
+[
+	// component CBodyComponent: CBodyComponentPoint
+	renderWithViewModels(boolean) // FIELD_BOOLEAN m_bRenderWithViewModels
+	spawnflags(integer) // FIELD_UINT32 m_spawnflags
+	health(integer) // FIELD_INT32 m_iHealth
+	vscripts(string) // FIELD_STRING m_iszPrivateVScripts
+	velocity(vector) // FIELD_NETWORK_QUANTIZED_VECTOR m_vecVelocity
+	avelocity(angle) // FIELD_QANGLE m_vecAngVelocity
+	owner(target_destination) // FIELD_EHANDLE m_hOwnerEntity
+	platform_type(intchoices) : "platform_type" : : "" = // FIELD_UINT8 m_nPlatformType (EntityPlatformTypes_t)
+	[
+		0 : "ENTITY_NOT_PLATFORM"
+		1 : "ENTITY_PLATFORM_PLAYER_FOLLOWS_YAW"
+		2 : "ENTITY_PLATFORM_PLAYER_IGNORES_YAW"
+	]
+	MoveType(intchoices) : "MoveType" : : "" = // FIELD_UINT8 m_MoveType (MoveType_t)
+	[
+		0 : "MOVETYPE_NONE"
+		1 : "MOVETYPE_OBSOLETE"
+		2 : "MOVETYPE_WALK"
+		3 : "MOVETYPE_FLY"
+		4 : "MOVETYPE_FLYGRAVITY"
+		5 : "MOVETYPE_VPHYSICS"
+		6 : "MOVETYPE_PUSH"
+		7 : "MOVETYPE_NOCLIP"
+		8 : "MOVETYPE_OBSERVER"
+		9 : "MOVETYPE_LADDER"
+		10 : "MOVETYPE_CUSTOM"
+		11 : "MOVETYPE_LAST"
+		11 : "MOVETYPE_INVALID"
+		5 : "MOVETYPE_MAX_BITS"
+	]
+	subclass_id(string) // FIELD_UTLSTRINGTOKEN m_nSubclassID
+	subclass_name(string) // FIELD_STRING
+	angles(angle) // FIELD_QANGLE
+	origin(vector) // FIELD_VECTOR
+	model(studio) // FIELD_HMODEL
+	ownername(string) // FIELD_UTLSTRING
+]
+
+// C_CSGO_TeamPreviewCharacterPosition
+@PointClass base(C_BaseEntity) = team_preview_character_position
+[
+	variant(integer) // FIELD_INT32 m_nVariant
+	ordinal(integer) // FIELD_INT32 m_nOrdinal
+	weapon(string) // FIELD_UTLSTRING m_sWeaponName
+]
+
+// C_CSGO_TeamIntroCharacterPosition
+@BaseClass base(team_preview_character_position) = C_CSGO_TeamIntroCharacterPosition
+[
+]
+
+// CCSGO_RushIntroCharacterPosition
+@BaseClass base(C_CSGO_TeamIntroCharacterPosition) = CCSGO_RushIntroCharacterPosition
+[
+]
+
+// CCSGO_WingmanIntroCharacterPosition
+@BaseClass base(C_CSGO_TeamIntroCharacterPosition) = CCSGO_WingmanIntroCharacterPosition
+[
+]
+
+// C_BaseModelEntity
+@PointClass base(C_BaseEntity) = basemodelentity
+[
+	// component CBodyComponent: CBodyComponentBaseModelEntity
+	rendercolor(color255) // FIELD_COLOR32 m_clrRender
+	renderfx(intchoices) : "renderfx" : : "" = // FIELD_UINT8 m_nRenderFX (RenderFx_t)
+	[
+		0 : "kRenderFxNone"
+		1 : "kRenderFxPulseSlow"
+		2 : "kRenderFxPulseFast"
+		3 : "kRenderFxPulseSlowWide"
+		4 : "kRenderFxPulseFastWide"
+		5 : "kRenderFxFadeSlow"
+		6 : "kRenderFxFadeFast"
+		7 : "kRenderFxSolidSlow"
+		8 : "kRenderFxSolidFast"
+		9 : "kRenderFxStrobeSlow"
+		10 : "kRenderFxStrobeFast"
+		11 : "kRenderFxStrobeFaster"
+		12 : "kRenderFxFlickerSlow"
+		13 : "kRenderFxFlickerFast"
+		14 : "kRenderFxFadeOut"
+		15 : "kRenderFxFadeIn"
+		16 : "kRenderFxPulseFastWider"
+		17 : "kRenderFxMax"
+	]
+	rendermode(intchoices) : "rendermode" : : "" = // FIELD_UINT8 m_nRenderMode (RenderMode_t)
+	[
+		0 : "kRenderNormal"
+		1 : "kRenderTransAlpha"
+		2 : "kRenderNone"
+		3 : "kRenderModeCount"
+	]
+	rendertocubemaps(boolean) // FIELD_BOOLEAN m_bRenderToCubemaps
+	expand_render_bounds_to_include_cloth(boolean) // FIELD_BOOLEAN m_bExpandRenderBoundsToIncludeCloth
+	NoInterpolate(boolean) // FIELD_BOOLEAN m_bNoInterpolate
+	// m_Collision (CCollisionProperty)
+		solid(intchoices) : "solid" : : "" = // FIELD_UINT8 m_nSolidType (SolidType_t)
+		[
+			0 : "SOLID_NONE"
+			1 : "SOLID_BSP"
+			2 : "SOLID_BBOX"
+			3 : "SOLID_OBB"
+			4 : "SOLID_SPHERE"
+			5 : "SOLID_POINT"
+			6 : "SOLID_VPHYSICS"
+			7 : "SOLID_CAPSULE"
+			8 : "SOLID_CYLINDER"
+			9 : "SOLID_LAST"
+		]
+	glowbackfacemult(float) // FIELD_FLOAT32 m_flGlowBackfaceMult
+	fademindist(float) // FIELD_FLOAT32 m_fadeMinDist
+	fademaxdist(float) // FIELD_FLOAT32 m_fadeMaxDist
+	fadescale(float) // FIELD_FLOAT32 m_flFadeScale
+	object_culling(integer) // FIELD_UINT8 m_nObjectCulling
+	add_attribute(string) // FIELD_UTLSTRING
+	rendercolor32(color255) // FIELD_COLOR32
+	renderamt(integer) // FIELD_INT32
+	mins(vector) // FIELD_VECTOR
+	maxs(vector) // FIELD_VECTOR
+	skin(string) // FIELD_UTLSTRING
+	bodygroups(string) // FIELD_UTLSTRING
+	destructible_part_initial_state_destructed_1(intchoices) : "destructible_part_initial_state_destructed_1" : : "" = // FIELD_INT32 m_nDestructiblePartInitialStateDestructed0 (HitGroup_t)
+	[
+		-1 : "HITGROUP_INVALID"
+		0 : "HITGROUP_GENERIC"
+		1 : "HITGROUP_HEAD"
+		2 : "HITGROUP_CHEST"
+		3 : "HITGROUP_STOMACH"
+		4 : "HITGROUP_LEFTARM"
+		5 : "HITGROUP_RIGHTARM"
+		6 : "HITGROUP_LEFTLEG"
+		7 : "HITGROUP_RIGHTLEG"
+		8 : "HITGROUP_NECK"
+		9 : "HITGROUP_UNUSED"
+		10 : "HITGROUP_GEAR"
+		11 : "HITGROUP_SPECIAL"
+		12 : "HITGROUP_COUNT"
+	]
+	destructible_part_initial_state_destructed_2(intchoices) : "destructible_part_initial_state_destructed_2" : : "" = // FIELD_INT32 m_nDestructiblePartInitialStateDestructed1 (HitGroup_t)
+	[
+		-1 : "HITGROUP_INVALID"
+		0 : "HITGROUP_GENERIC"
+		1 : "HITGROUP_HEAD"
+		2 : "HITGROUP_CHEST"
+		3 : "HITGROUP_STOMACH"
+		4 : "HITGROUP_LEFTARM"
+		5 : "HITGROUP_RIGHTARM"
+		6 : "HITGROUP_LEFTLEG"
+		7 : "HITGROUP_RIGHTLEG"
+		8 : "HITGROUP_NECK"
+		9 : "HITGROUP_UNUSED"
+		10 : "HITGROUP_GEAR"
+		11 : "HITGROUP_SPECIAL"
+		12 : "HITGROUP_COUNT"
+	]
+	destructible_part_initial_state_destructed_3(intchoices) : "destructible_part_initial_state_destructed_3" : : "" = // FIELD_INT32 m_nDestructiblePartInitialStateDestructed2 (HitGroup_t)
+	[
+		-1 : "HITGROUP_INVALID"
+		0 : "HITGROUP_GENERIC"
+		1 : "HITGROUP_HEAD"
+		2 : "HITGROUP_CHEST"
+		3 : "HITGROUP_STOMACH"
+		4 : "HITGROUP_LEFTARM"
+		5 : "HITGROUP_RIGHTARM"
+		6 : "HITGROUP_LEFTLEG"
+		7 : "HITGROUP_RIGHTLEG"
+		8 : "HITGROUP_NECK"
+		9 : "HITGROUP_UNUSED"
+		10 : "HITGROUP_GEAR"
+		11 : "HITGROUP_SPECIAL"
+		12 : "HITGROUP_COUNT"
+	]
+	destructible_part_initial_state_destructed_4(intchoices) : "destructible_part_initial_state_destructed_4" : : "" = // FIELD_INT32 m_nDestructiblePartInitialStateDestructed3 (HitGroup_t)
+	[
+		-1 : "HITGROUP_INVALID"
+		0 : "HITGROUP_GENERIC"
+		1 : "HITGROUP_HEAD"
+		2 : "HITGROUP_CHEST"
+		3 : "HITGROUP_STOMACH"
+		4 : "HITGROUP_LEFTARM"
+		5 : "HITGROUP_RIGHTARM"
+		6 : "HITGROUP_LEFTLEG"
+		7 : "HITGROUP_RIGHTLEG"
+		8 : "HITGROUP_NECK"
+		9 : "HITGROUP_UNUSED"
+		10 : "HITGROUP_GEAR"
+		11 : "HITGROUP_SPECIAL"
+		12 : "HITGROUP_COUNT"
+	]
+	destructible_part_initial_state_destructed_5(intchoices) : "destructible_part_initial_state_destructed_5" : : "" = // FIELD_INT32 m_nDestructiblePartInitialStateDestructed4 (HitGroup_t)
+	[
+		-1 : "HITGROUP_INVALID"
+		0 : "HITGROUP_GENERIC"
+		1 : "HITGROUP_HEAD"
+		2 : "HITGROUP_CHEST"
+		3 : "HITGROUP_STOMACH"
+		4 : "HITGROUP_LEFTARM"
+		5 : "HITGROUP_RIGHTARM"
+		6 : "HITGROUP_LEFTLEG"
+		7 : "HITGROUP_RIGHTLEG"
+		8 : "HITGROUP_NECK"
+		9 : "HITGROUP_UNUSED"
+		10 : "HITGROUP_GEAR"
+		11 : "HITGROUP_SPECIAL"
+		12 : "HITGROUP_COUNT"
+	]
+	destructible_part_initial_state_destructed_1_part_index(integer) // FIELD_INT32 m_nDestructiblePartInitialStateDestructed0_PartIndex
+	destructible_part_initial_state_destructed_2_part_index(integer) // FIELD_INT32 m_nDestructiblePartInitialStateDestructed1_PartIndex
+	destructible_part_initial_state_destructed_3_part_index(integer) // FIELD_INT32 m_nDestructiblePartInitialStateDestructed2_PartIndex
+	destructible_part_initial_state_destructed_4_part_index(integer) // FIELD_INT32 m_nDestructiblePartInitialStateDestructed3_PartIndex
+	destructible_part_initial_state_destructed_5_part_index(integer) // FIELD_INT32 m_nDestructiblePartInitialStateDestructed4_PartIndex
+	destructible_part_initial_state_destructed_1_generate_breakpieces(boolean) // FIELD_BOOLEAN m_bDestructiblePartInitialStateDestructed0_GenerateBreakpieces
+	destructible_part_initial_state_destructed_2_generate_breakpieces(boolean) // FIELD_BOOLEAN m_bDestructiblePartInitialStateDestructed1_GenerateBreakpieces
+	destructible_part_initial_state_destructed_3_generate_breakpieces(boolean) // FIELD_BOOLEAN m_bDestructiblePartInitialStateDestructed2_GenerateBreakpieces
+	destructible_part_initial_state_destructed_4_generate_breakpieces(boolean) // FIELD_BOOLEAN m_bDestructiblePartInitialStateDestructed3_GenerateBreakpieces
+	destructible_part_initial_state_destructed_5_generate_breakpieces(boolean) // FIELD_BOOLEAN m_bDestructiblePartInitialStateDestructed4_GenerateBreakpieces
+	input Alpha(integer) // PVAL_INT param
+	input Color(color255) // PVAL_COLOR_RGB param
+	input Skin(integer) // PVAL_INT param
+	input fademaxdist(float) // PVAL_FLOAT param
+	input fademindist(float) // PVAL_FLOAT param
+]
+
+// C_BaseToggle
+@BaseClass base(basemodelentity) = C_BaseToggle
+[
+]
+
+// C_BaseTrigger
+@PointClass base(C_BaseToggle) = trigger
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	filtername(string) // FIELD_STRING m_iFilterName
+	okifnomodel(boolean) // FIELD_BOOLEAN
+	radius(float) // FIELD_FLOAT32
+	input Disable(void)
+	input Enable(void)
+	input EndTouch(void)
+	input FindEntitiesInTrigger(api) // PVAL_STRING entityType, PVAL_ENTITY_NAME optionalEntityName, returns PVAL_ARRAY:PVAL_EHANDLE retval, Pulse node: Return the current entities touching the trigger, matching the optional criteria.<br><br>This node can appear in Observable contexts.
+	input IsTouching(target_destination) : "Is the other entity touching the trigger?<br><br>This node can appear in Observable contexts." // PVAL_EHANDLE pOtherEntity, returns PVAL_BOOL retval, Pulse node
+	input IsTouchingAny(void) : "Is there any entity touching the trigger?<br><br>This node can appear in Observable contexts." // returns PVAL_BOOL retval, Pulse node
+	input StartTouch(void)
+	input Toggle(void)
+	input TouchTest(void)
+	output OnEndTouch(void)
+	output OnEndTouchAll(void)
+	output OnNotTouching(void)
+	output OnStartTouch(void)
+	output OnStartTouchAll(void)
+	output OnTouching(void)
+	output OnTouchingChanged(void)
+	output OnTouchingEachEntity(void)
+]
+
+// CHostageRescueZoneShim
+@BaseClass base(trigger) = CHostageRescueZoneShim
+[
+]
+
+// CLogicalEntity
+@BaseClass base(C_BaseEntity) = CLogicalEntity
+[
+]
+
+// CServerOnlyModelEntity
+@BaseClass base(basemodelentity) = CServerOnlyModelEntity
+[
+]
+
+// CBaseAnimGraph
+@PointClass base(basemodelentity) = baseanimgraph
+[
+	// component CBodyComponent: CBodyComponentBaseAnimGraph
+	initially_populate_interp_history(boolean) // FIELD_BOOLEAN m_bInitiallyPopulateInterpHistory
+	suppress_anim_event_sounds(boolean) // FIELD_BOOLEAN m_bSuppressAnimEventSounds
+	input DisableAnimEventSounds(boolean) // PVAL_BOOL param
+	input GetLayerCycle(integer) : "Returns the cycle of an animation playing on this layer<br><br>This node can appear in Observable contexts." // PVAL_INT iLayer, returns PVAL_FLOAT retval, Pulse node
+	input IsAnimEventActive(string) : "Is the specified AG2 event active?<br><br>This node can appear in Observable contexts." // PVAL_SCHEMA_ENUM:GameAnimEventIndex_t nAnimEvent, returns PVAL_BOOL retval, Pulse node
+	input IsExternalChoreoGraphActive(void) : "Is there an external choreo animgraph applied to this entity<br><br>This node can appear in Observable contexts." // returns PVAL_BOOL retval, Pulse node
+	input PlaySequence(string) : "Play the specified animation sequence on a NON-ANIMGRAPH entity" // PVAL_STRING pSequenceName, Pulse node
+	input SetBodygroup(string) // PVAL_STRING param
+	input SetPlaybackRate(float) // PVAL_FLOAT param
+	output OnLayerCycleUpdated(float) // PVAL_FLOAT param
+	output m_OnExternalChoreoGraphChanged(void)
+]
+
+// C_BaseGrenade
+@PointClass base(baseanimgraph) = grenade
+[
+]
+
+// C_BaseCSGrenadeProjectile
+@BaseClass base(grenade) = C_BaseCSGrenadeProjectile
+[
+]
+
+// C_BaseCombatCharacter
+@BaseClass base(baseanimgraph) = C_BaseCombatCharacter
+[
+]
+
+// C_BaseDoor
+@BaseClass base(C_BaseToggle) = C_BaseDoor
+[
+]
+
+// CBaseProp
+@PointClass base(baseanimgraph) = base_prop
+[
+	propdata_override(string) // FIELD_STRING
+]
+
+// C_BreakableProp
+@BaseClass base(base_prop) = breakable_prop
+[
+	ExplodeDamage(float) // FIELD_FLOAT32 m_explodeDamage
+	ExplodeRadius(float) // FIELD_FLOAT32 m_explodeRadius
+	minhealthdmg(integer) // FIELD_INT32 m_iMinHealthDmg
+	PerformanceMode(intchoices) : "PerformanceMode" : : "" = // FIELD_INT32 m_PerformanceMode (PerformanceMode_t)
+	[
+		0 : "PM_NORMAL"
+		1 : "PM_NO_GIBS"
+	]
+	PressureDelay(float) // FIELD_FLOAT32 m_flPressureDelay
+	BurstScale(float) // FIELD_FLOAT32 m_flDefBurstScale
+	BurstLocation(vector) // FIELD_VECTOR m_vDefBurstOffset
+	BreakableContentsType(intchoices) : "BreakableContentsType" : : "" = // FIELD_INT32 m_BreakableContentsType (BreakableContentsType_t)
+	[
+		0 : "BC_DEFAULT"
+		1 : "BC_EMPTY"
+		2 : "BC_PROP_GROUP_OVERRIDE"
+		3 : "BC_PARTICLE_SYSTEM_OVERRIDE"
+	]
+	BreakableContentsPropGroupOverride(string) // FIELD_UTLSTRING m_strBreakableContentsPropGroupOverride
+	BreakableContentsParticleOverride(string) // FIELD_UTLSTRING m_strBreakableContentsParticleOverride
+	physdamagescale(float) // FIELD_FLOAT32 m_impactEnergyScale
+	input AddHealth(integer) // PVAL_INT param
+	input Break(void)
+	input RemoveHealth(integer) // PVAL_INT param
+	input SetEnableBreaking(boolean) // PVAL_BOOL param
+	input SetEnableCollisions(boolean) // PVAL_BOOL param
+	input SetHealth(integer) // PVAL_INT param
+	input physdamagescale(float) // PVAL_FLOAT param
+	output OnBreak(void)
+	output OnHealthChanged(float) // PVAL_FLOAT param
+	output OnStartDeath(void)
+	output OnTakeDamage(void)
+]
+
+// C_DynamicProp
+@PointClass base(breakable_prop) = prop_dynamic
+[
+	IdleAnim(string) // FIELD_STRING m_iszIdleAnim
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	use_animgraph(boolean) // FIELD_BOOLEAN m_bUseAnimGraph
+	randomizecycle(boolean) // FIELD_BOOLEAN m_bRandomizeCycle
+	IdleAnimationLoopMode(intchoices) : "IdleAnimationLoopMode" : : "" = // FIELD_INT32 m_nIdleAnimLoopMode (AnimLoopMode_t)
+	[
+		-1 : "ANIM_LOOP_MODE_INVALID"
+		0 : "ANIM_LOOP_MODE_NOT_LOOPING"
+		1 : "ANIM_LOOP_MODE_LOOPING"
+		2 : "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS"
+		3 : "ANIM_LOOP_MODE_COUNT"
+	]
+	glowstate(integer) // FIELD_INT32 m_iInitialGlowState
+	glowrange(integer) // FIELD_INT32 m_nGlowRange
+	glowrangemin(integer) // FIELD_INT32 m_nGlowRangeMin
+	glowcolor(color255) // FIELD_COLOR32 m_glowColor
+	glowteam(integer) // FIELD_INT32 m_nGlowTeam
+	forcenpcexclude(boolean) // FIELD_BOOLEAN m_bForceNpcExclude
+	create_surface_graph(boolean) // FIELD_BOOLEAN m_bCreateMovableSurfaceGraph
+	StartingAnim(string) // FIELD_STRING
+	StartingAnimationLoopMode(string) // FIELD_STRING
+	health(integer) // FIELD_INT32
+	HoldAnimation(boolean) // FIELD_BOOLEAN
+	input Disable(void)
+	input DisableCollision(void)
+	input Enable(void)
+	input EnableCollision(void)
+	input SetAnimation(string) // PVAL_STRING param
+	input SetAnimationLooping(string) // PVAL_STRING param
+	input SetAnimationNoReset(string) // PVAL_STRING param
+	input SetAnimationNoResetLooping(string) // PVAL_STRING param
+	input SetAnimationNoResetNotLooping(string) // PVAL_STRING param
+	input SetAnimationNotLooping(string) // PVAL_STRING param
+	input SetDefaultAnimation(string) // PVAL_STRING param
+	input SetDefaultAnimationLooping(string) // PVAL_STRING param
+	input SetDefaultAnimationNotLooping(string) // PVAL_STRING param
+	input SetGlowOverride(vector) // PVAL_VEC3 param
+	input SetGlowRange(integer) // PVAL_INT param
+	input SetIdleAnimationLooping(string) // PVAL_STRING param
+	input SetIdleAnimationNotLooping(string) // PVAL_STRING param
+	input SetPlaybackRate(float) // PVAL_FLOAT param
+	input StartGlowing(void)
+	input StopGlowing(void)
+	input TurnOff(void)
+	input TurnOn(void)
+	output OnAnimationBegun(void)
+	output OnAnimationDone(void)
+	output OnAnimationLoopCycleDone(void)
+	output OnAnimationReachedEnd(void)
+	output OnAnimationReachedStart(void)
+]
+
+// C_BasePropDoor
+@BaseClass base(prop_dynamic) = C_BasePropDoor
+[
+]
+
+// C_Breakable
+@BaseClass base(basemodelentity) = C_Breakable
+[
+]
+
+// C_LateUpdatedAnimating
+@BaseClass base(baseanimgraph) = C_LateUpdatedAnimating
+[
+]
+
+// C_CS2HudModelBase
+@BaseClass base(C_LateUpdatedAnimating) = C_CS2HudModelBase
+[
+]
+
+// C_CSGO_EndOfMatchLineupEndpoint
+@BaseClass base(C_BaseEntity) = C_CSGO_EndOfMatchLineupEndpoint
+[
+]
+
+// C_CSGO_MapPreviewCameraPath, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = map_preview_camera_path
+[
+	ZNear(float) // FIELD_FLOAT32 m_flZNear
+	ZFar(float) // FIELD_FLOAT32 m_flZFar
+	loop(boolean) // FIELD_BOOLEAN m_bLoop
+	useVerticalFOV(boolean) // FIELD_BOOLEAN m_bVerticalFOV
+	constant_speed(boolean) // FIELD_BOOLEAN m_bConstantSpeed
+	duration(float) // FIELD_FLOAT32 m_flDuration
+	dof_enabled(boolean) // FIELD_BOOLEAN m_bDofEnabled
+	dof_near_blurry(float) // FIELD_FLOAT32 m_flDofNearBlurry
+	dof_near_crisp(float) // FIELD_FLOAT32 m_flDofNearCrisp
+	dof_far_crisp(float) // FIELD_FLOAT32 m_flDofFarCrisp
+	dof_far_blurry(float) // FIELD_FLOAT32 m_flDofFarBlurry
+	dof_tilt_to_ground(float) // FIELD_FLOAT32 m_flDofTiltToGround
+]
+
+// C_CSGO_TeamPreviewCamera
+@PointClass base(map_preview_camera_path) = team_preview_camera
+[
+	variant(integer) // FIELD_INT32 m_nVariant
+]
+
+// C_CSGO_TeamPreviewCameraBone
+@BaseClass base(team_preview_camera) = C_CSGO_TeamPreviewCameraBone
+[
+]
+
+// C_CSGO_TeamSelectCharacterPosition
+@BaseClass base(team_preview_character_position) = C_CSGO_TeamSelectCharacterPosition
+[
+]
+
+// C_Team, ECF_SPAWN_GROUP_HANDLE_INVALID
+@PointClass base(C_BaseEntity) = team_manager
+[
+	teamname(string) // FIELD_CHARACTER m_szTeamname
+]
+
+// C_CSTeam
+@BaseClass base(team_manager) = C_CSTeam
+[
+]
+
+// C_EconEntity
+@BaseClass base(baseanimgraph) = C_EconEntity
+[
+]
+
+// C_BasePlayerWeapon
+@BaseClass base(C_EconEntity) = base_player_weapon
+[
+]
+
+// C_CSWeaponBase
+@PointClass base(base_player_weapon) = weapon_cs_base
+[
+]
+
+// C_CSWeaponBaseGun
+@BaseClass base(weapon_cs_base) = C_CSWeaponBaseGun
+[
+]
+
+// C_CSWeaponBaseShotgun
+@BaseClass base(weapon_cs_base) = C_CSWeaponBaseShotgun
+[
+]
+
+// C_ColorCorrection
+@BaseClass base(C_BaseEntity) = C_ColorCorrection
+[
+]
+
+// C_ColorCorrectionVolume
+@BaseClass base(trigger) = C_ColorCorrectionVolume
+[
+]
+
+// C_DynamicLight
+@BaseClass base(basemodelentity) = C_DynamicLight
+[
+]
+
+// C_EnvWind
+@BaseClass base(C_BaseEntity) = C_EnvWind
+[
+	// m_EnvWindShared (C_EnvWindShared)
+		minwind(integer) // FIELD_UINT16 m_iMinWind
+		maxwind(integer) // FIELD_UINT16 m_iMaxWind
+		windradius(integer) // FIELD_INT32 m_windRadius
+		mingust(integer) // FIELD_UINT16 m_iMinGust
+		maxgust(integer) // FIELD_UINT16 m_iMaxGust
+		mingustdelay(float) // FIELD_FLOAT32 m_flMinGustDelay
+		maxgustdelay(float) // FIELD_FLOAT32 m_flMaxGustDelay
+		gustduration(float) // FIELD_FLOAT32 m_flGustDuration
+		gustdirchange(integer) // FIELD_UINT16 m_iGustDirChange
+]
+
+// C_Inferno
+@BaseClass base(basemodelentity) = C_Inferno
+[
+]
+
+// C_FireCrackerBlast
+@BaseClass base(C_Inferno) = C_FireCrackerBlast
+[
+]
+
+// C_Fish
+@BaseClass base(baseanimgraph) = C_Fish
+[
+]
+
+// C_FuncBrush
+@BaseClass base(basemodelentity) = C_FuncBrush
+[
+]
+
+// C_FuncElectrifiedVolume
+@BaseClass base(C_FuncBrush) = C_FuncElectrifiedVolume
+[
+]
+
+// C_FuncMoveLinear
+@BaseClass base(C_BaseToggle) = C_FuncMoveLinear
+[
+]
+
+// C_FuncMover
+@BaseClass base(C_BaseToggle) = C_FuncMover
+[
+]
+
+// C_FuncRotating
+@BaseClass base(basemodelentity) = C_FuncRotating
+[
+]
+
+// C_FuncTrackTrain
+@BaseClass base(basemodelentity) = C_FuncTrackTrain
+[
+]
+
+// C_GameRulesProxy, ECF_SPAWN_GROUP_HANDLE_INVALID
+@BaseClass base(C_BaseEntity) = C_GameRulesProxy
+[
+]
+
+// C_HandleTest
+@BaseClass base(C_BaseEntity) = C_HandleTest
+[
+]
+
+// C_Hostage
+@BaseClass base(C_BaseCombatCharacter) = C_Hostage
+[
+]
+
+// C_HostageCarriableProp
+@BaseClass base(baseanimgraph) = C_HostageCarriableProp
+[
+]
+
+// C_Item
+@BaseClass base(C_EconEntity) = C_Item
+[
+]
+
+// C_ItemDogtags
+@BaseClass base(C_Item) = C_ItemDogtags
+[
+]
+
+// C_ModelPointEntity
+@BaseClass base(basemodelentity) = C_ModelPointEntity
+[
+	// component CBodyComponent: CBodyComponentPoint
+]
+
+// C_PhysBox
+@BaseClass base(C_Breakable) = C_PhysBox
+[
+]
+
+// C_PhysMagnet
+@BaseClass base(baseanimgraph) = C_PhysMagnet
+[
+]
+
+// C_PhysicsProp
+@BaseClass base(breakable_prop) = C_PhysicsProp
+[
+]
+
+// C_PhysicsPropMultiplayer
+@BaseClass base(C_PhysicsProp) = C_PhysicsPropMultiplayer
+[
+]
+
+// C_PlantedC4
+@BaseClass base(baseanimgraph) = C_PlantedC4
+[
+]
+
+// C_PointCommentaryNode
+@BaseClass base(baseanimgraph) = C_PointCommentaryNode
+[
+]
+
+// C_PropDoorRotating
+@BaseClass base(C_BasePropDoor) = C_PropDoorRotating
+[
+]
+
+// C_RagdollProp
+@PointClass base(baseanimgraph) = prop_ragdoll
+[
+]
+
+// C_RagdollPropAttached
+@BaseClass base(prop_ragdoll) = C_RagdollPropAttached
+[
+]
+
+// C_SpotlightEnd
+@BaseClass base(basemodelentity) = C_SpotlightEnd
+[
+]
+
+// C_TriggerLerpObject
+@BaseClass base(trigger) = C_TriggerLerpObject
+[
+]
+
+// C_TriggerMultiple
+@BaseClass base(trigger) = C_TriggerMultiple
+[
+]
+
+// C_WaterBullet
+@BaseClass base(baseanimgraph) = C_WaterBullet
+[
+]
+
+// C_BaseClientUIEntity
+@BaseClass base(basemodelentity) = base_clientui_entity
+[
+	enabled(boolean) // FIELD_BOOLEAN m_bEnabled
+	dialog_layout_name(string) // FIELD_STRING m_DialogXMLName
+	panel_class_name(string) // FIELD_STRING m_PanelClassName
+	panel_id(string) // FIELD_STRING m_PanelID
+]
+
+// C_BasePlayerPawn
+@BaseClass base(C_BaseCombatCharacter) = base_player_pawn
+[
+	controller(target_destination) // FIELD_EHANDLE m_hController
+	// m_skybox3d (sky3dparams_t)
+		scale(integer) // FIELD_INT16 scale
+		clip_3D_skybox_near_to_world_far(boolean) // FIELD_BOOLEAN bClip3DSkyBoxNearToWorldFar
+		clip_3D_skybox_near_to_world_far_offset(float) // FIELD_FLOAT32 flClip3DSkyBoxNearToWorldFarOffset
+		// fog (fogparams_t)
+			fogdir(vector) // FIELD_DIRECTION_VECTOR_WORLDSPACE dirPrimary
+			fogcolor(color255) // FIELD_COLOR32 colorPrimary
+			fogcolor2(color255) // FIELD_COLOR32 colorSecondary
+			fogstart(float) // FIELD_FLOAT32 start
+			fogend(float) // FIELD_FLOAT32 end
+			farz(float) // FIELD_FLOAT32 farz
+			fogmaxdensity(float) // FIELD_FLOAT32 maxdensity
+			fogexponent(float) // FIELD_FLOAT32 exponent
+			HDRColorScale(float) // FIELD_FLOAT32 HDRColorScale
+			foglerptime(float) // FIELD_FLOAT32 duration
+			fogenable(boolean) // FIELD_BOOLEAN enable
+			fogblend(boolean) // FIELD_BOOLEAN blend
+			blendtobackground(float) // FIELD_FLOAT32 blendtobackground
+			scattering(float) // FIELD_FLOAT32 scattering
+			locallightscale(float) // FIELD_FLOAT32 locallightscale
+]
+
+// CBaseAnimGraphAlias_baseanimating, ECF_ALIAS
+@PointClass base(baseanimgraph) = baseanimating
+[
+]
+
+// C_Beam
+@PointClass base(basemodelentity) = beam
+[
+	HDRColorScale(float) // FIELD_FLOAT32 m_flHDRColorScale
+	damage(float) // FIELD_FLOAT32 m_flDamage
+	ScrollSpeed(float) // FIELD_FLOAT32 m_fSpeed
+	input ScrollSpeed(float) // PVAL_FLOAT param
+]
+
+// CBrokenGlassTrap
+@PointClass base(basemodelentity) = broken_glass_trap
+[
+]
+
+// C_CSPlayerPawnBase
+@BaseClass base(base_player_pawn) = player_pawn_base
+[
+	original_controller(target_destination) // FIELD_EHANDLE
+]
+
+// C_CSObserverPawn
+@PointClass base(player_pawn_base) = c_cs_observer_for_precache
+[
+	// m_pCameraServices (CPlayer_CameraServices)
+		// m_CurrentFog (fogparams_t)
+			fogdir(vector) // FIELD_DIRECTION_VECTOR_WORLDSPACE dirPrimary
+			fogcolor(color255) // FIELD_COLOR32 colorPrimary
+			fogcolor2(color255) // FIELD_COLOR32 colorSecondary
+			fogstart(float) // FIELD_FLOAT32 start
+			fogend(float) // FIELD_FLOAT32 end
+			farz(float) // FIELD_FLOAT32 farz
+			fogmaxdensity(float) // FIELD_FLOAT32 maxdensity
+			fogexponent(float) // FIELD_FLOAT32 exponent
+			HDRColorScale(float) // FIELD_FLOAT32 HDRColorScale
+			foglerptime(float) // FIELD_FLOAT32 duration
+			fogenable(boolean) // FIELD_BOOLEAN enable
+			fogblend(boolean) // FIELD_BOOLEAN blend
+			blendtobackground(float) // FIELD_FLOAT32 blendtobackground
+			scattering(float) // FIELD_FLOAT32 scattering
+			locallightscale(float) // FIELD_FLOAT32 locallightscale
+]
+
+// C_CSPlayerPawn
+@PointClass base(player_pawn_base) = c_cs_player_for_precache
+[
+	// m_pCameraServices (CPlayer_CameraServices)
+		// m_CurrentFog (fogparams_t)
+			fogdir(vector) // FIELD_DIRECTION_VECTOR_WORLDSPACE dirPrimary
+			fogcolor(color255) // FIELD_COLOR32 colorPrimary
+			fogcolor2(color255) // FIELD_COLOR32 colorSecondary
+			fogstart(float) // FIELD_FLOAT32 start
+			fogend(float) // FIELD_FLOAT32 end
+			farz(float) // FIELD_FLOAT32 farz
+			fogmaxdensity(float) // FIELD_FLOAT32 maxdensity
+			fogexponent(float) // FIELD_FLOAT32 exponent
+			HDRColorScale(float) // FIELD_FLOAT32 HDRColorScale
+			foglerptime(float) // FIELD_FLOAT32 duration
+			fogenable(boolean) // FIELD_BOOLEAN enable
+			fogblend(boolean) // FIELD_BOOLEAN blend
+			blendtobackground(float) // FIELD_FLOAT32 blendtobackground
+			scattering(float) // FIELD_FLOAT32 scattering
+			locallightscale(float) // FIELD_FLOAT32 locallightscale
+]
+
+// C_DynamicPropAlias_cable_dynamic, ECF_ALIAS
+@PointClass base(prop_dynamic) = cable_dynamic
+[
+]
+
+// CCashStack
+@PointClass base(basemodelentity) = cash_stack
+[
+]
+
+// C_Chicken
+@PointClass base(prop_dynamic) = chicken
+[
+]
+
+// CCitadelSoundOpvarSetOBB
+@PointClass base(C_BaseEntity) = citadel_snd_opvar_set_obb
+[
+	stackName(string) // FIELD_STRING m_iszStackName
+	operatorName(string) // FIELD_STRING m_iszOperatorName
+	opvarName(string) // FIELD_STRING m_iszOpvarName
+	box_inner_mins(vector) // FIELD_POSITION_VECTOR m_vDistanceInnerMins
+	box_inner_maxs(vector) // FIELD_POSITION_VECTOR m_vDistanceInnerMaxs
+	box_outer_mins(vector) // FIELD_POSITION_VECTOR m_vDistanceOuterMins
+	box_outer_maxs(vector) // FIELD_POSITION_VECTOR m_vDistanceOuterMaxs
+	AABBDirection(integer) // FIELD_INT32 m_nAABBDirection
+]
+
+// C_ClientRagdoll
+@PointClass base(baseanimgraph) = client_ragdoll
+[
+]
+
+// C_CSGO_CounterTerroristRushIntroCamera
+@PointClass base(C_CSGO_TeamPreviewCameraBone) = counterterrorist_rush_intro_camera
+[
+]
+
+// C_CSGO_CounterTerroristTeamIntroCamera
+@PointClass base(team_preview_camera) = counterterrorist_team_intro_camera
+[
+]
+
+// C_CSGO_CounterTerroristWingmanIntroCamera
+@PointClass base(team_preview_camera) = counterterrorist_wingman_intro_camera
+[
+]
+
+// C_CS2HudModelAddon
+@PointClass base(C_LateUpdatedAnimating) = cs2_hudmodel_addon
+[
+]
+
+// C_CS2HudModelArms
+@PointClass base(C_CS2HudModelBase) = cs2_hudmodel_arms
+[
+]
+
+// C_CS2HudModelWeapon
+@PointClass base(C_CS2HudModelBase) = cs2_hudmodel_weapon
+[
+]
+
+// C_CS2WeaponModuleBase
+@PointClass base(baseanimgraph) = cs2_weapon_module
+[
+]
+
+// C_CSGameRulesProxy
+@PointClass base(C_GameRulesProxy) = cs_gamerules
+[
+]
+
+// C_CSMinimapBoundary
+@PointClass base(C_BaseEntity) = cs_minimap_boundary
+[
+]
+
+// CCSMinimapVolume
+@PointClass base(trigger) = cs_minimap_volume
+[
+	minimap_name(string) // FIELD_UTLSTRING m_strMinimapName
+]
+
+// C_CSPetPlacement
+@PointClass base(C_BaseEntity) = cs_pet_placement
+[
+]
+
+// CBasePlayerController, ECF_SPAWN_GROUP_HANDLE_INVALID
+@PointClass base(C_BaseEntity) = player_controller
+[
+	fakeclient(boolean) // FIELD_BOOLEAN
+	is_hltv(boolean) // FIELD_BOOLEAN
+	playername(string) // FIELD_UTLSTRING
+	reserving(boolean) // FIELD_BOOLEAN
+	steamid(integer) // FIELD_UINT64 m_steamID
+	input GetPlayerSlot(void) // returns PVAL_TYPESAFE_INT:CPlayerSlot retval, Pulse node
+	input IsFakeClient(void) : "Fake client, simulated server side; don't send network messages to them" // returns PVAL_BOOL retval, Pulse node
+]
+
+// CCSPlayerController
+@PointClass base(player_controller) = cs_player_controller
+[
+	pendingteamnumber(integer) // FIELD_UINT8 m_iPendingTeamNum
+]
+
+// C_CSPlayerResource
+@PointClass base(C_BaseEntity) = cs_player_manager
+[
+]
+
+// CCS_PortraitWorldCallbackHandler
+@PointClass base(C_BaseEntity) = cs_portrait_world_callback_handler
+[
+]
+
+// C_CSGO_PreviewModel, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(baseanimgraph) = csgo_previewmodel
+[
+	DefaultAnim(string) // FIELD_UTLSTRING m_defaultAnim
+	DefaultAnimLoopMode(intchoices) : "DefaultAnimLoopMode" : : "" = // FIELD_INT32 m_nDefaultAnimLoopMode (AnimLoopMode_t)
+	[
+		-1 : "ANIM_LOOP_MODE_INVALID"
+		0 : "ANIM_LOOP_MODE_NOT_LOOPING"
+		1 : "ANIM_LOOP_MODE_LOOPING"
+		2 : "ANIM_LOOP_MODE_USE_SEQUENCE_SETTINGS"
+		3 : "ANIM_LOOP_MODE_COUNT"
+	]
+	model_scale(float) // FIELD_FLOAT32 m_flInitialModelScale
+	weapon_state(string) // FIELD_UTLSTRING m_sInitialWeaponState
+	input SetItem(string) // PVAL_STRING param
+]
+
+// C_CSGO_PreviewModelAlias_csgo_item_previewmodel, ECF_ALIAS
+@PointClass base(csgo_previewmodel) = csgo_item_previewmodel
+[
+]
+
+// C_CSGO_PreviewPlayer, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(c_cs_player_for_precache) = csgo_previewplayer
+[
+	character_mode(string) // FIELD_GLOBALSYMBOL m_animgraphCharacterModeString
+	model_scale(float) // FIELD_FLOAT32 m_flInitialModelScale
+]
+
+// C_CSGO_PreviewPlayerAlias_csgo_player_previewmodel, ECF_ALIAS
+@PointClass base(csgo_previewplayer) = csgo_player_previewmodel
+[
+]
+
+// C_CsmFovOverride, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = csm_fov_override
+[
+	camera_name(string) // FIELD_UTLSTRING m_cameraName
+	csm_fov_override(float) // FIELD_FLOAT32 m_flCsmFovOverrideValue
+]
+
+// CCSCustomHudLayout
+@PointClass base(C_BaseEntity) = custom_hud_layout
+[
+	layout(string) // FIELD_STRING m_strLayout
+	observable(boolean) // FIELD_BOOLEAN m_bObservable
+]
+
+// CCSCustomPlayerCamera
+@PointClass base(C_BaseEntity) = custom_player_camera
+[
+]
+
+// C_DecoyProjectile
+@PointClass base(C_BaseCSGrenadeProjectile) = decoy_projectile
+[
+]
+
+// C_DynamicPropAlias_dynamic_prop, ECF_ALIAS
+@PointClass base(prop_dynamic) = dynamic_prop
+[
+]
+
+// C_CSGO_EndOfMatchCamera
+@PointClass base(team_preview_camera) = end_of_match_camera
+[
+]
+
+// C_CSGO_EndOfMatchCharacterPosition, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(team_preview_character_position) = end_of_match_character
+[
+]
+
+// CCSGO_EndOfMatchLineupEnd
+@PointClass base(C_CSGO_EndOfMatchLineupEndpoint) = end_of_match_lineup_end
+[
+]
+
+// C_CSGO_EndOfMatchLineupStart
+@PointClass base(C_CSGO_EndOfMatchLineupEndpoint) = end_of_match_lineup_start
+[
+]
+
+// C_EntityFlame
+@PointClass base(C_BaseEntity) = entityflame
+[
+	attachedTo(target_destination) // FIELD_EHANDLE m_hEntAttached
+]
+
+// C_EnvCombinedLightProbeVolume
+@PointClass base(C_BaseEntity) = env_combined_light_probe_volume
+[
+	cubemaptexture(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hCubemapTexture
+	customcubemaptexture(boolean) // FIELD_BOOLEAN m_Entity_bCustomCubemapTexture
+	lightprobetexture(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_AmbientCube
+	lightprobetexture_sdf(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SDF
+	lightprobetexture_sh2_dc(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SH2_DC
+	lightprobetexture_sh2_l1(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SH2_L1
+	lightprobetexture_dli(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightIndicesTexture
+	lightprobetexture_dls(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightScalarsTexture
+	lightprobetexture_dlshd(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightShadowsTexture
+	box_mins(vector) // FIELD_VECTOR m_Entity_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_Entity_vBoxMaxs
+	moveable(boolean) // FIELD_BOOLEAN m_Entity_bMoveable
+	handshake(integer) // FIELD_INT32 m_Entity_nHandshake
+	array_index(integer) // FIELD_INT32 m_Entity_nEnvCubeMapArrayIndex
+	edge_fade_dists(vector) // FIELD_VECTOR m_Entity_vEdgeFadeDists
+	edge_fade_dist(float) // FIELD_FLOAT32 m_Entity_flEdgeFadeDist
+	indoor_outdoor_level(integer) // FIELD_INT32 m_Entity_nPriority
+	StartDisabled(boolean) // FIELD_BOOLEAN m_Entity_bStartDisabled
+	light_probe_size_x(integer) // FIELD_INT32 m_Entity_nLightProbeSizeX
+	light_probe_size_y(integer) // FIELD_INT32 m_Entity_nLightProbeSizeY
+	light_probe_size_z(integer) // FIELD_INT32 m_Entity_nLightProbeSizeZ
+	light_probe_atlas_x(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasX
+	light_probe_atlas_y(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasY
+	light_probe_atlas_z(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasZ
+]
+
+// C_EnvCubemap
+@PointClass base(C_BaseEntity) = env_cubemap
+[
+	cubemaptexture(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hCubemapTexture
+	customcubemaptexture(boolean) // FIELD_BOOLEAN m_Entity_bCustomCubemapTexture
+	influenceradius(float) // FIELD_FLOAT32 m_Entity_flInfluenceRadius
+	box_mins(vector) // FIELD_VECTOR m_Entity_vBoxProjectMins
+	box_maxs(vector) // FIELD_VECTOR m_Entity_vBoxProjectMaxs
+	moveable(boolean) // FIELD_BOOLEAN m_Entity_bMoveable
+	handshake(integer) // FIELD_INT32 m_Entity_nHandshake
+	array_index(integer) // FIELD_INT32 m_Entity_nEnvCubeMapArrayIndex
+	indoor_outdoor_level(integer) // FIELD_INT32 m_Entity_nPriority
+	edge_fade_dist(float) // FIELD_FLOAT32 m_Entity_flEdgeFadeDist
+	edge_fade_dists(vector) // FIELD_VECTOR m_Entity_vEdgeFadeDists
+	diffuse_scale(float) // FIELD_FLOAT32 m_Entity_flDiffuseScale
+	StartDisabled(boolean) // FIELD_BOOLEAN m_Entity_bStartDisabled
+	default_env_map(boolean) // FIELD_BOOLEAN m_Entity_bDefaultEnvMap
+	default_spec_env_map(boolean) // FIELD_BOOLEAN m_Entity_bDefaultSpecEnvMap
+	render_depth_map(boolean) // FIELD_BOOLEAN m_Entity_bIndoorCubeMap
+	copy_diffuse_from_default_cubemap(boolean) // FIELD_BOOLEAN m_Entity_bCopyDiffuseFromDefaultCubemap
+]
+
+// C_EnvCubemapBox
+@PointClass base(env_cubemap) = env_cubemap_box
+[
+]
+
+// C_EnvCubemapFog
+@PointClass base(C_BaseEntity) = env_cubemap_fog
+[
+	cubemapfogstartdistance(float) // FIELD_FLOAT32 m_flStartDistance
+	cubemapfogenddistance(float) // FIELD_FLOAT32 m_flEndDistance
+	cubemapfoglodbiase(float) // FIELD_FLOAT32 m_flLODBias
+	cubemapfogfalloffexponent(float) // FIELD_FLOAT32 m_flFogFalloffExponent
+	cubemapheightfog(boolean) // FIELD_BOOLEAN m_bHeightFogEnabled
+	cubemapfogheightwidth(float) // FIELD_FLOAT32 m_flFogHeightWidth
+	cubemapfogheightstart(float) // FIELD_FLOAT32 m_flFogHeightStart
+	cubemapfogheightend(float) // FIELD_FLOAT32 m_flFogHeightEnd
+	cubemapfogheightexponent(float) // FIELD_FLOAT32 m_flFogHeightExponent
+	cubemapfogmaxopacity(float) // FIELD_FLOAT32 m_flFogMaxOpacity
+	cubemapfogsource(integer) // FIELD_INT32 m_nCubemapSourceType
+	cubemapfogskymaterial(material) // FIELD_HMATERIAL m_hSkyMaterial
+	cubemapfogskyentity(string) // FIELD_STRING m_iszSkyEntity
+	cubemapfogdistancetype(integer) // FIELD_INT32 m_nDistanceFogType
+	cubemapfogdistancecurve(string) // FIELD_STRING m_DistanceFogCurveString
+	cubemapfogheighttype(integer) // FIELD_INT32 m_nHeightFogType
+	cubemapfogheightcurve(string) // FIELD_STRING m_HeightFogCurveString
+	cubemapfogheightblendmode(integer) // FIELD_INT32 m_nFogHeightBlendMode
+	cubemapfogheightcoordinatespace(integer) // FIELD_INT32 m_nFogHeightCoordinateSpace
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	cubemapfogtexture(resource:texture) // FIELD_HRENDERTEXTURE m_hFogCubemapTexture
+	input Disable(boolean) // PVAL_BOOL param
+	input Enable(boolean) // PVAL_BOOL param
+]
+
+// C_EnvDecal
+@PointClass base(basemodelentity) = env_decal
+[
+	material(material) // FIELD_HMATERIAL m_hDecalMaterial
+	width(float) // FIELD_FLOAT32 m_flWidth
+	height(float) // FIELD_FLOAT32 m_flHeight
+	depth(float) // FIELD_FLOAT32 m_flDepth
+	depthsortbias(float) // FIELD_FLOAT32 m_flDepthSortBias
+	RenderOrder(integer) // FIELD_UINT32 m_nRenderOrder
+	projectonworld(boolean) // FIELD_BOOLEAN m_bProjectOnWorld
+	projectoncharacters(boolean) // FIELD_BOOLEAN m_bProjectOnCharacters
+	projectonwater(boolean) // FIELD_BOOLEAN m_bProjectOnWater
+]
+
+// C_EnvDetailController
+@PointClass base(C_BaseEntity) = env_detail_controller
+[
+	fademindist(float) // FIELD_FLOAT32 m_flFadeStartDist
+	fademaxdist(float) // FIELD_FLOAT32 m_flFadeEndDist
+]
+
+// C_EntityDissolve
+@PointClass base(basemodelentity) = env_entity_dissolver
+[
+]
+
+// C_FogController, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = env_fog_controller
+[
+	// m_fog (fogparams_t)
+		fogdir(vector) // FIELD_DIRECTION_VECTOR_WORLDSPACE dirPrimary
+		fogcolor(color255) // FIELD_COLOR32 colorPrimary
+		fogcolor2(color255) // FIELD_COLOR32 colorSecondary
+		fogstart(float) // FIELD_FLOAT32 start
+		fogend(float) // FIELD_FLOAT32 end
+		farz(float) // FIELD_FLOAT32 farz
+		fogmaxdensity(float) // FIELD_FLOAT32 maxdensity
+		fogexponent(float) // FIELD_FLOAT32 exponent
+		HDRColorScale(float) // FIELD_FLOAT32 HDRColorScale
+		foglerptime(float) // FIELD_FLOAT32 duration
+		fogenable(boolean) // FIELD_BOOLEAN enable
+		fogblend(boolean) // FIELD_BOOLEAN blend
+		blendtobackground(float) // FIELD_FLOAT32 blendtobackground
+		scattering(float) // FIELD_FLOAT32 scattering
+		locallightscale(float) // FIELD_FLOAT32 locallightscale
+	use_angles(boolean) // FIELD_BOOLEAN m_bUseAngles
+	input Set2DSkyboxFogFactor(float) // PVAL_FLOAT param
+	input Set2DSkyboxFogFactorLerpTo(float) // PVAL_FLOAT param
+	input SetAngles(string) // PVAL_STRING param
+	input SetColor(color255) // PVAL_COLOR_RGB param
+	input SetColorLerpTo(color255) // PVAL_COLOR_RGB param
+	input SetColorSecondary(color255) // PVAL_COLOR_RGB param
+	input SetColorSecondaryLerpTo(color255) // PVAL_COLOR_RGB param
+	input SetEndDist(float) // PVAL_FLOAT param
+	input SetEndDistLerpTo(float) // PVAL_FLOAT param
+	input SetFarZ(integer) // PVAL_INT param
+	input SetMaxDensity(float) // PVAL_FLOAT param
+	input SetMaxDensityLerpTo(float) // PVAL_FLOAT param
+	input SetStartDist(float) // PVAL_FLOAT param
+	input SetStartDistLerpTo(float) // PVAL_FLOAT param
+	input StartFogTransition(void)
+	input TurnOff(void)
+	input TurnOn(void)
+]
+
+// C_GlobalLight, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = env_global_light
+[
+	// CGlobalLightBase (CGlobalLightBase)
+		specularpower(float) // FIELD_FLOAT32 m_flSpecularPower
+		specularindependence(float) // FIELD_FLOAT32 m_flSpecularIndependence
+		specularcolor(color255) // FIELD_COLOR32 m_SpecularColor
+		StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+		color(color255) // FIELD_COLOR32 m_LightColor
+		ambientcolor1(color255) // FIELD_COLOR32 m_AmbientColor1
+		ambientcolor2(color255) // FIELD_COLOR32 m_AmbientColor2
+		ambientcolor3(color255) // FIELD_COLOR32 m_AmbientColor3
+		fov(float) // FIELD_FLOAT32 m_flFOV
+		nearz(float) // FIELD_FLOAT32 m_flNearZ
+		farz(float) // FIELD_FLOAT32 m_flFarZ
+		enableshadows(boolean) // FIELD_BOOLEAN m_bEnableShadows
+		background_clear_not_required(boolean) // FIELD_BOOLEAN m_bBackgroundClearNotRequired
+		ambientscale1(float) // FIELD_FLOAT32 m_flAmbientScale1
+		ambientscale2(float) // FIELD_FLOAT32 m_flAmbientScale2
+		groundscale(float) // FIELD_FLOAT32 m_flGroundScale
+		lightscale(float) // FIELD_FLOAT32 m_flLightScale
+		fow_darkness(float) // FIELD_FLOAT32 m_flFoWDarkness
+		enable_separate_skybox_fog(boolean) // FIELD_BOOLEAN m_bEnableSeparateSkyboxFog
+	input LightScale(float) // PVAL_FLOAT param
+	input TurnOff(void)
+	input TurnOn(void)
+]
+
+// C_GradientFog
+@PointClass base(C_BaseEntity) = env_gradient_fog
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	gradientfogtexture(resource:texture) // FIELD_HRENDERTEXTURE m_hGradientFogTexture
+	fogstart(float) // FIELD_FLOAT32 m_flFogStartDistance
+	fogend(float) // FIELD_FLOAT32 m_flFogEndDistance
+	heightfog(boolean) // FIELD_BOOLEAN m_bHeightFogEnabled
+	fogstartheight(float) // FIELD_FLOAT32 m_flFogStartHeight
+	fogendheight(float) // FIELD_FLOAT32 m_flFogEndHeight
+	farz(float) // FIELD_FLOAT32 m_flFarZ
+	fogmaxopacity(float) // FIELD_FLOAT32 m_flFogMaxOpacity
+	fogfalloffexponent(float) // FIELD_FLOAT32 m_flFogFalloffExponent
+	fogverticalexponent(float) // FIELD_FLOAT32 m_flFogVerticalExponent
+	fogcolor(color255) // FIELD_COLOR32 m_fogColor
+	fogstrength(float) // FIELD_FLOAT32 m_flFogStrength
+	fadetime(float) // FIELD_FLOAT32 m_flFadeTime
+	input Disable(boolean) // PVAL_BOOL param
+	input Enable(boolean) // PVAL_BOOL param
+	input SetFarZ(float) // PVAL_FLOAT param
+	input SetFogColor(color255) // PVAL_COLOR_RGB param
+	input SetFogEndDistance(float) // PVAL_FLOAT param
+	input SetFogEndHeight(float) // PVAL_FLOAT param
+	input SetFogFalloffExponent(float) // PVAL_FLOAT param
+	input SetFogMaxOpacity(float) // PVAL_FLOAT param
+	input SetFogStartDistance(float) // PVAL_FLOAT param
+	input SetFogStartHeight(float) // PVAL_FLOAT param
+	input SetFogStrength(float) // PVAL_FLOAT param
+	input SetFogVerticalExponent(float) // PVAL_FLOAT param
+]
+
+// C_EnvLightProbeVolume
+@PointClass base(C_BaseEntity) = env_light_probe_volume
+[
+	lightprobetexture(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_AmbientCube
+	lightprobetexture_sdf(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SDF
+	lightprobetexture_sh2_dc(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SH2_DC
+	lightprobetexture_sh2_l1(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeTexture_SH2_L1
+	lightprobetexture_dli(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightIndicesTexture
+	lightprobetexture_dls(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightScalarsTexture
+	lightprobetexture_dlshd(resource:texture) // FIELD_HRENDERTEXTURE m_Entity_hLightProbeDirectLightShadowsTexture
+	box_mins(vector) // FIELD_VECTOR m_Entity_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_Entity_vBoxMaxs
+	moveable(boolean) // FIELD_BOOLEAN m_Entity_bMoveable
+	handshake(integer) // FIELD_INT32 m_Entity_nHandshake
+	indoor_outdoor_level(integer) // FIELD_INT32 m_Entity_nPriority
+	StartDisabled(boolean) // FIELD_BOOLEAN m_Entity_bStartDisabled
+	light_probe_size_x(integer) // FIELD_INT32 m_Entity_nLightProbeSizeX
+	light_probe_size_y(integer) // FIELD_INT32 m_Entity_nLightProbeSizeY
+	light_probe_size_z(integer) // FIELD_INT32 m_Entity_nLightProbeSizeZ
+	light_probe_atlas_x(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasX
+	light_probe_atlas_y(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasY
+	light_probe_atlas_z(integer) // FIELD_INT32 m_Entity_nLightProbeAtlasZ
+]
+
+// C_ParticleSystem
+@PointClass base(basemodelentity) = info_particle_system
+[
+	start_active(boolean) // FIELD_BOOLEAN m_bStartActive
+	pre_sim_time(float) // FIELD_FLOAT32 m_flPreSimTime
+	effect_name(string) // FIELD_STRING m_iszEffectName
+	no_save(boolean) // FIELD_BOOLEAN m_bNoSave
+	no_freeze(boolean) // FIELD_BOOLEAN m_bNoFreeze
+	no_ramp(boolean) // FIELD_BOOLEAN m_bNoRamp
+	snapshot_file(string) // FIELD_CHARACTER m_szSnapshotFileName
+	cpoint0(string) // FIELD_STRING m_iszControlPointNames[0]
+	cpoint1(string) // FIELD_STRING m_iszControlPointNames[1]
+	cpoint2(string) // FIELD_STRING m_iszControlPointNames[2]
+	cpoint3(string) // FIELD_STRING m_iszControlPointNames[3]
+	cpoint4(string) // FIELD_STRING m_iszControlPointNames[4]
+	cpoint5(string) // FIELD_STRING m_iszControlPointNames[5]
+	cpoint6(string) // FIELD_STRING m_iszControlPointNames[6]
+	cpoint7(string) // FIELD_STRING m_iszControlPointNames[7]
+	cpoint8(string) // FIELD_STRING m_iszControlPointNames[8]
+	cpoint9(string) // FIELD_STRING m_iszControlPointNames[9]
+	cpoint10(string) // FIELD_STRING m_iszControlPointNames[10]
+	cpoint11(string) // FIELD_STRING m_iszControlPointNames[11]
+	cpoint12(string) // FIELD_STRING m_iszControlPointNames[12]
+	cpoint13(string) // FIELD_STRING m_iszControlPointNames[13]
+	cpoint14(string) // FIELD_STRING m_iszControlPointNames[14]
+	cpoint15(string) // FIELD_STRING m_iszControlPointNames[15]
+	cpoint16(string) // FIELD_STRING m_iszControlPointNames[16]
+	cpoint17(string) // FIELD_STRING m_iszControlPointNames[17]
+	cpoint18(string) // FIELD_STRING m_iszControlPointNames[18]
+	cpoint19(string) // FIELD_STRING m_iszControlPointNames[19]
+	cpoint20(string) // FIELD_STRING m_iszControlPointNames[20]
+	cpoint21(string) // FIELD_STRING m_iszControlPointNames[21]
+	cpoint22(string) // FIELD_STRING m_iszControlPointNames[22]
+	cpoint23(string) // FIELD_STRING m_iszControlPointNames[23]
+	cpoint24(string) // FIELD_STRING m_iszControlPointNames[24]
+	cpoint25(string) // FIELD_STRING m_iszControlPointNames[25]
+	cpoint26(string) // FIELD_STRING m_iszControlPointNames[26]
+	cpoint27(string) // FIELD_STRING m_iszControlPointNames[27]
+	cpoint28(string) // FIELD_STRING m_iszControlPointNames[28]
+	cpoint29(string) // FIELD_STRING m_iszControlPointNames[29]
+	cpoint30(string) // FIELD_STRING m_iszControlPointNames[30]
+	cpoint31(string) // FIELD_STRING m_iszControlPointNames[31]
+	cpoint32(string) // FIELD_STRING m_iszControlPointNames[32]
+	cpoint33(string) // FIELD_STRING m_iszControlPointNames[33]
+	cpoint34(string) // FIELD_STRING m_iszControlPointNames[34]
+	cpoint35(string) // FIELD_STRING m_iszControlPointNames[35]
+	cpoint36(string) // FIELD_STRING m_iszControlPointNames[36]
+	cpoint37(string) // FIELD_STRING m_iszControlPointNames[37]
+	cpoint38(string) // FIELD_STRING m_iszControlPointNames[38]
+	cpoint39(string) // FIELD_STRING m_iszControlPointNames[39]
+	cpoint40(string) // FIELD_STRING m_iszControlPointNames[40]
+	cpoint41(string) // FIELD_STRING m_iszControlPointNames[41]
+	cpoint42(string) // FIELD_STRING m_iszControlPointNames[42]
+	cpoint43(string) // FIELD_STRING m_iszControlPointNames[43]
+	cpoint44(string) // FIELD_STRING m_iszControlPointNames[44]
+	cpoint45(string) // FIELD_STRING m_iszControlPointNames[45]
+	cpoint46(string) // FIELD_STRING m_iszControlPointNames[46]
+	cpoint47(string) // FIELD_STRING m_iszControlPointNames[47]
+	cpoint48(string) // FIELD_STRING m_iszControlPointNames[48]
+	cpoint49(string) // FIELD_STRING m_iszControlPointNames[49]
+	cpoint50(string) // FIELD_STRING m_iszControlPointNames[50]
+	cpoint51(string) // FIELD_STRING m_iszControlPointNames[51]
+	cpoint52(string) // FIELD_STRING m_iszControlPointNames[52]
+	cpoint53(string) // FIELD_STRING m_iszControlPointNames[53]
+	cpoint54(string) // FIELD_STRING m_iszControlPointNames[54]
+	cpoint55(string) // FIELD_STRING m_iszControlPointNames[55]
+	cpoint56(string) // FIELD_STRING m_iszControlPointNames[56]
+	cpoint57(string) // FIELD_STRING m_iszControlPointNames[57]
+	cpoint58(string) // FIELD_STRING m_iszControlPointNames[58]
+	cpoint59(string) // FIELD_STRING m_iszControlPointNames[59]
+	cpoint60(string) // FIELD_STRING m_iszControlPointNames[60]
+	cpoint61(string) // FIELD_STRING m_iszControlPointNames[61]
+	cpoint62(string) // FIELD_STRING m_iszControlPointNames[62]
+	cpoint63(string) // FIELD_STRING m_iszControlPointNames[63]
+	// cpoint%d_value(string) // FIELD_UTLSTRING
+	AnimateDuringGameplayPause(boolean) // FIELD_BOOLEAN m_bAnimateDuringGameplayPause
+	data_cp(integer) // FIELD_INT32 m_nDataCP
+	data_cp_value(vector) // FIELD_VECTOR m_vecDataCPValue
+	tint_cp(integer) // FIELD_INT32 m_nTintCP
+	tint_cp_color(color255) // FIELD_COLOR32 m_clrTint
+	input DestroyImmediately(void)
+	input Freeze(float) // PVAL_FLOAT param
+	input SetControlPoint(string) // PVAL_STRING param
+	input SetDataControlPointX(float) // PVAL_FLOAT param
+	input SetDataControlPointY(float) // PVAL_FLOAT param
+	input SetDataControlPointZ(float) // PVAL_FLOAT param
+	input SetTextString(api) // PVAL_STRING pText, PVAL_BOOL bLocalize, Pulse node: Update the text data on this system.
+	input Start(void)
+	input Stop(void)
+	input StopPlayEndCap(void)
+	input Thaw(float) // PVAL_FLOAT param
+]
+
+// C_EnvParticleGlow
+@PointClass base(info_particle_system) = env_particle_glow
+[
+	alphascale(float) // FIELD_FLOAT32 m_flAlphaScale
+	scale(float) // FIELD_FLOAT32 m_flRadiusScale
+	selfillumscale(float) // FIELD_FLOAT32 m_flSelfIllumScale
+	colortint(color255) // FIELD_COLOR32 m_ColorTint
+	effect_textureOverride(resource:texture) // FIELD_HRENDERTEXTURE m_hTextureOverride
+	input setalphascale(float) // PVAL_FLOAT param
+	input setcolortint(color255) // PVAL_COLOR_RGB param
+	input setscale(float) // PVAL_FLOAT param
+]
+
+// C_PlayerVisibility
+@PointClass base(C_BaseEntity) = env_player_visibility
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	playervisibilitystrength(float) // FIELD_FLOAT32 m_flVisibilityStrength
+	playerfogdistancemultiplier(float) // FIELD_FLOAT32 m_flFogDistanceMultiplier
+	playerfogmaxdensitymultiplier(float) // FIELD_FLOAT32 m_flFogMaxDensityMultiplier
+	fadetime(float) // FIELD_FLOAT32 m_flFadeTime
+	input Disable(boolean) // PVAL_BOOL param
+	input Enable(boolean) // PVAL_BOOL param
+	input SetPlayerFogDistanceMultiplier(float) // PVAL_FLOAT param
+	input SetPlayerFogMaxDensityMultiplier(float) // PVAL_FLOAT param
+	input SetPlayerVisibilityStrength(float) // PVAL_FLOAT param
+]
+
+// C_EnvShakeVolume, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = env_shake_volume
+[
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+	amplitude(float) // FIELD_FLOAT32 m_flAmplitude
+	frequency(float) // FIELD_FLOAT32 m_flFrequency
+	falloff_distance(float) // FIELD_FLOAT32 m_flFalloffDistance
+	roll_scale(float) // FIELD_FLOAT32 m_flRollScale
+]
+
+// C_EnvSky
+@PointClass base(basemodelentity) = env_sky
+[
+	skyname(material) // FIELD_HMATERIAL m_hSkyMaterial
+	sky_lightingonly_name(material) // FIELD_HMATERIAL m_hSkyMaterialLightingOnly
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	tint_color(color255) // FIELD_COLOR32 m_vTintColor
+	lighting_only_tint_color(color255) // FIELD_COLOR32 m_vTintColorLightingOnly
+	brightnessscale(float) // FIELD_FLOAT32 m_flBrightnessScale
+	fog_type(integer) // FIELD_INT32 m_nFogType
+	angular_fog_min_start(float) // FIELD_FLOAT32 m_flFogMinStart
+	angular_fog_min_end(float) // FIELD_FLOAT32 m_flFogMinEnd
+	angular_fog_max_start(float) // FIELD_FLOAT32 m_flFogMaxStart
+	angular_fog_max_end(float) // FIELD_FLOAT32 m_flFogMaxEnd
+]
+
+// CEnvSoundscape, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = env_soundscape
+[
+	radius(float) // FIELD_FLOAT32 m_flRadius
+	soundscape(string) // FIELD_STRING m_soundscapeName
+	enablesoundevent(boolean) // FIELD_BOOLEAN m_bOverrideWithEvent
+	soundevent(sound) // FIELD_SOUNDNAME m_soundEventName
+	position0(string) // FIELD_STRING m_positionNames[0]
+	position1(string) // FIELD_STRING m_positionNames[1]
+	position2(string) // FIELD_STRING m_positionNames[2]
+	position3(string) // FIELD_STRING m_positionNames[3]
+	position4(string) // FIELD_STRING m_positionNames[4]
+	position5(string) // FIELD_STRING m_positionNames[5]
+	position6(string) // FIELD_STRING m_positionNames[6]
+	position7(string) // FIELD_STRING m_positionNames[7]
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	input Disable(void)
+	input Enable(void)
+	input ToggleEnabled(void)
+	output OnPlay(void)
+]
+
+// CEnvSoundscapeProxy
+@PointClass base(env_soundscape) = env_soundscape_proxy
+[
+	MainSoundscapeName(string) // FIELD_STRING m_MainSoundscapeName
+]
+
+// CEnvSoundscapeTriggerable
+@PointClass base(env_soundscape) = env_soundscape_triggerable
+[
+]
+
+// C_Sprite
+@PointClass base(basemodelentity) = env_sprite
+[
+	scale(float) // FIELD_FLOAT32 m_flSpriteScale
+	framerate(float) // FIELD_FLOAT32 m_flSpriteFramerate
+	frame(float) // FIELD_FLOAT32 m_flFrame
+	HDRColorScale(float) // FIELD_FLOAT32 m_flHDRColorScale
+	speed(float) // FIELD_FLOAT32 m_flSpeed
+	GlowProxySize(float) // FIELD_FLOAT32 m_flGlowProxySize
+]
+
+// CSpriteOriented
+@PointClass base(env_sprite) = env_sprite_oriented
+[
+]
+
+// C_TonemapController2
+@PointClass base(C_BaseEntity) = env_tonemap_controller
+[
+	MinExposure(float) // FIELD_FLOAT32 m_flAutoExposureMin
+	MaxExposure(float) // FIELD_FLOAT32 m_flAutoExposureMax
+	rate(float) // FIELD_FLOAT32 m_flExposureAdaptationSpeedUp
+	input Disable(void)
+	input Enable(void)
+	input SetExposureAdaptationSpeedDown(float) // PVAL_FLOAT param
+	input SetExposureAdaptationSpeedUp(float) // PVAL_FLOAT param
+	input SetMaxExposure(float) // PVAL_FLOAT param
+	input SetMinExposure(float) // PVAL_FLOAT param
+]
+
+// C_TonemapController2Alias_env_tonemap_controller2, ECF_ALIAS
+@PointClass base(env_tonemap_controller) = env_tonemap_controller2
+[
+]
+
+// C_EnvVolumetricFogController
+@PointClass base(C_BaseEntity) = env_volumetric_fog_controller
+[
+	IsMaster(boolean) // FIELD_BOOLEAN m_bIsMaster
+	FadeSpeed(float) // FIELD_FLOAT32 m_flFadeSpeed
+	volume_depth_override(integer) // FIELD_INT32 m_nVolumeDepth
+	volume_first_slice_thickness(float) // FIELD_FLOAT32 m_fFirstVolumeSliceThickness
+	Anisotropy(float) // FIELD_FLOAT32 m_flAnisotropy
+	FogStrength(float) // FIELD_FLOAT32 m_flScattering
+	DrawDistance(float) // FIELD_FLOAT32 m_flDrawDistance
+	FadeInStart(float) // FIELD_FLOAT32 m_flFadeInStart
+	FadeInEnd(float) // FIELD_FLOAT32 m_flFadeInEnd
+	IndirectVoxelDimX(integer) // FIELD_INT32 m_nIndirectTextureDimX
+	IndirectVoxelDimY(integer) // FIELD_INT32 m_nIndirectTextureDimY
+	IndirectVoxelDimZ(integer) // FIELD_INT32 m_nIndirectTextureDimZ
+	IndirectStrength(float) // FIELD_FLOAT32 m_flIndirectStrength
+	IndirectEnabled(boolean) // FIELD_BOOLEAN m_bEnableIndirect
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+	fogirradiancevolume(resource:texture) // FIELD_HRENDERTEXTURE m_hFogIndirectTexture
+	NoiseSpeed(float) // FIELD_FLOAT32 m_fNoiseSpeed
+	NoiseStrength(float) // FIELD_FLOAT32 m_fNoiseStrength
+	NoiseScale(vector) // FIELD_VECTOR m_vNoiseScale
+	WindSpeed(float) // FIELD_FLOAT32 m_fWindSpeed
+	WindDirection(vector) // FIELD_VECTOR m_vWindDirection
+	TintColor(color255) // FIELD_COLOR32 m_TintColor
+	input Disable(boolean) // PVAL_BOOL param
+	input Enable(boolean) // PVAL_BOOL param
+	input EnableIndirect(boolean) // PVAL_BOOL param
+	input ForceRefresh(void)
+	input SetAnisotropy(float) // PVAL_FLOAT param
+	input SetDrawDistance(float) // PVAL_FLOAT param
+	input SetFadeSpeed(float) // PVAL_FLOAT param
+	input SetFogStrength(float) // PVAL_FLOAT param
+	input SetToDefaults(void)
+]
+
+// C_EnvVolumetricFogVolume
+@PointClass base(C_BaseEntity) = env_volumetric_fog_volume
+[
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	IndirectUseLPVs(boolean) // FIELD_BOOLEAN m_bIndirectUseLPVs
+	FogStrength(float) // FIELD_FLOAT32 m_flStrength
+	FalloffExponent(float) // FIELD_FLOAT32 m_flFalloffExponent
+	HeightFogDepth(float) // FIELD_FLOAT32 m_flHeightFogDepth
+	HeightFogEdgeWidth(float) // FIELD_FLOAT32 m_fHeightFogEdgeWidth
+	FogIndirectStrength(float) // FIELD_FLOAT32 m_fIndirectLightStrength
+	FogSunLightStrength(float) // FIELD_FLOAT32 m_fSunLightStrength
+	FogNoiseStrength(float) // FIELD_FLOAT32 m_fNoiseStrength
+	Shape(integer) // FIELD_INT32 m_nFalloffShape
+	TintColor(color255) // FIELD_COLOR32 m_TintColor
+	OverrideFogIndirectStrength(boolean) // FIELD_BOOLEAN m_bOverrideIndirectLightStrength
+	OverrideFogSunLightStrength(boolean) // FIELD_BOOLEAN m_bOverrideSunLightStrength
+	OverrideFogNoiseStrength(boolean) // FIELD_BOOLEAN m_bOverrideNoiseStrength
+	OverrideTintColor(boolean) // FIELD_BOOLEAN m_bOverrideTintColor
+	input Disable(boolean) // PVAL_BOOL param
+	input Enable(boolean) // PVAL_BOOL param
+]
+
+// C_EnvWindClientside, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = env_wind_clientside
+[
+	// m_EnvWindShared (C_EnvWindShared)
+		minwind(integer) // FIELD_UINT16 m_iMinWind
+		maxwind(integer) // FIELD_UINT16 m_iMaxWind
+		windradius(integer) // FIELD_INT32 m_windRadius
+		mingust(integer) // FIELD_UINT16 m_iMinGust
+		maxgust(integer) // FIELD_UINT16 m_iMaxGust
+		mingustdelay(float) // FIELD_FLOAT32 m_flMinGustDelay
+		maxgustdelay(float) // FIELD_FLOAT32 m_flMaxGustDelay
+		gustduration(float) // FIELD_FLOAT32 m_flGustDuration
+		gustdirchange(integer) // FIELD_UINT16 m_iGustDirChange
+]
+
+// CBaseFilter
+@PointClass base(CLogicalEntity) = filter_base
+[
+	Negated(boolean) // FIELD_BOOLEAN m_bNegated
+	input TestActivator(void)
+	output OnFail(void)
+	output OnPass(void)
+]
+
+// CFilterAttributeInt
+@PointClass base(filter_base) = filter_activator_attribute_int
+[
+	filterattribute(string) // FIELD_STRING m_sAttributeName
+]
+
+// CFilterClass
+@PointClass base(filter_base) = filter_activator_class
+[
+	filterclass(string) // FIELD_STRING m_iFilterClass
+]
+
+// CFilterMassGreater
+@PointClass base(filter_base) = filter_activator_mass_greater
+[
+	filtermass(float) // FIELD_FLOAT32 m_fFilterMass
+]
+
+// CFilterModel
+@PointClass base(filter_base) = filter_activator_model
+[
+	model(string) // FIELD_STRING m_iFilterModel
+]
+
+// CFilterName
+@PointClass base(filter_base) = filter_activator_name
+[
+	filtername(string) // FIELD_STRING m_iFilterName
+]
+
+// CFilterTeam
+@PointClass base(filter_base) = filter_activator_team
+[
+	filterteam(integer) // FIELD_INT32 m_iFilterTeam
+]
+
+// FilterDamageType
+@PointClass base(filter_base) = filter_damage_type
+[
+	damagetype(integer) // FIELD_INT32 m_iDamageType
+]
+
+// FilterHealth
+@PointClass base(filter_base) = filter_health
+[
+	adrenalinepresence(boolean) // FIELD_BOOLEAN m_bAdrenalineActive
+	healthmin(integer) // FIELD_INT32 m_iHealthMin
+	healthmax(integer) // FIELD_INT32 m_iHealthMax
+]
+
+// CFilterLOS
+@PointClass base(filter_base) = filter_los
+[
+]
+
+// CFilterMultiple
+@PointClass base(filter_base) = filter_multi
+[
+	FilterType(intchoices) : "FilterType" : : "" = // FIELD_INT32 m_nFilterType (filter_t)
+	[
+		0 : "FILTER_AND"
+		1 : "FILTER_OR"
+	]
+	Filter01(string) // FIELD_STRING m_iFilterName[0]
+	Filter02(string) // FIELD_STRING m_iFilterName[1]
+	Filter03(string) // FIELD_STRING m_iFilterName[2]
+	Filter04(string) // FIELD_STRING m_iFilterName[3]
+	Filter05(string) // FIELD_STRING m_iFilterName[4]
+	Filter06(string) // FIELD_STRING m_iFilterName[5]
+	Filter07(string) // FIELD_STRING m_iFilterName[6]
+	Filter08(string) // FIELD_STRING m_iFilterName[7]
+	Filter09(string) // FIELD_STRING m_iFilterName[8]
+	Filter10(string) // FIELD_STRING m_iFilterName[9]
+	input AddFilter(target_destination) : "Add the named entity to the filter list" // PVAL_EHANDLE:filter_base pFilter, Pulse node
+	input RemoveFilter(target_destination) : "Remove the named entity from the filter list" // PVAL_EHANDLE:filter_base pFilter, Pulse node
+]
+
+// CFilterProximity
+@PointClass base(filter_base) = filter_proximity
+[
+	filter_radius(float) // FIELD_FLOAT32 m_flRadius
+]
+
+// C_FlashbangProjectile
+@PointClass base(C_BaseCSGrenadeProjectile) = flashbang_projectile
+[
+]
+
+// CBombTarget
+@PointClass base(trigger) = func_bomb_target
+[
+]
+
+// C_BaseButton
+@PointClass base(C_BaseToggle) = func_button
+[
+	displaytext(string) // FIELD_STRING m_szDisplayText
+]
+
+// C_EnvCombinedLightProbeVolumeAlias_func_combined_light_probe_volume, ECF_ALIAS
+@PointClass base(env_combined_light_probe_volume) = func_combined_light_probe_volume
+[
+]
+
+// C_FuncConveyor
+@PointClass base(basemodelentity) = func_conveyor
+[
+]
+
+// C_FootstepControl
+@PointClass base(trigger) = func_footstep_control
+[
+	Source(string) // FIELD_STRING m_source
+	Destination(string) // FIELD_STRING m_destination
+]
+
+// CHostageRescueZone
+@PointClass base(CHostageRescueZoneShim) = func_hostage_rescue
+[
+]
+
+// C_FuncLadder
+@PointClass base(basemodelentity) = func_ladder
+[
+	point1(vector) // FIELD_VECTOR m_vecLocalTop
+	AutoRideSpeed(float) // FIELD_FLOAT32 m_flAutoRideSpeed
+	HasSlack(boolean) // FIELD_BOOLEAN m_bHasSlack
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+]
+
+// C_FuncMonitor
+@PointClass base(C_FuncBrush) = func_monitor
+[
+	target(string) // FIELD_UTLSTRING m_targetCamera
+	resolution(integer) // FIELD_INT32 m_nResolutionEnum
+	render_shadows(boolean) // FIELD_BOOLEAN m_bRenderShadows
+	unique_target(boolean) // FIELD_BOOLEAN m_bUseUniqueColorTarget
+	draw_3dskybox(boolean) // FIELD_BOOLEAN m_bDraw3DSkybox
+]
+
+// C_Precipitation
+@PointClass base(trigger) = func_precipitation
+[
+]
+
+// C_PrecipitationBlocker
+@PointClass base(basemodelentity) = func_precipitation_blocker
+[
+]
+
+// CFuncRetakeBarrier
+@PointClass base(prop_dynamic) = func_retakebarrier
+[
+]
+
+// CFuncWater
+@PointClass base(basemodelentity) = func_water
+[
+]
+
+// CRagdollManager, spawn order 18
+@PointClass base(C_BaseEntity) = game_ragdoll_manager
+[
+]
+
+// CGrenadeTracer
+@PointClass base(basemodelentity) = grenade_tracer
+[
+	tracer_duration(float) // FIELD_FLOAT32 m_flTracerDuration
+	grenade_type(intchoices) : "grenade_type" : : "" = // FIELD_INT32 m_nType (GrenadeType_t)
+	[
+		0 : "GRENADE_TYPE_EXPLOSIVE"
+		1 : "GRENADE_TYPE_FLASH"
+		2 : "GRENADE_TYPE_FIRE"
+		3 : "GRENADE_TYPE_DECOY"
+		4 : "GRENADE_TYPE_SMOKE"
+		5 : "GRENADE_TYPE_TOTAL"
+	]
+]
+
+// C_HEGrenadeProjectile
+@PointClass base(C_BaseCSGrenadeProjectile) = hegrenade_projectile
+[
+]
+
+// C_TextureBasedAnimatable
+@PointClass base(basemodelentity) = hl_vr_texture_based_animatable
+[
+	fps(float) // FIELD_FLOAT32 m_flFPS
+	loop(boolean) // FIELD_BOOLEAN m_bLoop
+	texture_based_animation_position_keys(resource:texture) // FIELD_HRENDERTEXTURE m_hPositionKeys
+	texture_based_animation_rotation_keys(resource:texture) // FIELD_HRENDERTEXTURE m_hRotationKeys
+	anim_bounds_min(vector) // FIELD_VECTOR m_vAnimationBoundsMin
+	anim_bounds_max(vector) // FIELD_VECTOR m_vAnimationBoundsMax
+	input Disable(void)
+	input Enable(void)
+	input Start(void)
+	input Stop(void)
+]
+
+// C_PointEntity
+@PointClass base(C_BaseEntity) = point_entity
+[
+	// component CBodyComponent: CBodyComponentPoint
+	input SetPosition(vector) // PVAL_VEC3 param
+]
+
+// CInfoDynamicShadowHint
+@PointClass base(point_entity) = info_dynamic_shadow_hint
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	range(float) // FIELD_FLOAT32 m_flRange
+	importance(integer) // FIELD_INT32 m_nImportance
+	lightchoice(integer) // FIELD_INT32 m_nLightChoice
+	input Disable(void)
+	input Enable(void)
+]
+
+// CInfoDynamicShadowHintBox
+@PointClass base(info_dynamic_shadow_hint) = info_dynamic_shadow_hint_box
+[
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+]
+
+// C_InfoInstructorHintHostageRescueZone
+@PointClass base(point_entity) = info_hostage_rescue_zone_hint
+[
+]
+
+// C_InfoLadderDismount
+@PointClass base(C_BaseEntity) = info_ladder_dismount
+[
+]
+
+// CMapInfo, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(point_entity) = info_map_parameters
+[
+	petpopulation(integer) // FIELD_INT32 m_iPetPopulation
+	usenormalspawnsfordm(boolean) // FIELD_BOOLEAN m_bUseNormalSpawnsForDM
+	disableautogenerateddmspawns(boolean) // FIELD_BOOLEAN m_bDisableAutoGeneratedDMSpawns
+	botmaxvisiondistance(float) // FIELD_FLOAT32 m_flBotMaxVisionDistance
+	hostagecount(integer) // FIELD_INT32 m_iHostageCount
+	fadeplayervisibilityfarz(boolean) // FIELD_BOOLEAN m_bFadePlayerVisibilityFarZ
+	gpucullskybox(boolean) // FIELD_BOOLEAN m_bGPUCullSkybox
+	raintracetoskyenabled(boolean) // FIELD_BOOLEAN m_bRainTraceToSkyEnabled
+	envrainstrength(float) // FIELD_FLOAT32 m_flEnvRainStrength
+	envpuddleripplestrength(float) // FIELD_FLOAT32 m_flEnvPuddleRippleStrength
+	envpuddlerippledirection(float) // FIELD_FLOAT32 m_flEnvPuddleRippleDirection
+	envwetnesscoverage(float) // FIELD_FLOAT32 m_flEnvWetnessCoverage
+	envwetnessdryingamount(float) // FIELD_FLOAT32 m_flEnvWetnessDryingAmount
+	input FireWinCondition(integer) // PVAL_INT param
+]
+
+// C_MapPreviewParticleSystem
+@PointClass base(info_particle_system) = info_map_preview_particle_system
+[
+]
+
+// CInfoOffscreenPanoramaTexture
+@PointClass base(point_entity) = info_offscreen_panorama_texture
+[
+	start_disabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	resolution_x(integer) // FIELD_INT32 m_nResolutionX
+	resolution_y(integer) // FIELD_INT32 m_nResolutionY
+	panel_type(string) // FIELD_STRING m_szPanelType
+	layout_file(string) // FIELD_STRING m_szLayoutFileName
+	render_attr_name(string) // FIELD_STRING m_RenderAttrName
+	enable_mip_gen(boolean) // FIELD_BOOLEAN m_bEnableMipGen
+	targets(string) // FIELD_STRING m_szTargetsName
+	input AddCSSClass(string) // PVAL_STRING param
+	input Disable(void)
+	input Enable(void)
+	input RemoveCSSClass(string) // PVAL_STRING param
+]
+
+// CInfoParticleTarget
+@PointClass base(point_entity) = info_particle_target
+[
+]
+
+// C_PlayerPing
+@PointClass base(C_BaseEntity) = info_player_ping
+[
+]
+
+// CInfoTarget
+@PointClass base(point_entity) = info_target
+[
+]
+
+// CChoreoInfoTarget
+@PointClass base(point_entity) = info_target_choreo
+[
+]
+
+// CInfoFan
+@PointClass base(point_entity) = info_trigger_fan
+[
+	fan_force_curve(string) // FIELD_STRING m_FanForceCurveString
+	fan_force_max_radius(float) // FIELD_FLOAT32 m_fFanForceMaxRadius
+	fan_force_min_radius(float) // FIELD_FLOAT32 m_fFanForceMinRadius
+]
+
+// C_InfoVisibilityBox
+@PointClass base(C_BaseEntity) = info_visibility_box
+[
+	cull_mode(integer) // FIELD_INT32 m_nMode
+	box_size(vector) // FIELD_VECTOR m_vBoxSize
+	input Disable(void)
+	input Enable(void)
+]
+
+// CInfoWorldLayer, ECF_PRECACHE_NETWORKED_ENTITY_ON_CLIENT
+@PointClass base(C_BaseEntity) = info_world_layer
+[
+	worldName(string) // FIELD_STRING m_worldName
+	layerName(string) // FIELD_STRING m_layerName
+	childSpawnGroup(boolean) // FIELD_BOOLEAN m_bCreateAsChildSpawnGroup
+	input DestroyEntities(void)
+	input HideWorldLayer(void)
+	input HideWorldLayerAndDestroyEntities(void)
+	input ShowWorldLayer(void)
+	input ShowWorldLayerAndSpawnEntities(void)
+	input SpawnEntities(void)
+	output OnEntitiesSpawned(void)
+]
+
+// C_KeychainModule
+@PointClass base(cs2_weapon_module) = keychain_module
+[
+]
+
+// C_RopeKeyframe
+@PointClass base(basemodelentity) = keyframe_rope
+[
+]
+
+// C_BarnLight
+@PointClass base(basemodelentity) = light_barn
+[
+	enabled(boolean) // FIELD_BOOLEAN m_bEnabled
+	colormode(integer) // FIELD_INT32 m_nColorMode
+	color(color255) // FIELD_COLOR32 m_Color
+	colortemperature(float) // FIELD_FLOAT32 m_flColorTemperature
+	brightness(float) // FIELD_FLOAT32 m_flBrightness
+	brightnessscale(float) // FIELD_FLOAT32 m_flBrightnessScale
+	directlight(integer) // FIELD_INT32 m_nDirectLight
+	bakedshadowindex(integer) // FIELD_INT32 m_nBakedShadowIndex
+	light_path_uniqueid(integer) // FIELD_INT32 m_nLightPathUniqueId
+	light_map_uniqueid(integer) // FIELD_INT32 m_nLightMapUniqueId
+	luminaire_shape(integer) // FIELD_INT32 m_nLuminaireShape
+	luminaire_size(float) // FIELD_FLOAT32 m_flLuminaireSize
+	luminaire_anisotropy(float) // FIELD_FLOAT32 m_flLuminaireAnisotropy
+	light_style(string) // FIELD_UTLSTRING m_LightStyleString
+	lightcookie(resource:texture) // FIELD_HRENDERTEXTURE m_hLightCookie
+	shape(float) // FIELD_FLOAT32 m_flShape
+	soft_x(float) // FIELD_FLOAT32 m_flSoftX
+	soft_y(float) // FIELD_FLOAT32 m_flSoftY
+	skirt(float) // FIELD_FLOAT32 m_flSkirt
+	skirt_near(float) // FIELD_FLOAT32 m_flSkirtNear
+	size_params(vector) // FIELD_VECTOR m_vSizeParams
+	range(float) // FIELD_FLOAT32 m_flRange
+	shear(vector) // FIELD_VECTOR m_vShear
+	bakespeculartocubemaps(integer) // FIELD_INT32 m_nBakeSpecularToCubemaps
+	bakespeculartocubemaps_size(vector) // FIELD_VECTOR m_vBakeSpecularToCubemapsSize
+	bakespeculartocubemaps_scale(float) // FIELD_FLOAT32 m_flBakeSpecularToCubemapsScale
+	castshadows(integer) // FIELD_INT32 m_nCastShadows
+	shadowmapsize(integer) // FIELD_INT32 m_nShadowMapSize
+	shadowpriority(integer) // FIELD_INT32 m_nShadowPriority
+	contactshadow(boolean) // FIELD_BOOLEAN m_bContactShadow
+	forceshadowsenabled(boolean) // FIELD_BOOLEAN m_bForceShadowsEnabled
+	bouncelight(integer) // FIELD_INT32 m_nBounceLight
+	bouncescale(float) // FIELD_FLOAT32 m_flBounceScale
+	minroughness(float) // FIELD_FLOAT32 m_flMinRoughness
+	altcolor(vector) // FIELD_VECTOR m_vAlternateColor
+	altcolorbrightness(float) // FIELD_FLOAT32 m_fAlternateColorBrightness
+	fog(integer) // FIELD_INT32 m_nFog
+	fogstrength(float) // FIELD_FLOAT32 m_flFogStrength
+	fogscale(float) // FIELD_FLOAT32 m_flFogScale
+	fogshadows(integer) // FIELD_INT32 m_nFogShadows
+	fade_size_start(float) // FIELD_FLOAT32 m_flFadeSizeStart
+	fade_size_end(float) // FIELD_FLOAT32 m_flFadeSizeEnd
+	shadowfade_size_start(float) // FIELD_FLOAT32 m_flShadowFadeSizeStart
+	shadowfade_size_end(float) // FIELD_FLOAT32 m_flShadowFadeSizeEnd
+	precomputedfieldsvalid(boolean) // FIELD_BOOLEAN m_bPrecomputedFieldsValid
+	precomputedboundsmins(vector) // FIELD_POSITION_VECTOR m_vPrecomputedBoundsMins
+	precomputedboundsmaxs(vector) // FIELD_POSITION_VECTOR m_vPrecomputedBoundsMaxs
+	precomputedobborigin(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin
+	precomputedobbangles(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles
+	precomputedobbextent(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent
+	precomputedsubfrusta(integer) // FIELD_INT32 m_nPrecomputedSubFrusta
+	precomputedobborigin0(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin0
+	precomputedobbangles0(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles0
+	precomputedobbextent0(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent0
+	precomputedobborigin1(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin1
+	precomputedobbangles1(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles1
+	precomputedobbextent1(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent1
+	precomputedobborigin2(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin2
+	precomputedobbangles2(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles2
+	precomputedobbextent2(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent2
+	precomputedobborigin3(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin3
+	precomputedobbangles3(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles3
+	precomputedobbextent3(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent3
+	precomputedobborigin4(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin4
+	precomputedobbangles4(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles4
+	precomputedobbextent4(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent4
+	precomputedobborigin5(vector) // FIELD_POSITION_VECTOR m_vPrecomputedOBBOrigin5
+	precomputedobbangles5(angle) // FIELD_QANGLE_WORLDSPACE m_vPrecomputedOBBAngles5
+	precomputedobbextent5(vector) // FIELD_VECTOR m_vPrecomputedOBBExtent5
+	input CastDynamicShadows(boolean) // PVAL_BOOL param
+	input Disable(void)
+	input Enable(void)
+	input SetBounceScale(float) // PVAL_FLOAT param
+	input SetBrightness(float) // PVAL_FLOAT param
+	input SetBrightnessScale(float) // PVAL_FLOAT param
+	input SetColor(color255) // PVAL_COLOR_RGB param
+	input SetColorTemperature(float) // PVAL_FLOAT param
+	input SetFogScale(float) // PVAL_FLOAT param
+	input SetFogStrength(float) // PVAL_FLOAT param
+	input SetStyle(string) // PVAL_STRING param
+	input Toggle(void)
+	output OnStyleEvent0(void)
+	output OnStyleEvent1(void)
+	output OnStyleEvent2(void)
+	output OnStyleEvent3(void)
+]
+
+// C_LightEntity
+@PointClass base(basemodelentity) = light_omni
+[
+	input SetAppearance(integer) // PVAL_INT param
+	input SetCustomAppearance(string) // PVAL_STRING param
+	input SetLightBrightness(float) // PVAL_FLOAT param
+	input SetLightColor(color255) // PVAL_COLOR_RGB param
+	input SetLightEnabled(boolean) // PVAL_BOOL param
+	input Toggle(void)
+	input TurnOff(void)
+	input TurnOn(void)
+]
+
+// C_LightDirectionalEntity
+@PointClass base(light_omni) = light_directional
+[
+]
+
+// C_LightEnvironmentEntity
+@PointClass base(light_directional) = light_environment
+[
+]
+
+// C_OmniLight
+@PointClass base(light_barn) = light_omni2
+[
+	inner_angle(float) // FIELD_FLOAT32 m_flInnerAngle
+	outer_angle(float) // FIELD_FLOAT32 m_flOuterAngle
+	showlight(boolean) // FIELD_BOOLEAN m_bShowLight
+]
+
+// C_LightOrthoEntity
+@PointClass base(light_omni) = light_ortho
+[
+]
+
+// C_RectLight
+@PointClass base(light_barn) = light_rect
+[
+	showlight(boolean) // FIELD_BOOLEAN m_bShowLight
+]
+
+// C_LightSpotEntity
+@PointClass base(light_omni) = light_spot
+[
+]
+
+// C_LocalTempEntity
+@PointClass base(baseanimgraph) = local_temp_entity
+[
+]
+
+// CLogicRelay
+@PointClass base(CLogicalEntity) = logic_relay
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	TriggerOnce(boolean) // FIELD_BOOLEAN m_bTriggerOnce
+	FastRetrigger(boolean) // FIELD_BOOLEAN m_bFastRetrigger
+	PassthroughCaller(boolean) // FIELD_BOOLEAN m_bPassthoughCaller
+	input CancelPending(void) : "Cancel any events fired by this relay that are currently pending in the I/O event queue." // Pulse node
+	input Disable(void) : "Disable this entity." // Pulse node
+	input Enable(void) : "Enable this entity." // Pulse node
+	input EnableRefire(void)
+	input Toggle(void) : "Toggle the relay between enabled and disabled." // Pulse node
+	input Trigger(void) : "Trigger the relay, causing its OnTrigger output to fire if it is enabled." // Pulse node
+	output OnSpawn(void) : "Fired when the relay is spawned. If the relay is set to only trigger once, it will delete itself after firing this output."
+	output OnTrigger(void) : "Fired when the relay is triggered. If the relay is set to only trigger once, it will delete itself after firing this output."
+]
+
+// C_CSGO_MapPreviewCameraPathNode, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = map_preview_camera_path_node
+[
+	path_uniqueid(string) // FIELD_STRING m_szParentPathUniqueID
+	path_index(integer) // FIELD_INT32 m_nPathIndex
+	in_tangent_local(vector) // FIELD_VECTOR m_vInTangentLocal
+	out_tangent_local(vector) // FIELD_VECTOR m_vOutTangentLocal
+	FOV(float) // FIELD_FLOAT32 m_flFOV
+	speed(float) // FIELD_FLOAT32 m_flCameraSpeed
+	ease_in(float) // FIELD_FLOAT32 m_flEaseIn
+	ease_out(float) // FIELD_FLOAT32 m_flEaseOut
+]
+
+// C_MapVetoPickController
+@PointClass base(C_BaseEntity) = mapvetopick_controller
+[
+]
+
+// C_MolotovProjectile
+@PointClass base(C_BaseCSGrenadeProjectile) = molotov_projectile
+[
+]
+
+// C_Multimeter
+@PointClass base(baseanimgraph) = multimeter
+[
+]
+
+// C_NametagModule
+@PointClass base(cs2_weapon_module) = nametag_module
+[
+]
+
+// C_NetTestBaseCombatCharacter
+@PointClass base(C_BaseCombatCharacter) = net_test_basecombatcharacter
+[
+]
+
+// CCSObservableElement
+@PointClass base(C_BaseEntity) = observable_element
+[
+	observable_entname(string) // FIELD_STRING m_iszObservableModelEntity
+	observable_entmodel(target_destination) // FIELD_EHANDLE m_hObservableModelEntity
+	observable_entmodel2(target_destination) // FIELD_EHANDLE m_hObservableModelEntity2
+	team_filter(integer) // FIELD_UINT32 m_nTeamFilter
+]
+
+// CPathNode
+@PointClass base(point_entity) = path_node
+[
+	in_tangent_local(vector) // FIELD_VECTOR m_vInTangentLocal
+	out_tangent_local(vector) // FIELD_VECTOR m_vOutTangentLocal
+	path_uniqueid(string) // FIELD_UTLSTRING m_strParentPathUniqueID
+	path_parameter_string(string) // FIELD_UTLSTRING m_strPathNodeParameter
+]
+
+// C_PathParticleRope
+@PointClass base(C_BaseEntity) = path_particle_rope
+[
+	start_active(boolean) // FIELD_BOOLEAN m_bStartActive
+	max_simulation_time(float) // FIELD_FLOAT32 m_flMaxSimulationTime
+	effect_name(string) // FIELD_STRING m_iszEffectName
+	particle_spacing(float) // FIELD_FLOAT32 m_flParticleSpacing
+	slack(float) // FIELD_FLOAT32 m_flSlack
+	radius(float) // FIELD_FLOAT32 m_flRadius
+	color_tint(color255) // FIELD_COLOR32 m_ColorTint
+	pathNodes(string) // FIELD_STRING
+	input DestroyImmediately(void)
+	input DisablePin(string) // PVAL_STRING param
+	input SetRadius(float) // PVAL_FLOAT param
+	input SetSlack(float) // PVAL_FLOAT param
+	input Start(void)
+	input Stop(void)
+	input StopPlayEndCap(void)
+]
+
+// C_PathParticleRopeAlias_path_particle_rope_clientside, ECF_ALIAS
+@PointClass base(path_particle_rope) = path_particle_rope_clientside
+[
+]
+
+// CPathSimple
+@PointClass base(C_BaseEntity) = path_simple
+[
+	closed_loop(boolean) // FIELD_BOOLEAN m_bClosedLoop
+	input GetClosestDirToEntity(target_destination) : "Compute the closest direction along the path relative to the entity provided. (world space vector)" // PVAL_EHANDLE hEntity, returns PVAL_VEC3 retval, Pulse node
+	input GetClosestPosToEntity(target_destination) : "Compute the closest position on the path relative to the entity provided. (world space vector)" // PVAL_EHANDLE hEntity, returns PVAL_VEC3 retval, Pulse node
+	input GetClosestTValueToEntity(target_destination) : "Compute the closest T value on the path relative to the entity provided. (0.0 to 1.0 float value that defines the point along the spline)" // PVAL_EHANDLE hEntity, returns PVAL_FLOAT retval, Pulse node
+	input GetDirAtTValue(float) : "Compute the Direction along the spline at the provided T Value of the spline. (world space vector)" // PVAL_FLOAT flTValue, returns PVAL_VEC3 retval, Pulse node
+	input GetDistanceBetweenEntitiesAlongPath(api) // PVAL_EHANDLE hEntityA, PVAL_EHANDLE hEntityB, returns PVAL_FLOAT retval, Pulse node: Compute the distance along the path between provided Entity A and Entity B
+	input GetPosAtTValue(float) : "Compute the position at the provided T Value of the spline. (world space vector)" // PVAL_FLOAT flTValue, returns PVAL_VEC3_WORLDSPACE retval, Pulse node
+	input GetTValueAtDistanceOffset(api) // PVAL_FLOAT flTValue, PVAL_FLOAT flDistance, returns PVAL_FLOAT retval, Pulse node: Given a starting T value on the spline and a distance traveled on the spline, return the resulting T value.
+	input SetEntityAtTValue(api) // PVAL_EHANDLE hEntity, PVAL_FLOAT flTValue, Pulse node: Set entity to the position of the provided T value of the spline (world space vector)
+]
+
+// CPathWithDynamicNodes
+@PointClass base(path_simple) = path_with_dynamic_nodes
+[
+	preferred_direction(intchoices) : "preferred_direction" : : "" = // FIELD_INT32 m_eDesiredDirection (DirectionAlongSimplePath_t)
+	[
+		0 : "None"
+		1 : "TGoesUp"
+		2 : "TGoesDown"
+	]
+]
+
+// C_PlayerSprayDecal
+@PointClass base(C_ModelPointEntity) = player_spray_decal
+[
+]
+
+// C_PointCamera
+@PointClass base(C_BaseEntity) = point_camera
+[
+	FOV(float) // FIELD_FLOAT32 m_FOV
+	zNear(float) // FIELD_FLOAT32 m_flZNear
+	zFar(float) // FIELD_FLOAT32 m_flZFar
+	resolution(float) // FIELD_FLOAT32 m_Resolution
+	fogEnable(boolean) // FIELD_BOOLEAN m_bFogEnable
+	fogColor(color255) // FIELD_COLOR32 m_FogColor
+	fogStart(float) // FIELD_FLOAT32 m_flFogStart
+	fogEnd(float) // FIELD_FLOAT32 m_flFogEnd
+	fogMaxDensity(float) // FIELD_FLOAT32 m_flFogMaxDensity
+	UseScreenAspectRatio(boolean) // FIELD_BOOLEAN m_bUseScreenAspectRatio
+	aspectRatio(float) // FIELD_FLOAT32 m_flAspectRatio
+	hltvUsable(boolean) // FIELD_BOOLEAN m_bCanHLTVUse
+	align_with_parent(boolean) // FIELD_BOOLEAN m_bAlignWithParent
+	dof_enabled(boolean) // FIELD_BOOLEAN m_bDofEnabled
+	dof_near_blurry(float) // FIELD_FLOAT32 m_flDofNearBlurry
+	dof_near_crisp(float) // FIELD_FLOAT32 m_flDofNearCrisp
+	dac_dof_far_crisp(float) // FIELD_FLOAT32 m_flDofFarCrisp
+	dac_dof_far_blurry(float) // FIELD_FLOAT32 m_flDofFarBlurry
+	dac_dof_tilt_to_ground(float) // FIELD_FLOAT32 m_flDofTiltToGround
+	input Activate(void)
+	input ChangeFOV(string) // PVAL_STRING param
+	input Deactivate(void)
+	input DisableDOF(void)
+	input EnableDOF(void)
+	input SetDOFFarBlurry(float) // PVAL_FLOAT param
+	input SetDOFFarCrisp(float) // PVAL_FLOAT param
+	input SetDOFNearBlurry(float) // PVAL_FLOAT param
+	input SetDOFNearCrisp(float) // PVAL_FLOAT param
+	input SetDOFTiltToGround(float) // PVAL_FLOAT param
+	input SetOff(void)
+	input SetOn(void)
+	input SetOnAndTurnOthersOff(void)
+]
+
+// C_PointCameraVFOV
+@PointClass base(point_camera) = point_camera_vertical_fov
+[
+	VerticalFOV(float) // FIELD_FLOAT32 m_flVerticalFOV
+	dof_far_crisp(float) // FIELD_FLOAT32 m_flDofFarCrisp
+	dof_far_blurry(float) // FIELD_FLOAT32 m_flDofFarBlurry
+	dof_tilt_to_ground(float) // FIELD_FLOAT32 m_flDofTiltToGround
+]
+
+// CPointChildModifier
+@PointClass base(point_entity) = point_childmodifier
+[
+	orphan_children_on_remove(boolean) // FIELD_BOOLEAN m_bOrphanInsteadOfDeletingChildrenOnRemove
+]
+
+// C_PointClientUIDialog
+@PointClass base(base_clientui_entity) = point_clientui_dialog
+[
+	StartEnabled(boolean) // FIELD_BOOLEAN m_bStartEnabled
+]
+
+// C_PointClientUIHUD
+@PointClass base(base_clientui_entity) = point_clientui_hud
+[
+	ignore_input(boolean) // FIELD_BOOLEAN m_bIgnoreInput
+	width(float) // FIELD_FLOAT32 m_flWidth
+	height(float) // FIELD_FLOAT32 m_flHeight
+	panel_dpi(float) // FIELD_FLOAT32 m_flDPI
+	interact_distance(float) // FIELD_FLOAT32 m_flInteractDistance
+	depth_offset(float) // FIELD_FLOAT32 m_flDepthOffset
+	owner_context(integer) // FIELD_UINT32 m_unOwnerContext
+	horizontal_align(integer) // FIELD_UINT32 m_unHorizontalAlign
+	vertical_align(integer) // FIELD_UINT32 m_unVerticalAlign
+	orientation(integer) // FIELD_UINT32 m_unOrientation
+	allow_interaction_from_all_scene_worlds(boolean) // FIELD_BOOLEAN m_bAllowInteractionFromAllSceneWorlds
+]
+
+// C_PointClientUIWorldPanel
+@PointClass base(base_clientui_entity) = point_clientui_world_panel
+[
+	ignore_input(boolean) // FIELD_BOOLEAN m_bIgnoreInput
+	follow_player_across_teleport(boolean) // FIELD_BOOLEAN m_bFollowPlayerAcrossTeleport
+	width(float) // FIELD_FLOAT32 m_flWidth
+	height(float) // FIELD_FLOAT32 m_flHeight
+	panel_dpi(float) // FIELD_FLOAT32 m_flDPI
+	window_ui_scale(float) // FIELD_FLOAT32 m_flWindowUIScale
+	interact_distance(float) // FIELD_FLOAT32 m_flInteractDistance
+	depth_offset(float) // FIELD_FLOAT32 m_flDepthOffset
+	owner_context(integer) // FIELD_UINT32 m_unOwnerContext
+	horizontal_align(integer) // FIELD_UINT32 m_unHorizontalAlign
+	vertical_align(integer) // FIELD_UINT32 m_unVerticalAlign
+	orientation(integer) // FIELD_UINT32 m_unOrientation
+	allow_interaction_from_all_scene_worlds(boolean) // FIELD_BOOLEAN m_bAllowInteractionFromAllSceneWorlds
+	opaque(boolean) // FIELD_BOOLEAN m_bOpaque
+	ignore_depth(boolean) // FIELD_BOOLEAN m_bNoDepth
+	visible_when_parent_nodraw(boolean) // FIELD_BOOLEAN m_bVisibleWhenParentNoDraw
+	render_backface(boolean) // FIELD_BOOLEAN m_bRenderBackface
+	lit(boolean) // FIELD_BOOLEAN m_bLit
+	enable_offscreen_indicator(boolean) // FIELD_BOOLEAN m_bUseOffScreenIndicator
+	exclude_from_save_games(boolean) // FIELD_BOOLEAN m_bExcludeFromSaveGames
+	grabbable(boolean) // FIELD_BOOLEAN m_bGrabbable
+	only_render_to_texture(boolean) // FIELD_BOOLEAN m_bOnlyRenderToTexture
+	disable_mip_gen(boolean) // FIELD_BOOLEAN m_bDisableMipGen
+	explicit_image_layout(integer) // FIELD_INT32 m_nExplicitImageLayout
+	ignore_parent_orientation(boolean) // FIELD_BOOLEAN m_bIgnoreParentOrientation
+	css_class(string) // FIELD_STRING
+]
+
+// C_PointClientUIWorldTextPanel
+@PointClass base(point_clientui_world_panel) = point_clientui_world_text_panel
+[
+	message(string) // FIELD_CHARACTER m_messageText
+	input SetIntMessage(integer) // PVAL_INT param
+	input SetMessage(string) // PVAL_STRING param
+	input Toggle(void)
+]
+
+// C_PointDeathcamBounds, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = point_deathcam_bounds
+[
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+	lerp_distance(float) // FIELD_FLOAT32 m_flLerpDistance
+]
+
+// CPointOffScreenIndicatorUi
+@PointClass base(point_clientui_world_panel) = point_offscreen_indicator_ui
+[
+]
+
+// CPointOrient
+@PointClass base(C_BaseEntity) = point_orient
+[
+	orient_towards(string) // FIELD_STRING m_iszSpawnTargetName
+	start_active(boolean) // FIELD_BOOLEAN m_bActive
+	constraint_type(intchoices) : "constraint_type" : : "" = // FIELD_INT32 m_nConstraint (PointOrientConstraint_t)
+	[
+		0 : "eNone"
+		1 : "ePreserveUpAxis"
+	]
+	goal_direction_type(intchoices) : "goal_direction_type" : : "" = // FIELD_INT32 m_nGoalDirection (PointOrientGoalDirectionType_t)
+	[
+		0 : "eAbsOrigin"
+		1 : "eCenter"
+		2 : "eHead"
+		3 : "eForward"
+		4 : "eEyesForward"
+	]
+	max_turn_rate(float) // FIELD_FLOAT32 m_flMaxTurnRate
+	input SetActive(boolean) // PVAL_BOOL param
+	input SetTarget(string) // PVAL_STRING param
+]
+
+// C_SoundEventEntity
+@PointClass base(C_BaseEntity) = point_soundevent
+[
+	startOnSpawn(boolean) // FIELD_BOOLEAN m_bStartOnSpawn
+	toLocalPlayer(boolean) // FIELD_BOOLEAN m_bToLocalPlayer
+	stopOnNew(boolean) // FIELD_BOOLEAN m_bStopOnNew
+	saveAndRestore(boolean) // FIELD_BOOLEAN m_bSaveRestore
+	entityIndexSelection(integer) // FIELD_INT32 m_nEntityIndexSelection
+	soundName(string) // FIELD_STRING m_iszSoundName
+	sourceEntityName(string) // FIELD_STRING m_iszSourceEntityName
+	sourceEntityAttachment(string) // FIELD_STRING m_iszAttachmentName
+	clientCullRadius(float) // FIELD_FLOAT32 m_flClientCullRadius
+	input PauseSound(boolean) // PVAL_BOOL param
+	input SetSoundEventName(string) // PVAL_STRING param
+	input SetSourceEntity(string) // PVAL_STRING param
+	input StartSound(string) // PVAL_STRING param
+	input StartSoundOnSingleClient(integer) // PVAL_INT param
+	input StopSound(void)
+	input UnPauseSound(boolean) // PVAL_BOOL param
+	output OnSoundFinished(void)
+	output SoundEventGuid(string) // PVAL_SNDEVT_GUID param
+]
+
+// CPointTemplate, ECF_PRECACHE_NETWORKED_ENTITY_ON_CLIENT
+@PointClass base(CLogicalEntity) = point_template
+[
+	worldName(string) // FIELD_STRING m_iszWorldName
+	entityLumpName(string) // FIELD_STRING m_iszSource2EntityLumpName
+	entityFilterName(string) // FIELD_STRING m_iszEntityFilterName
+	asynchronous(boolean) // FIELD_BOOLEAN m_bAsynchronouslySpawnEntities
+	timeoutInterval(float) // FIELD_FLOAT32 m_flTimeoutInterval
+	spawnGroupType(intchoices) : "spawnGroupType" : : "" = // FIELD_INT32 m_ownerSpawnGroupType (PointTemplateOwnerSpawnGroupType_t)
+	[
+		0 : "INSERT_INTO_POINT_TEMPLATE_SPAWN_GROUP"
+		1 : "INSERT_INTO_CURRENTLY_ACTIVE_SPAWN_GROUP"
+		2 : "INSERT_INTO_NEWLY_CREATED_SPAWN_GROUP"
+	]
+	createClientOnlyEntities(intchoices) : "createClientOnlyEntities" : : "" = // FIELD_INT32 m_clientOnlyEntityBehavior (PointTemplateClientOnlyEntityBehavior_t)
+	[
+		0 : "CREATE_FOR_CURRENTLY_CONNECTED_CLIENTS_ONLY"
+		1 : "CREATE_FOR_CLIENTS_WHO_CONNECT_LATER"
+	]
+	input DeleteCreatedSpawnGroups(void) : "Deletes all spawn groups created by the template. Only works if you use asynchronous spawn and INSERT_INTO_NEWLY_CREATED_SPAWN_GROUP." // Pulse node
+	input ForceSpawn(void) : "Spawn an instance of the template at the original position." // Pulse node
+	input ForceSpawnAtLocation(api) // PVAL_EHANDLE pLocationEntity, PVAL_STRING pSpawnedEntityName, returns PVAL_EHANDLE retval, Pulse node: Tells the point_template entity to ForceSpawn and return the first entity that matches the name (wildcard)
+	input ForceSpawnReturnEntities(target_destination) : "Tells the point_template entity to ForceSpawn and return the all the entities spawned" // PVAL_EHANDLE pLocationEntity, returns PVAL_ARRAY:PVAL_EHANDLE retval, Pulse node
+	input GetSpawnedEntities(void) : "Get the list of the most recent spawned entities." // returns PVAL_ARRAY:PVAL_EHANDLE retval, Pulse node
+	output OnEntitySpawned(string) : "Fired after spawning an instance of this template." // PVAL_ARRAY:PVAL_EHANDLE param
+]
+
+// C_PointValueRemapper
+@PointClass base(C_BaseEntity) = point_value_remapper
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	updateOnClient(boolean) // FIELD_BOOLEAN m_bUpdateOnClient
+	inputType(intchoices) : "inputType" : : "" = // FIELD_INT32 m_nInputType (ValueRemapperInputType_t)
+	[
+		0 : "InputType_PlayerShootPosition"
+		1 : "InputType_PlayerShootPositionAroundAxis"
+	]
+	maximumChangePerSecond(float) // FIELD_FLOAT32 m_flMaximumChangePerSecond
+	maximumDistanceFromLine(float) // FIELD_FLOAT32 m_flDisengageDistance
+	engageDistance(float) // FIELD_FLOAT32 m_flEngageDistance
+	requiresUseKey(boolean) // FIELD_BOOLEAN m_bRequiresUseKey
+	outputType(intchoices) : "outputType" : : "" = // FIELD_INT32 m_nOutputType (ValueRemapperOutputType_t)
+	[
+		0 : "OutputType_AnimationCycle"
+		1 : "OutputType_RotationX"
+		2 : "OutputType_RotationY"
+		3 : "OutputType_RotationZ"
+	]
+	hapticsType(intchoices) : "hapticsType" : : "" = // FIELD_INT32 m_nHapticsType (ValueRemapperHapticsType_t)
+	[
+		0 : "HaticsType_Default"
+		1 : "HaticsType_None"
+	]
+	momentumType(intchoices) : "momentumType" : : "" = // FIELD_INT32 m_nMomentumType (ValueRemapperMomentumType_t)
+	[
+		0 : "MomentumType_None"
+		1 : "MomentumType_Friction"
+		2 : "MomentumType_SpringTowardSnapValue"
+		3 : "MomentumType_SpringAwayFromSnapValue"
+	]
+	momentumModifier(float) // FIELD_FLOAT32 m_flMomentumModifier
+	snapValue(float) // FIELD_FLOAT32 m_flSnapValue
+	ratchetType(intchoices) : "ratchetType" : : "" = // FIELD_INT32 m_nRatchetType (ValueRemapperRatchetType_t)
+	[
+		0 : "RatchetType_Absolute"
+		1 : "RatchetType_EachEngage"
+	]
+	inputOffset(float) // FIELD_FLOAT32 m_flInputOffset
+]
+
+// C_PointWorldText
+@PointClass base(C_ModelPointEntity) = point_worldtext
+[
+	message(string) // FIELD_CHARACTER m_messageText
+	font_name(string) // FIELD_CHARACTER m_FontName
+	background_material_name(string) // FIELD_CHARACTER m_BackgroundMaterialName
+	enabled(boolean) // FIELD_BOOLEAN m_bEnabled
+	fullbright(boolean) // FIELD_BOOLEAN m_bFullbright
+	world_units_per_pixel(float) // FIELD_FLOAT32 m_flWorldUnitsPerPx
+	font_size(float) // FIELD_FLOAT32 m_flFontSize
+	depth_render_offset(float) // FIELD_FLOAT32 m_flDepthOffset
+	color(color255) // FIELD_COLOR32 m_Color
+	draw_background(boolean) // FIELD_BOOLEAN m_bDrawBackground
+	background_border_width(float) // FIELD_FLOAT32 m_flBackgroundBorderWidth
+	background_border_height(float) // FIELD_FLOAT32 m_flBackgroundBorderHeight
+	background_world_to_uv(float) // FIELD_FLOAT32 m_flBackgroundWorldToUV
+	justify_horizontal(intchoices) : "justify_horizontal" : : "" = // FIELD_INT32 m_nJustifyHorizontal (PointWorldTextJustifyHorizontal_t)
+	[
+		0 : "POINT_WORLD_TEXT_JUSTIFY_HORIZONTAL_LEFT"
+		1 : "POINT_WORLD_TEXT_JUSTIFY_HORIZONTAL_CENTER"
+		2 : "POINT_WORLD_TEXT_JUSTIFY_HORIZONTAL_RIGHT"
+	]
+	justify_vertical(intchoices) : "justify_vertical" : : "" = // FIELD_INT32 m_nJustifyVertical (PointWorldTextJustifyVertical_t)
+	[
+		0 : "POINT_WORLD_TEXT_JUSTIFY_VERTICAL_BOTTOM"
+		1 : "POINT_WORLD_TEXT_JUSTIFY_VERTICAL_CENTER"
+		2 : "POINT_WORLD_TEXT_JUSTIFY_VERTICAL_TOP"
+	]
+	reorient_mode(intchoices) : "reorient_mode" : : "" = // FIELD_INT32 m_nReorientMode (PointWorldTextReorientMode_t)
+	[
+		0 : "POINT_WORLD_TEXT_REORIENT_NONE"
+		1 : "POINT_WORLD_TEXT_REORIENT_AROUND_UP"
+	]
+	input Disable(void)
+	input Enable(void)
+	input SetIntMessage(integer) // PVAL_INT param
+	input SetMessage(string) // PVAL_STRING param
+	input SetTextColor(color255) // PVAL_COLOR_RGB param
+	input Toggle(void)
+]
+
+// C_PortraitWorldCallbackHandler
+@PointClass base(C_BaseEntity) = portrait_world_callback_handler
+[
+]
+
+// C_PostProcessingVolume
+@PointClass base(trigger) = post_processing_volume
+[
+	postprocessing(resource:postprocessing) // FIELD_HPOSTPROCESSING m_hPostSettings
+	fadetime(float) // FIELD_FLOAT32 m_flFadeDuration
+	minlogexposure(float) // FIELD_FLOAT32 m_flMinLogExposure
+	maxlogexposure(float) // FIELD_FLOAT32 m_flMaxLogExposure
+	minexposure(float) // FIELD_FLOAT32 m_flMinExposure
+	maxexposure(float) // FIELD_FLOAT32 m_flMaxExposure
+	exposurecompensation(float) // FIELD_FLOAT32 m_flExposureCompensation
+	exposurespeedup(float) // FIELD_FLOAT32 m_flExposureFadeSpeedUp
+	exposurespeeddown(float) // FIELD_FLOAT32 m_flExposureFadeSpeedDown
+	exposuresmoothingrange(float) // FIELD_FLOAT32 m_flTonemapEVSmoothingRange
+	master(boolean) // FIELD_BOOLEAN m_bMaster
+	enableexposure(boolean) // FIELD_BOOLEAN m_bExposureControl
+]
+
+// C_DynamicPropAlias_prop_dynamic_override, ECF_ALIAS
+@PointClass base(prop_dynamic) = prop_dynamic_override
+[
+]
+
+// C_PhysPropClientside
+@PointClass base(breakable_prop) = prop_physics
+[
+	physdamagescale(float) // FIELD_FLOAT32 m_impactEnergyScale
+	forcemotiondisabled(boolean) // FIELD_BOOLEAN
+	phys_start_asleep(boolean) // FIELD_BOOLEAN
+	fademaxdist(float) // FIELD_FLOAT32
+	fademindist(float) // FIELD_FLOAT32
+	fadescale(float) // FIELD_FLOAT32
+	scale(float) // FIELD_FLOAT32
+	skin(string) // FIELD_UTLSTRING
+]
+
+// CPulseGameBlackboard
+@PointClass base(C_BaseEntity) = pulse_game_blackboard
+[
+	graph_def(string) // FIELD_UTLSTRING m_strGraphName
+]
+
+// CCSRadarElement
+@PointClass base(C_BaseEntity) = radar_element
+[
+	element_type(integer) // FIELD_UINT32 m_nElementType
+	element_color(integer) // FIELD_UINT32 m_nElementColor
+	team_filter(integer) // FIELD_UINT32 m_nTeamFilter
+]
+
+// CCSGO_RushIntroCounterTerroristPosition
+@PointClass base(CCSGO_RushIntroCharacterPosition) = rush_intro_counterterrorist
+[
+]
+
+// CCSGO_RushIntroTerroristPosition
+@PointClass base(CCSGO_RushIntroCharacterPosition) = rush_intro_terrorist
+[
+]
+
+// C_SceneEntity
+@PointClass base(point_entity) = scripted_scene
+[
+]
+
+// C_ShatterGlassShardPhysics
+@PointClass base(basemodelentity) = shatterglass_shard
+[
+]
+
+// C_SkyCamera
+@PointClass base(C_BaseEntity) = sky_camera
+[
+	// m_skyboxData (sky3dparams_t)
+		scale(integer) // FIELD_INT16 scale
+		clip_3D_skybox_near_to_world_far(boolean) // FIELD_BOOLEAN bClip3DSkyBoxNearToWorldFar
+		clip_3D_skybox_near_to_world_far_offset(float) // FIELD_FLOAT32 flClip3DSkyBoxNearToWorldFarOffset
+		// fog (fogparams_t)
+			fogdir(vector) // FIELD_DIRECTION_VECTOR_WORLDSPACE dirPrimary
+			fogcolor(color255) // FIELD_COLOR32 colorPrimary
+			fogcolor2(color255) // FIELD_COLOR32 colorSecondary
+			fogstart(float) // FIELD_FLOAT32 start
+			fogend(float) // FIELD_FLOAT32 end
+			farz(float) // FIELD_FLOAT32 farz
+			fogmaxdensity(float) // FIELD_FLOAT32 maxdensity
+			fogexponent(float) // FIELD_FLOAT32 exponent
+			HDRColorScale(float) // FIELD_FLOAT32 HDRColorScale
+			foglerptime(float) // FIELD_FLOAT32 duration
+			fogenable(boolean) // FIELD_BOOLEAN enable
+			fogblend(boolean) // FIELD_BOOLEAN blend
+			blendtobackground(float) // FIELD_FLOAT32 blendtobackground
+			scattering(float) // FIELD_FLOAT32 scattering
+			locallightscale(float) // FIELD_FLOAT32 locallightscale
+	use_angles(boolean) // FIELD_BOOLEAN m_bUseAngles
+]
+
+// C_SkyCameraVolume
+@PointClass base(C_BaseEntity) = sky_camera_volume
+[
+	box_mins(vector) // FIELD_VECTOR m_vBoxMins
+	box_maxs(vector) // FIELD_VECTOR m_vBoxMaxs
+	target(string) // FIELD_STRING m_iszTargetName
+	priority(integer) // FIELD_INT32 m_nPriority
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bStartDisabled
+	SkyboxBlurEffect(boolean) // FIELD_BOOLEAN m_bSkyboxBlurEffect
+	skybox_receives_world_csm(boolean) // FIELD_BOOLEAN m_bSkyboxReceivesWorldCsm
+	world_receives_skybox_csm(boolean) // FIELD_BOOLEAN m_bWorldReceivesSkyboxCsm
+	blur_origin(vector) // FIELD_VECTOR m_vBlurOrigin
+]
+
+// C_SkyCameraVolumeTarget
+@PointClass base(C_BaseEntity) = sky_camera_volume_target
+[
+	scale(integer) // FIELD_INT16 m_nSkyboxScale
+	sky_material(material) // FIELD_HMATERIAL m_hSkyMaterial
+]
+
+// CSkyboxReference
+@PointClass base(C_BaseEntity) = skybox_reference
+[
+	worldGroupID(string) // FIELD_UTLSTRING
+]
+
+// C_SmokeGrenadeProjectile
+@PointClass base(C_BaseCSGrenadeProjectile) = smokegrenade_projectile
+[
+]
+
+// C_SoundEventAABBEntity
+@PointClass base(point_soundevent) = snd_event_alignedbox
+[
+	box_mins(vector) // FIELD_VECTOR m_vMins
+	box_maxs(vector) // FIELD_VECTOR m_vMaxs
+]
+
+// C_SoundEventBoxHelper
+@PointClass base(C_BaseEntity) = snd_event_box_helper
+[
+	box_mins(vector) // FIELD_VECTOR m_vMins
+	box_maxs(vector) // FIELD_VECTOR m_vMaxs
+]
+
+// C_SoundEventConeEntity
+@PointClass base(point_soundevent) = snd_event_cone
+[
+	parameterName(string) // FIELD_STRING m_iszParameterName
+	emitterAngle(float) // FIELD_FLOAT32 m_flEmitterAngle
+	sweetSpotAngle(float) // FIELD_FLOAT32 m_flSweetSpotAngle
+	attenMin(float) // FIELD_FLOAT32 m_flAttenMin
+	attenMax(float) // FIELD_FLOAT32 m_flAttenMax
+]
+
+// C_SoundEventMultiPointEntity
+@PointClass base(point_soundevent) = snd_event_multipoint
+[
+]
+
+// C_SoundEventBoxEntity
+@PointClass base(snd_event_multipoint) = snd_event_oriented_boxes
+[
+]
+
+// C_SoundEventOBBEntity
+@PointClass base(point_soundevent) = snd_event_orientedbox
+[
+	box_mins(vector) // FIELD_VECTOR m_vMins
+	box_maxs(vector) // FIELD_VECTOR m_vMaxs
+]
+
+// C_SoundEventPathCornerEntity
+@PointClass base(snd_event_multipoint) = snd_event_path_corner
+[
+]
+
+// C_SoundEventEntityAlias_snd_event_point, ECF_ALIAS
+@PointClass base(point_soundevent) = snd_event_point
+[
+]
+
+// C_SoundEventSphereEntity
+@PointClass base(point_soundevent) = snd_event_sphere
+[
+	radius(float) // FIELD_FLOAT32 m_flRadius
+]
+
+// C_SoundOpvarSetPointBase
+@PointClass base(C_BaseEntity) = snd_opvar_set_point_base
+[
+	stackName(string) // FIELD_STRING m_iszStackName
+	operatorName(string) // FIELD_STRING m_iszOperatorName
+	opvarName(string) // FIELD_STRING m_iszOpvarName
+	opvarUseAutoCompare(boolean) // FIELD_BOOLEAN m_bUseAutoCompare
+	opvarArrayIndex(integer) // FIELD_INT32 m_iOpvarIndex
+	entityUseFastRefreshRate(boolean) // FIELD_BOOLEAN m_bFastRefresh
+]
+
+// C_SoundOpvarSetPointEntity
+@PointClass base(snd_opvar_set_point_base) = snd_opvar_set_point
+[
+]
+
+// CSoundOpvarSetBoxEntity
+@PointClass base(snd_opvar_set_point) = snd_opvar_set_box_base
+[
+]
+
+// C_SoundOpvarSetAABBEntity
+@PointClass base(snd_opvar_set_box_base) = snd_opvar_set_aabb
+[
+]
+
+// C_SoundOpvarSetAutoRoomEntity
+@PointClass base(snd_opvar_set_point) = snd_opvar_set_auto_room
+[
+]
+
+// C_SoundOpvarSetDomeEntity
+@PointClass base(snd_opvar_set_point) = snd_opvar_set_dome
+[
+]
+
+// C_SoundOpvarSetOBBEntity
+@PointClass base(snd_opvar_set_aabb) = snd_opvar_set_obb
+[
+]
+
+// C_SoundOpvarSetPathCornerEntity
+@PointClass base(snd_opvar_set_point) = snd_opvar_set_path_corner
+[
+]
+
+// C_SoundOpvarSetOBBWindEntity
+@PointClass base(snd_opvar_set_point_base) = snd_opvar_set_wind_obb
+[
+]
+
+// C_SoundAreaEntityBase
+@PointClass base(C_BaseEntity) = snd_sound_area_base
+[
+	StartDisabled(boolean) // FIELD_BOOLEAN m_bDisabled
+	soundAreaType(string) // FIELD_STRING m_iszSoundAreaType
+]
+
+// C_SoundAreaEntityOrientedBox
+@PointClass base(snd_sound_area_base) = snd_sound_area_obb
+[
+	areaMin(vector) // FIELD_POSITION_VECTOR m_vMin
+	areaMax(vector) // FIELD_POSITION_VECTOR m_vMax
+]
+
+// C_SoundAreaEntitySphere
+@PointClass base(snd_sound_area_base) = snd_sound_area_sphere
+[
+	areaRadius(float) // FIELD_FLOAT32 m_flRadius
+]
+
+// CEnvSoundscapeAlias_snd_soundscape, ECF_ALIAS
+@PointClass base(env_soundscape) = snd_soundscape
+[
+]
+
+// CEnvSoundscapeProxyAlias_snd_soundscape_proxy, ECF_ALIAS
+@PointClass base(env_soundscape_proxy) = snd_soundscape_proxy
+[
+]
+
+// CEnvSoundscapeTriggerableAlias_snd_soundscape_triggerable, ECF_ALIAS
+@PointClass base(env_soundscape_triggerable) = snd_soundscape_triggerable
+[
+]
+
+// C_StattrakModule
+@PointClass base(cs2_weapon_module) = stattrak_module
+[
+]
+
+// C_CSGO_TeamIntroCounterTerroristPosition
+@PointClass base(C_CSGO_TeamIntroCharacterPosition) = team_intro_counterterrorist
+[
+]
+
+// C_CSGO_TeamIntroTerroristPosition
+@PointClass base(C_CSGO_TeamIntroCharacterPosition) = team_intro_terrorist
+[
+]
+
+// C_CSGO_TeamPreviewModel
+@PointClass base(csgo_previewplayer) = team_previewmodel
+[
+]
+
+// C_CSGO_TeamSelectCamera
+@PointClass base(team_preview_camera) = team_select_camera
+[
+]
+
+// C_CSGO_TeamSelectCounterTerroristPosition
+@PointClass base(C_CSGO_TeamSelectCharacterPosition) = team_select_counterterrorist
+[
+]
+
+// C_CSGO_TeamSelectTerroristPosition
+@PointClass base(C_CSGO_TeamSelectCharacterPosition) = team_select_terrorist
+[
+]
+
+// C_CSGO_TerroristRushIntroCamera
+@PointClass base(C_CSGO_TeamPreviewCameraBone) = terrorist_rush_intro_camera
+[
+]
+
+// C_CSGO_TerroristTeamIntroCamera
+@PointClass base(team_preview_camera) = terrorist_team_intro_camera
+[
+]
+
+// C_CSGO_TerroristWingmanIntroCamera
+@PointClass base(team_preview_camera) = terrorist_wingman_intro_camera
+[
+]
+
+// C_TintController, ECF_ALWAYS_SPAWN_ON_CLIENT
+@PointClass base(C_BaseEntity) = tint_controller
+[
+]
+
+// C_TriggerBuoyancy
+@PointClass base(trigger) = trigger_buoyancy
+[
+	fluid_density(float) // FIELD_FLOAT32 m_flFluidDensity
+]
+
+// CTriggerFan
+@PointClass base(trigger) = trigger_fan
+[
+	fan_push_away_from_info_fan(boolean) // FIELD_BOOLEAN m_bPushAwayFromInfoTarget
+	fan_push_towards_info_fan(boolean) // FIELD_BOOLEAN m_bPushTowardsInfoTarget
+	fan_force(float) // FIELD_FLOAT32 m_flForce
+	fan_falloff(boolean) // FIELD_BOOLEAN m_bFalloff
+]
+
+// C_TriggerPhysics
+@PointClass base(trigger) = trigger_physics
+[
+	SetGravityScale(float) // FIELD_FLOAT32 m_gravityScale
+	SetVelocityLimit(float) // FIELD_FLOAT32 m_linearLimit
+	SetVelocityDamping(float) // FIELD_FLOAT32 m_linearDamping
+	SetAngVelocityLimit(float) // FIELD_FLOAT32 m_angularLimit
+	SetAngVelocityDamping(float) // FIELD_FLOAT32 m_angularDamping
+	SetLinearForce(float) // FIELD_FLOAT32 m_linearForce
+	LinearForcePointAt(vector) // FIELD_VECTOR m_vecLinearForcePointAt
+	CollapseToForcePoint(boolean) // FIELD_BOOLEAN m_bCollapseToForcePoint
+	SetFrequency(float) // FIELD_FLOAT32 m_flFrequency
+	SetDampingRatio(float) // FIELD_FLOAT32 m_flDampingRatio
+	ConvertToDebrisWhenPossible(boolean) // FIELD_BOOLEAN m_bConvertToDebrisWhenPossible
+	input CollapseToForcePoint(boolean) // PVAL_BOOL param
+	input LinearForcePointAt(vector) // PVAL_VEC3 param
+	input SetAngVelocityDamping(float) // PVAL_FLOAT param
+	input SetAngVelocityLimit(float) // PVAL_FLOAT param
+	input SetDampingRatio(float) // PVAL_FLOAT param
+	input SetFrequency(float) // PVAL_FLOAT param
+	input SetGravityScale(float) // PVAL_FLOAT param
+	input SetLinearForce(float) // PVAL_FLOAT param
+	input SetVelocityDamping(float) // PVAL_FLOAT param
+	input SetVelocityLimit(float) // PVAL_FLOAT param
+]
+
+// C_TriggerVolume
+@PointClass base(basemodelentity) = trigger_transition
+[
+]
+
+// C_VoteController
+@PointClass base(C_BaseEntity) = vote_controller
+[
+]
+
+// CWaterSplasher
+@PointClass base(basemodelentity) = water_splasher
+[
+]
+
+// C_AK47
+@PointClass base(C_CSWeaponBaseGun) = weapon_ak47
+[
+]
+
+// C_WeaponAug
+@PointClass base(C_CSWeaponBaseGun) = weapon_aug
+[
+]
+
+// C_WeaponAWP
+@PointClass base(C_CSWeaponBaseGun) = weapon_awp
+[
+]
+
+// C_BaseCSGrenade
+@PointClass base(weapon_cs_base) = weapon_basecsgrenade
+[
+]
+
+// C_WeaponBizon
+@PointClass base(C_CSWeaponBaseGun) = weapon_bizon
+[
+]
+
+// C_C4
+@PointClass base(weapon_cs_base) = weapon_c4
+[
+]
+
+// C_WeaponBaseItem
+@PointClass base(weapon_cs_base) = weapon_csbase
+[
+]
+
+// C_WeaponCZ75a
+@PointClass base(C_CSWeaponBaseGun) = weapon_cz75a
+[
+]
+
+// C_DEagle
+@PointClass base(C_CSWeaponBaseGun) = weapon_deagle
+[
+]
+
+// C_DecoyGrenade
+@PointClass base(weapon_basecsgrenade) = weapon_decoy
+[
+]
+
+// C_WeaponElite
+@PointClass base(C_CSWeaponBaseGun) = weapon_elite
+[
+]
+
+// C_WeaponFamas
+@PointClass base(C_CSWeaponBaseGun) = weapon_famas
+[
+]
+
+// C_WeaponFiveSeven
+@PointClass base(C_CSWeaponBaseGun) = weapon_fiveseven
+[
+]
+
+// C_Flashbang
+@PointClass base(weapon_basecsgrenade) = weapon_flashbang
+[
+]
+
+// C_WeaponG3SG1
+@PointClass base(C_CSWeaponBaseGun) = weapon_g3sg1
+[
+]
+
+// C_WeaponGalilAR
+@PointClass base(C_CSWeaponBaseGun) = weapon_galilar
+[
+]
+
+// C_WeaponGlock
+@PointClass base(C_CSWeaponBaseGun) = weapon_glock
+[
+]
+
+// C_Item_Healthshot
+@PointClass base(weapon_csbase) = weapon_healthshot
+[
+]
+
+// C_HEGrenade
+@PointClass base(weapon_basecsgrenade) = weapon_hegrenade
+[
+]
+
+// C_WeaponHKP2000
+@PointClass base(C_CSWeaponBaseGun) = weapon_hkp2000
+[
+]
+
+// C_MolotovGrenade
+@PointClass base(weapon_basecsgrenade) = weapon_molotov
+[
+]
+
+// C_IncendiaryGrenade
+@PointClass base(weapon_molotov) = weapon_incgrenade
+[
+]
+
+// C_Knife
+@PointClass base(weapon_cs_base) = weapon_knife
+[
+]
+
+// C_WeaponM249
+@PointClass base(C_CSWeaponBaseGun) = weapon_m249
+[
+]
+
+// C_WeaponM4A1
+@PointClass base(C_CSWeaponBaseGun) = weapon_m4a1
+[
+]
+
+// C_WeaponM4A1Silencer
+@PointClass base(C_CSWeaponBaseGun) = weapon_m4a1_silencer
+[
+]
+
+// C_WeaponMAC10
+@PointClass base(C_CSWeaponBaseGun) = weapon_mac10
+[
+]
+
+// C_WeaponMag7
+@PointClass base(C_CSWeaponBaseGun) = weapon_mag7
+[
+]
+
+// C_WeaponMP5SD
+@PointClass base(C_CSWeaponBaseGun) = weapon_mp5sd
+[
+]
+
+// C_WeaponMP7
+@PointClass base(C_CSWeaponBaseGun) = weapon_mp7
+[
+]
+
+// C_WeaponMP9
+@PointClass base(C_CSWeaponBaseGun) = weapon_mp9
+[
+]
+
+// C_WeaponNegev
+@PointClass base(C_CSWeaponBaseGun) = weapon_negev
+[
+]
+
+// C_WeaponNOVA
+@PointClass base(C_CSWeaponBaseShotgun) = weapon_nova
+[
+]
+
+// C_WeaponP250
+@PointClass base(C_CSWeaponBaseGun) = weapon_p250
+[
+]
+
+// C_WeaponP90
+@PointClass base(C_CSWeaponBaseGun) = weapon_p90
+[
+]
+
+// C_WeaponRevolver
+@PointClass base(C_CSWeaponBaseGun) = weapon_revolver
+[
+]
+
+// C_WeaponSawedoff
+@PointClass base(C_CSWeaponBaseShotgun) = weapon_sawedoff
+[
+]
+
+// C_WeaponSCAR20
+@PointClass base(C_CSWeaponBaseGun) = weapon_scar20
+[
+]
+
+// C_WeaponSG556
+@PointClass base(C_CSWeaponBaseGun) = weapon_sg556
+[
+]
+
+// C_SmokeGrenade
+@PointClass base(weapon_basecsgrenade) = weapon_smokegrenade
+[
+]
+
+// C_WeaponSSG08
+@PointClass base(C_CSWeaponBaseGun) = weapon_ssg08
+[
+]
+
+// C_WeaponTaser
+@PointClass base(C_CSWeaponBaseGun) = weapon_taser
+[
+]
+
+// C_WeaponTec9
+@PointClass base(C_CSWeaponBaseGun) = weapon_tec9
+[
+]
+
+// C_WeaponUMP45
+@PointClass base(C_CSWeaponBaseGun) = weapon_ump45
+[
+]
+
+// C_WeaponUSPSilencer
+@PointClass base(C_CSWeaponBaseGun) = weapon_usp_silencer
+[
+]
+
+// C_WeaponXM1014
+@PointClass base(C_CSWeaponBaseShotgun) = weapon_xm1014
+[
+]
+
+// C_EconWearable
+@PointClass base(C_EconEntity) = wearable_item
+[
+]
+
+// CCSGO_WingmanIntroCounterTerroristPosition
+@PointClass base(CCSGO_WingmanIntroCharacterPosition) = wingman_intro_counterterrorist
+[
+]
+
+// CCSGO_WingmanIntroTerroristPosition
+@PointClass base(CCSGO_WingmanIntroCharacterPosition) = wingman_intro_terrorist
+[
+]
+
+// C_World, ECF_SPAWN_GROUP_HANDLE_INVALID, ECF_HAS_REQUIRED_ENTITY_HANDLE
+@PointClass base(basemodelentity) = worldent
+[
+]
+
+// C_WorldModelGloves
+@PointClass base(baseanimgraph) = worldmodel_gloves
+[
+]
+

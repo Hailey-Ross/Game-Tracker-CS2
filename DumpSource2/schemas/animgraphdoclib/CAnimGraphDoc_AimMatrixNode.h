@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,11 +16,11 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_sequenceName": "",
@@ -30,7 +30,7 @@
 //	"m_paramName": "",
 //	"m_param":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bIsPosition": false,
 //	"m_attachmentName": "",
@@ -55,6 +55,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Aim Matrix"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_AimMatrixNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

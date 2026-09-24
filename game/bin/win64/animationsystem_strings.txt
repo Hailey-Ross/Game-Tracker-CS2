@@ -2228,13 +2228,8 @@ AnimPathData:IsStop
 AnimPathData:Pos
 AnimPathData:m_count
 AnimPathData:m_startIndex
-AnimResource
-Animation 2
 Animation/AccumulatePose
-AnimationGraph
 AnimationResourceData_t
-AnimationSystem
-AnimationSystem: IK
 Any Other Cursors Have Tag
 Aoutput
 AppendDataChannels( %s, %d, %s )\n
@@ -2710,7 +2705,6 @@ Domain: %s\n
 Dot Product Vector
 Dot Product of Vector a 
 Down
-DualHull
 ENUM_
 Effect: %s
 Element Access R%d <- R%d[R%d]
@@ -3132,11 +3126,9 @@ Particle (%s) (%s)
 Particle Binding
 Particle Binding (Real)
 ParticleParamID_t
-ParticlesLib
 Pass Outflow
 PerTickSettings
 PerVertexLighting
-Physics
 PivotPaint
 Plane normal
 Playback:m_SequenceCycleZeroTime
@@ -3326,7 +3318,6 @@ Trying to set an offset on an unset node!
 Turn a time in seconds into a display string. NOT localized.
 TurnHelperNode
 Two Bone IK
-TypeManager
 Unable to parse AE_SV_DUSTTRAIL event "%s"\n
 Unknown Morph Control :: %s WeightList :: %s Model :: %s\n
 Unknown binary operator
@@ -3794,7 +3785,6 @@ fast
 fetched: %s : %.3f\n
 ffffff
 field_name
-filterclass
 flDegrees
 flDuration
 flElapsed
@@ -3968,7 +3958,6 @@ model_runtime_cloth_node
 modelanimevent
 modelbreakcommand
 modelgamedata
-modellib
 modelstatechoices
 morph_texture
 moveclass
@@ -3985,7 +3974,6 @@ nWakePriority
 navlinkclass
 no samples
 node_dest
-node_id
 node_id_List
 npc_ability_name
 npcclass
@@ -4041,7 +4029,6 @@ remap
 remove_key
 reorder_sequences
 resourcesystem
-root
 rootMotionToWarp\t\t\t\t[%f] [%s]
 rotateVector
 rotateVectorToLocal

@@ -6,6 +6,7 @@
 //	"m_nWeaponCategoryNodeIdx": -1,
 //	"m_nWeaponTypeNodeIdx": -1
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmSnapWeaponNode::CDefinition : public CNmPassthroughNode::CDefinition
 {
 	int16 m_nFlashedAmountNodeIdx;

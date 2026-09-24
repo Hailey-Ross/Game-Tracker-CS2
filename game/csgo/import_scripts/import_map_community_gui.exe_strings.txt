@@ -386,7 +386,6 @@ rename ::source ::_source
 rucs
 s7K"
 scur
-source
 status_text
 strict
 sys.path (based on %s) exceeds buffer[%d] space\n

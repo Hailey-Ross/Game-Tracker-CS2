@@ -2321,7 +2321,6 @@ Direct3D 11.2
 Direct3D 12
 Directory index out of bounds
 DisplacementMicromapNV
-Display
 Display all available options
 Display available options (-help-hidden for more)
 Display driver info
@@ -3292,7 +3291,6 @@ Khronos Glslang Reference Front End
 Khronos LLVM/SPIR-V Translator
 Khronos SPIR-V Tools Assembler
 Khronos SPIR-V Tools Linker
-Kill
 Kitsunebi Games
 Kitsunebi Games Nuvk SPIR-V Emitter and DLSL compiler
 Kongruent
@@ -3326,7 +3324,6 @@ Library
 LibraryEvent
 LifetimeStart
 LifetimeStop
-Line
 Linetable's context_line is out of range
 LinkOnceODR
 Linkage
@@ -4263,7 +4260,6 @@ SmId
 SmoothStep
 SnormInt16
 SnormInt8
-Source
 Source file
 Source file not found: %s
 Source line
@@ -5791,7 +5787,6 @@ directcallable
 disable debug output
 discarded
 discriminator
-distance
 distinct
 distinct 
 dllexport
@@ -11774,7 +11769,6 @@ op.v
 op.vfrcz.p
 op.vp
 op.vpermil2p
-opaque
 opc.i
 opc.ll
 opcode %d is out of range
@@ -11978,7 +11972,6 @@ raB3G
 raddh
 radians
 rameaddress
-range
 rangeStart: %016llx rangeEnd: %016llx bucket: %08llx endbucket: %08llx
 raw access chain operands
 ray flags

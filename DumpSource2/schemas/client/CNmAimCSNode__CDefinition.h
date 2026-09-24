@@ -14,6 +14,7 @@
 //	"m_flActionBlendTimeSeconds": 0.000000,
 //	"m_flPlantingBlendTimeSeconds": 0.000000
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmAimCSNode::CDefinition : public CNmPassthroughNode::CDefinition
 {
 	int16 m_nVerticalAngleNodeIdx;

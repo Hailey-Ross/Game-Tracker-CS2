@@ -1623,7 +1623,6 @@ Render system:  %s (initialized by %s)\n
 Render system:  %s\n
 RenderDoc capture window '%s'.\n
 RenderDoc is not active, did you forget to add -renderdoc to the command-line? Is RenderDoc installed?\n
-RenderSystem
 RenderSystem/AllowPartialMipChainImmediateTexLoads
 RenderSystem/IndexBufferPoolSizeMB
 RenderSystem/LowLatency
@@ -2140,7 +2139,6 @@ VMA defrag pass %d\n
 VMA defragmentation completed. AFTER: 
 VMA starting defragmentation. BEFORE: 
 VMA: Allocated %llu MB (Free: %llu MB) \n
-VRenderDeviceMgrBackdoor001
 VS_MS_RTX
 VS_RTX
 VULKAN
@@ -2705,7 +2703,6 @@ invalid handle
 invalid vector subscript
 k*do^
 k0V(
-layout
 layoutBindingFlags
 layoutBindings
 lib_6_4
@@ -3024,7 +3021,6 @@ texturecube
 texturecubearray
 thread initialization failed.
 thread_safety
-threshold
 tile
 tiles
 to fetch array of rationals

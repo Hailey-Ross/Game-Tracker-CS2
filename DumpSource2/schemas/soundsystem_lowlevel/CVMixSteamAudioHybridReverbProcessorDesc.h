@@ -66,6 +66,7 @@
 //		"index": 0
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CVMixSteamAudioHybridReverbProcessorDesc : public CVMixBaseProcessorDesc
 {
 	CVMixParameterFloat m_paramReverbTimeLow;

@@ -71,6 +71,7 @@
 //	],
 //	"m_flCapsuleRadius": 0.000000
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCollisionProperty
 {
 	VPhysicsCollisionAttribute_t m_collisionAttribute;

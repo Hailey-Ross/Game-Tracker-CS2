@@ -17,6 +17,7 @@
 //	"m_effectForConfig": "",
 //	"m_tags": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_Particle : public CNmClipDocEvent
 {
 	CNmEventRelevance_t m_relevance;

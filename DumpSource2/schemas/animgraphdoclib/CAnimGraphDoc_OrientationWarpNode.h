@@ -8,7 +8,7 @@
 //	],
 //	"m_nNodeID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_bDebugThisNode": false,
 //	"m_networkMode": "ServerAuthoritative",
@@ -16,31 +16,31 @@
 //	{
 //		"m_nodeID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		},
 //		"m_outputID":
 //		{
-//			"m_id": <HIDDEN FOR DIFF>,
+//			"m_id": 0
 //		}
 //	},
 //	"m_eMode": "eAngle",
 //	"m_targetParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_targetPositionParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_fallbackTargetPositionParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_eTargetOffsetMode": "eLiteralValue",
 //	"m_flTargetOffset": 0.000000,
 //	"m_targetOffsetParamID":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_flMaxRootMotionScale": 10.000000,
 //	"m_eRootMotionSource": "eAnimationOrProcedural",
@@ -56,6 +56,7 @@
 //	"m_flPreferredRotationThreshold": 190.000000
 //}
 // MPropertyFriendlyName = "Orientation Warp"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_OrientationWarpNode : public CAnimGraphDoc_Node
 {
 	// MPropertySuppressField

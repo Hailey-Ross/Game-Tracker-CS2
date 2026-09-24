@@ -7,6 +7,7 @@
 //	"m_flMinTimeRemaining": 0.300000
 //}
 // MPropertyFriendlyName = "Time Remaining Metric"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_TimeRemainingMetric : public CAnimGraphDoc_MotionMetric
 {
 	// MPropertyFriendlyName = "Match Time Remaining"

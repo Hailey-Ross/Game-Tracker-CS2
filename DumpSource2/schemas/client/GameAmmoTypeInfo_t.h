@@ -8,6 +8,7 @@
 //	"m_nBuySize": 0,
 //	"m_nCost": 0
 //}
+// MHasKV3TransferPolymorphicClassname
 class GameAmmoTypeInfo_t : public AmmoTypeInfo_t
 {
 	int32 m_nBuySize;

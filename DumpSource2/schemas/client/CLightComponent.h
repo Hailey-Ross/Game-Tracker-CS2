@@ -132,6 +132,7 @@
 //	"m_flAmbientOcclusionProxyConeAngle2": 0.000000,
 //	"m_flAmbientOcclusionProxyConeAngle3": 0.000000
 //}
+// MHasKV3TransferPolymorphicClassname
 class CLightComponent : public CEntityComponent
 {
 	// MNotSaved

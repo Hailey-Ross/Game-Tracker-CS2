@@ -2,6 +2,7 @@
 //	"_class": "CNmGraphDocTimeControlledClipNode::CData",
 //	"m_clip": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmGraphDocTimeControlledClipNode::CData : public CNmGraphDocVariationDataNode::CData
 {
 	// MPropertyAttributeEditor = "AssetBrowse( vnmclip, *requiredoubleclick )"

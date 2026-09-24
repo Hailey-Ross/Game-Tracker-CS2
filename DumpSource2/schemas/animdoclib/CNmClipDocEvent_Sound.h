@@ -10,6 +10,7 @@
 //	"m_attachmentName": "",
 //	"m_tags": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_Sound : public CNmClipDocEvent
 {
 	CNmEventRelevance_t m_relevance;

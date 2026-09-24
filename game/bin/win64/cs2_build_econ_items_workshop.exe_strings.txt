@@ -113,7 +113,6 @@ scripts/items/items_game_workshop.txt
 sticker_kits
 sticker_material
 stickers/
-style
 style_tooltip_override
 test001.txt
 wear_remap_max

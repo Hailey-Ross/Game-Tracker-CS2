@@ -6,19 +6,19 @@
 //	"m_vectorParamNameOut": "",
 //	"m_floatParamIn":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_floatParamOut":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_vectorParamIn":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_vectorParamOut":
 //	{
-//		"m_id": <HIDDEN FOR DIFF>,
+//		"m_id": 0
 //	},
 //	"m_flMinInputValue": 0.000000,
 //	"m_flMaxInputValue": 1.000000,

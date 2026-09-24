@@ -231,7 +231,6 @@ Settings {  State {    horizontalScale 1.000000    cooldownTime 15.000000    geo
 Start Sampling
 Stop Sampling
 T?pos@QMouseEvent@@QEBA?AVQPoint@@XZ
-VConsole_SubTool_001_DashboardTool
 Verdana
 Version
 X?setColor@QPen@@QEAAXAEBVQColor@@@Z

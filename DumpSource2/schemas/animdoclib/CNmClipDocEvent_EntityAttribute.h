@@ -26,6 +26,7 @@
 //		]
 //	}
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_EntityAttribute : public CNmClipDocEvent
 {
 	CNmEventTargetEntity_t m_target;

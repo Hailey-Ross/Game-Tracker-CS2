@@ -741,7 +741,6 @@ Reduced %d texdatas to %d (%d bytes to %d)\n
 Reduced %d texinfos to %d\n
 RemovePortalFromNode: portal not bounding leaf
 RemovePortalFromNode: portal not in leaf
-RenderOrder
 Resource deadlock avoided
 Resource device
 Resource temporarily unavailable
@@ -924,7 +923,6 @@ aFaces
 alphablend
 alphas
 ambientSampleCount
-amount
 angle_negative_pitch
 area
 autoviscluster = %d\n
@@ -977,7 +975,6 @@ cu\fq7
 cube
 cubemapsize
 currentvelocity
-damping
 darea_t
 dareaportal_t
 dataSize
@@ -988,7 +985,6 @@ dcubemapsample_t
 ddispinfo_t
 dedge_t
 defaultstyle
-depth
 detail.vbsp
 detailOrientation
 detail_prop
@@ -1004,7 +1000,6 @@ didn't expect '=' here
 disableflashlight
 disableselfshadowing
 disableshadowdepth
-disableshadows
 disablevertexlighting
 diskNumberStart
 dispinfo
@@ -1046,7 +1041,6 @@ e-CS
 ebytes
 enablelightbounce
 entity reached from outside -- no filling\n
-env_cubemap
 env_cubemap pointing at deleted brushside near (%d, %d, %d)\n
 error %d
 error including file: %s
@@ -1061,15 +1055,11 @@ externalFileAttribs
 extraFieldLength
 f6\tn
 f@)rM
-fademaxdist
-fademindist
-fadescale
 fileCommentLength
 fileNameLength
 fileTypeString
 filelen
 fileofs
-filterclass
 firstAmbientSample
 firstIndex
 firstPrimID
@@ -1092,17 +1082,14 @@ fluid {\n
 fourCC
 fulldetail = true\n
 func_areaportal
-func_brush
 func_detail
 func_detail_blocker
 func_instance
 func_instance_io_proxy
 func_instance_parms
-func_ladder
 func_occluder
 func_simpleladder
 func_viscluster
-func_water
 g_numvertnormalindices == MAX_MAP_VERTNORMALINDICES (%d)
 g_numvertnormals == MAX_MAP_VERTNORMALS (%d)
 gamebin
@@ -1156,7 +1143,6 @@ levelWaterMeshes.offset
 levelWaterMeshes.size
 light
 light_
-light_dynamic
 lightingorigin
 lightmapVecsLuxelsPerWorldUnits
 lightmapscale
@@ -1269,7 +1255,6 @@ materialtable {\n
 maxAngle
 maxcpulevel
 maxgpulevel
-maxs
 mesh%02d
 meshdata
 microvolume = %f\n
@@ -1278,7 +1263,6 @@ minTess
 minZ
 mincpulevel
 mingpulevel
-mins
 mintess
 mipSkipCount
 mirrored plane
@@ -1311,7 +1295,6 @@ no %s specified
 no entities in open -- no filling\n
 nocsg = true\n
 node_dest
-node_id
 nodetail = true\n
 nodraw
 nomerge = true\n
@@ -1364,7 +1347,6 @@ otherarea
 output brushes: %i\n
 overlaydata
 overlaytransition
-owner
 parm
 parsing U axis definition
 parsing V axis definition
@@ -1401,8 +1383,6 @@ rbytes
 readonly
 reflectivity
 relativeOffsetOfLocalHeader
-renderamt
-rendercolor
 replace
 report
 reslists
@@ -1424,14 +1404,11 @@ sides
 signature
 size: %5.0f,%5.0f,%5.0f to %5.0f,%5.0f,%5.0f\n
 sizeofDiskPhysics2LevelMesh
-skin
-sky_camera
 smooth
 smoothingAngle
 smoothingGroups
 smoothing_groups
 snap axial = true\n
-solid
 solid {\n
 solidCount
 solidclass
@@ -1466,7 +1443,6 @@ stringtable_dictionary_fallback.dct
 stringtable_dictionary_fallback_xbox.dct
 structure_
 studiomdl.exe -nop4 -quiet "%s"
-style
 styles
 surfaceFogVolumeID
 surfaceSize

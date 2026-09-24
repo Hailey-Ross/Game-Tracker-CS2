@@ -4678,7 +4678,6 @@ AngleA
 AngleB
 Anim Clip
 AnimatableSceneObjectDesc
-Animation 2
 AnimationLoopingChanged
 AnimgraphPicker()
 Anon_%d!%s
@@ -4806,7 +4805,6 @@ Base Properties
 Base-10 logarithm
 Base-2 logarithm
 BaseConnection
-BaseEditor
 BaseExprOp
 BaseExprOpBinary
 BaseExprOpUnary
@@ -4836,7 +4834,6 @@ Begin Sequence
 Begin mouse capture [%i]: %s\n
 Begin testing a condition composed of Observable values. Continues checking until canceled.
 Begin testing a condition composed of Observable variable references. Continues checking until true.
-BeginSequence
 Beginning EnumerateDependencies() at '%s'\n
 Beginning ExtractNamedValueInfoFromNode() for '%s'\n
 Beginning GetAllNamedValueInfo()\n
@@ -5520,7 +5517,6 @@ Can only assign literal empty (invalid) - no other Panel Handle values.
 Can only author a null SNDEVT_GUID literal value.
 Can't compile a return without a known signature
 Can't create new child
-Cancel
 Cancel and keep my changes
 CancelClicked
 Cannot Debug
@@ -5967,7 +5963,6 @@ Designable
 Desired Kill Priority
 Desktop: %s\n
 Dest param '%s' doesn't exist on parent %s
-Destination
 Destination %s: Inparam source node not found: %d
 Destination %s: Outparam '%s' doesn't exist on source %s
 Destination Type
@@ -6035,7 +6030,6 @@ Draw Shadows
 DrawBoneNamesChanged
 DrawSkyboxChanged
 Dslow
-DualHull
 DummyNoOp
 DumpModeDecode: Not enough data for scanline %d
 Duplicate
@@ -6479,7 +6473,6 @@ H\tV_cosd
 Hack Dota Layer Opaque
 Hack Dota Layer Opaque Translucent
 HalftoneHints
-Hammer
 HammerEntityPicker()
 HandleReturnValues
 Has All Flags
@@ -6603,7 +6596,6 @@ Input Sequence
 Input type '%s' not supported
 Input value which will be compared to the cases below.
 Input:
-InputBindSystem
 Insert 'element' in the given index in 'a', increasing its count by one and moving the elements after index.
 Instead of calling an Input on an Entity, call it on the associated Game Blackboard.
 Insufficient data length.\n
@@ -7395,7 +7387,6 @@ OnParticleAttachModeChanged
 OnParticleAttachNameChanged
 OnPastePreviewState
 OnPathComplete
-OnPaused
 OnPetAssetPaneSelectionChanged
 OnPickBackgroundColor
 OnPicked
@@ -7416,10 +7407,8 @@ OnRefresh
 OnRefreshClicked
 OnReloadModifierInfo
 OnReloadTimeout
-OnRemove
 OnRemoveConfiguration
 OnResetAndClearData
-OnResumed
 OnReturnPressed
 OnReverseInputClicked
 OnReverseNoiseInputClicked
@@ -7502,7 +7491,6 @@ One of the client procedures is NULL pointer.
 Only cells are supported right now, sorry
 Only this node will be skipped, and execution will proceed to the next connected node.
 Only wrote %d (of %d) values when saving map!
-Open
 Open All In &Directory...
 Open All In Directory
 Open Animation Clip
@@ -7653,14 +7641,12 @@ ParticleFunctionType_t
 ParticleParamID_t
 ParticlePreview
 ParticleVariableRef
-Particles
 Particles/Budget_ActualTraces
 Particles/Budget_EstimatedTraceCostUS
 Particles/Budget_IntersectionTests
 Particles/Budget_OverallocationThreshold
 Particles/Budget_RenderUS
 Particles/Budget_SimulationUS
-ParticlesLib
 Pass Outflow
 Paste
 Paste (Overwrite)
@@ -7724,7 +7710,6 @@ Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
 PhotometricInterpretation
 Photoshop
-Physics
 Physics Debug Draw
 Pick
 Pick Global Background
@@ -7976,7 +7961,6 @@ Registering anonymous field with tag %d (0x%x) failed
 Reinterpret Instance %s R%d <- %s R%d
 Relative Direction: 
 Relative Position: 
-Reload
 Reload this file?<br><pre>"%1"</pre>
 Reload?
 ReloadLightRigDefinitions
@@ -7990,7 +7974,6 @@ Remap Scalar (Init Float)
 Remap Speed To Scalar (Init Float)
 Remap and clamp input value from input range to output range (float)
 RemapFloatInput
-Remove
 Remove %s
 Remove '%s'
 Remove Config
@@ -8062,7 +8045,6 @@ Returns true if the Vector is valid
 Returns true if the World Vector is valid
 Returns up to the maximum requested elements. Never grows the array (unlike SetCount).
 Reveal in VDATA Editor
-Reverse
 Reverse Input Range
 Reverse Noise Range
 Reverse Order
@@ -8165,7 +8147,6 @@ Scale:
 Scale: (%g,%g,%g) 
 SceneCameraChanged
 ScenePreview
-SceneSystem
 ScrLk
 ScrToggle
 Scripted Sequence '%s'
@@ -8223,7 +8204,6 @@ SetBackStyleCapsule
 SetBackStyleSlot
 SetBackgroundEnabledDBG
 SetBlackboardReference BR%d (%s) <- R%d 
-SetColor
 SetColorAt
 SetColorSetSize
 SetCurrentPopupUI
@@ -8246,7 +8226,6 @@ SetTabStyleBrick
 SetTabStyleLine
 SetTabStyleNone
 SetTempVar 
-SetValue
 SetValueCenter
 SetValueHidden
 SetValueLeft
@@ -8295,7 +8274,6 @@ ShowRenameDialog
 ShowVisualizerControls
 ShowWidgetDebugger
 ShowWindowsList
-Shutdown
 Sign Float
 Sign Int
 Signal '%s' not compatible with slot '%s'
@@ -8330,7 +8308,6 @@ Sound Event Picker
 SoundPicker
 SoundSelected
 SoundsSelected
-Source
 Source Entity
 Source Output
 Source outflow '%s' doesn't exist on parent %s
@@ -8386,7 +8363,6 @@ StopNoiseImage
 StopSendingCameraTo
 StopSim
 StopSimWithEndcap
-StopSound
 StopWait
 StopWaiting
 String Length
@@ -8580,7 +8556,6 @@ Timeline
 Tint
 To the left of the attribute label
 To the right of the attribute editor
-Toggle
 Toggle %s
 Toggle Debug Visualizer
 Toggle Profiler
@@ -8599,15 +8574,12 @@ Too much
 ToolAttr command '%s' failed.
 ToolBarArea
 ToolEditContext_ID_AttributeEditorOptions
-ToolEvents
 ToolFramework
-ToolScene
 ToolSceneDebugOverlays
 ToolSceneGizmo
 ToolSceneTraceResult_t*
 ToolSceneWidget
 ToolSceneWidget%d
-ToolSystem2_001
 ToolWindowGrid
 Tools  
 Tools audio currently muted
@@ -8629,7 +8601,6 @@ Tools_Unlit_Translucent
 Tools_Unlit_TranslucentNOZ
 Tools_Unlit_Wireframe
 Toolscene screen space view
-Toolutils
 Total
 Track Largest System Bounds
 Track Mouse & Focus
@@ -8784,7 +8755,6 @@ VDataChoice
 VDataChoice( %s )
 VDataChoice()
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -9447,7 +9417,6 @@ body_head
 body_head_persona_1
 bodygroup_name
 bodygroupchoices
-bodygroups
 bold
 bottom
 branch
@@ -9607,7 +9576,6 @@ field_name
 filePath
 filter
 filterText
-filterclass
 firetrigger
 fixed_height
 fixed_size
@@ -9890,7 +9858,6 @@ getRelativeTransform
 global
 gloves
 gloves_persona_1
-graph_def
 graph_is_public
 green
 grid
@@ -10284,7 +10251,6 @@ model_runtime_cloth_node
 modelanimevent
 modelbreakcommand
 modelgamedata
-modellib
 models/editor/axis_helper_thick.vmdl
 models/editor/camera.vmdl
 modelstatechoices
@@ -10339,7 +10305,6 @@ no memory during frame initialization.
 no_help_info
 no_import
 node_dest
-node_id
 node_id_List
 node_name
 none 
@@ -10366,7 +10331,6 @@ on target
 opqMU
 optional_toggle_cmd
 optionallycompressedtangentframe
-orientation
 originating_classname
 originating_filename
 originating_linenumber
@@ -10448,7 +10412,6 @@ pickedColor
 pixelAspectRatio
 point
 point_follow
-point_prefab
 pointclass
 pointentityclass
 polymorphic_arg
@@ -10458,7 +10421,6 @@ port_name
 port_restrict_to_literal
 portrait
 portrait (inverted)
-postprocessing
 posxyz
 preview
 previous_value
@@ -10521,7 +10483,6 @@ return_values
 rigIdx
 right
 rightClicked
-root
 rootbone_follow
 roshan
 rotateVector
@@ -10595,15 +10556,12 @@ snapshot
 snapshot_local_bone
 snapshot_max_verts
 snapshot_original
-solid
 solidclass
 sort_priority
 soundEvents
-soundName
 soundevents/
 soundevents/soundevents_from_tools.vsndevts
 soundevents/soundevents_manifest_devonly.vrman
-source
 source_column
 source_file_searchpath
 spacing
@@ -10844,7 +10802,6 @@ waiting_group
 ward
 warn
 water_wake
-weapon
 weapon2
 weapon2_persona_1
 weapon_persona_1

@@ -1753,7 +1753,6 @@ How cloaked?  Zero is not cloaked, 1 is fully cloaked.
 How much the lightmap effects environment map reflection, 0.0 is off, 1.0 will allow complete blackness of the environment map if the lightmap is black
 Ht=c
 I@VortWarp_DX9
-IMEManager001
 INTERIOR_LAYER
 INVERSEDEPTHBLEND
 ISCUBEMAP
@@ -2750,7 +2749,6 @@ engine_post_ps20b
 engine_post_ps30
 engine_post_vs20
 engine_post_vs30
-env_cubemap
 env_cubemap used on world geometry without rebuilding map. . ignoring: %s\n
 environment map
 envmap

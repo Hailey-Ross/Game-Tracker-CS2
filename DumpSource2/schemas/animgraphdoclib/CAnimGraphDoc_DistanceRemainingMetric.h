@@ -10,6 +10,7 @@
 //	"m_flMaxGoalOvershootScale": 2.000000
 //}
 // MPropertyFriendlyName = "Distance Remaining Metric"
+// MHasKV3TransferPolymorphicClassname
 class CAnimGraphDoc_DistanceRemainingMetric : public CAnimGraphDoc_MotionMetric
 {
 	// MPropertyFriendlyName = "Maximum Tracked Distance"

@@ -4437,7 +4437,6 @@ Bad metadata for %s
 Bad variable description
 Bad variable long name
 Bad verticalPolicy "%s"
-BaseEditor
 BaseTextureOverride
 Begin mouse capture [%i]: %s\n
 Between the attribute label and editor
@@ -4757,7 +4756,6 @@ CQWidgetDebugger
 CQWidgetList
 CResourceNameTyped
 CS2 Econ Item (*.econitem)
-CS2ItemEditor
 CS2ItemEditorEvent_AttributeModified_t
 CS2ItemEditorEvent_DocumentReplaced_t
 CS2ItemEditorEvent_HostedAssetCompilation_t
@@ -4827,7 +4825,6 @@ CZipFile::SaveDirectory
 CabinetWClass
 Cache
 Can't load map in engine because the server is not available.\n
-Cancel
 CancelClicked
 Cannot Debug
 Cannot add multiple root layouts to the same widget
@@ -4973,7 +4970,6 @@ DragStarted
 DragUpdated
 Drop Chance
 DropInfo
-DualHull
 DummyNoOp
 Duplicate Skirmish mode definition id %d
 Duplicate Skirmish mode name %s (%d and %d)
@@ -5275,7 +5271,6 @@ Initializing Session...
 Input Binding Error
 Input Debugger [%1]
 Input Sequence
-InputBindSystem
 Inspect
 Inspect '%1'
 Inspect Background
@@ -5623,7 +5618,6 @@ OnTextChanged
 OnTextDownArrow
 OnTextEdited
 OnTextUpArrow
-OnTimeout
 OnToggleOrientationAction
 OnToggleSelected
 OnTopLevelChanged
@@ -5712,7 +5706,6 @@ Pet definition %s: missing "name"
 Pet definition %s: name must be a positive integer
 PgDn
 PgUp
-Physics
 Picks
 PivotPaint
 PlayerCommendationInfo
@@ -5912,7 +5905,6 @@ SLIDER_VALTEXT_HIDDEN
 SLIDER_VALTEXT_LEFT
 SLIDER_VALTEXT_RIGHT
 STANDIN: %1
-Save
 Save '%1'
 Save '%1' As
 Save - '%1'
@@ -5997,7 +5989,6 @@ ShowInputDebugger
 ShowWidgetDebugger
 ShowWindowsList
 Shuffle Seed
-Shutdown
 Signal '%s' not compatible with slot '%s'
 SingleItemDescription
 SizePolicy
@@ -6125,9 +6116,7 @@ Token
 Tool '%s' missing required type.
 ToolAttr command '%s' failed.
 ToolBarArea
-ToolEvents
 ToolFramework
-ToolSystem2_001
 Tools  
 Tools audio currently muted
 TournamentEvent
@@ -6206,7 +6195,6 @@ VConsole
 VDataChoice( %s )
 VDataChoice()
 VNOTIFY_DISABLE
-VNotify
 VNotify Abandoned (ActiveProtocolIsNewer)\n
 VNotify Abandoned (No ProcessUtils)\n
 VNotify Abandoned (Not enabled)\n
@@ -6268,7 +6256,6 @@ Widget Properties
 Window
 WindowStateChanged
 Won Round
-Workshop
 Workshop Examples
 Workshop Revenue Share
 Workshop URL
@@ -6964,7 +6951,6 @@ alternate_icon
 alternate_icons
 alternate_icons2
 always_known
-amount
 ancient
 anim_class
 anim_slot
@@ -7256,7 +7242,6 @@ discrete_
 discrete_set_
 display_items_defidx
 display_seed
-distance
 doItemsLayout
 do_A
 do_B
@@ -7371,7 +7356,6 @@ filePath
 files_prevented_trusted
 filter
 filterText
-filterclass
 first_sale_date
 first_valid_class
 first_valid_item_slot
@@ -7508,7 +7492,6 @@ gloves
 gloves/paints
 graffiti
 graffiti_tints
-grenade
 grenade0
 grenade1
 grenade2
@@ -7987,7 +7970,6 @@ next_rarity
 nextmatch_title
 no_help_info
 node_dest
-node_id
 node_id_List
 node_name
 not saved
@@ -8020,7 +8002,6 @@ operation_points_awarded
 operation_points_eligible
 optional_toggle_cmd
 optionallycompressedtangentframe
-orientation
 original
 originating_classname
 originating_filename
@@ -8149,7 +8130,6 @@ polymorphic_class
 popularity_seed
 portraits
 positive
-postprocessing
 posxyz
 pre_match_data
 predictions_pct
@@ -8203,7 +8183,6 @@ quiet
 random_attribute_templates
 random_attributes
 randomizable
-range
 range_editable
 range_max
 range_min
@@ -8371,7 +8350,6 @@ side
 sidelist
 signal
 single
-skin
 skip
 skirmish_modes
 skirmish_rank_info
@@ -8391,7 +8369,6 @@ snapshot
 socache_control
 socache_have_versions
 soid
-solid
 solidclass
 sort_column
 sort_order
@@ -8487,7 +8464,6 @@ string_instanced
 string_one_of
 stringmap
 struct
-style
 style_tooltip_override
 styles
 subclass_choice
@@ -8738,12 +8714,9 @@ warn
 warntype
 watchable_match_infos
 watchablematchinfo
-weapon
 weapon_
-weapon_ak47
 weapon_case
 weapon_case_key
-weapon_knife
 weapons/keychains
 weapons/keychains/workshop_blanks/kc_%s_default.vmdl
 weapons/keychains/workshop_blanks/kc_missinglink_default.vmdl

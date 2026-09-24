@@ -1490,7 +1490,6 @@ explorer.exe
 file://{images}/%s
 filter
 filterText
-filterclass
 flagchoices
 flags value
 floatchoices
@@ -1601,7 +1600,6 @@ navlink
 navlinkclass
 no_help_info
 node_dest
-node_id
 node_id_List
 npc_ability_name
 npcclass
@@ -1641,7 +1639,6 @@ point
 pointclass
 pointentityclass
 polymorphic_class
-postprocessing
 propattr_flatten_include_label
 propattr_flatten_into_parent_row
 propattr_flatten_stretch_factor
@@ -1672,7 +1669,6 @@ scriptlist
 side
 sidelist
 snapshot
-solid
 solidclass
 sort_priority
 start_expanded

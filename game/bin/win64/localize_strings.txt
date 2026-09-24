@@ -237,7 +237,6 @@ Loc variable reference incomplete\n
 Loc variable reference missing ':' after type\n
 Loc variable reference too large (%u chars)\n
 LocTest_
-Localization System
 Localization stats for %s data:\n
 Localization watching these dirs for changes:\n
 Localize

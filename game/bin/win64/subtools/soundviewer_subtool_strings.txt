@@ -764,7 +764,6 @@ OnFocusOut
 OnHistoryTableContextMenu
 OnMaxPeakPressed
 OnMixChanged
-OnPaused
 OnSoloButtonChanged
 OnValueChanged
 Pause History
@@ -808,7 +807,6 @@ Total Used:
 UpdateExpandAll
 UpdateFilter
 V?redF@QColor@@QEBANXZ
-VConsole_SubTool_001_SoundViewerTool
 VMix Tracks
 VMix: AVG:%3.1fms  MAX:%3.1fms %d voices, %d sub-voices 
 VSND filter:
@@ -903,7 +901,6 @@ block stop
 byteSize
 clicked
 current event
-distance
 duck trig
 ducker
 e\n?dragEnterEvent@QAbstractItemView@@MEAAXPEAVQDragEnterEvent@@@Z

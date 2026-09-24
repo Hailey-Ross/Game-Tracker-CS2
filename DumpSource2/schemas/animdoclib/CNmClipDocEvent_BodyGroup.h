@@ -6,6 +6,7 @@
 //	"m_bodygroup": "",
 //	"m_choice": ""
 //}
+// MHasKV3TransferPolymorphicClassname
 class CNmClipDocEvent_BodyGroup : public CNmClipDocEvent
 {
 	CNmEventTargetEntity_t m_target;

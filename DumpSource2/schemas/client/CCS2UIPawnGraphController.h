@@ -18,6 +18,7 @@
 //	"m_nChickLifeStage": null,
 //	"m_bCT": null
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCS2UIPawnGraphController : public CAnimGraphControllerBase
 {
 	CAnimGraph2ParamOptionalRef< float32 > m_nAnimationSeed;

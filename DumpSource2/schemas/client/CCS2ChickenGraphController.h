@@ -15,6 +15,7 @@
 //	"m_flinchVariation": null,
 //	"m_bHasActionCompletedEvent": false
 //}
+// MHasKV3TransferPolymorphicClassname
 class CCS2ChickenGraphController : public CAnimGraphControllerBase
 {
 	CAnimGraph2ParamOptionalRef< CGlobalSymbol > m_action;
