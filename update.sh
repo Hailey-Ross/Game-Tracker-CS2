@@ -6,13 +6,8 @@ cd "${0%/*}"
 
 echo "Processing CS2..."
 
-set +e
-../tools/dump_source2.sh CS2
-DUMPER_EXIT_CODE=$?
-set -e
+DUMPER_EXIT_CODE=0
 
-ProcessDepot ".dll" ".exe"
-DeduplicateStringsFrom ".dll" ".exe" -- "game/bin/win64/engine2_strings.txt" "game/bin/win64/tier0_strings.txt" "DumpSource2/.stringsignore"
 ProcessVPK
 
 echo "::group::Extracting VPKs"
@@ -60,6 +55,18 @@ done <   <(find . -type f -name "*_vulkan_*.vfx" -print0)
 set -e
 
 echo "::endgroup::"
+
+set +e
+../tools/dump_source2.sh CS2
+DUMP_SOURCE2_EXIT_CODE=$?
+set -e
+
+if [[ "$DUMPER_EXIT_CODE" -eq 0 ]]; then
+	DUMPER_EXIT_CODE=$DUMP_SOURCE2_EXIT_CODE
+fi
+
+ProcessDepot ".dll" ".exe"
+DeduplicateStringsFrom ".dll" ".exe" -- "game/bin/win64/engine2_strings.txt" "game/bin/win64/tier0_strings.txt" "DumpSource2/.stringsignore"
 
 while IFS= read -r -d '' file
 do
