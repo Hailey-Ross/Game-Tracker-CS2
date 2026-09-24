@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1040 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -115,13 +114,15 @@ PS
 	CreateInputTexture2D(Texture, Srgb, 8, "", "", "Color", Default4(1, 1, 1, 0));
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (968 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState Filter_MinMagMipPoint : register(s14, space1);
 	
-	static float2 input_0;
+	static float2 input_1;
 	static float4 output_0;
 	static float4 output_1;
 	static float4 output_2;
@@ -129,7 +130,7 @@ PS
 	
 	struct PS_INPUT
 	{
-	    float2 input_0 : TEXCOORD1;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -142,16 +143,16 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tColor.Sample(Filter_MinMagMipPoint, input_0.xy);
-	    output_0 = float4(_3401.x, 0.0f, 0.0f, 1.0f);
-	    output_1 = float4(0.0f, _3401.y, 0.0f, 1.0f);
-	    output_2 = _3401.xxxx;
-	    output_3 = float4(0.0f, 0.0f, _3401.z, 1.0f);
+	    float4 _3300 = g_tColor.Sample(Filter_MinMagMipPoint, input_1.xy);
+	    output_0 = float4(_3300.x, 0.0f, 0.0f, 1.0f);
+	    output_1 = float4(0.0f, _3300.y, 0.0f, 1.0f);
+	    output_2 = _3300.xxxx;
+	    output_3 = float4(0.0f, 0.0f, _3300.z, 1.0f);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

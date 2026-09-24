@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 2;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -77,7 +76,6 @@ PS
 	DynamicCombo( D_WRITE_COC, 0..1 );
 	DynamicCombo( D_DITHER_NOISE, 0..2 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	RenderState(StencilRef, 1);
 	float g_flDitherNoiseAmount < Attribute("DitherNoiseAmount"); UiType(Slider); >;
 	float g_flExposureBiasScaleFactor < Default(1); Attribute("ExposureBiasScaleFactor"); UiType(Slider); >;
@@ -85,12 +83,12 @@ PS
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	Texture2D g_tSceneDepth < Attribute("SceneDepth"); SrgbRead(false); >;
 	Texture2D g_tSource < Attribute("InputTexture"); SrgbRead(false); >;
-	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(ATTRIBUTE[c6be84fa]); >;
+	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(bluenoiseditherparams); >;
 	float4 g_vLensPlane < Attribute("LensPlane"); UiType(VectorText); >;
 	float4 g_vNearFarScaleBias < Attribute("NearFarScaleBias"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1028 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tSource : register(t31, space1);
 	
@@ -110,8 +108,8 @@ PS
 	void MainPs_inner()
 	{
 	    int3 _16480 = int3(uint3(uint2(gl_FragCoord.xy), 0u).xyz);
-	    float4 _3401 = g_tSource.Load(int3(_16480.xy, _16480.z));
-	    output_0 = float4(clamp(_3401.xyz, 0.0f.xxx, 65504.0f.xxx), _3401.w);
+	    float4 _3300 = g_tSource.Load(int3(_16480.xy, _16480.z));
+	    output_0 = float4(clamp(_3300.xyz, 0.0f.xxx, 65504.0f.xxx), _3300.w);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)

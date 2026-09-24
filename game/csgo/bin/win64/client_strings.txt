@@ -12515,7 +12515,6 @@ Ang_Acc
 AngleA
 AngleB
 AngleDiff
-Angles
 AnglesToVector
 Anim Clip
 Anim Events
@@ -16459,7 +16458,6 @@ Chicken.Idle.Pullet
 ChickensObscuredLayer
 Child
 Child %d %s
-Children
 China
 Chinatown
 Chlorine
@@ -17614,7 +17612,6 @@ DeviceConfigurationPanel
 DeviceID
 Dhq0\ri
 DialogVariablesHeader
-Diamond
 Didn't find an entity of class %s at %d\n
 Didnt supply startpos and endpos to Script TraceLine call, failing, setting called to false\n
 Didnt supply startpos, endpos, and ent to Script TraceCollideable call, failing, setting called to false\n
@@ -17626,7 +17623,6 @@ Diffie-Hellman routines
 Digital Signature
 DimBackground
 DimBaseText
-Dimensions
 DirName
 DirName: 
 DirectChallenge_ChooseClanKey
@@ -22304,7 +22300,6 @@ None given.
 None\n
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
-Normalize Vector
 Normalize Vector a
 Normally false. If true, use fast zoom unless explicitly told not to.
 North
@@ -22366,7 +22361,6 @@ O7v%
 O?#7n
 OAuth Token, granted on success
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -22722,7 +22716,6 @@ Order:
 Orientation Warp failed since there is not enough time left to warp or we're past the warp event!
 Orientation warp failed since there wasnt a valid target direction set!
 OrigMat
-Origin
 Original
 Original  attack start time indexes = [%d,%d]\n
 Original Contact Point
@@ -38694,7 +38687,6 @@ rc5-cbc
 rc5-cfb
 rc5-ecb
 rc5-ofb
-rc_default_texture_encode_quality
 read bio not set
 read key
 read past end of file (truncated/corrupt)
@@ -40487,7 +40479,6 @@ suppressed
 suppressed_field
 suppresslipsync
 surface
-surface_properties
 surname
 surrender
 surrendered

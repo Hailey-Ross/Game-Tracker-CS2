@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, psrs, vs
 }
@@ -37,11 +36,11 @@ struct VS_INPUT
 VS
 {
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (532 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionSs;
@@ -92,8 +91,8 @@ PS
 	DynamicCombo( D_BAKED_LIGHTING_FROM_LIGHTMAP, 0..1 );
 	DynamicComboRule( Allow1( D_BAKED_LIGHTING_FROM_PROBE, D_BAKED_LIGHTING_FROM_VERTEX_STREAM, D_BAKED_LIGHTING_FROM_LIGHTMAP ) );
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tColor < Channel(RGB, ArtistDefined(TextureColor), Srgb); OutputFormat(DXT1); SrgbRead(true); >;
 	Texture2D g_tPanoLayer < Attribute("PanoLayer"); SrgbRead(true); >;
 	
@@ -101,7 +100,7 @@ PS
 	CreateInputTexture2D(TextureColor, Srgb, 8, "", "_color", "Color/10", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (612 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tPanoLayer : register(t30, space1);
 	SamplerState g_sAniso : register(s14, space1);

@@ -1,4 +1,4 @@
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompositeMaterial_t
 {
 	// MPropertyGroupName = "Target Material"

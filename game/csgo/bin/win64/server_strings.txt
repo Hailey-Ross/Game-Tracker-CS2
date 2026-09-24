@@ -16035,7 +16035,6 @@ FORCE_DEATH
 FORCE_NOT_USED
 FORM
 FORMAT
-FORWARD
 FOV2D
 FPlayerCanRespawn: pPlayer=0
 FU\n-XP
@@ -17105,7 +17104,6 @@ HeardNoise
 HeightFogDepth
 HeightFogEdgeWidth
 Help
-Helper_PlayVOLine
 Hg>?S
 Hhr+g
 Hide
@@ -17526,7 +17524,6 @@ Inventory
 InventoryDetail
 Inverse Rotate Vector
 Inverse Transform Vector
-Invert
 InvestigateNoise
 Invoke Cell%d [eid=%d] %s%s
 Invoke Lib %s
@@ -18419,7 +18416,6 @@ NONAV
 NONAVNONSOLID
 NON_ZUP
 NON_ZUP_TRANSITION
-NORMAL
 NOT BREAKABLE
 NOT an attr
 NOT networked
@@ -18605,7 +18601,6 @@ Non Repudiation
 Non-entity Aggregate: %s
 Nonce
 None 
-Normalize Vector
 Normalize Vector a
 Not 
 Not After: 
@@ -18651,7 +18646,6 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -19153,7 +19147,6 @@ Orientation warp failed since there wasnt a valid target direction set!
 Oriented Mesh: %d / %d\n
 Oriented Mesh: YieldWait returned false. Falling back to waiting for the next job in the sequence.\n
 OrigMat
-Origin
 Original Contact Point
 OrqK
 Oscillate Forward
@@ -21800,7 +21793,6 @@ Starting Freeze period\n
 StartingAnim
 StartingAnimationLoopMode
 Stat
-State
 State: %s
 State=%s
 StateChanged
@@ -30159,7 +30151,6 @@ nav_select_hull %d is outside the range for this navmesh (with %d generated hull
 nav_set_movable_mesh_dormant_flag <movable mesh id> <0|1>\n
 nav_test_hull_level: Entity '%s'/'%s' of class '%s' at (%0.2f,%0.2f,%0.2f) is intruding into navmesh\n
 nav_unmark; nav_mark ladder %d; nav_warp_to_mark\n
-nav_validate
 navlib
 navlinkclass
 navplace.db
@@ -33120,7 +33111,6 @@ supportedApplicationContext
 suppress_creation_on_death
 suppressed_field
 suppresslipsync
-surface_properties
 surface_type
 surname
 survival

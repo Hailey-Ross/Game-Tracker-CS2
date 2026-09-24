@@ -16,6 +16,6 @@ class CNmGraphDocDataDictionary::Parameter_t
 	CUtlString m_groupName;
 	NmGraphValueType_t m_valueType;
 	// MPropertyAutoExpandSelf
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CGlobalSymbol > m_expectedValues;
 };

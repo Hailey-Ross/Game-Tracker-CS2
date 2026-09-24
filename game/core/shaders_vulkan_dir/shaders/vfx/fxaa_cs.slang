@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -32,7 +31,6 @@ CS
 	DynamicCombo( D_QUALITY, 0..1 );
 	
 	RWTexture2D<float4> DstColor < Attribute("OutputTexture"); >;
-	cbuffer FxaaConstants_t < Attribute("FxaaConstants_t"); >;
 	RWBuffer<float4> g_ColorQueue < Attribute("ColorQueueBuffer"); >;
 	RWBuffer<float4> g_IndirectDispatchParams < Attribute("DispatchParamBuffer"); >;
 	RWBuffer<float4> g_WorkCount < Attribute("WorkCountBuffer"); >;
@@ -42,8 +40,12 @@ CS
 	Texture2D g_tLuma < Attribute("LumaTexture"); SrgbRead(false); >;
 	
 	
+	// Variant parameters
+	RWTexture2D<float4> g_tLuma < Attribute("LumaOutputTexture"); >;
+	Texture2D g_tLuma < Attribute("LumaTexture"); SrgbRead(false); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (6368 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _6;
 	
@@ -114,7 +116,7 @@ CS
 	        float _15085 = 2.0f * _4459;
 	        bool _17147 = ((abs(_4079 - (2.0f * _5396[_16333])) + (abs(_4332 - _15085) * 2.0f)) + abs(_3549 - (2.0f * _5396[_13648]))) >= ((abs((_5396[_13651] + _5396[_13652]) - (2.0f * _5396[_13649])) + (abs(_4366 - _15085) * 2.0f)) + abs((_5396[_16811] + _5396[_13650]) - (2.0f * _5396[_10215])));
 	        uint _5884 = uint(int(abs((_17147 ? _5396[_13649] : _5396[_13648]) - _4459) >= abs((_17147 ? _5396[_10215] : _5396[_16333]) - _4459)));
-	        uint _4421 = (((_3873.y << uint(20)) | (_3873.x << uint(8))) | (uint(clamp((pow(smoothstep(0.0f, 1.0f, abs((((((_4332 + _4366) * 2.0f) + _4079) + _3549) * 0.083333335816860198974609375f) - _4459) / _4466), 2.0f) * FxaaConstants_t_1_m1) * 2.0f, 0.0f, 1.0f) * 254.0f) & 254u)) | _5884;
+	        uint _4421 = (((_3873.y << uint(20)) | (_3873.x << uint(8))) | (uint(saturate((pow(smoothstep(0.0f, 1.0f, abs((((((_4332 + _4366) * 2.0f) + _4079) + _3549) * 0.083333335816860198974609375f) - _4459) / _4466), 2.0f) * FxaaConstants_t_1_m1) * 2.0f) * 254.0f) & 254u)) | _5884;
 	        if (_17147)
 	        {
 	            uint _7294;

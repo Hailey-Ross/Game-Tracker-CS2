@@ -58,7 +58,7 @@ class CAnimGraphDoc_Blend2DNode : public CAnimGraphDoc_Node
 	CUtlVector< CSmartPtr< CAnimGraphDoc_ParamSpan > > m_paramSpans;
 	// MPropertyFriendlyName = "Horizontal Axis"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_blendSourceX;
 	// MPropertySuppressField
 	CUtlString m_paramNameX;
@@ -67,7 +67,7 @@ class CAnimGraphDoc_Blend2DNode : public CAnimGraphDoc_Node
 	AnimParamID m_paramX;
 	// MPropertyFriendlyName = "Vertical Axis"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_blendSourceY;
 	// MPropertySuppressField
 	CUtlString m_paramNameY;

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_OrthoParams < Attribute("ImGuiOrthoParams"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1368 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -98,24 +97,31 @@ VS
 PS
 {
 	
-	int g_ArrayIndex < Attribute("ImGuiTextureArrayIndex"); UiType(Slider); >;
+	int g_ArrayArrayIndex < Attribute("ImGuiTextureArrayIndex"); UiType(Slider); >;
 	float4 g_ChannelMask < Attribute("ImGuiChannelMask"); UiType(VectorText); >;
-	Texture2D g_texture < Attribute("ImGuiTexture"); SrgbRead(false); >;
-	Texture2DArray g_textureArray < Attribute("ImGuiTextureArray"); SrgbRead(false); >;
+	float g_fTex3DZCoord < Attribute("ImGuiTex3DZ"); UiType(Slider); >;
+	int g_nTexType < Attribute("ImGuiTexType"); UiType(Slider); >;
+	Texture2D g_tex2D < Attribute("ImGuiTexture2D"); SrgbRead(false); >;
+	Texture3D g_tex3D < Attribute("ImGuiTexture3D"); SrgbRead(false); >;
+	Texture2DArray g_texArray < Attribute("ImGuiTextureArray"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2476 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
 	    float4 _Globals_1_g_ChannelMask : packoffset(c0);
-	    int _Globals_1_g_ArrayIndex : packoffset(c1);
+	    int _Globals_1_g_nTexType : packoffset(c1);
+	    float _Globals_1_g_fTex3DZCoord : packoffset(c1.y);
+	    int _Globals_1_g_ArrayArrayIndex : packoffset(c1.z);
 	};
 	
-	Texture2D<float4> g_texture : register(t30, space1);
+	Texture2D<float4> g_tex2D : register(t30, space1);
 	SamplerState Filter_MinMagMipLinear : register(s14, space1);
-	Texture2DArray<float4> g_textureArray : register(t31, space1);
+	Texture3D<float4> g_tex3D : register(t31, space1);
 	SamplerState Filter_MinMagMipLinear_1 : register(s15, space1);
+	Texture2DArray<float4> g_texArray : register(t32, space1);
+	SamplerState Filter_MinMagMipLinear_2 : register(s16, space1);
 	
 	static float2 input_0;
 	static float4 input_1;
@@ -134,15 +140,32 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _21760 = g_texture.Sample(Filter_MinMagMipLinear, input_0.xy);
 	    float4 _20655;
-	    if (_Globals_1_g_ArrayIndex != (-1))
+	    if (_Globals_1_g_nTexType == 0)
 	    {
-	        _20655 = g_textureArray.Sample(Filter_MinMagMipLinear_1, float3(input_0.xy, float(_Globals_1_g_ArrayIndex)).xyz);
+	        _20655 = g_tex2D.Sample(Filter_MinMagMipLinear, input_0.xy);
 	    }
 	    else
 	    {
-	        _20655 = _21760;
+	        float4 _12502;
+	        if (_Globals_1_g_nTexType == 1)
+	        {
+	            _12502 = g_tex3D.Sample(Filter_MinMagMipLinear_1, float3(input_0.xy, _Globals_1_g_fTex3DZCoord).xyz);
+	        }
+	        else
+	        {
+	            float4 _12501;
+	            if (_Globals_1_g_nTexType == 2)
+	            {
+	                _12501 = g_texArray.Sample(Filter_MinMagMipLinear_2, float3(input_0.xy, float(_Globals_1_g_ArrayArrayIndex)).xyz);
+	            }
+	            else
+	            {
+	                _12501 = 0.0f.xxxx;
+	            }
+	            _12502 = _12501;
+	        }
+	        _20655 = _12502;
 	    }
 	    float3 _18058 = _20655.xyz * 0.077399380505084991455078125f.xxx;
 	    float3 _7676 = pow((_20655.xyz * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);

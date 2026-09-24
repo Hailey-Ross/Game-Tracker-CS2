@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -42,18 +41,18 @@ VS
 	float4 g_OrthoParams < Attribute("ImGuiOrthoParams"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (628 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 vPositionPs;
 	static float2 vTexCoord;
+	static float2 vPositionPs;
 	static float2 output_0;
 	static float4 output_1;
 	
 	struct VS_INPUT
 	{
-	    float2 vTexCoord : TEXCOORD0;
-	    float2 vPositionPs : TEXCOORD1;
+	    float2 vPositionPs : TEXCOORD0;
+	    float2 vTexCoord : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -65,17 +64,17 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _18022 = float4(vTexCoord.xy, 0.0f, 1.0f);
-	    output_0 = vPositionPs;
+	    float4 _18022 = float4(vPositionPs.xy, 0.0f, 1.0f);
+	    output_0 = vTexCoord;
 	    output_1 = 1.0f.xxxx;
-	    _18022.y = -vTexCoord.y;
+	    _18022.y = -vPositionPs.y;
 	    gl_Position = _18022;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vPositionPs = stage_input.vPositionPs;
 	    vTexCoord = stage_input.vTexCoord;
+	    vPositionPs = stage_input.vPositionPs;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -101,11 +100,13 @@ PS
 	Texture2D g_tDepthTexture < Attribute("InputTexture"); SrgbRead(false); >;
 	
 	
-	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3140 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// Variant parameters
 	
-	static const float3 _2728[3] = { float3(1.0f, 0.0f, 0.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 0.0f, 1.0f) };
-	static const float3 _2729[3] = { float3(1.0f, 0.0f, 0.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 0.0f, 1.0f) };
+	// Source 2 Viewer - https://valveresourceformat.github.io
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
+	
+	static const float3 _2712[3] = { float3(1.0f, 0.0f, 0.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 0.0f, 1.0f) };
+	static const float3 _2713[3] = { float3(1.0f, 0.0f, 0.0f), float3(0.0f, 1.0f, 0.0f), float3(0.0f, 0.0f, 1.0f) };
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -153,7 +154,7 @@ PS
 	                }
 	                if (frac(g_tDepthTexture.SampleLevel(AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagMipPoint, input_0.xy, float(_13039)).x) > 0.0f)
 	                {
-	                    _22743 = _2728[_13039 - 3 * (_13039 / 3)];
+	                    _22743 = _2712[_13039 - 3 * (_13039 / 3)];
 	                    break;
 	                }
 	                _7603 = _13039 - 1;
@@ -178,7 +179,7 @@ PS
 	                    {
 	                        break;
 	                    }
-	                    _5949 = _13155 + (_2729[_16208 - 3 * (_16208 / 3)] * frac(g_tDepthTexture.SampleLevel(AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagMipPoint, input_0.xy, float(_16208)).x * 32.0f));
+	                    _5949 = _13155 + (_2713[_16208 - 3 * (_16208 / 3)] * frac(g_tDepthTexture.SampleLevel(AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagMipPoint, input_0.xy, float(_16208)).x * 32.0f));
 	                    _18752 = _16208 + 1;
 	                    _13155 = _5949;
 	                    _16208 = _18752;

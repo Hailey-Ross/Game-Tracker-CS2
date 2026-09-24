@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (432 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -74,12 +73,11 @@ VS
 PS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	Texture2D g_tInputDepth < Attribute("InputDepth"); SrgbRead(false); >;
 	Texture2D g_tInputNormal < Attribute("InputNormal"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2284 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float3 _3;
 	

@@ -825,7 +825,6 @@ Neg R%d <- -R%d
 Neq R%d <- R%d != R%d
 No DATA block for resource\n
 NodeID %d port '%s' called from C%d:I%d
-Normalize Vector
 Normalize Vector a
 Not R%d <- !R%d
 Not safe to 'new' this class due to alignment requirements
@@ -841,7 +840,6 @@ OnOut2
 Only wrote %d (of %d) values when saving map!
 Optional. Type 'Any'. An associated value, e.g. the Entity Handle which is responsible for this Cursor. The Tag is defined by the unique combination of Name and Value.
 Or R%d <- R%d || R%d
-Origin
 Out1
 Out2
 Outflow List
@@ -888,7 +886,6 @@ Reference Color
 Reference Flags
 Register Test Checkpoint
 RegisterChoice_CPulseTestFuncs_LibraryA_PrintStringWithLeafSuggestions
-Regular
 Reinterpret Instance %s R%d <- %s R%d
 Reloading
 Remap Clamped Float
@@ -1424,7 +1421,6 @@ stringmap
 struct
 subclass_choice
 suggestions
-surface_properties
 system_state
 tagValue
 tag_list

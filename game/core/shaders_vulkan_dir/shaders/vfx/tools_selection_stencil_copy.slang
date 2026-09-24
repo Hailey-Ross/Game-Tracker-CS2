@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -76,7 +75,7 @@ PS
 	DynamicCombo( D_COLOR_CHANNEL, 0..3 );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (264 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 output_0;
 	

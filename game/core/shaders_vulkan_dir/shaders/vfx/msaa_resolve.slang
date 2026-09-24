@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 2;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -78,7 +77,6 @@ PS
 	DynamicCombo( D_WRITE_COC, 0..1 );
 	DynamicCombo( D_DITHER_NOISE, 0..2 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	RenderState(StencilRef, 1);
 	float g_flDitherNoiseAmount < Attribute("DitherNoiseAmount"); UiType(Slider); >;
 	float g_flExposureBiasScaleFactor < Default(1); Attribute("ExposureBiasScaleFactor"); UiType(Slider); >;
@@ -86,13 +84,13 @@ PS
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	Texture2D g_tSceneDepth < Attribute("SceneDepth"); SrgbRead(false); >;
 	Texture2D g_tSourceMsaa < Attribute("InputTexture"); SrgbRead(false); >;
-	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(ATTRIBUTE[c6be84fa]); >;
+	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(bluenoiseditherparams); >;
 	float4 g_vLensPlane < Attribute("LensPlane"); UiType(VectorText); >;
 	float4 g_vNearFarScaleBias < Attribute("NearFarScaleBias"); UiType(VectorText); >;
 	float2 g_vSourceOffset < Attribute("SourceOffset"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1724 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _3;
 	
@@ -129,13 +127,13 @@ PS
 	        {
 	            break;
 	        }
-	        float4 _3401 = g_tSourceMsaa.Load(int2((gl_FragCoord.xy - _Globals_1_g_vSourceOffset.xy).xy), _16208);
-	        float3 _12039 = clamp(_3401.xyz, 0.0f.xxx, 65504.0f.xxx);
+	        float4 _3300 = g_tSourceMsaa.Load(int2((gl_FragCoord.xy - _Globals_1_g_vSourceOffset.xy).xy), _16208);
+	        float3 _12039 = clamp(_3300.xyz, 0.0f.xxx, 65504.0f.xxx);
 	        float4 _13514;
 	        _13514.x = _12039.x;
 	        _13514.y = _12039.y;
 	        _13514.z = _12039.z;
-	        _10794 = _13155.xyzw + float4(_13514.xyz * 0.5f, _3401.w * 0.5f).xyzw;
+	        _10794 = _13155.xyzw + float4(_13514.xyz * 0.5f, _3300.w * 0.5f).xyzw;
 	        _9913 = _16208 + 1;
 	        _13155 = _10794;
 	        _16208 = _9913;

@@ -14,6 +14,6 @@ class NmContactAudioInfo_t
 	// MPropertyAutoRebuildOnChange
 	CGlobalSymbol m_audioTypeID;
 	// MPropertyFriendlyName = "Audio Soundevent Override"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CGlobalSymbol m_soundeventOverrideID;
 };

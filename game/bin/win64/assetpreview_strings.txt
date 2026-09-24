@@ -29040,7 +29040,6 @@ Angle Streams In Radians
 Angle Threshold
 AngleA
 AngleB
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -31864,7 +31863,6 @@ COPRODUCT
 COPTIC 
 COPY?
 COPYRIGHT 
-CORNER
 CORNER 
 CORNERS
 CORNISH 
@@ -32663,7 +32661,6 @@ Child of a prefab must be a clone of a source node
 ChildDocument
 ChildDocumentList
 ChildDocumentViewer
-Children
 Chile
 Chile:Continental
 Chile:EasterIsland
@@ -32708,7 +32705,6 @@ Clear Unselected to Zero
 Clear auth, redirects scheme from %s to %s
 Clear auth, redirects to port from %u to %u
 Clear selection of mesh vertices, edges, or faces.
-Clear thumbnail cache
 ClearCache
 ClearInputHistory
 Clears and populates the list from the current model
@@ -33685,7 +33681,6 @@ DIAGONAL
 DIALECT-
 DIALYTIKA
 DIALYTIKA 
-DIAMOND
 DIAMOND 
 DIAMONDS
 DIARGONb(
@@ -34060,7 +34055,6 @@ Default (No Name)
 Default (No RGB Tint)
 Default Colors
 Default Gravity Scale
-Default Material Group
 Default Root Bone Name
 Default View
 Default to old body ordering for now
@@ -34165,7 +34159,6 @@ Digit
 Digit-Tone
 Diii
 Dilate pixels at UV island edges.
-Dimensions
 Dingbats
 Diq49xq
 Directory listing not yet implemented on this platform.
@@ -36166,7 +36159,6 @@ FIGURE
 FIGURE 
 FIGURE-
 FILE 
-FILL
 FILL 
 FILLED 
 FILLER
@@ -36283,7 +36275,6 @@ FORTUNEOCCULTATIONLUNAR ECLIPSEHAUMEAMAKEMAKEGONGGONGQUAOARORCUS
 FORTY
 FORTY 
 FORTY-
-FORWARD
 FORWARD 
 FOSTERING
 FOUR
@@ -36542,7 +36533,6 @@ Failure sending QUIT command: %s
 Failure when receiving data from the peer
 Failure writing output to destination, passed %zu returned %zd
 Falkland
-Falloff
 Far Field Only
 Farsi_Yeh
 Fast Drag
@@ -43553,7 +43543,6 @@ NoonMarkerNarrow
 Norfolk Standard Time
 Normal Attribute Simplification Weight
 Normal of the removed island needs to be ~ this close to the supporting faces behind them
-Normalize Vector
 Normalize Vector a
 North Asia East Standard Time
 North Asia Standard Time
@@ -44334,7 +44323,6 @@ Orient Parent Only
 Orient Rotation to 2D Direction
 Orient toward child bone.
 Orient toward parent bone.
-Origin
 Original Bone Name
 Original bone name cannot be empty
 Original name of the bone
@@ -47732,7 +47720,6 @@ SEEN
 SEEN 
 SEENU
 SEEV
-SEGMENT
 SEGMENTED 
 SEGNO(
 SEGOL
@@ -48750,7 +48737,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection [%d nodes]
 Selection was empty; no mesh components deleted.
@@ -48797,7 +48783,6 @@ Set specific model flags.  This node is rarely used
 Set the number of elements in the array.
 Set the target height for the morph texture.  It will automatically grow if necessary.  This is the starting size for the best fit atlas algorithm, setting it close to the best atlas size will speed up compilation if best fit atlas is true.
 Set the target width for the morph texture.  It will automatically grow if necessary.  This is the starting size for the best fit atlas algorithm, setting it close to the best atlas size will speed up compilation if best fit atlas is true.
-Set to true to revert to old behavior
 Set true if this is a break piece the player should be able to pickup.
 Set-Cookie:
 SetAlphaEditFromSlider
@@ -49277,7 +49262,6 @@ Suppress warnings regarding the joint weight count per vertex exceeding allowabl
 Suppress warnings when bodygroups specify meshes that do not exist. This is useful if the bodygroup definition is in a shared prefab and missing warnings are expected or benign.
 Suppressed Shapes
 Surface Bias
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 Suriname
@@ -63444,15 +63428,9 @@ asset_preview_thumbnail
 asset_preview_thumbnail_format
 asset_specific_keys_source
 asset_thumbnail
-asset_thumbnails_server_download
-asset_thumbnails_server_url
-asset_thumbnails_stats_flush_interval
-asset_thumbnails_timeout_sec
 assetpreview
 assetpreview.dll
 assetsystem
-assetsystem_clear_thumbnail_cache
-assetthumbnail_old_fingerprint_style
 assign_a
 assign_b
 assign_g
@@ -80288,9 +80266,6 @@ personNames
 personNamesDefaults
 peru
 pervertexlighting
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 petabyte
 pf[0
 pfaN
@@ -81352,7 +81327,6 @@ r^s.w
 r^tn{n}
 r_dgY
 r_rFs
-r_renderdoc_capture_thumbnail_rendering
 r`L9
 raHPAaDAaAUa
 rable?
@@ -82988,7 +82962,6 @@ suppressing chunked transfer encoding on connection using HTTP version 2 or high
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 suri
 surnameFirst
@@ -83637,7 +83610,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools.reference_notrace
 tools/colors/shared_colors.txt
 tools/images/common/blank_sm.png
@@ -83936,7 +83908,6 @@ tools/keybindings/shared_tool_key_bindings.txt
 toolsMaterial
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
 tools_thumbnail_cache.sqlite3
 toolscene
 toolscenenodes

@@ -23,7 +23,7 @@
 // MPropertyFriendlyName = "Play VO Line"
 // MPropertyDescription = "Starts a sound event on a speaker, and waits for its completion. Keywords: Voice Over, Choreo"
 // MPulseEditorHeaderIcon = "tools/images/pulse_editor/sequence.png"
-// MPulseEditorHeaderHelper (UNKNOWN FOR PARSER)
+// MPulseEditorHeaderHelper = "Helper_PlayVOLine"
 class CPulseCell_Outflow_PlayVOLine : public CPulseCell_BaseYieldingInflow
 {
 	CPulse_ResumePoint m_OnFinished;

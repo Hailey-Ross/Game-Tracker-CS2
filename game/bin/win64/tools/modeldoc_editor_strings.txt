@@ -15331,7 +15331,6 @@ Angle of the bone in the model's bind pose
 Angle of the bone relative to its parent bone
 AngleA
 AngleB
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -17434,7 +17433,6 @@ Child of a prefab must be a clone of a source node
 ChildDocument
 ChildDocumentList
 ChildDocumentViewer
-Children
 Choice #%d
 Choice #0 (default)
 Choice A
@@ -18175,7 +18173,6 @@ Default ID
 Default LOD (Automatic)
 Default Layout
 Default Mask
-Default Material Group
 Default Mesh Visibility (Honor Bodygroups)
 Default Root Bone Name
 Default to old body ordering for now
@@ -18263,7 +18260,6 @@ Didn't expect '=' for non-flags non-choices variable %s
 Different Indices On Mesh vs Bind Pose For "%s" Added Anchor Bone
 Different Indices On Mesh vs Bind Pose For "%s" Bone
 Dilate pixels at UV island edges.
-Dimensions
 Direction (Character)
 Directory error
 Disable Compression
@@ -19055,7 +19051,6 @@ Failed to transfer deltas from '%s'
 Failed to unserialize document data from kv3 data:\n%s
 Failed to write file: %s\n
 Fallback
-Falloff
 False Value
 False: %.3f
 False: %s
@@ -19387,7 +19382,6 @@ Gesture Type
 Get Pose From Game
 Get Relative Transform
 Get all the combination shapes from the model and populate the combination shape list
-Get physics surface property of models.
 GetArrayElement R%d <- R%d[ R%d ]
 GetAsyncKeyState
 GetBlackboardReference R%d <- BR%d (%s)
@@ -21313,7 +21307,6 @@ Nonstandard tile width %d, convert file
 Normal Attribute Simplification Weight
 Normal Size:
 Normal of the removed island needs to be ~ this close to the supporting faces behind them
-Normalize Vector
 Normalize Vector a
 Not R%d <- !R%d
 Not Set
@@ -21979,7 +21972,6 @@ Orient toward parent bone.
 Orientation Score Weight
 Orientation Warp failed since there is not enough time left to warp or we're past the warp event!
 Orientation warp failed since there wasnt a valid target direction set!
-Origin
 Origin of the bone in the model's bind pose
 Origin of the bone relative to its parent bone
 Original Bone Name
@@ -23262,7 +23254,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection [%d nodes]
 Selection contains one or more unnamed meshes, all mesh must be named.
@@ -23752,7 +23743,6 @@ Start a timer with the specified duration, fire the OnInterval output
 Start frame :: %d > End frame :: %d, will result in an empty animation
 StartDebugging
 StartSendingCameraTo
-State
 State Completed
 State Completed Conditions are only allowed to be connected to a single transition
 State Events
@@ -23854,7 +23844,6 @@ Suppressed Shapes
 Surface Bias
 Surface Bias 
 Surface Normals
-Surface Property
 Surface Property Override
 Surface property '%s'\nDensity: %.1f [kg/m^3]
 Surface property change detected - mass display updated
@@ -24519,7 +24508,6 @@ UpdatePlayStopButton
 UpdatePropertyEditorFromDomain
 UpdateSliderFromEdit
 UpdateVersionControlSubmenu
-Updates physics surface property of models from default to the ones associated in their material files.
 Updating graph references...
 Updating window size to preserve settings for maximized window:\n
 Upload
@@ -25866,8 +25854,6 @@ channel_random
 channel_skip
 channel_unchanged
 channel_white
-check_collision_saveload
-check_collision_saveload_dir
 check_consistent_eyes
 check_consistent_materials
 check_has_activity
@@ -26755,7 +26741,6 @@ gesture_rightarmonly
 gesture_spine_only
 gesture_type
 getRelativeTransform
-gizmo_rot_max_dist
 global
 global_default_material
 global_skeleton_transform
@@ -26803,12 +26788,6 @@ hair_count
 halfEdges %d,%d faces %d,%d angle %.1f deg.
 half_angle_degrees
 halfgridsnap
-hammer_gizmo_2dscale
-hammer_gizmo_axis_length
-hammer_gizmo_axis_scale
-hammer_gizmo_compute_matrix
-hammer_gizmo_line_thickness
-hammer_gizmo_rot_inflate
 hand_pose
 hard_lock
 has_angle_constraint
@@ -27587,9 +27566,6 @@ modeldoc_editor.dll
 modeldoc_editor_preview_model
 modeldoc_export
 modeldoc_prefab_asset
-modeldoc_rotate_max
-modeldoc_rotate_power
-modeldoc_rotate_scale
 modeldoc_utils
 modeldoc_wizard_export_anim
 modeldocattr
@@ -27913,11 +27889,6 @@ permissive
 persona_selector
 pervertexlighting
 pet_effigy
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
-phys_get_model_materials
-phys_set_model_materials
 physicsHideSourceMesh
 physicsHighlightSilhouette
 physicsSelfCollision
@@ -28045,7 +28016,6 @@ propattr_flatten_stretch_factor
 propattr_force_readonly
 propattr_stretch_editor_into_label_column
 propdataname
-proped_attr_logging
 prune
 pseudo-
 public.vsnd_files
@@ -28392,9 +28362,6 @@ snapshotImageSize
 snapshot_local_bone
 snapshot_max_verts
 snapshot_original
-snd_event_browser_default_stack
-snd_event_browser_default_vsnd_field
-snd_event_browser_focus_events
 soft_hinge_link
 solid
 solidclass
@@ -28508,7 +28475,6 @@ suppressed_field
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 surfacepropertyeditor
 suspender
@@ -28613,7 +28579,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools code
 tools.reference_notrace
 tools/colors/shared_colors.txt
@@ -29129,8 +29094,6 @@ toolsMaterial
 toolsVisMode
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
-toolscene_gizmo_algorithm
 toolscenevismodes.txt
 tormentor
 torsion_spring

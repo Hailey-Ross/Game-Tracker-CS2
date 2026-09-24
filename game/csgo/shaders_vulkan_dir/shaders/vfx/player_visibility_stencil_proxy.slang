@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -34,16 +33,14 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer StencilProxyConstantBuffer_t < Attribute("StencilProxyConstantBuffer_t"); >;
 	float g_flProxyScale < Default(1); Attribute("g_flProxyScale"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1952 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	struct _947
+	struct _791
 	{
 	    column_major float4x3 _m0[32];
 	};
@@ -55,7 +52,7 @@ VS
 	
 	cbuffer StencilProxyConstantBuffer_t : register(b3, space0)
 	{
-	    _947 StencilProxyConstantBuffer_t_1_m0 : packoffset(c0);
+	    _791 StencilProxyConstantBuffer_t_1_m0 : packoffset(c0);
 	};
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space0)
@@ -116,11 +113,11 @@ PS
 {
 	
 	RenderState(StencilRef, 1);
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (280 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 output_0;
 	

@@ -3194,7 +3194,6 @@ Check if the cursor already has the given tag.
 CheckBox
 CheckState
 ChildOf
-Children
 Choose Color
 Choose Color - "%1"
 Choose Material
@@ -3771,7 +3770,6 @@ Invalid tile size x :
 Invalid tile size y : 
 Inverse Rotate Vector
 Inverse Transform Vector
-Invert
 Invoke Cell%d [eid=%d] %s%s
 Invoke Lib %s
 InvokeCommand
@@ -4064,7 +4062,6 @@ NodeID %d port '%s' called from C%d:I%d
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
 Normal Map Conversion
-Normalize Vector
 Normalize Vector a
 Not R%d <- !R%d
 Not a TIFF file, bad magic number %d (0x%x)
@@ -4305,7 +4302,6 @@ OpenVConsole
 Optional. Type 'Any'. An associated value, e.g. the Entity Handle which is responsible for this Cursor. The Tag is defined by the unique combination of Name and Value.
 Options...
 Or R%d <- R%d || R%d
-Origin
 Original
 Original Size
 Original: %1x%2 Mip: %3
@@ -6210,9 +6206,6 @@ p\n?dragLeaveEvent@QAbstractItemView@@MEAAXPEAVQDragLeaveEvent@@@Z
 p\v?event@QWidget@@MEAA_NPEAVQEvent@@@Z
 p`?type@QStandardItem@@UEBAHXZ
 paste
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 pickedColor
 pixelAspectRatio
 polymorphic_arg
@@ -6347,7 +6340,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools/colors/shared_colors.txt
 tools/images/pulse_editor/cursor_kill.png
 tools/images/pulse_editor/kill_cursor_with_tag.png

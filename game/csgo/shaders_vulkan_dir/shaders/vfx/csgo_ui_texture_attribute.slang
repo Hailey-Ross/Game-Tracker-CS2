@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1072 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -108,19 +107,19 @@ PS
 	Texture2D g_tColor < Attribute("InputColor"); SrgbRead(true); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (820 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint : register(s14, space1);
 	
-	static float2 input_0;
-	static float4 input_1;
+	static float2 input_1;
+	static float4 input_0;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float4 input_0 : TEXCOORD0;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -130,13 +129,13 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = input_1.xyzw * g_tColor.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, (input_0.xy - 0.5f.xx).xy);
+	    output_0 = input_0.xyzw * g_tColor.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, (input_1.xy - 0.5f.xx).xy);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

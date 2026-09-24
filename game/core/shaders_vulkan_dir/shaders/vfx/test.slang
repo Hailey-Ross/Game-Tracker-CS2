@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: gs, ms, ps, vs
 }
@@ -39,7 +38,7 @@ MS
 	ExternalDescriptorSet ExtTestDescSet < Source(ExternalDescSet); Attribute("ExtTestDescSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2492 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	// Dynamic combos: D_MS_TEST
 	
 	static float _4;
@@ -115,7 +114,7 @@ VS
 	DynamicCombo( D_MS_TEST, 0, Sys( 0 ) );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (700 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionOs;
@@ -171,7 +170,6 @@ GS
 	DynamicCombo( D_GS_TEST, 0..1 );
 	DynamicCombo( D_MS_TEST, 0..1 );
 	
-	cbuffer ExternalTestCB1 < Attribute("ExternalTestCB1"); >;
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// Unsupported shader stage.
@@ -179,7 +177,7 @@ GS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1756 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	// Static combos: S_GS_FORCE_ENABLE
 	// Dynamic combos: D_GS_TEST
 	
@@ -252,10 +250,10 @@ PS
 	
 	RenderState(DepthBias, g_nValue);
 	ExternalDescriptorSet ExtTestDescSet < Source(ExternalDescSet); Attribute("ExtTestDescSet"); >;
-	cbuffer ExternalTestCB1 < Attribute("ExternalTestCB1"); >;
-	cbuffer ExternalTestCB2 < Source(ExternalDescSet); Attribute("ExternalTestCB2"); >;
 	RenderState(FillMode, Wireframe);
 	float g_flPinch < Default(1); UiType(Slider); >;
+	[[vk::constant_id(1)]] int g_nGPUDeviceID < UiType(Slider); Expression(S_GPU_DEVICE_ID); >;
+	[[vk::constant_id(0)]] int g_nGPUVendorID < UiType(Slider); Expression(S_GPU_VENDOR_ID); >;
 	int g_nValue < UiType(Slider); >;
 	Texture2D g_tColor < Channel(RGB, Box(TextureColor), Srgb); OutputFormat(DXT1); SrgbRead(true); >;
 	float3 g_vModulationColor2 < Default(0); UiType(Color); >;
@@ -270,10 +268,15 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2608 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_buffer_reference2 : require
+	
+	layout(constant_id = 0) const uint g_nGPUVendorID = 0u;
+	const bool _2 = (g_nGPUVendorID == 4318u);
+	layout(constant_id = 1) const uint g_nGPUDeviceID = 0u;
+	const bool _3 = (g_nGPUDeviceID == 9988u);
 	
 	struct _1022
 	{
@@ -299,12 +302,12 @@ PS
 	layout(set = 1, binding = 30) uniform texture2D g_tColor;
 	layout(set = 1, binding = 14) uniform sampler Filter_MinMagMipLinear_MaxAniso_1_MipBias_0;
 	
-	layout(location = 1) in vec2 input_0;
+	layout(location = 1) in vec2 input_1;
 	layout(location = 0) out vec4 output_0;
 	
 	void main()
 	{
-	    vec2 _10937 = (input_0.xy * 2.0) - vec2(1.0);
+	    vec2 _10937 = (input_1.xy * 2.0) - vec2(1.0);
 	    vec2 _4360 = _10937;
 	    vec2 _15983 = _10937.xy;
 	    vec2 _14526 = normalize(_15983) * pow(length(_15983), _Globals_.g_flPinch);
@@ -314,18 +317,39 @@ PS
 	    vec2 _23713 = (_14835.xy * 0.5) + vec2(0.5);
 	    _4360.x = _23713.x;
 	    _4360.y = _23713.y;
-	    vec4 _3401 = texture(sampler2D(g_tColor, Filter_MinMagMipLinear_MaxAniso_1_MipBias_0), _4360.xy);
-	    vec4 _20544 = _3401;
-	    vec3 _14381 = _3401.xyz * ((ExternalTestCB1._m0 * _4179._m0.x) + _4179._m0.y);
-	    _20544.x = _14381.x;
-	    _20544.y = _14381.y;
-	    _20544.z = _14381.z;
-	    vec4 _13372 = _20544;
+	    vec4 _3300 = texture(sampler2D(g_tColor, Filter_MinMagMipLinear_MaxAniso_1_MipBias_0), _4360.xy);
+	    vec4 _20506 = _3300;
+	    vec3 _14381 = _3300.xyz * ((ExternalTestCB1._m0 * _4179._m0.x) + _4179._m0.y);
+	    _20506.x = _14381.x;
+	    _20506.y = _14381.y;
+	    _20506.z = _14381.z;
+	    vec4 _13372 = _20506;
 	    vec3 _25167 = _13372.xyz * (ExternalTestCB1._m1.xyz * _Globals_.g_vModulationColor3.xyz);
-	    _20544.x = _25167.x;
-	    _20544.y = _25167.y;
-	    _20544.z = _25167.z;
-	    output_0 = _20544;
+	    _20506.x = _25167.x;
+	    _20506.y = _25167.y;
+	    _20506.z = _25167.z;
+	    if (_2)
+	    {
+	        vec3 _5319 = vec3(1.0, 0.0, 0.0);
+	        if (_3)
+	        {
+	            _5319.z = 1.0;
+	        }
+	        vec4 _14033 = _20506;
+	        vec3 _12910 = _14033.xyz * _5319;
+	        _20506.x = _12910.x;
+	        _20506.y = _12910.y;
+	        _20506.z = _12910.z;
+	    }
+	    else
+	    {
+	        vec4 _15401 = _20506;
+	        vec3 _12682 = _15401.xyz * vec3(0.0, 1.0, 0.0);
+	        _20506.x = _12682.x;
+	        _20506.y = _12682.y;
+	        _20506.z = _12682.z;
+	    }
+	    output_0 = _20506;
 	}
 	
 	

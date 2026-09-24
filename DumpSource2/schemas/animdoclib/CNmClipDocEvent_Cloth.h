@@ -14,16 +14,16 @@ class CNmClipDocEvent_Cloth : public CNmClipDocEvent
 {
 	// MPropertyAutoRebuildOnChange
 	CNmClothEvent::Type_t m_type;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flStiffness;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flSpeedIn;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flSpeedOut;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flLengthSeconds;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_vertexSetName;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_effectName;
 };

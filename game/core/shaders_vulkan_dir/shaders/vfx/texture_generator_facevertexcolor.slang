@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,17 +36,17 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (704 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 vColor;
-	static float4 vTexCoord;
+	static float2 vTexCoord;
+	static float4 vColor;
 	static float4 output_0;
 	
 	struct VS_INPUT
 	{
-	    float2 vColor : TEXCOORD0;
-	    float4 vTexCoord : TEXCOORD1;
+	    float2 vTexCoord : TEXCOORD0;
+	    float4 vColor : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -58,17 +57,17 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float2 _7080 = (float2(vColor.x, 1.0f - vColor.y) - 0.5f.xx) * 2.0f;
+	    float2 _7080 = (float2(vTexCoord.x, 1.0f - vTexCoord.y) - 0.5f.xx) * 2.0f;
 	    float4 _14456 = float4(_7080, 1.0f, 1.0f);
-	    output_0 = vTexCoord;
+	    output_0 = vColor;
 	    _14456.y = -_7080.y;
 	    gl_Position = _14456;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vColor = stage_input.vColor;
 	    vTexCoord = stage_input.vTexCoord;
+	    vColor = stage_input.vColor;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -85,7 +84,7 @@ PS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (288 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 input_0;
 	static float4 output_0;

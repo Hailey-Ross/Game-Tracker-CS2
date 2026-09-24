@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -38,7 +37,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (924 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -98,8 +97,8 @@ PS
 {
 	
 	float g_flNormalScale < Default(1); Range(0, 32); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	int g_nHeightChannel < Range(0, 3); UiType(Slider); >;
 	Texture2D g_tHeight < Channel(RGB, None(TextureHeight), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tNormal < Channel(RGB, None(TextureNormal), Linear); OutputFormat(BC7); SrgbRead(false); >;
@@ -109,7 +108,7 @@ PS
 	CreateInputTexture2D(TextureNormal, Linear, 8, "", "", "Options", Default4(0.5, 0.5, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3308 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

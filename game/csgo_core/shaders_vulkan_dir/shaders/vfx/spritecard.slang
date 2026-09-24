@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ FEATURES
 	Feature( F_OPAQUE, 0..1, "" );
 	Feature( F_SELF_ILLUM_PER_PARTICLE, 0..1, "" );
 	FeatureRule( Allow1( F_REVERSE_DEPTH, F_DISABLE_DEPTHTEST ), "Cannot disable depth test and use reverse depth test at the same time" );
-	FeatureRule( Requires( F_MOTION_VECTORS, F_TEXTURE_LAYERS=0, F_TEXTURE_LAYERS=1, F_TEXTURE_LAYERS=2 ), "Maximum cbuffer allowances for motion + layers is 2 layers and 1 motion" );
+	FeatureRule( Requires( F_MOTION_VECTORS, F_TEXTURE_LAYERS==0, F_TEXTURE_LAYERS==1, F_TEXTURE_LAYERS==2 ), "Maximum cbuffer allowances for motion + layers is 2 layers and 1 motion" );
 	FeatureRule( Allow1( F_PARTICLE_SHADOWS, F_REVERSE_DEPTH ), "Particle shadows and Reverse Depth are incompatible" );
 	FeatureRule( Allow1( F_PARTICLE_SHADOWS, F_DISABLE_DEPTHTEST ), "Particle shadows and Disable Depth Test are incompatible" );
 	FeatureRule( Allow1( F_PARTICLE_SHADOWS, F_DRAW_AS_TRAIL ), "Particle shadows and Trails are incompatible" );
@@ -67,29 +66,23 @@ VS
 	StaticComboRule( Allow1( S_MODE_GBUFFER, S_PARTICLE_SHADOWS ) );
 	StaticComboRule( Allow1( S_MODE_TOOLS_WIREFRAME, S_PARTICLE_SHADOWS ) );
 	StaticComboRule( Allow1( S_MODE_TOOLS_SHADING_COMPLEXITY, S_PARTICLE_SHADOWS ) );
-	StaticComboRule( Requires( S_MODE_TOOLS_VIS, S_TEXTURE_LAYERS=0, S_TEXTURE_LAYERS=1, S_TEXTURE_LAYERS=2, S_TEXTURE_LAYERS=3 ) );
-	StaticComboRule( Requires( S_MOTION_VECTORS, S_TEXTURE_LAYERS=0, S_TEXTURE_LAYERS=1, S_TEXTURE_LAYERS=2 ) );
+	StaticComboRule( Requires( S_MODE_TOOLS_VIS, S_TEXTURE_LAYERS==0, S_TEXTURE_LAYERS==1, S_TEXTURE_LAYERS==2, S_TEXTURE_LAYERS==3 ) );
+	StaticComboRule( Requires( S_MOTION_VECTORS, S_TEXTURE_LAYERS==0, S_TEXTURE_LAYERS==1, S_TEXTURE_LAYERS==2 ) );
 	StaticComboRule( Allow1( S_PARTICLE_SHADOWS, S_DRAW_AS_TRAIL ) );
 	DynamicCombo( D_QUAD_OVERDRAW, 0..1 );
 	DynamicCombo( D_SUPPORT_FRAME_CROP, 0..1 );
 	DynamicCombo( D_BAKED_LIGHTING_FROM_PROBE, 0..1 );
 	DynamicCombo( D_PANORAMA_PARTICLE, 0..1 );
 	DynamicComboRule( Requires( D_QUAD_OVERDRAW, S_MODE_TOOLS_SHADING_COMPLEXITY ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_QUAD_OVERDRAW=0 ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_BAKED_LIGHTING_FROM_PROBE=0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_QUAD_OVERDRAW==0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_BAKED_LIGHTING_FROM_PROBE==0 ) );
 	DynamicComboRule( Allow1( S_MODE_GBUFFER, D_PANORAMA_PARTICLE ) );
 	DynamicComboRule( Allow1( S_PARTICLE_SHADOWS, D_PANORAMA_PARTICLE ) );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightProbeVolumeConstantBuffer_t < Attribute("PerViewLightProbeVolumeConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
-	cbuffer SpriteCardPixelControls_t < Attribute("SpriteCardPixelControls_t"); >;
-	cbuffer SpritecardVertexControls_t < Attribute("SpritecardVertexControls_t"); >;
-	StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
-	StructuredBuffer g_CullBits < Attribute("CullBits"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
+	[[layer_constant]] StructuredBuffer g_CullBits < Attribute("CullBits"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture3D g_tLPV_Irradiance < Attribute("LPV_Irradiance"); SrgbRead(false); >;
 	Texture3D g_tLPV_Shadows < Attribute("LPV_DirectShadows"); SrgbRead(false); >;
 	Texture3D g_tLightCookieTexture < Attribute("LightCookieTexture"); SrgbRead(true); >;
@@ -97,8 +90,10 @@ VS
 	Texture2D g_tShadowDepthBufferDepth < Attribute("ShadowDepthBuffer"); SrgbRead(false); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (79516 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1428
 	{
@@ -204,18 +199,18 @@ VS
 	SamplerState g_sCookieSampler : register(s26, space0);
 	SamplerComparisonState g_tShadowDepthBufferCmpSampler : register(s27, space0);
 	Texture2D<float4> g_tShadowDepthBufferDepth : register(t36, space0);
-	Texture3D<float4> g_tLightCookieTexture : register(t34, space0);
 	SamplerState g_sTrilinearWrap : register(s20, space0);
+	Texture3D<float4> g_tLightCookieTexture : register(t34, space0);
 	
 	static float4 gl_Position;
 	static float gl_ClipDistance[1];
-	static float2 input_0;
-	static float4 input_1;
-	static float4 input_2;
-	static float4 input_3;
-	static float3 input_4;
-	static float4 input_5;
-	static float3 input_6;
+	static float2 input_TEXCOORD0;
+	static float4 input_TEXCOORD1;
+	static float4 input_TEXCOORD2;
+	static float4 input_COLOR0;
+	static float3 input_POSITION0;
+	static float4 input_TEXCOORD3;
+	static float3 input_TEXCOORD4;
 	static float4 output_0;
 	static float4 output_1;
 	static float3 output_2;
@@ -225,13 +220,13 @@ VS
 	
 	struct VS_INPUT
 	{
-	    float2 input_0 : TEXCOORD0;
-	    float4 input_1 : TEXCOORD1;
-	    float4 input_2 : TEXCOORD2;
-	    float4 input_3 : TEXCOORD3;
-	    float3 input_4 : TEXCOORD4;
-	    float4 input_5 : TEXCOORD5;
-	    float3 input_6 : TEXCOORD6;
+	    float2 input_TEXCOORD0 : TEXCOORD0;
+	    float4 input_TEXCOORD1 : TEXCOORD1;
+	    float4 input_TEXCOORD2 : TEXCOORD2;
+	    float4 input_COLOR0 : TEXCOORD3;
+	    float3 input_POSITION0 : TEXCOORD4;
+	    float4 input_TEXCOORD3 : TEXCOORD5;
+	    float3 input_TEXCOORD4 : TEXCOORD6;
 	};
 	
 	struct PS_INPUT
@@ -248,7 +243,7 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float3 _13445 = input_4;
+	    float3 _13445 = input_POSITION0;
 	    uint _22646 = min(4u, ((SpritecardVertexControls_t_1_m9 >> uint(1)) & 7u));
 	    bool _12885;
 	    if (_22646 == 0u)
@@ -282,8 +277,8 @@ VS
 	    {
 	        _21709 = _13445;
 	    }
-	    float _22759 = (input_0.x * 0.5f) + 0.5f;
-	    float _24186 = (input_0.y * (-0.5f)) + 0.5f;
+	    float _22759 = (input_TEXCOORD0.x * 0.5f) + 0.5f;
+	    float _24186 = (input_TEXCOORD0.y * (-0.5f)) + 0.5f;
 	    float4 _21120 = float4(_22759, _24186, _22759, _24186);
 	    float4 _9982;
 	    float4 _23824;
@@ -315,80 +310,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13196 = input_1.z + 1.0f;
+	                            _13196 = input_TEXCOORD1.z + 1.0f;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13196 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13196 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13196 = input_1.y;
+	                            _13196 = input_TEXCOORD1.y;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13196 = input_1.w;
+	                            _13196 = input_TEXCOORD1.w;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13196 = input_3.w;
+	                            _13196 = input_COLOR0.w;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13196 = input_5.w;
+	                            _13196 = input_TEXCOORD3.w;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13196 = input_5.x;
+	                            _13196 = input_TEXCOORD3.x;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13196 = input_5.y;
+	                            _13196 = input_TEXCOORD3.y;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13196 = input_5.z;
+	                            _13196 = input_TEXCOORD3.z;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13196 = frac(input_1.x * 5657.4111328125f);
+	                            _13196 = frac(input_TEXCOORD1.x * 5657.4111328125f);
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13196 = (frac(input_1.x * 5657.4111328125f) - 0.5f) * 2.0f;
+	                            _13196 = (frac(input_TEXCOORD1.x * 5657.4111328125f) - 0.5f) * 2.0f;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13196 = (input_1.z * frac(input_1.x * 5657.4111328125f)) + 1.0f;
+	                            _13196 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 5657.4111328125f)) + 1.0f;
 	                            _16075 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12478 = (frac(input_1.x * 5657.4111328125f) - 0.5f) * 2.0f;
-	                            _13196 = (_12478 * input_1.z) + float(int(sign(_12478)));
+	                            float _12478 = (frac(input_TEXCOORD1.x * 5657.4111328125f) - 0.5f) * 2.0f;
+	                            _13196 = (_12478 * input_TEXCOORD1.z) + float(int(sign(_12478)));
 	                            _16075 = true;
 	                            break;
 	                        }
@@ -417,80 +412,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13197 = input_1.z + 1.0f;
+	                            _13197 = input_TEXCOORD1.z + 1.0f;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13197 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13197 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13197 = input_1.y;
+	                            _13197 = input_TEXCOORD1.y;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13197 = input_1.w;
+	                            _13197 = input_TEXCOORD1.w;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13197 = input_3.w;
+	                            _13197 = input_COLOR0.w;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13197 = input_5.w;
+	                            _13197 = input_TEXCOORD3.w;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13197 = input_5.x;
+	                            _13197 = input_TEXCOORD3.x;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13197 = input_5.y;
+	                            _13197 = input_TEXCOORD3.y;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13197 = input_5.z;
+	                            _13197 = input_TEXCOORD3.z;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13197 = frac(input_1.x * 1231.67041015625f);
+	                            _13197 = frac(input_TEXCOORD1.x * 1231.67041015625f);
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13197 = (frac(input_1.x * 1231.67041015625f) - 0.5f) * 2.0f;
+	                            _13197 = (frac(input_TEXCOORD1.x * 1231.67041015625f) - 0.5f) * 2.0f;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13197 = (input_1.z * frac(input_1.x * 1231.67041015625f)) + 1.0f;
+	                            _13197 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1231.67041015625f)) + 1.0f;
 	                            _16076 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12479 = (frac(input_1.x * 1231.67041015625f) - 0.5f) * 2.0f;
-	                            _13197 = (_12479 * input_1.z) + float(int(sign(_12479)));
+	                            float _12479 = (frac(input_TEXCOORD1.x * 1231.67041015625f) - 0.5f) * 2.0f;
+	                            _13197 = (_12479 * input_TEXCOORD1.z) + float(int(sign(_12479)));
 	                            _16076 = true;
 	                            break;
 	                        }
@@ -518,80 +513,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13198 = input_1.z + 1.0f;
+	                            _13198 = input_TEXCOORD1.z + 1.0f;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13198 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13198 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13198 = input_1.y;
+	                            _13198 = input_TEXCOORD1.y;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13198 = input_1.w;
+	                            _13198 = input_TEXCOORD1.w;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13198 = input_3.w;
+	                            _13198 = input_COLOR0.w;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13198 = input_5.w;
+	                            _13198 = input_TEXCOORD3.w;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13198 = input_5.x;
+	                            _13198 = input_TEXCOORD3.x;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13198 = input_5.y;
+	                            _13198 = input_TEXCOORD3.y;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13198 = input_5.z;
+	                            _13198 = input_TEXCOORD3.z;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13198 = frac(input_1.x * 1542.87060546875f);
+	                            _13198 = frac(input_TEXCOORD1.x * 1542.87060546875f);
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13198 = (frac(input_1.x * 1542.87060546875f) - 0.5f) * 2.0f;
+	                            _13198 = (frac(input_TEXCOORD1.x * 1542.87060546875f) - 0.5f) * 2.0f;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13198 = (input_1.z * frac(input_1.x * 1542.87060546875f)) + 1.0f;
+	                            _13198 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1542.87060546875f)) + 1.0f;
 	                            _16077 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12480 = (frac(input_1.x * 1542.87060546875f) - 0.5f) * 2.0f;
-	                            _13198 = (_12480 * input_1.z) + float(int(sign(_12480)));
+	                            float _12480 = (frac(input_TEXCOORD1.x * 1542.87060546875f) - 0.5f) * 2.0f;
+	                            _13198 = (_12480 * input_TEXCOORD1.z) + float(int(sign(_12480)));
 	                            _16077 = true;
 	                            break;
 	                        }
@@ -610,7 +605,7 @@ VS
 	                    _19457 = 1.0f;
 	                    break;
 	                } while(false);
-	                float2 _8770 = (_11358.xy * float2(_12909, _19457)) + lerp(0.0f.xx, frac(float2(input_1.x * 1718.4361572265625f, input_1.x * 1271.89013671875f)), _15589.xx);
+	                float2 _8770 = (_11358.xy * float2(_12909, _19457)) + lerp(0.0f.xx, frac(float2(input_TEXCOORD1.x * 1718.4361572265625f, input_TEXCOORD1.x * 1271.89013671875f)), _15589.xx);
 	                float _22687;
 	                do
 	                {
@@ -620,80 +615,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13199 = input_1.z + 1.0f;
+	                            _13199 = input_TEXCOORD1.z + 1.0f;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13199 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13199 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13199 = input_1.y;
+	                            _13199 = input_TEXCOORD1.y;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13199 = input_1.w;
+	                            _13199 = input_TEXCOORD1.w;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13199 = input_3.w;
+	                            _13199 = input_COLOR0.w;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13199 = input_5.w;
+	                            _13199 = input_TEXCOORD3.w;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13199 = input_5.x;
+	                            _13199 = input_TEXCOORD3.x;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13199 = input_5.y;
+	                            _13199 = input_TEXCOORD3.y;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13199 = input_5.z;
+	                            _13199 = input_TEXCOORD3.z;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13199 = frac(input_1.x * 4574.43115234375f);
+	                            _13199 = frac(input_TEXCOORD1.x * 4574.43115234375f);
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13199 = (frac(input_1.x * 4574.43115234375f) - 0.5f) * 2.0f;
+	                            _13199 = (frac(input_TEXCOORD1.x * 4574.43115234375f) - 0.5f) * 2.0f;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13199 = (input_1.z * frac(input_1.x * 4574.43115234375f)) + 1.0f;
+	                            _13199 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 4574.43115234375f)) + 1.0f;
 	                            _16078 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12481 = (frac(input_1.x * 4574.43115234375f) - 0.5f) * 2.0f;
-	                            _13199 = (_12481 * input_1.z) + float(int(sign(_12481)));
+	                            float _12481 = (frac(input_TEXCOORD1.x * 4574.43115234375f) - 0.5f) * 2.0f;
+	                            _13199 = (_12481 * input_TEXCOORD1.z) + float(int(sign(_12481)));
 	                            _16078 = true;
 	                            break;
 	                        }
@@ -726,80 +721,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13188 = input_1.z + 1.0f;
+	                            _13188 = input_TEXCOORD1.z + 1.0f;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13188 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13188 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13188 = input_1.y;
+	                            _13188 = input_TEXCOORD1.y;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13188 = input_1.w;
+	                            _13188 = input_TEXCOORD1.w;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13188 = input_3.w;
+	                            _13188 = input_COLOR0.w;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13188 = input_5.w;
+	                            _13188 = input_TEXCOORD3.w;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13188 = input_5.x;
+	                            _13188 = input_TEXCOORD3.x;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13188 = input_5.y;
+	                            _13188 = input_TEXCOORD3.y;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13188 = input_5.z;
+	                            _13188 = input_TEXCOORD3.z;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13188 = frac(input_1.x * 5657.4111328125f);
+	                            _13188 = frac(input_TEXCOORD1.x * 5657.4111328125f);
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13188 = (frac(input_1.x * 5657.4111328125f) - 0.5f) * 2.0f;
+	                            _13188 = (frac(input_TEXCOORD1.x * 5657.4111328125f) - 0.5f) * 2.0f;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13188 = (input_1.z * frac(input_1.x * 5657.4111328125f)) + 1.0f;
+	                            _13188 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 5657.4111328125f)) + 1.0f;
 	                            _16068 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12471 = (frac(input_1.x * 5657.4111328125f) - 0.5f) * 2.0f;
-	                            _13188 = (_12471 * input_1.z) + float(int(sign(_12471)));
+	                            float _12471 = (frac(input_TEXCOORD1.x * 5657.4111328125f) - 0.5f) * 2.0f;
+	                            _13188 = (_12471 * input_TEXCOORD1.z) + float(int(sign(_12471)));
 	                            _16068 = true;
 	                            break;
 	                        }
@@ -827,80 +822,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13189 = input_1.z + 1.0f;
+	                            _13189 = input_TEXCOORD1.z + 1.0f;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13189 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13189 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13189 = input_1.y;
+	                            _13189 = input_TEXCOORD1.y;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13189 = input_1.w;
+	                            _13189 = input_TEXCOORD1.w;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13189 = input_3.w;
+	                            _13189 = input_COLOR0.w;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13189 = input_5.w;
+	                            _13189 = input_TEXCOORD3.w;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13189 = input_5.x;
+	                            _13189 = input_TEXCOORD3.x;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13189 = input_5.y;
+	                            _13189 = input_TEXCOORD3.y;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13189 = input_5.z;
+	                            _13189 = input_TEXCOORD3.z;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13189 = frac(input_1.x * 1231.67041015625f);
+	                            _13189 = frac(input_TEXCOORD1.x * 1231.67041015625f);
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13189 = (frac(input_1.x * 1231.67041015625f) - 0.5f) * 2.0f;
+	                            _13189 = (frac(input_TEXCOORD1.x * 1231.67041015625f) - 0.5f) * 2.0f;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13189 = (input_1.z * frac(input_1.x * 1231.67041015625f)) + 1.0f;
+	                            _13189 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1231.67041015625f)) + 1.0f;
 	                            _16069 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12472 = (frac(input_1.x * 1231.67041015625f) - 0.5f) * 2.0f;
-	                            _13189 = (_12472 * input_1.z) + float(int(sign(_12472)));
+	                            float _12472 = (frac(input_TEXCOORD1.x * 1231.67041015625f) - 0.5f) * 2.0f;
+	                            _13189 = (_12472 * input_TEXCOORD1.z) + float(int(sign(_12472)));
 	                            _16069 = true;
 	                            break;
 	                        }
@@ -928,80 +923,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13190 = input_1.z + 1.0f;
+	                            _13190 = input_TEXCOORD1.z + 1.0f;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13190 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13190 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13190 = input_1.y;
+	                            _13190 = input_TEXCOORD1.y;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13190 = input_1.w;
+	                            _13190 = input_TEXCOORD1.w;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13190 = input_3.w;
+	                            _13190 = input_COLOR0.w;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13190 = input_5.w;
+	                            _13190 = input_TEXCOORD3.w;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13190 = input_5.x;
+	                            _13190 = input_TEXCOORD3.x;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13190 = input_5.y;
+	                            _13190 = input_TEXCOORD3.y;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13190 = input_5.z;
+	                            _13190 = input_TEXCOORD3.z;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13190 = frac(input_1.x * 1542.87060546875f);
+	                            _13190 = frac(input_TEXCOORD1.x * 1542.87060546875f);
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13190 = (frac(input_1.x * 1542.87060546875f) - 0.5f) * 2.0f;
+	                            _13190 = (frac(input_TEXCOORD1.x * 1542.87060546875f) - 0.5f) * 2.0f;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13190 = (input_1.z * frac(input_1.x * 1542.87060546875f)) + 1.0f;
+	                            _13190 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1542.87060546875f)) + 1.0f;
 	                            _16070 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12473 = (frac(input_1.x * 1542.87060546875f) - 0.5f) * 2.0f;
-	                            _13190 = (_12473 * input_1.z) + float(int(sign(_12473)));
+	                            float _12473 = (frac(input_TEXCOORD1.x * 1542.87060546875f) - 0.5f) * 2.0f;
+	                            _13190 = (_12473 * input_TEXCOORD1.z) + float(int(sign(_12473)));
 	                            _16070 = true;
 	                            break;
 	                        }
@@ -1029,80 +1024,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13191 = input_1.z + 1.0f;
+	                            _13191 = input_TEXCOORD1.z + 1.0f;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13191 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13191 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13191 = input_1.y;
+	                            _13191 = input_TEXCOORD1.y;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13191 = input_1.w;
+	                            _13191 = input_TEXCOORD1.w;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13191 = input_3.w;
+	                            _13191 = input_COLOR0.w;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13191 = input_5.w;
+	                            _13191 = input_TEXCOORD3.w;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13191 = input_5.x;
+	                            _13191 = input_TEXCOORD3.x;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13191 = input_5.y;
+	                            _13191 = input_TEXCOORD3.y;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13191 = input_5.z;
+	                            _13191 = input_TEXCOORD3.z;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13191 = frac(input_1.x * 2969.86181640625f);
+	                            _13191 = frac(input_TEXCOORD1.x * 2969.86181640625f);
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13191 = (frac(input_1.x * 2969.86181640625f) - 0.5f) * 2.0f;
+	                            _13191 = (frac(input_TEXCOORD1.x * 2969.86181640625f) - 0.5f) * 2.0f;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13191 = (input_1.z * frac(input_1.x * 2969.86181640625f)) + 1.0f;
+	                            _13191 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 2969.86181640625f)) + 1.0f;
 	                            _16071 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12474 = (frac(input_1.x * 2969.86181640625f) - 0.5f) * 2.0f;
-	                            _13191 = (_12474 * input_1.z) + float(int(sign(_12474)));
+	                            float _12474 = (frac(input_TEXCOORD1.x * 2969.86181640625f) - 0.5f) * 2.0f;
+	                            _13191 = (_12474 * input_TEXCOORD1.z) + float(int(sign(_12474)));
 	                            _16071 = true;
 	                            break;
 	                        }
@@ -1139,80 +1134,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13193 = input_1.z + 1.0f;
+	                            _13193 = input_TEXCOORD1.z + 1.0f;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13193 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13193 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13193 = input_1.y;
+	                            _13193 = input_TEXCOORD1.y;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13193 = input_1.w;
+	                            _13193 = input_TEXCOORD1.w;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13193 = input_3.w;
+	                            _13193 = input_COLOR0.w;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13193 = input_5.w;
+	                            _13193 = input_TEXCOORD3.w;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13193 = input_5.x;
+	                            _13193 = input_TEXCOORD3.x;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13193 = input_5.y;
+	                            _13193 = input_TEXCOORD3.y;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13193 = input_5.z;
+	                            _13193 = input_TEXCOORD3.z;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13193 = frac(input_1.x * 1944.34521484375f);
+	                            _13193 = frac(input_TEXCOORD1.x * 1944.34521484375f);
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13193 = (frac(input_1.x * 1944.34521484375f) - 0.5f) * 2.0f;
+	                            _13193 = (frac(input_TEXCOORD1.x * 1944.34521484375f) - 0.5f) * 2.0f;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13193 = (input_1.z * frac(input_1.x * 1944.34521484375f)) + 1.0f;
+	                            _13193 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1944.34521484375f)) + 1.0f;
 	                            _16072 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12475 = (frac(input_1.x * 1944.34521484375f) - 0.5f) * 2.0f;
-	                            _13193 = (_12475 * input_1.z) + float(int(sign(_12475)));
+	                            float _12475 = (frac(input_TEXCOORD1.x * 1944.34521484375f) - 0.5f) * 2.0f;
+	                            _13193 = (_12475 * input_TEXCOORD1.z) + float(int(sign(_12475)));
 	                            _16072 = true;
 	                            break;
 	                        }
@@ -1231,7 +1226,7 @@ VS
 	                    _21262 = 1.0f;
 	                    break;
 	                } while(false);
-	                float4 _20274 = float4((((_8993.xy / _13746.xy) * (1.0f / _12961)) + frac((_11358.xy * float2(_12907, _22649)) + 0.5f.xx)) + lerp(0.0f.xx, frac(float2(input_1.x * 1718.4361572265625f, input_1.x * 1271.89013671875f)), _15589.xx), _21262, 1.0f);
+	                float4 _20274 = float4((((_8993.xy / _13746.xy) * (1.0f / _12961)) + frac((_11358.xy * float2(_12907, _22649)) + 0.5f.xx)) + lerp(0.0f.xx, frac(float2(input_TEXCOORD1.x * 1718.4361572265625f, input_TEXCOORD1.x * 1271.89013671875f)), _15589.xx), _21262, 1.0f);
 	                float4 _12908;
 	                if (_14704 >= 3u)
 	                {
@@ -1244,80 +1239,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13194 = input_1.z + 1.0f;
+	                                _13194 = input_TEXCOORD1.z + 1.0f;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13194 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13194 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13194 = input_1.y;
+	                                _13194 = input_TEXCOORD1.y;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13194 = input_1.w;
+	                                _13194 = input_TEXCOORD1.w;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13194 = input_3.w;
+	                                _13194 = input_COLOR0.w;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13194 = input_5.w;
+	                                _13194 = input_TEXCOORD3.w;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13194 = input_5.x;
+	                                _13194 = input_TEXCOORD3.x;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13194 = input_5.y;
+	                                _13194 = input_TEXCOORD3.y;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13194 = input_5.z;
+	                                _13194 = input_TEXCOORD3.z;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13194 = frac(input_1.x * 2704.225341796875f);
+	                                _13194 = frac(input_TEXCOORD1.x * 2704.225341796875f);
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13194 = (frac(input_1.x * 2704.225341796875f) - 0.5f) * 2.0f;
+	                                _13194 = (frac(input_TEXCOORD1.x * 2704.225341796875f) - 0.5f) * 2.0f;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13194 = (input_1.z * frac(input_1.x * 2704.225341796875f)) + 1.0f;
+	                                _13194 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 2704.225341796875f)) + 1.0f;
 	                                _16073 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12476 = (frac(input_1.x * 2704.225341796875f) - 0.5f) * 2.0f;
-	                                _13194 = (_12476 * input_1.z) + float(int(sign(_12476)));
+	                                float _12476 = (frac(input_TEXCOORD1.x * 2704.225341796875f) - 0.5f) * 2.0f;
+	                                _13194 = (_12476 * input_TEXCOORD1.z) + float(int(sign(_12476)));
 	                                _16073 = true;
 	                                break;
 	                            }
@@ -1353,80 +1348,80 @@ VS
 	                    {
 	                        case 1u:
 	                        {
-	                            _13195 = input_1.z + 1.0f;
+	                            _13195 = input_TEXCOORD1.z + 1.0f;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 2u:
 	                        {
-	                            _13195 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                            _13195 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 3u:
 	                        {
-	                            _13195 = input_1.y;
+	                            _13195 = input_TEXCOORD1.y;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 4u:
 	                        {
-	                            _13195 = input_1.w;
+	                            _13195 = input_TEXCOORD1.w;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 5u:
 	                        {
-	                            _13195 = input_3.w;
+	                            _13195 = input_COLOR0.w;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 6u:
 	                        {
-	                            _13195 = input_5.w;
+	                            _13195 = input_TEXCOORD3.w;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 7u:
 	                        {
-	                            _13195 = input_5.x;
+	                            _13195 = input_TEXCOORD3.x;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 8u:
 	                        {
-	                            _13195 = input_5.y;
+	                            _13195 = input_TEXCOORD3.y;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 9u:
 	                        {
-	                            _13195 = input_5.z;
+	                            _13195 = input_TEXCOORD3.z;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 10u:
 	                        {
-	                            _13195 = frac(input_1.x * 4574.43115234375f);
+	                            _13195 = frac(input_TEXCOORD1.x * 4574.43115234375f);
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 11u:
 	                        {
-	                            _13195 = (frac(input_1.x * 4574.43115234375f) - 0.5f) * 2.0f;
+	                            _13195 = (frac(input_TEXCOORD1.x * 4574.43115234375f) - 0.5f) * 2.0f;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 12u:
 	                        {
-	                            _13195 = (input_1.z * frac(input_1.x * 4574.43115234375f)) + 1.0f;
+	                            _13195 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 4574.43115234375f)) + 1.0f;
 	                            _16074 = true;
 	                            break;
 	                        }
 	                        case 13u:
 	                        {
-	                            float _12477 = (frac(input_1.x * 4574.43115234375f) - 0.5f) * 2.0f;
-	                            _13195 = (_12477 * input_1.z) + float(int(sign(_12477)));
+	                            float _12477 = (frac(input_TEXCOORD1.x * 4574.43115234375f) - 0.5f) * 2.0f;
+	                            _13195 = (_12477 * input_TEXCOORD1.z) + float(int(sign(_12477)));
 	                            _16074 = true;
 	                            break;
 	                        }
@@ -1464,80 +1459,80 @@ VS
 	                {
 	                    case 1u:
 	                    {
-	                        _13200 = input_1.z + 1.0f;
+	                        _13200 = input_TEXCOORD1.z + 1.0f;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 2u:
 	                    {
-	                        _13200 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                        _13200 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 3u:
 	                    {
-	                        _13200 = input_1.y;
+	                        _13200 = input_TEXCOORD1.y;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 4u:
 	                    {
-	                        _13200 = input_1.w;
+	                        _13200 = input_TEXCOORD1.w;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 5u:
 	                    {
-	                        _13200 = input_3.w;
+	                        _13200 = input_COLOR0.w;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 6u:
 	                    {
-	                        _13200 = input_5.w;
+	                        _13200 = input_TEXCOORD3.w;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 7u:
 	                    {
-	                        _13200 = input_5.x;
+	                        _13200 = input_TEXCOORD3.x;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 8u:
 	                    {
-	                        _13200 = input_5.y;
+	                        _13200 = input_TEXCOORD3.y;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 9u:
 	                    {
-	                        _13200 = input_5.z;
+	                        _13200 = input_TEXCOORD3.z;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 10u:
 	                    {
-	                        _13200 = frac(input_1.x * 238.839996337890625f);
+	                        _13200 = frac(input_TEXCOORD1.x * 238.839996337890625f);
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 11u:
 	                    {
-	                        _13200 = (frac(input_1.x * 238.839996337890625f) - 0.5f) * 2.0f;
+	                        _13200 = (frac(input_TEXCOORD1.x * 238.839996337890625f) - 0.5f) * 2.0f;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 12u:
 	                    {
-	                        _13200 = (input_1.z * frac(input_1.x * 238.839996337890625f)) + 1.0f;
+	                        _13200 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 238.839996337890625f)) + 1.0f;
 	                        _16079 = true;
 	                        break;
 	                    }
 	                    case 13u:
 	                    {
-	                        float _12482 = (frac(input_1.x * 238.839996337890625f) - 0.5f) * 2.0f;
-	                        _13200 = (_12482 * input_1.z) + float(int(sign(_12482)));
+	                        float _12482 = (frac(input_TEXCOORD1.x * 238.839996337890625f) - 0.5f) * 2.0f;
+	                        _13200 = (_12482 * input_TEXCOORD1.z) + float(int(sign(_12482)));
 	                        _16079 = true;
 	                        break;
 	                    }
@@ -1565,80 +1560,80 @@ VS
 	                {
 	                    case 1u:
 	                    {
-	                        _13201 = input_1.z + 1.0f;
+	                        _13201 = input_TEXCOORD1.z + 1.0f;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 2u:
 	                    {
-	                        _13201 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                        _13201 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 3u:
 	                    {
-	                        _13201 = input_1.y;
+	                        _13201 = input_TEXCOORD1.y;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 4u:
 	                    {
-	                        _13201 = input_1.w;
+	                        _13201 = input_TEXCOORD1.w;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 5u:
 	                    {
-	                        _13201 = input_3.w;
+	                        _13201 = input_COLOR0.w;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 6u:
 	                    {
-	                        _13201 = input_5.w;
+	                        _13201 = input_TEXCOORD3.w;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 7u:
 	                    {
-	                        _13201 = input_5.x;
+	                        _13201 = input_TEXCOORD3.x;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 8u:
 	                    {
-	                        _13201 = input_5.y;
+	                        _13201 = input_TEXCOORD3.y;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 9u:
 	                    {
-	                        _13201 = input_5.z;
+	                        _13201 = input_TEXCOORD3.z;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 10u:
 	                    {
-	                        _13201 = frac(input_1.x * 84.74559783935546875f);
+	                        _13201 = frac(input_TEXCOORD1.x * 84.74559783935546875f);
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 11u:
 	                    {
-	                        _13201 = (frac(input_1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
+	                        _13201 = (frac(input_TEXCOORD1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 12u:
 	                    {
-	                        _13201 = (input_1.z * frac(input_1.x * 84.74559783935546875f)) + 1.0f;
+	                        _13201 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 84.74559783935546875f)) + 1.0f;
 	                        _16080 = true;
 	                        break;
 	                    }
 	                    case 13u:
 	                    {
-	                        float _12483 = (frac(input_1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
-	                        _13201 = (_12483 * input_1.z) + float(int(sign(_12483)));
+	                        float _12483 = (frac(input_TEXCOORD1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
+	                        _13201 = (_12483 * input_TEXCOORD1.z) + float(int(sign(_12483)));
 	                        _16080 = true;
 	                        break;
 	                    }
@@ -1684,80 +1679,80 @@ VS
 	                {
 	                    case 1u:
 	                    {
-	                        _13185 = input_1.z + 1.0f;
+	                        _13185 = input_TEXCOORD1.z + 1.0f;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 2u:
 	                    {
-	                        _13185 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                        _13185 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 3u:
 	                    {
-	                        _13185 = input_1.y;
+	                        _13185 = input_TEXCOORD1.y;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 4u:
 	                    {
-	                        _13185 = input_1.w;
+	                        _13185 = input_TEXCOORD1.w;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 5u:
 	                    {
-	                        _13185 = input_3.w;
+	                        _13185 = input_COLOR0.w;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 6u:
 	                    {
-	                        _13185 = input_5.w;
+	                        _13185 = input_TEXCOORD3.w;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 7u:
 	                    {
-	                        _13185 = input_5.x;
+	                        _13185 = input_TEXCOORD3.x;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 8u:
 	                    {
-	                        _13185 = input_5.y;
+	                        _13185 = input_TEXCOORD3.y;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 9u:
 	                    {
-	                        _13185 = input_5.z;
+	                        _13185 = input_TEXCOORD3.z;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 10u:
 	                    {
-	                        _13185 = frac(input_1.x * 1.34700000286102294921875f);
+	                        _13185 = frac(input_TEXCOORD1.x * 1.34700000286102294921875f);
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 11u:
 	                    {
-	                        _13185 = (frac(input_1.x * 1.34700000286102294921875f) - 0.5f) * 2.0f;
+	                        _13185 = (frac(input_TEXCOORD1.x * 1.34700000286102294921875f) - 0.5f) * 2.0f;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 12u:
 	                    {
-	                        _13185 = (input_1.z * frac(input_1.x * 1.34700000286102294921875f)) + 1.0f;
+	                        _13185 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 1.34700000286102294921875f)) + 1.0f;
 	                        _16065 = true;
 	                        break;
 	                    }
 	                    case 13u:
 	                    {
-	                        float _12468 = (frac(input_1.x * 1.34700000286102294921875f) - 0.5f) * 2.0f;
-	                        _13185 = (_12468 * input_1.z) + float(int(sign(_12468)));
+	                        float _12468 = (frac(input_TEXCOORD1.x * 1.34700000286102294921875f) - 0.5f) * 2.0f;
+	                        _13185 = (_12468 * input_TEXCOORD1.z) + float(int(sign(_12468)));
 	                        _16065 = true;
 	                        break;
 	                    }
@@ -1778,7 +1773,7 @@ VS
 	            } while(false);
 	            float _16161 = _21710 * SpritecardVertexControls_t_1_m4.w;
 	            float _7037 = 1.0f / SpritecardVertexControls_t_1_m6.x;
-	            float _24760 = SpritecardVertexControls_t_1_m7.x + ((3.0f * (((input_2.x - SpritecardVertexControls_t_1_m7.y) >= 0.0f) ? 0.0f : input_2.x)) * SpritecardVertexControls_t_1_m6.y);
+	            float _24760 = SpritecardVertexControls_t_1_m7.x + ((3.0f * (((input_TEXCOORD2.x - SpritecardVertexControls_t_1_m7.y) >= 0.0f) ? 0.0f : input_TEXCOORD2.x)) * SpritecardVertexControls_t_1_m6.y);
 	            float4 _23814 = g_tParticleSheetTexture.SampleLevel(AddressU_Wrap_AddressV_Wrap_Filter_MinMagMipPoint, float2(0.0f, _24760), 0.0f);
 	            float _11313;
 	            if ((SpritecardVertexControls_t_1_m9 & 4096u) != 0u)
@@ -1789,7 +1784,7 @@ VS
 	            {
 	                _11313 = 1.0f;
 	            }
-	            float _17794 = (((_11313 * SpritecardVertexControls_t_1_m6.x) * 0.5f) * (input_1.z * lerp(_16161, 1.0f, float(_16161 == 0.0f)))) * SpritecardVertexControls_t_1_m1.w;
+	            float _17794 = (((_11313 * SpritecardVertexControls_t_1_m6.x) * 0.5f) * (input_TEXCOORD1.z * lerp(_16161, 1.0f, float(_16161 == 0.0f)))) * SpritecardVertexControls_t_1_m1.w;
 	            float _17072 = 2.0f * floor(_17794);
 	            float _10306;
 	            if (_23814.z > 0.0f)
@@ -1827,7 +1822,7 @@ VS
 	            float4 _19645 = float4(_24523, _22863.y, _22102.xy + _23732);
 	            float _14426 = _11756 * 0.5f;
 	            float _8035 = _14426 + 0.5f;
-	            float4 _15186 = lerp(_21120, ((_21120 - 0.5f.xxxx) * clamp(1.0f / SpritecardVertexControls_t_1_m3.y, 0.0f, 1.0f)) + 0.5f.xxxx, float4(_8035, _8035, _14426, _14426));
+	            float4 _15186 = lerp(_21120, ((_21120 - 0.5f.xxxx) * saturate(1.0f / SpritecardVertexControls_t_1_m3.y)) + 0.5f.xxxx, float4(_8035, _8035, _14426, _14426));
 	            float4 _20271 = float4((_15186.x / SpritecardVertexControls_t_1_m5.z) + SpritecardVertexControls_t_1_m5.x, (_15186.y / SpritecardVertexControls_t_1_m5.w) + SpritecardVertexControls_t_1_m5.y, (_15186.z / SpritecardVertexControls_t_1_m5.z) + SpritecardVertexControls_t_1_m5.x, (_15186.w / SpritecardVertexControls_t_1_m5.w) + SpritecardVertexControls_t_1_m5.y);
 	            float2 _13920 = _11665.xy;
 	            float2 _19858 = _19645.xy;
@@ -1864,80 +1859,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13181 = input_1.z + 1.0f;
+	                                _13181 = input_TEXCOORD1.z + 1.0f;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13181 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13181 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13181 = input_1.y;
+	                                _13181 = input_TEXCOORD1.y;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13181 = input_1.w;
+	                                _13181 = input_TEXCOORD1.w;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13181 = input_3.w;
+	                                _13181 = input_COLOR0.w;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13181 = input_5.w;
+	                                _13181 = input_TEXCOORD3.w;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13181 = input_5.x;
+	                                _13181 = input_TEXCOORD3.x;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13181 = input_5.y;
+	                                _13181 = input_TEXCOORD3.y;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13181 = input_5.z;
+	                                _13181 = input_TEXCOORD3.z;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13181 = frac(input_1.x * 33.658000946044921875f);
+	                                _13181 = frac(input_TEXCOORD1.x * 33.658000946044921875f);
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13181 = (frac(input_1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
+	                                _13181 = (frac(input_TEXCOORD1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13181 = (input_1.z * frac(input_1.x * 33.658000946044921875f)) + 1.0f;
+	                                _13181 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 33.658000946044921875f)) + 1.0f;
 	                                _16061 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12464 = (frac(input_1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
-	                                _13181 = (_12464 * input_1.z) + float(int(sign(_12464)));
+	                                float _12464 = (frac(input_TEXCOORD1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
+	                                _13181 = (_12464 * input_TEXCOORD1.z) + float(int(sign(_12464)));
 	                                _16061 = true;
 	                                break;
 	                            }
@@ -1966,80 +1961,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13182 = input_1.z + 1.0f;
+	                                _13182 = input_TEXCOORD1.z + 1.0f;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13182 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13182 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13182 = input_1.y;
+	                                _13182 = input_TEXCOORD1.y;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13182 = input_1.w;
+	                                _13182 = input_TEXCOORD1.w;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13182 = input_3.w;
+	                                _13182 = input_COLOR0.w;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13182 = input_5.w;
+	                                _13182 = input_TEXCOORD3.w;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13182 = input_5.x;
+	                                _13182 = input_TEXCOORD3.x;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13182 = input_5.y;
+	                                _13182 = input_TEXCOORD3.y;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13182 = input_5.z;
+	                                _13182 = input_TEXCOORD3.z;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13182 = frac(input_1.x * 7.327655792236328125f);
+	                                _13182 = frac(input_TEXCOORD1.x * 7.327655792236328125f);
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13182 = (frac(input_1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
+	                                _13182 = (frac(input_TEXCOORD1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13182 = (input_1.z * frac(input_1.x * 7.327655792236328125f)) + 1.0f;
+	                                _13182 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 7.327655792236328125f)) + 1.0f;
 	                                _16062 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12465 = (frac(input_1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
-	                                _13182 = (_12465 * input_1.z) + float(int(sign(_12465)));
+	                                float _12465 = (frac(input_TEXCOORD1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
+	                                _13182 = (_12465 * input_TEXCOORD1.z) + float(int(sign(_12465)));
 	                                _16062 = true;
 	                                break;
 	                            }
@@ -2067,80 +2062,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13183 = input_1.z + 1.0f;
+	                                _13183 = input_TEXCOORD1.z + 1.0f;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13183 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13183 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13183 = input_1.y;
+	                                _13183 = input_TEXCOORD1.y;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13183 = input_1.w;
+	                                _13183 = input_TEXCOORD1.w;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13183 = input_3.w;
+	                                _13183 = input_COLOR0.w;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13183 = input_5.w;
+	                                _13183 = input_TEXCOORD3.w;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13183 = input_5.x;
+	                                _13183 = input_TEXCOORD3.x;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13183 = input_5.y;
+	                                _13183 = input_TEXCOORD3.y;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13183 = input_5.z;
+	                                _13183 = input_TEXCOORD3.z;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13183 = frac(input_1.x * 9.17909908294677734375f);
+	                                _13183 = frac(input_TEXCOORD1.x * 9.17909908294677734375f);
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13183 = (frac(input_1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
+	                                _13183 = (frac(input_TEXCOORD1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13183 = (input_1.z * frac(input_1.x * 9.17909908294677734375f)) + 1.0f;
+	                                _13183 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 9.17909908294677734375f)) + 1.0f;
 	                                _16063 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12466 = (frac(input_1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
-	                                _13183 = (_12466 * input_1.z) + float(int(sign(_12466)));
+	                                float _12466 = (frac(input_TEXCOORD1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
+	                                _13183 = (_12466 * input_TEXCOORD1.z) + float(int(sign(_12466)));
 	                                _16063 = true;
 	                                break;
 	                            }
@@ -2159,7 +2154,7 @@ VS
 	                        _19456 = 1.0f;
 	                        break;
 	                    } while(false);
-	                    float2 _8731 = (_11357.xy * float2(_12906, _19456)) + lerp(0.0f.xx, frac(float2(input_1.x * 10.22360324859619140625f, input_1.x * 7.56693744659423828125f)), _15588.xx);
+	                    float2 _8731 = (_11357.xy * float2(_12906, _19456)) + lerp(0.0f.xx, frac(float2(input_TEXCOORD1.x * 10.22360324859619140625f, input_TEXCOORD1.x * 7.56693744659423828125f)), _15588.xx);
 	                    float _22686;
 	                    do
 	                    {
@@ -2169,80 +2164,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13184 = input_1.z + 1.0f;
+	                                _13184 = input_TEXCOORD1.z + 1.0f;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13184 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13184 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13184 = input_1.y;
+	                                _13184 = input_TEXCOORD1.y;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13184 = input_1.w;
+	                                _13184 = input_TEXCOORD1.w;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13184 = input_3.w;
+	                                _13184 = input_COLOR0.w;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13184 = input_5.w;
+	                                _13184 = input_TEXCOORD3.w;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13184 = input_5.x;
+	                                _13184 = input_TEXCOORD3.x;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13184 = input_5.y;
+	                                _13184 = input_TEXCOORD3.y;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13184 = input_5.z;
+	                                _13184 = input_TEXCOORD3.z;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13184 = frac(input_1.x * 27.2149562835693359375f);
+	                                _13184 = frac(input_TEXCOORD1.x * 27.2149562835693359375f);
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13184 = (frac(input_1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
+	                                _13184 = (frac(input_TEXCOORD1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13184 = (input_1.z * frac(input_1.x * 27.2149562835693359375f)) + 1.0f;
+	                                _13184 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 27.2149562835693359375f)) + 1.0f;
 	                                _16064 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12467 = (frac(input_1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
-	                                _13184 = (_12467 * input_1.z) + float(int(sign(_12467)));
+	                                float _12467 = (frac(input_TEXCOORD1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
+	                                _13184 = (_12467 * input_TEXCOORD1.z) + float(int(sign(_12467)));
 	                                _16064 = true;
 	                                break;
 	                            }
@@ -2275,80 +2270,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13174 = input_1.z + 1.0f;
+	                                _13174 = input_TEXCOORD1.z + 1.0f;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13174 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13174 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13174 = input_1.y;
+	                                _13174 = input_TEXCOORD1.y;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13174 = input_1.w;
+	                                _13174 = input_TEXCOORD1.w;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13174 = input_3.w;
+	                                _13174 = input_COLOR0.w;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13174 = input_5.w;
+	                                _13174 = input_TEXCOORD3.w;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13174 = input_5.x;
+	                                _13174 = input_TEXCOORD3.x;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13174 = input_5.y;
+	                                _13174 = input_TEXCOORD3.y;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13174 = input_5.z;
+	                                _13174 = input_TEXCOORD3.z;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13174 = frac(input_1.x * 33.658000946044921875f);
+	                                _13174 = frac(input_TEXCOORD1.x * 33.658000946044921875f);
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13174 = (frac(input_1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
+	                                _13174 = (frac(input_TEXCOORD1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13174 = (input_1.z * frac(input_1.x * 33.658000946044921875f)) + 1.0f;
+	                                _13174 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 33.658000946044921875f)) + 1.0f;
 	                                _16054 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12457 = (frac(input_1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
-	                                _13174 = (_12457 * input_1.z) + float(int(sign(_12457)));
+	                                float _12457 = (frac(input_TEXCOORD1.x * 33.658000946044921875f) - 0.5f) * 2.0f;
+	                                _13174 = (_12457 * input_TEXCOORD1.z) + float(int(sign(_12457)));
 	                                _16054 = true;
 	                                break;
 	                            }
@@ -2376,80 +2371,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13175 = input_1.z + 1.0f;
+	                                _13175 = input_TEXCOORD1.z + 1.0f;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13175 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13175 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13175 = input_1.y;
+	                                _13175 = input_TEXCOORD1.y;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13175 = input_1.w;
+	                                _13175 = input_TEXCOORD1.w;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13175 = input_3.w;
+	                                _13175 = input_COLOR0.w;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13175 = input_5.w;
+	                                _13175 = input_TEXCOORD3.w;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13175 = input_5.x;
+	                                _13175 = input_TEXCOORD3.x;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13175 = input_5.y;
+	                                _13175 = input_TEXCOORD3.y;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13175 = input_5.z;
+	                                _13175 = input_TEXCOORD3.z;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13175 = frac(input_1.x * 7.327655792236328125f);
+	                                _13175 = frac(input_TEXCOORD1.x * 7.327655792236328125f);
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13175 = (frac(input_1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
+	                                _13175 = (frac(input_TEXCOORD1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13175 = (input_1.z * frac(input_1.x * 7.327655792236328125f)) + 1.0f;
+	                                _13175 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 7.327655792236328125f)) + 1.0f;
 	                                _16055 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12458 = (frac(input_1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
-	                                _13175 = (_12458 * input_1.z) + float(int(sign(_12458)));
+	                                float _12458 = (frac(input_TEXCOORD1.x * 7.327655792236328125f) - 0.5f) * 2.0f;
+	                                _13175 = (_12458 * input_TEXCOORD1.z) + float(int(sign(_12458)));
 	                                _16055 = true;
 	                                break;
 	                            }
@@ -2477,80 +2472,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13176 = input_1.z + 1.0f;
+	                                _13176 = input_TEXCOORD1.z + 1.0f;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13176 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13176 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13176 = input_1.y;
+	                                _13176 = input_TEXCOORD1.y;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13176 = input_1.w;
+	                                _13176 = input_TEXCOORD1.w;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13176 = input_3.w;
+	                                _13176 = input_COLOR0.w;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13176 = input_5.w;
+	                                _13176 = input_TEXCOORD3.w;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13176 = input_5.x;
+	                                _13176 = input_TEXCOORD3.x;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13176 = input_5.y;
+	                                _13176 = input_TEXCOORD3.y;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13176 = input_5.z;
+	                                _13176 = input_TEXCOORD3.z;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13176 = frac(input_1.x * 9.17909908294677734375f);
+	                                _13176 = frac(input_TEXCOORD1.x * 9.17909908294677734375f);
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13176 = (frac(input_1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
+	                                _13176 = (frac(input_TEXCOORD1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13176 = (input_1.z * frac(input_1.x * 9.17909908294677734375f)) + 1.0f;
+	                                _13176 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 9.17909908294677734375f)) + 1.0f;
 	                                _16056 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12459 = (frac(input_1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
-	                                _13176 = (_12459 * input_1.z) + float(int(sign(_12459)));
+	                                float _12459 = (frac(input_TEXCOORD1.x * 9.17909908294677734375f) - 0.5f) * 2.0f;
+	                                _13176 = (_12459 * input_TEXCOORD1.z) + float(int(sign(_12459)));
 	                                _16056 = true;
 	                                break;
 	                            }
@@ -2578,80 +2573,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13177 = input_1.z + 1.0f;
+	                                _13177 = input_TEXCOORD1.z + 1.0f;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13177 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13177 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13177 = input_1.y;
+	                                _13177 = input_TEXCOORD1.y;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13177 = input_1.w;
+	                                _13177 = input_TEXCOORD1.w;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13177 = input_3.w;
+	                                _13177 = input_COLOR0.w;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13177 = input_5.w;
+	                                _13177 = input_TEXCOORD3.w;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13177 = input_5.x;
+	                                _13177 = input_TEXCOORD3.x;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13177 = input_5.y;
+	                                _13177 = input_TEXCOORD3.y;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13177 = input_5.z;
+	                                _13177 = input_TEXCOORD3.z;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13177 = frac(input_1.x * 17.6687908172607421875f);
+	                                _13177 = frac(input_TEXCOORD1.x * 17.6687908172607421875f);
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13177 = (frac(input_1.x * 17.6687908172607421875f) - 0.5f) * 2.0f;
+	                                _13177 = (frac(input_TEXCOORD1.x * 17.6687908172607421875f) - 0.5f) * 2.0f;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13177 = (input_1.z * frac(input_1.x * 17.6687908172607421875f)) + 1.0f;
+	                                _13177 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 17.6687908172607421875f)) + 1.0f;
 	                                _16057 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12460 = (frac(input_1.x * 17.6687908172607421875f) - 0.5f) * 2.0f;
-	                                _13177 = (_12460 * input_1.z) + float(int(sign(_12460)));
+	                                float _12460 = (frac(input_TEXCOORD1.x * 17.6687908172607421875f) - 0.5f) * 2.0f;
+	                                _13177 = (_12460 * input_TEXCOORD1.z) + float(int(sign(_12460)));
 	                                _16057 = true;
 	                                break;
 	                            }
@@ -2688,80 +2683,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13178 = input_1.z + 1.0f;
+	                                _13178 = input_TEXCOORD1.z + 1.0f;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13178 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13178 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13178 = input_1.y;
+	                                _13178 = input_TEXCOORD1.y;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13178 = input_1.w;
+	                                _13178 = input_TEXCOORD1.w;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13178 = input_3.w;
+	                                _13178 = input_COLOR0.w;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13178 = input_5.w;
+	                                _13178 = input_TEXCOORD3.w;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13178 = input_5.x;
+	                                _13178 = input_TEXCOORD3.x;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13178 = input_5.y;
+	                                _13178 = input_TEXCOORD3.y;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13178 = input_5.z;
+	                                _13178 = input_TEXCOORD3.z;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13178 = frac(input_1.x * 11.56761837005615234375f);
+	                                _13178 = frac(input_TEXCOORD1.x * 11.56761837005615234375f);
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13178 = (frac(input_1.x * 11.56761837005615234375f) - 0.5f) * 2.0f;
+	                                _13178 = (frac(input_TEXCOORD1.x * 11.56761837005615234375f) - 0.5f) * 2.0f;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13178 = (input_1.z * frac(input_1.x * 11.56761837005615234375f)) + 1.0f;
+	                                _13178 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 11.56761837005615234375f)) + 1.0f;
 	                                _16058 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12461 = (frac(input_1.x * 11.56761837005615234375f) - 0.5f) * 2.0f;
-	                                _13178 = (_12461 * input_1.z) + float(int(sign(_12461)));
+	                                float _12461 = (frac(input_TEXCOORD1.x * 11.56761837005615234375f) - 0.5f) * 2.0f;
+	                                _13178 = (_12461 * input_TEXCOORD1.z) + float(int(sign(_12461)));
 	                                _16058 = true;
 	                                break;
 	                            }
@@ -2780,7 +2775,7 @@ VS
 	                        _21261 = 1.0f;
 	                        break;
 	                    } while(false);
-	                    float4 _20273 = float4((((_8992.xy / _13745.xy) * (1.0f / _12960)) + frac((_11357.xy * float2(_12904, _22648)) + 0.5f.xx)) + lerp(0.0f.xx, frac(float2(input_1.x * 10.22360324859619140625f, input_1.x * 7.56693744659423828125f)), _15588.xx), _21261, 1.0f);
+	                    float4 _20273 = float4((((_8992.xy / _13745.xy) * (1.0f / _12960)) + frac((_11357.xy * float2(_12904, _22648)) + 0.5f.xx)) + lerp(0.0f.xx, frac(float2(input_TEXCOORD1.x * 10.22360324859619140625f, input_TEXCOORD1.x * 7.56693744659423828125f)), _15588.xx), _21261, 1.0f);
 	                    float4 _12905;
 	                    if (_14700 >= 3u)
 	                    {
@@ -2793,80 +2788,80 @@ VS
 	                            {
 	                                case 1u:
 	                                {
-	                                    _13179 = input_1.z + 1.0f;
+	                                    _13179 = input_TEXCOORD1.z + 1.0f;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 2u:
 	                                {
-	                                    _13179 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                    _13179 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 3u:
 	                                {
-	                                    _13179 = input_1.y;
+	                                    _13179 = input_TEXCOORD1.y;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 4u:
 	                                {
-	                                    _13179 = input_1.w;
+	                                    _13179 = input_TEXCOORD1.w;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 5u:
 	                                {
-	                                    _13179 = input_3.w;
+	                                    _13179 = input_COLOR0.w;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 6u:
 	                                {
-	                                    _13179 = input_5.w;
+	                                    _13179 = input_TEXCOORD3.w;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 7u:
 	                                {
-	                                    _13179 = input_5.x;
+	                                    _13179 = input_TEXCOORD3.x;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 8u:
 	                                {
-	                                    _13179 = input_5.y;
+	                                    _13179 = input_TEXCOORD3.y;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 9u:
 	                                {
-	                                    _13179 = input_5.z;
+	                                    _13179 = input_TEXCOORD3.z;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 10u:
 	                                {
-	                                    _13179 = frac(input_1.x * 16.0884227752685546875f);
+	                                    _13179 = frac(input_TEXCOORD1.x * 16.0884227752685546875f);
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 11u:
 	                                {
-	                                    _13179 = (frac(input_1.x * 16.0884227752685546875f) - 0.5f) * 2.0f;
+	                                    _13179 = (frac(input_TEXCOORD1.x * 16.0884227752685546875f) - 0.5f) * 2.0f;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 12u:
 	                                {
-	                                    _13179 = (input_1.z * frac(input_1.x * 16.0884227752685546875f)) + 1.0f;
+	                                    _13179 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 16.0884227752685546875f)) + 1.0f;
 	                                    _16059 = true;
 	                                    break;
 	                                }
 	                                case 13u:
 	                                {
-	                                    float _12462 = (frac(input_1.x * 16.0884227752685546875f) - 0.5f) * 2.0f;
-	                                    _13179 = (_12462 * input_1.z) + float(int(sign(_12462)));
+	                                    float _12462 = (frac(input_TEXCOORD1.x * 16.0884227752685546875f) - 0.5f) * 2.0f;
+	                                    _13179 = (_12462 * input_TEXCOORD1.z) + float(int(sign(_12462)));
 	                                    _16059 = true;
 	                                    break;
 	                                }
@@ -2902,80 +2897,80 @@ VS
 	                        {
 	                            case 1u:
 	                            {
-	                                _13180 = input_1.z + 1.0f;
+	                                _13180 = input_TEXCOORD1.z + 1.0f;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 2u:
 	                            {
-	                                _13180 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                                _13180 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 3u:
 	                            {
-	                                _13180 = input_1.y;
+	                                _13180 = input_TEXCOORD1.y;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 4u:
 	                            {
-	                                _13180 = input_1.w;
+	                                _13180 = input_TEXCOORD1.w;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 5u:
 	                            {
-	                                _13180 = input_3.w;
+	                                _13180 = input_COLOR0.w;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 6u:
 	                            {
-	                                _13180 = input_5.w;
+	                                _13180 = input_TEXCOORD3.w;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 7u:
 	                            {
-	                                _13180 = input_5.x;
+	                                _13180 = input_TEXCOORD3.x;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 8u:
 	                            {
-	                                _13180 = input_5.y;
+	                                _13180 = input_TEXCOORD3.y;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 9u:
 	                            {
-	                                _13180 = input_5.z;
+	                                _13180 = input_TEXCOORD3.z;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 10u:
 	                            {
-	                                _13180 = frac(input_1.x * 27.2149562835693359375f);
+	                                _13180 = frac(input_TEXCOORD1.x * 27.2149562835693359375f);
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 11u:
 	                            {
-	                                _13180 = (frac(input_1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
+	                                _13180 = (frac(input_TEXCOORD1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 12u:
 	                            {
-	                                _13180 = (input_1.z * frac(input_1.x * 27.2149562835693359375f)) + 1.0f;
+	                                _13180 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 27.2149562835693359375f)) + 1.0f;
 	                                _16060 = true;
 	                                break;
 	                            }
 	                            case 13u:
 	                            {
-	                                float _12463 = (frac(input_1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
-	                                _13180 = (_12463 * input_1.z) + float(int(sign(_12463)));
+	                                float _12463 = (frac(input_TEXCOORD1.x * 27.2149562835693359375f) - 0.5f) * 2.0f;
+	                                _13180 = (_12463 * input_TEXCOORD1.z) + float(int(sign(_12463)));
 	                                _16060 = true;
 	                                break;
 	                            }
@@ -3017,80 +3012,80 @@ VS
 	                {
 	                    case 1u:
 	                    {
-	                        _13186 = input_1.z + 1.0f;
+	                        _13186 = input_TEXCOORD1.z + 1.0f;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 2u:
 	                    {
-	                        _13186 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                        _13186 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 3u:
 	                    {
-	                        _13186 = input_1.y;
+	                        _13186 = input_TEXCOORD1.y;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 4u:
 	                    {
-	                        _13186 = input_1.w;
+	                        _13186 = input_TEXCOORD1.w;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 5u:
 	                    {
-	                        _13186 = input_3.w;
+	                        _13186 = input_COLOR0.w;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 6u:
 	                    {
-	                        _13186 = input_5.w;
+	                        _13186 = input_TEXCOORD3.w;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 7u:
 	                    {
-	                        _13186 = input_5.x;
+	                        _13186 = input_TEXCOORD3.x;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 8u:
 	                    {
-	                        _13186 = input_5.y;
+	                        _13186 = input_TEXCOORD3.y;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 9u:
 	                    {
-	                        _13186 = input_5.z;
+	                        _13186 = input_TEXCOORD3.z;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 10u:
 	                    {
-	                        _13186 = frac(input_1.x * 238.839996337890625f);
+	                        _13186 = frac(input_TEXCOORD1.x * 238.839996337890625f);
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 11u:
 	                    {
-	                        _13186 = (frac(input_1.x * 238.839996337890625f) - 0.5f) * 2.0f;
+	                        _13186 = (frac(input_TEXCOORD1.x * 238.839996337890625f) - 0.5f) * 2.0f;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 12u:
 	                    {
-	                        _13186 = (input_1.z * frac(input_1.x * 238.839996337890625f)) + 1.0f;
+	                        _13186 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 238.839996337890625f)) + 1.0f;
 	                        _16066 = true;
 	                        break;
 	                    }
 	                    case 13u:
 	                    {
-	                        float _12469 = (frac(input_1.x * 238.839996337890625f) - 0.5f) * 2.0f;
-	                        _13186 = (_12469 * input_1.z) + float(int(sign(_12469)));
+	                        float _12469 = (frac(input_TEXCOORD1.x * 238.839996337890625f) - 0.5f) * 2.0f;
+	                        _13186 = (_12469 * input_TEXCOORD1.z) + float(int(sign(_12469)));
 	                        _16066 = true;
 	                        break;
 	                    }
@@ -3118,80 +3113,80 @@ VS
 	                {
 	                    case 1u:
 	                    {
-	                        _13187 = input_1.z + 1.0f;
+	                        _13187 = input_TEXCOORD1.z + 1.0f;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 2u:
 	                    {
-	                        _13187 = (input_1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
+	                        _13187 = (input_TEXCOORD1.z * SpritecardVertexControls_t_1_m1.w) + 1.0f;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 3u:
 	                    {
-	                        _13187 = input_1.y;
+	                        _13187 = input_TEXCOORD1.y;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 4u:
 	                    {
-	                        _13187 = input_1.w;
+	                        _13187 = input_TEXCOORD1.w;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 5u:
 	                    {
-	                        _13187 = input_3.w;
+	                        _13187 = input_COLOR0.w;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 6u:
 	                    {
-	                        _13187 = input_5.w;
+	                        _13187 = input_TEXCOORD3.w;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 7u:
 	                    {
-	                        _13187 = input_5.x;
+	                        _13187 = input_TEXCOORD3.x;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 8u:
 	                    {
-	                        _13187 = input_5.y;
+	                        _13187 = input_TEXCOORD3.y;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 9u:
 	                    {
-	                        _13187 = input_5.z;
+	                        _13187 = input_TEXCOORD3.z;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 10u:
 	                    {
-	                        _13187 = frac(input_1.x * 84.74559783935546875f);
+	                        _13187 = frac(input_TEXCOORD1.x * 84.74559783935546875f);
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 11u:
 	                    {
-	                        _13187 = (frac(input_1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
+	                        _13187 = (frac(input_TEXCOORD1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 12u:
 	                    {
-	                        _13187 = (input_1.z * frac(input_1.x * 84.74559783935546875f)) + 1.0f;
+	                        _13187 = (input_TEXCOORD1.z * frac(input_TEXCOORD1.x * 84.74559783935546875f)) + 1.0f;
 	                        _16067 = true;
 	                        break;
 	                    }
 	                    case 13u:
 	                    {
-	                        float _12470 = (frac(input_1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
-	                        _13187 = (_12470 * input_1.z) + float(int(sign(_12470)));
+	                        float _12470 = (frac(input_TEXCOORD1.x * 84.74559783935546875f) - 0.5f) * 2.0f;
+	                        _13187 = (_12470 * input_TEXCOORD1.z) + float(int(sign(_12470)));
 	                        _16067 = true;
 	                        break;
 	                    }
@@ -3225,10 +3220,10 @@ VS
 	        _9982 = _12262;
 	        _23824 = _12502;
 	    }
-	    float3 _18058 = input_3.xyz * 0.077399380505084991455078125f.xxx;
-	    float3 _7676 = pow((input_3.xyz * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
+	    float3 _18058 = input_COLOR0.xyz * 0.077399380505084991455078125f.xxx;
+	    float3 _7676 = pow((input_COLOR0.xyz * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
 	    float _21354;
-	    if (input_3.x <= 0.040449999272823333740234375f)
+	    if (input_COLOR0.x <= 0.040449999272823333740234375f)
 	    {
 	        _21354 = _18058.x;
 	    }
@@ -3237,7 +3232,7 @@ VS
 	        _21354 = _7676.x;
 	    }
 	    float _21355;
-	    if (input_3.y <= 0.040449999272823333740234375f)
+	    if (input_COLOR0.y <= 0.040449999272823333740234375f)
 	    {
 	        _21355 = _18058.y;
 	    }
@@ -3246,7 +3241,7 @@ VS
 	        _21355 = _7676.y;
 	    }
 	    float _19494;
-	    if (input_3.z <= 0.040449999272823333740234375f)
+	    if (input_COLOR0.z <= 0.040449999272823333740234375f)
 	    {
 	        _19494 = _18058.z;
 	    }
@@ -3254,7 +3249,7 @@ VS
 	    {
 	        _19494 = _7676.z;
 	    }
-	    float4 _12910 = lerp(input_3, float4(float3(_21354, _21355, _19494), input_3.w), float((int(SpritecardVertexControls_t_1_m4.z) >> 8) & 15).xxxx);
+	    float4 _12910 = lerp(input_COLOR0, float4(float3(_21354, _21355, _19494), input_COLOR0.w), float((int(SpritecardVertexControls_t_1_m4.z) >> 8) & 15).xxxx);
 	    bool _9660 = _22646 == 3u;
 	    bool _21166;
 	    if (_9660)
@@ -3266,7 +3261,7 @@ VS
 	        _21166 = _22646 == 4u;
 	    }
 	    bool3 _18801 = _21166.xxx;
-	    float3 _22185 = float3(_18801.x ? input_6.x : float3(0.0f, 0.0f, 1.0f).x, _18801.y ? input_6.y : float3(0.0f, 0.0f, 1.0f).y, _18801.z ? input_6.z : float3(0.0f, 0.0f, 1.0f).z);
+	    float3 _22185 = float3(_18801.x ? input_TEXCOORD4.x : float3(0.0f, 0.0f, 1.0f).x, _18801.y ? input_TEXCOORD4.y : float3(0.0f, 0.0f, 1.0f).y, _18801.z ? input_TEXCOORD4.z : float3(0.0f, 0.0f, 1.0f).z);
 	    int _17152 = int(_22646);
 	    float3 _13141;
 	    float4 _13203;
@@ -3275,16 +3270,16 @@ VS
 	    {
 	        if (_17152 == 5)
 	        {
-	            float _11440 = sin(input_5.z);
-	            float _20038 = cos(input_5.z);
-	            float _16880 = sin(input_5.y);
-	            float _13386 = cos(input_5.y);
-	            float _16881 = sin(input_5.x);
-	            float _13387 = cos(input_5.x);
+	            float _11440 = sin(input_TEXCOORD3.z);
+	            float _20038 = cos(input_TEXCOORD3.z);
+	            float _16880 = sin(input_TEXCOORD3.y);
+	            float _13386 = cos(input_TEXCOORD3.y);
+	            float _16881 = sin(input_TEXCOORD3.x);
+	            float _13387 = cos(input_TEXCOORD3.x);
 	            float3x3 _8134 = mul(mul(float3x3(float3(_13386, -_16880, 0.0f), float3(_16880, _13386, 0.0f), float3(0.0f, 0.0f, 1.0f)), float3x3(float3(_20038, 0.0f, _11440), float3(0.0f, 1.0f, 0.0f), float3(-_11440, 0.0f, _20038))), float3x3(float3(1.0f, 0.0f, 0.0f), float3(0.0f, _13387, -_16881), float3(0.0f, _16881, _13387)));
 	            _13141 = _8134[1];
 	            _13203 = _12910;
-	            _24249 = mul(_8134, float3(input_0.x + SpritecardVertexControls_t_1_m1.y, input_0.y + SpritecardVertexControls_t_1_m1.z, 0.0f));
+	            _24249 = mul(_8134, float3(input_TEXCOORD0.x + SpritecardVertexControls_t_1_m1.y, input_TEXCOORD0.y + SpritecardVertexControls_t_1_m1.z, 0.0f));
 	            break;
 	        }
 	        float3 _11892;
@@ -3369,11 +3364,11 @@ VS
 	            _11892 = _16401;
 	            _16747 = _16482;
 	        }
-	        float _13567 = cos(input_5.x);
-	        float _8404 = sin(input_5.x);
+	        float _13567 = cos(input_TEXCOORD3.x);
+	        float _8404 = sin(input_TEXCOORD3.x);
 	        float3 _18015 = (_11892 * _13567) - (_16747 * _8404);
-	        float _19825 = sin(input_5.y);
-	        float _8898 = cos(input_5.y);
+	        float _19825 = sin(input_TEXCOORD3.y);
+	        float _8898 = cos(input_TEXCOORD3.y);
 	        float _9794 = _18015.x;
 	        float _21144 = _9794 * _9794;
 	        float _24619 = _18015.y;
@@ -3390,7 +3385,7 @@ VS
 	        float3x3 _23397 = float3x3(float3(_21144 + ((1.0f - _21144) * _8898), _10272 - _21408, _6451 + _22637), float3(_10272 + _21408, _7331 + ((1.0f - _7331) * _8898), _6440 - _22945), float3(_6451 - _22637, _6440 + _22945, _17752 + ((1.0f - _17752) * _8898)));
 	        _13141 = mul(_23397, _22185);
 	        _13203 = _13140;
-	        _24249 = (mul(_23397, (_16747 * _13567) + (_11892 * _8404)) * (input_0.x + SpritecardVertexControls_t_1_m1.y)) + (_18015 * (input_0.y + SpritecardVertexControls_t_1_m1.z));
+	        _24249 = (mul(_23397, (_16747 * _13567) + (_11892 * _8404)) * (input_TEXCOORD0.x + SpritecardVertexControls_t_1_m1.y)) + (_18015 * (input_TEXCOORD0.y + SpritecardVertexControls_t_1_m1.z));
 	        break;
 	    } while(false);
 	    float _20054 = length(PerViewConstantBuffer_t_1_m10.xyz - _21709.xyz);
@@ -3400,16 +3395,16 @@ VS
 	    {
 	        float _16605 = SpritecardVertexControls_t_1_m0.y * _20054;
 	        float4 _20313;
-	        if (input_5.w > _16605)
+	        if (input_TEXCOORD3.w > _16605)
 	        {
 	            float4 _12504;
-	            if (input_5.w > (SpritecardVertexControls_t_1_m0.z * _20054))
+	            if (input_TEXCOORD3.w > (SpritecardVertexControls_t_1_m0.z * _20054))
 	            {
 	                _12504 = 0.0f.xxxx;
 	            }
 	            else
 	            {
-	                _12504 = _13203 * (1.0f - ((input_5.w - _16605) / (_20054 * (SpritecardVertexControls_t_1_m0.z - SpritecardVertexControls_t_1_m0.y))));
+	                _12504 = _13203 * (1.0f - ((input_TEXCOORD3.w - _16605) / (_20054 * (SpritecardVertexControls_t_1_m0.z - SpritecardVertexControls_t_1_m0.y))));
 	            }
 	            _20313 = _12504;
 	        }
@@ -3417,12 +3412,12 @@ VS
 	        {
 	            _20313 = _13203;
 	        }
-	        _10020 = min(max(input_5.w, SpritecardVertexControls_t_1_m0.x * _20054), SpritecardVertexControls_t_1_m0.w * _20054);
+	        _10020 = min(max(input_TEXCOORD3.w, SpritecardVertexControls_t_1_m0.x * _20054), SpritecardVertexControls_t_1_m0.w * _20054);
 	        _24447 = _20313;
 	    }
 	    else
 	    {
-	        _10020 = input_5.w;
+	        _10020 = input_TEXCOORD3.w;
 	        _24447 = _13203;
 	    }
 	    float3 _19803 = _21709.xyz + (_24249 * ((_24447.w < 0.0039215688593685626983642578125f) ? 0.0f : _10020));
@@ -3471,7 +3466,7 @@ VS
 	    }
 	    uint2 _12083 = uint2(_19363.xy - PerViewConstantBuffer_t_1_m4.xy) >> PerViewLightingConstantBufferGpu_t_1_m7.x.xx;
 	    uint _10838 = PerViewLightingConstantBufferGpu_t_1_m6.y + (((_12083.y * PerViewLightingConstantBufferGpu_t_1_m7.y) + _12083.x) * PerViewLightingConstantBufferGpu_t_1_m6.z);
-	    uint _23393 = PerViewLightingConstantBufferGpu_t_1_m6.x + (uint(clamp(abs(PerViewConstantBuffer_t_1_m13.x / ((PerViewConstantBuffer_t_1_m13.y * clamp((_19363.z * PerViewConstantBuffer_t_1_m2) + PerViewConstantBuffer_t_1_m3, 0.0f, 1.0f)) + PerViewConstantBuffer_t_1_m13.z)) * PerViewLightingConstantBufferGpu_t_1_m8.x, 0.0f, PerViewLightingConstantBufferGpu_t_1_m8.y)) * PerViewLightingConstantBufferGpu_t_1_m6.z);
+	    uint _23393 = PerViewLightingConstantBufferGpu_t_1_m6.x + (uint(clamp(abs(PerViewConstantBuffer_t_1_m13.x / ((PerViewConstantBuffer_t_1_m13.y * saturate((_19363.z * PerViewConstantBuffer_t_1_m2) + PerViewConstantBuffer_t_1_m3)) + PerViewConstantBuffer_t_1_m13.z)) * PerViewLightingConstantBufferGpu_t_1_m8.x, 0.0f, PerViewLightingConstantBufferGpu_t_1_m8.y)) * PerViewLightingConstantBufferGpu_t_1_m6.z);
 	    float3 _13155;
 	    _13155 = PerViewLightingConstantBufferGpu_t_1_m5.xyz + (PerViewLightingConstantBufferGpu_t_1_m9.xyz * 1.0f).xyz;
 	    uint _21569;
@@ -3584,7 +3579,7 @@ VS
 	                        break; // unreachable workaround
 	                    } while(false);
 	                    _11185 = _10017 / _17647.xxx;
-	                    _11633 = ((_19668 * (asfloat(g_BarnLights.Load4(_12608 * 480 + 128)).w / max(_18345, asfloat(g_BarnLights.Load4(_12608 * 480 + 128)).w))) * smoothstep(0.0f, 1.0f, asfloat(g_BarnLights.Load4(_12608 * 480 + 144)).x + (asfloat(g_BarnLights.Load4(_12608 * 480 + 144)).y * _17647))) * clamp(asfloat(g_BarnLights.Load3(_12608 * 480 + 192)).x + (asfloat(g_BarnLights.Load3(_12608 * 480 + 192)).y * dot(float3((1.0f - (_23570 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).y)) - _18492, _9058 + _19826, (_14805 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).z) - (_17330 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).y)), normalize(_10275))), 0.0f, 1.0f);
+	                    _11633 = ((_19668 * (asfloat(g_BarnLights.Load4(_12608 * 480 + 128)).w / max(_18345, asfloat(g_BarnLights.Load4(_12608 * 480 + 128)).w))) * smoothstep(0.0f, 1.0f, asfloat(g_BarnLights.Load4(_12608 * 480 + 144)).x + (asfloat(g_BarnLights.Load4(_12608 * 480 + 144)).y * _17647))) * saturate(asfloat(g_BarnLights.Load3(_12608 * 480 + 192)).x + (asfloat(g_BarnLights.Load3(_12608 * 480 + 192)).y * dot(float3((1.0f - (_23570 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).y)) - _18492, _9058 + _19826, (_14805 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).z) - (_17330 * asfloat(g_BarnLights.Load4(_12608 * 480 + 176)).y)), normalize(_10275))));
 	                }
 	                else
 	                {
@@ -3693,7 +3688,7 @@ VS
 	                    float _24972;
 	                    do
 	                    {
-	                        float _11455 = clamp(_19629.z + PerViewLightingConstantBufferGpu_t_1_m10, 0.0f, 1.0f);
+	                        float _11455 = saturate(_19629.z + PerViewLightingConstantBufferGpu_t_1_m10);
 	                        float2 _14615 = float3(mad(_19629.xy, asfloat(g_BarnLights.Load4(_12608 * 480 + 208)).zw, asfloat(g_BarnLights.Load4(_12608 * 480 + 208)).xy), _19629.z).xy;
 	                        float _15310 = dot(float4(g_tShadowDepthBufferDepth.SampleCmpLevelZero(g_tShadowDepthBufferCmpSampler, (_14615 + float2(PerViewLightingConstantBufferGpu_t_1_m2.z, PerViewLightingConstantBufferGpu_t_1_m3.z)).xy, _11455), g_tShadowDepthBufferDepth.SampleCmpLevelZero(g_tShadowDepthBufferCmpSampler, (_14615 + float2(PerViewLightingConstantBufferGpu_t_1_m2.y, PerViewLightingConstantBufferGpu_t_1_m3.z)).xy, _11455), g_tShadowDepthBufferDepth.SampleCmpLevelZero(g_tShadowDepthBufferCmpSampler, (_14615 + float2(PerViewLightingConstantBufferGpu_t_1_m2.z, PerViewLightingConstantBufferGpu_t_1_m3.y)).xy, _11455), g_tShadowDepthBufferDepth.SampleCmpLevelZero(g_tShadowDepthBufferCmpSampler, (_14615 + float2(PerViewLightingConstantBufferGpu_t_1_m2.y, PerViewLightingConstantBufferGpu_t_1_m3.y)).xy, _11455)).xyzw, 0.25f.xxxx);
 	                        bool _12887;
@@ -3760,13 +3755,13 @@ VS
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
-	    input_2 = stage_input.input_2;
-	    input_3 = stage_input.input_3;
-	    input_4 = stage_input.input_4;
-	    input_5 = stage_input.input_5;
-	    input_6 = stage_input.input_6;
+	    input_TEXCOORD0 = stage_input.input_TEXCOORD0;
+	    input_TEXCOORD1 = stage_input.input_TEXCOORD1;
+	    input_TEXCOORD2 = stage_input.input_TEXCOORD2;
+	    input_COLOR0 = stage_input.input_COLOR0;
+	    input_POSITION0 = stage_input.input_POSITION0;
+	    input_TEXCOORD3 = stage_input.input_TEXCOORD3;
+	    input_TEXCOORD4 = stage_input.input_TEXCOORD4;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -3812,7 +3807,7 @@ PS
 	StaticComboRule( Allow1( S_MODE_GBUFFER, S_REVERSE_DEPTH ) );
 	StaticComboRule( Allow1( S_MODE_GBUFFER, S_PARTICLE_SHADOWS ) );
 	StaticComboRule( Allow1( S_MODE_TOOLS_WIREFRAME, S_PARTICLE_SHADOWS ) );
-	StaticComboRule( Requires( S_MOTION_VECTORS, S_TEXTURE_LAYERS=0, S_TEXTURE_LAYERS=1, S_TEXTURE_LAYERS=2 ) );
+	StaticComboRule( Requires( S_MOTION_VECTORS, S_TEXTURE_LAYERS==0, S_TEXTURE_LAYERS==1, S_TEXTURE_LAYERS==2 ) );
 	StaticComboRule( Allow1( S_PARTICLE_SHADOWS, S_REVERSE_DEPTH ) );
 	StaticComboRule( Allow1( S_PARTICLE_SHADOWS, S_DRAW_AS_TRAIL ) );
 	StaticComboRule( Allow1( S_PARTICLE_SHADOWS, S_REFRACT ) );
@@ -3832,33 +3827,28 @@ PS
 	DynamicComboRule( Allow1( S_MODE_GBUFFER, D_MBOIT_PASS1, D_MBOIT_PASS2 ) );
 	DynamicComboRule( Allow1( S_MODE_TOOLS_SHADING_COMPLEXITY, D_MBOIT_PASS1, D_MBOIT_PASS2 ) );
 	DynamicComboRule( Allow1( S_OPAQUE, D_MBOIT_PASS1, D_MBOIT_PASS2 ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_QUAD_OVERDRAW=0 ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_VIS=0 ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_SHADING_COMPLEXITY=0 ) );
-	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_WIREFRAME=0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, D_QUAD_OVERDRAW==0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_VIS==0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_SHADING_COMPLEXITY==0 ) );
+	DynamicComboRule( Requires( D_PANORAMA_PARTICLE, S_MODE_TOOLS_WIREFRAME==0 ) );
 	DynamicComboRule( Allow1( S_MODE_GBUFFER, D_PANORAMA_PARTICLE ) );
 	DynamicComboRule( Allow1( S_PARTICLE_SHADOWS, D_PANORAMA_PARTICLE ) );
 	DynamicComboRule( Allow1( D_MBOIT_PASS1, D_PANORAMA_PARTICLE ) );
 	DynamicComboRule( Allow1( D_MBOIT_PASS2, D_PANORAMA_PARTICLE ) );
 	
-	RenderState(BlendEnable, True);
+	RenderState(BlendEnable, true);
 	RenderState(BlendOp, F_LIGHTEN_MODE ? Max : Add);
 	RenderState(ColorWriteEnable0, None);
-	RenderState(ColorWriteEnable0, 3);
-	RenderState(ColorWriteEnable0, 7);
+	RenderState(ColorWriteEnable0, R|G);
+	RenderState(ColorWriteEnable0, R|G|B);
 	RenderState(DepthFunc, F_DISABLE_DEPTHTEST ? Always : LessEqual);
-	RenderState(DepthWriteEnable, False);
-	RenderState(DstBlend, F_LIGHTEN_MODE ? One : (F_MOD2X ? SrcColor : InvSrcAlpha));
+	RenderState(DepthWriteEnable, false);
+	RenderState(DstBlend, F_LIGHTEN_MODE || (F_MOD2X ? 2 : 5));
 	RenderState(DstBlendAlpha, One);
-	cbuffer FilterTaps_t < Attribute("FilterTaps_t"); >;
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer SpriteCardPixelControls_t < Attribute("SpriteCardPixelControls_t"); >;
 	RenderState(SrcBlend, F_MOD2X ? DestColor : One);
 	RenderState(SrcBlendAlpha, F_MOD2X ? Zero : InvDestAlpha);
-	cbuffer SunLightShaderParamsCB_t < Attribute("SunLightShaderParamsCB_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	int g_nToolsVisMode < Attribute("g_nToolsVisMode"); UiType(Slider); >;
 	Texture2D g_tBaseTexture < Attribute("BaseTexture"); SrgbRead(true); >;
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
@@ -3881,27 +3871,31 @@ PS
 	float4 g_vShadingComplexity < Source(ShadingComplexity); UiType(VectorText); >;
 	
 	#if (S_REFRACT == 1)
-		RenderState(ColorWriteEnable0, 7);
+		RenderState(ColorWriteEnable0, R|G|B);
 	#endif
 	#if (S_REVERSE_DEPTH == 1)
-		RenderState(ColorWriteEnable0, 7);
+		RenderState(ColorWriteEnable0, R|G|B);
 	#endif
 	#if (S_OPAQUE == 1)
-		RenderState(ColorWriteEnable0, 7);
+		RenderState(ColorWriteEnable0, R|G|B);
 	#endif
 	#if (S_MODE_TOOLS_WIREFRAME == 1)
-		RenderState(ColorWriteEnable0, 7);
+		RenderState(ColorWriteEnable0, R|G|B);
 	#endif
 	
+	// Variant parameters
+	RenderState(ColorWriteEnable0, None);
+	RenderState(ColorWriteEnable0, R|G);
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (26976 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	static float4 _3;
 	static float4 _4;
 	
-	static const float3 _2637[15] = { 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, float3(0.0f, 1.0f, 0.0f), float3(1.0f, 0.0f, 0.0f), float3(1.0f, 0.0f, 1.0f), 0.0f.xxx, 0.0f.xxx, float3(0.0f, 1.0f, 0.0f), 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx };
-	static const float2 _390[15] = { float2(1.0f, 0.0f), 0.0f.xx, float2(0.0f, 1.0f), 0.0f.xx, float2(1.0f, 0.0f), float2(1.0f, 0.0f), 0.0f.xx, float2(0.0f, 1.0f), 0.0f.xx, float2(1.0f, 0.0f), float2(1.0f, 0.0f), float2(1.0f, 0.0f), 0.0f.xx, 0.0f.xx, 0.0f.xx };
+	static const float3 _2617[15] = { 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, float3(0.0f, 1.0f, 0.0f), float3(1.0f, 0.0f, 0.0f), float3(1.0f, 0.0f, 1.0f), 0.0f.xxx, 0.0f.xxx, float3(0.0f, 1.0f, 0.0f), 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx, 0.0f.xxx };
+	static const float2 _368[15] = { float2(1.0f, 0.0f), 0.0f.xx, float2(0.0f, 1.0f), 0.0f.xx, float2(1.0f, 0.0f), float2(1.0f, 0.0f), 0.0f.xx, float2(0.0f, 1.0f), 0.0f.xx, float2(1.0f, 0.0f), float2(1.0f, 0.0f), float2(1.0f, 0.0f), 0.0f.xx, 0.0f.xx, 0.0f.xx };
 	
 	cbuffer SpriteCardPixelControls_t : register(b4, space1)
 	{
@@ -3944,8 +3938,8 @@ PS
 	static float4 input_0;
 	static float4 input_1;
 	static float3 input_2;
-	static float4 input_3;
 	static float4 input_4;
+	static float4 input_5;
 	static float4 output_0;
 	
 	struct PS_INPUT
@@ -3953,8 +3947,8 @@ PS
 	    float4 input_0 : TEXCOORD0;
 	    float4 input_1 : TEXCOORD1;
 	    float3 input_2 : TEXCOORD2;
-	    nointerpolation float4 input_3 : TEXCOORD4;
-	    float4 input_4 : TEXCOORD5;
+	    nointerpolation float4 input_4 : TEXCOORD4;
+	    float4 input_5 : TEXCOORD5;
 	};
 	
 	struct PS_OUTPUT
@@ -4001,7 +3995,7 @@ PS
 	    if ((SpriteCardPixelControls_t_1_m9 & 32768u) > 0u)
 	    {
 	        float4 _12502;
-	        if (input_3.x > (-1.0f))
+	        if (input_4.x > (-1.0f))
 	        {
 	            float4 _12886;
 	            do
@@ -4047,7 +4041,7 @@ PS
 	            float4 _7078;
 	            if (_21358 == 1)
 	            {
-	                _7078 = lerp(_19707, _12904, input_3.x.xxxx);
+	                _7078 = lerp(_19707, _12904, input_4.x.xxxx);
 	            }
 	            else
 	            {
@@ -4056,8 +4050,8 @@ PS
 	            float4 _12501;
 	            if (_21358 == 2)
 	            {
-	                float _10302 = (1.0f - input_3.x) * sqrt(max(0.001000000047497451305389404296875f, dot(_19707.xyz, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f))));
-	                float _18360 = input_3.x * sqrt(max(0.001000000047497451305389404296875f, dot(_12904.xyz, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f))));
+	                float _10302 = (1.0f - input_4.x) * sqrt(max(0.001000000047497451305389404296875f, dot(_19707.xyz, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f))));
+	                float _18360 = input_4.x * sqrt(max(0.001000000047497451305389404296875f, dot(_12904.xyz, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f))));
 	                _12501 = ((_19707 * _10302) + (_12904 * _18360)) / (_18360 + _10302).xxxx;
 	            }
 	            else
@@ -4124,7 +4118,7 @@ PS
 	                    break;
 	                } while(false);
 	                float4 _10911 = lerp(_19630.xyzw, _12906.xyzw, (_16439 * _16439).xxxx);
-	                _10911.w = lerp(_21709.w, _10911.w, float(_2637[int(_12528)].y != 1.0f));
+	                _10911.w = lerp(_21709.w, _10911.w, float(_2617[int(_12528)].y != 1.0f));
 	                _13174 = _10911;
 	                _16054 = true;
 	                break;
@@ -4218,7 +4212,7 @@ PS
 	                {
 	                    _19457 = _9166.y;
 	                }
-	                float2 _20342 = _15476.xy - (((float3(_23035, _19457, _2).xy - 0.5f.xx) * 2.0f) * (((SpriteCardPixelControls_t_1_m6.w * input_0.w) * 0.125f) * lerp(_21709.w, _10910.w, float(_2637[int(_12528)].y != 1.0f))));
+	                float2 _20342 = _15476.xy - (((float3(_23035, _19457, _2).xy - 0.5f.xx) * 2.0f) * (((SpriteCardPixelControls_t_1_m6.w * input_0.w) * 0.125f) * lerp(_21709.w, _10910.w, float(_2617[int(_12528)].y != 1.0f))));
 	                float4 _12503;
 	                do
 	                {
@@ -4237,8 +4231,8 @@ PS
 	            case 2u:
 	            {
 	                int _8289 = int(_12528);
-	                float4 _20655 = _390[_8289].y.xxxx;
-	                float4 _9219 = lerp(lerp(float4(_21709.xyz * _21709.www, 1.0f), _21709, _390[_8289].x.xxxx), _21709.wwww, _20655);
+	                float4 _20655 = _368[_8289].y.xxxx;
+	                float4 _9219 = lerp(lerp(float4(_21709.xyz * _21709.www, 1.0f), _21709, _368[_8289].x.xxxx), _21709.wwww, _20655);
 	                float3 _25122 = _9219.xyz;
 	                float3 _17379 = _25122 * 12.9200000762939453125f;
 	                float3 _7485 = (pow(_25122, 0.4166666567325592041015625f.xxx) * 1.05499994754791259765625f) - 0.054999999701976776123046875f.xxx;
@@ -4559,7 +4553,7 @@ PS
 	    if ((SpriteCardPixelControls_t_1_m9 & 1024u) != 0u)
 	    {
 	        float4 _18986 = _14171;
-	        _18986.w = clamp(_12460, 0.0f, 1.0f);
+	        _18986.w = saturate(_12460);
 	        _6905 = _18986;
 	    }
 	    else
@@ -4572,7 +4566,7 @@ PS
 	        float _20523 = max(SpriteCardPixelControls_t_1_m5.x, _6905.w);
 	        float _15029 = _6905.w - SpriteCardPixelControls_t_1_m0.w;
 	        float4 _13727 = _6905;
-	        _13727.w = min(clamp(((input_3.z + input_3.w) - _6905.w) / ((_6905.w + SpriteCardPixelControls_t_1_m0.z) - _6905.w), 0.0f, 1.0f) * _20523, (clamp((input_3.z - _15029) / (_6905.w - _15029), 0.0f, 1.0f) * (-_20523)) + _20523) * max(SpriteCardPixelControls_t_1_m5.y, input_1.w);
+	        _13727.w = min(saturate(((input_4.z + input_4.w) - _6905.w) / ((_6905.w + SpriteCardPixelControls_t_1_m0.z) - _6905.w)) * _20523, (saturate((input_4.z - _15029) / (_6905.w - _15029)) * (-_20523)) + _20523) * max(SpriteCardPixelControls_t_1_m5.y, input_1.w);
 	        _19283 = _13727;
 	    }
 	    else
@@ -4581,7 +4575,7 @@ PS
 	        _18602.w = _6905.w * input_1.w;
 	        _19283 = _18602;
 	    }
-	    float3 _11507 = _19283.xyz * (((input_4.xyz * SpriteCardPixelControls_t_1_m0.y) + SpriteCardPixelControls_t_1_m0.x.xxx) + input_4.w.xxx);
+	    float3 _11507 = _19283.xyz * (((input_5.xyz * SpriteCardPixelControls_t_1_m0.y) + SpriteCardPixelControls_t_1_m0.x.xxx) + input_5.w.xxx);
 	    float4 _23715;
 	    _23715.x = _11507.x;
 	    _23715.y = _11507.y;
@@ -4589,7 +4583,7 @@ PS
 	    float _21712;
 	    if ((SpriteCardPixelControls_t_1_m9 & 524288u) != 0u)
 	    {
-	        _21712 = clamp(_19283.w * 128.0f, 0.0f, 1.0f);
+	        _21712 = saturate(_19283.w * 128.0f);
 	    }
 	    else
 	    {
@@ -4655,10 +4649,10 @@ PS
 	                [branch]
 	                if (_24464.z)
 	                {
-	                    float _14602 = clamp(pow(max(0.0f, (length(_3895.xyz) * PerViewConstantBufferCsgo_t_1_m4.y) + PerViewConstantBufferCsgo_t_1_m4.x), PerViewConstantBufferCsgo_t_1_m4.w), 0.0f, 1.0f) * clamp(pow(max(0.0f, (input_2.z * PerViewConstantBufferCsgo_t_1_m5.y) + PerViewConstantBufferCsgo_t_1_m5.x), PerViewConstantBufferCsgo_t_1_m5.z), 0.0f, 1.0f);
-	                    float _13668 = clamp(_14602, 0.0f, 1.0f) * PerViewConstantBufferCsgo_t_1_m7.w;
+	                    float _14602 = saturate(pow(max(0.0f, (length(_3895.xyz) * PerViewConstantBufferCsgo_t_1_m4.y) + PerViewConstantBufferCsgo_t_1_m4.x), PerViewConstantBufferCsgo_t_1_m4.w)) * saturate(pow(max(0.0f, (input_2.z * PerViewConstantBufferCsgo_t_1_m5.y) + PerViewConstantBufferCsgo_t_1_m5.x), PerViewConstantBufferCsgo_t_1_m5.z));
+	                    float _13668 = saturate(_14602) * PerViewConstantBufferCsgo_t_1_m7.w;
 	                    float _24483 = 1.0f - _13668;
-	                    float3 _25192 = lerp(float4((g_tFogCubeTexture.SampleLevel(g_sTrilinearClamp, normalize(mul(float4(_3895.xyz, 0.0f), PerViewConstantBufferCsgo_t_1_m6).xyz).xyz, PerViewConstantBufferCsgo_t_1_m5.w * clamp(1.0f - (_14602 * PerViewConstantBufferCsgo_t_1_m4.z), 0.0f, 1.0f)) * PerViewConstantBufferCsgo_t_1_m8.x).xyz, _13668).xyz * SpriteCardPixelControls_t_1_m1.w, _22475.xyz, _24483.xxx);
+	                    float3 _25192 = lerp(float4((g_tFogCubeTexture.SampleLevel(g_sTrilinearClamp, normalize(mul(float4(_3895.xyz, 0.0f), PerViewConstantBufferCsgo_t_1_m6).xyz).xyz, PerViewConstantBufferCsgo_t_1_m5.w * saturate(1.0f - (_14602 * PerViewConstantBufferCsgo_t_1_m4.z))) * PerViewConstantBufferCsgo_t_1_m8.x).xyz, _13668).xyz * SpriteCardPixelControls_t_1_m1.w, _22475.xyz, _24483.xxx);
 	                    float4 _17851;
 	                    _17851.x = _25192.x;
 	                    _17851.y = _25192.y;
@@ -4687,7 +4681,7 @@ PS
 	            _10894 = _19688;
 	            _13264 = _21712;
 	        }
-	        float3 _22606 = _10894.xyz * lerp(_13264, 1.0f, clamp(-SpriteCardPixelControls_t_1_m1.w, 0.0f, 1.0f));
+	        float3 _22606 = _10894.xyz * lerp(_13264, 1.0f, saturate(-SpriteCardPixelControls_t_1_m1.w));
 	        float4 _8675;
 	        _8675.x = _22606.x;
 	        _8675.y = _22606.y;
@@ -4718,8 +4712,8 @@ PS
 	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
 	    input_2 = stage_input.input_2;
-	    input_3 = stage_input.input_3;
 	    input_4 = stage_input.input_4;
+	    input_5 = stage_input.input_5;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

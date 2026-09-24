@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (532 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionSs;
@@ -84,11 +83,10 @@ PS
 {
 	DynamicCombo( D_MSAA_DEPTH_BUFFER, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	float4 g_Const0 < UiType(VectorText); Expression(ATTRIBUTE[8f071f44]); >;
-	float4 g_Const1 < UiType(VectorText); Expression(ATTRIBUTE[61fc2430]); >;
-	float4 g_Const3 < UiType(VectorText); Expression(ATTRIBUTE[38e74ee8]); >;
-	float4 g_Const5 < UiType(VectorText); Expression(ATTRIBUTE[6927e854]); >;
+	float4 g_Const0 < UiType(VectorText); Expression(const0); >;
+	float4 g_Const1 < UiType(VectorText); Expression(const1); >;
+	float4 g_Const3 < UiType(VectorText); Expression(const3); >;
+	float4 g_Const5 < UiType(VectorText); Expression(const5); >;
 	float4x4 g_invViewProjMatrix < Attribute("InvViewProjMatrix"); >;
 	Texture2D g_tColor1 < Channel(RGBA, None(TextureColor1), Linear); OutputFormat(BC7); SrgbRead(true); >;
 	Texture2D g_tCsgoDZPRT < Attribute("DangerZoneProjectionRT"); SrgbRead(false); >;
@@ -99,8 +97,10 @@ PS
 	CreateInputTexture2D(TextureColor1, Srgb, 8, "", "", "Color", Default4(1, 1, 1, 0));
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (7108 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{
@@ -140,7 +140,7 @@ PS
 	void MainPs_inner()
 	{
 	    float4 _19068 = g_tSceneDepth.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, input_0.xy);
-	    float _12211 = clamp((_19068.x - PerViewConstantBuffer_t_1_m0) / (PerViewConstantBuffer_t_1_m1 - PerViewConstantBuffer_t_1_m0), 0.0f, 1.0f);
+	    float _12211 = saturate((_19068.x - PerViewConstantBuffer_t_1_m0) / (PerViewConstantBuffer_t_1_m1 - PerViewConstantBuffer_t_1_m0));
 	    if ((0.99989998340606689453125f - _12211) < 0.0f)
 	    {
 	        discard;
@@ -177,7 +177,7 @@ PS
 	    float4 _20284 = g_tColor1.Sample(AddressU_Wrap_AddressV_Wrap_Filter_MinMagLinearMipPoint, ((_12890.yz * _Globals_1_g_Const5.zw) * 10.0f).xy);
 	    float _12473 = (_19334.y + _19335.y) + _20284.y;
 	    float _5579 = _12473 * 3.1415927410125732421875f;
-	    float _22760 = lerp(clamp((sin(_12473 * 12.56637096405029296875f) * 0.5f) + 0.5f, 0.0f, 1.0f), clamp((sin(_5579) * 0.5f) + 0.5f, 0.0f, 1.0f), _15977);
+	    float _22760 = lerp(saturate((sin(_12473 * 12.56637096405029296875f) * 0.5f) + 0.5f), saturate((sin(_5579) * 0.5f) + 0.5f), _15977);
 	    bool _12885;
 	    if (_10513)
 	    {
@@ -197,20 +197,20 @@ PS
 	        _13866 = _22760;
 	    }
 	    float _10763 = pow(_15977, 1.60000002384185791015625f);
-	    float _17802 = clamp((_13866 + _10763) * _10763, 0.0f, 1.0f);
+	    float _17802 = saturate((_13866 + _10763) * _10763);
 	    if ((_17802 - 0.00200000009499490261077880859375f) < 0.0f)
 	    {
 	        discard;
 	    }
 	    float _17460 = step(0.07999999821186065673828125f, _17802);
 	    float _22112 = smoothstep(0.0f, 0.07999999821186065673828125f, _17802);
-	    float4 _3401 = g_tFrameBuffer.Sample(AddressU_Wrap_AddressV_Wrap_Filter_MinMagLinearMipPoint, input_0.xy);
-	    float3 _20871 = _3401.xyz;
+	    float4 _3300 = g_tFrameBuffer.Sample(AddressU_Wrap_AddressV_Wrap_Filter_MinMagLinearMipPoint, input_0.xy);
+	    float3 _20871 = _3300.xyz;
 	    float _23825 = dot(float3(0.300000011920928955078125f, 0.589999973773956298828125f, 0.10999999940395355224609375f), _20871);
 	    float _3187 = (0.449999988079071044921875f * _23825) - (fmod(_23825, 0.20000000298023223876953125f) * 0.20000000298023223876953125f);
 	    float3 _9366 = lerp(lerp(_3187 * 0.100000001490116119384765625f, _3187 * smoothstep(0.100000001490116119384765625f, 0.699999988079071044921875f, _17802), _17460).xxx, _3187.xxx, smoothstep(1500.0f, 5000.0f, _16095).xxx);
 	    float4 _23112 = float4(_9366, _22112);
-	    _23112.x = _9366.x + (((((smoothstep(1.0f, 0.0f, pow(_17802, 0.20000000298023223876953125f)) + smoothstep(0.1500000059604644775390625f, 0.0f, _17802)) * (1.0f - clamp((sin((_5579 + _Globals_1_g_Const0.w) * 20.0f) * 0.1500000059604644775390625f) + 0.1500000059604644775390625f, 0.0f, 1.0f))) * _17460) * smoothstep(4000.0f, 0.0f, _16095)) * smoothstep(1200.0f, 0.0f, abs(_Globals_1_g_Const1.z - _11737)));
+	    _23112.x = _9366.x + (((((smoothstep(1.0f, 0.0f, pow(_17802, 0.20000000298023223876953125f)) + smoothstep(0.1500000059604644775390625f, 0.0f, _17802)) * (1.0f - saturate((sin((_5579 + _Globals_1_g_Const0.w) * 20.0f) * 0.1500000059604644775390625f) + 0.1500000059604644775390625f))) * _17460) * smoothstep(4000.0f, 0.0f, _16095)) * smoothstep(1200.0f, 0.0f, abs(_Globals_1_g_Const1.z - _11737)));
 	    float3 _9385 = lerp(_20871, _23112.xyz, smoothstep(6000.0f, 4000.0f, _16095).xxx);
 	    float _20401 = _9385.x;
 	    float4 _17842 = _23112;

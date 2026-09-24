@@ -4,7 +4,7 @@
 //	"m_strMatchValue": "",
 //	"m_bPassWhenTrue": true
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompositeMaterialMatchFilter_t
 {
 	// MPropertyFriendlyName = "Match Type"
@@ -12,7 +12,7 @@ class CompositeMaterialMatchFilter_t
 	// MPropertyFriendlyName = "Name"
 	CUtlString m_strMatchFilter;
 	// MPropertyFriendlyName = "Value"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strMatchValue;
 	// MPropertyFriendlyName = "Pass when True"
 	bool m_bPassWhenTrue;

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -33,8 +32,6 @@ CS
 	DynamicCombo( D_TONEMAP_BLEND, 0..3 );
 	DynamicCombo( D_DITHER_NOISE, 0..2 );
 	
-	cbuffer Histogram_t < Attribute("Histogram_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	RWBuffer<float4> g_bAverageLuminance < Attribute("AverageLuminance"); >;
 	RWBuffer<float4> g_bHistogramBins < Attribute("HistogramBins"); >;
 	float g_flDitherNoiseAmount < Attribute("DitherNoiseAmount"); UiType(Slider); >;
@@ -42,10 +39,10 @@ CS
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	Texture2D g_tInput < Attribute("Input"); SrgbRead(false); >;
 	RWTexture2D<float4> g_tOutput < Attribute("Output"); >;
-	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(ATTRIBUTE[c6be84fa]); >;
+	float4 g_vBlueNoiseDitherParams < UiType(VectorText); Expression(bluenoiseditherparams); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3144 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer Histogram_t : register(b2, space0)
 	{
@@ -108,11 +105,11 @@ CS
 	                {
 	                    break;
 	                }
-	                float4 _3401 = g_tInput.Load(int3(int3(int2(_4370), 0).xy, 0), int2(0, 0));
-	                float3 _22086 = _3401.xyz;
+	                float4 _3300 = g_tInput.Load(int3(int3(int2(_4370), 0).xy, 0), int2(0, 0));
+	                float3 _22086 = _3300.xyz;
 	                uint _19618;
-	                InterlockedAdd(_5922[uint(clamp((log2(max(dot(_22086, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f)), 0.004999999888241291046142578125f)) - Histogram_t_1_m1) * Histogram_t_1_m2, 0.0f, 1.0f) * 255.0f)], 1u, _19618);
-	                _5853[_4370] = float4(clamp(_22086, 0.0f.xxx, 65504.0f.xxx), _3401.w);
+	                InterlockedAdd(_5922[uint(saturate((log2(max(dot(_22086, float3(0.2125000059604644775390625f, 0.7153999805450439453125f, 0.07209999859333038330078125f)), 0.004999999888241291046142578125f)) - Histogram_t_1_m1) * Histogram_t_1_m2) * 255.0f)], 1u, _19618);
+	                _5853[_4370] = float4(clamp(_22086, 0.0f.xxx, 65504.0f.xxx), _3300.w);
 	                break;
 	            } while(false);
 	            if (_7956_ladder_break)

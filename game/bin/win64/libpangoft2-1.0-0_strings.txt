@@ -672,7 +672,6 @@ Pattern
 PostScript (post) table missing
 RAN OUT OF ROOM
 RSDSC
-Regular
 RemoveFontMemResourceEx
 SANITIZE
 SERIALIZE

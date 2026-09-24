@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -88,8 +87,12 @@ PS
 	Texture2D g_tTranslucentColor < Attribute("TranslucentColorTexture"); SrgbRead(false); >;
 	
 	
+	// Variant parameters
+	Texture2D g_tOpaqueColor < Attribute("OpaqueColorTexture"); SrgbRead(false); >;
+	Texture2D g_tOpaqueColor < Attribute("OpaqueColorTexture"); SrgbRead(true); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2064 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -118,8 +121,8 @@ PS
 	{
 	    int2 _11700 = int3(int2(gl_FragCoord.xy), 0).xy;
 	    float4 _19815 = g_tOpaqueColor.Load(int3(_11700, 0));
-	    float4 _3401 = g_tTranslucentColor.Load(int3(_11700, 0));
-	    float3 _14140 = abs((_3401.xyz / (max(max(0.0f, _3401.x), max(_3401.y, _3401.z)) + 1.0f).xxx) - (_19815.xyz / (max(max(0.0f, _19815.x), max(_19815.y, _19815.z)) + 1.0f).xxx));
+	    float4 _3300 = g_tTranslucentColor.Load(int3(_11700, 0));
+	    float3 _14140 = abs((_3300.xyz / (max(max(0.0f, _3300.x), max(_3300.y, _3300.z)) + 1.0f).xxx) - (_19815.xyz / (max(max(0.0f, _19815.x), max(_19815.y, _19815.z)) + 1.0f).xxx));
 	    float _21709;
 	    if (_Globals_1_g_bUseComponentsMax != 0)
 	    {

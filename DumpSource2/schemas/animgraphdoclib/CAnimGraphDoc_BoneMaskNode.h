@@ -67,20 +67,20 @@ class CAnimGraphDoc_BoneMaskNode : public CAnimGraphDoc_Node
 	bool m_bUseBlendScale;
 	// MPropertyFriendlyName = "Blend Source"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_blendValueSource;
 	// MPropertySuppressField
 	CUtlString m_blendParameterName;
 	// MPropertyFriendlyName = "Blend Parameter"
 	// MPropertyAttributeChoiceName = "FloatParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_blendParameter;
 	// MPropertyFriendlyName = "Timing Control"
 	// MPropertyAutoRebuildOnChange
 	BinaryNodeTiming m_timingBehavior;
 	// MPropertyFriendlyName = "Timing Blend"
 	// MPropertyAttributeRange = "0 1"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTimingBlend;
 	// MPropertyFriendlyName = "Root Motion Blend"
 	// MPropertyAttributeRange = "0 1"

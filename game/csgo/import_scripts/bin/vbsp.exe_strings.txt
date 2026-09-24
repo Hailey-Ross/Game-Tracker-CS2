@@ -398,7 +398,6 @@ AddPortalToNode: allready included
 Ai0T
 AiFC.
 AllMaps
-Angles
 Areaportal leak ! File: %s 
 Arg list too long
 Auto-created %d static prop combine rules (covering %d static prop instances) based on static prop and material usage.\n
@@ -704,7 +703,6 @@ Nu?-HF
 Occluder "%s" straddles multiple areas. This is invalid!\n
 OnProxyRelay
 Operation not permitted
-Origin
 Other options  :\n  -novconfig   : Don't bring up graphical UI on vproject errors.\n  -threads     : Control the number of threads vbsp uses (defaults to the # of\n                 processors on your machine).\n  -verboseentities: If -v is on, this disables verbose output for submodels.\n  -noweld      : Don't join face vertices together.\n  -nocsg       : Don't chop out intersecting brush areas.\n  -noshare     : Emit unique face edges instead of sharing them.\n  -notjunc     : Don't fixup t-junctions.\n  -noopt       : By default, vbsp removes the 'outer shell' of the map, which\n                 are all the faces you can't see because you can never get\n                 outside the map. -noopt disables this behaviour.\n  -noprune     : Don't prune neighboring solid nodes.\n  -nomerge     : Don't merge together chopped faces on nodes.\n  -nomergewater: Don't merge together chopped faces on water.\n  -nosubdiv    : Don't subdivide faces for lightmapping.\n  -micro <#>   : vbsp will warn when brushes are output with a volume less\n                 than this number (default: 1.0).\n  -fulldetail  : Mark all detail geometry as normal geometry (so all detail\n                 geometry will affect visibility).\n  -alldetail   : Convert all structural brushes to detail brushes, except\n                 func_brush entities whose names begin with structure_.\n
 Other textures
 Overlay (%s) at %f %f %f has invalid render order (%d).\n

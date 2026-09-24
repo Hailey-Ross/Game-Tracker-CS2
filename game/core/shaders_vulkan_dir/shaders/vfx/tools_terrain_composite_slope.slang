@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (560 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -97,12 +96,12 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2336 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_samplerless_texture_functions : require
 	
-	const vec2 _863[8] = vec2[](vec2(-1.0), vec2(0.0, -1.0), vec2(1.0, -1.0), vec2(1.0, 0.0), vec2(1.0), vec2(0.0, 1.0), vec2(-1.0, 1.0), vec2(-1.0, 0.0));
+	const vec2 _852[8] = vec2[](vec2(-1.0), vec2(0.0, -1.0), vec2(1.0, -1.0), vec2(1.0, 0.0), vec2(1.0), vec2(0.0, 1.0), vec2(-1.0, 1.0), vec2(-1.0, 0.0));
 	
 	struct _1040
 	{
@@ -135,7 +134,7 @@ PS
 	        }
 	        uvec2 _10352 = uvec2(textureSize(g_tDisplacement, int(0u)));
 	        vec2 _19607 = vec2(1.0) / vec2(ivec2(int(_10352.x), int(_10352.y)));
-	        vec3 _10323 = abs(_20688 - (vec3((_19607 * _Globals_.g_vLayerSize) * _863[_16208], 0.0) + (texture(sampler2D(g_tDisplacement, AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint), (input_0 + (_19607 * _863[_16208])).xy).zyx * _Globals_.g_vDisplacementScale)));
+	        vec3 _10323 = abs(_20688 - (vec3((_19607 * _Globals_.g_vLayerSize) * _852[_16208], 0.0) + (texture(sampler2D(g_tDisplacement, AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint), (input_0 + (_19607 * _852[_16208])).xy).zyx * _Globals_.g_vDisplacementScale)));
 	        float _23793 = _10323.z;
 	        _17213 = max(_13155, (_23793 * _23793) / dot(_10323, _10323));
 	        _4505 = _16208 + 1;

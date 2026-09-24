@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -42,7 +41,6 @@ VS
 	StaticCombo( S_REVERSE_DEPTH_BUFFER, 0..1 );
 	DynamicCombo( D_DEPTH_BIAS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float3 g_vGridAxis0 < Attribute("g_vGridAxis0"); UiType(VectorText); >;
 	float3 g_vGridAxis1 < Attribute("g_vGridAxis1"); UiType(VectorText); >;
 	float3 g_vGridAxis2 < Attribute("g_vGridAxis2"); UiType(VectorText); >;
@@ -58,7 +56,7 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1880 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -111,7 +109,6 @@ PS
 	DynamicCombo( D_TRANSLUCENT, 0..1 );
 	DynamicCombo( D_SHOW_FRACTIONAL_GRID, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_fGridSpacing < Attribute("g_fGridSpacing"); UiType(Slider); >;
 	float g_fInvGridSpacing < Attribute("g_fInvGridSpacing"); UiType(Slider); >;
 	int g_n1024InchMask < Attribute("g_n1024InchMask"); UiType(Slider); >;
@@ -131,7 +128,7 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5608 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -171,7 +168,7 @@ PS
 	{
 	    vec2 _22106 = fwidth(input_0.xy);
 	    vec2 _17305 = (((gl_FragCoord.xy - PerViewConstantBuffer_t._m1) * PerViewConstantBuffer_t._m2) * vec2(2.0, -2.0)) + vec2(-1.0, 1.0);
-	    vec2 _18599 = vec2(1.0) - clamp((_22106 - vec2(12.0)) * vec2(0.083333335816860198974609375), vec2(0.0), vec2(1.0));
+	    vec2 _18599 = vec2(1.0) - saturate((_22106 - vec2(12.0)) * vec2(0.083333335816860198974609375));
 	    vec4 _13136;
 	    float _16305;
 	    int _17133;
@@ -215,7 +212,7 @@ PS
 	            vec3 _9746 = (PerViewConstantBuffer_t._m3.xyz + (_24006 * (dot(_Globals_.g_vGridAxis2 - PerViewConstantBuffer_t._m3.xyz, _7727) / dot(_24006, _7727)))) - _Globals_.g_vGridAxis2;
 	            vec2 _3719 = (vec2(dot(_Globals_.g_vGridAxis0, _9746), dot(_Globals_.g_vGridAxis1, _9746)) * _Globals_.g_fInvGridSpacing).xy;
 	            vec2 _15975 = round(_3719);
-	            vec2 _4840 = vec2(1.0) - clamp(abs(_3719 - _15975) / (_22106 * (0.699999988079071044921875 * _Globals_.g_fInvGridSpacing)), vec2(0.0), vec2(1.0));
+	            vec2 _4840 = vec2(1.0) - saturate(abs(_3719 - _15975) / (_22106 * (0.699999988079071044921875 * _Globals_.g_fInvGridSpacing)));
 	            float _13224 = _4840.x;
 	            float _7629 = _4840.y;
 	            _23914 = _16306 + max(_13224, _7629);

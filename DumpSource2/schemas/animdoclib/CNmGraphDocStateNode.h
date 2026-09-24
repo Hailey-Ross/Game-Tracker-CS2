@@ -114,7 +114,7 @@
 //	},
 //	"m_type": "BlendTreeState",
 //	"m_cloneSourceStateID": "00000000-0000-0000-0000-000000000000",
-//	"m_cloneStateVersion": "00000000-0000-0000-0000-000000000000",
+//	"m_cloneStateVersion": <HIDDEN FOR DIFF>,
 //	"m_stateEvents":
 //	[
 //	],

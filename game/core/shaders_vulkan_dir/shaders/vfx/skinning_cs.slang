@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -36,18 +35,18 @@ CS
 	DynamicCombo( D_LATTICE_DEFORMER, 0..1 );
 	DynamicComboRule( Allow1( D_MORPH, D_LATTICE_DEFORMER ) );
 	
-	cbuffer VertexCachePushConstants < Source(ExternalDescSet); Attribute("VertexCachePushConstants"); >;
-	cbuffer VertexCachePushConstants < Source(ExternalDescSet); Attribute("VertexCachePushConstants"); >;
 	ByteAddressBuffer g_inputVB < Attribute("InputVB"); >;
 	StructuredBuffer g_instances < Attribute("Instances"); >;
 	int g_nMorphTextureAtlasWidth < Attribute("MorphTextureAtlasWidth"); UiType(Slider); >;
 	RWByteAddressBuffer g_outputVB < Attribute("OutputVB"); >;
 	Texture2D g_tCompositeMorphTextureAtlas < Attribute("CompositeMorphTextureAtlas"); SrgbRead(false); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
+	
+	// Variant parameters
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (12332 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1017
 	{
@@ -57,20 +56,7 @@ CS
 	    uint _m3;
 	};
 	
-	struct _1018
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	};
-	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -115,17 +101,9 @@ CS
 	        {
 	            break;
 	        }
-	        _1018 _17001;
-	        _17001._m0 = g_instances.Load((_3444_m8 + gl_GlobalInvocationID.y) * 16 + 0);
-	        _17001._m1 = g_instances.Load((_3444_m8 + gl_GlobalInvocationID.y) * 16 + 4);
-	        _17001._m2 = g_instances.Load((_3444_m8 + gl_GlobalInvocationID.y) * 16 + 8);
-	        _17001._m3 = g_instances.Load((_3444_m8 + gl_GlobalInvocationID.y) * 16 + 12);
-	        _1017 _20228;
-	        _20228._m0 = _17001._m0;
-	        _20228._m1 = _17001._m1;
-	        _20228._m2 = _17001._m2;
-	        _20228._m3 = _17001._m3;
-	        uint _3973 = _20228._m0 + (gl_GlobalInvocationID.x * _3444_m3);
+	        uint _13724 = _3444_m8 + gl_GlobalInvocationID.y;
+	        uint _24369 = g_instances.Load(_13724 * 16 + 4);
+	        uint _3973 = g_instances.Load(_13724 * 16 + 0) + (gl_GlobalInvocationID.x * _3444_m3);
 	        uint _20858 = _3973 + _3444_m1;
 	        uint _6233 = g_inputVB.Load((_20858 / 4u) * 4 + 0);
 	        uint _6234 = g_inputVB.Load(((_20858 + 4u) / 4u) * 4 + 0);
@@ -149,7 +127,7 @@ CS
 	                float _7589 = (float((g_inputVB.Load(_12586 * 4 + 0) >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
 	                float _23404 = (1.0f - abs(_22483)) - abs(_7589);
 	                float3 _8254 = float3(_22483, _7589, _23404);
-	                float _24228 = clamp(-_23404, 0.0f, 1.0f);
+	                float _24228 = saturate(-_23404);
 	                float2 _7335 = float2(_22483, _7589);
 	                bool2 _10803 = bool2(_7335.x >= 0.0f.xx.x, _7335.y >= 0.0f.xx.y);
 	                float2 _14501 = (-_24228).xx;
@@ -187,7 +165,7 @@ CS
 	            _24254 = _15670;
 	            break;
 	        } while(false);
-	        uint _3718 = _20228._m2 & 15u;
+	        uint _3718 = g_instances.Load(_13724 * 16 + 8) & 15u;
 	        uint4 _18844;
 	        if (_3444_m2 < 4294967295u)
 	        {
@@ -248,19 +226,15 @@ CS
 	        {
 	            _11521 = _19210;
 	        }
-	        int _12463 = int(_20228._m2 >> uint(4));
 	        uint4 _24078 = _18844;
 	        float4 _14049 = _11521;
 	        float3x4 _20691;
 	        if (_18844.x < 4294967295u)
 	        {
-	            uint _13628 = uint(_12463 + 2);
-	            _1120 _17002;
-	            _17002._m0 = asfloat(uint3x4(g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 0), g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 16), g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 32)));
-	            _1119 _20230;
-	            _20230._m0 = _17002._m0;
+	            uint _13628 = uint(int(g_instances.Load(_13724 * 16 + 8) >> uint(4)) + 2);
+	            float3x4 _7296 = asfloat(uint3x4(g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 0), g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 16), g_transformBuffer.Load4((_13628 + _18844.x) * 48 + 32)));
 	            float3x4 _13155;
-	            _13155 = float3x4(_20230._m0[0] * _11521.x, _20230._m0[1] * _11521.x, _20230._m0[2] * _11521.x);
+	            _13155 = float3x4(_7296[0] * _11521.x, _7296[1] * _11521.x, _7296[2] * _11521.x);
 	            uint _18440;
 	            float3x4 _25251;
 	            uint _16208 = 1u;
@@ -270,11 +244,8 @@ CS
 	                {
 	                    break;
 	                }
-	                _1120 _17003;
-	                _17003._m0 = asfloat(uint3x4(g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 0), g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 16), g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 32)));
-	                _1119 _20231;
-	                _20231._m0 = _17003._m0;
-	                _25251 = float3x4(_13155[0] + (_20231._m0[0] * _14049[_16208]), _13155[1] + (_20231._m0[1] * _14049[_16208]), _13155[2] + (_20231._m0[2] * _14049[_16208]));
+	                float3x4 _7297 = asfloat(uint3x4(g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 0), g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 16), g_transformBuffer.Load4((_13628 + _24078[_16208]) * 48 + 32)));
+	                _25251 = float3x4(_13155[0] + (_7297[0] * _14049[_16208]), _13155[1] + (_7297[1] * _14049[_16208]), _13155[2] + (_7297[2] * _14049[_16208]));
 	                _18440 = _16208 + 1u;
 	                _13155 = _25251;
 	                _16208 = _18440;
@@ -284,11 +255,8 @@ CS
 	        }
 	        else
 	        {
-	            _1120 _8152;
-	            _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_12463 * 48 + 0), g_transformBuffer.Load4(_12463 * 48 + 16), g_transformBuffer.Load4(_12463 * 48 + 32)));
-	            _1119 _20229;
-	            _20229._m0 = _8152._m0;
-	            _20691 = float3x4(_20229._m0[0] * _11521.x, _20229._m0[1] * _11521.x, _20229._m0[2] * _11521.x);
+	            float3x4 _7295 = asfloat(uint3x4(g_transformBuffer.Load4(int(g_instances.Load(_13724 * 16 + 8) >> uint(4)) * 48 + 0), g_transformBuffer.Load4(int(g_instances.Load(_13724 * 16 + 8) >> uint(4)) * 48 + 16), g_transformBuffer.Load4(int(g_instances.Load(_13724 * 16 + 8) >> uint(4)) * 48 + 32)));
+	            _20691 = float3x4(_7295[0] * _11521.x, _7295[1] * _11521.x, _7295[2] * _11521.x);
 	        }
 	        float3 _11198 = normalize(mul(_20691, float4(_24254.xyz, 0.0f)));
 	        float3 _19629 = mul(_20691, float4(_12167.xyz, 0.0f));
@@ -316,13 +284,13 @@ CS
 	            bool2 _19838 = bool2(_8489.x >= 0.0f.xx.x, _8489.y >= 0.0f.xx.y);
 	            _19322 = (1.0f.xx - abs(_19001.yx)) * float2(_19838.x ? 1.0f.xx.x : (-1.0f).xx.x, _19838.y ? 1.0f.xx.y : (-1.0f).xx.y);
 	        }
-	        uint _5273 = 24u * (gl_GlobalInvocationID.x + _20228._m1);
+	        uint _5273 = 24u * (gl_GlobalInvocationID.x + _24369);
 	        uint3 _9171 = asuint(mul(_20691, float4(asfloat(uint3(_6233, _6234, _14347)), 1.0f)));
 	        undetermined.Store((_5273 / 4u) * 4 + 0, _9171.x);
 	        undetermined.Store(((_5273 + 4u) / 4u) * 4 + 0, _9171.y);
 	        undetermined.Store(((_5273 + 8u) / 4u) * 4 + 0, _9171.z);
-	        undetermined.Store(((_5273 + 12u) / 4u) * 4 + 0, uint((clamp(clamp((_19321.x * 0.5f) + 0.5f, 0.0f, 1.0f), 0.0f, 1.0f) * 65535.0f) + 0.5f) | (uint((clamp(clamp((_19321.y * 0.5f) + 0.5f, 0.0f, 1.0f), 0.0f, 1.0f) * 65535.0f) + 0.5f) << uint(16)));
-	        undetermined.Store(((_5273 + 16u) / 4u) * 4 + 0, (uint((_12167.w < 0.0f) ? 0 : 1) | (uint((clamp(clamp((_19322.x * 0.5f) + 0.5f, 0.0f, 1.0f), 0.0f, 1.0f) * 32767.0f) + 0.5f) << uint(1))) | (uint((clamp(clamp((_19322.y * 0.5f) + 0.5f, 0.0f, 1.0f), 0.0f, 1.0f) * 32767.0f) + 0.5f) << uint(16)));
+	        undetermined.Store(((_5273 + 12u) / 4u) * 4 + 0, uint((saturate(saturate((_19321.x * 0.5f) + 0.5f)) * 65535.0f) + 0.5f) | (uint((saturate(saturate((_19321.y * 0.5f) + 0.5f)) * 65535.0f) + 0.5f) << uint(16)));
+	        undetermined.Store(((_5273 + 16u) / 4u) * 4 + 0, (uint((_12167.w < 0.0f) ? 0 : 1) | (uint((saturate(saturate((_19322.x * 0.5f) + 0.5f)) * 32767.0f) + 0.5f) << uint(1))) | (uint((saturate(saturate((_19322.y * 0.5f) + 0.5f)) * 32767.0f) + 0.5f) << uint(16)));
 	        undetermined.Store(((_5273 + 20u) / 4u) * 4 + 0, 0u);
 	        break;
 	    } while(false);

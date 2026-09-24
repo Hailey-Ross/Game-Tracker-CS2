@@ -15,7 +15,7 @@
 //	"m_blendTime": 0.200000
 //}
 // MPropertyFriendlyName = "Choice Item"
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CChoiceNodeChild
 {
 	// MPropertySuppressField

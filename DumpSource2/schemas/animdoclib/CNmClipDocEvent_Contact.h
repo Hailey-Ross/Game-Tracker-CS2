@@ -22,13 +22,13 @@ class CNmClipDocEvent_Contact : public CNmClipDocEvent
 {
 	// MPropertyAutoRebuildOnChange
 	CGlobalSymbol m_configID;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CGlobalSymbol m_probeBoneID;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	Vector m_vBoneLocalProbeDir;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flProbeMaxDist;
 	// MPropertyFriendlyName = "Audio"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	NmContactAudioInfo_t m_audioInfo;
 };

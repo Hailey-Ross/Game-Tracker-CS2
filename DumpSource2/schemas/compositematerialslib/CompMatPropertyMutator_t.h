@@ -91,7 +91,7 @@
 //	[
 //	]
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompMatPropertyMutator_t
 {
 	// MPropertyAutoRebuildOnChange
@@ -99,90 +99,90 @@ class CompMatPropertyMutator_t
 	bool m_bEnabled;
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Mutator Command"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CompMatPropertyMutatorType_t m_nMutatorCommandType;
 	// MPropertyFriendlyName = "Container to Init With"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strInitWith_Container;
 	// MPropertyFriendlyName = "Input Container"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyProperty_InputContainerSrc;
 	// MPropertyFriendlyName = "Input Container Property"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyProperty_InputContainerProperty;
 	// MPropertyFriendlyName = "Target Property"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyProperty_TargetProperty;
 	// MPropertyFriendlyName = "Seed Input Var"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strRandomRollInputVars_SeedInputVar;
 	// MPropertyFriendlyName = "Input Vars"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CUtlString > m_vecRandomRollInputVars_InputVarsToRoll;
 	// MPropertyFriendlyName = "Input Container"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyMatchingKeys_InputContainerSrc;
 	// MPropertyFriendlyName = "Input Container"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyKeysWithSuffix_InputContainerSrc;
 	// MPropertyFriendlyName = "Find Suffix"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyKeysWithSuffix_FindSuffix;
 	// MPropertyFriendlyName = "Replace Suffix"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCopyKeysWithSuffix_ReplaceSuffix;
 	// MPropertyFriendlyName = "Value"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CompositeMaterialInputLooseVariable_t m_nSetValue_Value;
 	// MPropertyFriendlyName = "Target Texture Param"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strGenerateTexture_TargetParam;
 	// MPropertyFriendlyName = "Initial Container"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strGenerateTexture_InitialContainer;
 	// MPropertyFriendlyName = "Resolution"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	int32 m_nResolution;
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Scratch Target"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bIsScratchTarget;
 	// MPropertyFriendlyName = "Compression Format"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strCompressionFormat;
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Splat Debug info on Texture"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bSplatDebugInfo;
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Capture in RenderDoc"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bCaptureInRenderDoc;
 	// MPropertyFriendlyName = "Texture Generation Instructions"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CompMatPropertyMutator_t > m_vecTexGenInstructions;
 	// MPropertyFriendlyName = "Mutators"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CompMatPropertyMutator_t > m_vecConditionalMutators;
 	// MPropertyFriendlyName = "Container to Pop"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strPopInputQueue_Container;
 	// MPropertyFriendlyName = "Input Container"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strDrawText_InputContainerSrc;
 	// MPropertyFriendlyName = "Input Container Property"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strDrawText_InputContainerProperty;
 	// MPropertyFriendlyName = "Text Position"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	Vector2D m_vecDrawText_Position;
 	// MPropertyFriendlyName = "Text Color"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	Color m_colDrawText_Color;
 	// MPropertyFriendlyName = "Font"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strDrawText_Font;
 	// MPropertyFriendlyName = "Conditions"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CompMatMutatorCondition_t > m_vecConditions;
 };

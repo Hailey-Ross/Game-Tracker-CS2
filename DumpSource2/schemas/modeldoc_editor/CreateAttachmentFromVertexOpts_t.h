@@ -1,4 +1,4 @@
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 // MGetKV3ClassDefaults = {
 //	"m_Name": "Create Attachment From Vertex Options",
 //	"m_AttachmentName": "attach",

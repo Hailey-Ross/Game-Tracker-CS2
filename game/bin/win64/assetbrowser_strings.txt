@@ -3698,7 +3698,6 @@ Checkout
 Checkout and open '%1' in %2
 CheckoutAndOpenRoot
 Child Asset(s)
-Children
 Clamp Float
 Clamp Int
 Clamp value to range (float)
@@ -4345,7 +4344,6 @@ Maximum
 Maximum of two values (float)
 Maximum of two values (int)
 Mesh & Skeleton
-Millisecond delay between typing in the assetbrowser filter and the filter being applied
 Min Float
 Min Int
 MinSize
@@ -4467,7 +4465,6 @@ Non-Asset Game Dependency
 Non-Asset Reference
 Non-Asset Weak Reference
 NoneSelected
-Normalize Vector
 Normalize Vector a
 Not At Head: %s\n
 Not R%d <- !R%d
@@ -4726,7 +4723,6 @@ OpenWorkingSet
 Optional. Type 'Any'. An associated value, e.g. the Entity Handle which is responsible for this Cursor. The Tag is defined by the unique combination of Name and Value.
 Options...
 Or R%d <- R%d || R%d
-Origin
 Other Tools
 Other assets referencing or depending on this
 Outflow List
@@ -5202,7 +5198,6 @@ Show information about Qt.
 Show rarely-used assets in the browser
 Show regardless of user setting
 Show the application's About box
-Show the global asset browser.
 ShowAllCommandsPopup
 ShowAssetGraph
 ShowAssetInfo
@@ -5912,9 +5907,7 @@ asset_browser
 asset_count
 asset_graph
 asset_name
-assetbrowser
 assetbrowser.dll
-assetbrowser_name_filter_delay
 assetsystem
 attr_factory
 automatic_quiet_import
@@ -6249,23 +6242,6 @@ getRelativeTransform
 ghostwhite
 gold
 goldenrod
-graphcanvas_auto_repaint_tick_ms
-graphcanvas_auto_repaints_ticks_when_inactive
-graphcanvas_build_pregather_list
-graphcanvas_cache_curve_clip_to_viewport
-graphcanvas_cache_item_pixmap
-graphcanvas_cache_item_pixmap_max_render_debug
-graphcanvas_cache_item_pixmap_max_render_perframe
-graphcanvas_cache_item_pixmap_max_texture_sidesize
-graphcanvas_cache_item_pixmap_zoom_scale
-graphcanvas_cache_item_pixmap_zoom_step
-graphcanvas_hover_item_info
-graphcanvas_random_background_color
-graphcanvas_threaded_find_items_overlapping
-graphcanvas_threaded_gather_styles
-graphcanvas_threaded_resolve_styles
-graphcanvas_threaded_update_pseudo_classes
-graphcanvas_tooltip_keepalive
 gray
 green
 greenyellow
@@ -6556,9 +6532,6 @@ papayawhip
 pathFilter
 peachpuff
 peru
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 pickedColor
 pink
 plum
@@ -6678,7 +6651,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools/colors/shared_colors.txt
 tools/images/assetbrowser/asset_dir.png
 tools/images/assetbrowser/asset_dir_direct_selection.png
@@ -6720,7 +6692,6 @@ tools/layout/common/generic_filter_bar.vqlayout
 tools/layout/common/graph_canvas_debugger.vqlayout
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
 transformInverse
 transformVector
 transformVectorToLocal

@@ -60,9 +60,9 @@ class CAnimGraphDoc_StanceOverrideNode : public CAnimGraphDoc_Node
 	StanceOverrideMode m_eMode;
 	// MPropertyFriendlyName = "Sequence"
 	// MPropertyAttributeChoiceName = "Sequence"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_sequenceName;
 	// MPropertyFriendlyName = "Frame"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	int32 m_nFrameIndex;
 };

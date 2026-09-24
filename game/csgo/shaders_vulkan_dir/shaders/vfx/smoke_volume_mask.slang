@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,23 +36,21 @@ VS
 {
 	DynamicCombo( D_DDA_MASK, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer SmokeConstantBaseBuffer_t < Attribute("SmokeConstantBaseBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1816 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	struct _2649
+	struct _2607
 	{
 	    float4 _m0[16];
 	};
 	
 	cbuffer SmokeConstantBaseBuffer_t : register(b2, space0)
 	{
-	    _2649 SmokeConstantBaseBuffer_t_1_m0 : packoffset(c0);
-	    _2649 SmokeConstantBaseBuffer_t_1_m1 : packoffset(c16);
+	    _2607 SmokeConstantBaseBuffer_t_1_m0 : packoffset(c0);
+	    _2607 SmokeConstantBaseBuffer_t_1_m1 : packoffset(c16);
 	};
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space0)
@@ -127,12 +124,9 @@ PS
 	DynamicCombo( D_SCOPE_CLIP, 0..1 );
 	DynamicComboRule( Requires( D_MBOIT_4_MOMENTS, D_MBOIT_PASS2 ) );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer SmokeConstantBaseBuffer_t < Attribute("SmokeConstantBaseBuffer_t"); >;
 	RenderState(StencilRef, 128);
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tDepthTexture < Attribute("DepthCopy"); SrgbRead(false); >;
 	Texture2D g_tExtra_Moment < Attribute("moments_extra"); SrgbRead(true); >;
 	Texture2D g_tMoments < Attribute("moments"); SrgbRead(true); >;
@@ -145,14 +139,14 @@ PS
 	float2 g_vScopeClip < Attribute("ScopeClip"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (368 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static uint input_0;
+	static uint input_1;
 	static float output_0;
 	
 	struct PS_INPUT
 	{
-	    nointerpolation uint input_0 : TEXCOORD1;
+	    nointerpolation uint input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -162,12 +156,12 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = float(1 << int(input_0));
+	    output_0 = float(1 << int(input_1));
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

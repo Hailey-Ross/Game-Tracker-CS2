@@ -19,6 +19,6 @@ class CAnimGraphDoc_PathMetric : public CAnimGraphDoc_MotionMetric
 	// MPropertyAutoRebuildOnChange
 	bool m_bExtrapolateMovement;
 	// MPropertyFriendlyName = "Min Extrapolation Speed"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flMinExtrapolationSpeed;
 };

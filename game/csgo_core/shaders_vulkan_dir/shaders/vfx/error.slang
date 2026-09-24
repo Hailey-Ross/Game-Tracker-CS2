@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,13 +36,12 @@ VS
 {
 	DynamicCombo( D_CS_VERTEX_ANIMATION, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	ByteAddressBuffer g_animatedVertexCache < Attribute("AnimatedVertexCache"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2720 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -59,23 +57,6 @@ VS
 	
 	struct _1119
 	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
-	{
 	    row_major float3x4 _m0;
 	};
 	
@@ -89,16 +70,16 @@ VS
 	
 	
 	static float4 gl_Position;
-	static uint vPositionOs;
+	static uint nInstanceIdx;
 	static uint4 vBlendIndices;
-	static float3 nInstanceIdx;
+	static float3 vPositionOs;
 	static float3 output_0;
 	
 	struct VS_INPUT
 	{
-	    float3 nInstanceIdx : TEXCOORD0;
+	    float3 vPositionOs : TEXCOORD0;
 	    uint4 vBlendIndices : TEXCOORD1;
-	    uint vPositionOs : TEXCOORD2;
+	    uint nInstanceIdx : TEXCOORD2;
 	};
 	
 	struct PS_INPUT
@@ -109,52 +90,28 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(vPositionOs * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(vPositionOs * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(vPositionOs * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(vPositionOs * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(vPositionOs * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(vPositionOs * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(vPositionOs * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(vPositionOs * 32 + 28));
-	    _1125 _20228;
-	    _20228._m0 = _24007._m0;
-	    _20228._m1 = _24007._m1;
-	    _20228._m2 = _24007._m2;
-	    _20228._m3 = _24007._m3;
-	    _20228._m4 = _24007._m4;
-	    _20228._m5 = _24007._m5;
-	    _20228._m6 = _24007._m6;
-	    _20228._m7 = _24007._m7;
-	    uint _16987 = (_20228._m5 >> uint(16)) & 15u;
-	    uint _21709;
-	    if (_16987 == 1u)
+	    uint _13771 = (g_instanceBuffer.Load(nInstanceIdx * 32 + 20) >> uint(16)) & 15u;
+	    uint _21785;
+	    if (_13771 == 1u)
 	    {
-	        _21709 = _20228._m1 + (2u + vBlendIndices.x);
+	        _21785 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4) + (2u + vBlendIndices.x);
 	    }
 	    else
 	    {
-	        _21709 = _20228._m1;
+	        _21785 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4);
 	    }
-	    _1120 _11578;
-	    _11578._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_21709 * 48 + 0), g_transformBuffer.Load4(_21709 * 48 + 16), g_transformBuffer.Load4(_21709 * 48 + 32)));
-	    _1119 _21957;
-	    _21957._m0 = _11578._m0;
+	    float3x4 _12618 = asfloat(uint3x4(g_transformBuffer.Load4(_21785 * 48 + 0), g_transformBuffer.Load4(_21785 * 48 + 16), g_transformBuffer.Load4(_21785 * 48 + 32)));
 	    float3 _22743;
-	    if (_16987 > 0u)
+	    if (_13771 > 0u)
 	    {
-	        _1120 _10769;
-	        _10769._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_20228._m1 * 48 + 0), g_transformBuffer.Load4(_20228._m1 * 48 + 16), g_transformBuffer.Load4(_20228._m1 * 48 + 32)));
-	        _1119 _20229;
-	        _20229._m0 = _10769._m0;
-	        _22743 = _20229._m0[0].z.xxx;
+	        float3x4 _25207 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	        _22743 = _25207[0].z.xxx;
 	    }
 	    else
 	    {
 	        _22743 = 1.0f.xxx;
 	    }
-	    float3 _12151 = mul(_21957._m0, float4(nInstanceIdx.xyz * _22743.xyz, 1.0f));
+	    float3 _12151 = mul(_12618, float4(vPositionOs.xyz * _22743.xyz, 1.0f));
 	    float4 _17914 = mul(PerViewConstantBuffer_t_1_m0, (float4(_12151.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
 	    output_0 = _12151;
 	    _17914.y = -_17914.y;
@@ -163,9 +120,9 @@ VS
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vPositionOs = stage_input.vPositionOs;
-	    vBlendIndices = stage_input.vBlendIndices;
 	    nInstanceIdx = stage_input.nInstanceIdx;
+	    vBlendIndices = stage_input.vBlendIndices;
+	    vPositionOs = stage_input.vPositionOs;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -184,7 +141,7 @@ PS
 	float g_flTime < Attribute("Time"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1232 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

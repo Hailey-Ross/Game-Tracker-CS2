@@ -5,7 +5,7 @@
 class inv_image_map_t
 {
 	// MPropertyFriendlyName = "Map"
-	// MPropertyLeafChoiceProviderFn (UNKNOWN FOR PARSER)
+	// MPropertyLeafChoiceProviderFn
 	CUtlString map_name;
 	// MPropertyFriendlyName = "Rotation"
 	// MCustomFGDMetadata = "{ reset_to_default_icon = true }"

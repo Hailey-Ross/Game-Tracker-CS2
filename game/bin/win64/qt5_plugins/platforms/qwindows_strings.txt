@@ -2636,7 +2636,6 @@ RegisterTouchWindow
 RegisterTouchWindow() failed for window '%s'.
 RegisterWindowMessageW
 Registry
-Regular
 ReleaseCapture
 ReleaseStgMedium
 Releasing EGL display 

@@ -116,7 +116,6 @@ DeleteAll
 Directory not empty
 Domain error
 Double
-ELEMENT
 EMPTY
 ENTITIES
 EPSN

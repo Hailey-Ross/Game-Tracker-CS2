@@ -742,7 +742,6 @@ RFRQR\Rf
 Raavi
 Raleway
 Registry
-Regular
 Regular Class
 Regular/Bold Class
 Regular/Italic Class

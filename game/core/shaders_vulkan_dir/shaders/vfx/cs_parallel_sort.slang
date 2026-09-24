@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -44,19 +43,9 @@ CS
 	RWStructuredBuffer SrcPayload < Attribute("SrcPayload"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3920 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1059
-	{
-	    uint _m0;
-	    int _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	};
-	
-	struct _1060
 	{
 	    uint _m0;
 	    int _m1;
@@ -87,20 +76,10 @@ CS
 	
 	void MainCs_inner()
 	{
-	    _1060 _22394;
-	    _22394._m0 = undetermined.Load(0);
-	    _22394._m1 = int(undetermined.Load(4));
-	    _22394._m2 = undetermined.Load(8);
-	    _22394._m3 = undetermined.Load(12);
-	    _22394._m4 = undetermined.Load(16);
-	    _22394._m5 = undetermined.Load(20);
-	    _1059 _20228;
-	    _20228._m0 = _22394._m0;
-	    _20228._m1 = _22394._m1;
-	    _20228._m2 = _22394._m2;
-	    _20228._m3 = _22394._m3;
-	    _20228._m4 = _22394._m4;
-	    _20228._m5 = _22394._m5;
+	    uint _8524 = undetermined.Load(0);
+	    int _24369 = int(undetermined.Load(4));
+	    uint _24370 = undetermined.Load(8);
+	    uint _6370 = undetermined.Load(12);
 	    int _23262;
 	    int _13039 = 0;
 	    for (;;)
@@ -115,9 +94,9 @@ CS
 	        continue;
 	    }
 	    GroupMemoryBarrierWithGroupSync();
-	    uint _11457 = uint(512 * _20228._m1) * gl_WorkGroupID.x;
-	    uint _23756 = uint(_20228._m1);
-	    uint _21416 = _20228._m2 - _20228._m3;
+	    uint _11457 = uint(512 * _24369) * gl_WorkGroupID.x;
+	    uint _23756 = uint(_24369);
+	    uint _21416 = _24370 - _6370;
 	    uint _10913;
 	    uint _17551;
 	    if (gl_WorkGroupID.x >= _21416)
@@ -133,7 +112,7 @@ CS
 	    uint _8896 = _17551 + gl_LocalInvocationID.x;
 	    uint _14392;
 	    uint _23448;
-	    uint _19506[4];
+	    uint _19582[4];
 	    uint _13155 = _8896;
 	    uint _16208 = 0u;
 	    for (;;)
@@ -142,10 +121,10 @@ CS
 	        {
 	            break;
 	        }
-	        _19506[0] = undetermined_1.Load(_13155 * 4 + 0);
-	        _19506[1] = undetermined_1.Load((_13155 + 128u) * 4 + 0);
-	        _19506[2] = undetermined_1.Load((_13155 + 256u) * 4 + 0);
-	        _19506[3] = undetermined_1.Load((_13155 + 384u) * 4 + 0);
+	        _19582[0] = undetermined_1.Load(_13155 * 4 + 0);
+	        _19582[1] = undetermined_1.Load((_13155 + 128u) * 4 + 0);
+	        _19582[2] = undetermined_1.Load((_13155 + 256u) * 4 + 0);
+	        _19582[3] = undetermined_1.Load((_13155 + 384u) * 4 + 0);
 	        uint _8087;
 	        uint _14382;
 	        uint _13156 = _13155;
@@ -156,10 +135,10 @@ CS
 	            {
 	                break;
 	            }
-	            if (_13156 < _20228._m0)
+	            if (_13156 < _8524)
 	            {
 	                uint _10058;
-	                InterlockedAdd(_5770[(((_19506[_16209] >> _Globals_1_CShiftBit) & 15u) * 128u) + gl_LocalInvocationID.x], 1u, _10058);
+	                InterlockedAdd(_5770[(((_19582[_16209] >> _Globals_1_CShiftBit) & 15u) * 128u) + gl_LocalInvocationID.x], 1u, _10058);
 	                _14382 = _13156 + 128u;
 	            }
 	            else
@@ -197,7 +176,7 @@ CS
 	            _16210 = _8559;
 	            continue;
 	        }
-	        undetermined_2.Store(((gl_LocalInvocationID.x * _20228._m2) + gl_WorkGroupID.x) * 4 + 0, _13157);
+	        undetermined_2.Store(((gl_LocalInvocationID.x * _24370) + gl_WorkGroupID.x) * 4 + 0, _13157);
 	    }
 	}
 	

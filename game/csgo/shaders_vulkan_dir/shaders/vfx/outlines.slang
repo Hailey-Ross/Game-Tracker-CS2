@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -75,7 +74,6 @@ PS
 {
 	DynamicCombo( D_PULSE, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flKernelWidth < Default(0.00065); Attribute("OutlineWidth"); UiType(Slider); >;
 	Texture2D g_tOutlineInput < Attribute("OutlineInput"); SrgbRead(false); >;
 	Texture2D g_tPulse < Channel(RGBA, None(PulseTexture), Linear); OutputFormat(DXT1); SrgbRead(true); >;
@@ -84,9 +82,9 @@ PS
 	CreateInputTexture2D(PulseTexture, Srgb, 8, "", "", "Color", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2712 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static const float2 _2506[5] = { float2(2.0f, 1.0f), float2(1.0f, -2.0f), float2(-2.0f, -1.0f), float2(-1.0f, 2.0f), 0.0f.xx };
+	static const float2 _2495[5] = { float2(2.0f, 1.0f), float2(1.0f, -2.0f), float2(-2.0f, -1.0f), float2(-1.0f, 2.0f), 0.0f.xx };
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{
@@ -134,9 +132,9 @@ PS
 	        {
 	            break;
 	        }
-	        float4 _3401 = g_tOutlineInput.Sample(Filter_MinMagMipPoint, (_11542 + (_2506[_17017] * _25006)).xy);
-	        _22315 = _13136 + _3401;
-	        _18147 = _16324 + step((_3401.x + _3401.y) + _3401.z, 0.0f);
+	        float4 _3300 = g_tOutlineInput.Sample(Filter_MinMagMipPoint, (_11542 + (_2495[_17017] * _25006)).xy);
+	        _22315 = _13136 + _3300;
+	        _18147 = _16324 + step((_3300.x + _3300.y) + _3300.z, 0.0f);
 	        _9583 = _17017 + 1;
 	        _13136 = _22315;
 	        _16324 = _18147;

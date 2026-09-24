@@ -518,7 +518,6 @@ PixelShader
 PointStream
 Preprocessed HLSL code
 PropWorldOrigin
-REPLACE
 REV_SUBTRACT
 RWBuffer
 RWByteAddressBuffer

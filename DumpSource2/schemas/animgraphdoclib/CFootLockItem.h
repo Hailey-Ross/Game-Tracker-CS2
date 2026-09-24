@@ -16,7 +16,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Item"
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CFootLockItem
 {
 	// MPropertyFriendlyName = "Foot"

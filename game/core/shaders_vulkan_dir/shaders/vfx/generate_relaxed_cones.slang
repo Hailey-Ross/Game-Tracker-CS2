@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -37,8 +36,10 @@ CS
 	float4 g_vImageDimensions < Attribute("ImageDimensions"); UiType(VectorText); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (6708 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -246,7 +247,7 @@ CS
 	            continue;
 	        }
 	        uint _16589;
-	        InterlockedMin(_4495, uint(floor(clamp(_13157, 0.0f, 1.0f) * 255.0f)), _16589);
+	        InterlockedMin(_4495, uint(floor(saturate(_13157) * 255.0f)), _16589);
 	        GroupMemoryBarrierWithGroupSync();
 	        _11901 = float(_4495) * 0.0039215688593685626983642578125f;
 	        _6475 = _16208 + 1u;

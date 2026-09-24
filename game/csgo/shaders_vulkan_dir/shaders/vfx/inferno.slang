@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,12 +34,11 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1444 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space0)
 	{
@@ -102,10 +100,8 @@ VS
 PS
 {
 	
-	cbuffer BoundingBoxConstantBufferFire_t < Attribute("BoundingBoxConstantBufferFire_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tSceneDepth < Attribute("SceneDepthInferno"); SrgbRead(false); >;
 	Texture3D g_tSmokeNoiseTex < Channel(RG, None(TextureNoise), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
 	
@@ -122,41 +118,41 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5660 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_samplerless_texture_functions : require
 	layout(early_fragment_tests) in;
 	
-	struct _2662
+	struct _2620
 	{
 	    vec4 _m0[256];
 	};
 	
-	struct _2788
+	struct _2746
 	{
 	    vec4 _m0[16];
 	};
 	
-	struct _1816
+	struct _1786
 	{
 	    uvec4 _m0[64];
 	};
 	
-	struct _1906
+	struct _1876
 	{
 	    uvec4 _m0[4];
 	};
 	
-	struct _1235
+	struct _755
 	{
-	    _2662 _m0;
-	    _2788 _m1;
-	    _1816 _m2;
-	    _1906 _m3;
+	    _2620 _m0;
+	    _2746 _m1;
+	    _1786 _m2;
+	    _1876 _m3;
 	};
 	
-	layout(set = 1) uniform _1235 BoundingBoxConstantBufferFire_t;
+	layout(set = 1) uniform _755 BoundingBoxConstantBufferFire_t;
 	
 	struct _1285
 	{
@@ -178,12 +174,12 @@ PS
 	
 	layout(set = 1) uniform _1033 _Globals_;
 	
-	layout(set = 1, binding = 52) uniform texture2D g_tSceneDepth;
-	layout(set = 1, binding = 53) uniform texture3D g_tSmokeNoiseTex;
+	layout(set = 1, binding = 50) uniform texture2D g_tSceneDepth;
+	layout(set = 1, binding = 51) uniform texture3D g_tSmokeNoiseTex;
 	layout(set = 1, binding = 16) uniform sampler g_sTrilinearWrap;
 	
 	layout(location = 0) in vec2 input_0;
-	layout(location = 2) in vec3 input_1;
+	layout(location = 2) in vec3 input_2;
 	layout(location = 0) out vec4 output_0;
 	
 	void main()
@@ -195,7 +191,7 @@ PS
 	    {
 	        discard;
 	    }
-	    vec3 _15651 = PerViewConstantBuffer_t._m4 + (input_1 * (1.0 / (((clamp((texelFetch(g_tSceneDepth, ivec3(ivec2(gl_FragCoord.xy), 0).xy, 0).x - PerViewConstantBuffer_t._m2) / (PerViewConstantBuffer_t._m3 - PerViewConstantBuffer_t._m2), 0.0, 1.0) * PerViewConstantBuffer_t._m0.z) + PerViewConstantBuffer_t._m0.w) * dot(PerViewConstantBuffer_t._m5.xyz, input_1))));
+	    vec3 _15651 = PerViewConstantBuffer_t._m4 + (input_2 * (1.0 / (((saturate((texelFetch(g_tSceneDepth, ivec3(ivec2(gl_FragCoord.xy), 0).xy, 0).x - PerViewConstantBuffer_t._m2) / (PerViewConstantBuffer_t._m3 - PerViewConstantBuffer_t._m2)) * PerViewConstantBuffer_t._m0.z) + PerViewConstantBuffer_t._m0.w) * dot(PerViewConstantBuffer_t._m5.xyz, input_2))));
 	    float _13155;
 	    _13155 = 0.0;
 	    uint _8822;
@@ -250,7 +246,7 @@ PS
 	        {
 	            _15651.z = _15651.z + (100.0 * smoothstep(7.0, 0.0, _9489));
 	            vec4 _12091 = textureLod(sampler3D(g_tSmokeNoiseTex, g_sTrilinearWrap), (_15651 * 0.007000000216066837310791015625).xyz, 0.0);
-	            _19755 = clamp((_12091.y + _18039) * _18039, 0.0, 1.0) * (0.85000002384185791015625 + (_12091.x * 0.100000001490116119384765625));
+	            _19755 = saturate((_12091.y + _18039) * _18039) * (0.85000002384185791015625 + (_12091.x * 0.100000001490116119384765625));
 	        }
 	        else
 	        {

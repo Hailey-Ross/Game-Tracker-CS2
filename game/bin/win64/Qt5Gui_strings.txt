@@ -28380,7 +28380,6 @@ ComplementaryContent
 Composing and flushing
 Compressed format %d not mappable to GL compressed format
 Compressed texture cannot be used with image load/store
-Compute
 Condensed
 ConfidentCloud
 ConicalGradient
@@ -29677,7 +29676,6 @@ OpenVG
 OpenVGSurface
 Option
 OrangeJuice
-Origin
 OriginBottomLeft
 OriginTopLeft
 Oslash
@@ -30616,7 +30614,6 @@ Red_Integer
 Redo
 ReflectSpread
 Refresh
-Regular
 Reject
 RejectRole
 Reload
@@ -30709,7 +30706,6 @@ SF530000
 SF540000
 SHAPE_PLAN
 SHEX|
-SNAP
 SRGB8
 SRGB8_Alpha8
 SRGB8_Alpha8_ASTC_10x10
@@ -30877,7 +30873,6 @@ StandardKey
 StandardNotation
 Standby
 StarWine
-State
 State changed:
 StateChanged
 Statement

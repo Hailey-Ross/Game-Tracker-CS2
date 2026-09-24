@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1972 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -137,7 +136,7 @@ PS
 	float g_flHue < Default(1); Range(0, 360); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2908 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -147,14 +146,14 @@ PS
 	};
 	
 	
-	static float2 input_0;
-	static float4 input_1;
+	static float2 input_1;
+	static float4 input_0;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float4 input_0 : TEXCOORD0;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -164,16 +163,16 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float _13211 = 1.0f - input_0.y;
+	    float _13211 = 1.0f - input_1.y;
 	    float3 _22743;
-	    if (input_0.x != 0.0f)
+	    if (input_1.x != 0.0f)
 	    {
 	        float _12281 = _Globals_1_g_flHue * 0.01666666753590106964111328125f;
 	        float _23729 = floor(_12281);
-	        float _15688 = _13211 * (1.0f - input_0.x);
+	        float _15688 = _13211 * (1.0f - input_1.x);
 	        float _17993 = _12281 - _23729;
-	        float _10560 = _13211 * (1.0f - (input_0.x * _17993));
-	        float _23319 = _13211 * (1.0f - (input_0.x * (1.0f - _17993)));
+	        float _10560 = _13211 * (1.0f - (input_1.x * _17993));
+	        float _23319 = _13211 * (1.0f - (input_1.x * (1.0f - _17993)));
 	        float3 _12505;
 	        if (_23729 == 0.0f)
 	        {
@@ -223,9 +222,9 @@ PS
 	    }
 	    else
 	    {
-	        _22743 = float3(_2, input_0.x, _13211).zzz;
+	        _22743 = float3(_2, input_1.x, _13211).zzz;
 	    }
-	    float4 _15731 = input_1.xyzw * float4(_22743, 1.0f);
+	    float4 _15731 = input_0.xyzw * float4(_22743, 1.0f);
 	    float3 _6273 = _15731.xyz;
 	    float3 _17828 = _6273 * 0.077399380505084991455078125f.xxx;
 	    float3 _7676 = pow((_6273 * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
@@ -264,8 +263,8 @@ PS
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

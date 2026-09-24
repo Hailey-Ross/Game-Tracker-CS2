@@ -55,10 +55,10 @@ class CAnimGraphDoc_TargetSelectorNode : public CAnimGraphDoc_Node
 	AnimParamID m_desiredMoveHeadingParamID;
 	// MPropertyFriendlyName = "Target Position"
 	// MPropertyAttributeChoiceName = "VectorParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_targetPositionParamID;
 	// MPropertyFriendlyName = "Target Position Is World Space"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bTargetPositionIsWorldSpace;
 	// MPropertyFriendlyName = "Target Face Position"
 	// MPropertyAttributeChoiceName = "VectorParameter"

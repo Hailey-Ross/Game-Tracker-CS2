@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 5;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: ps, psrs, rtx, vs
 }
@@ -45,16 +44,16 @@ COMMON
 struct VS_INPUT
 {
 	float4 vBlendIndices              : BLENDINDICES0  < Semantic( BlendIndices ); >;              // D_CS_VERTEX_ANIMATION=0
-	float4 vBlendColorTint            : COLOR0         < Semantic( VertexPaintTintColor ); >;      // S_MODE_DEPTH=0, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
+	float4 vBlendColorTint            : COLOR0         < Semantic( VertexPaintTintColor ); >;      // S_MODE_DEPTH=0, D_CS_VERTEX_ANIMATION=1, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
 	float4 vPerVertexLighting         : COLOR1         < Semantic( PerVertexLighting ); >;        
 	uint4  nPackedFrame               : NORMAL0        < Semantic( CompressedTangentFrame ); >;   
 	float4 vNormalOs                  : NORMAL0        < Semantic( Normal ); >;                   
 	float3 vPositionOs                : POSITION0      < Semantic( PosXyz ); >;                    // D_CS_VERTEX_ANIMATION=0
 	float4 vTangentUOs_flTangentVSign : TANGENT0       < Semantic( TangentU_SignV ); >;           
 	float2 vLightmapUV                : TEXCOORD3      < Semantic( LightmapUV ); >;               
-	float2 vTexCoord                  : TEXCOORD0      < Semantic( LowPrecisionUv ); >;            // S_MODE_DEPTH=0, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
-	float2 vTexCoord2                 : TEXCOORD1      < Semantic( LowPrecisionUv1 ); >;           // S_MODE_DEPTH=0, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
-	float4 vColorBlendValues          : TEXCOORD4      < Semantic( VertexPaintBlendParams ); >;    // S_MODE_DEPTH=0, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
+	float2 vTexCoord                  : TEXCOORD0      < Semantic( LowPrecisionUv ); >;            // S_MODE_DEPTH=0, D_CS_VERTEX_ANIMATION=1, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
+	float2 vTexCoord2                 : TEXCOORD1      < Semantic( LowPrecisionUv1 ); >;           // S_MODE_DEPTH=0, D_CS_VERTEX_ANIMATION=1, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
+	float4 vColorBlendValues          : TEXCOORD4      < Semantic( VertexPaintBlendParams ); >;    // S_MODE_DEPTH=0, D_CS_VERTEX_ANIMATION=1, S_MODE_TOOLS_VIS=1, S_ALPHA_TEST_LAYER=1
 	float2 nInstanceIdx               : TEXCOORD13     < Semantic( InstanceTransformUv ); >;      
 };
 
@@ -72,32 +71,30 @@ VS
 	DynamicCombo( D_BAKED_LIGHTING_FROM_LIGHTMAP, 0..1 );
 	DynamicComboRule( Allow1( D_BAKED_LIGHTING_FROM_VERTEX_STREAM, D_BAKED_LIGHTING_FROM_LIGHTMAP ) );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	ByteAddressBuffer g_animatedVertexCache < Attribute("AnimatedVertexCache"); >;
-	bool g_bTexCoordScaleByModel < UiType(CheckBox); Expression((g_nScaleTexCoordUByModelScaleAxis!=0) || (g_nScaleTexCoordVByModelScaleAxis!=0)); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
-	float4 g_vDetailTexCoordXform0_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+	bool g_bTexCoordScaleByModel < UiType(CheckBox); Expression(g_nScaleTexCoordUByModelScaleAxis!=0 || g_nScaleTexCoordVByModelScaleAxis!=0); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	float4 g_vDetailTexCoordXform0_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vDetailTexCoordScale1.x,-v2*g_vDetailTexCoordScale1.y,0,((g_vDetailTexCoordCenter1.x+g_vDetailTexCoordOffset1.x)+(v2*g_vDetailTexCoordCenter1.y))-(v1*g_vDetailTexCoordCenter1.x))); >;
-	float4 g_vDetailTexCoordXform1_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+		float4(v1*g_vDetailTexCoordScale1.x,-v2*g_vDetailTexCoordScale1.y,0,g_vDetailTexCoordCenter1.x+g_vDetailTexCoordOffset1.x+v2*g_vDetailTexCoordCenter1.y-v1*g_vDetailTexCoordCenter1.x)); >;
+	float4 g_vDetailTexCoordXform1_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vDetailTexCoordScale1.x,v1*g_vDetailTexCoordScale1.y,0,(g_vDetailTexCoordCenter1.y+g_vDetailTexCoordOffset1.y)-((v2*g_vDetailTexCoordCenter1.x)+(v1*g_vDetailTexCoordCenter1.y)))); >;
-	float4 g_vTexCoordScaleByModelU < UiType(VectorText); Expression(float4((g_nScaleTexCoordUByModelScaleAxis==1) || 0,(g_nScaleTexCoordUByModelScaleAxis==2) || 0,(g_nScaleTexCoordUByModelScaleAxis==3) || 0,(g_nScaleTexCoordUByModelScaleAxis==0) || 0)); >;
-	float4 g_vTexCoordScaleByModelV < UiType(VectorText); Expression(float4((g_nScaleTexCoordVByModelScaleAxis==1) || 0,(g_nScaleTexCoordVByModelScaleAxis==2) || 0,(g_nScaleTexCoordVByModelScaleAxis==3) || 0,(g_nScaleTexCoordVByModelScaleAxis==0) || 0)); >;
-	float4 g_vTexCoordXform0_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+		float4(v2*g_vDetailTexCoordScale1.x,v1*g_vDetailTexCoordScale1.y,0,g_vDetailTexCoordCenter1.y+g_vDetailTexCoordOffset1.y-(v2*g_vDetailTexCoordCenter1.x+v1*g_vDetailTexCoordCenter1.y))); >;
+	float4 g_vTexCoordScaleByModelU < UiType(VectorText); Expression(float4((g_nScaleTexCoordUByModelScaleAxis==1) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==2) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==3) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==0) ? 1 : 0)); >;
+	float4 g_vTexCoordScaleByModelV < UiType(VectorText); Expression(float4((g_nScaleTexCoordVByModelScaleAxis==1) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==2) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==3) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==0) ? 1 : 0)); >;
+	float4 g_vTexCoordXform0_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vTexCoordScale1.x,-v2*g_vTexCoordScale1.y,0,((g_vTexCoordCenter1.x+g_vTexCoordOffset1.x)+(v2*g_vTexCoordCenter1.y))-(v1*g_vTexCoordCenter1.x))); >;
-	float4 g_vTexCoordXform1_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+		float4(v1*g_vTexCoordScale1.x,-v2*g_vTexCoordScale1.y,0,g_vTexCoordCenter1.x+g_vTexCoordOffset1.x+v2*g_vTexCoordCenter1.y-v1*g_vTexCoordCenter1.x)); >;
+	float4 g_vTexCoordXform1_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vTexCoordScale1.x,v1*g_vTexCoordScale1.y,0,(g_vTexCoordCenter1.y+g_vTexCoordOffset1.y)-((v2*g_vTexCoordCenter1.x)+(v1*g_vTexCoordCenter1.y)))); >;
+		float4(v2*g_vTexCoordScale1.x,v1*g_vTexCoordScale1.y,0,g_vTexCoordCenter1.y+g_vTexCoordOffset1.y-(v2*g_vTexCoordCenter1.x+v1*g_vTexCoordCenter1.y))); >;
 	
 	// Material1
 	int g_nUVSet1 < Default(1); Range4(0, 0, 0, 0, 2, 2, 2, 2); UiOptions("0=Biplanar,1=UV1,2=UV2"); UiType(Enum); UiGroup("Material1/Texture Coordinates,34/1"); >;
@@ -123,7 +120,7 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (7220 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -144,31 +141,14 @@ VS
 	    mat3x4 _m0;
 	};
 	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
-	{
-	    mat3x4 _m0;
-	};
-	
 	layout(set = 4, binding = 32, std430) readonly buffer g_instanceBuffer
 	{
-	    _1126 _m0[];
+	    _1125 _m0[];
 	} g_instanceBuffer_1;
 	
 	layout(set = 4, binding = 30, std430) readonly buffer g_transformBuffer
 	{
-	    _1120 _m0[];
+	    _1119 _m0[];
 	} g_transformBuffer_1;
 	
 	struct _1224
@@ -204,8 +184,8 @@ VS
 	layout(location = 4) in vec4 vTangentUOs_flTangentVSign;
 	layout(location = 5) in uvec4 vBlendIndices;
 	layout(location = 6) in uint nInstanceIdx;
-	layout(location = 7) in vec4 vColorBlendValues;
-	layout(location = 8) in vec4 vBlendColorTint;
+	layout(location = 7) in vec4 vBlendColorTint;
+	layout(location = 8) in vec4 vColorBlendValues;
 	layout(location = 0) out vec4 output_0;
 	layout(location = 1) out vec4 output_1;
 	layout(location = 2) out vec3 output_2;
@@ -218,39 +198,26 @@ VS
 	
 	void main()
 	{
-	    _1125 _20228;
-	    _20228._m0 = g_instanceBuffer_1._m0[nInstanceIdx]._m0;
-	    _20228._m1 = g_instanceBuffer_1._m0[nInstanceIdx]._m1;
-	    _20228._m2 = g_instanceBuffer_1._m0[nInstanceIdx]._m2;
-	    _20228._m3 = g_instanceBuffer_1._m0[nInstanceIdx]._m3;
-	    _20228._m4 = g_instanceBuffer_1._m0[nInstanceIdx]._m4;
-	    _20228._m5 = g_instanceBuffer_1._m0[nInstanceIdx]._m5;
-	    _20228._m6 = g_instanceBuffer_1._m0[nInstanceIdx]._m6;
-	    _20228._m7 = g_instanceBuffer_1._m0[nInstanceIdx]._m7;
-	    uint _16987 = (_20228._m5 >> uint(16)) & 15u;
-	    uint _21709;
-	    if (_16987 == 1u)
+	    uint _13771 = (g_instanceBuffer_1._m0[nInstanceIdx]._m5 >> uint(16)) & 15u;
+	    uint _21785;
+	    if (_13771 == 1u)
 	    {
-	        _21709 = _20228._m1 + (2u + vBlendIndices.x);
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1 + (2u + vBlendIndices.x);
 	    }
 	    else
 	    {
-	        _21709 = _20228._m1;
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1;
 	    }
-	    _1119 _21957;
-	    _21957._m0 = g_transformBuffer_1._m0[_21709]._m0;
-	    vec3 _19321;
-	    if (_16987 > 0u)
+	    vec3 _21709;
+	    if (_13771 > 0u)
 	    {
-	        _1119 _20229;
-	        _20229._m0 = g_transformBuffer_1._m0[_20228._m1]._m0;
-	        _19321 = vec3(_20229._m0[0].z);
+	        _21709 = vec3(g_transformBuffer_1._m0[g_instanceBuffer_1._m0[nInstanceIdx]._m1]._m0[0].z);
 	    }
 	    else
 	    {
-	        _19321 = vec3(1.0);
+	        _21709 = vec3(1.0);
 	    }
-	    vec4 _23812 = vec4(uvec4(_20228._m0 & 255u, (_20228._m0 & 65280u) >> uint(8), (_20228._m0 & 16711680u) >> uint(16), (_20228._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _23812 = vec4(uvec4(g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 255u, (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 65280u) >> uint(8), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 16711680u) >> uint(16), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	    vec3 _6253 = _23812.xyz;
 	    vec3 _17828 = _6253 * vec3(0.077399380505084991455078125);
 	    vec3 _7676 = pow((_6253 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
@@ -281,8 +248,8 @@ VS
 	    {
 	        _17978 = _7676.z;
 	    }
-	    vec3 _11179 = normalize(vec4(vNormalOs.xyz, 0.0) * _21957._m0);
-	    vec3 _12151 = vec4(vPositionOs.xyz * _19321.xyz, 1.0) * _21957._m0;
+	    vec3 _11179 = normalize(vec4(vNormalOs.xyz, 0.0) * g_transformBuffer_1._m0[_21785]._m0);
+	    vec3 _12151 = vec4(vPositionOs.xyz * _21709.xyz, 1.0) * g_transformBuffer_1._m0[_21785]._m0;
 	    vec4 _18237 = (vec4(_12151.xyz, 1.0) + (PerViewConstantBuffer_t._m1 * 1.0)).xyzw * PerViewConstantBuffer_t._m0;
 	    vec4 _9337 = vTexCoord.xyxy;
 	    _9337.z = vTexCoord2.x;
@@ -301,21 +268,21 @@ VS
 	    {
 	        _18606 = _9337;
 	    }
-	    vec4 _11323 = vec4(_Globals_.g_vColorTint, _23812.w * _20228._m7);
-	    vec3 _14119 = _11323.xyz * mix(vec3(1.0), vColorBlendValues.xyz, vec3(vColorBlendValues.w));
+	    vec4 _11323 = vec4(_Globals_.g_vColorTint, _23812.w * g_instanceBuffer_1._m0[nInstanceIdx]._m7);
+	    vec3 _14119 = _11323.xyz * mix(vec3(1.0), vBlendColorTint.xyz, vec3(vBlendColorTint.w));
 	    vec4 _23714 = _11323;
 	    _23714.x = _14119.x;
 	    _23714.y = _14119.y;
 	    _23714.z = _14119.z;
 	    output_0 = vec4(_21354, _21355, _17978, _Globals_.g_flModelTintAmount * (1.0 - min(_21354, min(_21355, _17978))));
-	    output_1 = vec4(vBlendColorTint.xyz, max(min(vBlendColorTint.w, 1.0), 0.001000000047497451305389404296875));
+	    output_1 = vec4(vColorBlendValues.xyz, max(min(vColorBlendValues.w, 1.0), 0.001000000047497451305389404296875));
 	    output_2 = _12151.xyz - PerViewConstantBufferCsgo_t._m0.xyz;
 	    output_3 = _11179;
 	    output_4 = _18606;
 	    output_5 = _23714;
 	    output_6 = _11179;
-	    output_7 = vec4(normalize(vec4(vTangentUOs_flTangentVSign.xyz, 0.0) * _21957._m0), vTangentUOs_flTangentVSign.w);
-	    output_8 = _20228._m5 & 65535u;
+	    output_7 = vec4(normalize(vec4(vTangentUOs_flTangentVSign.xyz, 0.0) * g_transformBuffer_1._m0[_21785]._m0), vTangentUOs_flTangentVSign.w);
+	    output_8 = g_instanceBuffer_1._m0[nInstanceIdx]._m5 & 65535u;
 	    _18237.y = -_18237.y;
 	    gl_Position = _18237;
 	}
@@ -336,9 +303,9 @@ VS
 	BoolAttribute(VertexPaintUIPickColor, true);
 	BoolAttribute(GroupDefaultCollapseState_TextureTransform, true);
 	BoolAttribute(GroupDefaultCollapseState_DetailTextureTransform, true);
-	BoolAttribute(HasTexcoordTransform, ((g_nUVSet1>0) && (((g_vTexCoordScale1.x!=1) || (g_vTexCoordScale1.y!=1)) || (g_flTexCoordRotation1!=0))) || 0);
+	BoolAttribute(HasTexcoordTransform, (g_nUVSet1>0 && (g_vTexCoordScale1.x!=1 || g_vTexCoordScale1.y!=1 || g_flTexCoordRotation1!=0)) ? 1 : 0);
 	BoolAttribute(VertexPaintUIAlphaBlendFactor, true);
-	BoolAttribute(VertexPaintUIPuddles, (F_WETNESS==1) || 0);
+	BoolAttribute(VertexPaintUIPuddles, (F_WETNESS==1) ? 1 : 0);
 	BoolAttribute(SupportsAggregateInstancing, true);
 	
 	#if (S_MATERIAL_REFERENCE == 1)
@@ -363,35 +330,30 @@ PS
 	DynamicCombo( D_SPECULAR_CUBE_MAP_STATIC, 0..1 );
 	DynamicCombo( D_ALPHA_TEST_PREPASS, 0..1 );
 	DynamicComboRule( Allow1( D_BAKED_LIGHTING_FROM_PROBE, D_BAKED_LIGHTING_FROM_VERTEX_STREAM, D_BAKED_LIGHTING_FROM_LIGHTMAP ) );
-	DynamicComboRule( Requires( D_SPECULAR_CUBE_MAP_STATIC, S_SHADER_QUALITY=1 ) );
+	DynamicComboRule( Requires( D_SPECULAR_CUBE_MAP_STATIC, S_SHADER_QUALITY==1 ) );
 	DynamicComboRule( Allow1( S_ALPHA_TEST_LAYER, D_OPAQUE_FADE ) );
 	DynamicComboRule( Allow1( S_MODE_DEPTH, D_SPECULAR_CUBE_MAP_STATIC ) );
 	DynamicComboRule( Requires( D_ALPHA_TEST_PREPASS, S_ALPHA_TEST_LAYER ) );
 	
-	cbuffer BakedLightingConstantBuffer_t < Attribute("BakedLightingConstantBuffer_t"); >;
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightProbeVolumeConstantBuffer_t < Attribute("PerViewLightProbeVolumeConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
-	StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
-	StructuredBuffer g_CullBits < Attribute("CullBits"); >;
+	[[layer_constant]] StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
+	[[layer_constant]] StructuredBuffer g_CullBits < Attribute("CullBits"); >;
 	bool g_bAdjustBaseColor1 < UiType(CheckBox); Expression(g_nColorCorrectionMode1==1); >;
 	bool g_bCubemapNormalization < Attribute("g_bCubemapNormalization"); UiType(CheckBox); >;
 	bool g_bDisableNormalMapping < Attribute("g_bDisableNormalMapping"); UiType(CheckBox); >;
-	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS || 0); >;
+	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS ? 1 : 0); >;
 	bool g_bHighlightDeprecated < Attribute("g_bHighlightDeprecated"); UiType(CheckBox); >;
 	bool g_bIsDeprecated < Attribute("bIsDeprecated"); UiType(CheckBox); >;
-	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES && 1) || 0); >;
+	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES ? 1 : 0) ? 1 : 0); >;
 	bool g_bRenderingToCubemaps < Attribute("g_bRenderingToCubemaps"); UiType(CheckBox); >;
 	bool g_bShowLPVVoxels < Attribute("g_bShowLPVVoxels"); UiType(CheckBox); >;
 	bool g_bShowLightmapTexels < Attribute("g_bShowLightmapTexels"); UiType(CheckBox); >;
-	bool g_bWetness < UiType(CheckBox); Expression((F_WETNESS==1) || 0); >;
+	bool g_bWetness < UiType(CheckBox); Expression((F_WETNESS==1) ? 1 : 0); >;
 	float g_fToolsVisHeightTint < Default(0.9); Attribute("g_fToolsVisHeightTint"); UiType(Slider); >;
 	float g_fToolsVisMaxHeightRange < Default(1); Attribute("g_fToolsVisMaxHeightRange"); UiType(Slider); >;
 	float g_fToolsVisMaxLightingComplexity < Default(8); Attribute("g_fToolsVisMaxLightingComplexity"); UiType(Slider); >;
 	float g_flReflectance < UiType(Slider); Expression(pow((1.5-1)/(1.5+1),2)); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	float4x4 g_mTextureAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(float3(1,1,1),1),MatrixColorCorrect2(float3(g_fTextureColorContrast1,g_fTextureColorSaturation1,g_fTextureColorBrightness1),TextureAverageColor(g_tColor1)))); >;
 	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(g_vTextureColorTint1,1),MatrixColorCorrect2(float3(g_fTextureColorContrast1,g_fTextureColorSaturation1,g_fTextureColorBrightness1),TextureAverageColor(g_tColor1)))); >;
 	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(float3(1,1,1),1),MatrixColorCorrect2(float3(1,1,1),TextureAverageColor(g_tColor1)))); >;
@@ -402,13 +364,13 @@ PS
 	Texture2D g_tHeight1 < Channel(R, ArtistDefined(TextureHeight1), Linear); Channel(G, ArtistDefined(TextureTintMask1), Linear); Channel(B, Box(TextureAmbientOcclusion1), Linear); Channel(A, Box(TextureMetalness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tNormal1 < Channel(RGBA, HemiOctIsoRoughness_RG_B(TextureNormal1, TextureRoughness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tNormalDetail1 < Channel(RG, HemiOctIsoRoughness_RG_B(TextureNormalDetail1), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
-	float3 g_vBiplanarTexCoordScale < UiType(VectorText); Expression((1/64)*float3(-1,1,-1)); >;
-	float4 g_vDetailNormalXform_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+	float3 g_vBiplanarTexCoordScale < UiType(VectorText); Expression(1/64*float3(-1,1,-1)); >;
+	float4 g_vDetailNormalXform_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		float4(v1,-v2,v2,v1)); >;
 	float3 g_vFlatOverlayColor < Default2(1, 0); Attribute("FlatOverlayColor"); UiType(VectorText); >;
-	float4 g_vNormalXform_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+	float4 g_vNormalXform_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		float4(v1,-v2,v2,v1)); >;
@@ -453,19 +415,19 @@ PS
 	bool g_bFogEnabled < Default(1); UiType(CheckBox); UiGroup("Fog"); >;
 	
 	// Wetness
-	bool g_bWetnessUseHeightmapAdjustments < UiType(CheckBox); UiGroup("Wetness/2"); UiVisibility(F_WETNESS || 0); >;
-	bool g_bPuddlesOnVerticalSurfaces < UiType(CheckBox); UiGroup("Wetness,9/3"); UiVisibility(F_WETNESS || 0); >;
-	float g_fPuddleStrength < Default(1); UiType(Slider); UiGroup("Wetness/5"); UiVisibility(F_WETNESS || 0); >;
-	float3 g_vPuddleSedimentColor < Default3(0.62, 0.56, 0.5); UiType(Color); UiGroup("Wetness/10"); Expression(SrgbGammaToLinear(this)); UiVisibility(F_WETNESS || 0); >;
-	float g_fPuddleSedimentHeight < Default(0.9); Range(0, 2); UiType(Slider); UiGroup("Wetness/15"); Expression((this*2)-1); UiVisibility(F_WETNESS || 0); >;
-	float g_fPuddleSedimentOpacity < Default(0.25); UiType(Slider); UiGroup("Wetness/16"); UiVisibility(F_WETNESS || 0); >;
-	float g_fPuddleRoughness < Default(0.02); UiType(Slider); UiGroup("Wetness/17"); UiVisibility(F_WETNESS || 0); >;
-	float g_fPuddleBlendSoftness < Default(0.08); UiType(Slider); UiGroup("Wetness/18"); UiVisibility(F_WETNESS || 0); >;
-	float g_fWetEdgeStrength < Default(0.5); UiType(Slider); UiGroup("Wetness/20"); UiVisibility(F_WETNESS || 0); >;
-	float g_fWetEdgeSpread < Default(0.2); UiType(Slider); UiGroup("Wetness/25"); UiVisibility(F_WETNESS || 0); >;
-	float g_fWetnessStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/30"); UiVisibility(F_WETNESS || 0); >;
-	float g_fRainStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/35"); UiVisibility(F_WETNESS || 0); >;
-	float g_fRippleStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/40"); UiVisibility(F_WETNESS || 0); >;
+	bool g_bWetnessUseHeightmapAdjustments < UiType(CheckBox); UiGroup("Wetness/2"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	bool g_bPuddlesOnVerticalSurfaces < UiType(CheckBox); UiGroup("Wetness,9/3"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fPuddleStrength < Default(1); UiType(Slider); UiGroup("Wetness/5"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float3 g_vPuddleSedimentColor < Default3(0.62, 0.56, 0.5); UiType(Color); UiGroup("Wetness/10"); Expression(SrgbGammaToLinear(this)); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fPuddleSedimentHeight < Default(0.9); Range(0, 2); UiType(Slider); UiGroup("Wetness/15"); Expression(this*2-1); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fPuddleSedimentOpacity < Default(0.25); UiType(Slider); UiGroup("Wetness/16"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fPuddleRoughness < Default(0.02); UiType(Slider); UiGroup("Wetness/17"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fPuddleBlendSoftness < Default(0.08); UiType(Slider); UiGroup("Wetness/18"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fWetEdgeStrength < Default(0.5); UiType(Slider); UiGroup("Wetness/20"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fWetEdgeSpread < Default(0.2); UiType(Slider); UiGroup("Wetness/25"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fWetnessStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/30"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fRainStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/35"); UiVisibility(F_WETNESS ? 1 : 0); >;
+	float g_fRippleStrength < Default(1); Range(0, 2); UiType(Slider); UiGroup("Wetness/40"); UiVisibility(F_WETNESS ? 1 : 0); >;
 	
 	// Translucent
 	float g_flAlphaTestReference < Default(0.5); Range(0.01, 0.99); UiType(Slider); UiGroup("Translucent"); >;
@@ -494,13 +456,20 @@ PS
 		Texture2D g_tColor1 < Channel(RGB, ArtistDefinedOrAlphaWeighted(TextureColor1, TextureTranslucency1), Srgb); Channel(A, PreserveCoverage(TextureTranslucency1), Linear); OutputFormat(BC7); SrgbRead(true); >;
 	#endif
 	
+	// Variant parameters
+	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(g_vTextureColorTint1,1),MatrixColorCorrect2(float3(g_fTextureColorContrast1,g_fTextureColorSaturation1,g_fTextureColorBrightness1),TextureAverageColor(g_tColor1)))); >;
+	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(float3(1,1,1),1),MatrixColorCorrect2(float3(1,1,1),TextureAverageColor(g_tColor1)))); >;
+	Texture2D g_tColor1 < Channel(RGB, ArtistDefined(TextureColor1), Srgb); Channel(A, Box(TextureAmbientOcclusion1), Linear); OutputFormat(BC7); SrgbRead(true); >;
+	Texture2D g_tHeight1 < Channel(R, ArtistDefined(TextureHeight1), Linear); Channel(G, ArtistDefined(TextureTintMask1), Linear); Channel(A, Box(TextureMetalness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
+	Texture2D g_tHeight1 < Channel(R, ArtistDefined(TextureHeight1), Linear); Channel(G, ArtistDefined(TextureTintMask1), Linear); Channel(B, Box(TextureAmbientOcclusion1), Linear); Channel(A, Box(TextureMetalness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 5 (name: g_vBiplanarTexCoordScale) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (61788 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#if defined(GL_EXT_control_flow_attributes)
@@ -565,9 +534,8 @@ PS
 	
 	float _4;
 	vec3 _5;
-	vec3 _6;
-	vec4 _7;
-	float _10;
+	vec4 _6;
+	float _7;
 	
 	struct _2558
 	{
@@ -811,8 +779,8 @@ PS
 	    }
 	    else
 	    {
-	        _11711 = _5;
-	        _10247 = _5;
+	        _11711 = vec3(0.0);
+	        _10247 = vec3(0.0);
 	    }
 	    bool _8452 = _Globals_.g_nUVSet1 == 0;
 	    vec2 _6616;
@@ -886,7 +854,7 @@ PS
 	        {
 	            _19322 = _19442.yz;
 	        }
-	        vec2 _19651 = clamp((vec2(_16100[_23727.x], _16100[_9992]) - vec2(0.577300012111663818359375)) * vec2(2.365744113922119140625), vec2(0.0), vec2(1.0));
+	        vec2 _19651 = saturate((vec2(_16100[_23727.x], _16100[_9992]) - vec2(0.577300012111663818359375)) * vec2(2.365744113922119140625));
 	        vec3 _18781 = _10061 * _Globals_.g_vBiplanarTexCoordScale.xyz;
 	        vec3 _16414 = _18781;
 	        vec3 _16415 = dFdxFine(_18781);
@@ -959,9 +927,9 @@ PS
 	    {
 	        vec2 _8315 = (_17114 * _Globals_.g_vTexCoordScale1.xy).xy;
 	        vec2 _7412 = (_17116 * _Globals_.g_vTexCoordScale1.xy).xy;
-	        vec2 _8904 = (_17117 * _Globals_.g_vTexCoordScale1.xy).xy;
-	        vec4 _23806 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tColor1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _8315, _7412, _8904) * _6616.x;
-	        vec4 _12167 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tNormal1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _8315, _7412, _8904);
+	        vec2 _8903 = (_17117 * _Globals_.g_vTexCoordScale1.xy).xy;
+	        vec4 _23806 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tColor1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _8315, _7412, _8903) * _6616.x;
+	        vec4 _12167 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tNormal1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _8315, _7412, _8903);
 	        float _18178 = _12167.z * _6616.x;
 	        float _15456 = _12167.x;
 	        float _24534 = _12167.y;
@@ -976,15 +944,15 @@ PS
 	        {
 	            vec2 _17047 = (_17115 * _Globals_.g_vTexCoordScale1.xy).xy;
 	            vec2 _10017 = (_17118 * _Globals_.g_vTexCoordScale1.xy).xy;
-	            vec2 _8905 = (_13694 * _Globals_.g_vTexCoordScale1.xy).xy;
-	            vec4 _12168 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tNormal1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _17047, _10017, _8905);
+	            vec2 _8904 = (_13694 * _Globals_.g_vTexCoordScale1.xy).xy;
+	            vec4 _12168 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tNormal1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _17047, _10017, _8904);
 	            float _13491 = _12168.x;
 	            float _21308 = _12168.y;
 	            float _16785 = (_13491 + _21308) - 1.00392162799835205078125;
 	            float _11178 = _13491 - _21308;
 	            vec3 _21632 = normalize(vec3(vec2(_16785, _11178), (1.0 - abs(_16785)) - abs(_11178))).xyz * _6616.y;
 	            _13137 = _18178 + (_12168.z * _6616.y);
-	            _14101 = _23806 + (textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tColor1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _17047, _10017, _8905) * _6616.y);
+	            _14101 = _23806 + (textureGrad(sampler2D(g_bindless_Texture2D_float4[_Globals_.g_tColor1], g_bindless_Sampler[_Globals_.g_sUserConfig]), _17047, _10017, _8904) * _6616.y);
 	            _13753 = _24466 + ((_2109[_16305.x] * _21632.x) + (_922[_16305.y] * _21632.y));
 	        }
 	        else
@@ -1020,7 +988,7 @@ PS
 	    }
 	    vec3 _19225 = normalize(_13189);
 	    float _6375 = saturate(_13138);
-	    float _14713 = clamp(mix(0.0, 1.0, pow(_22057.w, 1.0)), 0.0, 1.0);
+	    float _14713 = saturate(mix(0.0, 1.0, pow(_22057.w, 1.0)));
 	    float _7029 = saturate(_19323.y);
 	    vec3 _25191 = mix(_22057.xyz, vec4((vec4(_22057.xyz, 1.0) * _Globals_.g_mTextureColorAdjust1).xyz, _4).xyz, vec3(_7029));
 	    vec4 _17842;
@@ -1031,7 +999,7 @@ PS
 	    vec3 _9577 = normalize(max(input_0.xyz, vec3(0.001000000047497451305389404296875)));
 	    bool _21618 = _Globals_.g_bSnowLayer1 != 0;
 	    vec3 _6756 = _19225.xyz;
-	    vec3 _6663 = vec4(clamp(mix(_17842.xyz, (_9577 * min(_24323 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _24323) * max(input_0.x, max(input_0.y, input_0.z)))).xyz, vec3(input_0.w * _7029)), vec3(0.0), vec3(1.0)).xyz, _10).xyz;
+	    vec3 _6663 = vec4(saturate(mix(_17842.xyz, (_9577 * min(_24323 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _24323) * max(input_0.x, max(input_0.y, input_0.z)))).xyz, vec3(input_0.w * _7029))).xyz, _7).xyz;
 	    vec2 _11281 = vec2(_6375);
 	    vec3 _21712;
 	    if (_21710)
@@ -1100,7 +1068,7 @@ PS
 	        float _19808 = max((smoothstep(_23204, _16777 - (0.20000000298023223876953125 * _8284), _21711) * _Globals_.g_fWetEdgeStrength) * _11964, _14611) * _Globals_.g_fPuddleStrength;
 	        float _17924 = (_23204 - 1.0) - _21711;
 	        float _10334 = (saturate(_17924 + _Globals_.g_fPuddleSedimentHeight) * _Globals_.g_fPuddleSedimentOpacity) * _14611;
-	        float _13706 = clamp(((clamp((((_8284 * 2.0) - (mix(0.5, _19372.w, saturate(_14498 * 20.0)) * 0.5)) - (_21711 * 0.5)) + 0.25, 0.0, 1.0) * _Globals_.g_fWetnessStrength) * _11964) + _14611, 0.0, 1.0);
+	        float _13706 = saturate(((saturate((((_8284 * 2.0) - (mix(0.5, _19372.w, saturate(_14498 * 20.0)) * 0.5)) - (_21711 * 0.5)) + 0.25) * _Globals_.g_fWetnessStrength) * _11964) + _14611);
 	        float _13140;
 	        float _13151;
 	        vec4 _23607;
@@ -1130,7 +1098,7 @@ PS
 	                vec2 _15991 = vec2(_20274.x, _9965) * vec2(0.0199999995529651641845703125, 0.010999999940395355224609375);
 	                vec4 _20877 = texture(sampler2D(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m7], g_bindless_Sampler[_Globals_.g_sUserConfig]), (_15991 + (vec2(0.20000000298023223876953125, 0.0) * PerViewConstantBuffer_t._m1)).xy);
 	                vec2 _18922 = (_20877.xy * 2.0) - vec2(1.0);
-	                float _22216 = clamp(length(fwidth(_15991)) * 10.0, 0.0, 1.0);
+	                float _22216 = saturate(length(fwidth(_15991)) * 10.0);
 	                vec2 _15297 = ((_18922 * vec2(0.100000001490116119384765625, 0.0500000007450580596923828125)) * input_1.z) * mix(1.0, 0.300000011920928955078125, _22216);
 	                vec2 _13711 = _21326.xy;
 	                vec4 _19601 = vec4(0.0);
@@ -1140,7 +1108,7 @@ PS
 	                vec4 _20878 = texture(sampler2D(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m7], g_bindless_Sampler[_Globals_.g_sUserConfig]), (_16046 + (vec2(0.1500000059604644775390625, 0.0) * PerViewConstantBuffer_t._m1)).xy);
 	                vec2 _17104 = (((_20878.xy * 2.0) - vec2(1.0)) * 0.05200000107288360595703125) * input_1.z;
 	                _17104.y = _17104.y * 0.5;
-	                float _9250 = clamp(length(fwidth(_16046)) * 10.0, 0.0, 1.0);
+	                float _9250 = saturate(length(fwidth(_16046)) * 10.0);
 	                vec2 _13560 = _17104 * mix(1.0, 0.300000011920928955078125, _9250);
 	                vec2 _13330 = _19601.xy + vec2(dot(_22900.xy, _13560), dot(_13711, _13560));
 	                vec4 _20489 = _19601;
@@ -1188,14 +1156,14 @@ PS
 	                    vec2 _10212 = ((_21666 * _10473) * _16409[_16208]) + vec2(_23410 * 0.0199999995529651641845703125);
 	                    vec2 _7848 = _21666 * ((fract(_10212) * 2.0) - vec2(1.0));
 	                    float _8329 = length(_7848);
-	                    float _20173 = clamp(1.0 - (_8329 * mix(3.0, 1.0, _14611)), 0.0, 1.0);
-	                    float _20213 = clamp(1.0 - (_8329 * 6.0), 0.0, 1.0);
+	                    float _20173 = saturate(1.0 - (_8329 * mix(3.0, 1.0, _14611)));
+	                    float _20213 = saturate(1.0 - (_8329 * 6.0));
 	                    float _7135 = floor(fract(_10212.x * 0.100000001490116119384765625) * 10.0);
 	                    float _23598 = _20506[_16208];
 	                    float _18429 = _23598 + ((_7135 + (floor(fract(_10212.y * 0.100000001490116119384765625) * 10.0) * (0.20000000298023223876953125 + _7135))) * 8.0);
 	                    _20506[_16208] = _18429;
 	                    float _18120 = _8914 * _8914;
-	                    _25251 = vec3(_13155.xy + (((-(((((_7848 / vec2(_8329)) * cos(mix(1.0, (_20173 * 40.0) + (PerViewConstantBuffer_t._m1 * 65.0), _14611))) * _20173) * _20173) * mix(2.0, 0.25, clamp(fwidth(_20173) * 20.0, 0.0, 1.0)))) * ((clamp((sin(((_20173 * mix(1.0, 4.0, _14611)) + _18429) * _8914) - (1.0 - ((0.20000000298023223876953125 * _18120) * mix(0.25, 1.0, _14611)))) * 2.0, 0.0, 1.0) * _20173) / _18120)) * mix(16.0, 2.0, _14611)), _13155.z + (((clamp((sin((((_20213 + _18429) + 4.0) + (sin(_21711 * 60.0) * 0.25)) * _8914) - (1.0 - (_18120 * 0.02000000141561031341552734375))) * 2.0, 0.0, 1.0) * _20213) / _18120) * 28.0));
+	                    _25251 = vec3(_13155.xy + (((-(((((_7848 / vec2(_8329)) * cos(mix(1.0, (_20173 * 40.0) + (PerViewConstantBuffer_t._m1 * 65.0), _14611))) * _20173) * _20173) * mix(2.0, 0.25, saturate(fwidth(_20173) * 20.0)))) * ((saturate((sin(((_20173 * mix(1.0, 4.0, _14611)) + _18429) * _8914) - (1.0 - ((0.20000000298023223876953125 * _18120) * mix(0.25, 1.0, _14611)))) * 2.0) * _20173) / _18120)) * mix(16.0, 2.0, _14611)), _13155.z + (((saturate((sin((((_20213 + _18429) + 4.0) + (sin(_21711 * 60.0) * 0.25)) * _8914) - (1.0 - (_18120 * 0.02000000141561031341552734375))) * 2.0) * _20213) / _18120) * 28.0));
 	                    _18440 = _16208 + 1;
 	                    _13155 = _25251;
 	                    _16208 = _18440;
@@ -1233,9 +1201,9 @@ PS
 	        vec3 _23311 = vec3(_19808 * _10334);
 	        vec3 _13712 = normalize(mix(_19225.xyz, _23607.xyz, vec3(saturate(_10839 * 4.0))));
 	        float _9038 = max(_13706 * (1.0 - saturate(PerViewConstantBufferCsgo_t._m12 * 2.0)), _19808);
-	        vec3 _18806 = mix(_21712, pow(_21712, vec3(1.2999999523162841796875)) * 0.800000011920928955078125, clamp((pow(_21712, vec3(0.25)) * (_9038 * _6375)) * 8.0, vec3(0.0), vec3(1.0)) * _Globals_.g_flWetnessDarkeningStrength1);
+	        vec3 _18806 = mix(_21712, pow(_21712, vec3(1.2999999523162841796875)) * 0.800000011920928955078125, saturate((pow(_21712, vec3(0.25)) * (_9038 * _6375)) * 8.0) * _Globals_.g_flWetnessDarkeningStrength1);
 	        _13141 = fma(mix((mix(_18806, _18806 * 0.5, vec3(saturate(_14611 * 1.5))) * mix(1.0, _14713, _19808)) * mix(1.0, 1.0 - _17924, _10334), _Globals_.g_vPuddleSedimentColor, _23311), vec3(1.0 + _13140), vec3(_13140 * 0.100000001490116119384765625));
-	        _16306 = clamp(mix(_11281.xx, vec2(_Globals_.g_fPuddleRoughness), vec2(_9038)) + vec2(_13151 + (length(fwidth(_13712.xyz)) * 0.5)), vec2(0.0), vec2(1.0));
+	        _16306 = saturate(mix(_11281.xx, vec2(_Globals_.g_fPuddleRoughness), vec2(_9038)) + vec2(_13151 + (length(fwidth(_13712.xyz)) * 0.5)));
 	        _17119 = mix(_14713, 1.0, _19808);
 	        _17120 = mix(_Globals_.g_flReflectance, 0.0350000001490116119384765625, _9038);
 	        _17121 = _13712;
@@ -1259,7 +1227,7 @@ PS
 	    vec3 _9175 = dFdy(_10560);
 	    vec3 _10347 = _11099.xyz;
 	    vec3 _12420 = _9175.xyz;
-	    vec2 _21818 = max(_16306.xy, vec2(pow(clamp(max(dot(_10347, _10347), dot(_12420, _12420)), 0.0, 1.0), 0.333000004291534423828125)));
+	    vec2 _21818 = max(_16306.xy, vec2(pow(saturate(max(dot(_10347, _10347), dot(_12420, _12420))), 0.333000004291534423828125)));
 	    vec3 _15598 = -_24347;
 	    vec4 _23875 = vec4(_24595.xyz, 1.0);
 	    bvec4 _24464 = notEqual(PerViewConstantBufferCsgo_t._m0, ivec4(0));
@@ -1294,7 +1262,7 @@ PS
 	            _23169 = _23168;
 	        }
 	        vec4 _10010 = normalize(vec4(PerViewLightingConstantBufferGpu_t._m2.x * fma(dot(_15598, normalize(vec3(PerViewLightingConstantBufferGpu_t._m1._m0[0].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m2.y * fma(dot(_15598, normalize(vec3(PerViewLightingConstantBufferGpu_t._m1._m0[1].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m2.z * fma(dot(_15598, normalize(vec3(PerViewLightingConstantBufferGpu_t._m1._m0[2].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m2.w * fma(dot(_15598, normalize(vec3(PerViewLightingConstantBufferGpu_t._m1._m0[3].xy, 0.25))), 0.5, 0.5)));
-	        vec4 _13232 = max(vec4(dot(PerViewLightingConstantBufferGpu_t._m1._m0[0].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[1].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[2].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[3].xyz, _11394)).xyzw, vec4(0.0)) * normalize(clamp(((_10010 - vec4(max(max(_10010.x, _10010.y), max(_10010.z, _10010.w)))) + vec4(0.20000000298023223876953125)) * vec4(5.0), vec4(0.0), vec4(1.0)));
+	        vec4 _13232 = max(vec4(dot(PerViewLightingConstantBufferGpu_t._m1._m0[0].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[1].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[2].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m1._m0[3].xyz, _11394)).xyzw, vec4(0.0)) * normalize(saturate(((_10010 - vec4(max(max(_10010.x, _10010.y), max(_10010.z, _10010.w)))) + vec4(0.20000000298023223876953125)) * vec4(5.0)));
 	        _21714 = (1.0 / (dot(_13232, vec4(1.0)) + PerViewLightingConstantBufferGpu_t._m3.x)) * (PerViewLightingConstantBufferGpu_t._m3.x + dot(_13232, textureLod(sampler2D(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m3], g_bindless_Sampler[_Globals_.g_sPointClamp]), (_11086 + mix(_23169, PerViewConstantBufferCsgo_t._m14.xy, bvec2(abs(_18418.y) < (_12287 ? _15372 : _20965))).xy).xy, 0.0)));
 	    }
 	    else
@@ -1325,7 +1293,7 @@ PS
 	            {
 	                vec3 _19470 = vec3(_12779, _18322.yz);
 	                vec2 _24804 = _19470.xy;
-	                vec2 _22193 = vec2(1.0) - clamp((abs(_24804) * vec2(PerViewLightingConstantBufferGpu_t._m15)) + vec2(PerViewLightingConstantBufferGpu_t._m14), vec2(0.0), vec2(1.0));
+	                vec2 _22193 = vec2(1.0) - saturate((abs(_24804) * vec2(PerViewLightingConstantBufferGpu_t._m15)) + vec2(PerViewLightingConstantBufferGpu_t._m14));
 	                vec2 _20561 = (_24804 * PerViewLightingConstantBufferGpu_t._m19._m0[_13039].zw) + PerViewLightingConstantBufferGpu_t._m19._m0[_13039].xy;
 	                vec3 _20492 = _19470;
 	                _20492.x = _20561.x;
@@ -1374,7 +1342,7 @@ PS
 	        {
 	            _18423 = 1.0;
 	        }
-	        float _13279 = mix(_18423, 1.0, clamp((distance(_10061.xyz, PerViewConstantBuffer_t._m5) * PerViewLightingConstantBufferGpu_t._m17) + PerViewLightingConstantBufferGpu_t._m16, 0.0, 1.0));
+	        float _13279 = mix(_18423, 1.0, saturate((distance(_10061.xyz, PerViewConstantBuffer_t._m5) * PerViewLightingConstantBufferGpu_t._m17) + PerViewLightingConstantBufferGpu_t._m16));
 	        float _12502;
 	        if (_24464.y)
 	        {
@@ -1403,7 +1371,7 @@ PS
 	        {
 	            float _8780 = dot(_15460, PerViewLightingConstantBufferGpu_t._m9.xyz);
 	            float _8124 = saturate(_13960);
-	            _18223 = mix(_17874.xyz, vec3((((0.5 + (_13811 * 0.5)) + pow(1.0 - saturate(_8780), 4.0)) * clamp((_8780 + 0.20000000298023223876953125) * 4.0, 0.0, 1.0)) * clamp(mix(dot(mix(_24595.xyz, _15460, vec3(10.0)), PerViewLightingConstantBufferGpu_t._m9.xyz), 1.0, _8124), 0.0, 1.0)), vec3(_8124));
+	            _18223 = mix(_17874.xyz, vec3((((0.5 + (_13811 * 0.5)) + pow(1.0 - saturate(_8780), 4.0)) * saturate((_8780 + 0.20000000298023223876953125) * 4.0)) * saturate(mix(dot(mix(_24595.xyz, _15460, vec3(10.0)), PerViewLightingConstantBufferGpu_t._m9.xyz), 1.0, _8124))), vec3(_8124));
 	        }
 	        else
 	        {
@@ -1561,7 +1529,7 @@ PS
 	                        break; // unreachable workaround
 	                    } while(false);
 	                    _11180 = _10018 / vec3(_17647);
-	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_12608]._m2.w / max(_18345, g_BarnLights_1._m0[_12608]._m2.w))) * clamp(g_BarnLights_1._m0[_12608]._m3.x + (g_BarnLights_1._m0[_12608]._m3.y * _17647), 0.0, 1.0)) * clamp(g_BarnLights_1._m0[_12608]._m6.x + (g_BarnLights_1._m0[_12608]._m6.y * dot(vec3((1.0 - (_23572 * g_BarnLights_1._m0[_12608]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_12608]._m5.z) - (_17330 * g_BarnLights_1._m0[_12608]._m5.y)), normalize(_10210))), 0.0, 1.0);
+	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_12608]._m2.w / max(_18345, g_BarnLights_1._m0[_12608]._m2.w))) * saturate(g_BarnLights_1._m0[_12608]._m3.x + (g_BarnLights_1._m0[_12608]._m3.y * _17647))) * saturate(g_BarnLights_1._m0[_12608]._m6.x + (g_BarnLights_1._m0[_12608]._m6.y * dot(vec3((1.0 - (_23572 * g_BarnLights_1._m0[_12608]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_12608]._m5.z) - (_17330 * g_BarnLights_1._m0[_12608]._m5.y)), normalize(_10210))));
 	                }
 	                else
 	                {
@@ -1689,7 +1657,7 @@ PS
 	                {
 	                    float _8781 = dot(_15461, _11180.xyz);
 	                    float _8125 = saturate(_13960);
-	                    _18225 = mix(_17875.xyz, vec3((((0.5 + (_13812 * 0.5)) + pow(1.0 - saturate(_8781), 4.0)) * clamp((_8781 + 0.20000000298023223876953125) * 4.0, 0.0, 1.0)) * clamp(mix(dot(mix(_24595.xyz, _15461, vec3(10.0)), _11180.xyz), 1.0, _8125), 0.0, 1.0)), vec3(_8125));
+	                    _18225 = mix(_17875.xyz, vec3((((0.5 + (_13812 * 0.5)) + pow(1.0 - saturate(_8781), 4.0)) * saturate((_8781 + 0.20000000298023223876953125) * 4.0)) * saturate(mix(dot(mix(_24595.xyz, _15461, vec3(10.0)), _11180.xyz), 1.0, _8125))), vec3(_8125));
 	                }
 	                else
 	                {
@@ -1779,7 +1747,7 @@ PS
 	            SPIRV_CROSS_BRANCH
 	            if (_12894)
 	            {
-	                vec2 _9342 = clamp(PerViewConstantBufferCsgo_t._m16.xy + (PerViewConstantBufferCsgo_t._m16.zw * vec2(length(_21493), _10061.z)), vec2(0.0), vec2(1.0));
+	                vec2 _9342 = saturate(PerViewConstantBufferCsgo_t._m16.xy + (PerViewConstantBufferCsgo_t._m16.zw * vec2(length(_21493), _10061.z)));
 	                float _12872 = (pow(_9342.x, PerViewConstantBufferCsgo_t._m17.x) * pow(_9342.y, PerViewConstantBufferCsgo_t._m17.y)) * PerViewConstantBufferCsgo_t._m18.w;
 	                _19340 = mix(_13888.xyz, vec4(PerViewConstantBufferCsgo_t._m18.xyz, _12872).xyz, vec3(_12872));
 	                break;
@@ -1805,9 +1773,9 @@ PS
 	            }
 	            if (_12895)
 	            {
-	                float _14602 = clamp(pow(max(0.0, (length(_21493) * PerViewConstantBufferCsgo_t._m20.y) + PerViewConstantBufferCsgo_t._m20.x), PerViewConstantBufferCsgo_t._m20.w), 0.0, 1.0) * clamp(pow(max(0.0, (_10061.z * PerViewConstantBufferCsgo_t._m21.y) + PerViewConstantBufferCsgo_t._m21.x), PerViewConstantBufferCsgo_t._m21.z), 0.0, 1.0);
+	                float _14602 = saturate(pow(max(0.0, (length(_21493) * PerViewConstantBufferCsgo_t._m20.y) + PerViewConstantBufferCsgo_t._m20.x), PerViewConstantBufferCsgo_t._m20.w)) * saturate(pow(max(0.0, (_10061.z * PerViewConstantBufferCsgo_t._m21.y) + PerViewConstantBufferCsgo_t._m21.x), PerViewConstantBufferCsgo_t._m21.z));
 	                float _8892 = saturate(_14602) * PerViewConstantBufferCsgo_t._m23.w;
-	                _19341 = mix(_23944.xyz, vec4((textureLod(samplerCube(g_bindless_TextureCube_float4[PerViewConstantBufferCsgo_t._m2], g_bindless_Sampler[_Globals_.g_sTrilinearClamp]), normalize((PerViewConstantBufferCsgo_t._m22 * vec4(_9057, 0.0)).xyz).xyz, PerViewConstantBufferCsgo_t._m21.w * clamp(1.0 - (_14602 * PerViewConstantBufferCsgo_t._m20.z), 0.0, 1.0)) * PerViewConstantBufferCsgo_t._m24.x).xyz, _8892).xyz, vec3(_8892));
+	                _19341 = mix(_23944.xyz, vec4((textureLod(samplerCube(g_bindless_TextureCube_float4[PerViewConstantBufferCsgo_t._m2], g_bindless_Sampler[_Globals_.g_sTrilinearClamp]), normalize((PerViewConstantBufferCsgo_t._m22 * vec4(_9057, 0.0)).xyz).xyz, PerViewConstantBufferCsgo_t._m21.w * saturate(1.0 - (_14602 * PerViewConstantBufferCsgo_t._m20.z))) * PerViewConstantBufferCsgo_t._m24.x).xyz, _8892).xyz, vec3(_8892));
 	                break;
 	            }
 	            _19341 = _23944.xyz;
@@ -1834,13 +1802,13 @@ PS
 	StringAttribute(MaterialLayerRefType, csgo_environment);
 	BoolAttribute(GroupDefaultCollapseState_TextureTransform, true);
 	BoolAttribute(GroupDefaultCollapseState_DetailTextureTransform, true);
-	BoolAttribute(HasTexcoordTransform, ((g_nUVSet1>0) && (((g_vTexCoordScale1.x!=1) || (g_vTexCoordScale1.y!=1)) || (g_flTexCoordRotation1!=0))) || 0);
+	BoolAttribute(HasTexcoordTransform, (g_nUVSet1>0 && (g_vTexCoordScale1.x!=1 || g_vTexCoordScale1.y!=1 || g_flTexCoordRotation1!=0)) ? 1 : 0);
 	BoolAttribute(environmentmapped, true);
 	BoolAttribute(environmentmappeddynamic, true);
 	BoolAttribute(NeedsLightProbe, true);
-	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS || 0);
+	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS ? 1 : 0);
 	BoolAttribute(SupportsMappingDimensions, true);
-	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES || 0);
+	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES ? 1 : 0);
 	BoolAttribute(SupportsLightmapping, true);
 	BoolAttribute(PerVertexLighting, true);
 	BoolAttribute(AllowBackfaceCulling, F_RENDER_BACKFACES ? 0 : 1);
@@ -1866,7 +1834,7 @@ PS
 	#endif
 	#if (S_ALPHA_TEST_LAYER == 0)
 		IntAttribute(DepthPassBatchID, F_RENDER_BACKFACES ? 0 : 1);
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_MATERIAL_REFERENCE == 1)
 		IntAttribute(MaterialLayerCount, 1);
@@ -1875,18 +1843,22 @@ PS
 	
 	// PSRS
 	
-	RenderState(BackStencilFunc, F_RENDER_BACKFACES ? 5 : 7);
+	RenderState(BackStencilFunc, F_RENDER_BACKFACES ? NotEqual : Always);
 	RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
 	RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
-	RenderState(DepthEnable, F_DISABLE_Z_BUFFERING ? False : True);
+	RenderState(DepthEnable, F_DISABLE_Z_BUFFERING ? false : true);
 	RenderState(DepthFunc, Equal);
 	RenderState(SlopeScaleDepthBias, 0);
-	RenderState(StencilEnable, 1);
-	RenderState(StencilFunc, 5);
+	RenderState(StencilEnable, true);
+	RenderState(StencilFunc, NotEqual);
 	RenderState(StencilReadMask, 1);
 	RenderState(StencilRef, 3);
 	RenderState(StencilWriteMask, 254);
 	
+	
+	// Variant parameters
+	RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
+	RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
 	
 	BoolAttribute(BindlessResources, true);
 	StringAttribute(MaterialLayerRefType, csgo_environment);
@@ -1920,8 +1892,8 @@ RTX
 	DynamicComboRule( Allow0( D_COMPRESSED_NORMALS_AND_TANGENTS, D_CS_VERTEX_ANIMATION ) );
 	
 	bool g_bAdjustBaseColor1 < UiType(CheckBox); Expression(g_nColorCorrectionMode1==1); >;
-	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS || 0); >;
-	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES && 1) || 0); >;
+	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS ? 1 : 0); >;
+	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES ? 1 : 0) ? 1 : 0); >;
 	float g_flReflectance < UiType(Slider); Expression(pow((1.5-1)/(1.5+1),2)); >;
 	float4x4 g_mTextureAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(float3(1,1,1),1),MatrixColorCorrect2(float3(g_fTextureColorContrast1,g_fTextureColorSaturation1,g_fTextureColorBrightness1),TextureAverageColor(g_tColor1)))); >;
 	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(g_vTextureColorTint1,1),MatrixColorCorrect2(float3(g_fTextureColorContrast1,g_fTextureColorSaturation1,g_fTextureColorBrightness1),TextureAverageColor(g_tColor1)))); >;
@@ -1932,31 +1904,31 @@ RTX
 	Texture2D g_tHeight1 < Channel(R, ArtistDefined(TextureHeight1), Linear); Channel(G, ArtistDefined(TextureTintMask1), Linear); Channel(B, Box(TextureAmbientOcclusion1), Linear); Channel(A, Box(TextureMetalness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tNormal1 < Channel(RGBA, HemiOctIsoRoughness_RG_B(TextureNormal1, TextureRoughness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tNormalDetail1 < Channel(RG, HemiOctIsoRoughness_RG_B(TextureNormalDetail1), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
-	float3 g_vBiplanarTexCoordScale < UiType(VectorText); Expression((1/64)*float3(-1,1,-1)); >;
-	float4 g_vDetailNormalXform_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+	float3 g_vBiplanarTexCoordScale < UiType(VectorText); Expression(1/64*float3(-1,1,-1)); >;
+	float4 g_vDetailNormalXform_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		float4(v1,-v2,v2,v1)); >;
-	float4 g_vDetailTexCoordXform0_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+	float4 g_vDetailTexCoordXform0_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vDetailTexCoordScale1.x,-v2*g_vDetailTexCoordScale1.y,0,((g_vDetailTexCoordCenter1.x+g_vDetailTexCoordOffset1.x)+(v2*g_vDetailTexCoordCenter1.y))-(v1*g_vDetailTexCoordCenter1.x))); >;
-	float4 g_vDetailTexCoordXform1_1 < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation1*3.1415927)/180;
+		float4(v1*g_vDetailTexCoordScale1.x,-v2*g_vDetailTexCoordScale1.y,0,g_vDetailTexCoordCenter1.x+g_vDetailTexCoordOffset1.x+v2*g_vDetailTexCoordCenter1.y-v1*g_vDetailTexCoordCenter1.x)); >;
+	float4 g_vDetailTexCoordXform1_1 < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vDetailTexCoordScale1.x,v1*g_vDetailTexCoordScale1.y,0,(g_vDetailTexCoordCenter1.y+g_vDetailTexCoordOffset1.y)-((v2*g_vDetailTexCoordCenter1.x)+(v1*g_vDetailTexCoordCenter1.y)))); >;
-	float4 g_vNormalXform_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+		float4(v2*g_vDetailTexCoordScale1.x,v1*g_vDetailTexCoordScale1.y,0,g_vDetailTexCoordCenter1.y+g_vDetailTexCoordOffset1.y-(v2*g_vDetailTexCoordCenter1.x+v1*g_vDetailTexCoordCenter1.y))); >;
+	float4 g_vNormalXform_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		float4(v1,-v2,v2,v1)); >;
-	float4 g_vTexCoordXform0_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+	float4 g_vTexCoordXform0_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vTexCoordScale1.x,-v2*g_vTexCoordScale1.y,0,((g_vTexCoordCenter1.x+g_vTexCoordOffset1.x)+(v2*g_vTexCoordCenter1.y))-(v1*g_vTexCoordCenter1.x))); >;
-	float4 g_vTexCoordXform1_1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation1*3.1415927)/180;
+		float4(v1*g_vTexCoordScale1.x,-v2*g_vTexCoordScale1.y,0,g_vTexCoordCenter1.x+g_vTexCoordOffset1.x+v2*g_vTexCoordCenter1.y-v1*g_vTexCoordCenter1.x)); >;
+	float4 g_vTexCoordXform1_1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation1*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vTexCoordScale1.x,v1*g_vTexCoordScale1.y,0,(g_vTexCoordCenter1.y+g_vTexCoordOffset1.y)-((v2*g_vTexCoordCenter1.x)+(v1*g_vTexCoordCenter1.y)))); >;
+		float4(v2*g_vTexCoordScale1.x,v1*g_vTexCoordScale1.y,0,g_vTexCoordCenter1.y+g_vTexCoordOffset1.y-(v2*g_vTexCoordCenter1.x+v1*g_vTexCoordCenter1.y))); >;
 	
 	// Material1
 	CreateInputTexture2D(TextureColor1, Srgb, 8, "", "_color", "Material1,0/Color,10/0", Default4(1, 1, 1, 0));
@@ -2014,13 +1986,18 @@ RTX
 		Texture2D g_tColor1 < Channel(RGB, ArtistDefinedOrAlphaWeighted(TextureColor1, TextureTranslucency1), Srgb); Channel(A, PreserveCoverage(TextureTranslucency1), Linear); OutputFormat(BC7); SrgbRead(true); >;
 	#endif
 	
+	// Variant parameters
+	float4x4 g_mTextureColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(float3(1,1,1),1),MatrixColorCorrect2(float3(1,1,1),TextureAverageColor(g_tColor1)))); >;
+	Texture2D g_tColor1 < Channel(RGB, ArtistDefined(TextureColor1), Srgb); Channel(A, Box(TextureAmbientOcclusion1), Linear); OutputFormat(BC7); SrgbRead(true); >;
+	Texture2D g_tHeight1 < Channel(R, ArtistDefined(TextureHeight1), Linear); Channel(G, ArtistDefined(TextureTintMask1), Linear); Channel(A, Box(TextureMetalness1), Linear); OutputFormat(BC7); SrgbRead(false); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// Unsupported builtin in HLSL: 5326
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (110164 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_shader_explicit_arithmetic_types_int16 : require
@@ -2058,18 +2035,6 @@ RTX
 	    uint nInstanceIdx;
 	    vec4 vBlendColorTint;
 	    vec4 vColorBlendValues;
-	};
-	
-	struct PackedRtxInstanceData_t_natural_logical
-	{
-	    uint nSrgbColor;
-	    uint nTriangleGeometry;
-	    uint nMaterialData;
-	    uint nMaterialFlags_nInstanceFlags;
-	    float fEmissiveBoost;
-	    uint nInstanceFlags;
-	    uint _pad1;
-	    uint _pad2;
 	};
 	
 	struct PackedRtxInstanceData_t_natural
@@ -2213,8 +2178,8 @@ RTX
 	    vec2 barycentrics;
 	};
 	
-	const vec3 _417[3] = vec3[](vec3(-1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(-1.0, 0.0, 0.0));
-	const vec3 _421[3] = vec3[](vec3(0.0, 0.0, 1.0), vec3(0.0, -1.0, 0.0), vec3(0.0, 0.0, 1.0));
+	const vec3 _727[3] = vec3[](vec3(-1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(-1.0, 0.0, 0.0));
+	const vec3 _731[3] = vec3[](vec3(0.0, 0.0, 1.0), vec3(0.0, -1.0, 0.0), vec3(0.0, 0.0, 1.0));
 	
 	struct MaterialDataMinimal_t
 	{
@@ -2240,8 +2205,8 @@ RTX
 	    MaterialDataMinimal_t material;
 	};
 	
-	vec4 _477;
-	float _478;
+	vec4 _788;
+	float _789;
 	
 	struct PayloadShadow_t
 	{
@@ -2300,592 +2265,583 @@ RTX
 	
 	void main()
 	{
-	    PackedRtxInstanceData_t_natural_logical _760;
-	    _760.nSrgbColor = g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor;
-	    _760.nTriangleGeometry = g_instanceBuffer._member0[uint(gl_InstanceID)].nTriangleGeometry;
-	    _760.nMaterialData = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialData;
-	    _760.nMaterialFlags_nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialFlags_nInstanceFlags;
-	    _760.fEmissiveBoost = g_instanceBuffer._member0[uint(gl_InstanceID)].fEmissiveBoost;
-	    _760.nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nInstanceFlags;
-	    _760._pad1 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad1;
-	    _760._pad2 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad2;
-	    uint _517 = _760.nMaterialData;
-	    _RTX_MATERIAL_DATA_ _1563 = _RTX_MATERIAL_DATA_(vec2(g_MaterialData_1._member0[_517 / 4u], g_MaterialData_1._member0[(_517 + 4u) / 4u]), g_MaterialData_1._member0[(_517 + 8u) / 4u], g_MaterialData_1._member0[(_517 + 12u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 16u) / 4u], g_MaterialData_1._member0[(_517 + 20u) / 4u]), g_MaterialData_1._member0[(_517 + 24u) / 4u], g_MaterialData_1._member0[(_517 + 28u) / 4u], vec4(g_MaterialData_1._member0[(_517 + 32u) / 4u], g_MaterialData_1._member0[(_517 + 36u) / 4u], g_MaterialData_1._member0[(_517 + 40u) / 4u], g_MaterialData_1._member0[(_517 + 44u) / 4u]), g_MaterialData_1._member0[(_517 + 48u) / 4u], g_MaterialData_1._member0[(_517 + 52u) / 4u], g_MaterialData_1._member0[(_517 + 56u) / 4u], g_MaterialData_1._member0[(_517 + 60u) / 4u], vec4(g_MaterialData_1._member0[(_517 + 64u) / 4u], g_MaterialData_1._member0[(_517 + 68u) / 4u], g_MaterialData_1._member0[(_517 + 72u) / 4u], g_MaterialData_1._member0[(_517 + 76u) / 4u]), vec2(g_MaterialData_1._member0[(_517 + 80u) / 4u], g_MaterialData_1._member0[(_517 + 84u) / 4u]), vec2(g_MaterialData_1._member0[(_517 + 88u) / 4u], g_MaterialData_1._member0[(_517 + 92u) / 4u]), g_MaterialData_1._member0[(_517 + 96u) / 4u], g_MaterialData_1._member0[(_517 + 100u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 104u) / 4u], g_MaterialData_1._member0[(_517 + 108u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 112u) / 4u], g_MaterialData_1._member0[(_517 + 116u) / 4u], g_MaterialData_1._member0[(_517 + 120u) / 4u], g_MaterialData_1._member0[(_517 + 124u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 128u) / 4u], g_MaterialData_1._member0[(_517 + 132u) / 4u], g_MaterialData_1._member0[(_517 + 136u) / 4u], g_MaterialData_1._member0[(_517 + 140u) / 4u]), vec2(g_MaterialData_1._member0[(_517 + 144u) / 4u], g_MaterialData_1._member0[(_517 + 148u) / 4u]), g_MaterialData_3._member0[(_517 + 152u) / 4u], g_MaterialData_3._member0[(_517 + 156u) / 4u], g_MaterialData_5._member0[(_517 + 160u) / 4u] != 0, g_MaterialData_1._member0[(_517 + 164u) / 4u], g_MaterialData_1._member0[(_517 + 168u) / 4u], g_MaterialData_1._member0[(_517 + 172u) / 4u], vec4(g_MaterialData_1._member0[(_517 + 176u) / 4u], g_MaterialData_1._member0[(_517 + 180u) / 4u], g_MaterialData_1._member0[(_517 + 184u) / 4u], g_MaterialData_1._member0[(_517 + 188u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 192u) / 4u], g_MaterialData_1._member0[(_517 + 196u) / 4u], g_MaterialData_1._member0[(_517 + 200u) / 4u], g_MaterialData_1._member0[(_517 + 204u) / 4u]), vec3(g_MaterialData_1._member0[(_517 + 208u) / 4u], g_MaterialData_1._member0[(_517 + 212u) / 4u], g_MaterialData_1._member0[(_517 + 216u) / 4u]), g_MaterialData_1._member0[(_517 + 220u) / 4u], g_MaterialData_5._member0[(_517 + 224u) / 4u] != 0, g_MaterialData_1._member0[(_517 + 228u) / 4u], g_MaterialData_1._member0[(_517 + 232u) / 4u], g_MaterialData_1._member0[(_517 + 236u) / 4u], vec3(g_MaterialData_1._member0[(_517 + 240u) / 4u], g_MaterialData_1._member0[(_517 + 244u) / 4u], g_MaterialData_1._member0[(_517 + 248u) / 4u]), g_MaterialData_1._member0[(_517 + 252u) / 4u], g_MaterialData_1._member0[(_517 + 256u) / 4u], g_MaterialData_5._member0[(_517 + 260u) / 4u] != 0, g_MaterialData_3._member0[(_517 + 264u) / 4u], g_MaterialData_1._member0[(_517 + 268u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 272u) / 4u], g_MaterialData_1._member0[(_517 + 276u) / 4u]), vec2(g_MaterialData_1._member0[(_517 + 280u) / 4u], g_MaterialData_1._member0[(_517 + 284u) / 4u]), g_MaterialData_1._member0[(_517 + 288u) / 4u], g_MaterialData_1._member0[(_517 + 292u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 296u) / 4u], g_MaterialData_1._member0[(_517 + 300u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 304u) / 4u], g_MaterialData_1._member0[(_517 + 308u) / 4u], g_MaterialData_1._member0[(_517 + 312u) / 4u], g_MaterialData_1._member0[(_517 + 316u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 320u) / 4u], g_MaterialData_1._member0[(_517 + 324u) / 4u], g_MaterialData_1._member0[(_517 + 328u) / 4u], g_MaterialData_1._member0[(_517 + 332u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 336u) / 4u], g_MaterialData_1._member0[(_517 + 340u) / 4u], g_MaterialData_1._member0[(_517 + 344u) / 4u], g_MaterialData_1._member0[(_517 + 348u) / 4u]), g_MaterialData_1._member0[(_517 + 352u) / 4u], g_MaterialData_3._member0[(_517 + 356u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 360u) / 4u], g_MaterialData_1._member0[(_517 + 364u) / 4u]), vec2(g_MaterialData_1._member0[(_517 + 368u) / 4u], g_MaterialData_1._member0[(_517 + 372u) / 4u]), g_MaterialData_1._member0[(_517 + 376u) / 4u], g_MaterialData_1._member0[(_517 + 380u) / 4u], vec2(g_MaterialData_1._member0[(_517 + 384u) / 4u], g_MaterialData_1._member0[(_517 + 388u) / 4u]), g_MaterialData_1._member0[(_517 + 392u) / 4u], g_MaterialData_1._member0[(_517 + 396u) / 4u], vec4(g_MaterialData_1._member0[(_517 + 400u) / 4u], g_MaterialData_1._member0[(_517 + 404u) / 4u], g_MaterialData_1._member0[(_517 + 408u) / 4u], g_MaterialData_1._member0[(_517 + 412u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 416u) / 4u], g_MaterialData_1._member0[(_517 + 420u) / 4u], g_MaterialData_1._member0[(_517 + 424u) / 4u], g_MaterialData_1._member0[(_517 + 428u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 432u) / 4u], g_MaterialData_1._member0[(_517 + 436u) / 4u], g_MaterialData_1._member0[(_517 + 440u) / 4u], g_MaterialData_1._member0[(_517 + 444u) / 4u]), g_MaterialData_7._member0[(_517 + 448u) / 4u], g_MaterialData_7._member0[(_517 + 452u) / 4u], g_MaterialData_7._member0[(_517 + 456u) / 4u], g_MaterialData_1._member0[(_517 + 460u) / 4u], mat4(vec4(g_MaterialData_1._member0[(_517 + 464u) / 4u], g_MaterialData_1._member0[(_517 + 480u) / 4u], g_MaterialData_1._member0[(_517 + 496u) / 4u], g_MaterialData_1._member0[(_517 + 512u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 468u) / 4u], g_MaterialData_1._member0[(_517 + 484u) / 4u], g_MaterialData_1._member0[(_517 + 500u) / 4u], g_MaterialData_1._member0[(_517 + 516u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 472u) / 4u], g_MaterialData_1._member0[(_517 + 488u) / 4u], g_MaterialData_1._member0[(_517 + 504u) / 4u], g_MaterialData_1._member0[(_517 + 520u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 476u) / 4u], g_MaterialData_1._member0[(_517 + 492u) / 4u], g_MaterialData_1._member0[(_517 + 508u) / 4u], g_MaterialData_1._member0[(_517 + 524u) / 4u])), mat4(vec4(g_MaterialData_1._member0[(_517 + 528u) / 4u], g_MaterialData_1._member0[(_517 + 544u) / 4u], g_MaterialData_1._member0[(_517 + 560u) / 4u], g_MaterialData_1._member0[(_517 + 576u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 532u) / 4u], g_MaterialData_1._member0[(_517 + 548u) / 4u], g_MaterialData_1._member0[(_517 + 564u) / 4u], g_MaterialData_1._member0[(_517 + 580u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 536u) / 4u], g_MaterialData_1._member0[(_517 + 552u) / 4u], g_MaterialData_1._member0[(_517 + 568u) / 4u], g_MaterialData_1._member0[(_517 + 584u) / 4u]), vec4(g_MaterialData_1._member0[(_517 + 540u) / 4u], g_MaterialData_1._member0[(_517 + 556u) / 4u], g_MaterialData_1._member0[(_517 + 572u) / 4u], g_MaterialData_1._member0[(_517 + 588u) / 4u])), g_MaterialData_1._member0[(_517 + 592u) / 4u], g_MaterialData_5._member0[(_517 + 596u) / 4u] != 0, g_MaterialData_5._member0[(_517 + 600u) / 4u] != 0, g_MaterialData_1._member0[(_517 + 604u) / 4u], g_MaterialData_1._member0[(_517 + 608u) / 4u], g_MaterialData_1._member0[(_517 + 612u) / 4u], g_MaterialData_1._member0[(_517 + 616u) / 4u], g_MaterialData_1._member0[(_517 + 620u) / 4u], vec3(g_MaterialData_1._member0[(_517 + 624u) / 4u], g_MaterialData_1._member0[(_517 + 628u) / 4u], g_MaterialData_1._member0[(_517 + 632u) / 4u]), g_MaterialData_1._member0[(_517 + 636u) / 4u], g_MaterialData_1._member0[(_517 + 640u) / 4u], g_MaterialData_1._member0[(_517 + 644u) / 4u], g_MaterialData_1._member0[(_517 + 648u) / 4u], g_MaterialData_1._member0[(_517 + 652u) / 4u], g_MaterialData_1._member0[(_517 + 656u) / 4u], g_MaterialData_1._member0[(_517 + 660u) / 4u], g_MaterialData_1._member0[(_517 + 664u) / 4u], g_MaterialData_1._member0[(_517 + 668u) / 4u], g_MaterialData_1._member0[(_517 + 672u) / 4u], g_MaterialData_7._member0[(_517 + 676u) / 4u], g_MaterialData_7._member0[(_517 + 680u) / 4u], g_MaterialData_7._member0[(_517 + 684u) / 4u], g_MaterialData_7._member0[(_517 + 688u) / 4u], g_MaterialData_7._member0[(_517 + 692u) / 4u], g_MaterialData_3._member0[(_517 + 696u) / 4u], g_MaterialData_3._member0[(_517 + 700u) / 4u], g_MaterialData_7._member0[(_517 + 704u) / 4u], g_MaterialData_7._member0[(_517 + 708u) / 4u], g_MaterialData_7._member0[(_517 + 712u) / 4u], g_MaterialData_5._member0[(_517 + 716u) / 4u] != 0, g_MaterialData_5._member0[(_517 + 720u) / 4u] != 0, g_MaterialData_5._member0[(_517 + 724u) / 4u] != 0, g_MaterialData_1._member0[(_517 + 728u) / 4u], g_MaterialData_7._member0[(_517 + 732u) / 4u], g_MaterialData_1._member0[(_517 + 736u) / 4u], g_MaterialData_1._member0[(_517 + 740u) / 4u], g_MaterialData_5._member0[(_517 + 744u) / 4u] != 0, g_MaterialData_1._member0[(_517 + 748u) / 4u]);
-	    _RTX_MATERIAL_DATA_ _g_rtx_material_data_ = _1563;
-	    uvec3 _753;
+	    uint _828 = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialData;
+	    _RTX_MATERIAL_DATA_ _1873 = _RTX_MATERIAL_DATA_(vec2(g_MaterialData_1._member0[_828 / 4u], g_MaterialData_1._member0[(_828 + 4u) / 4u]), g_MaterialData_1._member0[(_828 + 8u) / 4u], g_MaterialData_1._member0[(_828 + 12u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 16u) / 4u], g_MaterialData_1._member0[(_828 + 20u) / 4u]), g_MaterialData_1._member0[(_828 + 24u) / 4u], g_MaterialData_1._member0[(_828 + 28u) / 4u], vec4(g_MaterialData_1._member0[(_828 + 32u) / 4u], g_MaterialData_1._member0[(_828 + 36u) / 4u], g_MaterialData_1._member0[(_828 + 40u) / 4u], g_MaterialData_1._member0[(_828 + 44u) / 4u]), g_MaterialData_1._member0[(_828 + 48u) / 4u], g_MaterialData_1._member0[(_828 + 52u) / 4u], g_MaterialData_1._member0[(_828 + 56u) / 4u], g_MaterialData_1._member0[(_828 + 60u) / 4u], vec4(g_MaterialData_1._member0[(_828 + 64u) / 4u], g_MaterialData_1._member0[(_828 + 68u) / 4u], g_MaterialData_1._member0[(_828 + 72u) / 4u], g_MaterialData_1._member0[(_828 + 76u) / 4u]), vec2(g_MaterialData_1._member0[(_828 + 80u) / 4u], g_MaterialData_1._member0[(_828 + 84u) / 4u]), vec2(g_MaterialData_1._member0[(_828 + 88u) / 4u], g_MaterialData_1._member0[(_828 + 92u) / 4u]), g_MaterialData_1._member0[(_828 + 96u) / 4u], g_MaterialData_1._member0[(_828 + 100u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 104u) / 4u], g_MaterialData_1._member0[(_828 + 108u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 112u) / 4u], g_MaterialData_1._member0[(_828 + 116u) / 4u], g_MaterialData_1._member0[(_828 + 120u) / 4u], g_MaterialData_1._member0[(_828 + 124u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 128u) / 4u], g_MaterialData_1._member0[(_828 + 132u) / 4u], g_MaterialData_1._member0[(_828 + 136u) / 4u], g_MaterialData_1._member0[(_828 + 140u) / 4u]), vec2(g_MaterialData_1._member0[(_828 + 144u) / 4u], g_MaterialData_1._member0[(_828 + 148u) / 4u]), g_MaterialData_3._member0[(_828 + 152u) / 4u], g_MaterialData_3._member0[(_828 + 156u) / 4u], g_MaterialData_5._member0[(_828 + 160u) / 4u] != 0, g_MaterialData_1._member0[(_828 + 164u) / 4u], g_MaterialData_1._member0[(_828 + 168u) / 4u], g_MaterialData_1._member0[(_828 + 172u) / 4u], vec4(g_MaterialData_1._member0[(_828 + 176u) / 4u], g_MaterialData_1._member0[(_828 + 180u) / 4u], g_MaterialData_1._member0[(_828 + 184u) / 4u], g_MaterialData_1._member0[(_828 + 188u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 192u) / 4u], g_MaterialData_1._member0[(_828 + 196u) / 4u], g_MaterialData_1._member0[(_828 + 200u) / 4u], g_MaterialData_1._member0[(_828 + 204u) / 4u]), vec3(g_MaterialData_1._member0[(_828 + 208u) / 4u], g_MaterialData_1._member0[(_828 + 212u) / 4u], g_MaterialData_1._member0[(_828 + 216u) / 4u]), g_MaterialData_1._member0[(_828 + 220u) / 4u], g_MaterialData_5._member0[(_828 + 224u) / 4u] != 0, g_MaterialData_1._member0[(_828 + 228u) / 4u], g_MaterialData_1._member0[(_828 + 232u) / 4u], g_MaterialData_1._member0[(_828 + 236u) / 4u], vec3(g_MaterialData_1._member0[(_828 + 240u) / 4u], g_MaterialData_1._member0[(_828 + 244u) / 4u], g_MaterialData_1._member0[(_828 + 248u) / 4u]), g_MaterialData_1._member0[(_828 + 252u) / 4u], g_MaterialData_1._member0[(_828 + 256u) / 4u], g_MaterialData_5._member0[(_828 + 260u) / 4u] != 0, g_MaterialData_3._member0[(_828 + 264u) / 4u], g_MaterialData_1._member0[(_828 + 268u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 272u) / 4u], g_MaterialData_1._member0[(_828 + 276u) / 4u]), vec2(g_MaterialData_1._member0[(_828 + 280u) / 4u], g_MaterialData_1._member0[(_828 + 284u) / 4u]), g_MaterialData_1._member0[(_828 + 288u) / 4u], g_MaterialData_1._member0[(_828 + 292u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 296u) / 4u], g_MaterialData_1._member0[(_828 + 300u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 304u) / 4u], g_MaterialData_1._member0[(_828 + 308u) / 4u], g_MaterialData_1._member0[(_828 + 312u) / 4u], g_MaterialData_1._member0[(_828 + 316u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 320u) / 4u], g_MaterialData_1._member0[(_828 + 324u) / 4u], g_MaterialData_1._member0[(_828 + 328u) / 4u], g_MaterialData_1._member0[(_828 + 332u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 336u) / 4u], g_MaterialData_1._member0[(_828 + 340u) / 4u], g_MaterialData_1._member0[(_828 + 344u) / 4u], g_MaterialData_1._member0[(_828 + 348u) / 4u]), g_MaterialData_1._member0[(_828 + 352u) / 4u], g_MaterialData_3._member0[(_828 + 356u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 360u) / 4u], g_MaterialData_1._member0[(_828 + 364u) / 4u]), vec2(g_MaterialData_1._member0[(_828 + 368u) / 4u], g_MaterialData_1._member0[(_828 + 372u) / 4u]), g_MaterialData_1._member0[(_828 + 376u) / 4u], g_MaterialData_1._member0[(_828 + 380u) / 4u], vec2(g_MaterialData_1._member0[(_828 + 384u) / 4u], g_MaterialData_1._member0[(_828 + 388u) / 4u]), g_MaterialData_1._member0[(_828 + 392u) / 4u], g_MaterialData_1._member0[(_828 + 396u) / 4u], vec4(g_MaterialData_1._member0[(_828 + 400u) / 4u], g_MaterialData_1._member0[(_828 + 404u) / 4u], g_MaterialData_1._member0[(_828 + 408u) / 4u], g_MaterialData_1._member0[(_828 + 412u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 416u) / 4u], g_MaterialData_1._member0[(_828 + 420u) / 4u], g_MaterialData_1._member0[(_828 + 424u) / 4u], g_MaterialData_1._member0[(_828 + 428u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 432u) / 4u], g_MaterialData_1._member0[(_828 + 436u) / 4u], g_MaterialData_1._member0[(_828 + 440u) / 4u], g_MaterialData_1._member0[(_828 + 444u) / 4u]), g_MaterialData_7._member0[(_828 + 448u) / 4u], g_MaterialData_7._member0[(_828 + 452u) / 4u], g_MaterialData_7._member0[(_828 + 456u) / 4u], g_MaterialData_1._member0[(_828 + 460u) / 4u], mat4(vec4(g_MaterialData_1._member0[(_828 + 464u) / 4u], g_MaterialData_1._member0[(_828 + 480u) / 4u], g_MaterialData_1._member0[(_828 + 496u) / 4u], g_MaterialData_1._member0[(_828 + 512u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 468u) / 4u], g_MaterialData_1._member0[(_828 + 484u) / 4u], g_MaterialData_1._member0[(_828 + 500u) / 4u], g_MaterialData_1._member0[(_828 + 516u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 472u) / 4u], g_MaterialData_1._member0[(_828 + 488u) / 4u], g_MaterialData_1._member0[(_828 + 504u) / 4u], g_MaterialData_1._member0[(_828 + 520u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 476u) / 4u], g_MaterialData_1._member0[(_828 + 492u) / 4u], g_MaterialData_1._member0[(_828 + 508u) / 4u], g_MaterialData_1._member0[(_828 + 524u) / 4u])), mat4(vec4(g_MaterialData_1._member0[(_828 + 528u) / 4u], g_MaterialData_1._member0[(_828 + 544u) / 4u], g_MaterialData_1._member0[(_828 + 560u) / 4u], g_MaterialData_1._member0[(_828 + 576u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 532u) / 4u], g_MaterialData_1._member0[(_828 + 548u) / 4u], g_MaterialData_1._member0[(_828 + 564u) / 4u], g_MaterialData_1._member0[(_828 + 580u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 536u) / 4u], g_MaterialData_1._member0[(_828 + 552u) / 4u], g_MaterialData_1._member0[(_828 + 568u) / 4u], g_MaterialData_1._member0[(_828 + 584u) / 4u]), vec4(g_MaterialData_1._member0[(_828 + 540u) / 4u], g_MaterialData_1._member0[(_828 + 556u) / 4u], g_MaterialData_1._member0[(_828 + 572u) / 4u], g_MaterialData_1._member0[(_828 + 588u) / 4u])), g_MaterialData_1._member0[(_828 + 592u) / 4u], g_MaterialData_5._member0[(_828 + 596u) / 4u] != 0, g_MaterialData_5._member0[(_828 + 600u) / 4u] != 0, g_MaterialData_1._member0[(_828 + 604u) / 4u], g_MaterialData_1._member0[(_828 + 608u) / 4u], g_MaterialData_1._member0[(_828 + 612u) / 4u], g_MaterialData_1._member0[(_828 + 616u) / 4u], g_MaterialData_1._member0[(_828 + 620u) / 4u], vec3(g_MaterialData_1._member0[(_828 + 624u) / 4u], g_MaterialData_1._member0[(_828 + 628u) / 4u], g_MaterialData_1._member0[(_828 + 632u) / 4u]), g_MaterialData_1._member0[(_828 + 636u) / 4u], g_MaterialData_1._member0[(_828 + 640u) / 4u], g_MaterialData_1._member0[(_828 + 644u) / 4u], g_MaterialData_1._member0[(_828 + 648u) / 4u], g_MaterialData_1._member0[(_828 + 652u) / 4u], g_MaterialData_1._member0[(_828 + 656u) / 4u], g_MaterialData_1._member0[(_828 + 660u) / 4u], g_MaterialData_1._member0[(_828 + 664u) / 4u], g_MaterialData_1._member0[(_828 + 668u) / 4u], g_MaterialData_1._member0[(_828 + 672u) / 4u], g_MaterialData_7._member0[(_828 + 676u) / 4u], g_MaterialData_7._member0[(_828 + 680u) / 4u], g_MaterialData_7._member0[(_828 + 684u) / 4u], g_MaterialData_7._member0[(_828 + 688u) / 4u], g_MaterialData_7._member0[(_828 + 692u) / 4u], g_MaterialData_3._member0[(_828 + 696u) / 4u], g_MaterialData_3._member0[(_828 + 700u) / 4u], g_MaterialData_7._member0[(_828 + 704u) / 4u], g_MaterialData_7._member0[(_828 + 708u) / 4u], g_MaterialData_7._member0[(_828 + 712u) / 4u], g_MaterialData_5._member0[(_828 + 716u) / 4u] != 0, g_MaterialData_5._member0[(_828 + 720u) / 4u] != 0, g_MaterialData_5._member0[(_828 + 724u) / 4u] != 0, g_MaterialData_1._member0[(_828 + 728u) / 4u], g_MaterialData_7._member0[(_828 + 732u) / 4u], g_MaterialData_1._member0[(_828 + 736u) / 4u], g_MaterialData_1._member0[(_828 + 740u) / 4u], g_MaterialData_5._member0[(_828 + 744u) / 4u] != 0, g_MaterialData_1._member0[(_828 + 748u) / 4u]);
+	    _RTX_MATERIAL_DATA_ _g_rtx_material_data_ = _1873;
+	    uvec3 _1064;
 	    do
 	    {
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes.w == 4)
 	        {
-	            uint _1611 = (12u * uint(gl_PrimitiveID)) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.w);
-	            _753 = uvec3(g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[_1611 / 4u], g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[(_1611 + 4u) / 4u], g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[(_1611 + 8u) / 4u]);
+	            uint _1915 = (12u * uint(gl_PrimitiveID)) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.w);
+	            _1064 = uvec3(g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[_1915 / 4u], g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[(_1915 + 4u) / 4u], g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[(_1915 + 8u) / 4u]);
 	            break;
 	        }
 	        else
 	        {
-	            uint _1584 = (6u * uint(gl_PrimitiveID)) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.w);
-	            uint _1585 = _1584 & 4294967292u;
-	            uint _1586 = _1585 / 4u;
-	            uint _1590 = (_1585 + 4u) / 4u;
-	            uint _1595 = (g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[_1586] & 4294901760u) >> uint(16);
-	            uint _1596 = g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[_1590] & 65535u;
-	            uvec3 _754;
-	            if (_1584 == _1585)
+	            uint _1894 = (6u * uint(gl_PrimitiveID)) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.w);
+	            uint _1895 = _1894 & 4294967292u;
+	            uint _57 = _1895 / 4u;
+	            uint _60 = (_1895 + 4u) / 4u;
+	            uint _1899 = (g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[_57] & 4294901760u) >> uint(16);
+	            uint _1900 = g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[_60] & 65535u;
+	            uvec3 _1065;
+	            if (_1894 == _1895)
 	            {
-	                _754 = uvec3(g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[_1586] & 65535u, _1595, _1596);
+	                _1065 = uvec3(g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[_57] & 65535u, _1899, _1900);
 	            }
 	            else
 	            {
-	                _754 = uvec3(_1595, _1596, (g_Indices_1[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w]._member0[_1590] & 4294901760u) >> uint(16));
+	                _1065 = uvec3(_1899, _1900, (g_Indices_1[nonuniformEXT(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.w)]._member0[_60] & 4294901760u) >> uint(16));
 	            }
-	            _753 = _754;
+	            _1064 = _1065;
 	            break;
 	        }
 	        break;
 	    } while(false);
-	    uint _61 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.x);
-	    uvec3 _1642 = (uvec3(uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes.x)) * _753) + uvec3(uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.x));
-	    vec3 _747[3];
-	    uint _1644 = _1642.x;
-	    _747[0] = vec3(g_Vertices_1[_61]._member0[_1644 / 4u], g_Vertices_1[_61]._member0[(_1644 + 4u) / 4u], g_Vertices_1[_61]._member0[(_1644 + 8u) / 4u]);
-	    uint _1658 = _1642.y;
-	    _747[1] = vec3(g_Vertices_1[_61]._member0[_1658 / 4u], g_Vertices_1[_61]._member0[(_1658 + 4u) / 4u], g_Vertices_1[_61]._member0[(_1658 + 8u) / 4u]);
-	    uint _1672 = _1642.z;
-	    _747[2] = vec3(g_Vertices_1[_61]._member0[_1672 / 4u], g_Vertices_1[_61]._member0[(_1672 + 4u) / 4u], g_Vertices_1[_61]._member0[(_1672 + 8u) / 4u]);
-	    int _748 = 0;
+	    uint _73 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers.x);
+	    uvec3 _1937 = (uvec3(uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes.x)) * _1064) + uvec3(uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes.x));
+	    vec3 _1058[3];
+	    uint _1939 = _1937.x;
+	    _1058[0] = vec3(g_Vertices_1[nonuniformEXT(_73)]._member0[_1939 / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1939 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1939 + 8u) / 4u]);
+	    uint _1944 = _1937.y;
+	    _1058[1] = vec3(g_Vertices_1[nonuniformEXT(_73)]._member0[_1944 / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1944 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1944 + 8u) / 4u]);
+	    uint _1949 = _1937.z;
+	    _1058[2] = vec3(g_Vertices_1[nonuniformEXT(_73)]._member0[_1949 / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1949 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_73)]._member0[(_1949 + 8u) / 4u]);
+	    int _1059 = 0;
 	    VS_INPUT vsInput[3];
 	    for (;;)
 	    {
-	        if (!(_748 < 3))
+	        if (!(_1059 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_748].vPositionOs = _747[_748];
-	        _748++;
+	        vsInput[_1059].vPositionOs = _1058[_1059];
+	        _1059++;
 	        continue;
 	    }
-	    vec2 _749[3];
-	    _749[0] = vec2(0.0);
-	    _749[1] = vec2(0.0);
-	    _749[2] = vec2(0.0);
+	    vec2 _1060[3];
+	    _1060[0] = vec2(0.0);
+	    _1060[1] = vec2(0.0);
+	    _1060[2] = vec2(0.0);
 	    if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].y != 0)
 	    {
-	        ivec4 _746 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	        uint _63 = uint(_746[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].z]);
-	        uint _1723 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].z);
-	        ivec4 _744 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	        ivec4 _745 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	        uvec3 _1739 = (uvec3(uint(_744[_1723])) * _753) + uvec3(uint(_745[_1723]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].x));
+	        ivec4 _1057 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	        uint _102 = uint(_1057[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].z]);
+	        uint _1991 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].z);
+	        ivec4 _1055 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	        ivec4 _1056 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	        uvec3 _2007 = (uvec3(uint(_1055[_1991])) * _1064) + uvec3(uint(_1056[_1991]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].x));
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].y == 16)
 	        {
-	            uint _1871 = _1739.x;
-	            _749[0] = vec2(g_Vertices_1[_63]._member0[_1871 / 4u], g_Vertices_1[_63]._member0[(_1871 + 4u) / 4u]);
-	            uint _1880 = _1739.y;
-	            _749[1] = vec2(g_Vertices_1[_63]._member0[_1880 / 4u], g_Vertices_1[_63]._member0[(_1880 + 4u) / 4u]);
-	            uint _1889 = _1739.z;
-	            _749[2] = vec2(g_Vertices_1[_63]._member0[_1889 / 4u], g_Vertices_1[_63]._member0[(_1889 + 4u) / 4u]);
+	            uint _2121 = _2007.x;
+	            _1060[0] = vec2(g_Vertices_1[nonuniformEXT(_102)]._member0[_2121 / 4u], g_Vertices_1[nonuniformEXT(_102)]._member0[(_2121 + 4u) / 4u]);
+	            uint _2124 = _2007.y;
+	            _1060[1] = vec2(g_Vertices_1[nonuniformEXT(_102)]._member0[_2124 / 4u], g_Vertices_1[nonuniformEXT(_102)]._member0[(_2124 + 4u) / 4u]);
+	            uint _2127 = _2007.z;
+	            _1060[2] = vec2(g_Vertices_1[nonuniformEXT(_102)]._member0[_2127 / 4u], g_Vertices_1[nonuniformEXT(_102)]._member0[(_2127 + 4u) / 4u]);
 	        }
 	        else
 	        {
 	            if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].y == 34)
 	            {
-	                uint _1842 = _1739.x / 4u;
-	                _749[0] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_63]._member0[_1842], g_Vertices_3[_63]._member0[_1842] >> uint(16)) & uvec2(65535u))));
-	                uint _1852 = _1739.y / 4u;
-	                _749[1] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_63]._member0[_1852], g_Vertices_3[_63]._member0[_1852] >> uint(16)) & uvec2(65535u))));
-	                uint _1862 = _1739.z / 4u;
-	                _749[2] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_63]._member0[_1862], g_Vertices_3[_63]._member0[_1862] >> uint(16)) & uvec2(65535u))));
+	                uint _114 = _2007.x / 4u;
+	                _1060[0] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_102)]._member0[_114], g_Vertices_3[nonuniformEXT(_102)]._member0[_114] >> uint(16)) & uvec2(65535u))));
+	                uint _117 = _2007.y / 4u;
+	                _1060[1] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_102)]._member0[_117], g_Vertices_3[nonuniformEXT(_102)]._member0[_117] >> uint(16)) & uvec2(65535u))));
+	                uint _120 = _2007.z / 4u;
+	                _1060[2] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_102)]._member0[_120], g_Vertices_3[nonuniformEXT(_102)]._member0[_120] >> uint(16)) & uvec2(65535u))));
 	            }
 	            else
 	            {
 	                if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[0].y == 37)
 	                {
-	                    uint _1752 = _1739.x / 4u;
-	                    uint _1755 = g_Vertices_3[_63]._member0[_1752] & 65535u;
-	                    int _743;
-	                    if (_1755 > 32767u)
+	                    uint _104 = _2007.x / 4u;
+	                    uint _2020 = g_Vertices_3[nonuniformEXT(_102)]._member0[_104] & 65535u;
+	                    int _1054;
+	                    if (_2020 > 32767u)
 	                    {
-	                        _743 = int(4294901760u | _1755);
+	                        _1054 = int(4294901760u | _2020);
 	                    }
 	                    else
 	                    {
-	                        _743 = int(_1755);
+	                        _1054 = int(_2020);
 	                    }
-	                    uint _1768 = (g_Vertices_3[_63]._member0[_1752] & 4294901760u) >> uint(16);
-	                    int _742;
-	                    if (_1768 > 32767u)
+	                    uint _2033 = (g_Vertices_3[nonuniformEXT(_102)]._member0[_104] & 4294901760u) >> uint(16);
+	                    int _1053;
+	                    if (_2033 > 32767u)
 	                    {
-	                        _742 = int(4294901760u | _1768);
+	                        _1053 = int(4294901760u | _2033);
 	                    }
 	                    else
 	                    {
-	                        _742 = int(_1768);
+	                        _1053 = int(_2033);
 	                    }
-	                    _749[0] = vec2(max(float(_743) * 3.0518509447574615478515625e-05, -1.0), max(float(_742) * 3.0518509447574615478515625e-05, -1.0));
-	                    uint _1782 = _1739.y / 4u;
-	                    uint _1785 = g_Vertices_3[_63]._member0[_1782] & 65535u;
-	                    int _741;
-	                    if (_1785 > 32767u)
+	                    _1060[0] = vec2(max(float(_1054) * 3.0518509447574615478515625e-05, -1.0), max(float(_1053) * 3.0518509447574615478515625e-05, -1.0));
+	                    uint _107 = _2007.y / 4u;
+	                    uint _2047 = g_Vertices_3[nonuniformEXT(_102)]._member0[_107] & 65535u;
+	                    int _1052;
+	                    if (_2047 > 32767u)
 	                    {
-	                        _741 = int(4294901760u | _1785);
+	                        _1052 = int(4294901760u | _2047);
 	                    }
 	                    else
 	                    {
-	                        _741 = int(_1785);
+	                        _1052 = int(_2047);
 	                    }
-	                    uint _1798 = (g_Vertices_3[_63]._member0[_1782] & 4294901760u) >> uint(16);
-	                    int _740;
-	                    if (_1798 > 32767u)
+	                    uint _2060 = (g_Vertices_3[nonuniformEXT(_102)]._member0[_107] & 4294901760u) >> uint(16);
+	                    int _1051;
+	                    if (_2060 > 32767u)
 	                    {
-	                        _740 = int(4294901760u | _1798);
+	                        _1051 = int(4294901760u | _2060);
 	                    }
 	                    else
 	                    {
-	                        _740 = int(_1798);
+	                        _1051 = int(_2060);
 	                    }
-	                    _749[1] = vec2(max(float(_741) * 3.0518509447574615478515625e-05, -1.0), max(float(_740) * 3.0518509447574615478515625e-05, -1.0));
-	                    uint _1812 = _1739.z / 4u;
-	                    uint _1815 = g_Vertices_3[_63]._member0[_1812] & 65535u;
-	                    int _739;
-	                    if (_1815 > 32767u)
+	                    _1060[1] = vec2(max(float(_1052) * 3.0518509447574615478515625e-05, -1.0), max(float(_1051) * 3.0518509447574615478515625e-05, -1.0));
+	                    uint _110 = _2007.z / 4u;
+	                    uint _2074 = g_Vertices_3[nonuniformEXT(_102)]._member0[_110] & 65535u;
+	                    int _1050;
+	                    if (_2074 > 32767u)
 	                    {
-	                        _739 = int(4294901760u | _1815);
+	                        _1050 = int(4294901760u | _2074);
 	                    }
 	                    else
 	                    {
-	                        _739 = int(_1815);
+	                        _1050 = int(_2074);
 	                    }
-	                    uint _1828 = (g_Vertices_3[_63]._member0[_1812] & 4294901760u) >> uint(16);
-	                    int _738;
-	                    if (_1828 > 32767u)
+	                    uint _2087 = (g_Vertices_3[nonuniformEXT(_102)]._member0[_110] & 4294901760u) >> uint(16);
+	                    int _1049;
+	                    if (_2087 > 32767u)
 	                    {
-	                        _738 = int(4294901760u | _1828);
+	                        _1049 = int(4294901760u | _2087);
 	                    }
 	                    else
 	                    {
-	                        _738 = int(_1828);
+	                        _1049 = int(_2087);
 	                    }
-	                    _749[2] = vec2(max(float(_739) * 3.0518509447574615478515625e-05, -1.0), max(float(_738) * 3.0518509447574615478515625e-05, -1.0));
+	                    _1060[2] = vec2(max(float(_1050) * 3.0518509447574615478515625e-05, -1.0), max(float(_1049) * 3.0518509447574615478515625e-05, -1.0));
 	                }
 	            }
 	        }
 	    }
-	    _748 = 0;
+	    _1059 = 0;
 	    for (;;)
 	    {
-	        if (!(_748 < 3))
+	        if (!(_1059 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_748].vTexCoord = _749[_748];
-	        _748++;
+	        vsInput[_1059].vTexCoord = _1060[_1059];
+	        _1059++;
 	        continue;
 	    }
-	    _749[0] = vec2(0.0);
-	    _749[1] = vec2(0.0);
-	    _749[2] = vec2(0.0);
+	    _1060[0] = vec2(0.0);
+	    _1060[1] = vec2(0.0);
+	    _1060[2] = vec2(0.0);
 	    if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].y != 0)
 	    {
-	        ivec4 _737 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	        uint _67 = uint(_737[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].z]);
-	        uint _1934 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].z);
-	        ivec4 _735 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	        ivec4 _736 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	        uvec3 _1950 = (uvec3(uint(_735[_1934])) * _753) + uvec3(uint(_736[_1934]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].x));
+	        ivec4 _1048 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	        uint _142 = uint(_1048[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].z]);
+	        uint _2166 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].z);
+	        ivec4 _1046 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	        ivec4 _1047 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	        uvec3 _2182 = (uvec3(uint(_1046[_2166])) * _1064) + uvec3(uint(_1047[_2166]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].x));
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].y == 16)
 	        {
-	            uint _2082 = _1950.x;
-	            _749[0] = vec2(g_Vertices_1[_67]._member0[_2082 / 4u], g_Vertices_1[_67]._member0[(_2082 + 4u) / 4u]);
-	            uint _2091 = _1950.y;
-	            _749[1] = vec2(g_Vertices_1[_67]._member0[_2091 / 4u], g_Vertices_1[_67]._member0[(_2091 + 4u) / 4u]);
-	            uint _2100 = _1950.z;
-	            _749[2] = vec2(g_Vertices_1[_67]._member0[_2100 / 4u], g_Vertices_1[_67]._member0[(_2100 + 4u) / 4u]);
+	            uint _2296 = _2182.x;
+	            _1060[0] = vec2(g_Vertices_1[nonuniformEXT(_142)]._member0[_2296 / 4u], g_Vertices_1[nonuniformEXT(_142)]._member0[(_2296 + 4u) / 4u]);
+	            uint _2299 = _2182.y;
+	            _1060[1] = vec2(g_Vertices_1[nonuniformEXT(_142)]._member0[_2299 / 4u], g_Vertices_1[nonuniformEXT(_142)]._member0[(_2299 + 4u) / 4u]);
+	            uint _2302 = _2182.z;
+	            _1060[2] = vec2(g_Vertices_1[nonuniformEXT(_142)]._member0[_2302 / 4u], g_Vertices_1[nonuniformEXT(_142)]._member0[(_2302 + 4u) / 4u]);
 	        }
 	        else
 	        {
 	            if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].y == 34)
 	            {
-	                uint _2053 = _1950.x / 4u;
-	                _749[0] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_67]._member0[_2053], g_Vertices_3[_67]._member0[_2053] >> uint(16)) & uvec2(65535u))));
-	                uint _2063 = _1950.y / 4u;
-	                _749[1] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_67]._member0[_2063], g_Vertices_3[_67]._member0[_2063] >> uint(16)) & uvec2(65535u))));
-	                uint _2073 = _1950.z / 4u;
-	                _749[2] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[_67]._member0[_2073], g_Vertices_3[_67]._member0[_2073] >> uint(16)) & uvec2(65535u))));
+	                uint _154 = _2182.x / 4u;
+	                _1060[0] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_142)]._member0[_154], g_Vertices_3[nonuniformEXT(_142)]._member0[_154] >> uint(16)) & uvec2(65535u))));
+	                uint _157 = _2182.y / 4u;
+	                _1060[1] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_142)]._member0[_157], g_Vertices_3[nonuniformEXT(_142)]._member0[_157] >> uint(16)) & uvec2(65535u))));
+	                uint _160 = _2182.z / 4u;
+	                _1060[2] = vec2(uint16BitsToFloat16(u16vec2(uvec2(g_Vertices_3[nonuniformEXT(_142)]._member0[_160], g_Vertices_3[nonuniformEXT(_142)]._member0[_160] >> uint(16)) & uvec2(65535u))));
 	            }
 	            else
 	            {
 	                if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[1].y == 37)
 	                {
-	                    uint _1963 = _1950.x / 4u;
-	                    uint _1966 = g_Vertices_3[_67]._member0[_1963] & 65535u;
-	                    int _734;
-	                    if (_1966 > 32767u)
+	                    uint _144 = _2182.x / 4u;
+	                    uint _2195 = g_Vertices_3[nonuniformEXT(_142)]._member0[_144] & 65535u;
+	                    int _1045;
+	                    if (_2195 > 32767u)
 	                    {
-	                        _734 = int(4294901760u | _1966);
+	                        _1045 = int(4294901760u | _2195);
 	                    }
 	                    else
 	                    {
-	                        _734 = int(_1966);
+	                        _1045 = int(_2195);
 	                    }
-	                    uint _1979 = (g_Vertices_3[_67]._member0[_1963] & 4294901760u) >> uint(16);
-	                    int _733;
-	                    if (_1979 > 32767u)
+	                    uint _2208 = (g_Vertices_3[nonuniformEXT(_142)]._member0[_144] & 4294901760u) >> uint(16);
+	                    int _1044;
+	                    if (_2208 > 32767u)
 	                    {
-	                        _733 = int(4294901760u | _1979);
+	                        _1044 = int(4294901760u | _2208);
 	                    }
 	                    else
 	                    {
-	                        _733 = int(_1979);
+	                        _1044 = int(_2208);
 	                    }
-	                    _749[0] = vec2(max(float(_734) * 3.0518509447574615478515625e-05, -1.0), max(float(_733) * 3.0518509447574615478515625e-05, -1.0));
-	                    uint _1993 = _1950.y / 4u;
-	                    uint _1996 = g_Vertices_3[_67]._member0[_1993] & 65535u;
-	                    int _732;
-	                    if (_1996 > 32767u)
+	                    _1060[0] = vec2(max(float(_1045) * 3.0518509447574615478515625e-05, -1.0), max(float(_1044) * 3.0518509447574615478515625e-05, -1.0));
+	                    uint _147 = _2182.y / 4u;
+	                    uint _2222 = g_Vertices_3[nonuniformEXT(_142)]._member0[_147] & 65535u;
+	                    int _1043;
+	                    if (_2222 > 32767u)
 	                    {
-	                        _732 = int(4294901760u | _1996);
+	                        _1043 = int(4294901760u | _2222);
 	                    }
 	                    else
 	                    {
-	                        _732 = int(_1996);
+	                        _1043 = int(_2222);
 	                    }
-	                    uint _2009 = (g_Vertices_3[_67]._member0[_1993] & 4294901760u) >> uint(16);
-	                    int _731;
-	                    if (_2009 > 32767u)
+	                    uint _2235 = (g_Vertices_3[nonuniformEXT(_142)]._member0[_147] & 4294901760u) >> uint(16);
+	                    int _1042;
+	                    if (_2235 > 32767u)
 	                    {
-	                        _731 = int(4294901760u | _2009);
+	                        _1042 = int(4294901760u | _2235);
 	                    }
 	                    else
 	                    {
-	                        _731 = int(_2009);
+	                        _1042 = int(_2235);
 	                    }
-	                    _749[1] = vec2(max(float(_732) * 3.0518509447574615478515625e-05, -1.0), max(float(_731) * 3.0518509447574615478515625e-05, -1.0));
-	                    uint _2023 = _1950.z / 4u;
-	                    uint _2026 = g_Vertices_3[_67]._member0[_2023] & 65535u;
-	                    int _730;
-	                    if (_2026 > 32767u)
+	                    _1060[1] = vec2(max(float(_1043) * 3.0518509447574615478515625e-05, -1.0), max(float(_1042) * 3.0518509447574615478515625e-05, -1.0));
+	                    uint _150 = _2182.z / 4u;
+	                    uint _2249 = g_Vertices_3[nonuniformEXT(_142)]._member0[_150] & 65535u;
+	                    int _1041;
+	                    if (_2249 > 32767u)
 	                    {
-	                        _730 = int(4294901760u | _2026);
+	                        _1041 = int(4294901760u | _2249);
 	                    }
 	                    else
 	                    {
-	                        _730 = int(_2026);
+	                        _1041 = int(_2249);
 	                    }
-	                    uint _2039 = (g_Vertices_3[_67]._member0[_2023] & 4294901760u) >> uint(16);
-	                    int _729;
-	                    if (_2039 > 32767u)
+	                    uint _2262 = (g_Vertices_3[nonuniformEXT(_142)]._member0[_150] & 4294901760u) >> uint(16);
+	                    int _1040;
+	                    if (_2262 > 32767u)
 	                    {
-	                        _729 = int(4294901760u | _2039);
+	                        _1040 = int(4294901760u | _2262);
 	                    }
 	                    else
 	                    {
-	                        _729 = int(_2039);
+	                        _1040 = int(_2262);
 	                    }
-	                    _749[2] = vec2(max(float(_730) * 3.0518509447574615478515625e-05, -1.0), max(float(_729) * 3.0518509447574615478515625e-05, -1.0));
+	                    _1060[2] = vec2(max(float(_1041) * 3.0518509447574615478515625e-05, -1.0), max(float(_1040) * 3.0518509447574615478515625e-05, -1.0));
 	                }
 	            }
 	        }
 	    }
-	    _748 = 0;
+	    _1059 = 0;
 	    for (;;)
 	    {
-	        if (!(_748 < 3))
+	        if (!(_1059 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_748].vTexCoord2 = _749[_748];
-	        _748++;
+	        vsInput[_1059].vTexCoord2 = _1060[_1059];
+	        _1059++;
 	        continue;
 	    }
-	    vec3 _750[3];
-	    vec4 _751[3];
+	    vec3 _1061[3];
+	    vec4 _1062[3];
 	    do
 	    {
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.y != 0)
 	        {
-	            ivec4 _715 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	            uint _71 = uint(_715[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.z]);
-	            uint _2150 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.z);
-	            ivec4 _713 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	            ivec4 _714 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	            uvec3 _2166 = (uvec3(uint(_713[_2150])) * _753) + uvec3(uint(_714[_2150]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.x));
+	            ivec4 _1026 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	            uint _182 = uint(_1026[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.z]);
+	            uint _2346 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.z);
+	            ivec4 _1024 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	            ivec4 _1025 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	            uvec3 _2362 = (uvec3(uint(_1024[_2346])) * _1064) + uvec3(uint(_1025[_2346]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.x));
 	            if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.y == 6)
 	            {
-	                uint _2694 = _2166.x;
-	                _750[0] = vec3(g_Vertices_1[_71]._member0[_2694 / 4u], g_Vertices_1[_71]._member0[(_2694 + 4u) / 4u], g_Vertices_1[_71]._member0[(_2694 + 8u) / 4u]);
-	                uint _2708 = _2166.y;
-	                _750[1] = vec3(g_Vertices_1[_71]._member0[_2708 / 4u], g_Vertices_1[_71]._member0[(_2708 + 4u) / 4u], g_Vertices_1[_71]._member0[(_2708 + 8u) / 4u]);
-	                uint _2722 = _2166.z;
-	                _750[2] = vec3(g_Vertices_1[_71]._member0[_2722 / 4u], g_Vertices_1[_71]._member0[(_2722 + 4u) / 4u], g_Vertices_1[_71]._member0[(_2722 + 8u) / 4u]);
+	                uint _2863 = _2362.x;
+	                _1061[0] = vec3(g_Vertices_1[nonuniformEXT(_182)]._member0[_2863 / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2863 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2863 + 8u) / 4u]);
+	                uint _2868 = _2362.y;
+	                _1061[1] = vec3(g_Vertices_1[nonuniformEXT(_182)]._member0[_2868 / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2868 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2868 + 8u) / 4u]);
+	                uint _2873 = _2362.z;
+	                _1061[2] = vec3(g_Vertices_1[nonuniformEXT(_182)]._member0[_2873 / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2873 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_182)]._member0[(_2873 + 8u) / 4u]);
 	            }
 	            else
 	            {
 	                if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vNormalFieldInfo.y == 17)
 	                {
-	                    uint _2430 = _2166.x;
-	                    uvec2 _2438 = uvec2(g_Vertices_3[_71]._member0[_2430 / 4u], g_Vertices_3[_71]._member0[(_2430 + 4u) / 4u]);
-	                    uint _2439 = _2166.y;
-	                    uvec2 _498 = uvec2(g_Vertices_3[_71]._member0[_2439 / 4u], g_Vertices_3[_71]._member0[(_2439 + 4u) / 4u]);
-	                    uint _2448 = _2166.z;
-	                    uvec2 _497 = uvec2(g_Vertices_3[_71]._member0[_2448 / 4u], g_Vertices_3[_71]._member0[(_2448 + 4u) / 4u]);
-	                    uint _2460 = _2438.x;
-	                    uint _2468 = _2438.y;
-	                    vec2 _2478 = ((vec2(float(_2460 & 65535u), float((_2460 >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
-	                    float _2479 = _2478.x;
-	                    float _2484 = (1.0 - abs(_2479)) - abs(_2478.y);
-	                    vec3 _2485 = vec3(_2479, _2478.y, _2484);
-	                    float _2487 = saturate(-_2484);
-	                    vec2 _2493 = _2478 + mix(vec2(_2487), vec2(-_2487), greaterThanEqual(_2478, vec2(0.0)));
-	                    _2485.x = _2493.x;
-	                    _2485.y = _2493.y;
-	                    vec3 _717 = normalize(_2485);
-	                    vec2 _2500 = ((vec2(float((_2468 >> uint(1)) & 32767u), float((_2468 >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
-	                    float _2501 = _2500.x;
-	                    float _2506 = (1.0 - abs(_2501)) - abs(_2500.y);
-	                    vec3 _2507 = vec3(_2501, _2500.y, _2506);
-	                    float _2509 = saturate(-_2506);
-	                    vec2 _2515 = _2500 + mix(vec2(_2509), vec2(-_2509), greaterThanEqual(_2500, vec2(0.0)));
-	                    _2507.x = _2515.x;
-	                    _2507.y = _2515.y;
-	                    vec3 _716 = normalize(_2507);
-	                    float _703;
-	                    if ((_2468 & 1u) != 0u)
+	                    uint _2617 = _2362.x;
+	                    uvec2 _2619 = uvec2(g_Vertices_3[nonuniformEXT(_182)]._member0[_2617 / 4u], g_Vertices_3[nonuniformEXT(_182)]._member0[(_2617 + 4u) / 4u]);
+	                    uint _2620 = _2362.y;
+	                    uvec2 _809 = uvec2(g_Vertices_3[nonuniformEXT(_182)]._member0[_2620 / 4u], g_Vertices_3[nonuniformEXT(_182)]._member0[(_2620 + 4u) / 4u]);
+	                    uint _2623 = _2362.z;
+	                    uvec2 _808 = uvec2(g_Vertices_3[nonuniformEXT(_182)]._member0[_2623 / 4u], g_Vertices_3[nonuniformEXT(_182)]._member0[(_2623 + 4u) / 4u]);
+	                    uint _2629 = _2619.x;
+	                    uint _2637 = _2619.y;
+	                    vec2 _2647 = ((vec2(float(_2629 & 65535u), float((_2629 >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
+	                    float _2648 = _2647.x;
+	                    float _2653 = (1.0 - abs(_2648)) - abs(_2647.y);
+	                    vec3 _2654 = vec3(_2648, _2647.y, _2653);
+	                    float _2656 = saturate(-_2653);
+	                    vec2 _2662 = _2647 + mix(vec2(_2656), vec2(-_2656), greaterThanEqual(_2647, vec2(0.0)));
+	                    _2654.x = _2662.x;
+	                    _2654.y = _2662.y;
+	                    vec3 _1028 = normalize(_2654);
+	                    vec2 _2669 = ((vec2(float((_2637 >> uint(1)) & 32767u), float((_2637 >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
+	                    float _2670 = _2669.x;
+	                    float _2675 = (1.0 - abs(_2670)) - abs(_2669.y);
+	                    vec3 _2676 = vec3(_2670, _2669.y, _2675);
+	                    float _2678 = saturate(-_2675);
+	                    vec2 _2684 = _2669 + mix(vec2(_2678), vec2(-_2678), greaterThanEqual(_2669, vec2(0.0)));
+	                    _2676.x = _2684.x;
+	                    _2676.y = _2684.y;
+	                    vec3 _1027 = normalize(_2676);
+	                    float _1014;
+	                    if ((_2637 & 1u) != 0u)
 	                    {
-	                        _703 = 1.0;
+	                        _1014 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _703 = -1.0;
+	                        _1014 = -1.0;
 	                    }
-	                    _750[0] = _717;
-	                    _751[0].w = _703;
-	                    _751[0].x = _716.x;
-	                    _751[0].y = _716.y;
-	                    _751[0].z = _716.z;
-	                    vec2 _2557 = ((vec2(float(_498.x & 65535u), float((_498.x >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
-	                    float _2558 = _2557.x;
-	                    float _2563 = (1.0 - abs(_2558)) - abs(_2557.y);
-	                    vec3 _2564 = vec3(_2558, _2557.y, _2563);
-	                    float _2566 = saturate(-_2563);
-	                    vec2 _2572 = _2557 + mix(vec2(_2566), vec2(-_2566), greaterThanEqual(_2557, vec2(0.0)));
-	                    _2564.x = _2572.x;
-	                    _2564.y = _2572.y;
-	                    vec3 _719 = normalize(_2564);
-	                    vec2 _2579 = ((vec2(float((_498.y >> uint(1)) & 32767u), float((_498.y >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
-	                    float _2580 = _2579.x;
-	                    float _2585 = (1.0 - abs(_2580)) - abs(_2579.y);
-	                    vec3 _2586 = vec3(_2580, _2579.y, _2585);
-	                    float _2588 = saturate(-_2585);
-	                    vec2 _2594 = _2579 + mix(vec2(_2588), vec2(-_2588), greaterThanEqual(_2579, vec2(0.0)));
-	                    _2586.x = _2594.x;
-	                    _2586.y = _2594.y;
-	                    vec3 _718 = normalize(_2586);
-	                    float _702;
-	                    if ((_498.y & 1u) != 0u)
+	                    _1061[0] = _1028;
+	                    _1062[0].w = _1014;
+	                    _1062[0].x = _1027.x;
+	                    _1062[0].y = _1027.y;
+	                    _1062[0].z = _1027.z;
+	                    vec2 _2726 = ((vec2(float(_809.x & 65535u), float((_809.x >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
+	                    float _2727 = _2726.x;
+	                    float _2732 = (1.0 - abs(_2727)) - abs(_2726.y);
+	                    vec3 _2733 = vec3(_2727, _2726.y, _2732);
+	                    float _2735 = saturate(-_2732);
+	                    vec2 _2741 = _2726 + mix(vec2(_2735), vec2(-_2735), greaterThanEqual(_2726, vec2(0.0)));
+	                    _2733.x = _2741.x;
+	                    _2733.y = _2741.y;
+	                    vec3 _1030 = normalize(_2733);
+	                    vec2 _2748 = ((vec2(float((_809.y >> uint(1)) & 32767u), float((_809.y >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
+	                    float _2749 = _2748.x;
+	                    float _2754 = (1.0 - abs(_2749)) - abs(_2748.y);
+	                    vec3 _2755 = vec3(_2749, _2748.y, _2754);
+	                    float _2757 = saturate(-_2754);
+	                    vec2 _2763 = _2748 + mix(vec2(_2757), vec2(-_2757), greaterThanEqual(_2748, vec2(0.0)));
+	                    _2755.x = _2763.x;
+	                    _2755.y = _2763.y;
+	                    vec3 _1029 = normalize(_2755);
+	                    float _1013;
+	                    if ((_809.y & 1u) != 0u)
 	                    {
-	                        _702 = 1.0;
+	                        _1013 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _702 = -1.0;
+	                        _1013 = -1.0;
 	                    }
-	                    _750[1] = _719;
-	                    _751[1].w = _702;
-	                    _751[1].x = _718.x;
-	                    _751[1].y = _718.y;
-	                    _751[1].z = _718.z;
-	                    vec2 _2636 = ((vec2(float(_497.x & 65535u), float((_497.x >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
-	                    float _2637 = _2636.x;
-	                    float _2642 = (1.0 - abs(_2637)) - abs(_2636.y);
-	                    vec3 _2643 = vec3(_2637, _2636.y, _2642);
-	                    float _2645 = saturate(-_2642);
-	                    vec2 _2651 = _2636 + mix(vec2(_2645), vec2(-_2645), greaterThanEqual(_2636, vec2(0.0)));
-	                    _2643.x = _2651.x;
-	                    _2643.y = _2651.y;
-	                    vec3 _721 = normalize(_2643);
-	                    vec2 _2658 = ((vec2(float((_497.y >> uint(1)) & 32767u), float((_497.y >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
-	                    float _2659 = _2658.x;
-	                    float _2664 = (1.0 - abs(_2659)) - abs(_2658.y);
-	                    vec3 _2665 = vec3(_2659, _2658.y, _2664);
-	                    float _2667 = saturate(-_2664);
-	                    vec2 _2673 = _2658 + mix(vec2(_2667), vec2(-_2667), greaterThanEqual(_2658, vec2(0.0)));
-	                    _2665.x = _2673.x;
-	                    _2665.y = _2673.y;
-	                    vec3 _720 = normalize(_2665);
-	                    float _701;
-	                    if ((_497.y & 1u) != 0u)
+	                    _1061[1] = _1030;
+	                    _1062[1].w = _1013;
+	                    _1062[1].x = _1029.x;
+	                    _1062[1].y = _1029.y;
+	                    _1062[1].z = _1029.z;
+	                    vec2 _2805 = ((vec2(float(_808.x & 65535u), float((_808.x >> 16u) & 65535u)) * vec2(1.525902189314365386962890625e-05)) * 2.0) - vec2(1.0);
+	                    float _2806 = _2805.x;
+	                    float _2811 = (1.0 - abs(_2806)) - abs(_2805.y);
+	                    vec3 _2812 = vec3(_2806, _2805.y, _2811);
+	                    float _2814 = saturate(-_2811);
+	                    vec2 _2820 = _2805 + mix(vec2(_2814), vec2(-_2814), greaterThanEqual(_2805, vec2(0.0)));
+	                    _2812.x = _2820.x;
+	                    _2812.y = _2820.y;
+	                    vec3 _1032 = normalize(_2812);
+	                    vec2 _2827 = ((vec2(float((_808.y >> uint(1)) & 32767u), float((_808.y >> 16u) & 32767u)) * vec2(3.0518509447574615478515625e-05)) * 2.0) - vec2(1.0);
+	                    float _2828 = _2827.x;
+	                    float _2833 = (1.0 - abs(_2828)) - abs(_2827.y);
+	                    vec3 _2834 = vec3(_2828, _2827.y, _2833);
+	                    float _2836 = saturate(-_2833);
+	                    vec2 _2842 = _2827 + mix(vec2(_2836), vec2(-_2836), greaterThanEqual(_2827, vec2(0.0)));
+	                    _2834.x = _2842.x;
+	                    _2834.y = _2842.y;
+	                    vec3 _1031 = normalize(_2834);
+	                    float _1012;
+	                    if ((_808.y & 1u) != 0u)
 	                    {
-	                        _701 = 1.0;
+	                        _1012 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _701 = -1.0;
+	                        _1012 = -1.0;
 	                    }
-	                    _750[2] = _721;
-	                    _751[2].w = _701;
-	                    _751[2].x = _720.x;
-	                    _751[2].y = _720.y;
-	                    _751[2].z = _720.z;
+	                    _1061[2] = _1032;
+	                    _1062[2].w = _1012;
+	                    _1062[2].x = _1031.x;
+	                    _1062[2].y = _1031.y;
+	                    _1062[2].z = _1031.z;
 	                    break;
 	                }
 	                else
 	                {
-	                    uint _2176 = _2166.x / 4u;
-	                    vec4 _723 = _751[0];
-	                    float _2191 = (float((g_Vertices_3[_71]._member0[_2176] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2194 = (float((g_Vertices_3[_71]._member0[_2176] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2198 = (1.0 - abs(_2191)) - abs(_2194);
-	                    vec3 _2199 = vec3(_2191, _2194, _2198);
-	                    float _2201 = saturate(-_2198);
-	                    vec2 _2202 = vec2(_2191, _2194);
-	                    vec2 _2208 = _2202 + mix(vec2(_2201), vec2(-_2201), greaterThanEqual(_2202, vec2(0.0)));
-	                    _2199.x = _2208.x;
-	                    _2199.y = _2208.y;
-	                    vec3 _2213 = normalize(_2199);
-	                    vec3 _722 = _2213;
-	                    float _2214 = _2213.z;
-	                    float _710;
-	                    if (_2214 >= 0.0)
+	                    uint _184 = _2362.x / 4u;
+	                    vec4 _1034 = _1062[0];
+	                    float _2384 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_184] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2387 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_184] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2391 = (1.0 - abs(_2384)) - abs(_2387);
+	                    vec3 _2392 = vec3(_2384, _2387, _2391);
+	                    float _2394 = saturate(-_2391);
+	                    vec2 _2395 = vec2(_2384, _2387);
+	                    vec2 _2401 = _2395 + mix(vec2(_2394), vec2(-_2394), greaterThanEqual(_2395, vec2(0.0)));
+	                    _2392.x = _2401.x;
+	                    _2392.y = _2401.y;
+	                    vec3 _2406 = normalize(_2392);
+	                    vec3 _1033 = _2406;
+	                    float _2407 = _2406.z;
+	                    float _1021;
+	                    if (_2407 >= 0.0)
 	                    {
-	                        _710 = 1.0;
+	                        _1021 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _710 = -1.0;
+	                        _1021 = -1.0;
 	                    }
-	                    float _2221 = (-1.0) / (_710 + _2214);
-	                    float _2222 = _2213.x;
-	                    vec3 _711;
-	                    vec3 _2230 = _711;
-	                    _2230.x = 1.0 + (((_710 * _2222) * _2222) * _2221);
-	                    _2230.y = _710 * ((_2222 * _2213.y) * _2221);
-	                    _2230.z = (-_710) * _2222;
-	                    _711 = _2230;
-	                    float _2238 = float((g_Vertices_3[_71]._member0[_2176] >> uint(1)) & 2047u) * 0.003069460391998291015625;
-	                    vec3 _2244 = (_2230 * cos(_2238)) + (cross(_2213, _2230) * sin(_2238));
-	                    vec4 _2246 = _723;
-	                    _2246.x = _2244.x;
-	                    _2246.y = _2244.y;
-	                    _2246.z = _2244.z;
-	                    _723 = _2246;
-	                    float _712;
-	                    if ((g_Vertices_3[_71]._member0[_2176] & 1u) == 0u)
+	                    float _2414 = (-1.0) / (_1021 + _2407);
+	                    float _2415 = _2406.x;
+	                    vec3 _1022;
+	                    vec3 _2423 = _1022;
+	                    _2423.x = 1.0 + (((_1021 * _2415) * _2415) * _2414);
+	                    _2423.y = _1021 * ((_2415 * _2406.y) * _2414);
+	                    _2423.z = (-_1021) * _2415;
+	                    _1022 = _2423;
+	                    float _2431 = float((g_Vertices_3[nonuniformEXT(_182)]._member0[_184] >> uint(1)) & 2047u) * 0.003069460391998291015625;
+	                    vec3 _2437 = (_2423 * cos(_2431)) + (cross(_2406, _2423) * sin(_2431));
+	                    vec4 _2439 = _1034;
+	                    _2439.x = _2437.x;
+	                    _2439.y = _2437.y;
+	                    _2439.z = _2437.z;
+	                    _1034 = _2439;
+	                    float _1023;
+	                    if ((g_Vertices_3[nonuniformEXT(_182)]._member0[_184] & 1u) == 0u)
 	                    {
-	                        _712 = -1.0;
+	                        _1023 = -1.0;
 	                    }
 	                    else
 	                    {
-	                        _712 = 1.0;
+	                        _1023 = 1.0;
 	                    }
-	                    vec4 _2257 = _723;
-	                    _2257.w = _712;
-	                    _723 = _2257;
-	                    _750[0] = _722;
-	                    _751[0] = _2257;
-	                    uint _2261 = _2166.y / 4u;
-	                    vec4 _725 = _751[1];
-	                    float _2276 = (float((g_Vertices_3[_71]._member0[_2261] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2279 = (float((g_Vertices_3[_71]._member0[_2261] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2283 = (1.0 - abs(_2276)) - abs(_2279);
-	                    vec3 _2284 = vec3(_2276, _2279, _2283);
-	                    float _2286 = saturate(-_2283);
-	                    vec2 _2287 = vec2(_2276, _2279);
-	                    vec2 _2293 = _2287 + mix(vec2(_2286), vec2(-_2286), greaterThanEqual(_2287, vec2(0.0)));
-	                    _2284.x = _2293.x;
-	                    _2284.y = _2293.y;
-	                    vec3 _2298 = normalize(_2284);
-	                    vec3 _724 = _2298;
-	                    float _2299 = _2298.z;
-	                    float _707;
-	                    if (_2299 >= 0.0)
+	                    vec4 _2450 = _1034;
+	                    _2450.w = _1023;
+	                    _1034 = _2450;
+	                    _1061[0] = _1033;
+	                    _1062[0] = _2450;
+	                    uint _187 = _2362.y / 4u;
+	                    vec4 _1036 = _1062[1];
+	                    float _2466 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_187] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2469 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_187] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2473 = (1.0 - abs(_2466)) - abs(_2469);
+	                    vec3 _2474 = vec3(_2466, _2469, _2473);
+	                    float _2476 = saturate(-_2473);
+	                    vec2 _2477 = vec2(_2466, _2469);
+	                    vec2 _2483 = _2477 + mix(vec2(_2476), vec2(-_2476), greaterThanEqual(_2477, vec2(0.0)));
+	                    _2474.x = _2483.x;
+	                    _2474.y = _2483.y;
+	                    vec3 _2488 = normalize(_2474);
+	                    vec3 _1035 = _2488;
+	                    float _2489 = _2488.z;
+	                    float _1018;
+	                    if (_2489 >= 0.0)
 	                    {
-	                        _707 = 1.0;
+	                        _1018 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _707 = -1.0;
+	                        _1018 = -1.0;
 	                    }
-	                    float _2306 = (-1.0) / (_707 + _2299);
-	                    float _2307 = _2298.x;
-	                    vec3 _708;
-	                    vec3 _2315 = _708;
-	                    _2315.x = 1.0 + (((_707 * _2307) * _2307) * _2306);
-	                    _2315.y = _707 * ((_2307 * _2298.y) * _2306);
-	                    _2315.z = (-_707) * _2307;
-	                    _708 = _2315;
-	                    float _2323 = float((g_Vertices_3[_71]._member0[_2261] >> uint(1)) & 2047u) * 0.003069460391998291015625;
-	                    vec3 _2329 = (_2315 * cos(_2323)) + (cross(_2298, _2315) * sin(_2323));
-	                    vec4 _2331 = _725;
-	                    _2331.x = _2329.x;
-	                    _2331.y = _2329.y;
-	                    _2331.z = _2329.z;
-	                    _725 = _2331;
-	                    float _709;
-	                    if ((g_Vertices_3[_71]._member0[_2261] & 1u) == 0u)
+	                    float _2496 = (-1.0) / (_1018 + _2489);
+	                    float _2497 = _2488.x;
+	                    vec3 _1019;
+	                    vec3 _2505 = _1019;
+	                    _2505.x = 1.0 + (((_1018 * _2497) * _2497) * _2496);
+	                    _2505.y = _1018 * ((_2497 * _2488.y) * _2496);
+	                    _2505.z = (-_1018) * _2497;
+	                    _1019 = _2505;
+	                    float _2513 = float((g_Vertices_3[nonuniformEXT(_182)]._member0[_187] >> uint(1)) & 2047u) * 0.003069460391998291015625;
+	                    vec3 _2519 = (_2505 * cos(_2513)) + (cross(_2488, _2505) * sin(_2513));
+	                    vec4 _2521 = _1036;
+	                    _2521.x = _2519.x;
+	                    _2521.y = _2519.y;
+	                    _2521.z = _2519.z;
+	                    _1036 = _2521;
+	                    float _1020;
+	                    if ((g_Vertices_3[nonuniformEXT(_182)]._member0[_187] & 1u) == 0u)
 	                    {
-	                        _709 = -1.0;
+	                        _1020 = -1.0;
 	                    }
 	                    else
 	                    {
-	                        _709 = 1.0;
+	                        _1020 = 1.0;
 	                    }
-	                    vec4 _2342 = _725;
-	                    _2342.w = _709;
-	                    _725 = _2342;
-	                    _750[1] = _724;
-	                    _751[1] = _2342;
-	                    uint _2346 = _2166.z / 4u;
-	                    vec4 _727 = _751[2];
-	                    float _2361 = (float((g_Vertices_3[_71]._member0[_2346] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2364 = (float((g_Vertices_3[_71]._member0[_2346] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
-	                    float _2368 = (1.0 - abs(_2361)) - abs(_2364);
-	                    vec3 _2369 = vec3(_2361, _2364, _2368);
-	                    float _2371 = saturate(-_2368);
-	                    vec2 _2372 = vec2(_2361, _2364);
-	                    vec2 _2378 = _2372 + mix(vec2(_2371), vec2(-_2371), greaterThanEqual(_2372, vec2(0.0)));
-	                    _2369.x = _2378.x;
-	                    _2369.y = _2378.y;
-	                    vec3 _2383 = normalize(_2369);
-	                    vec3 _726 = _2383;
-	                    float _2384 = _2383.z;
-	                    float _704;
-	                    if (_2384 >= 0.0)
+	                    vec4 _2532 = _1036;
+	                    _2532.w = _1020;
+	                    _1036 = _2532;
+	                    _1061[1] = _1035;
+	                    _1062[1] = _2532;
+	                    uint _190 = _2362.z / 4u;
+	                    vec4 _1038 = _1062[2];
+	                    float _2548 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_190] >> 12u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2551 = (float((g_Vertices_3[nonuniformEXT(_182)]._member0[_190] >> 22u) & 1023u) * 0.00195503421127796173095703125) - 1.0;
+	                    float _2555 = (1.0 - abs(_2548)) - abs(_2551);
+	                    vec3 _2556 = vec3(_2548, _2551, _2555);
+	                    float _2558 = saturate(-_2555);
+	                    vec2 _2559 = vec2(_2548, _2551);
+	                    vec2 _2565 = _2559 + mix(vec2(_2558), vec2(-_2558), greaterThanEqual(_2559, vec2(0.0)));
+	                    _2556.x = _2565.x;
+	                    _2556.y = _2565.y;
+	                    vec3 _2570 = normalize(_2556);
+	                    vec3 _1037 = _2570;
+	                    float _2571 = _2570.z;
+	                    float _1015;
+	                    if (_2571 >= 0.0)
 	                    {
-	                        _704 = 1.0;
+	                        _1015 = 1.0;
 	                    }
 	                    else
 	                    {
-	                        _704 = -1.0;
+	                        _1015 = -1.0;
 	                    }
-	                    float _2391 = (-1.0) / (_704 + _2384);
-	                    float _2392 = _2383.x;
-	                    vec3 _705;
-	                    vec3 _2400 = _705;
-	                    _2400.x = 1.0 + (((_704 * _2392) * _2392) * _2391);
-	                    _2400.y = _704 * ((_2392 * _2383.y) * _2391);
-	                    _2400.z = (-_704) * _2392;
-	                    _705 = _2400;
-	                    float _2408 = float((g_Vertices_3[_71]._member0[_2346] >> uint(1)) & 2047u) * 0.003069460391998291015625;
-	                    vec3 _2414 = (_2400 * cos(_2408)) + (cross(_2383, _2400) * sin(_2408));
-	                    vec4 _2416 = _727;
-	                    _2416.x = _2414.x;
-	                    _2416.y = _2414.y;
-	                    _2416.z = _2414.z;
-	                    _727 = _2416;
-	                    float _706;
-	                    if ((g_Vertices_3[_71]._member0[_2346] & 1u) == 0u)
+	                    float _2578 = (-1.0) / (_1015 + _2571);
+	                    float _2579 = _2570.x;
+	                    vec3 _1016;
+	                    vec3 _2587 = _1016;
+	                    _2587.x = 1.0 + (((_1015 * _2579) * _2579) * _2578);
+	                    _2587.y = _1015 * ((_2579 * _2570.y) * _2578);
+	                    _2587.z = (-_1015) * _2579;
+	                    _1016 = _2587;
+	                    float _2595 = float((g_Vertices_3[nonuniformEXT(_182)]._member0[_190] >> uint(1)) & 2047u) * 0.003069460391998291015625;
+	                    vec3 _2601 = (_2587 * cos(_2595)) + (cross(_2570, _2587) * sin(_2595));
+	                    vec4 _2603 = _1038;
+	                    _2603.x = _2601.x;
+	                    _2603.y = _2601.y;
+	                    _2603.z = _2601.z;
+	                    _1038 = _2603;
+	                    float _1017;
+	                    if ((g_Vertices_3[nonuniformEXT(_182)]._member0[_190] & 1u) == 0u)
 	                    {
-	                        _706 = -1.0;
+	                        _1017 = -1.0;
 	                    }
 	                    else
 	                    {
-	                        _706 = 1.0;
+	                        _1017 = 1.0;
 	                    }
-	                    vec4 _2427 = _727;
-	                    _2427.w = _706;
-	                    _727 = _2427;
-	                    _750[2] = _726;
-	                    _751[2] = _2427;
+	                    vec4 _2614 = _1038;
+	                    _2614.w = _1017;
+	                    _1038 = _2614;
+	                    _1061[2] = _1037;
+	                    _1062[2] = _2614;
 	                    break;
 	                }
 	                break;
@@ -2893,1118 +2849,1096 @@ RTX
 	        }
 	        else
 	        {
-	            _750[0] = vec3(0.0);
-	            _750[1] = vec3(0.0);
-	            _750[2] = vec3(0.0);
+	            _1061[0] = vec3(0.0);
+	            _1061[1] = vec3(0.0);
+	            _1061[2] = vec3(0.0);
 	        }
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.y != 0)
 	        {
-	            ivec4 _728 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	            uint _75 = uint(_728[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.z]);
-	            uint _2750 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.z);
-	            ivec4 _699 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	            ivec4 _700 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	            uvec3 _2766 = (uvec3(uint(_699[_2750])) * _753) + uvec3(uint(_700[_2750]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.x));
-	            uint _2768 = _2766.x;
-	            _751[0] = vec4(g_Vertices_1[_75]._member0[_2768 / 4u], g_Vertices_1[_75]._member0[(_2768 + 4u) / 4u], g_Vertices_1[_75]._member0[(_2768 + 8u) / 4u], g_Vertices_1[_75]._member0[(_2768 + 12u) / 4u]);
-	            uint _2786 = _2766.y;
-	            _751[1] = vec4(g_Vertices_1[_75]._member0[_2786 / 4u], g_Vertices_1[_75]._member0[(_2786 + 4u) / 4u], g_Vertices_1[_75]._member0[(_2786 + 8u) / 4u], g_Vertices_1[_75]._member0[(_2786 + 12u) / 4u]);
-	            uint _2804 = _2766.z;
-	            _751[2] = vec4(g_Vertices_1[_75]._member0[_2804 / 4u], g_Vertices_1[_75]._member0[(_2804 + 4u) / 4u], g_Vertices_1[_75]._member0[(_2804 + 8u) / 4u], g_Vertices_1[_75]._member0[(_2804 + 12u) / 4u]);
+	            ivec4 _1039 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	            uint _240 = uint(_1039[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.z]);
+	            uint _2892 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.z);
+	            ivec4 _1010 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	            ivec4 _1011 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	            uvec3 _2908 = (uvec3(uint(_1010[_2892])) * _1064) + uvec3(uint(_1011[_2892]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTangentFieldInfo.x));
+	            uint _2910 = _2908.x;
+	            _1062[0] = vec4(g_Vertices_1[nonuniformEXT(_240)]._member0[_2910 / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2910 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2910 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2910 + 12u) / 4u]);
+	            uint _2916 = _2908.y;
+	            _1062[1] = vec4(g_Vertices_1[nonuniformEXT(_240)]._member0[_2916 / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2916 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2916 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2916 + 12u) / 4u]);
+	            uint _2922 = _2908.z;
+	            _1062[2] = vec4(g_Vertices_1[nonuniformEXT(_240)]._member0[_2922 / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2922 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2922 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_240)]._member0[(_2922 + 12u) / 4u]);
 	        }
 	        else
 	        {
-	            _751[0] = vec4(0.0);
-	            _751[1] = vec4(0.0);
-	            _751[2] = vec4(0.0);
+	            _1062[0] = vec4(0.0);
+	            _1062[1] = vec4(0.0);
+	            _1062[2] = vec4(0.0);
 	        }
 	        break;
 	    } while(false);
-	    _748 = 0;
+	    _1059 = 0;
 	    for (;;)
 	    {
-	        if (!(_748 < 3))
+	        if (!(_1059 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_748].vNormalOs = _750[_748];
-	        vsInput[_748].vTangentUOs_flTangentVSign = _751[_748];
-	        _748++;
+	        vsInput[_1059].vNormalOs = _1061[_1059];
+	        vsInput[_1059].vTangentUOs_flTangentVSign = _1062[_1059];
+	        _1059++;
 	        continue;
 	    }
-	    vec4 _752[3];
+	    vec4 _1063[3];
 	    if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].y != 0)
 	    {
-	        ivec4 _698 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	        uint _77 = uint(_698[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].z]);
-	        uint _2863 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].z);
-	        ivec4 _696 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	        ivec4 _697 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	        uvec3 _2879 = (uvec3(uint(_696[_2863])) * _753) + uvec3(uint(_697[_2863]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].x));
+	        ivec4 _1009 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	        uint _278 = uint(_1009[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].z]);
+	        uint _2969 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].z);
+	        ivec4 _1007 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	        ivec4 _1008 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	        uvec3 _2985 = (uvec3(uint(_1007[_2969])) * _1064) + uvec3(uint(_1008[_2969]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].x));
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vColorFieldInfo.data[0].y == 2)
 	        {
-	            uint _2930 = _2879.x;
-	            _752[0] = vec4(g_Vertices_1[_77]._member0[_2930 / 4u], g_Vertices_1[_77]._member0[(_2930 + 4u) / 4u], g_Vertices_1[_77]._member0[(_2930 + 8u) / 4u], g_Vertices_1[_77]._member0[(_2930 + 12u) / 4u]);
-	            uint _2948 = _2879.y;
-	            _752[1] = vec4(g_Vertices_1[_77]._member0[_2948 / 4u], g_Vertices_1[_77]._member0[(_2948 + 4u) / 4u], g_Vertices_1[_77]._member0[(_2948 + 8u) / 4u], g_Vertices_1[_77]._member0[(_2948 + 12u) / 4u]);
-	            uint _2966 = _2879.z;
-	            _752[2] = vec4(g_Vertices_1[_77]._member0[_2966 / 4u], g_Vertices_1[_77]._member0[(_2966 + 4u) / 4u], g_Vertices_1[_77]._member0[(_2966 + 8u) / 4u], g_Vertices_1[_77]._member0[(_2966 + 12u) / 4u]);
+	            uint _3027 = _2985.x;
+	            _1063[0] = vec4(g_Vertices_1[nonuniformEXT(_278)]._member0[_3027 / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3027 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3027 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3027 + 12u) / 4u]);
+	            uint _3033 = _2985.y;
+	            _1063[1] = vec4(g_Vertices_1[nonuniformEXT(_278)]._member0[_3033 / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3033 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3033 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3033 + 12u) / 4u]);
+	            uint _3039 = _2985.z;
+	            _1063[2] = vec4(g_Vertices_1[nonuniformEXT(_278)]._member0[_3039 / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3039 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3039 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_278)]._member0[(_3039 + 12u) / 4u]);
 	        }
 	        else
 	        {
-	            uint _2886 = _2879.x / 4u;
-	            _752[0] = vec4(uvec4(g_Vertices_3[_77]._member0[_2886] & 255u, (g_Vertices_3[_77]._member0[_2886] & 65280u) >> uint(8), (g_Vertices_3[_77]._member0[_2886] & 16711680u) >> uint(16), (g_Vertices_3[_77]._member0[_2886] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	            uint _2901 = _2879.y / 4u;
-	            _752[1] = vec4(uvec4(g_Vertices_3[_77]._member0[_2901] & 255u, (g_Vertices_3[_77]._member0[_2901] & 65280u) >> uint(8), (g_Vertices_3[_77]._member0[_2901] & 16711680u) >> uint(16), (g_Vertices_3[_77]._member0[_2901] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	            uint _2916 = _2879.z / 4u;
-	            _752[2] = vec4(uvec4(g_Vertices_3[_77]._member0[_2916] & 255u, (g_Vertices_3[_77]._member0[_2916] & 65280u) >> uint(8), (g_Vertices_3[_77]._member0[_2916] & 16711680u) >> uint(16), (g_Vertices_3[_77]._member0[_2916] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	            uint _280 = _2985.x / 4u;
+	            _1063[0] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_278)]._member0[_280] & 255u, (g_Vertices_3[nonuniformEXT(_278)]._member0[_280] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_278)]._member0[_280] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_278)]._member0[_280] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	            uint _283 = _2985.y / 4u;
+	            _1063[1] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_278)]._member0[_283] & 255u, (g_Vertices_3[nonuniformEXT(_278)]._member0[_283] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_278)]._member0[_283] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_278)]._member0[_283] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	            uint _286 = _2985.z / 4u;
+	            _1063[2] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_278)]._member0[_286] & 255u, (g_Vertices_3[nonuniformEXT(_278)]._member0[_286] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_278)]._member0[_286] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_278)]._member0[_286] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	        }
 	    }
 	    else
 	    {
-	        _752[0] = vec4(0.0);
-	        _752[1] = vec4(0.0);
-	        _752[2] = vec4(0.0);
+	        _1063[0] = vec4(0.0);
+	        _1063[1] = vec4(0.0);
+	        _1063[2] = vec4(0.0);
 	    }
-	    _748 = 0;
+	    _1059 = 0;
 	    for (;;)
 	    {
-	        if (!(_748 < 3))
+	        if (!(_1059 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_748].vBlendColorTint = _752[_748];
-	        _748++;
+	        vsInput[_1059].vBlendColorTint = _1063[_1059];
+	        _1059++;
 	        continue;
 	    }
-	    vec4 _755[3];
-	    _755[0] = vec4(0.0);
-	    _755[1] = vec4(0.0);
-	    _755[2] = vec4(0.0);
+	    vec4 _1066[3];
+	    _1066[0] = vec4(0.0);
+	    _1066[1] = vec4(0.0);
+	    _1066[2] = vec4(0.0);
 	    if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].y != 0)
 	    {
-	        ivec4 _695 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
-	        uint _80 = uint(_695[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].z]);
-	        uint _3021 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].z);
-	        ivec4 _693 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
-	        ivec4 _694 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
-	        uvec3 _3037 = (uvec3(uint(_693[_3021])) * _753) + uvec3(uint(_694[_3021]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].x));
+	        ivec4 _1006 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nVertexAndIndexBuffers;
+	        uint _326 = uint(_1006[g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].z]);
+	        uint _3082 = uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].z);
+	        ivec4 _1004 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferStrideInBytes;
+	        ivec4 _1005 = g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_nBufferBindOffsetBytes;
+	        uvec3 _3098 = (uvec3(uint(_1004[_3082])) * _1064) + uvec3(uint(_1005[_3082]) + uint(g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].x));
 	        if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].y == 2)
 	        {
-	            uint _3087 = _3037.x;
-	            _755[0] = vec4(g_Vertices_1[_80]._member0[_3087 / 4u], g_Vertices_1[_80]._member0[(_3087 + 4u) / 4u], g_Vertices_1[_80]._member0[(_3087 + 8u) / 4u], g_Vertices_1[_80]._member0[(_3087 + 12u) / 4u]);
-	            uint _3104 = _3037.y;
-	            _755[1] = vec4(g_Vertices_1[_80]._member0[_3104 / 4u], g_Vertices_1[_80]._member0[(_3104 + 4u) / 4u], g_Vertices_1[_80]._member0[(_3104 + 8u) / 4u], g_Vertices_1[_80]._member0[(_3104 + 12u) / 4u]);
-	            uint _3121 = _3037.z;
-	            _755[2] = vec4(g_Vertices_1[_80]._member0[_3121 / 4u], g_Vertices_1[_80]._member0[(_3121 + 4u) / 4u], g_Vertices_1[_80]._member0[(_3121 + 8u) / 4u], g_Vertices_1[_80]._member0[(_3121 + 12u) / 4u]);
+	            uint _3139 = _3098.x;
+	            _1066[0] = vec4(g_Vertices_1[nonuniformEXT(_326)]._member0[_3139 / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3139 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3139 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3139 + 12u) / 4u]);
+	            uint _3144 = _3098.y;
+	            _1066[1] = vec4(g_Vertices_1[nonuniformEXT(_326)]._member0[_3144 / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3144 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3144 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3144 + 12u) / 4u]);
+	            uint _3149 = _3098.z;
+	            _1066[2] = vec4(g_Vertices_1[nonuniformEXT(_326)]._member0[_3149 / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3149 + 4u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3149 + 8u) / 4u], g_Vertices_1[nonuniformEXT(_326)]._member0[(_3149 + 12u) / 4u]);
 	        }
 	        else
 	        {
 	            if (g_Geometries_1._member0[uint(gl_InstanceCustomIndexEXT)].m_vTexCoordFieldInfo.data[4].y == 28)
 	            {
-	                uint _3046 = _3037.x / 4u;
-	                _755[0] = vec4(uvec4(g_Vertices_3[_80]._member0[_3046] & 255u, (g_Vertices_3[_80]._member0[_3046] & 65280u) >> uint(8), (g_Vertices_3[_80]._member0[_3046] & 16711680u) >> uint(16), (g_Vertices_3[_80]._member0[_3046] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	                uint _3060 = _3037.y / 4u;
-	                _755[1] = vec4(uvec4(g_Vertices_3[_80]._member0[_3060] & 255u, (g_Vertices_3[_80]._member0[_3060] & 65280u) >> uint(8), (g_Vertices_3[_80]._member0[_3060] & 16711680u) >> uint(16), (g_Vertices_3[_80]._member0[_3060] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	                uint _3074 = _3037.z / 4u;
-	                _755[2] = vec4(uvec4(g_Vertices_3[_80]._member0[_3074] & 255u, (g_Vertices_3[_80]._member0[_3074] & 65280u) >> uint(8), (g_Vertices_3[_80]._member0[_3074] & 16711680u) >> uint(16), (g_Vertices_3[_80]._member0[_3074] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	                uint _328 = _3098.x / 4u;
+	                _1066[0] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_326)]._member0[_328] & 255u, (g_Vertices_3[nonuniformEXT(_326)]._member0[_328] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_326)]._member0[_328] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_326)]._member0[_328] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	                uint _331 = _3098.y / 4u;
+	                _1066[1] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_326)]._member0[_331] & 255u, (g_Vertices_3[nonuniformEXT(_326)]._member0[_331] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_326)]._member0[_331] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_326)]._member0[_331] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	                uint _334 = _3098.z / 4u;
+	                _1066[2] = vec4(uvec4(g_Vertices_3[nonuniformEXT(_326)]._member0[_334] & 255u, (g_Vertices_3[nonuniformEXT(_326)]._member0[_334] & 65280u) >> uint(8), (g_Vertices_3[nonuniformEXT(_326)]._member0[_334] & 16711680u) >> uint(16), (g_Vertices_3[nonuniformEXT(_326)]._member0[_334] & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	            }
 	        }
 	    }
-	    int _756 = 0;
+	    int _1067 = 0;
 	    for (;;)
 	    {
-	        if (!(_756 < 3))
+	        if (!(_1067 < 3))
 	        {
 	            break;
 	        }
-	        vsInput[_756].vColorBlendValues = _755[_756];
-	        _756++;
+	        vsInput[_1067].vColorBlendValues = _1066[_1067];
+	        _1067++;
 	        continue;
 	    }
-	    vec2 _516 = vsInput[0].vTexCoord;
-	    vec2 _515 = vsInput[0].vTexCoord2;
-	    vec4 _514 = vsInput[0].vBlendColorTint;
-	    vec3 _690 = vsInput[0].vNormalOs;
-	    vec4 _691;
-	    vec4 _3166 = _691;
-	    _3166.x = vsInput[0].vTangentUOs_flTangentVSign.x;
-	    _3166.y = vsInput[0].vTangentUOs_flTangentVSign.y;
-	    _3166.z = vsInput[0].vTangentUOs_flTangentVSign.z;
-	    _3166.w = vsInput[0].vTangentUOs_flTangentVSign.w;
-	    _691 = _3166;
-	    PackedRtxInstanceData_t_natural_logical _3179;
-	    _3179.nSrgbColor = g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor;
-	    _3179.nTriangleGeometry = g_instanceBuffer._member0[uint(gl_InstanceID)].nTriangleGeometry;
-	    _3179.nMaterialData = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialData;
-	    _3179.nMaterialFlags_nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialFlags_nInstanceFlags;
-	    _3179.fEmissiveBoost = g_instanceBuffer._member0[uint(gl_InstanceID)].fEmissiveBoost;
-	    _3179.nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nInstanceFlags;
-	    _3179._pad1 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad1;
-	    _3179._pad2 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad2;
-	    vec4 _3190 = vec4(uvec4(_3179.nSrgbColor & 255u, (_3179.nSrgbColor & 65280u) >> uint(8), (_3179.nSrgbColor & 16711680u) >> uint(16), (_3179.nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	    vec4 _689 = _3190;
-	    vec3 _3191 = _3190.xyz;
-	    vec3 _3192 = _3191 * vec3(0.077399380505084991455078125);
-	    vec3 _3195 = pow((_3191 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
-	    float _686;
-	    if (_3190.x <= 0.040449999272823333740234375)
+	    vec2 _827 = vsInput[0].vTexCoord;
+	    vec2 _826 = vsInput[0].vTexCoord2;
+	    vec4 _825 = vsInput[0].vBlendColorTint;
+	    vec3 _1001 = vsInput[0].vNormalOs;
+	    vec4 _1002;
+	    vec4 _3182 = _1002;
+	    _3182.x = vsInput[0].vTangentUOs_flTangentVSign.x;
+	    _3182.y = vsInput[0].vTangentUOs_flTangentVSign.y;
+	    _3182.z = vsInput[0].vTangentUOs_flTangentVSign.z;
+	    _3182.w = vsInput[0].vTangentUOs_flTangentVSign.w;
+	    _1002 = _3182;
+	    vec4 _3205 = vec4(uvec4(g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 255u, (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 65280u) >> uint(8), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 16711680u) >> uint(16), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _1000 = _3205;
+	    vec3 _3206 = _3205.xyz;
+	    vec3 _3207 = _3206 * vec3(0.077399380505084991455078125);
+	    vec3 _3210 = pow((_3206 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
+	    float _997;
+	    if (_3205.x <= 0.040449999272823333740234375)
 	    {
-	        _686 = _3192.x;
+	        _997 = _3207.x;
 	    }
 	    else
 	    {
-	        _686 = _3195.x;
+	        _997 = _3210.x;
 	    }
-	    float _687;
-	    if (_3190.y <= 0.040449999272823333740234375)
+	    float _998;
+	    if (_3205.y <= 0.040449999272823333740234375)
 	    {
-	        _687 = _3192.y;
+	        _998 = _3207.y;
 	    }
 	    else
 	    {
-	        _687 = _3195.y;
+	        _998 = _3210.y;
 	    }
-	    float _688;
-	    if (_3190.z <= 0.040449999272823333740234375)
+	    float _999;
+	    if (_3205.z <= 0.040449999272823333740234375)
 	    {
-	        _688 = _3192.z;
+	        _999 = _3207.z;
 	    }
 	    else
 	    {
-	        _688 = _3195.z;
+	        _999 = _3210.z;
 	    }
-	    vec3 _3220 = vec3(_686, _687, _688);
-	    vec4 _3222 = _689;
-	    _3222.x = _3220.x;
-	    _3222.y = _3220.y;
-	    _3222.z = _3220.z;
-	    _689 = _3222;
-	    vec4 _525;
-	    vec4 _3229 = _525;
-	    _3229.x = _3222.x;
-	    _3229.y = _3222.y;
-	    _3229.z = _3222.z;
-	    _3229.w = _3222.w;
-	    _525 = _3229;
-	    mat3x4 _3240 = transpose(gl_WorldToObjectEXT);
-	    mat3 _685;
-	    mat3 _3243 = _685;
-	    _3243[0] = _3240[0].xyz;
-	    _3243[1] = _3240[1].xyz;
-	    _3243[2] = _3240[2].xyz;
-	    _685 = _3243;
-	    vec3 _3252 = normalize(_3243 * _690.xyz);
-	    vec3 _526;
-	    vec3 _3254 = _526;
-	    _3254.x = _3252.x;
-	    _3254.y = _3252.y;
-	    _3254.z = _3252.z;
-	    _526 = _3254;
-	    mat3x4 _3266 = transpose(gl_WorldToObjectEXT);
-	    mat3 _684;
-	    mat3 _3269 = _684;
-	    _3269[0] = _3266[0].xyz;
-	    _3269[1] = _3266[1].xyz;
-	    _3269[2] = _3266[2].xyz;
-	    _684 = _3269;
-	    vec3 _3278 = normalize(_3269 * _691.xyz);
-	    vec4 _524;
-	    vec4 _3280 = _524;
-	    _3280.x = _3278.x;
-	    _3280.y = _3278.y;
-	    _3280.z = _3278.z;
-	    _3280.w = _691.w;
-	    _524 = _3280;
-	    vec4 _3289 = _516.xyxy;
-	    _3289.z = _515.x;
-	    _3289.w = _515.y;
-	    vec4 _527;
-	    vec4 _523 = _527;
-	    vec3 _522 = vec4(vsInput[0].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
-	    vec3 _521 = _3254;
-	    vec4 _520 = _3289;
-	    vec4 _519 = _3229;
-	    vec4 _518 = _3280;
+	    vec3 _3235 = vec3(_997, _998, _999);
+	    vec4 _3237 = _1000;
+	    _3237.x = _3235.x;
+	    _3237.y = _3235.y;
+	    _3237.z = _3235.z;
+	    _1000 = _3237;
+	    vec4 _836;
+	    vec4 _3244 = _836;
+	    _3244.x = _3237.x;
+	    _3244.y = _3237.y;
+	    _3244.z = _3237.z;
+	    _3244.w = _3237.w;
+	    _836 = _3244;
+	    mat3x4 _3255 = transpose(gl_WorldToObjectEXT);
+	    mat3 _996;
+	    mat3 _3258 = _996;
+	    _3258[0] = _3255[0].xyz;
+	    _3258[1] = _3255[1].xyz;
+	    _3258[2] = _3255[2].xyz;
+	    _996 = _3258;
+	    vec3 _3267 = normalize(_3258 * _1001.xyz);
+	    vec3 _837;
+	    vec3 _3269 = _837;
+	    _3269.x = _3267.x;
+	    _3269.y = _3267.y;
+	    _3269.z = _3267.z;
+	    _837 = _3269;
+	    mat3x4 _3281 = transpose(gl_WorldToObjectEXT);
+	    mat3 _995;
+	    mat3 _3284 = _995;
+	    _3284[0] = _3281[0].xyz;
+	    _3284[1] = _3281[1].xyz;
+	    _3284[2] = _3281[2].xyz;
+	    _995 = _3284;
+	    vec3 _3293 = normalize(_3284 * _1002.xyz);
+	    vec4 _835;
+	    vec4 _3295 = _835;
+	    _3295.x = _3293.x;
+	    _3295.y = _3293.y;
+	    _3295.z = _3293.z;
+	    _3295.w = _1002.w;
+	    _835 = _3295;
+	    vec4 _3304 = _827.xyxy;
+	    _3304.z = _826.x;
+	    _3304.w = _826.y;
+	    vec4 _838;
+	    vec4 _834 = _838;
+	    vec3 _833 = vec4(vsInput[0].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
+	    vec3 _832 = _3269;
+	    vec4 _831 = _3304;
+	    vec4 _830 = _3244;
+	    vec4 _829 = _3295;
 	    if (_g_rtx_material_data_.g_nUVSet1 > 0)
 	    {
-	        vec2 _692;
+	        vec2 _1003;
 	        if (_g_rtx_material_data_.g_nUVSet1 == 2)
 	        {
-	            _692 = _3289.zw;
+	            _1003 = _3304.zw;
 	        }
 	        else
 	        {
-	            _692 = _3289.xy;
+	            _1003 = _3304.xy;
 	        }
-	        vec4 _3311 = _520;
-	        _3311.x = _692.x;
-	        _3311.y = _692.y;
-	        vec4 _3330 = _3311;
-	        _3330.x = dot(_3311.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
-	        _3330.y = dot(_3311.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
-	        _520 = _3330;
+	        vec4 _3326 = _831;
+	        _3326.x = _1003.x;
+	        _3326.y = _1003.y;
+	        vec4 _3345 = _3326;
+	        _3345.x = dot(_3326.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
+	        _3345.y = dot(_3326.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
+	        _831 = _3345;
 	    }
-	    vec4 _3332 = _519;
-	    vec4 _3334 = _523;
-	    _3334.x = _3332.x;
-	    _3334.y = _3332.y;
-	    _3334.z = _3332.z;
-	    _3334.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3334.x, min(_3334.y, _3334.z)));
-	    _523 = _3334;
-	    _3332.x = _g_rtx_material_data_.g_vColorTint.x;
-	    _3332.y = _g_rtx_material_data_.g_vColorTint.y;
-	    _3332.z = _g_rtx_material_data_.g_vColorTint.z;
-	    vec3 _3363 = _3332.xyz * mix(vec3(1.0), _514.xyz, vec3(_514.w));
-	    vec4 _3365 = _3332;
-	    _3365.x = _3363.x;
-	    _3365.y = _3363.y;
-	    _3365.z = _3363.z;
-	    _519 = _3365;
-	    vec4 _496 = _3334;
-	    vec3 _495 = _522;
-	    vec3 _494 = _521;
-	    vec4 _493 = _520;
-	    vec4 _492 = _3365;
-	    vec4 _491 = _518;
-	    vec2 _513 = vsInput[1].vTexCoord;
-	    vec2 _512 = vsInput[1].vTexCoord2;
-	    vec4 _511 = vsInput[1].vBlendColorTint;
-	    vec3 _681 = vsInput[1].vNormalOs;
-	    vec4 _682;
-	    vec4 _3383 = _682;
-	    _3383.x = vsInput[1].vTangentUOs_flTangentVSign.x;
-	    _3383.y = vsInput[1].vTangentUOs_flTangentVSign.y;
-	    _3383.z = vsInput[1].vTangentUOs_flTangentVSign.z;
-	    _3383.w = vsInput[1].vTangentUOs_flTangentVSign.w;
-	    _682 = _3383;
-	    PackedRtxInstanceData_t_natural_logical _3396;
-	    _3396.nSrgbColor = g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor;
-	    _3396.nTriangleGeometry = g_instanceBuffer._member0[uint(gl_InstanceID)].nTriangleGeometry;
-	    _3396.nMaterialData = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialData;
-	    _3396.nMaterialFlags_nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialFlags_nInstanceFlags;
-	    _3396.fEmissiveBoost = g_instanceBuffer._member0[uint(gl_InstanceID)].fEmissiveBoost;
-	    _3396.nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nInstanceFlags;
-	    _3396._pad1 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad1;
-	    _3396._pad2 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad2;
-	    vec4 _3407 = vec4(uvec4(_3396.nSrgbColor & 255u, (_3396.nSrgbColor & 65280u) >> uint(8), (_3396.nSrgbColor & 16711680u) >> uint(16), (_3396.nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	    vec4 _680 = _3407;
-	    vec3 _3408 = _3407.xyz;
-	    vec3 _3409 = _3408 * vec3(0.077399380505084991455078125);
-	    vec3 _3412 = pow((_3408 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
-	    float _677;
-	    if (_3407.x <= 0.040449999272823333740234375)
+	    vec4 _3347 = _830;
+	    vec4 _3349 = _834;
+	    _3349.x = _3347.x;
+	    _3349.y = _3347.y;
+	    _3349.z = _3347.z;
+	    _3349.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3349.x, min(_3349.y, _3349.z)));
+	    _834 = _3349;
+	    _3347.x = _g_rtx_material_data_.g_vColorTint.x;
+	    _3347.y = _g_rtx_material_data_.g_vColorTint.y;
+	    _3347.z = _g_rtx_material_data_.g_vColorTint.z;
+	    vec3 _3378 = _3347.xyz * mix(vec3(1.0), _825.xyz, vec3(_825.w));
+	    vec4 _3380 = _3347;
+	    _3380.x = _3378.x;
+	    _3380.y = _3378.y;
+	    _3380.z = _3378.z;
+	    _830 = _3380;
+	    vec4 _807 = _3349;
+	    vec3 _806 = _833;
+	    vec3 _805 = _832;
+	    vec4 _804 = _831;
+	    vec4 _803 = _3380;
+	    vec4 _802 = _829;
+	    vec2 _824 = vsInput[1].vTexCoord;
+	    vec2 _823 = vsInput[1].vTexCoord2;
+	    vec4 _822 = vsInput[1].vBlendColorTint;
+	    vec3 _992 = vsInput[1].vNormalOs;
+	    vec4 _993;
+	    vec4 _3398 = _993;
+	    _3398.x = vsInput[1].vTangentUOs_flTangentVSign.x;
+	    _3398.y = vsInput[1].vTangentUOs_flTangentVSign.y;
+	    _3398.z = vsInput[1].vTangentUOs_flTangentVSign.z;
+	    _3398.w = vsInput[1].vTangentUOs_flTangentVSign.w;
+	    _993 = _3398;
+	    vec4 _3421 = vec4(uvec4(g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 255u, (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 65280u) >> uint(8), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 16711680u) >> uint(16), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _991 = _3421;
+	    vec3 _3422 = _3421.xyz;
+	    vec3 _3423 = _3422 * vec3(0.077399380505084991455078125);
+	    vec3 _3426 = pow((_3422 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
+	    float _988;
+	    if (_3421.x <= 0.040449999272823333740234375)
 	    {
-	        _677 = _3409.x;
+	        _988 = _3423.x;
 	    }
 	    else
 	    {
-	        _677 = _3412.x;
+	        _988 = _3426.x;
 	    }
-	    float _678;
-	    if (_3407.y <= 0.040449999272823333740234375)
+	    float _989;
+	    if (_3421.y <= 0.040449999272823333740234375)
 	    {
-	        _678 = _3409.y;
+	        _989 = _3423.y;
 	    }
 	    else
 	    {
-	        _678 = _3412.y;
+	        _989 = _3426.y;
 	    }
-	    float _679;
-	    if (_3407.z <= 0.040449999272823333740234375)
+	    float _990;
+	    if (_3421.z <= 0.040449999272823333740234375)
 	    {
-	        _679 = _3409.z;
+	        _990 = _3423.z;
 	    }
 	    else
 	    {
-	        _679 = _3412.z;
+	        _990 = _3426.z;
 	    }
-	    vec3 _3437 = vec3(_677, _678, _679);
-	    vec4 _3439 = _680;
-	    _3439.x = _3437.x;
-	    _3439.y = _3437.y;
-	    _3439.z = _3437.z;
-	    _680 = _3439;
-	    vec4 _535;
-	    vec4 _3446 = _535;
-	    _3446.x = _3439.x;
-	    _3446.y = _3439.y;
-	    _3446.z = _3439.z;
-	    _3446.w = _3439.w;
-	    _535 = _3446;
-	    mat3x4 _3457 = transpose(gl_WorldToObjectEXT);
-	    mat3 _676;
-	    mat3 _3460 = _676;
-	    _3460[0] = _3457[0].xyz;
-	    _3460[1] = _3457[1].xyz;
-	    _3460[2] = _3457[2].xyz;
-	    _676 = _3460;
-	    vec3 _3469 = normalize(_3460 * _681.xyz);
-	    vec3 _536;
-	    vec3 _3471 = _536;
-	    _3471.x = _3469.x;
-	    _3471.y = _3469.y;
-	    _3471.z = _3469.z;
-	    _536 = _3471;
-	    mat3x4 _3483 = transpose(gl_WorldToObjectEXT);
-	    mat3 _675;
-	    mat3 _3486 = _675;
-	    _3486[0] = _3483[0].xyz;
-	    _3486[1] = _3483[1].xyz;
-	    _3486[2] = _3483[2].xyz;
-	    _675 = _3486;
-	    vec3 _3495 = normalize(_3486 * _682.xyz);
-	    vec4 _534;
-	    vec4 _3497 = _534;
-	    _3497.x = _3495.x;
-	    _3497.y = _3495.y;
-	    _3497.z = _3495.z;
-	    _3497.w = _682.w;
-	    _534 = _3497;
-	    vec4 _3506 = _513.xyxy;
-	    _3506.z = _512.x;
-	    _3506.w = _512.y;
-	    vec4 _537;
-	    vec4 _533 = _537;
-	    vec3 _532 = vec4(vsInput[1].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
-	    vec3 _531 = _3471;
-	    vec4 _530 = _3506;
-	    vec4 _529 = _3446;
-	    vec4 _528 = _3497;
+	    vec3 _3451 = vec3(_988, _989, _990);
+	    vec4 _3453 = _991;
+	    _3453.x = _3451.x;
+	    _3453.y = _3451.y;
+	    _3453.z = _3451.z;
+	    _991 = _3453;
+	    vec4 _846;
+	    vec4 _3460 = _846;
+	    _3460.x = _3453.x;
+	    _3460.y = _3453.y;
+	    _3460.z = _3453.z;
+	    _3460.w = _3453.w;
+	    _846 = _3460;
+	    mat3x4 _3471 = transpose(gl_WorldToObjectEXT);
+	    mat3 _987;
+	    mat3 _3474 = _987;
+	    _3474[0] = _3471[0].xyz;
+	    _3474[1] = _3471[1].xyz;
+	    _3474[2] = _3471[2].xyz;
+	    _987 = _3474;
+	    vec3 _3483 = normalize(_3474 * _992.xyz);
+	    vec3 _847;
+	    vec3 _3485 = _847;
+	    _3485.x = _3483.x;
+	    _3485.y = _3483.y;
+	    _3485.z = _3483.z;
+	    _847 = _3485;
+	    mat3x4 _3497 = transpose(gl_WorldToObjectEXT);
+	    mat3 _986;
+	    mat3 _3500 = _986;
+	    _3500[0] = _3497[0].xyz;
+	    _3500[1] = _3497[1].xyz;
+	    _3500[2] = _3497[2].xyz;
+	    _986 = _3500;
+	    vec3 _3509 = normalize(_3500 * _993.xyz);
+	    vec4 _845;
+	    vec4 _3511 = _845;
+	    _3511.x = _3509.x;
+	    _3511.y = _3509.y;
+	    _3511.z = _3509.z;
+	    _3511.w = _993.w;
+	    _845 = _3511;
+	    vec4 _3520 = _824.xyxy;
+	    _3520.z = _823.x;
+	    _3520.w = _823.y;
+	    vec4 _848;
+	    vec4 _844 = _848;
+	    vec3 _843 = vec4(vsInput[1].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
+	    vec3 _842 = _3485;
+	    vec4 _841 = _3520;
+	    vec4 _840 = _3460;
+	    vec4 _839 = _3511;
 	    if (_g_rtx_material_data_.g_nUVSet1 > 0)
 	    {
-	        vec2 _683;
+	        vec2 _994;
 	        if (_g_rtx_material_data_.g_nUVSet1 == 2)
 	        {
-	            _683 = _3506.zw;
+	            _994 = _3520.zw;
 	        }
 	        else
 	        {
-	            _683 = _3506.xy;
+	            _994 = _3520.xy;
 	        }
-	        vec4 _3528 = _530;
-	        _3528.x = _683.x;
-	        _3528.y = _683.y;
-	        vec4 _3547 = _3528;
-	        _3547.x = dot(_3528.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
-	        _3547.y = dot(_3528.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
-	        _530 = _3547;
+	        vec4 _3542 = _841;
+	        _3542.x = _994.x;
+	        _3542.y = _994.y;
+	        vec4 _3561 = _3542;
+	        _3561.x = dot(_3542.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
+	        _3561.y = dot(_3542.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
+	        _841 = _3561;
 	    }
-	    vec4 _3549 = _529;
-	    vec4 _3551 = _533;
-	    _3551.x = _3549.x;
-	    _3551.y = _3549.y;
-	    _3551.z = _3549.z;
-	    _3551.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3551.x, min(_3551.y, _3551.z)));
-	    _533 = _3551;
-	    _3549.x = _g_rtx_material_data_.g_vColorTint.x;
-	    _3549.y = _g_rtx_material_data_.g_vColorTint.y;
-	    _3549.z = _g_rtx_material_data_.g_vColorTint.z;
-	    vec3 _3580 = _3549.xyz * mix(vec3(1.0), _511.xyz, vec3(_511.w));
-	    vec4 _3582 = _3549;
-	    _3582.x = _3580.x;
-	    _3582.y = _3580.y;
-	    _3582.z = _3580.z;
-	    _529 = _3582;
-	    vec4 _490 = _3551;
-	    vec3 _489 = _532;
-	    vec3 _488 = _531;
-	    vec4 _487 = _530;
-	    vec4 _486 = _3582;
-	    vec4 _485 = _528;
-	    vec2 _510 = vsInput[2].vTexCoord;
-	    vec2 _509 = vsInput[2].vTexCoord2;
-	    vec4 _508 = vsInput[2].vBlendColorTint;
-	    vec3 _672 = vsInput[2].vNormalOs;
-	    vec4 _673;
-	    vec4 _3600 = _673;
-	    _3600.x = vsInput[2].vTangentUOs_flTangentVSign.x;
-	    _3600.y = vsInput[2].vTangentUOs_flTangentVSign.y;
-	    _3600.z = vsInput[2].vTangentUOs_flTangentVSign.z;
-	    _3600.w = vsInput[2].vTangentUOs_flTangentVSign.w;
-	    _673 = _3600;
-	    PackedRtxInstanceData_t_natural_logical _3613;
-	    _3613.nSrgbColor = g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor;
-	    _3613.nTriangleGeometry = g_instanceBuffer._member0[uint(gl_InstanceID)].nTriangleGeometry;
-	    _3613.nMaterialData = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialData;
-	    _3613.nMaterialFlags_nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nMaterialFlags_nInstanceFlags;
-	    _3613.fEmissiveBoost = g_instanceBuffer._member0[uint(gl_InstanceID)].fEmissiveBoost;
-	    _3613.nInstanceFlags = g_instanceBuffer._member0[uint(gl_InstanceID)].nInstanceFlags;
-	    _3613._pad1 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad1;
-	    _3613._pad2 = g_instanceBuffer._member0[uint(gl_InstanceID)]._pad2;
-	    vec4 _3624 = vec4(uvec4(_3613.nSrgbColor & 255u, (_3613.nSrgbColor & 65280u) >> uint(8), (_3613.nSrgbColor & 16711680u) >> uint(16), (_3613.nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
-	    vec4 _671 = _3624;
-	    vec3 _3625 = _3624.xyz;
-	    vec3 _3626 = _3625 * vec3(0.077399380505084991455078125);
-	    vec3 _3629 = pow((_3625 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
-	    float _668;
-	    if (_3624.x <= 0.040449999272823333740234375)
+	    vec4 _3563 = _840;
+	    vec4 _3565 = _844;
+	    _3565.x = _3563.x;
+	    _3565.y = _3563.y;
+	    _3565.z = _3563.z;
+	    _3565.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3565.x, min(_3565.y, _3565.z)));
+	    _844 = _3565;
+	    _3563.x = _g_rtx_material_data_.g_vColorTint.x;
+	    _3563.y = _g_rtx_material_data_.g_vColorTint.y;
+	    _3563.z = _g_rtx_material_data_.g_vColorTint.z;
+	    vec3 _3594 = _3563.xyz * mix(vec3(1.0), _822.xyz, vec3(_822.w));
+	    vec4 _3596 = _3563;
+	    _3596.x = _3594.x;
+	    _3596.y = _3594.y;
+	    _3596.z = _3594.z;
+	    _840 = _3596;
+	    vec4 _801 = _3565;
+	    vec3 _800 = _843;
+	    vec3 _799 = _842;
+	    vec4 _798 = _841;
+	    vec4 _797 = _3596;
+	    vec4 _796 = _839;
+	    vec2 _821 = vsInput[2].vTexCoord;
+	    vec2 _820 = vsInput[2].vTexCoord2;
+	    vec4 _819 = vsInput[2].vBlendColorTint;
+	    vec3 _983 = vsInput[2].vNormalOs;
+	    vec4 _984;
+	    vec4 _3614 = _984;
+	    _3614.x = vsInput[2].vTangentUOs_flTangentVSign.x;
+	    _3614.y = vsInput[2].vTangentUOs_flTangentVSign.y;
+	    _3614.z = vsInput[2].vTangentUOs_flTangentVSign.z;
+	    _3614.w = vsInput[2].vTangentUOs_flTangentVSign.w;
+	    _984 = _3614;
+	    vec4 _3637 = vec4(uvec4(g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 255u, (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 65280u) >> uint(8), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 16711680u) >> uint(16), (g_instanceBuffer._member0[uint(gl_InstanceID)].nSrgbColor & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _982 = _3637;
+	    vec3 _3638 = _3637.xyz;
+	    vec3 _3639 = _3638 * vec3(0.077399380505084991455078125);
+	    vec3 _3642 = pow((_3638 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
+	    float _979;
+	    if (_3637.x <= 0.040449999272823333740234375)
 	    {
-	        _668 = _3626.x;
+	        _979 = _3639.x;
 	    }
 	    else
 	    {
-	        _668 = _3629.x;
+	        _979 = _3642.x;
 	    }
-	    float _669;
-	    if (_3624.y <= 0.040449999272823333740234375)
+	    float _980;
+	    if (_3637.y <= 0.040449999272823333740234375)
 	    {
-	        _669 = _3626.y;
+	        _980 = _3639.y;
 	    }
 	    else
 	    {
-	        _669 = _3629.y;
+	        _980 = _3642.y;
 	    }
-	    float _670;
-	    if (_3624.z <= 0.040449999272823333740234375)
+	    float _981;
+	    if (_3637.z <= 0.040449999272823333740234375)
 	    {
-	        _670 = _3626.z;
+	        _981 = _3639.z;
 	    }
 	    else
 	    {
-	        _670 = _3629.z;
+	        _981 = _3642.z;
 	    }
-	    vec3 _3654 = vec3(_668, _669, _670);
-	    vec4 _3656 = _671;
-	    _3656.x = _3654.x;
-	    _3656.y = _3654.y;
-	    _3656.z = _3654.z;
-	    _671 = _3656;
-	    vec4 _545;
-	    vec4 _3663 = _545;
-	    _3663.x = _3656.x;
-	    _3663.y = _3656.y;
-	    _3663.z = _3656.z;
-	    _3663.w = _3656.w;
-	    _545 = _3663;
-	    mat3x4 _3674 = transpose(gl_WorldToObjectEXT);
-	    mat3 _667;
-	    mat3 _3677 = _667;
-	    _3677[0] = _3674[0].xyz;
-	    _3677[1] = _3674[1].xyz;
-	    _3677[2] = _3674[2].xyz;
-	    _667 = _3677;
-	    vec3 _3686 = normalize(_3677 * _672.xyz);
-	    vec3 _546;
-	    vec3 _3688 = _546;
-	    _3688.x = _3686.x;
-	    _3688.y = _3686.y;
-	    _3688.z = _3686.z;
-	    _546 = _3688;
-	    mat3x4 _3700 = transpose(gl_WorldToObjectEXT);
-	    mat3 _666;
-	    mat3 _3703 = _666;
-	    _3703[0] = _3700[0].xyz;
-	    _3703[1] = _3700[1].xyz;
-	    _3703[2] = _3700[2].xyz;
-	    _666 = _3703;
-	    vec3 _3712 = normalize(_3703 * _673.xyz);
-	    vec4 _544;
-	    vec4 _3714 = _544;
-	    _3714.x = _3712.x;
-	    _3714.y = _3712.y;
-	    _3714.z = _3712.z;
-	    _3714.w = _673.w;
-	    _544 = _3714;
-	    vec4 _3723 = _510.xyxy;
-	    _3723.z = _509.x;
-	    _3723.w = _509.y;
-	    vec4 _547;
-	    vec4 _543 = _547;
-	    vec3 _542 = vec4(vsInput[2].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
-	    vec3 _541 = _3688;
-	    vec4 _540 = _3723;
-	    vec4 _539 = _3663;
-	    vec4 _538 = _3714;
+	    vec3 _3667 = vec3(_979, _980, _981);
+	    vec4 _3669 = _982;
+	    _3669.x = _3667.x;
+	    _3669.y = _3667.y;
+	    _3669.z = _3667.z;
+	    _982 = _3669;
+	    vec4 _856;
+	    vec4 _3676 = _856;
+	    _3676.x = _3669.x;
+	    _3676.y = _3669.y;
+	    _3676.z = _3669.z;
+	    _3676.w = _3669.w;
+	    _856 = _3676;
+	    mat3x4 _3687 = transpose(gl_WorldToObjectEXT);
+	    mat3 _978;
+	    mat3 _3690 = _978;
+	    _3690[0] = _3687[0].xyz;
+	    _3690[1] = _3687[1].xyz;
+	    _3690[2] = _3687[2].xyz;
+	    _978 = _3690;
+	    vec3 _3699 = normalize(_3690 * _983.xyz);
+	    vec3 _857;
+	    vec3 _3701 = _857;
+	    _3701.x = _3699.x;
+	    _3701.y = _3699.y;
+	    _3701.z = _3699.z;
+	    _857 = _3701;
+	    mat3x4 _3713 = transpose(gl_WorldToObjectEXT);
+	    mat3 _977;
+	    mat3 _3716 = _977;
+	    _3716[0] = _3713[0].xyz;
+	    _3716[1] = _3713[1].xyz;
+	    _3716[2] = _3713[2].xyz;
+	    _977 = _3716;
+	    vec3 _3725 = normalize(_3716 * _984.xyz);
+	    vec4 _855;
+	    vec4 _3727 = _855;
+	    _3727.x = _3725.x;
+	    _3727.y = _3725.y;
+	    _3727.z = _3725.z;
+	    _3727.w = _984.w;
+	    _855 = _3727;
+	    vec4 _3736 = _821.xyxy;
+	    _3736.z = _820.x;
+	    _3736.w = _820.y;
+	    vec4 _858;
+	    vec4 _854 = _858;
+	    vec3 _853 = vec4(vsInput[2].vPositionOs.xyz, 1.0) * transpose(gl_ObjectToWorldEXT);
+	    vec3 _852 = _3701;
+	    vec4 _851 = _3736;
+	    vec4 _850 = _3676;
+	    vec4 _849 = _3727;
 	    if (_g_rtx_material_data_.g_nUVSet1 > 0)
 	    {
-	        vec2 _674;
+	        vec2 _985;
 	        if (_g_rtx_material_data_.g_nUVSet1 == 2)
 	        {
-	            _674 = _3723.zw;
+	            _985 = _3736.zw;
 	        }
 	        else
 	        {
-	            _674 = _3723.xy;
+	            _985 = _3736.xy;
 	        }
-	        vec4 _3745 = _540;
-	        _3745.x = _674.x;
-	        _3745.y = _674.y;
-	        vec4 _3764 = _3745;
-	        _3764.x = dot(_3745.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
-	        _3764.y = dot(_3745.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
-	        _540 = _3764;
+	        vec4 _3758 = _851;
+	        _3758.x = _985.x;
+	        _3758.y = _985.y;
+	        vec4 _3777 = _3758;
+	        _3777.x = dot(_3758.xy, _g_rtx_material_data_.g_vTexCoordXform0_1.xy) + _g_rtx_material_data_.g_vTexCoordXform0_1.w;
+	        _3777.y = dot(_3758.xy, _g_rtx_material_data_.g_vTexCoordXform1_1.xy) + _g_rtx_material_data_.g_vTexCoordXform1_1.w;
+	        _851 = _3777;
 	    }
-	    vec4 _3766 = _539;
-	    vec4 _3768 = _543;
-	    _3768.x = _3766.x;
-	    _3768.y = _3766.y;
-	    _3768.z = _3766.z;
-	    _3768.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3768.x, min(_3768.y, _3768.z)));
-	    _543 = _3768;
-	    _3766.x = _g_rtx_material_data_.g_vColorTint.x;
-	    _3766.y = _g_rtx_material_data_.g_vColorTint.y;
-	    _3766.z = _g_rtx_material_data_.g_vColorTint.z;
-	    vec3 _3797 = _3766.xyz * mix(vec3(1.0), _508.xyz, vec3(_508.w));
-	    vec4 _3799 = _3766;
-	    _3799.x = _3797.x;
-	    _3799.y = _3797.y;
-	    _3799.z = _3797.z;
-	    _539 = _3799;
-	    vec3 _484 = _542;
-	    vec3 _483 = _541;
-	    vec3 _3830 = ((_494 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_488 * attrs.barycentrics.x)) + (_541 * attrs.barycentrics.y);
-	    bool _3836 = gl_HitKindEXT == 254u;
-	    vec3 _548;
-	    vec3 _549;
-	    vec4 _507 = ((_496 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_490 * attrs.barycentrics.x)) + (_3768 * attrs.barycentrics.y);
-	    vec3 _506 = _549;
-	    vec3 _505 = _3830;
-	    vec4 _504 = ((_493 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_487 * attrs.barycentrics.x)) + (_540 * attrs.barycentrics.y);
-	    vec4 _503 = ((_492 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_486 * attrs.barycentrics.x)) + (_3799 * attrs.barycentrics.y);
-	    vec4 _502 = ((_491 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_485 * attrs.barycentrics.x)) + (_538 * attrs.barycentrics.y);
-	    bool _501 = _3836;
-	    vec3 _558 = _548;
-	    vec3 _557 = normalize(cross(_489 - _495, _542 - _495));
-	    bool _556 = _3836;
-	    vec3 _567 = vec3(0.5);
-	    vec2 _566 = vec2(0.5);
-	    float _565 = 0.0;
-	    vec3 _564 = vec3(0.0);
-	    float _563 = 0.039999999105930328369140625;
-	    vec3 _562 = vec3(0.0);
-	    vec3 _560 = vec3(1.0);
-	    bool _559 = false;
-	    vec3 _3875 = _3830.xyz;
-	    vec3 _561 = _3875;
-	    if (dot(_3875, _3875) >= 1.0099999904632568359375)
+	    vec4 _3779 = _850;
+	    vec4 _3781 = _854;
+	    _3781.x = _3779.x;
+	    _3781.y = _3779.y;
+	    _3781.z = _3779.z;
+	    _3781.w = _g_rtx_material_data_.g_flModelTintAmount * (1.0 - min(_3781.x, min(_3781.y, _3781.z)));
+	    _854 = _3781;
+	    _3779.x = _g_rtx_material_data_.g_vColorTint.x;
+	    _3779.y = _g_rtx_material_data_.g_vColorTint.y;
+	    _3779.z = _g_rtx_material_data_.g_vColorTint.z;
+	    vec3 _3810 = _3779.xyz * mix(vec3(1.0), _819.xyz, vec3(_819.w));
+	    vec4 _3812 = _3779;
+	    _3812.x = _3810.x;
+	    _3812.y = _3810.y;
+	    _3812.z = _3810.z;
+	    _850 = _3812;
+	    vec3 _795 = _853;
+	    vec3 _794 = _852;
+	    vec3 _3843 = ((_805 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_799 * attrs.barycentrics.x)) + (_852 * attrs.barycentrics.y);
+	    bool _3849 = gl_HitKindEXT == 254u;
+	    vec3 _859;
+	    vec3 _860;
+	    vec4 _818 = ((_807 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_801 * attrs.barycentrics.x)) + (_3781 * attrs.barycentrics.y);
+	    vec3 _817 = _860;
+	    vec3 _816 = _3843;
+	    vec4 _815 = ((_804 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_798 * attrs.barycentrics.x)) + (_851 * attrs.barycentrics.y);
+	    vec4 _814 = ((_803 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_797 * attrs.barycentrics.x)) + (_3812 * attrs.barycentrics.y);
+	    vec4 _813 = ((_802 * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_796 * attrs.barycentrics.x)) + (_849 * attrs.barycentrics.y);
+	    bool _812 = _3849;
+	    vec3 _869 = _859;
+	    vec3 _868 = normalize(cross(_800 - _806, _853 - _806));
+	    bool _867 = _3849;
+	    vec3 _878 = vec3(0.5);
+	    vec2 _877 = vec2(0.5);
+	    float _876 = 0.0;
+	    vec3 _875 = vec3(0.0);
+	    float _874 = 0.039999999105930328369140625;
+	    vec3 _873 = vec3(0.0);
+	    vec3 _871 = vec3(1.0);
+	    bool _870 = false;
+	    vec3 _3888 = _3843.xyz;
+	    vec3 _872 = _3888;
+	    if (dot(_3888, _3888) >= 1.0099999904632568359375)
 	    {
-	        _561 = _558.xyz;
+	        _872 = _869.xyz;
 	    }
-	    _563 = _g_rtx_material_data_.g_flReflectance;
-	    _560 = _557;
-	    bool _664;
+	    _874 = _g_rtx_material_data_.g_flReflectance;
+	    _871 = _868;
+	    bool _975;
 	    if (_g_rtx_material_data_.g_bRenderBackfaceNormals)
 	    {
-	        _664 = !_g_rtx_material_data_.g_bDontFlipBackfaceNormals;
+	        _975 = !_g_rtx_material_data_.g_bDontFlipBackfaceNormals;
 	    }
 	    else
 	    {
-	        _664 = false;
+	        _975 = false;
 	    }
 	    SPIRV_CROSS_BRANCH
-	    if (_664)
+	    if (_975)
 	    {
-	        float _665;
-	        if (_556)
+	        float _976;
+	        if (_867)
 	        {
-	            _665 = 1.0;
+	            _976 = 1.0;
 	        }
 	        else
 	        {
-	            _665 = -1.0;
+	            _976 = -1.0;
 	        }
-	        _561 *= _665;
-	        if (_556)
+	        _872 *= _976;
+	        if (_867)
 	        {
-	            _665 = 1.0;
+	            _976 = 1.0;
 	        }
 	        else
 	        {
-	            _665 = -1.0;
+	            _976 = -1.0;
 	        }
-	        _560 *= _665;
-	        _559 = !_556;
+	        _871 *= _976;
+	        _870 = !_867;
 	    }
-	    vec3 _3909 = _561;
-	    vec3 _3910 = normalize(_3909);
-	    _561 = _3910;
-	    vec4 _555 = _507;
-	    vec3 _554 = _506;
-	    vec3 _553 = _505;
-	    vec4 _552 = _504;
-	    vec4 _551 = _503;
-	    bool _550 = _501;
-	    vec3 _601 = _3910;
-	    vec3 _600 = _567;
-	    vec2 _599 = _566;
-	    float _598 = _565;
-	    vec3 _597 = _564;
-	    float _596 = _563;
-	    vec3 _595 = _562;
-	    vec3 _594 = _3910;
-	    vec3 _593 = _560;
-	    bool _592 = _559;
-	    bool _662;
+	    vec3 _3922 = _872;
+	    vec3 _3923 = normalize(_3922);
+	    _872 = _3923;
+	    vec4 _866 = _818;
+	    vec3 _865 = _817;
+	    vec3 _864 = _816;
+	    vec4 _863 = _815;
+	    vec4 _862 = _814;
+	    bool _861 = _812;
+	    vec3 _912 = _3923;
+	    vec3 _911 = _878;
+	    vec2 _910 = _877;
+	    float _909 = _876;
+	    vec3 _908 = _875;
+	    float _907 = _874;
+	    vec3 _906 = _873;
+	    vec3 _905 = _3923;
+	    vec3 _904 = _871;
+	    bool _903 = _870;
+	    bool _973;
 	    if (_g_rtx_material_data_.g_bRenderBackfaceNormals)
 	    {
-	        _662 = !_g_rtx_material_data_.g_bDontFlipBackfaceNormals;
+	        _973 = !_g_rtx_material_data_.g_bDontFlipBackfaceNormals;
 	    }
 	    else
 	    {
-	        _662 = false;
+	        _973 = false;
 	    }
-	    if (_662)
+	    if (_973)
 	    {
-	        float _663;
-	        if (_550)
+	        float _974;
+	        if (_861)
 	        {
-	            _663 = 1.0;
+	            _974 = 1.0;
 	        }
 	        else
 	        {
-	            _663 = -1.0;
+	            _974 = -1.0;
 	        }
-	        _662 = _663 < 0.0;
+	        _973 = _974 < 0.0;
 	    }
 	    else
 	    {
-	        _662 = false;
+	        _973 = false;
 	    }
-	    vec3 _605 = vec3(0.0);
-	    vec3 _604 = vec3(0.0);
-	    float _660;
-	    if (_502.w > 0.0)
+	    vec3 _916 = vec3(0.0);
+	    vec3 _915 = vec3(0.0);
+	    float _971;
+	    if (_813.w > 0.0)
 	    {
-	        _660 = 1.0;
+	        _971 = 1.0;
 	    }
 	    else
 	    {
-	        _660 = -1.0;
+	        _971 = -1.0;
 	    }
-	    float _3961 = 1.0 / length(_553);
-	    vec3 _606 = _553 * _3961;
-	    vec3 _500 = _502.xyz * _3961;
-	    vec3 _499 = (cross(_553, _502.xyz) * _660) * _3961;
-	    if (_662)
+	    float _3974 = 1.0 / length(_864);
+	    vec3 _917 = _864 * _3974;
+	    vec3 _811 = _813.xyz * _3974;
+	    vec3 _810 = (cross(_864, _813.xyz) * _971) * _3974;
+	    if (_973)
 	    {
-	        _606 *= (-1.0);
+	        _917 *= (-1.0);
 	    }
-	    vec3 _603 = _605 - (_606 * dot(_605, _606));
-	    vec3 _602 = _604 - (_606 * dot(_604, _606));
-	    int _661;
-	    if (dot(_604, cross(_606, _605)) < 0.0)
+	    vec3 _914 = _916 - (_917 * dot(_916, _917));
+	    vec3 _913 = _915 - (_917 * dot(_915, _917));
+	    int _972;
+	    if (dot(_915, cross(_917, _916)) < 0.0)
 	    {
-	        _661 = -1;
+	        _972 = -1;
 	    }
 	    else
 	    {
-	        _661 = 1;
+	        _972 = 1;
 	    }
-	    vec3 _629 = _606;
-	    vec3 _628 = _603;
-	    vec3 _627 = _602;
-	    float _626 = float(_661);
-	    vec3 _590;
-	    vec3 _591;
+	    vec3 _940 = _917;
+	    vec3 _939 = _914;
+	    vec3 _938 = _913;
+	    float _937 = float(_972);
+	    vec3 _901;
+	    vec3 _902;
 	    if (_g_rtx_material_data_.g_nUVSet1 > 1)
 	    {
-	        float _659;
+	        float _970;
 	        if (false)
 	        {
-	            _659 = -1.0;
+	            _970 = -1.0;
 	        }
 	        else
 	        {
-	            _659 = 1.0;
+	            _970 = 1.0;
 	        }
-	        vec2 _3997 = vec2(0.0, -0.0) * _659;
-	        vec3 _607 = (_628 * _3997.x) + (_627 * _3997.y);
-	        float _4005 = abs(0.0);
-	        if (_4005 > 0.0)
+	        vec2 _4011 = vec2(0.0, -0.0) * _970;
+	        vec3 _918 = (_939 * _4011.x) + (_938 * _4011.y);
+	        float _4019 = abs(0.0);
+	        if (_4019 > 0.0)
 	        {
-	            _607 = normalize(_607);
+	            _918 = normalize(_918);
 	        }
-	        _591 = _607;
-	        _590 = cross(_629, _607) * (_659 * _626);
-	    }
-	    vec2 _589 = vec2(0.0);
-	    vec2 _588 = vec2(0.0);
-	    vec2 _587 = vec2(0.0);
-	    vec2 _586 = vec2(0.0);
-	    vec2 _585 = vec2(0.0);
-	    vec2 _584 = vec2(0.0);
-	    vec2 _583 = vec2(0.0);
-	    ivec2 _582 = ivec2(0);
-	    ivec2 _581 = ivec2(0);
-	    if (_g_rtx_material_data_.g_nUVSet1 == 0)
-	    {
-	        vec3 _4025 = abs(_594);
-	        vec3 _654 = _4025;
-	        float _4026 = _4025.x;
-	        float _4027 = _4025.y;
-	        bool _655;
-	        if (_4026 > _4027)
-	        {
-	            _655 = _4026 > _4025.z;
-	        }
-	        else
-	        {
-	            _655 = false;
-	        }
-	        ivec3 _656;
-	        if (_655)
-	        {
-	            _656 = ivec3(0, 1, 2);
-	        }
-	        else
-	        {
-	            if (_4027 > _4025.z)
-	            {
-	                _656 = ivec3(1, 2, 0);
-	            }
-	            else
-	            {
-	                _656 = ivec3(2, 0, 1);
-	            }
-	        }
-	        if (_4026 < _4027)
-	        {
-	            _655 = _4026 < _4025.z;
-	        }
-	        else
-	        {
-	            _655 = false;
-	        }
-	        ivec3 _657;
-	        if (_655)
-	        {
-	            _657 = ivec3(0, 1, 2);
-	        }
-	        else
-	        {
-	            if (_4027 < _4025.z)
-	            {
-	                _657 = ivec3(1, 2, 0);
-	            }
-	            else
-	            {
-	                _657 = ivec3(2, 0, 1);
-	            }
-	        }
-	        ivec3 _4061 = (ivec3(3) - _657) - _656;
-	        ivec2 _658;
-	        if (_656.x == 1)
-	        {
-	            _658 = _656.zy;
-	        }
-	        else
-	        {
-	            _658 = _656.yz;
-	        }
-	        ivec2 _4073 = _582;
-	        _4073.x = _658.x;
-	        _4073.y = _658.y;
-	        _582 = _4073;
-	        int _4077 = _4061.x;
-	        if (_4077 == 1)
-	        {
-	            _658 = _4061.zy;
-	        }
-	        else
-	        {
-	            _658 = _4061.yz;
-	        }
-	        ivec2 _4086 = _581;
-	        _4086.x = _658.x;
-	        _4086.y = _658.y;
-	        _581 = _4086;
-	        vec2 _4097 = clamp((vec2(_654[_656.x], _654[_4077]) - vec2(0.577300012111663818359375)) * vec2(2.365744113922119140625), vec2(0.0), vec2(1.0));
-	        _583 = _4097 / vec2(_4097.x + _4097.y);
-	        vec3 _645 = _554 * _g_rtx_material_data_.g_vBiplanarTexCoordScale.xyz;
-	        _589 = vec2(_645[_582.x], _645[_582.y]);
-	        vec3 _646 = vec3(0.0);
-	        vec3 _647 = vec3(0.0);
-	        _587 = vec2(_646[_582.x], _647[_582.y]);
-	        vec3 _648 = vec3(0.0);
-	        vec3 _649 = vec3(0.0);
-	        _586 = vec2(_648[_582.x], _649[_582.y]);
-	        _588 = vec2(_645[_4086.x], _645[_4086.y]);
-	        vec3 _650 = vec3(0.0);
-	        vec3 _651 = vec3(0.0);
-	        _585 = vec2(_650[_4086.x], _651[_4086.y]);
-	        vec3 _652 = vec3(0.0);
-	        vec3 _653 = vec3(0.0);
-	        _584 = vec2(_652[_4086.x], _653[_4086.y]);
-	    }
-	    vec4 _580 = vec4(0.0);
-	    vec3 _579 = vec3(0.0);
-	    vec4 _576 = vec4(0.0);
-	    float _575 = 0.0;
-	    float _574 = 0.0;
-	    float _573 = 0.0;
-	    vec3 _4155 = vec3(0.0);
-	    _4155.x = _552.x;
-	    _4155.y = _552.y;
-	    vec3 _578 = _4155;
-	    vec2 _577 = _g_rtx_material_data_.g_vTexCoordScale1.xy;
-	    vec2 _614 = _589;
-	    vec2 _613 = _588;
-	    vec2 _612 = _587;
-	    vec2 _611 = _586;
-	    vec2 _610 = _585;
-	    vec2 _609 = _584;
-	    vec2 _608 = _583;
-	    vec4 _644;
-	    if (_g_rtx_material_data_.g_nUVSet1 == 0)
-	    {
-	        vec2 _4182 = _614;
-	        vec2 _4183 = _4182 * _577;
-	        _614 = _4183;
-	        vec2 _4184 = _612;
-	        vec2 _4185 = _4184 * _577;
-	        _612 = _4185;
-	        vec2 _4186 = _611;
-	        vec2 _4187 = _4186 * _577;
-	        _611 = _4187;
-	        vec2 _4188 = _613;
-	        vec2 _4189 = _4188 * _577;
-	        _613 = _4189;
-	        vec2 _4190 = _610;
-	        vec2 _4191 = _4190 * _577;
-	        _610 = _4191;
-	        vec2 _4192 = _609;
-	        vec2 _4193 = _4192 * _577;
-	        _609 = _4193;
-	        _644 = (textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _4183.xy, _4185.xy, _4187.xy) * _608.x) + (textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _4189.xy, _4191.xy, _4193.xy) * _608.y);
+	        _902 = _918;
+	        _901 = cross(_940, _918) * (_970 * _937);
 	    }
 	    else
 	    {
-	        _644 = textureLod(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _578.xy, 0.0).xyzw;
+	        _902 = vec3(0.0);
+	        _901 = vec3(0.0);
 	    }
-	    _574 = _644.y;
-	    _575 = _644.w;
-	    vec3 _572 = _594;
-	    vec3 _571 = _500;
-	    vec3 _570 = _499;
-	    vec3 _569 = _591;
-	    vec3 _568 = _590;
-	    vec2 _625 = _589;
-	    vec2 _624 = _588;
-	    vec2 _623 = _587;
-	    vec2 _622 = _586;
-	    vec2 _621 = _585;
-	    vec2 _620 = _584;
-	    vec2 _619 = _583;
-	    ivec2 _618 = _582;
-	    ivec2 _617 = _581;
+	    vec2 _900 = vec2(0.0);
+	    vec2 _899 = vec2(0.0);
+	    vec2 _898 = vec2(0.0);
+	    vec2 _897 = vec2(0.0);
+	    vec2 _896 = vec2(0.0);
+	    vec2 _895 = vec2(0.0);
+	    vec2 _894 = vec2(0.0);
+	    ivec2 _893 = ivec2(0);
+	    ivec2 _892 = ivec2(0);
 	    if (_g_rtx_material_data_.g_nUVSet1 == 0)
 	    {
-	        _625 *= _577;
-	        _623 *= _577;
-	        _622 *= _577;
-	        _624 *= _577;
-	        _621 *= _577;
-	        _620 *= _577;
-	        _579 = _572;
+	        vec3 _4039 = abs(_905);
+	        vec3 _965 = _4039;
+	        float _4040 = _4039.x;
+	        float _4041 = _4039.y;
+	        bool _966;
+	        if (_4040 > _4041)
+	        {
+	            _966 = _4040 > _4039.z;
+	        }
+	        else
+	        {
+	            _966 = false;
+	        }
+	        ivec3 _967;
+	        if (_966)
+	        {
+	            _967 = ivec3(0, 1, 2);
+	        }
+	        else
+	        {
+	            if (_4041 > _4039.z)
+	            {
+	                _967 = ivec3(1, 2, 0);
+	            }
+	            else
+	            {
+	                _967 = ivec3(2, 0, 1);
+	            }
+	        }
+	        if (_4040 < _4041)
+	        {
+	            _966 = _4040 < _4039.z;
+	        }
+	        else
+	        {
+	            _966 = false;
+	        }
+	        ivec3 _968;
+	        if (_966)
+	        {
+	            _968 = ivec3(0, 1, 2);
+	        }
+	        else
+	        {
+	            if (_4041 < _4039.z)
+	            {
+	                _968 = ivec3(1, 2, 0);
+	            }
+	            else
+	            {
+	                _968 = ivec3(2, 0, 1);
+	            }
+	        }
+	        ivec3 _4075 = (ivec3(3) - _968) - _967;
+	        ivec2 _969;
+	        if (_967.x == 1)
+	        {
+	            _969 = _967.zy;
+	        }
+	        else
+	        {
+	            _969 = _967.yz;
+	        }
+	        ivec2 _4087 = _893;
+	        _4087.x = _969.x;
+	        _4087.y = _969.y;
+	        _893 = _4087;
+	        int _4091 = _4075.x;
+	        if (_4091 == 1)
+	        {
+	            _969 = _4075.zy;
+	        }
+	        else
+	        {
+	            _969 = _4075.yz;
+	        }
+	        ivec2 _4100 = _892;
+	        _4100.x = _969.x;
+	        _4100.y = _969.y;
+	        _892 = _4100;
+	        vec2 _4111 = saturate((vec2(_965[_967.x], _965[_4091]) - vec2(0.577300012111663818359375)) * vec2(2.365744113922119140625));
+	        _894 = _4111 / vec2(_4111.x + _4111.y);
+	        vec3 _956 = _865 * _g_rtx_material_data_.g_vBiplanarTexCoordScale.xyz;
+	        _900 = vec2(_956[_893.x], _956[_893.y]);
+	        vec3 _957 = vec3(0.0);
+	        vec3 _958 = vec3(0.0);
+	        _898 = vec2(_957[_893.x], _958[_893.y]);
+	        vec3 _959 = vec3(0.0);
+	        vec3 _960 = vec3(0.0);
+	        _897 = vec2(_959[_893.x], _960[_893.y]);
+	        _899 = vec2(_956[_4100.x], _956[_4100.y]);
+	        vec3 _961 = vec3(0.0);
+	        vec3 _962 = vec3(0.0);
+	        _896 = vec2(_961[_4100.x], _962[_4100.y]);
+	        vec3 _963 = vec3(0.0);
+	        vec3 _964 = vec3(0.0);
+	        _895 = vec2(_963[_4100.x], _964[_4100.y]);
+	    }
+	    vec4 _891 = vec4(0.0);
+	    vec3 _890 = vec3(0.0);
+	    vec4 _887 = vec4(0.0);
+	    float _886 = 0.0;
+	    float _885 = 0.0;
+	    float _884 = 0.0;
+	    vec3 _4169 = vec3(0.0);
+	    _4169.x = _863.x;
+	    _4169.y = _863.y;
+	    vec3 _889 = _4169;
+	    vec2 _888 = _g_rtx_material_data_.g_vTexCoordScale1.xy;
+	    vec2 _925 = _900;
+	    vec2 _924 = _899;
+	    vec2 _923 = _898;
+	    vec2 _922 = _897;
+	    vec2 _921 = _896;
+	    vec2 _920 = _895;
+	    vec2 _919 = _894;
+	    vec4 _955;
+	    if (_g_rtx_material_data_.g_nUVSet1 == 0)
+	    {
+	        vec2 _4194 = _925;
+	        vec2 _4195 = _4194 * _888;
+	        _925 = _4195;
+	        vec2 _4196 = _923;
+	        vec2 _4197 = _4196 * _888;
+	        _923 = _4197;
+	        vec2 _4198 = _922;
+	        vec2 _4199 = _4198 * _888;
+	        _922 = _4199;
+	        vec2 _4200 = _924;
+	        vec2 _4201 = _4200 * _888;
+	        _924 = _4201;
+	        vec2 _4202 = _921;
+	        vec2 _4203 = _4202 * _888;
+	        _921 = _4203;
+	        vec2 _4204 = _920;
+	        vec2 _4205 = _4204 * _888;
+	        _920 = _4205;
+	        _955 = (textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _4195.xy, _4197.xy, _4199.xy) * _919.x) + (textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _4201.xy, _4203.xy, _4205.xy) * _919.y);
+	    }
+	    else
+	    {
+	        _955 = textureLod(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tHeight1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _889.xy, 0.0).xyzw;
+	    }
+	    _885 = _955.y;
+	    _886 = _955.w;
+	    vec3 _883 = _905;
+	    vec3 _882 = _811;
+	    vec3 _881 = _810;
+	    vec3 _880 = _902;
+	    vec3 _879 = _901;
+	    vec2 _936 = _900;
+	    vec2 _935 = _899;
+	    vec2 _934 = _898;
+	    vec2 _933 = _897;
+	    vec2 _932 = _896;
+	    vec2 _931 = _895;
+	    vec2 _930 = _894;
+	    ivec2 _929 = _893;
+	    ivec2 _928 = _892;
+	    if (_g_rtx_material_data_.g_nUVSet1 == 0)
+	    {
+	        _936 *= _888;
+	        _934 *= _888;
+	        _933 *= _888;
+	        _935 *= _888;
+	        _932 *= _888;
+	        _931 *= _888;
+	        _890 = _883;
 	        if (true)
 	        {
-	            _580 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _625.xy, _623.xy, _622.xy) * _619.x;
+	            _891 = textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _936.xy, _934.xy, _933.xy) * _930.x;
 	        }
 	        if (true)
 	        {
-	            vec4 _4382 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _625.xy, _623.xy, _622.xy);
-	            _573 = _4382.z * _619.x;
+	            vec4 _4382 = textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _936.xy, _934.xy, _933.xy);
+	            _884 = _4382.z * _930.x;
 	            float _4387 = _4382.x;
 	            float _4388 = _4382.y;
 	            float _4390 = (_4387 + _4388) - 1.00392162799835205078125;
 	            float _4391 = _4387 - _4388;
-	            vec3 _4401 = normalize(vec3(vec2(_4390, _4391), (1.0 - abs(_4390)) - abs(_4391))).xyz * _619.x;
+	            vec3 _4401 = normalize(vec3(vec2(_4390, _4391), (1.0 - abs(_4390)) - abs(_4391))).xyz * _930.x;
 	            vec4 _4403;
 	            _4403.x = _4401.x;
 	            _4403.y = _4401.y;
 	            vec4 _4407 = _4403;
 	            _4407.z = _4401.z;
-	            _579 = (_417[_618.x] * _4403.x) + (_421[_618.y] * _4403.y);
+	            _890 = (_727[_929.x] * _4403.x) + (_731[_929.y] * _4403.y);
 	        }
-	        if (_619.y > 0.0)
+	        if (_930.y > 0.0)
 	        {
 	            if (true)
 	            {
-	                _580 += (textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _624.xy, _621.xy, _620.xy) * _619.y);
+	                _891 += (textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _935.xy, _932.xy, _931.xy) * _930.y);
 	            }
 	            if (true)
 	            {
-	                vec4 _4459 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _624.xy, _621.xy, _620.xy);
-	                _573 += (_4459.z * _619.y);
-	                float _4466 = _4459.x;
-	                float _4467 = _4459.y;
-	                float _4469 = (_4466 + _4467) - 1.00392162799835205078125;
-	                float _4470 = _4466 - _4467;
-	                vec3 _4480 = normalize(vec3(vec2(_4469, _4470), (1.0 - abs(_4469)) - abs(_4470))).xyz * _619.y;
-	                vec4 _4482;
-	                _4482.x = _4480.x;
-	                _4482.y = _4480.y;
-	                vec4 _4486 = _4482;
-	                _4486.z = _4480.z;
-	                _579 += ((_417[_617.x] * _4482.x) + (_421[_617.y] * _4482.y));
+	                vec4 _4455 = textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _935.xy, _932.xy, _931.xy);
+	                _884 += (_4455.z * _930.y);
+	                float _4462 = _4455.x;
+	                float _4463 = _4455.y;
+	                float _4465 = (_4462 + _4463) - 1.00392162799835205078125;
+	                float _4466 = _4462 - _4463;
+	                vec3 _4476 = normalize(vec3(vec2(_4465, _4466), (1.0 - abs(_4465)) - abs(_4466))).xyz * _930.y;
+	                vec4 _4478;
+	                _4478.x = _4476.x;
+	                _4478.y = _4476.y;
+	                vec4 _4482 = _4478;
+	                _4482.z = _4476.z;
+	                _890 += ((_727[_928.x] * _4478.x) + (_731[_928.y] * _4478.y));
 	            }
 	        }
-	        _579 = normalize(_579 + _572);
+	        _890 = normalize(_890 + _883);
 	    }
 	    else
 	    {
 	        if (true)
 	        {
-	            _580 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _578.xy, _576.xy, _576.zw).xyzw;
+	            _891 = textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tColor1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _889.xy, _887.xy, _887.zw).xyzw;
 	        }
 	        if (true)
 	        {
-	            vec4 _4273 = textureGrad(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig]), _578.xy, _576.xy, _576.zw);
-	            vec3 _4274 = _4273.xyz;
-	            _573 = _4273.z;
-	            float _4276 = _4273.x;
-	            float _4277 = _4273.y;
-	            float _4279 = (_4276 + _4277) - 1.00392162799835205078125;
-	            float _4280 = _4276 - _4277;
-	            vec3 _4287 = normalize(vec3(vec2(_4279, _4280), (1.0 - abs(_4279)) - abs(_4280)));
-	            _4274.x = _4287.x;
-	            _4274.y = _4287.y;
-	            _4274.z = _4287.z;
-	            vec3 _4300 = _4274;
-	            _4300.x = dot(_4274.xy, _g_rtx_material_data_.g_vNormalXform_1.xy);
-	            _4300.y = dot(_4274.xy, _g_rtx_material_data_.g_vNormalXform_1.zw);
-	            vec3 _643 = _4300;
-	            vec3 _615;
-	            vec3 _616;
+	            vec4 _4277 = textureGrad(nonuniformEXT(sampler2D(g_bindless_Texture2D_float4[_g_rtx_material_data_.g_tNormal1], g_bindless_Sampler[_g_rtx_material_data_.g_sUserConfig])), _889.xy, _887.xy, _887.zw);
+	            vec3 _4278 = _4277.xyz;
+	            _884 = _4277.z;
+	            float _4280 = _4277.x;
+	            float _4281 = _4277.y;
+	            float _4283 = (_4280 + _4281) - 1.00392162799835205078125;
+	            float _4284 = _4280 - _4281;
+	            vec3 _4291 = normalize(vec3(vec2(_4283, _4284), (1.0 - abs(_4283)) - abs(_4284)));
+	            _4278.x = _4291.x;
+	            _4278.y = _4291.y;
+	            _4278.z = _4291.z;
+	            vec3 _4304 = _4278;
+	            _4304.x = dot(_4278.xy, _g_rtx_material_data_.g_vNormalXform_1.xy);
+	            _4304.y = dot(_4278.xy, _g_rtx_material_data_.g_vNormalXform_1.zw);
+	            vec3 _954 = _4304;
+	            vec3 _926;
+	            vec3 _927;
 	            if (_g_rtx_material_data_.g_nUVSet1 > 1)
 	            {
-	                _616 = _569;
-	                _615 = _568;
+	                _927 = _880;
+	                _926 = _879;
 	            }
 	            else
 	            {
-	                _616 = _571;
-	                _615 = _570;
+	                _927 = _882;
+	                _926 = _881;
 	            }
-	            vec3 _4312 = abs(_643.xyz);
-	            vec2 _4325 = (-vec2(_643.x, (-1.0) * _643.y)) / vec2(max(_4312.z, 0.0078125 * max(_4312.x, _4312.y)));
-	            _579 = normalize(_629 - ((_616 * _4325.x) + (_615 * _4325.y)));
+	            vec3 _4316 = abs(_954.xyz);
+	            vec2 _4329 = (-vec2(_954.x, (-1.0) * _954.y)) / vec2(max(_4316.z, 0.0078125 * max(_4316.x, _4316.y)));
+	            _890 = normalize(_940 - ((_927 * _4329.x) + (_926 * _4329.y)));
 	        }
 	    }
 	    if (true)
 	    {
-	        _579 = normalize(_579);
-	        _573 = saturate(_573);
+	        _890 = normalize(_890);
+	        _884 = saturate(_884);
 	    }
-	    vec4 _638;
+	    vec4 _949;
 	    if (false)
 	    {
-	        _638 = vec4((vec4(_580.xyz, 1.0) * _g_rtx_material_data_.g_mTextureAdjust1).xyz, _580.w);
+	        _949 = vec4((vec4(_891.xyz, 1.0) * _g_rtx_material_data_.g_mTextureAdjust1).xyz, _891.w);
 	    }
 	    else
 	    {
-	        _638 = _580;
+	        _949 = _891;
 	    }
-	    vec4 _4529 = _638;
-	    float _4531 = _574;
-	    float _4532 = saturate(_4531);
-	    _574 = _4532;
-	    vec3 _4536 = mix(_4529.xyz, vec4((vec4(_580.xyz, 1.0) * _g_rtx_material_data_.g_mTextureColorAdjust1).xyz, _478).xyz, vec3(_4532));
-	    vec4 _4538 = _4529;
-	    _4538.x = _4536.x;
-	    _4538.y = _4536.y;
-	    _4538.z = _4536.z;
-	    float _4548 = dot(_4538.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125));
-	    vec3 _4551 = normalize(max(_555.xyz, vec3(0.001000000047497451305389404296875)));
-	    vec4 _4570 = vec4(clamp(mix(_4538.xyz, (_4551 * min(_4548 / dot(_4551.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _4548) * max(_555.x, max(_555.y, _555.z)))).xyz, vec3(_555.w * _4532)), vec3(0.0), vec3(1.0)).xyz, _4538.w);
-	    _580 = _4570;
-	    _601 = _579.xyz;
-	    _600 = _4570.xyz;
-	    vec2 _4575 = _599;
-	    _4575.x = _573;
-	    _598 = _575;
-	    vec2 _4578 = _4575;
-	    _4578.x = _4575.x;
-	    _4578.y = _4575.x;
-	    _599 = _4578;
-	    vec3 _4588 = _600;
-	    vec3 _4589 = _4588 * mix(vec3(1.0), _551.xyz, vec3(saturate(_574)));
-	    _600 = _4589;
+	    vec4 _4525 = _949;
+	    float _4527 = _885;
+	    float _4528 = saturate(_4527);
+	    _885 = _4528;
+	    vec3 _4532 = mix(_4525.xyz, vec4((vec4(_891.xyz, 1.0) * _g_rtx_material_data_.g_mTextureColorAdjust1).xyz, _789).xyz, vec3(_4528));
+	    vec4 _4534 = _4525;
+	    _4534.x = _4532.x;
+	    _4534.y = _4532.y;
+	    _4534.z = _4532.z;
+	    float _4544 = dot(_4534.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125));
+	    vec3 _4547 = normalize(max(_866.xyz, vec3(0.001000000047497451305389404296875)));
+	    vec4 _4566 = vec4(saturate(mix(_4534.xyz, (_4547 * min(_4544 / dot(_4547.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _4544) * max(_866.x, max(_866.y, _866.z)))).xyz, vec3(_866.w * _4528))).xyz, _4534.w);
+	    _891 = _4566;
+	    _912 = _890.xyz;
+	    _911 = _4566.xyz;
+	    vec2 _4571 = _910;
+	    _4571.x = _884;
+	    _909 = _886;
+	    vec2 _4574 = _4571;
+	    _4574.x = _4571.x;
+	    _4574.y = _4571.x;
+	    _910 = _4574;
+	    vec3 _4584 = _911;
+	    vec3 _4585 = _4584 * mix(vec3(1.0), _862.xyz, vec3(saturate(_885)));
+	    _911 = _4585;
 	    payload.nInstance = int(uint(gl_InstanceID));
 	    payload.flHitT = gl_RayTmaxEXT;
-	    payload.vFaceNormalWs = _593;
-	    payload.vInterpolatedNormalWs = _594;
-	    vec3 _636[3] = vec3[](_495, _489, _484);
-	    vec3 _637[3] = vec3[](_494, _488, _483);
-	    vec3 _4630 = ((_636[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_636[1] * attrs.barycentrics.x)) + (_636[2] * attrs.barycentrics.y);
-	    vec3 _630[3];
-	    _630[0] = _4630 - (_637[0] * dot(_4630 - _636[0], _637[0]));
-	    _630[1] = _4630 - (_637[1] * dot(_4630 - _636[1], _637[1]));
-	    _630[2] = _4630 - (_637[2] * dot(_4630 - _636[2], _637[2]));
-	    vec3 _4670 = ((_630[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_630[1] * attrs.barycentrics.x)) + (_630[2] * attrs.barycentrics.y);
-	    vec3 _631[3];
-	    _631[0] = cross(_636[0] - _636[1], _593);
-	    _631[1] = cross(_636[1] - _636[2], _593);
-	    _631[2] = cross(_636[2] - _636[0], _593);
-	    float _632 = dot(_4670 - _4630, _593);
-	    vec3 _633 = _4670;
-	    int _634 = 0;
+	    payload.vFaceNormalWs = _904;
+	    payload.vInterpolatedNormalWs = _905;
+	    vec3 _947[3] = vec3[](_806, _800, _795);
+	    vec3 _948[3] = vec3[](_805, _799, _794);
+	    vec3 _4626 = ((_947[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_947[1] * attrs.barycentrics.x)) + (_947[2] * attrs.barycentrics.y);
+	    vec3 _941[3];
+	    _941[0] = _4626 - (_948[0] * dot(_4626 - _947[0], _948[0]));
+	    _941[1] = _4626 - (_948[1] * dot(_4626 - _947[1], _948[1]));
+	    _941[2] = _4626 - (_948[2] * dot(_4626 - _947[2], _948[2]));
+	    vec3 _4666 = ((_941[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_941[1] * attrs.barycentrics.x)) + (_941[2] * attrs.barycentrics.y);
+	    vec3 _942[3];
+	    _942[0] = cross(_947[0] - _947[1], _904);
+	    _942[1] = cross(_947[1] - _947[2], _904);
+	    _942[2] = cross(_947[2] - _947[0], _904);
+	    float _943 = dot(_4666 - _4626, _904);
+	    vec3 _944 = _4666;
+	    int _945 = 0;
 	    for (;;)
 	    {
-	        bool _4686_ladder_break = false;
+	        bool _4682_ladder_break = false;
 	        do
 	        {
-	            if (!(_634 < 3))
+	            if (!(_945 < 3))
 	            {
-	                _4686_ladder_break = true;
+	                _4682_ladder_break = true;
 	                break;
 	            }
-	            if (_632 > 0.00999999977648258209228515625)
+	            if (_943 > 0.00999999977648258209228515625)
 	            {
-	                _4686_ladder_break = true;
+	                _4682_ladder_break = true;
 	                break;
 	            }
-	            if (dot(_631[_634], _631[_634]) == 0.0)
+	            if (dot(_942[_945], _942[_945]) == 0.0)
 	            {
 	                break;
 	            }
-	            _631[_634] = normalize(_631[_634]);
-	            int _635 = 0;
+	            _942[_945] = normalize(_942[_945]);
+	            int _946 = 0;
 	            for (;;)
 	            {
-	                if (!(_635 < 3))
+	                if (!(_946 < 3))
 	                {
 	                    break;
 	                }
-	                vec3 _4724 = _637[_635] - (_631[_634] * dot(_631[_634], _637[_635]));
-	                _630[_635] = _4630 - (_4724 * dot(_4630 - _636[_635], _4724));
-	                _635++;
+	                vec3 _4720 = _948[_946] - (_942[_945] * dot(_942[_945], _948[_946]));
+	                _941[_946] = _4626 - (_4720 * dot(_4626 - _947[_946], _4720));
+	                _946++;
 	                continue;
 	            }
-	            vec3 _4748 = ((_630[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_630[1] * attrs.barycentrics.x)) + (_630[2] * attrs.barycentrics.y);
-	            _632 = dot(_4748 - _4630, _593);
-	            _633 = _4748;
+	            vec3 _4744 = ((_941[0] * ((1.0 - attrs.barycentrics.x) - attrs.barycentrics.y)) + (_941[1] * attrs.barycentrics.x)) + (_941[2] * attrs.barycentrics.y);
+	            _943 = dot(_4744 - _4626, _904);
+	            _944 = _4744;
 	            break;
 	        } while(false);
-	        if (_4686_ladder_break)
+	        if (_4682_ladder_break)
 	        {
 	            break;
 	        }
-	        _634++;
+	        _945++;
 	        continue;
 	    }
-	    if (!(_632 > 0.00999999977648258209228515625))
+	    if (!(_943 > 0.00999999977648258209228515625))
 	    {
-	        _633 = vec3(3.4028234663852885981170418348452e+38);
+	        _944 = vec3(3.4028234663852885981170418348452e+38);
 	    }
-	    payload.vSmoothPositionWs = _633;
-	    payload.bFlippedNormal = _592;
-	    f16vec3 _4761 = f16vec3(vec3(0.0));
-	    payload.material = MaterialDataMinimal_t(_4761, float16_t(0.0), f16vec3(vec3(1.0, 0.0, 1.0)), float16_t(1.0), _4761, float16_t(0.040008544921875), 0u, f16vec4(ivec4(0)));
-	    payload.material.vNormalWs = f16vec3(_601);
-	    payload.material.vAlbedo = f16vec3(_4589);
-	    payload.material.vEmissive = f16vec3(_597);
-	    payload.material.flReflectance = float16_t(_596);
-	    payload.material.flMetalness = float16_t(_598);
-	    payload.material.flRoughness = float16_t(dot(_599, vec2(0.5)));
-	    if (any(greaterThan(_595, vec3(0.0))))
+	    payload.vSmoothPositionWs = _944;
+	    payload.bFlippedNormal = _903;
+	    f16vec3 _4757 = f16vec3(vec3(0.0));
+	    payload.material = MaterialDataMinimal_t(_4757, float16_t(0.0), f16vec3(vec3(1.0, 0.0, 1.0)), float16_t(1.0), _4757, float16_t(0.040008544921875), 0u, f16vec4(ivec4(0)));
+	    payload.material.vNormalWs = f16vec3(_912);
+	    payload.material.vAlbedo = f16vec3(_4585);
+	    payload.material.vEmissive = f16vec3(_908);
+	    payload.material.flReflectance = float16_t(_907);
+	    payload.material.flMetalness = float16_t(_909);
+	    payload.material.flRoughness = float16_t(dot(_910, vec2(0.5)));
+	    if (any(greaterThan(_906, vec3(0.0))))
 	    {
 	        payload.material.nMaterialTypeAndFlags = (payload.material.nMaterialTypeAndFlags & 4294901760u) | 1u;
-	        f16vec3 _4787 = f16vec3(_595);
-	        payload.material.vMaterialBits.x = _4787.x;
-	        payload.material.vMaterialBits.y = _4787.y;
-	        payload.material.vMaterialBits.z = _4787.z;
+	        f16vec3 _4783 = f16vec3(_906);
+	        payload.material.vMaterialBits.x = _4783.x;
+	        payload.material.vMaterialBits.y = _4783.y;
+	        payload.material.vMaterialBits.z = _4783.z;
 	    }
 	}
 	
@@ -4023,14 +3957,14 @@ RTX
 	BoolAttribute(VertexPaintUIPickColor, true);
 	BoolAttribute(GroupDefaultCollapseState_TextureTransform, true);
 	BoolAttribute(GroupDefaultCollapseState_DetailTextureTransform, true);
-	BoolAttribute(HasTexcoordTransform, ((g_nUVSet1>0) && (((g_vTexCoordScale1.x!=1) || (g_vTexCoordScale1.y!=1)) || (g_flTexCoordRotation1!=0))) || 0);
+	BoolAttribute(HasTexcoordTransform, (g_nUVSet1>0 && (g_vTexCoordScale1.x!=1 || g_vTexCoordScale1.y!=1 || g_flTexCoordRotation1!=0)) ? 1 : 0);
 	BoolAttribute(VertexPaintUIAlphaBlendFactor, true);
-	BoolAttribute(VertexPaintUIPuddles, (F_WETNESS==1) || 0);
+	BoolAttribute(VertexPaintUIPuddles, (F_WETNESS==1) ? 1 : 0);
 	BoolAttribute(SupportsAggregateInstancing, true);
 	BoolAttribute(NeedsLightProbe, true);
-	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS || 0);
+	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS ? 1 : 0);
 	BoolAttribute(SupportsMappingDimensions, true);
-	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES || 0);
+	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES ? 1 : 0);
 	
 	#if (S_SHADER_QUALITY == 0)
 		BoolAttribute(alphatest, true);
@@ -4047,7 +3981,7 @@ RTX
 		BoolAttribute(AlphaTestZPrepass, true);
 	#endif
 	#if (S_ALPHA_TEST_LAYER == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_MODE_DEPTH == 0)
 		BoolAttribute(alphatest, true);

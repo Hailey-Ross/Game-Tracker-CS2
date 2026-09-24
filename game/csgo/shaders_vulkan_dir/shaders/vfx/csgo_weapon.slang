@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 16;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, psrs, vs
 }
@@ -101,33 +100,31 @@ VS
 	DynamicCombo( D_BAKED_LIGHTING_FROM_LIGHTMAP, 0..1 );
 	DynamicComboRule( Allow1( D_BAKED_LIGHTING_FROM_VERTEX_STREAM, D_BAKED_LIGHTING_FROM_LIGHTMAP ) );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	ByteAddressBuffer g_animatedVertexCache < Attribute("AnimatedVertexCache"); >;
 	bool g_bStickerProjectionPreview < Attribute("StickerProjectionPreview"); UiType(CheckBox); >;
-	bool g_bTexCoordScaleByModel < UiType(CheckBox); Expression((g_nScaleTexCoordUByModelScaleAxis!=0) || (g_nScaleTexCoordVByModelScaleAxis!=0)); >;
+	bool g_bTexCoordScaleByModel < UiType(CheckBox); Expression(g_nScaleTexCoordUByModelScaleAxis!=0 || g_nScaleTexCoordVByModelScaleAxis!=0); >;
 	float g_flPlayerOcclusionAmount < Attribute("PlayerOcclusionAmount"); UiType(Slider); >;
 	float g_flWeaponOcclusionAmount < Attribute("WeaponOcclusionAmount"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
-	float4 g_vDetailTexCoordXform < UiType(VectorText); Expression(v0 = (g_flDetailTexCoordRotation*3.1415927)/180;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	float4 g_vDetailTexCoordXform < UiType(VectorText); Expression(v0 = g_flDetailTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_vDetailTexCoordScale;
 		v3.xxy*float4(v1,-v2,v2,v1)); >;
 	float3 g_vPlayerOrigin < Attribute("PlayerOcclusionOrigin"); UiType(VectorText); >;
-	float4 g_vTexCoordScaleByModelU < UiType(VectorText); Expression(float4((g_nScaleTexCoordUByModelScaleAxis==1) || 0,(g_nScaleTexCoordUByModelScaleAxis==2) || 0,(g_nScaleTexCoordUByModelScaleAxis==3) || 0,(g_nScaleTexCoordUByModelScaleAxis==0) || 0)); >;
-	float4 g_vTexCoordScaleByModelV < UiType(VectorText); Expression(float4((g_nScaleTexCoordVByModelScaleAxis==1) || 0,(g_nScaleTexCoordVByModelScaleAxis==2) || 0,(g_nScaleTexCoordVByModelScaleAxis==3) || 0,(g_nScaleTexCoordVByModelScaleAxis==0) || 0)); >;
-	float4 g_vTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation*3.1415927)/180;
+	float4 g_vTexCoordScaleByModelU < UiType(VectorText); Expression(float4((g_nScaleTexCoordUByModelScaleAxis==1) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==2) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==3) ? 1 : 0,(g_nScaleTexCoordUByModelScaleAxis==0) ? 1 : 0)); >;
+	float4 g_vTexCoordScaleByModelV < UiType(VectorText); Expression(float4((g_nScaleTexCoordVByModelScaleAxis==1) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==2) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==3) ? 1 : 0,(g_nScaleTexCoordVByModelScaleAxis==0) ? 1 : 0)); >;
+	float4 g_vTexCoordXform0 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vTexCoordScale.x,-v2*g_vTexCoordScale.y,0,((g_vTexCoordCenter.x+g_vTexCoordOffset.x)+(v2*g_vTexCoordCenter.y))-(v1*g_vTexCoordCenter.x))); >;
-	float4 g_vTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_flTexCoordRotation*3.1415927)/180;
+		float4(v1*g_vTexCoordScale.x,-v2*g_vTexCoordScale.y,0,g_vTexCoordCenter.x+g_vTexCoordOffset.x+v2*g_vTexCoordCenter.y-v1*g_vTexCoordCenter.x)); >;
+	float4 g_vTexCoordXform1 < UiType(VectorText); Expression(v0 = g_flTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vTexCoordScale.x,v1*g_vTexCoordScale.y,0,(g_vTexCoordCenter.y+g_vTexCoordOffset.y)-((v2*g_vTexCoordCenter.x)+(v1*g_vTexCoordCenter.y)))); >;
+		float4(v2*g_vTexCoordScale.x,v1*g_vTexCoordScale.y,0,g_vTexCoordCenter.y+g_vTexCoordOffset.y-(v2*g_vTexCoordCenter.x+v1*g_vTexCoordCenter.y))); >;
 	float3 g_vWeaponOcclusionClampMaxs < Attribute("WeaponOcclusionClampMaxs"); UiType(VectorText); >;
 	float3 g_vWeaponOcclusionClampMins < Attribute("WeaponOcclusionClampMins"); UiType(VectorText); >;
 	float3 g_vWeaponOcclusionTestMaxs < Attribute("WeaponOcclusionTestMaxs"); UiType(VectorText); >;
@@ -136,12 +133,12 @@ VS
 	// Detail Texture
 	float2 g_vDetailTexCoordScale < Default2(1, 1); UiType(VectorText); UiGroup("Detail Texture,80/30"); >;
 	float g_flDetailTexCoordRotation < Range(0, 360); UiType(Slider); UiGroup("Detail Texture,80/35"); >;
-	float2 g_vDetailTexCoordOffset < Range2(-1, -1, 1, 1); UiType(VectorText); UiGroup("Detail Texture,80/40"); Expression(v0 = (g_flDetailTexCoordRotation*3.1415927)/180;
+	float2 g_vDetailTexCoordOffset < Range2(-1, -1, 1, 1); UiType(VectorText); UiGroup("Detail Texture,80/40"); Expression(v0 = g_flDetailTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_vDetailTexCoordScale;
 		v4 = this;
-		(((-.5*v3)*float2(v1-v2,v2+v1))+v4)+.5); >;
+		-.5*v3*float2(v1-v2,v2+v1)+v4+.5); >;
 	
 	// Color
 	float3 g_vColorTint < Default3(1, 1, 1); UiType(Color); UiGroup("Color,10/20"); Expression(SrgbGammaToLinear(this)); >;
@@ -166,7 +163,7 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (8856 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -187,33 +184,16 @@ VS
 	    mat3x4 _m0;
 	};
 	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
-	{
-	    mat3x4 _m0;
-	};
-	
 	vec4 _3;
 	
 	layout(set = 4, binding = 32, std430) readonly buffer g_instanceBuffer
 	{
-	    _1126 _m0[];
+	    _1125 _m0[];
 	} g_instanceBuffer_1;
 	
 	layout(set = 4, binding = 30, std430) readonly buffer g_transformBuffer
 	{
-	    _1120 _m0[];
+	    _1119 _m0[];
 	} g_transformBuffer_1;
 	
 	struct _2493
@@ -252,9 +232,9 @@ VS
 	
 	layout(set = 0) uniform _1017 PerViewConstantBufferCsgo_t;
 	
-	layout(location = 0) in vec2 vPositionOs;
-	layout(location = 1) in vec3 vTexCoord;
-	layout(location = 2) in vec2 vTexCoord2;
+	layout(location = 0) in vec2 vTexCoord2;
+	layout(location = 1) in vec3 vPositionOs;
+	layout(location = 2) in vec2 vTexCoord;
 	layout(location = 3) in vec3 vNormalOs;
 	layout(location = 4) in vec4 vTangentUOs_flTangentVSign;
 	layout(location = 5) in uvec4 vBlendIndices;
@@ -270,39 +250,26 @@ VS
 	
 	void main()
 	{
-	    _1125 _20228;
-	    _20228._m0 = g_instanceBuffer_1._m0[nInstanceIdx]._m0;
-	    _20228._m1 = g_instanceBuffer_1._m0[nInstanceIdx]._m1;
-	    _20228._m2 = g_instanceBuffer_1._m0[nInstanceIdx]._m2;
-	    _20228._m3 = g_instanceBuffer_1._m0[nInstanceIdx]._m3;
-	    _20228._m4 = g_instanceBuffer_1._m0[nInstanceIdx]._m4;
-	    _20228._m5 = g_instanceBuffer_1._m0[nInstanceIdx]._m5;
-	    _20228._m6 = g_instanceBuffer_1._m0[nInstanceIdx]._m6;
-	    _20228._m7 = g_instanceBuffer_1._m0[nInstanceIdx]._m7;
-	    uint _16987 = (_20228._m5 >> uint(16)) & 15u;
-	    uint _21709;
-	    if (_16987 == 1u)
+	    uint _13771 = (g_instanceBuffer_1._m0[nInstanceIdx]._m5 >> uint(16)) & 15u;
+	    uint _21785;
+	    if (_13771 == 1u)
 	    {
-	        _21709 = _20228._m1 + (2u + vBlendIndices.x);
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1 + (2u + vBlendIndices.x);
 	    }
 	    else
 	    {
-	        _21709 = _20228._m1;
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1;
 	    }
-	    _1119 _21957;
-	    _21957._m0 = g_transformBuffer_1._m0[_21709]._m0;
-	    vec3 _19321;
-	    if (_16987 > 0u)
+	    vec3 _21709;
+	    if (_13771 > 0u)
 	    {
-	        _1119 _20229;
-	        _20229._m0 = g_transformBuffer_1._m0[_20228._m1]._m0;
-	        _19321 = vec3(_20229._m0[0].z);
+	        _21709 = vec3(g_transformBuffer_1._m0[g_instanceBuffer_1._m0[nInstanceIdx]._m1]._m0[0].z);
 	    }
 	    else
 	    {
-	        _19321 = vec3(1.0);
+	        _21709 = vec3(1.0);
 	    }
-	    vec4 _23812 = vec4(uvec4(_20228._m0 & 255u, (_20228._m0 & 65280u) >> uint(8), (_20228._m0 & 16711680u) >> uint(16), (_20228._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _23812 = vec4(uvec4(g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 255u, (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 65280u) >> uint(8), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 16711680u) >> uint(16), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	    vec3 _6253 = _23812.xyz;
 	    vec3 _17828 = _6253 * vec3(0.077399380505084991455078125);
 	    vec3 _7676 = pow((_6253 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
@@ -334,8 +301,8 @@ VS
 	        _17978 = _7676.z;
 	    }
 	    float _7654 = _23812.w;
-	    vec3 _11179 = normalize(vec4(vNormalOs.xyz, 0.0) * _21957._m0);
-	    vec3 _12151 = vec4(vTexCoord.xyz * _19321.xyz, 1.0) * _21957._m0;
+	    vec3 _11179 = normalize(vec4(vNormalOs.xyz, 0.0) * g_transformBuffer_1._m0[_21785]._m0);
+	    vec3 _12151 = vec4(vPositionOs.xyz * _21709.xyz, 1.0) * g_transformBuffer_1._m0[_21785]._m0;
 	    vec3 _21710;
 	    if (_Globals_.g_flPlayerOcclusionAmount >= 0.9900000095367431640625)
 	    {
@@ -366,9 +333,9 @@ VS
 	    }
 	    vec4 _21447 = PerViewConstantBuffer_t._m2 * 1.0;
 	    vec4 _13593;
-	    _13593.x = dot(vTexCoord2.xy, _Globals_.g_vTexCoordXform0.xy) + _Globals_.g_vTexCoordXform0.w;
-	    _13593.y = dot(vTexCoord2.xy, _Globals_.g_vTexCoordXform1.xy) + _Globals_.g_vTexCoordXform1.w;
-	    vec4 _11399 = vec4(mix(vec3(1.0), vec4(_21354, _21355, _17978, _7654).xyz, vec3(_Globals_.g_flModelTintAmount)), _7654 * _20228._m7);
+	    _13593.x = dot(vTexCoord.xy, _Globals_.g_vTexCoordXform0.xy) + _Globals_.g_vTexCoordXform0.w;
+	    _13593.y = dot(vTexCoord.xy, _Globals_.g_vTexCoordXform1.xy) + _Globals_.g_vTexCoordXform1.w;
+	    vec4 _11399 = vec4(mix(vec3(1.0), vec4(_21354, _21355, _17978, _7654).xyz, vec3(_Globals_.g_flModelTintAmount)), _7654 * g_instanceBuffer_1._m0[nInstanceIdx]._m7);
 	    vec3 _13062 = _11399.xyz * _Globals_.g_vColorTint.xyz;
 	    vec4 _23714 = _11399;
 	    _23714.x = _13062.x;
@@ -378,7 +345,7 @@ VS
 	    vec4 _22186;
 	    if (_Globals_.g_bStickerProjectionPreview != 0)
 	    {
-	        vec3 _11684 = vec3(vec2(vPositionOs.x - 0.5, 0.5 - vPositionOs.y) * 32.0, _19648.y * 0.100000001490116119384765625);
+	        vec3 _11684 = vec3(vec2(vTexCoord2.x - 0.5, 0.5 - vTexCoord2.y) * 32.0, _19648.y * 0.100000001490116119384765625);
 	        _10020 = _11684;
 	        _22186 = (vec4(_11684.xyz, 1.0) + _21447).xyzw * PerViewConstantBuffer_t._m0;
 	    }
@@ -389,14 +356,14 @@ VS
 	    }
 	    vec4 _10630 = _22186;
 	    _10630.z = _22186.z + _Globals_.g_flZBias;
-	    output_0 = vTexCoord;
+	    output_0 = vPositionOs;
 	    output_1 = _10020.xyz - PerViewConstantBufferCsgo_t._m0.xyz;
 	    output_2 = _11179;
-	    output_3 = vec4(_13593.xy + (_Globals_.g_vTexCoordScrollSpeed.xy * PerViewConstantBuffer_t._m1), vPositionOs);
+	    output_3 = vec4(_13593.xy + (_Globals_.g_vTexCoordScrollSpeed.xy * PerViewConstantBuffer_t._m1), vTexCoord2);
 	    output_4 = _23714;
 	    output_5 = _11179;
-	    output_6 = vec4(normalize(vec4(vTangentUOs_flTangentVSign.xyz, 0.0) * _21957._m0), vTangentUOs_flTangentVSign.w);
-	    output_7 = _20228._m5 & 65535u;
+	    output_6 = vec4(normalize(vec4(vTangentUOs_flTangentVSign.xyz, 0.0) * g_transformBuffer_1._m0[_21785]._m0), vTangentUOs_flTangentVSign.w);
+	    output_7 = g_instanceBuffer_1._m0[nInstanceIdx]._m5 & 65535u;
 	    _10630.y = -_22186.y;
 	    gl_Position = _10630;
 	}
@@ -430,9 +397,9 @@ PS
 	StaticCombo( S_STICKERS, F_STICKERS );
 	StaticCombo( S_MODE_DEPTH, 0..1 );
 	StaticCombo( S_OPAQUE_REFRACT, F_OPAQUE_REFRACT );
-	StaticComboRule( Requires( S_ADDITIVE_BLEND, S_MODE_DEPTH=0 ) );
-	StaticComboRule( Requires( S_STICKERS, S_MODE_DEPTH=0 ) );
-	StaticComboRule( Requires( S_OPAQUE_REFRACT, S_MODE_DEPTH=0 ) );
+	StaticComboRule( Requires( S_ADDITIVE_BLEND, S_MODE_DEPTH==0 ) );
+	StaticComboRule( Requires( S_STICKERS, S_MODE_DEPTH==0 ) );
+	StaticComboRule( Requires( S_OPAQUE_REFRACT, S_MODE_DEPTH==0 ) );
 	StaticComboRule( Allow1( S_ENABLE_ADJUSTMENTS, S_ADDITIVE_BLEND ) );
 	StaticComboRule( Allow1( S_ENABLE_ADJUSTMENTS, S_TRANSLUCENT ) );
 	StaticComboRule( Allow1( S_ALPHA_TEST, S_TRANSLUCENT ) );
@@ -447,28 +414,23 @@ PS
 	DynamicCombo( D_MOUSE_TRACE_COORD, 0..1 );
 	DynamicCombo( D_USE_BGREFRACT, 0..1 );
 	DynamicComboRule( Allow1( D_BAKED_LIGHTING_FROM_PROBE, D_BAKED_LIGHTING_FROM_VERTEX_STREAM, D_BAKED_LIGHTING_FROM_LIGHTMAP ) );
-	DynamicComboRule( Requires( D_SPECULAR_CUBE_MAP_STATIC, S_MODE_DEPTH=0 ) );
+	DynamicComboRule( Requires( D_SPECULAR_CUBE_MAP_STATIC, S_MODE_DEPTH==0 ) );
 	DynamicComboRule( Requires( D_USE_BGREFRACT, S_OPAQUE_REFRACT ) );
 	
-	cbuffer BakedLightingConstantBuffer_t < Attribute("BakedLightingConstantBuffer_t"); >;
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightProbeVolumeConstantBuffer_t < Attribute("PerViewLightProbeVolumeConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
 	bool bIridescence < UiType(CheckBox); Expression(F_IRIDESCENCE); >;
-	StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
-	StructuredBuffer g_CullBits < Attribute("CullBits"); >;
+	[[layer_constant]] StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
+	[[layer_constant]] StructuredBuffer g_CullBits < Attribute("CullBits"); >;
 	RWBuffer<float4> g_MouseTraceCoordBuffer < Attribute("MouseTraceCoordBuffer"); >;
 	bool g_bActiveStickerMouseOver < Attribute("ActiveStickerMouseOver"); UiType(CheckBox); >;
 	bool g_bActiveStickerMoving < Attribute("ActiveStickerMoving"); UiType(CheckBox); >;
 	float g_bActiveStickerPeelStartTime < Attribute("ActiveStickerPeelStartTime"); UiType(Slider); >;
 	bool g_bCubemapNormalization < Attribute("g_bCubemapNormalization"); UiType(CheckBox); >;
 	bool g_bDisableNormalMapping < Attribute("g_bDisableNormalMapping"); UiType(CheckBox); >;
-	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS || 0); >;
+	bool g_bDontFlipBackfaceNormals < UiType(CheckBox); Expression(F_DONT_FLIP_BACKFACE_NORMALS ? 1 : 0); >;
 	bool g_bHighlightDeprecated < Attribute("g_bHighlightDeprecated"); UiType(CheckBox); >;
 	bool g_bHoveringOverKeychain < Attribute("HoveringOverKeychain"); UiType(CheckBox); >;
 	bool g_bIsDeprecated < Attribute("bIsDeprecated"); UiType(CheckBox); >;
-	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES && 1) || 0); >;
+	bool g_bRenderBackfaceNormals < UiType(CheckBox); Expression((F_RENDER_BACKFACES ? 1 : 0) ? 1 : 0); >;
 	bool g_bRenderingToCubemaps < Attribute("g_bRenderingToCubemaps"); UiType(CheckBox); >;
 	bool g_bShowLPVVoxels < Attribute("g_bShowLPVVoxels"); UiType(CheckBox); >;
 	bool g_bShowLightmapTexels < Attribute("g_bShowLightmapTexels"); UiType(CheckBox); >;
@@ -488,8 +450,8 @@ PS
 	float g_flRainExposureLocalTimer < Attribute("RainExposureLocalTimer"); UiType(Slider); >;
 	float g_flRainExposureToSkyWetness < Attribute("RainExposureToSkyWetness"); UiType(Slider); >;
 	float g_flSpawnInvulnerability < Attribute("SpawnInvulnerability"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	int g_nActiveStickerApplySlot < Attribute("ActiveStickerApplySlot"); UiType(Slider); >;
 	int g_nDetailBlendMode < UiType(Slider); Expression(F_DETAIL_TEXTURE); >;
 	int g_nMouseTraceCoordInputX < Attribute("MouseTraceCoordInputX"); UiType(Slider); >;
@@ -541,7 +503,7 @@ PS
 	float4 g_vKeychainGhostHandData < Attribute("KeychainGhostHandData"); UiType(VectorText); >;
 	float3 g_vMetallicAlbedoLevels < UiType(VectorText); Expression(float3(-float3(-.45,.4,1.08).x,-1.4427*log(max(.0001,1-float3(-.45,.4,1.08).y)),2-float3(-.45,.4,1.08).z)); >;
 	float3 g_vMouseTraceCoordMovablePosition < Attribute("MouseTraceCoordMovablePos"); UiType(VectorText); >;
-	float3 g_vSelfIllumTintScaled < UiType(VectorText); Expression((pow(2,g_flSelfIllumBrightness).x*g_flSelfIllumScale.x)*SrgbGammaToLinear(g_vSelfIllumTint.xyz)); >;
+	float3 g_vSelfIllumTintScaled < UiType(VectorText); Expression(pow(2,g_flSelfIllumBrightness).x*g_flSelfIllumScale.x*SrgbGammaToLinear(g_vSelfIllumTint.xyz)); >;
 	float4 g_vShaderIDColor < Source(ShaderIDColor); UiType(VectorText); >;
 	
 	// Ambient Occlusion
@@ -565,16 +527,16 @@ PS
 	bool g_bLegacyTintMultiplySticker0 < UiType(CheckBox); UiGroup("Sticker0 / Color / 1"); UiVisibility(1); >;
 	bool g_bPaperBackingSticker0 < UiType(CheckBox); UiGroup("Sticker0 / Wear / 1"); UiVisibility(1); >;
 	bool g_bPreserveRoughnessSticker0 < UiType(CheckBox); UiGroup("Sticker0 / Wear / 1"); UiVisibility(1); >;
-	float2 g_vSticker0Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker0 / Position / 1"); Expression(exists(ATTRIBUTE[eb878242]) ? ATTRIBUTE[eb878242] : this); >;
+	float2 g_vSticker0Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker0 / Position / 1"); Expression(exists(sticker0offset) ? sticker0offset : this); >;
 	CreateInputTexture2D(TextureColorSticker0, Srgb, 8, "", "", "Sticker0 / Color / 2", "materials/default/stickers/sticker_default.psd");
 	CreateInputTexture2D(TextureRoughnessSticker0, Linear, 8, "Inverse", "_rough", "Sticker0 / Lighting / 2", "materials/default/stickers/default_rough.tga");
 	CreateInputTexture2D(TextureWearMaskSticker0, Srgb, 8, "", "", "Sticker0 / Color / 2", "materials/default/stickers/default_wearmask.tga");
 	float g_flSfxColorBoostSticker0 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker0 / SFX / 2"); UiVisibility(1); >;
-	float g_flSticker0Wear < UiType(Slider); UiGroup("Sticker0 / Wear / 2"); Expression(exists(ATTRIBUTE[f86ee6a2]) ? ATTRIBUTE[f86ee6a2] : this); >;
-	float2 g_vSticker0Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker0 / Position / 2"); Expression(exists(ATTRIBUTE[6572f1a0]) ? ATTRIBUTE[6572f1a0] : this); >;
+	float g_flSticker0Wear < UiType(Slider); UiGroup("Sticker0 / Wear / 2"); Expression(exists(sticker0wear) ? sticker0wear : this); >;
+	float2 g_vSticker0Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker0 / Position / 2"); Expression(exists(sticker0scale) ? sticker0scale : this); >;
 	CreateInputTexture2D(TextureHoloMaskSticker0, Linear, 8, "", "_holomask", "Sticker0 / SFX / 3", "materials/default/stickers/default_holomask.tga");
 	float g_flColorBoostSticker0 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker0 / Color / 3"); UiVisibility(1); >;
-	float g_flSticker0Rotation < UiType(Slider); UiGroup("Sticker0 / Position / 3"); Expression(exists(ATTRIBUTE[26dcc04c]) ? ATTRIBUTE[26dcc04c] : this); >;
+	float g_flSticker0Rotation < UiType(Slider); UiGroup("Sticker0 / Position / 3"); Expression(exists(sticker0rotation) ? sticker0rotation : this); >;
 	float2 g_vWearBiasSticker0 < Default2(1, 1); Range2(0.001, -4, 4, 4); UiType(VectorText); UiGroup("Sticker0 / Wear / 3"); >;
 	CreateInputTexture2D(TextureHoloSpectrumSticker0, Srgb, 8, "", "_holospectrum", "Sticker0 / SFX / 4", "materials/default/stickers/default_holospectrum.tga");
 	float g_fWearScratchesSticker0 < Default(1); UiType(Slider); UiGroup("Sticker0 / Wear / 4"); >;
@@ -598,16 +560,16 @@ PS
 	bool g_bLegacyTintMultiplySticker1 < UiType(CheckBox); UiGroup("Sticker1 / Color / 1"); UiVisibility(1); >;
 	bool g_bPaperBackingSticker1 < UiType(CheckBox); UiGroup("Sticker1 / Wear / 1"); UiVisibility(1); >;
 	bool g_bPreserveRoughnessSticker1 < UiType(CheckBox); UiGroup("Sticker1 / Wear / 1"); UiVisibility(1); >;
-	float2 g_vSticker1Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker1 / Position / 1"); Expression(exists(ATTRIBUTE[0ffee8de]) ? ATTRIBUTE[0ffee8de] : this); >;
+	float2 g_vSticker1Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker1 / Position / 1"); Expression(exists(sticker1offset) ? sticker1offset : this); >;
 	CreateInputTexture2D(TextureColorSticker1, Srgb, 8, "", "", "Sticker1 / Color / 2", "materials/default/stickers/sticker_default.psd");
 	CreateInputTexture2D(TextureRoughnessSticker1, Linear, 8, "Inverse", "_rough", "Sticker1 / Lighting / 2", "materials/default/stickers/default_rough.tga");
 	CreateInputTexture2D(TextureWearMaskSticker1, Srgb, 8, "", "", "Sticker1 / Color / 2", "materials/default/stickers/default_wearmask.tga");
 	float g_flSfxColorBoostSticker1 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker1 / SFX / 2"); UiVisibility(1); >;
-	float g_flSticker1Wear < UiType(Slider); UiGroup("Sticker1 / Wear / 2"); Expression(exists(ATTRIBUTE[744686cd]) ? ATTRIBUTE[744686cd] : this); >;
-	float2 g_vSticker1Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker1 / Position / 2"); Expression(exists(ATTRIBUTE[f8d4c28f]) ? ATTRIBUTE[f8d4c28f] : this); >;
+	float g_flSticker1Wear < UiType(Slider); UiGroup("Sticker1 / Wear / 2"); Expression(exists(sticker1wear) ? sticker1wear : this); >;
+	float2 g_vSticker1Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker1 / Position / 2"); Expression(exists(sticker1scale) ? sticker1scale : this); >;
 	CreateInputTexture2D(TextureHoloMaskSticker1, Linear, 8, "", "_holomask", "Sticker1 / SFX / 3", "materials/default/stickers/default_holomask.tga");
 	float g_flColorBoostSticker1 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker1 / Color / 3"); UiVisibility(1); >;
-	float g_flSticker1Rotation < UiType(Slider); UiGroup("Sticker1 / Position / 3"); Expression(exists(ATTRIBUTE[b85ab877]) ? ATTRIBUTE[b85ab877] : this); >;
+	float g_flSticker1Rotation < UiType(Slider); UiGroup("Sticker1 / Position / 3"); Expression(exists(sticker1rotation) ? sticker1rotation : this); >;
 	float2 g_vWearBiasSticker1 < Default2(1, 1); Range2(0.001, -4, 4, 4); UiType(VectorText); UiGroup("Sticker1 / Wear / 3"); >;
 	CreateInputTexture2D(TextureHoloSpectrumSticker1, Srgb, 8, "", "_holospectrum", "Sticker1 / SFX / 4", "materials/default/stickers/default_holospectrum.tga");
 	float g_fWearScratchesSticker1 < Default(1); UiType(Slider); UiGroup("Sticker1 / Wear / 4"); >;
@@ -631,16 +593,16 @@ PS
 	bool g_bLegacyTintMultiplySticker2 < UiType(CheckBox); UiGroup("Sticker2 / Color / 1"); UiVisibility(1); >;
 	bool g_bPaperBackingSticker2 < UiType(CheckBox); UiGroup("Sticker2 / Wear / 1"); UiVisibility(1); >;
 	bool g_bPreserveRoughnessSticker2 < UiType(CheckBox); UiGroup("Sticker2 / Wear / 1"); UiVisibility(1); >;
-	float2 g_vSticker2Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker2 / Position / 1"); Expression(exists(ATTRIBUTE[fa032bc8]) ? ATTRIBUTE[fa032bc8] : this); >;
+	float2 g_vSticker2Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker2 / Position / 1"); Expression(exists(sticker2offset) ? sticker2offset : this); >;
 	CreateInputTexture2D(TextureColorSticker2, Srgb, 8, "", "", "Sticker2 / Color / 2", "materials/default/stickers/sticker_default.psd");
 	CreateInputTexture2D(TextureRoughnessSticker2, Linear, 8, "Inverse", "_rough", "Sticker2 / Lighting / 2", "materials/default/stickers/default_rough.tga");
 	CreateInputTexture2D(TextureWearMaskSticker2, Srgb, 8, "", "", "Sticker2 / Color / 2", "materials/default/stickers/default_wearmask.tga");
 	float g_flSfxColorBoostSticker2 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker2 / SFX / 2"); UiVisibility(1); >;
-	float g_flSticker2Wear < UiType(Slider); UiGroup("Sticker2 / Wear / 2"); Expression(exists(ATTRIBUTE[a3d89d5e]) ? ATTRIBUTE[a3d89d5e] : this); >;
-	float2 g_vSticker2Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker2 / Position / 2"); Expression(exists(ATTRIBUTE[963efd87]) ? ATTRIBUTE[963efd87] : this); >;
+	float g_flSticker2Wear < UiType(Slider); UiGroup("Sticker2 / Wear / 2"); Expression(exists(sticker2wear) ? sticker2wear : this); >;
+	float2 g_vSticker2Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker2 / Position / 2"); Expression(exists(sticker2scale) ? sticker2scale : this); >;
 	CreateInputTexture2D(TextureHoloMaskSticker2, Linear, 8, "", "_holomask", "Sticker2 / SFX / 3", "materials/default/stickers/default_holomask.tga");
 	float g_flColorBoostSticker2 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker2 / Color / 3"); UiVisibility(1); >;
-	float g_flSticker2Rotation < UiType(Slider); UiGroup("Sticker2 / Position / 3"); Expression(exists(ATTRIBUTE[92d5d129]) ? ATTRIBUTE[92d5d129] : this); >;
+	float g_flSticker2Rotation < UiType(Slider); UiGroup("Sticker2 / Position / 3"); Expression(exists(sticker2rotation) ? sticker2rotation : this); >;
 	float2 g_vWearBiasSticker2 < Default2(1, 1); Range2(0.001, -4, 4, 4); UiType(VectorText); UiGroup("Sticker2 / Wear / 3"); >;
 	CreateInputTexture2D(TextureHoloSpectrumSticker2, Srgb, 8, "", "_holospectrum", "Sticker2 / SFX / 4", "materials/default/stickers/default_holospectrum.tga");
 	float g_fWearScratchesSticker2 < Default(1); UiType(Slider); UiGroup("Sticker2 / Wear / 4"); >;
@@ -664,16 +626,16 @@ PS
 	bool g_bLegacyTintMultiplySticker3 < UiType(CheckBox); UiGroup("Sticker3 / Color / 1"); UiVisibility(1); >;
 	bool g_bPaperBackingSticker3 < UiType(CheckBox); UiGroup("Sticker3 / Wear / 1"); UiVisibility(1); >;
 	bool g_bPreserveRoughnessSticker3 < UiType(CheckBox); UiGroup("Sticker3 / Wear / 1"); UiVisibility(1); >;
-	float2 g_vSticker3Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker3 / Position / 1"); Expression(exists(ATTRIBUTE[e024ee93]) ? ATTRIBUTE[e024ee93] : this); >;
+	float2 g_vSticker3Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker3 / Position / 1"); Expression(exists(sticker3offset) ? sticker3offset : this); >;
 	CreateInputTexture2D(TextureColorSticker3, Srgb, 8, "", "", "Sticker3 / Color / 2", "materials/default/stickers/sticker_default.psd");
 	CreateInputTexture2D(TextureRoughnessSticker3, Linear, 8, "Inverse", "_rough", "Sticker3 / Lighting / 2", "materials/default/stickers/default_rough.tga");
 	CreateInputTexture2D(TextureWearMaskSticker3, Srgb, 8, "", "", "Sticker3 / Color / 2", "materials/default/stickers/default_wearmask.tga");
 	float g_flSfxColorBoostSticker3 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker3 / SFX / 2"); UiVisibility(1); >;
-	float g_flSticker3Wear < UiType(Slider); UiGroup("Sticker3 / Wear / 2"); Expression(exists(ATTRIBUTE[f72591ff]) ? ATTRIBUTE[f72591ff] : this); >;
-	float2 g_vSticker3Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker3 / Position / 2"); Expression(exists(ATTRIBUTE[1ab1c921]) ? ATTRIBUTE[1ab1c921] : this); >;
+	float g_flSticker3Wear < UiType(Slider); UiGroup("Sticker3 / Wear / 2"); Expression(exists(sticker3wear) ? sticker3wear : this); >;
+	float2 g_vSticker3Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker3 / Position / 2"); Expression(exists(sticker3scale) ? sticker3scale : this); >;
 	CreateInputTexture2D(TextureHoloMaskSticker3, Linear, 8, "", "_holomask", "Sticker3 / SFX / 3", "materials/default/stickers/default_holomask.tga");
 	float g_flColorBoostSticker3 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker3 / Color / 3"); UiVisibility(1); >;
-	float g_flSticker3Rotation < UiType(Slider); UiGroup("Sticker3 / Position / 3"); Expression(exists(ATTRIBUTE[899724dc]) ? ATTRIBUTE[899724dc] : this); >;
+	float g_flSticker3Rotation < UiType(Slider); UiGroup("Sticker3 / Position / 3"); Expression(exists(sticker3rotation) ? sticker3rotation : this); >;
 	float2 g_vWearBiasSticker3 < Default2(1, 1); Range2(0.001, -4, 4, 4); UiType(VectorText); UiGroup("Sticker3 / Wear / 3"); >;
 	CreateInputTexture2D(TextureHoloSpectrumSticker3, Srgb, 8, "", "_holospectrum", "Sticker3 / SFX / 4", "materials/default/stickers/default_holospectrum.tga");
 	float g_fWearScratchesSticker3 < Default(1); UiType(Slider); UiGroup("Sticker3 / Wear / 4"); >;
@@ -697,16 +659,16 @@ PS
 	bool g_bLegacyTintMultiplySticker4 < UiType(CheckBox); UiGroup("Sticker4 / Color / 1"); UiVisibility(1); >;
 	bool g_bPaperBackingSticker4 < UiType(CheckBox); UiGroup("Sticker4 / Wear / 1"); UiVisibility(1); >;
 	bool g_bPreserveRoughnessSticker4 < UiType(CheckBox); UiGroup("Sticker4 / Wear / 1"); UiVisibility(1); >;
-	float2 g_vSticker4Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker4 / Position / 1"); Expression(exists(ATTRIBUTE[a30c1041]) ? ATTRIBUTE[a30c1041] : this); >;
+	float2 g_vSticker4Offset < Range2(-0.5, -0.5, 0.5, 0.5); UiType(VectorText); UiGroup("Sticker4 / Position / 1"); Expression(exists(sticker4offset) ? sticker4offset : this); >;
 	CreateInputTexture2D(TextureColorSticker4, Srgb, 8, "", "", "Sticker4 / Color / 2", "materials/default/stickers/sticker_default.psd");
 	CreateInputTexture2D(TextureRoughnessSticker4, Linear, 8, "Inverse", "_rough", "Sticker4 / Lighting / 2", "materials/default/stickers/default_rough.tga");
 	CreateInputTexture2D(TextureWearMaskSticker4, Srgb, 8, "", "", "Sticker4 / Color / 2", "materials/default/stickers/default_wearmask.tga");
 	float g_flSfxColorBoostSticker4 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker4 / SFX / 2"); UiVisibility(1); >;
-	float g_flSticker4Wear < UiType(Slider); UiGroup("Sticker4 / Wear / 2"); Expression(exists(ATTRIBUTE[bf9e8b45]) ? ATTRIBUTE[bf9e8b45] : this); >;
-	float2 g_vSticker4Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker4 / Position / 2"); Expression(exists(ATTRIBUTE[c216d980]) ? ATTRIBUTE[c216d980] : this); >;
+	float g_flSticker4Wear < UiType(Slider); UiGroup("Sticker4 / Wear / 2"); Expression(exists(sticker4wear) ? sticker4wear : this); >;
+	float2 g_vSticker4Scale < Range2(0, 0, 64, 64); UiType(VectorText); UiGroup("Sticker4 / Position / 2"); Expression(exists(sticker4scale) ? sticker4scale : this); >;
 	CreateInputTexture2D(TextureHoloMaskSticker4, Linear, 8, "", "_holomask", "Sticker4 / SFX / 3", "materials/default/stickers/default_holomask.tga");
 	float g_flColorBoostSticker4 < Default(1); Range(0, 64); UiType(Slider); UiGroup("Sticker4 / Color / 3"); UiVisibility(1); >;
-	float g_flSticker4Rotation < UiType(Slider); UiGroup("Sticker4 / Position / 3"); Expression(exists(ATTRIBUTE[9f4da3dc]) ? ATTRIBUTE[9f4da3dc] : this); >;
+	float g_flSticker4Rotation < UiType(Slider); UiGroup("Sticker4 / Position / 3"); Expression(exists(sticker4rotation) ? sticker4rotation : this); >;
 	float2 g_vWearBiasSticker4 < Default2(1, 1); Range2(0.001, -4, 4, 4); UiType(VectorText); UiGroup("Sticker4 / Wear / 3"); >;
 	CreateInputTexture2D(TextureHoloSpectrumSticker4, Srgb, 8, "", "_holospectrum", "Sticker4 / SFX / 4", "materials/default/stickers/default_holospectrum.tga");
 	float g_fWearScratchesSticker4 < Default(1); UiType(Slider); UiGroup("Sticker4 / Wear / 4"); >;
@@ -788,13 +750,17 @@ PS
 	#if (S_STICKERS == 1)
 	#endif
 	
+	// Variant parameters
+	Texture2D g_tMetalness < Channel(R, BoxInverse(TextureRoughness1), Linear); Channel(G, Box(TextureMetalness1), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
+	Texture2D g_tMetalness < Channel(R, BoxInverse(TextureRoughness1), Linear); Channel(G, Box(TextureMetalness1), Linear); Channel(B, Box(TextureSfxMask1), Linear); OutputFormat(BC7); SrgbRead(false); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 26 (name: g_cInvulnerabilityColor) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (64692 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#if defined(GL_EXT_control_flow_attributes)
@@ -818,7 +784,7 @@ PS
 	    vec4 _m0[3];
 	};
 	
-	struct _1076
+	struct _992
 	{
 	    vec4 _m0[4];
 	};
@@ -835,12 +801,12 @@ PS
 	    vec4 _m7;
 	};
 	
-	struct _1262
+	struct _920
 	{
 	    _1753 _m0[128];
 	};
 	
-	struct _1428
+	struct _1056
 	{
 	    mat4 _m0[4];
 	};
@@ -962,7 +928,7 @@ PS
 	
 	layout(set = 1) uniform _1616 PerViewConstantBuffer_t;
 	
-	struct _1606
+	struct _790
 	{
 	    vec4 _m0;
 	    vec4 _m1;
@@ -970,7 +936,7 @@ PS
 	    vec4 _m3;
 	    vec4 _m4;
 	    _1373 _m5;
-	    _1076 _m6;
+	    _992 _m6;
 	    vec4 _m7;
 	    vec4 _m8;
 	    vec4 _m9;
@@ -979,7 +945,7 @@ PS
 	    uvec4 _m12;
 	    vec4 _m13;
 	    vec4 _m14;
-	    _1262 _m15;
+	    _920 _m15;
 	    vec4 _m16;
 	    vec4 _m17;
 	    int _m18;
@@ -989,13 +955,13 @@ PS
 	    float _m22;
 	    float _m23;
 	    float _m24;
-	    _1428 _m25;
-	    _1076 _m26;
+	    _1056 _m25;
+	    _992 _m26;
 	    uint _m27;
 	    uint _m28;
 	};
 	
-	layout(set = 3) uniform _1606 PerViewLightingConstantBufferGpu_t;
+	layout(set = 3) uniform _790 PerViewLightingConstantBufferGpu_t;
 	
 	layout(set = 3, binding = 30, std430) readonly buffer g_CullBits
 	{
@@ -1053,7 +1019,7 @@ PS
 	        _8562.y = -_8562.y;
 	        float _7729 = _20877.w;
 	        float _12471 = _20877.z + (input_0.x * 0.00999999977648258209228515625);
-	        float _10538 = clamp((((_12497 * 0.25) - fract(_12471 + (((_Globals_.g_flRainExposureLocalTimer * 0.100000001490116119384765625) * PerViewConstantBufferCsgo_t._m12) * PerViewConstantBufferCsgo_t._m12))) * 5.0) / (PerViewConstantBufferCsgo_t._m13 + 0.001000000047497451305389404296875), 0.0, 1.0) * clamp((input_2.z + 0.75) * 4.0, 0.0, 1.0);
+	        float _10538 = saturate((((_12497 * 0.25) - fract(_12471 + (((_Globals_.g_flRainExposureLocalTimer * 0.100000001490116119384765625) * PerViewConstantBufferCsgo_t._m12) * PerViewConstantBufferCsgo_t._m12))) * 5.0) / (PerViewConstantBufferCsgo_t._m13 + 0.001000000047497451305389404296875)) * saturate((input_2.z + 0.75) * 4.0);
 	        vec2 _13861 = input_3.xy + (((_8562.xy * (-0.0199999995529651641845703125)) * _10538) * _7729);
 	        vec4 _20488;
 	        _20488.x = _13861.x;
@@ -1169,14 +1135,14 @@ PS
 	    vec3 _17115;
 	    if (_15436)
 	    {
-	        float _21270 = clamp((_6814 - 0.75) * 4.0, 0.0, 1.0);
-	        float _8927 = sqrt(1.0 - clamp(dot(_13998.xy, _13998.xy), 0.0, 1.0));
+	        float _21270 = saturate((_6814 - 0.75) * 4.0);
+	        float _8927 = sqrt(1.0 - saturate(dot(_13998.xy, _13998.xy)));
 	        float _20709 = saturate(_12497);
-	        float _23650 = (clamp((_13136 * _16305) + (_20709 * 0.5), 0.0, 1.0) * ((_21270 * 0.75) + 0.25)) * _20709;
+	        float _23650 = (saturate((_13136 * _16305) + (_20709 * 0.5)) * ((_21270 * 0.75) + 0.25)) * _20709;
 	        float _18483 = _13136 * saturate(1.0 - _21270);
 	        float _22907 = _18483 * _16305;
 	        _13137 = mix(_21103, pow(_21103, vec3(1.60000002384185791015625)) * 0.60000002384185791015625, vec3(_23650));
-	        _16306 = mix(_13746.xy, vec2(0.100000001490116119384765625), vec2(_17476 * clamp(((_22907 * 4.0) + ((((cos((_17114 + (_Globals_.g_flRainExposureLocalTimer * 0.20000000298023223876953125)) * 6.28318500518798828125) * 0.5) + 0.5) * _20709) * 0.20000000298023223876953125)) + (_12497 * 0.4000000059604644775390625), 0.0, 1.0)));
+	        _16306 = mix(_13746.xy, vec2(0.100000001490116119384765625), vec2(_17476 * saturate(((_22907 * 4.0) + ((((cos((_17114 + (_Globals_.g_flRainExposureLocalTimer * 0.20000000298023223876953125)) * 6.28318500518798828125) * 0.5) + 0.5) * _20709) * 0.20000000298023223876953125)) + (_12497 * 0.4000000059604644775390625))));
 	        _17115 = mix(normalize(mix(_24347, _7054, vec3(1.0 + (_23650 * 1.5)))), normalize((((input_6.xyz * _13998.x).xyz + (_7424.xyz * _13998.y)).xyz + (_24347.xyz * _8927)).xyz), vec3(_18483));
 	        _13694 = saturate(_22907 * 2.0);
 	        _6616 = mix(_20480, vec3(_13998.xy, _8927) * vec3(-1.0, -1.0, 1.0), vec3(_18483 * 0.25));
@@ -1314,7 +1280,7 @@ PS
 	        vec4 _22046 = vec4(_17328.xyz, 1.0);
 	        float _24323 = dot(_22046.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125));
 	        vec3 _9577 = normalize(max(_19648.xyz, vec3(0.001000000047497451305389404296875)));
-	        _22671 = clamp(mix(_22046.xyz, (_9577 * min(_24323 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _24323) * max(_19648.x, max(_19648.y, _19648.z)))).xyz, vec3(_Globals_.g_flIridescentStrength * _24590)), vec3(0.0), vec3(1.0));
+	        _22671 = saturate(mix(_22046.xyz, (_9577 * min(_24323 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _24323) * max(_19648.x, max(_19648.y, _19648.z)))).xyz, vec3(_Globals_.g_flIridescentStrength * _24590)));
 	    }
 	    else
 	    {
@@ -1326,7 +1292,7 @@ PS
 	    vec3 _9175 = dFdy(_10560);
 	    vec3 _10347 = _11099.xyz;
 	    vec3 _12420 = _9175.xyz;
-	    vec2 _11004 = max(_16306.xy, vec2(pow(clamp(max(dot(_10347, _10347), dot(_12420, _12420)), 0.0, 1.0), 0.333000004291534423828125)));
+	    vec2 _11004 = max(_16306.xy, vec2(pow(saturate(max(dot(_10347, _10347), dot(_12420, _12420))), 0.333000004291534423828125)));
 	    vec3 _10170 = -_24347;
 	    vec3 _24735 = _14786.xyz;
 	    vec4 _23875 = vec4(_24735, 1.0);
@@ -1363,7 +1329,7 @@ PS
 	            _23169 = _23168;
 	        }
 	        vec4 _10010 = normalize(vec4(PerViewLightingConstantBufferGpu_t._m7.x * fma(dot(_10170, normalize(vec3(PerViewLightingConstantBufferGpu_t._m6._m0[0].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m7.y * fma(dot(_10170, normalize(vec3(PerViewLightingConstantBufferGpu_t._m6._m0[1].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m7.z * fma(dot(_10170, normalize(vec3(PerViewLightingConstantBufferGpu_t._m6._m0[2].xy, 0.25))), 0.5, 0.5), PerViewLightingConstantBufferGpu_t._m7.w * fma(dot(_10170, normalize(vec3(PerViewLightingConstantBufferGpu_t._m6._m0[3].xy, 0.25))), 0.5, 0.5)));
-	        vec4 _13232 = max(vec4(dot(PerViewLightingConstantBufferGpu_t._m6._m0[0].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[1].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[2].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[3].xyz, _11394)).xyzw, vec4(0.0)) * normalize(clamp(((_10010 - vec4(max(max(_10010.x, _10010.y), max(_10010.z, _10010.w)))) + vec4(0.20000000298023223876953125)) * vec4(5.0), vec4(0.0), vec4(1.0)));
+	        vec4 _13232 = max(vec4(dot(PerViewLightingConstantBufferGpu_t._m6._m0[0].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[1].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[2].xyz, _11394), dot(PerViewLightingConstantBufferGpu_t._m6._m0[3].xyz, _11394)).xyzw, vec4(0.0)) * normalize(saturate(((_10010 - vec4(max(max(_10010.x, _10010.y), max(_10010.z, _10010.w)))) + vec4(0.20000000298023223876953125)) * vec4(5.0)));
 	        _21710 = (1.0 / (dot(_13232, vec4(1.0)) + PerViewLightingConstantBufferGpu_t._m8.x)) * (PerViewLightingConstantBufferGpu_t._m8.x + dot(_13232, textureLod(sampler2D(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m7], g_bindless_Sampler[_Globals_.g_sPointClamp]), (_11087 + mix(_23169, PerViewConstantBufferCsgo_t._m16.xy, bvec2(abs(_18418.y) < (_12286 ? _15372 : _20965))).xy).xy, 0.0)));
 	    }
 	    else
@@ -1403,7 +1369,7 @@ PS
 	            {
 	                vec3 _19470 = vec3(_12779, _18322.yz);
 	                vec2 _24804 = _19470.xy;
-	                vec2 _22193 = vec2(1.0) - clamp((abs(_24804) * vec2(PerViewLightingConstantBufferGpu_t._m22)) + vec2(PerViewLightingConstantBufferGpu_t._m21), vec2(0.0), vec2(1.0));
+	                vec2 _22193 = vec2(1.0) - saturate((abs(_24804) * vec2(PerViewLightingConstantBufferGpu_t._m22)) + vec2(PerViewLightingConstantBufferGpu_t._m21));
 	                vec2 _20561 = (_24804 * PerViewLightingConstantBufferGpu_t._m26._m0[_13039].zw) + PerViewLightingConstantBufferGpu_t._m26._m0[_13039].xy;
 	                vec3 _20489 = _19470;
 	                _20489.x = _20561.x;
@@ -1517,7 +1483,7 @@ PS
 	        {
 	            _19363 = 1.0;
 	        }
-	        float _13279 = mix(_19363, 1.0, clamp((distance(_10061.xyz, PerViewConstantBuffer_t._m6) * PerViewLightingConstantBufferGpu_t._m24) + PerViewLightingConstantBufferGpu_t._m23, 0.0, 1.0));
+	        float _13279 = mix(_19363, 1.0, saturate((distance(_10061.xyz, PerViewConstantBuffer_t._m6) * PerViewLightingConstantBufferGpu_t._m24) + PerViewLightingConstantBufferGpu_t._m23));
 	        float _12507;
 	        if (_24465.y)
 	        {
@@ -1546,7 +1512,7 @@ PS
 	        {
 	            float _8780 = dot(_15460, PerViewLightingConstantBufferGpu_t._m16.xyz);
 	            float _8124 = saturate(_13694);
-	            _18223 = mix(_17874.xyz, vec3((((0.5 + (_13811 * 0.5)) + pow(1.0 - saturate(_8780), 4.0)) * clamp((_8780 + 0.20000000298023223876953125) * 4.0, 0.0, 1.0)) * clamp(mix(dot(mix(_24735, _15460, vec3(10.0)), PerViewLightingConstantBufferGpu_t._m16.xyz), 1.0, _8124), 0.0, 1.0)), vec3(_8124));
+	            _18223 = mix(_17874.xyz, vec3((((0.5 + (_13811 * 0.5)) + pow(1.0 - saturate(_8780), 4.0)) * saturate((_8780 + 0.20000000298023223876953125) * 4.0)) * saturate(mix(dot(mix(_24735, _15460, vec3(10.0)), PerViewLightingConstantBufferGpu_t._m16.xyz), 1.0, _8124))), vec3(_8124));
 	        }
 	        else
 	        {
@@ -1708,7 +1674,7 @@ PS
 	                        break; // unreachable workaround
 	                    } while(false);
 	                    _11179 = _10017 / vec3(_17647);
-	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_12608]._m2.w / max(_18345, g_BarnLights_1._m0[_12608]._m2.w))) * smoothstep(0.0, 1.0, g_BarnLights_1._m0[_12608]._m3.x + (g_BarnLights_1._m0[_12608]._m3.y * _17647))) * clamp(g_BarnLights_1._m0[_12608]._m6.x + (g_BarnLights_1._m0[_12608]._m6.y * dot(vec3((1.0 - (_23571 * g_BarnLights_1._m0[_12608]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_12608]._m5.z) - (_17330 * g_BarnLights_1._m0[_12608]._m5.y)), normalize(_10210))), 0.0, 1.0);
+	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_12608]._m2.w / max(_18345, g_BarnLights_1._m0[_12608]._m2.w))) * smoothstep(0.0, 1.0, g_BarnLights_1._m0[_12608]._m3.x + (g_BarnLights_1._m0[_12608]._m3.y * _17647))) * saturate(g_BarnLights_1._m0[_12608]._m6.x + (g_BarnLights_1._m0[_12608]._m6.y * dot(vec3((1.0 - (_23571 * g_BarnLights_1._m0[_12608]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_12608]._m5.z) - (_17330 * g_BarnLights_1._m0[_12608]._m5.y)), normalize(_10210))));
 	                }
 	                else
 	                {
@@ -1859,7 +1825,7 @@ PS
 	                {
 	                    float _8781 = dot(_15462, _11179.xyz);
 	                    float _8125 = saturate(_13694);
-	                    _18224 = mix(_17875.xyz, vec3((((0.5 + (_13812 * 0.5)) + pow(1.0 - saturate(_8781), 4.0)) * clamp((_8781 + 0.20000000298023223876953125) * 4.0, 0.0, 1.0)) * clamp(mix(dot(mix(_24735, _15462, vec3(10.0)), _11179.xyz), 1.0, _8125), 0.0, 1.0)), vec3(_8125));
+	                    _18224 = mix(_17875.xyz, vec3((((0.5 + (_13812 * 0.5)) + pow(1.0 - saturate(_8781), 4.0)) * saturate((_8781 + 0.20000000298023223876953125) * 4.0)) * saturate(mix(dot(mix(_24735, _15462, vec3(10.0)), _11179.xyz), 1.0, _8125))), vec3(_8125));
 	                }
 	                else
 	                {
@@ -1896,7 +1862,7 @@ PS
 	    float _17138 = _11004.x + _11004.y;
 	    float _19582 = _17138 * _17138;
 	    float _17751 = dot(_11004.xy, vec2(0.5));
-	    vec3 _6519 = _17892.xyz;
+	    vec3 _6520 = _17892.xyz;
 	    vec3 _19081 = _17892.xyz;
 	    float _12853 = PerViewLightingConstantBufferGpu_t._m14.y * sqrt(_17751);
 	    vec3 _11901 = _10061.xyz;
@@ -1931,7 +1897,7 @@ PS
 	    }
 	    float _22047 = _17751 * _17751;
 	    float _20711 = saturate(1.0 - _22047);
-	    vec3 _25271 = normalize(mix(_6519, reflect(_10145.xyz, _19081).xyz, vec3(_20711 * (sqrt(_20711) + _22047))));
+	    vec3 _25271 = normalize(mix(_6520, reflect(_10145.xyz, _19081).xyz, vec3(_20711 * (sqrt(_20711) + _22047))));
 	    uvec2 _6815 = uvec2(_14444.xy - PerViewConstantBuffer_t._m1.xy) >> _7663;
 	    uint _12130 = PerViewLightingConstantBufferGpu_t._m11.y + (((_6815.y * PerViewLightingConstantBufferGpu_t._m12.y) + _6815.x) * PerViewLightingConstantBufferGpu_t._m11.z);
 	    uint _23394 = PerViewLightingConstantBufferGpu_t._m11.x + (uint(clamp(_14444.w * PerViewLightingConstantBufferGpu_t._m13.x, 0.0, PerViewLightingConstantBufferGpu_t._m13.y)) * PerViewLightingConstantBufferGpu_t._m11.z);
@@ -1945,7 +1911,7 @@ PS
 	    vec4 _13144;
 	    vec3 _14891;
 	    float _16310;
-	    bool _18379;
+	    bool _18360;
 	    uint _17020 = 0u;
 	    bool _17133 = false;
 	    for (;;)
@@ -1981,15 +1947,15 @@ PS
 	                _13144 = _16309;
 	                _16310 = _17134;
 	                _14891 = _13142;
-	                _18379 = _17133;
+	                _18360 = _17133;
 	                break;
 	            }
 	            uint _18154 = uint(findLSB(_17021));
 	            int _12609 = int(_18154 + (_17020 * 32u));
 	            _10156 = _17021 & (_17021 - 1u);
 	            vec3 _7748 = (PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m0 * vec4(_11008.xyz, 1.0)).xyz;
-	            vec3 _8793 = clamp((_7748 - PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m1) * PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m5.xyz, vec3(0.0), vec3(1.0));
-	            vec3 _19651 = clamp((PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m3 - _7748) * PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m5.xyz, vec3(0.0), vec3(1.0));
+	            vec3 _8793 = saturate((_7748 - PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m1) * PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m5.xyz);
+	            vec3 _19651 = saturate((PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m3 - _7748) * PerViewLightingConstantBufferGpu_t._m15._m0[_12609]._m5.xyz);
 	            float _17265 = min(min(_8793.x, min(_8793.y, _8793.z)), min(_19651.x, min(_19651.y, _19651.z)));
 	            if (_17265 == 0.0)
 	            {
@@ -2023,7 +1989,7 @@ PS
 	                _13144 = _7460;
 	                _16310 = _13713;
 	                _14891 = _15431;
-	                _18379 = true;
+	                _18360 = true;
 	                break;
 	            }
 	            _13143 = _15431;
@@ -2039,11 +2005,11 @@ PS
 	        _13141 = _13144;
 	        _16308 = _16310;
 	        _17116 = _14891;
-	        _17133 = _18379;
+	        _17133 = _18360;
 	        _17020 = _8896;
 	        continue;
 	    }
-	    vec4 _11487 = textureLod(sampler2DArray(g_bindless_Texture2DArray_float4[PerViewConstantBufferCsgo_t._m5], g_bindless_Sampler[_Globals_.g_sBilinearClamp]), vec3((vec2(_17751, sqrt(1.0 - max(0.0, dot(_19257.xyz, _6519)))) * 0.984375) + vec2(0.0078125), 1.0).xyz, 0.0);
+	    vec4 _11487 = textureLod(sampler2DArray(g_bindless_Texture2DArray_float4[PerViewConstantBufferCsgo_t._m5], g_bindless_Sampler[_Globals_.g_sBilinearClamp]), vec3((vec2(_17751, sqrt(1.0 - max(0.0, dot(_19257.xyz, _6520)))) * 0.984375) + vec2(0.0078125), 1.0).xyz, 0.0);
 	    vec3 _7300 = mix(_11487.xxx, _11487.yyy, _22671);
 	    float _21809 = 1.0 - _11487.y;
 	    vec3 _15517 = _22671 + ((vec3(1.0) - _22671) * vec3(0.0476190485060214996337890625));
@@ -2054,7 +2020,7 @@ PS
 	    _11205.x = _22686.x;
 	    _11205.y = _22686.y;
 	    _11205.z = _22686.z;
-	    vec3 _15752 = _11205.xyz + ((_16324 * (vec3(1.0) + (_22671 * ((0.125 * (_19582 * _19582)) * clamp(dot(_17892, _19257), 0.0, 1.0))))).xyz * _13436).xyz;
+	    vec3 _15752 = _11205.xyz + ((_16324 * (vec3(1.0) + (_22671 * ((0.125 * (_19582 * _19582)) * saturate(dot(_17892, _19257)))))).xyz * _13436).xyz;
 	    vec4 _20493 = _11205;
 	    _20493.x = _15752.x;
 	    _20493.y = _15752.y;
@@ -2087,7 +2053,7 @@ PS
 	            if (_12893)
 	            {
 	                float _17979 = length(_21493);
-	                vec2 _9342 = clamp(PerViewConstantBufferCsgo_t._m18.xy + (PerViewConstantBufferCsgo_t._m18.zw * vec2(mix(_17979, _17979 * PerViewConstantBufferCsgo_t._m30.y, _Globals_.g_flFogModificationAmount), _10061.z)), vec2(0.0), vec2(1.0));
+	                vec2 _9342 = saturate(PerViewConstantBufferCsgo_t._m18.xy + (PerViewConstantBufferCsgo_t._m18.zw * vec2(mix(_17979, _17979 * PerViewConstantBufferCsgo_t._m30.y, _Globals_.g_flFogModificationAmount), _10061.z)));
 	                float _13533 = (pow(_9342.x, PerViewConstantBufferCsgo_t._m19.x) * pow(_9342.y, PerViewConstantBufferCsgo_t._m19.y)) * PerViewConstantBufferCsgo_t._m20.w;
 	                float _12715 = mix(_13533, _13533 * PerViewConstantBufferCsgo_t._m30.z, _Globals_.g_flFogModificationAmount);
 	                _19340 = mix(_13888.xyz, vec4(PerViewConstantBufferCsgo_t._m20.xyz, _12715).xyz, vec3(_12715));
@@ -2115,9 +2081,9 @@ PS
 	            if (_12894)
 	            {
 	                float _17980 = length(_21493);
-	                float _14602 = clamp(pow(max(0.0, (mix(_17980, _17980 * PerViewConstantBufferCsgo_t._m30.y, _Globals_.g_flFogModificationAmount) * PerViewConstantBufferCsgo_t._m22.y) + PerViewConstantBufferCsgo_t._m22.x), PerViewConstantBufferCsgo_t._m22.w), 0.0, 1.0) * clamp(pow(max(0.0, (_10061.z * PerViewConstantBufferCsgo_t._m23.y) + PerViewConstantBufferCsgo_t._m23.x), PerViewConstantBufferCsgo_t._m23.z), 0.0, 1.0);
+	                float _14602 = saturate(pow(max(0.0, (mix(_17980, _17980 * PerViewConstantBufferCsgo_t._m30.y, _Globals_.g_flFogModificationAmount) * PerViewConstantBufferCsgo_t._m22.y) + PerViewConstantBufferCsgo_t._m22.x), PerViewConstantBufferCsgo_t._m22.w)) * saturate(pow(max(0.0, (_10061.z * PerViewConstantBufferCsgo_t._m23.y) + PerViewConstantBufferCsgo_t._m23.x), PerViewConstantBufferCsgo_t._m23.z));
 	                float _16973 = saturate(_14602) * mix(PerViewConstantBufferCsgo_t._m25.w, PerViewConstantBufferCsgo_t._m25.w * PerViewConstantBufferCsgo_t._m30.z, _Globals_.g_flFogModificationAmount);
-	                _19341 = mix(_23944.xyz, vec4((textureLod(samplerCube(g_bindless_TextureCube_float4[PerViewConstantBufferCsgo_t._m6], g_bindless_Sampler[_Globals_.g_sTrilinearClamp]), normalize((PerViewConstantBufferCsgo_t._m24 * vec4(_9057, 0.0)).xyz).xyz, PerViewConstantBufferCsgo_t._m23.w * clamp(1.0 - (_14602 * PerViewConstantBufferCsgo_t._m22.z), 0.0, 1.0)) * PerViewConstantBufferCsgo_t._m26.x).xyz, _16973).xyz, vec3(_16973));
+	                _19341 = mix(_23944.xyz, vec4((textureLod(samplerCube(g_bindless_TextureCube_float4[PerViewConstantBufferCsgo_t._m6], g_bindless_Sampler[_Globals_.g_sTrilinearClamp]), normalize((PerViewConstantBufferCsgo_t._m24 * vec4(_9057, 0.0)).xyz).xyz, PerViewConstantBufferCsgo_t._m23.w * saturate(1.0 - (_14602 * PerViewConstantBufferCsgo_t._m22.z))) * PerViewConstantBufferCsgo_t._m26.x).xyz, _16973).xyz, vec3(_16973));
 	                break;
 	            }
 	            _19341 = _23944.xyz;
@@ -2135,7 +2101,7 @@ PS
 	    vec3 _19342;
 	    if (_Globals_.g_flSpawnInvulnerability > 0.0)
 	    {
-	        float _11148 = 1.0 - clamp(dot(_19257, _24735), 0.0, 1.0);
+	        float _11148 = 1.0 - saturate(dot(_19257, _24735));
 	        _19342 = mix(_19366.xyz, _Globals_.g_cInvulnerabilityColor * (mix(dot(_19366.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), 0.5, 0.5) + (4.0 * pow(mix(_11148 * texelFetch(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m4], ivec3(ivec2(_11408.xy) & PerViewConstantBufferCsgo_t._m14, 0).xy, 0).y, 1.0, _11148), mix(3.0, 6.0, 1.0 + (sin(PerViewConstantBuffer_t._m0 * 20.0) * 0.5))))), vec3(_Globals_.g_flSpawnInvulnerability));
 	    }
 	    else
@@ -2149,7 +2115,7 @@ PS
 	    SPIRV_CROSS_BRANCH
 	    if (_Globals_.g_vKeychainGhostHandData.w > 0.0)
 	    {
-	        float _11567 = clamp((smoothstep(6.0, 2.0, distance(_Globals_.g_vKeychainGhostHandData.xyz, _11901)) - 1.0) * (-1.0), 0.0, 1.0);
+	        float _11567 = saturate((smoothstep(6.0, 2.0, distance(_Globals_.g_vKeychainGhostHandData.xyz, _11901)) - 1.0) * (-1.0));
 	        if ((texelFetch(g_bindless_Texture2D_float4[PerViewConstantBufferCsgo_t._m4], ivec3(ivec2(_11408.xy) & PerViewConstantBufferCsgo_t._m14, 0).xy, 0).y - mix((_11567 * 0.5099999904632568359375) + 0.5, (_11567 * 0.90999996662139892578125) + 0.100000001490116119384765625, smoothstep(0.100000001490116119384765625, 1.0, _Globals_.g_vKeychainGhostHandData.w))) < 0.0)
 	        {
 	            discard;
@@ -2174,13 +2140,13 @@ PS
 	BoolAttribute(environmentmapped, true);
 	BoolAttribute(environmentmappeddynamic, true);
 	BoolAttribute(NeedsLightProbe, true);
-	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS || 0);
+	BoolAttribute(DoNotCastShadows, F_DO_NOT_CAST_SHADOWS ? 1 : 0);
 	BoolAttribute(SupportsMappingDimensions, true);
-	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES || 0);
+	BoolAttribute(renderbackfaces, F_RENDER_BACKFACES ? 1 : 0);
 	BoolAttribute(SupportsLightmapping, false);
 	BoolAttribute(PerVertexLighting, true);
 	StringAttribute(MaterialLayerType, csgo_weapon);
-	BoolAttribute(OpaqueRefract, F_OPAQUE_REFRACT || 0);
+	BoolAttribute(OpaqueRefract, F_OPAQUE_REFRACT ? 1 : 0);
 	
 	#if (S_ALPHA_TEST == 1)
 		BoolAttribute(alphatest, true);
@@ -2190,13 +2156,13 @@ PS
 		TextureAttribute(LightSim_Opacity_A, g_tColor);
 	#endif
 	#if (S_ALPHA_TEST == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_SELF_ILLUM == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_ADDITIVE_BLEND == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_SELF_ILLUM == 1)
 		TextureAttribute(LightSim_SelfIllumMaskTexture, g_tSelfIllumMask);
@@ -2207,7 +2173,7 @@ PS
 		TextureAttribute(LightSim_TintMaskTextureR, g_tTintMask);
 	#endif
 	#if (S_TINT_MASK == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_MODE_DEPTH == 1)
 		TextureAttribute(LightSim_SelfIllumMaskTexture, g_tSelfIllumMask);
@@ -2215,19 +2181,19 @@ PS
 		FloatAttribute(LightSim_SelfIllumScale, g_flSelfIllumScale);
 	#endif
 	#if (S_OPAQUE_REFRACT == 1)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_TRANSLUCENT == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	#if (S_TRANSLUCENT == 1)
 		BoolAttribute(translucent, true);
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 		TextureAttribute(LightSim_Opacity_A, g_tColor);
 	#endif
 	#if (S_ADDITIVE_BLEND == 1)
 		BoolAttribute(translucent, true);
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 		TextureAttribute(LightSim_Opacity_A, g_tColor);
 	#endif
 	#if (S_OPAQUE_REFRACT == 0)
@@ -2236,22 +2202,22 @@ PS
 		FloatAttribute(LightSim_SelfIllumScale, g_flSelfIllumScale);
 	#endif
 	#if (S_MODE_DEPTH == 0)
-		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS || 0);
+		BoolAttribute(NoZPrepass, F_DISABLE_Z_PREPASS ? 1 : 0);
 	#endif
 	
 	// PSRS
 	
-	RenderState(BackStencilFunc, F_RENDER_BACKFACES ? 5 : 7);
-	RenderState(BlendEnable, True);
+	RenderState(BackStencilFunc, F_RENDER_BACKFACES ? NotEqual : Always);
+	RenderState(BlendEnable, true);
 	RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
 	RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
-	RenderState(DepthEnable, F_DISABLE_Z_BUFFERING ? False : True);
-	RenderState(DepthWriteEnable, False);
-	RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? False : True);
+	RenderState(DepthEnable, F_DISABLE_Z_BUFFERING ? false : true);
+	RenderState(DepthWriteEnable, false);
+	RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? false : true);
 	RenderState(DstBlend, F_ADDITIVE_BLEND ? One : InvSrcAlpha);
 	RenderState(SlopeScaleDepthBias, 0);
-	RenderState(StencilEnable, 1);
-	RenderState(StencilFunc, 5);
+	RenderState(StencilEnable, true);
+	RenderState(StencilFunc, NotEqual);
 	RenderState(StencilReadMask, 1);
 	RenderState(StencilRef, 3);
 	RenderState(StencilWriteMask, 254);
@@ -2271,17 +2237,17 @@ PS
 	#if (S_ENABLE_ADJUSTMENTS == 1)
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
-		RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? False : True);
+		RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? false : true);
 	#endif
 	#if (S_ALPHA_TEST == 1)
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
-		RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? False : True);
+		RenderState(DepthWriteEnable, F_DISABLE_Z_BUFFERING ? false : true);
 	#endif
 	#if (S_TRANSLUCENT == 1)
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Front);
 		RenderState(CullMode, F_RENDER_BACKFACES ? None : Back);
-		RenderState(DepthWriteEnable, False);
+		RenderState(DepthWriteEnable, false);
 	#endif
 	
 	BoolAttribute(BindlessResources, true);

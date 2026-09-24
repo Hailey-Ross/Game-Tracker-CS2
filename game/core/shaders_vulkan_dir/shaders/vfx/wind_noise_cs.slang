@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -29,9 +28,8 @@ COMMON
 CS
 {
 	
-	cbuffer WindControllerConstantBuffer_t < Attribute("WindControllerConstantBuffer_t"); >;
 	RWTexture3D<float4> g_WindNoise < Attribute("WindNoiseOut"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 3246 (name: WindControllerConstantBuffer_t), member index 0 (name: _m0) cannot be expressed with either HLSL packing layout or packoffset.
@@ -39,7 +37,7 @@ CS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (9940 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;

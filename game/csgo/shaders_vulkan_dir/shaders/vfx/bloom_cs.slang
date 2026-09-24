@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -33,7 +32,6 @@ CS
 	DynamicCombo( D_PANO_COLOR_CORRECT, 0..1 );
 	DynamicCombo( D_LOCAL_CONTRAST_OUTPUT, 0..1 );
 	
-	cbuffer PostProcessingConstantBuffer_t < Attribute("PostProcessingConstantBuffer_t"); >;
 	float g_fEffectsScale < Attribute("EffectsScale"); UiType(Slider); >;
 	float g_fPreMultiply < Attribute("PreMultiply"); UiType(Slider); >;
 	float g_fRadius < Attribute("Radius"); UiType(Slider); >;
@@ -63,13 +61,15 @@ CS
 	float4 g_vInvInputUpSampleDim < Source(InvTextureDim); SourceArg(g_tInputUpSample) UiType(VectorText); >;
 	
 	
+	// Variant parameters
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 0 (name: g_vInputDownSampleDim) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5296 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
@@ -115,7 +115,7 @@ CS
 	        vec2 _21281 = vec2(float(_Globals_.g_nSrcWidth), float(_Globals_.g_nSrcHeight));
 	        vec2 _5745 = _21281 / _Globals_.g_vInputDownSampleDim.xy;
 	        vec2 _3161 = vec2(1.0) / _21281;
-	        vec2 _4190 = clamp(((vec2(_13756) + vec2(0.5)) * 2.0) * _3161, vec2(0.0), vec2(1.0)) * _5745;
+	        vec2 _4190 = saturate(((vec2(_13756) + vec2(0.5)) * 2.0) * _3161) * _5745;
 	        vec2 _7867 = _5745 - (_Globals_.g_vInvInputDownSampleDim.xy * 1.5);
 	        vec3 _17136 = clamp((((((textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(-2.0, 2.0) / _21281), _7867), 0.0).xyz + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(2.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(-2.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(2.0, -2.0) / _21281), _7867), 0.0).xyz) * 0.03125) + ((((textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(0.0, 2.0) / _21281), _7867), 0.0).xyz + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(-2.0, 0.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(2.0, 0.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(0.0, -2.0) / _21281), _7867), 0.0).xyz) * 0.0625)) + (((((textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190, _7867), 0.0).xyz + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(-1.0, 1.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + _3161, _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(-1.0) / _21281), _7867), 0.0).xyz) + textureLod(sampler2D(g_tInputDownSample, g_sBilinearClamp), min(_4190 + (vec2(1.0, -1.0) / _21281), _7867), 0.0).xyz) * 0.125), vec3(0.0), vec3(65504.0));
 	        imageStore(_5853, ivec2(_13756), vec4(_17136, 0.0));

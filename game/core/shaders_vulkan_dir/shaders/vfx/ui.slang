@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -45,7 +44,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1972 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -143,11 +142,11 @@ PS
 	StaticCombo( S_ALPHA_TEXTURE, F_ALPHA_TEXTURE );
 	StaticCombo( S_ALPHA_ONLY, F_ALPHA_ONLY );
 	
-	RenderState(BlendEnable, True);
+	RenderState(BlendEnable, true);
 	RenderState(ColorWriteEnable0, F_ALPHA_ONLY ? A : All);
 	RenderState(DstBlend, F_ADDITIVE ? One : InvSrcAlpha);
 	RenderState(SrcBlend, F_ADDITIVE ? One : SrcAlpha);
-	RenderState(StencilRef, ATTRIBUTE[51cb803e]);
+	RenderState(StencilRef, vguistencilref);
 	Texture2D g_tColor < Channel(RGBA, None(Texture), Srgb); OutputFormat(DXT5); SrgbRead(true); >;
 	
 	// Color
@@ -155,7 +154,7 @@ PS
 	float g_flIntensity < Default(1); Range(0, 100); UiType(Slider); UiGroup("Color, 0/20"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1168 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -165,14 +164,14 @@ PS
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState DefaultSamplerState_0 : register(s14, space1);
 	
-	static float2 input_0;
-	static float4 input_1;
+	static float2 input_1;
+	static float4 input_0;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float4 input_0 : TEXCOORD0;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -182,19 +181,19 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tColor.Sample(DefaultSamplerState_0, input_0.xy);
-	    float3 _11003 = _3401.xyz * _Globals_1_g_flIntensity;
-	    float4 _8673 = _3401;
+	    float4 _3300 = g_tColor.Sample(DefaultSamplerState_0, input_1.xy);
+	    float3 _11003 = _3300.xyz * _Globals_1_g_flIntensity;
+	    float4 _8673 = _3300;
 	    _8673.x = _11003.x;
 	    _8673.y = _11003.y;
 	    _8673.z = _11003.z;
-	    output_0 = input_1.xyzw * _8673.xyzw;
+	    output_0 = input_0.xyzw * _8673.xyzw;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

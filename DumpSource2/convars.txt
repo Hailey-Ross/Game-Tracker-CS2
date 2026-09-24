@@ -364,6 +364,60 @@ animgraph_verify_dirty_netvar_optimization false (developmentonly replicated def
 annotation_auto_load false (clientdll release commandline_enforced)
 	<no description>
 
+asset_thumbnails_server_download false (developmentonly)
+	<no description>
+
+asset_thumbnails_server_url "https://s2-tools-data-cache.build.valve.org" (developmentonly)
+	<no description>
+
+asset_thumbnails_stats_flush_interval 180 (developmentonly)
+	<no description>
+
+asset_thumbnails_timeout_sec 2 (developmentonly)
+	<no description>
+
+assetbrowser_name_filter_delay 250 (developmentonly defensive)
+	Millisecond delay between typing in the assetbrowser filter and the filter being applied
+
+assetsystem_debug_substring "" (developmentonly defensive)
+	Spew info for assets that match the specified substring
+
+assetsystem_dump_string_threshold 2000 (developmentonly defensive)
+	Max length of strings to dump in assetsystem_dump_table
+
+assetsystem_fail_compile_on_dependants false (developmentonly)
+	<no description>
+
+assetsystem_legacy_explicit_reload_child_resources false (developmentonly defensive)
+	Whether to explicitly reload child resources of a QueueReloadIfLoaded
+
+assetsystem_legacy_process_file_changes_after_compile false (developmentonly defensive)
+	Use old behavior of calling ProcessFileChanges() immediately after recompiling a resource
+
+assetsystem_old_loop_algorithm false (developmentonly defensive)
+	Set to true to revert to old behavior
+
+assetsystem_quiet_inputs_before_recompile true (developmentonly defensive)
+	Before triggering a resource recompile, wait for input dependencies to stop being written
+
+assetsystem_quiet_inputs_before_recompile_max_pause 1000 (developmentonly defensive)
+	Max amount of time to wait (in ms) for input dependencies to stop being written before abandoning the compile
+
+assetsystem_quiet_inputs_before_reload true (developmentonly defensive)
+	Before triggering a resource reload, wait for input dependencies to stop being written
+
+assetsystem_recompile_dependents_as_needed true (developmentonly defensive)
+	When an asset is being recompiled the dependents will be recompiled only as needed, otherwise the original recompile mode will be passed on.
+
+assetsystem_reload_queue_requeue_pause 1 (developmentonly defensive)
+	Time (sec) to pause assetsystem reload behavior if a requeue is requested
+
+assetsystem_verbose_fingerprints false (developmentonly)
+	Enable to print detailed info every time an assetfingerprint is calculated
+
+assetthumbnail_old_fingerprint_style true (developmentonly defensive)
+	Set to true to revert to old behavior
+
 attached_output_stall_ms 250 (developmentonly defensive)
 	<no description>
 
@@ -805,7 +859,7 @@ cl_access_all_missions false (developmentonly clientdll)
 cl_ag2_record_entity_graph "" (developmentonly clientdll)
 	Automatically start AG2 recording when an entity with this name (wildcard) or id is created.
 
-cl_aggregate_particles false (reference)
+cl_aggregate_particles false (developmentonly defensive)
 	<no description>
 
 cl_allow_animated_avatars true (clientdll archive release)
@@ -828,6 +882,9 @@ cl_async_usercmd_send true (developmentonly)
 
 cl_async_usercmd_send_recvmargin_min 1 (developmentonly defensive)
 	Min size of the recv margin queue when async usercmd send is disabled
+
+cl_auto_cursor_scale true (archive)
+	Automatic cursor size scaling.
 
 cl_autobuy "" (clientdll release)
 	The order in which autobuy will attempt to purchase items
@@ -1023,6 +1080,9 @@ cl_csgo_shoot_debugvis_show_rdp false (developmentonly clientdll)
 
 cl_csgo_shoot_trim_input_frames true (developmentonly clientdll)
 	<no description>
+
+cl_cursor_scale 1 (archive)
+	Cursor size scaling factor.
 
 cl_deathcam_audio_mix_phase1_fade_amount 0.15 (clientdll release)
 	Sets the amount of ducking to do on death cam fade out. When set to 1, full DeathFadeLayer is applied.
@@ -1408,6 +1468,9 @@ cl_import_csgo_config true (clientdll archive release)
 cl_inferno_bodyburn true (developmentonly clientdll)
 	<no description>
 
+cl_input_enable_raw_keyboard false (release)
+	Enable raw keyboard input
+
 cl_instant_death_anim false (developmentonly clientdll)
 	<no description>
 
@@ -1486,6 +1549,9 @@ cl_itemimages_dynamically_generated 2 (clientdll archive release)
 cl_jitter_bad_threshold_up 20 (min: 1, max: 100, userinfo)
 	When upstream packet jitter in a frame exceeds this threshold (ms), the frame is considered to have 'irregular delivery'.  This is a derived value and should not be modified manually
 
+cl_joystick_enabled true (archive)
+	Enable joystick input
+
 cl_lagcompensation_test_auto_target false (developmentonly clientdll)
 	Auto-pick value of cl_lagcompensation_test_target.
 
@@ -1529,6 +1595,9 @@ cl_massreport false (developmentonly clientdll defensive)
 	<no description>
 
 cl_matchlist_controlroom_aid 0 (clientdll hidden release)
+	<no description>
+
+cl_max_particle_pvs_aabb_edge_length 0 (release)
 	<no description>
 
 cl_min_china_movie_time 6 (developmentonly clientdll defensive)
@@ -1585,29 +1654,38 @@ cl_parallel_readpacketentities true (developmentonly defensive)
 cl_parallel_readpacketentities_threshold 2 (developmentonly defensive)
 	Use parallel processing of snapshot reading if above this many entries.
 
-cl_particle_batch_mode 0 (reference)
+cl_particle_batch_mode 1 (developmentonly defensive)
 	<no description>
 
-cl_particle_fallback_base 0 (reference)
+cl_particle_create_duplicate_work_for_profiling 0 (developmentonly)
+	Create and destroy N particle systems for every one created normally
+
+cl_particle_fallback_base 0 (developmentonly defensive)
+	Base for falling back to cheaper effects under load.
+
+cl_particle_fallback_multiplier 0 (developmentonly defensive)
+	Multiplier for falling back to cheaper effects under load.
+
+cl_particle_log_creates false (developmentonly defensive)
+	Print debug message every time a particle collection is created
+
+cl_particle_max_count 0 (developmentonly defensive)
 	<no description>
 
-cl_particle_fallback_multiplier 0 (reference)
+cl_particle_newinit true (developmentonly)
+	turn on optimized particle init
+
+cl_particle_retire_cost 0 (cheat)
 	<no description>
 
-cl_particle_max_count 0 (reference)
-	<no description>
+cl_particle_sim_fallback_base_multiplier 5 (developmentonly defensive)
+	How aggressive the switch to fallbacks will be depending on how far over the cl_particle_sim_fallback_threshold_ms the sim time is.  Higher numbers are more aggressive.
 
-cl_particle_retire_cost 0 (reference)
-	<no description>
+cl_particle_sim_fallback_threshold_ms 6 (developmentonly defensive)
+	Amount of simulation time that can elapse before new systems start falling back to cheaper versions
 
-cl_particle_sim_fallback_base_multiplier 0 (reference)
-	<no description>
-
-cl_particle_sim_fallback_threshold_ms 0 (reference)
-	<no description>
-
-cl_particle_simulate false (reference)
-	<no description>
+cl_particle_simulate true (cheat)
+	Enables/Disables Particle Simulation
 
 cl_pclass "" (clientdll cheat)
 	Dump entity by prediction classname.
@@ -2944,6 +3022,12 @@ dota_enable_spatial_audio false (release)
 dota_spatial_audio_mix 1 (release)
 	Mix value to blend spatial and non-spatial audio in Dota 2.
 
+dota_teammate_max_invis 0 (reference)
+	<no description>
+
+dota_use_heightmap false (reference)
+	<no description>
+
 dsp_automatic 0 (developmentonly demo defensive)
 	<no description>
 
@@ -3149,6 +3233,12 @@ ent_text_flags_active -1 (gamedll archive cheat)
 	<no description>
 
 ent_text_no_name_really_i_mean_it false (gamedll cheat)
+	<no description>
+
+entity_fgd_print_api_mismatch false (developmentonly)
+	<no description>
+
+entity_fgd_require_api_declaration true (developmentonly)
 	<no description>
 
 entity_log_load_unserialize 0 (gamedll clientdll replicated cheat)
@@ -3475,6 +3565,12 @@ gameinstructor_verbose_lesson "" (clientdll cheat)
 gamestats_file_output_directory "" (developmentonly gamedll defensive)
 	When -gamestatsfileoutputonly is specified, file will be emitted here instead of to modpath
 
+gfx_generate_skin_shadow_warp_shadow_width 0.5 (developmentonly defensive)
+	Remapped width of the shadow penumbra
+
+gizmo_rot_max_dist 8 (developmentonly defensive)
+	<no description>
+
 gl_clear true (developmentonly clientdll defensive)
 	<no description>
 
@@ -3496,10 +3592,304 @@ gpu_level 3 (developmentonly clientdll defensive)
 gpu_mem_level 2 (developmentonly clientdll defensive)
 	Memory Level - Default: High
 
+graphcanvas_auto_repaint_tick_ms 15 (developmentonly)
+	<no description>
+
+graphcanvas_auto_repaints_ticks_when_inactive 5 (developmentonly)
+	<no description>
+
+graphcanvas_build_pregather_list true (developmentonly)
+	<no description>
+
+graphcanvas_cache_curve_clip_to_viewport false (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap true (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap_max_render_debug false (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap_max_render_perframe 10 (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap_max_texture_sidesize 2048 (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap_zoom_scale 1.25 (developmentonly)
+	<no description>
+
+graphcanvas_cache_item_pixmap_zoom_step 10 (developmentonly)
+	<no description>
+
+graphcanvas_debug_layout false (developmentonly)
+	<no description>
+
+graphcanvas_hover_item_info false (developmentonly)
+	<no description>
+
+graphcanvas_random_background_color false (developmentonly)
+	<no description>
+
+graphcanvas_threaded_find_items_overlapping true (developmentonly)
+	<no description>
+
+graphcanvas_threaded_gather_styles true (developmentonly)
+	<no description>
+
+graphcanvas_threaded_resolve_styles true (developmentonly)
+	<no description>
+
+graphcanvas_threaded_update_pseudo_classes true (developmentonly)
+	<no description>
+
+graphcanvas_tooltip_keepalive false (developmentonly)
+	<no description>
+
 hairsim_force_fixed_timestep true (developmentonly cheat)
 	<no description>
 
 hairsim_reset false (developmentonly cheat)
+	<no description>
+
+hammer_add_edge_fade_size "8 8 8" (developmentonly defensive)
+	<no description>
+
+hammer_analytic_grid true (developmentonly defensive)
+	<no description>
+
+hammer_analytic_grid_transparent true (developmentonly defensive)
+	<no description>
+
+hammer_bake_light_bake_cubemaps true (developmentonly defensive)
+	Should we bake cubemaps?
+
+hammer_bake_light_bake_light_probe_volumes true (developmentonly defensive)
+	Should we bake light probe volumes?
+
+hammer_bake_light_bake_vertex_lighting true (developmentonly defensive)
+	Should we bake vertex lighting?
+
+hammer_bake_light_debug_path_trace_scene_info_from_build false (developmentonly defensive)
+	Load debug_path_trace_scene_info.dat for RT baked lighting visualization instead of using the current map.
+
+hammer_bake_light_sample_smoothing 0 (developmentonly defensive)
+	Smoothing amount, if != 0, smooths lighting at vertex.
+
+hammer_bake_light_samples_per_triangle_error 0.1 (developmentonly defensive)
+	Error tolerance for adaptive sampling.
+
+hammer_bake_light_samples_per_triangle_max 128 (developmentonly defensive)
+	Max number of samples per triangle. Higher is more quality/slower.
+
+hammer_bake_light_samples_per_triangle_min 64 (developmentonly defensive)
+	Min number of samples per triangle. Higher is more quality/slower.
+
+hammer_bake_light_triangle_batch_size 65536 (release)
+	Triangle batch size.
+
+hammer_bevel_leave_edges false (developmentonly defensive)
+	<no description>
+
+hammer_bridge_drag_pixels_per_step 16 (developmentonly defensive)
+	<no description>
+
+hammer_dota_paint_flat_radius 10 (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_falloff 1 (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_fixup true (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_opacity 0 (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_preview 16 (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_sharpness 0.5 (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_use_material_settings true (developmentonly defensive)
+	<no description>
+
+hammer_dota_path_width 150 (developmentonly defensive)
+	<no description>
+
+hammer_dota_proxy_handle_spacing 10 (developmentonly defensive)
+	<no description>
+
+hammer_draw_bounds false (developmentonly defensive)
+	<no description>
+
+hammer_draw_dirty_bounds false (developmentonly defensive)
+	<no description>
+
+hammer_draw_model_raytrace_data false (developmentonly defensive)
+	<no description>
+
+hammer_draw_model_skeleton false (developmentonly defensive)
+	<no description>
+
+hammer_draw_overlay_triangles_in_box false (developmentonly defensive)
+	<no description>
+
+hammer_edge_debug_info false (developmentonly defensive)
+	<no description>
+
+hammer_enable_debug_overlays false (developmentonly defensive)
+	<no description>
+
+hammer_entity_report_refresh 300 (developmentonly defensive)
+	<no description>
+
+hammer_extended_box_gizmo_handles false (developmentonly defensive)
+	<no description>
+
+hammer_face_debug_info false (developmentonly defensive)
+	<no description>
+
+hammer_fake_io_test_class 0 (developmentonly defensive)
+	Add a fake class named 'hammer_fake_io_test_class' to test IO combinations
+
+hammer_force_io_param_widget 0 (developmentonly defensive)
+	0: detect, 1: single param, 2: multi param
+
+hammer_gizmo_2dscale 3 (developmentonly defensive)
+	<no description>
+
+hammer_gizmo_axis_length 80 (developmentonly defensive)
+	<no description>
+
+hammer_gizmo_axis_scale 1.5 (developmentonly defensive)
+	<no description>
+
+hammer_gizmo_compute_matrix true (developmentonly defensive)
+	<no description>
+
+hammer_gizmo_line_thickness 3 (developmentonly defensive)
+	<no description>
+
+hammer_gizmo_rot_inflate 6 (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_always_update false (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_preview_radius 15 (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_show_creature_blocking true (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_show_hero_blocking true (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_show_impassable true (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_show_obstructions true (developmentonly defensive)
+	<no description>
+
+hammer_gridnav_show_ward_blocking true (developmentonly defensive)
+	<no description>
+
+hammer_hud_enable true (developmentonly defensive)
+	<no description>
+
+hammer_isosurface_merge_tolerance 0 (developmentonly replicated defensive)
+	<no description>
+
+hammer_isosurface_remove_interior true (developmentonly replicated defensive)
+	<no description>
+
+hammer_isosurface_sample_offset 0.0001 (developmentonly replicated defensive)
+	<no description>
+
+hammer_isosurface_subtract false (developmentonly defensive)
+	<no description>
+
+hammer_open_edge_hash_length 6 (developmentonly defensive)
+	<no description>
+
+hammer_open_edge_hash_spacing 6 (developmentonly defensive)
+	<no description>
+
+hammer_overlay_draw_projection_triangles false (developmentonly defensive)
+	<no description>
+
+hammer_parallel_terrain_update false (developmentonly defensive)
+	<no description>
+
+hammer_raytrace_debug_draw 0 (developmentonly defensive)
+	Draw ray tracing environment debug visualization in Hammer
+
+hammer_render_model_bounding_spheres false (developmentonly defensive)
+	<no description>
+
+hammer_rotate_up_dot 0.2 (developmentonly defensive)
+	<no description>
+
+hammer_show_face_uvs false (developmentonly defensive)
+	<no description>
+
+hammer_show_light_truncation_error false (developmentonly defensive)
+	<no description>
+
+hammer_spawn_area_base_alpha 0 (developmentonly defensive)
+	<no description>
+
+hammer_spawn_area_outline_alpha 255 (developmentonly defensive)
+	<no description>
+
+hammer_ssao_enable true (developmentonly defensive)
+	<no description>
+
+hammer_stroke_steps 10 (developmentonly defensive)
+	<no description>
+
+hammer_tile_border_size 16 (developmentonly defensive)
+	<no description>
+
+hammer_translucent_enable true (developmentonly defensive)
+	<no description>
+
+hammer_use_minimum_element_count_for_loop false (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_brush_screensize 0.002 (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_brush_size_max 100 (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_cached_mesh_evict_distance 128 (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_debug_triangulation false (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_initial_brush_radius 32 (developmentonly defensive)
+	<no description>
+
+hammer_vertex_normal_paint_initial_strength 0.03 (developmentonly defensive)
+	<no description>
+
+hammer_vis_opacity 32 (developmentonly defensive)
+	<no description>
+
+hammer_worklight_brightness 1000 (developmentonly defensive)
+	<no description>
+
+hammer_worklight_range 32000 (developmentonly defensive)
+	<no description>
+
+hammer_world_trace_multisample true (developmentonly defensive)
+	<no description>
+
+hammer_world_trace_pack_rays false (developmentonly defensive)
 	<no description>
 
 healthshot_allow_use_at_full true (gamedll clientdll replicated release commandline_enforced)
@@ -3549,6 +3939,9 @@ hostage_is_silent false (gamedll clientdll replicated cheat)
 
 hostfile "host.txt" (gamedll release)
 	The HOST file to load.
+
+hostip 0 (release)
+	Host game server ip
 
 hostname "" (release)
 	Hostname for server.
@@ -3688,6 +4081,9 @@ imgui_show_grenades_window false (developmentonly gamedll clientdll archive repl
 imgui_temp_enable false (developmentonly gamedll clientdll replicated cheat)
 	if imgui should display temporarily
 
+import_wizard_spew false (developmentonly defensive)
+	<no description>
+
 in_button_double_press_window 0.22 (developmentonly gamedll clientdll replicated defensive)
 	How short the time between presses needs to be for us to consider it a double-press
 
@@ -3823,6 +4219,9 @@ instant_replay true (developmentonly defensive)
 instant_replay_history_limit 120 (developmentonly defensive)
 	Maximum amount of minutes to save history (0 is unlimited).
 
+ip "" (release)
+	Overrides IP for multihomed hosts
+
 iv_debugbone "" (release)
 	Debug bone name for interpolation spew of CAnimationState.
 
@@ -3867,6 +4266,9 @@ joy_advaxisz 0 (clientdll archive)
 
 joy_autosprint 0 (developmentonly clientdll defensive)
 	Automatically sprint when moving with an analog joystick
+
+joy_axisbutton_threshold 0.3 (archive)
+	Analog axis range before a button press is registered.
 
 joy_axisr_deadzone 0.15 (archive per_user)
 	<no description>
@@ -4228,6 +4630,9 @@ lb_use_illumination_volume true (developmentonly cheat)
 leaderboards_cache_duration 600 (developmentonly clientdll)
 	<no description>
 
+legacy_models_supported true (developmentonly)
+	Whether to support legacy (pre-modeldoc) models
+
 lobby_default_privacy_bits2 "1" (clientdll archive release)
 	Lobby default permissions (0: private, 1: public)
 
@@ -4253,6 +4658,15 @@ logic_npc_counter_debug false (gamedll replicated cheat)
 	<no description>
 
 lservercfgfile "listenserver.cfg" (developmentonly gamedll defensive)
+	<no description>
+
+lua_assert_on_error false (developmentonly defensive)
+	<no description>
+
+lua_is_currently_executing false (hidden dontrecord release)
+	<no description>
+
+lua_shipping_assert_on_error false (developmentonly defensive)
 	<no description>
 
 m_pitch 0.022 (clientdll archive userinfo per_user)
@@ -4543,6 +4957,15 @@ model_default_preview_sequence_name "" (gamedll clientdll archive replicated)
 	<no description>
 
 modeldoc_fgd_debug_path "" (developmentonly)
+	<no description>
+
+modeldoc_rotate_max 30 (developmentonly defensive)
+	<no description>
+
+modeldoc_rotate_power 1.25 (developmentonly defensive)
+	<no description>
+
+modeldoc_rotate_scale 0.075 (developmentonly defensive)
 	<no description>
 
 molotov_throw_detonate_time 2 (gamedll clientdll replicated release commandline_enforced)
@@ -5301,6 +5724,9 @@ nav_attribute_obstacle_draw_elements false (developmentonly gamedll)
 nav_bfs_debug 0 (gamedll cheat)
 	<no description>
 
+nav_corner_adjust_adjacent 18 (cheat)
+	radius used to raise/lower corners in nearby areas when raising/lowering corners.
+
 nav_create_indirect_connection_set_from [0, 0, 0] (gamedll cheat)
 	Set the 'from' location of an indirect connection.
 
@@ -5610,6 +6036,9 @@ nav_ignore_vpk_navdata false (developmentonly gamedll)
 nav_max_view_distance 0 (gamedll cheat)
 	Maximum range for precomputed nav mesh visibility (0 = default 1500 units)
 
+nav_max_vis_delta_list_length 64 (cheat)
+	<no description>
+
 nav_obstacle_validate false (gamedll cheat)
 	<no description>
 
@@ -5744,6 +6173,9 @@ nav_show_elem_info_font_size -1 (developmentonly gamedll)
 
 nav_show_elem_info_font_voffset -11 (developmentonly gamedll)
 	<no description>
+
+nav_show_potentially_visible 0 (cheat)
+	Show areas that are potentially visible from the current nav area
 
 nav_smooth_arrival_enable false (gamedll cheat)
 	<no description>
@@ -6066,6 +6498,9 @@ nav_test_split_obstacle_size 30 (gamedll cheat)
 nav_test_split_obstacle_update_pos true (gamedll cheat)
 	<no description>
 
+nav_validate 0 (cheat)
+	Level of validation for nav system.  Higher will be slower.
+
 nav_volume_debug 0 (gamedll cheat)
 	Draw or print debug information about nav volume queries.
 
@@ -6108,14 +6543,95 @@ net_async_job_random_sleep 0 (developmentonly defensive)
 net_client_steamdatagram_enable_override 0 (clientdll release)
 	0: Use connect method requested by GC.  >0: Always use SDR if possible.  <0: Always use direct UDP if possible
 
+net_compresspackets_minsize 1024 (developmentonly)
+	Don't bother compressing packets below this size.
+
+net_culloptimization true (developmentonly defensive)
+	Enable optimization of slow path that makes HLTV CPU consumption high in AnimGraph-using mods. Will switch to this on by default soon.
+
 net_debug_to_file false (developmentonly gamedll defensive)
 	<no description>
+
+net_detailed_canpacket_log false (developmentonly defensive)
+	<no description>
+
+net_filelogging false (developmentonly)
+	Log packets to files
+
+net_fs_showindirections false (developmentonly)
+	<no description>
+
+net_limit_sv_recv_max_message_size_kb 32 (release)
+	Server will reject message larger than N kb
+
+net_limit_sv_recv_segments_per_packet 50 (release)
+	Server will reject packets with more than N segments
+
+net_limit_sv_recvbuffer_kb 128 (release)
+	Server will not buffer more than N kb from connected clients
+
+net_limit_sv_recvbuffer_msg 100 (release)
+	Server will not buffer more than N messages from connected clients
+
+net_log_processing false (developmentonly defensive)
+	Log network processing
+
+net_max_message_process_count 0 (developmentonly defensive)
+	Maximum number of messages to process from a client in a single frame (0 == no limit).
+
+net_max_message_queue_size 0 (developmentonly defensive)
+	Maximum number of messages to allow waiting in queue after processing; exceeding this disconnects the client. 0 == no limit
+
+net_max_polymorphic_spew 5 (developmentonly defensive)
+	Max polymorphic variants to spew when spewing a flattened serializer.
+
+net_p2p_listen_dedicated false (developmentonly defensive)
+	Should dedicated server listen for new-style P2P?
+
+net_public_adr "" (release)
+	For servers behind NAT/DHCP meant to be exposed to the public internet, this is the public facing ip address string: ("x.x.x.x" )
+
+net_qosinterval_spew false (developmentonly)
+	Spew QoS interval data as we gather it
+
+net_qospacketloss_percentage_threshold 5 (min: 0.001, max: 100, developmentonly defensive)
+	Spew a warning if packet loss percentage is above this threshold
+
+net_restrict_showmsg_socket "" (developmentonly defensive)
+	If set, only net_showmsg spew for data inbound on this socket name e.g. client, server, etc.
+
+net_showdrop false (developmentonly defensive)
+	Show dropped packets in console
 
 net_showeventlisteners false (developmentonly gamedll defensive)
 	Show listening addition/removals
 
 net_showevents 0 (developmentonly gamedll defensive)
 	Dump game events to console (1=client only, 2=all).
+
+net_showmsg "0" (developmentonly defensive)
+	Show incoming message: <0|1|2|name> where 1 == all and 2 == all except net_NOP
+
+net_showoob false (developmentonly defensive)
+	Show connectionless UDP traffic.
+
+net_showpeaks 0 (developmentonly defensive)
+	Show messages for large packets only: <size>
+
+net_showreliable "0" (developmentonly defensive)
+	Like net_showmsg, but only spew reliable messages
+
+net_showudp false (release)
+	Dump UDP packets summary to console
+
+net_showudp_remoteonly true (release)
+	Dump non-loopback udp only
+
+net_skip_redundant_change_callbacks false (developmentonly clientdll)
+	<no description>
+
+net_use_packet_compression true (developmentonly defensive)
+	Compress network traffic
 
 nextlevel "" (gamedll notify release)
 	If set to a valid map name, will trigger a changelevel to the specified map at the end of the round
@@ -6534,6 +7050,18 @@ particle_cluster_use_collision_hulls true (developmentonly gamedll clientdll rep
 particle_debug_creation_filter "" (developmentonly clientdll hidden replicated defensive)
 	<no description>
 
+particle_layer_id_whitelist "" (developmentonly)
+	<no description>
+
+particle_powsimd_random_range_exp true (developmentonly defensive)
+	<no description>
+
+particle_profile_filter "" (developmentonly defensive)
+	Profile particle filter
+
+particle_snapshot_allow_combined_models false (developmentonly)
+	<no description>
+
 particle_test_attach_attachment 0 (gamedll cheat)
 	Attachment index for attachment mode
 
@@ -6565,6 +7093,21 @@ path_node_evaluation_debug 0 (developmentonly gamedll clientdll replicated)
 	<no description>
 
 pawn_mimic_all false (developmentonly gamedll clientdll replicated)
+	<no description>
+
+pet_disable_test_mode false (archive cheat)
+	<no description>
+
+pet_named_value_cache_debug false (developmentonly)
+	<no description>
+
+pet_preview_gravity [0, 0, -800] (developmentonly defensive)
+	<no description>
+
+pet_preview_underwater false (developmentonly defensive)
+	<no description>
+
+pet_preview_wind [0, 0, 0] (developmentonly defensive)
 	<no description>
 
 phonemedelay 0 (developmentonly clientdll defensive)
@@ -6789,6 +7332,21 @@ prop_nav_obstacle_block_mass_b -1 (developmentonly gamedll defensive)
 prop_nav_obstacle_block_mass_c -1 (developmentonly gamedll defensive)
 	<no description>
 
+proped_attr_logging false (developmentonly defensive)
+	<no description>
+
+proped_debug_margin 0 (developmentonly defensive)
+	<no description>
+
+proped_debug_splitter false (developmentonly defensive)
+	<no description>
+
+proped_sync_timings false (developmentonly defensive)
+	<no description>
+
+property_editor_use_overlay true (developmentonly defensive)
+	<no description>
+
 props_break_apply_radial_forces true (developmentonly gamedll clientdll replicated)
 	<no description>
 
@@ -6799,6 +7357,9 @@ props_break_radial_force_ratio 0.33 (developmentonly gamedll clientdll replicate
 	<no description>
 
 pulse_cursor_infinite_loop_detection_threshold 20000 (developmentonly gamedll clientdll replicated)
+	<no description>
+
+pulse_fgd_debug_path "" (developmentonly)
 	<no description>
 
 pulse_save_execution_history true (developmentonly gamedll clientdll replicated)
@@ -6845,6 +7406,9 @@ r_RainParticleDensity 1 (developmentonly clientdll defensive)
 
 r_add_views_in_pre_output false (developmentonly clientdll defensive)
 	<no description>
+
+r_allow_low_gpu_memory_mode true (release)
+	Allow Low GPU Memory mode (i.e. when building maps).
 
 r_allow_onesweep_gpusort true (developmentonly defensive)
 	<no description>
@@ -6905,6 +7469,9 @@ r_async_shader_compile_notify_frequency 10 (developmentonly)
 
 r_bloom_tent_filter_radius 3.1 (developmentonly clientdll cheat)
 	bloom mip up-sample filtering radius (using 3x3 tent filter, radius in mip level texels), 0.0 radius => box (2x2) filter with (fixed) 1.0 radius
+
+r_cache_pool_allocations true (developmentonly)
+	<no description>
 
 r_character_decal_monitor_draw_frustum false (developmentonly)
 	<no description>
@@ -7404,6 +7971,9 @@ r_draw_first_tri_only false (cheat)
 r_draw_instances true (cheat)
 	<no description>
 
+r_draw_particle_children_with_parents -1 (cheat)
+	Draw particle children with parents (-1=use gameinfo, 0=no, 1=yes)
+
 r_drawblankworld false (cheat)
 	Render blank instead of the game world
 
@@ -7421,6 +7991,9 @@ r_drawdevvisualizers false (clientdll cheat)
 
 r_drawpanorama true (cheat)
 	Enable the rendering of panorama UI
+
+r_drawparticles true (cheat menubar_item)
+	SceneSystem/Particles/Draw Particles
 
 r_drawpixelvisibility false (developmentonly defensive)
 	Show the occlusion proxies
@@ -7539,8 +8112,8 @@ r_frame_sync_enable true (developmentonly defensive)
 r_freeze_sceneobjects false (developmentonly clientdll defensive)
 	<no description>
 
-r_freezeparticles false (reference)
-	<no description>
+r_freezeparticles false (cheat)
+	Pause particle simulation
 
 r_fullscreen_gamma 2.2 (min: 1, max: 4, archive missing1)
 	Screen Gamma (only in fullscreen modes)
@@ -7713,7 +8286,7 @@ r_lightmap_size 65536 (developmentonly defensive)
 r_lightmap_size_directional_irradiance -1 (developmentonly defensive)
 	Maximum lightmap resolution for directional_irradiance channel. -1 = use value of r_lightmap_size
 
-r_limit_particle_job_duration false (reference)
+r_limit_particle_job_duration false (developmentonly defensive)
 	<no description>
 
 r_low_latency 1 (developmentonly defensive)
@@ -7727,6 +8300,12 @@ r_mapextents 16384 (clientdll cheat)
 
 r_max_texture_pool_size 0 (developmentonly defensive)
 	Upper limit on texture pool size.
+
+r_memory_aliasing true (developmentonly)
+	Allow disabling memory aliasing in the device memory pool.  This is just intended for testing/ruling out aliasing issues.
+
+r_mipgen_compute_shader true (developmentonly defensive)
+	Use compute shader for mipgen.
 
 r_mixed_shadows_fade_in_time 0.5 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
@@ -7755,8 +8334,128 @@ r_muzzleflashlinear 0.05 (clientdll replicated cheat)
 r_nearz -1 (clientdll cheat)
 	Override the near clipping plane. -1 means use the default.
 
-r_particle_max_detail_level 0 (reference)
+r_particle_allowprerender true (developmentonly)
 	<no description>
+
+r_particle_batch_collections false (developmentonly)
+	<no description>
+
+r_particle_batch_in_fullsort false (developmentonly)
+	<no description>
+
+r_particle_cables_cast_shadows true (developmentonly defensive)
+	<no description>
+
+r_particle_cables_culling 1 (developmentonly defensive)
+	<no description>
+
+r_particle_cables_culling_bounds_scale 1.2 (developmentonly defensive)
+	<no description>
+
+r_particle_cables_dynamic_roundness false (developmentonly defensive)
+	<no description>
+
+r_particle_cables_dynamic_roundness_threshold 20 (developmentonly defensive)
+	<no description>
+
+r_particle_cables_render true (developmentonly defensive)
+	<no description>
+
+r_particle_cables_render_meshlets true (developmentonly defensive)
+	<no description>
+
+r_particle_cables_visualize_roundness false (developmentonly defensive)
+	<no description>
+
+r_particle_debug_filter "" (developmentonly defensive)
+	Limit debug visualizations to substring match of effect name
+
+r_particle_debug_force_simulation 0 (developmentonly defensive)
+	-1 for all asleep, 1 for all awake
+
+r_particle_debug_randomseeds false (developmentonly defensive)
+	Use random seeds in debug
+
+r_particle_debug_show_attribute -1 (developmentonly)
+	Show specific attribute when debugging particle systems
+
+r_particle_debug_show_control_points false (developmentonly)
+	Show all used controlpoints
+
+r_particle_debug_show_rope_segments 0 (developmentonly)
+	Show rope segments when debugging particle systems - specify a number to isolate to that segment id
+
+r_particle_debug_show_sort_position false (developmentonly)
+	Show the sorting position when debugging particle systems
+
+r_particle_enable_fastpath true (developmentonly)
+	<no description>
+
+r_particle_explicit_fetch false (developmentonly)
+	<no description>
+
+r_particle_fixedrandomseeds false (developmentonly)
+	Use fixed seeds for easier debugging
+
+r_particle_gpu_implicit true (developmentonly defensive)
+	<no description>
+
+r_particle_gpu_implicit_cull_columns true (developmentonly)
+	<no description>
+
+r_particle_gpu_implicit_debug_bricks false (developmentonly)
+	<no description>
+
+r_particle_gpu_implicit_debug_stats false (developmentonly)
+	<no description>
+
+r_particle_gpu_implicit_debug_wireframe false (developmentonly)
+	<no description>
+
+r_particle_gpu_implicit_lds_cache false (developmentonly)
+	<no description>
+
+r_particle_max_detail_level 3 (developmentonly defensive)
+	The maximum detail level of particle to create
+
+r_particle_max_draw_distance 1e+06 (cheat)
+	The maximum distance that particles will render
+
+r_particle_max_size_cull 1200 (developmentonly defensive)
+	Particle systems larger than this in every dimension skip culling to save CPU.  They will be drawn anyway.
+
+r_particle_max_texture_layers -1 (developmentonly defensive)
+	<no description>
+
+r_particle_min_timestep 0 (developmentonly defensive)
+	A minimum on particle simulation time, particle simulation happening more frequently than this will lerp.
+
+r_particle_mixed_resolution_viewstart 500 (developmentonly)
+	<no description>
+
+r_particle_model_new false (developmentonly)
+	<no description>
+
+r_particle_model_new8 true (developmentonly)
+	<no description>
+
+r_particle_model_per_thread_count 32 (developmentonly)
+	<no description>
+
+r_particle_multiplier 1 (cheat)
+	Render each particle system N times for perf testing
+
+r_particle_newinput false (developmentonly)
+	Enable input path in particle ops
+
+r_particle_render_refreshes_sleep_timer true (developmentonly)
+	Disable to get a better look at what's happening offscreen
+
+r_particle_render_sprites_issue_vizquery true (developmentonly)
+	<no description>
+
+r_particle_render_test false (developmentonly defensive)
+	render particles 100 times and show perf
 
 r_particle_shadow_map_texture_size 1536 (developmentonly clientdll defensive)
 	<no description>
@@ -7776,7 +8475,22 @@ r_particle_shadows_cast_on_world true (developmentonly clientdll defensive)
 r_particle_shadows_compute true (clientdll release)
 	<no description>
 
-r_particle_timescale 0 (reference)
+r_particle_skip_postsim false (developmentonly)
+	<no description>
+
+r_particle_testbuffers false (developmentonly defensive)
+	<no description>
+
+r_particle_timescale 1 (developmentonly defensive)
+	<no description>
+
+r_particle_warn_threshold_ms 0 (developmentonly defensive)
+	Threshold to warn about when rendering particles.
+
+r_particles_memset_at_init 1 (developmentonly)
+	0=don't clear particle attrs at init 1=clear to zero 2=clear to 0xdb -1=clear to zero at first sim
+
+r_physics_particle_op_spawn_scale 1 (developmentonly)
 	<no description>
 
 r_pipeline_stats_command_flush false (developmentonly defensive)
@@ -7815,6 +8529,9 @@ r_player_visibility_strength 1.1 (developmentonly clientdll cheat)
 r_post_bloom_debug 0 (developmentonly clientdll)
 	1 = bloom output (before thresholding), 2 = quarter res downsample, 3 = quarter res effects bloom 4 = quarter res effects raw
 
+r_prefer_loop_unrolling true (developmentonly defensive)
+	Prefer shader loop unrolling.
+
 r_propsmaxdist 1200 (developmentonly clientdll defensive)
 	Maximum visible distance
 
@@ -7829,6 +8546,9 @@ r_render_to_cubemap_debug false (clientdll cheat)
 
 r_renderdoc_auto_shader_pdbs true (developmentonly defensive)
 	Automatically generate shader debug info on capture
+
+r_renderdoc_capture_thumbnail_rendering false (developmentonly)
+	<no description>
 
 r_renderdoc_open_captures true (developmentonly defensive)
 	<no description>
@@ -7862,6 +8582,9 @@ r_shadowtile_waveops false (reference)
 
 r_show_build_info true (clientdll archive release)
 	Build information. Leave this enabled when submitting bug screenshots and videos, please!
+
+r_show_gpu_memory_visualizer false (developmentonly cheat menubar_item)
+	SceneSystem/Vulkan GPU Memory Visualizer
 
 r_show_time_info false (clientdll release)
 	Show real time, large.
@@ -7980,10 +8703,10 @@ r_texture_streamout_unthrottle_ms 0.2 (developmentonly defensive)
 r_texturefilteringquality 1 (developmentonly missing1 defensive)
 	0: Bilinear, 1: Trilinear, 2: Aniso 2x, 3: Aniso 4x, 4: Aniso 8x, 5: Aniso 16x
 
-r_threaded_particle_creation false (reference)
+r_threaded_particle_creation true (developmentonly defensive)
 	<no description>
 
-r_threaded_particles false (reference)
+r_threaded_particles true (developmentonly defensive)
 	<no description>
 
 r_threaded_scene_object_update true (developmentonly clientdll defensive)
@@ -8009,6 +8732,39 @@ r_validate_texture_streaming false (developmentonly defensive)
 
 r_vconsole_foregroundforcerender true (developmentonly defensive)
 	When VConsole is in the foreground, force all engine & tools to render
+
+r_vma_defrag_algorithm 1 (developmentonly)
+	Defrag algorithm 0=Fast 1=Balanced 2=full 3=Extensive
+
+r_vma_defrag_enabled true (developmentonly)
+	<no description>
+
+r_vma_defrag_max_allocation_count_per_pass 256 (developmentonly)
+	During a VMA defrag, number of moves per pass.
+
+r_vma_defrag_max_allocation_size_per_pass 32 (developmentonly)
+	During a VMA defrag, number of MB in moves per pass.
+
+r_vma_defrag_moves_per_frame 20 (developmentonly)
+	During a VMA defrag, number of moves to process for a pass in a single frame update.
+
+r_vma_defrag_threshold_mb 256 (release)
+	<no description>
+
+r_vulkan_accurate_renderarea true (release)
+	Sets the renderArea of a render pass to its viewport bounds (false will use RT size). More accurate renderArea, but results in more render passes.
+
+r_vulkan_force_sync1 false (developmentonly)
+	<no description>
+
+r_vulkan_sw_cmd_lists true (release)
+	Enable Software Command lists for Vulkan
+
+r_vulkan_validation_filter_in "" (developmentonly)
+	Comma delimited list of stristr filters for including validation messages.  Only messages matching filter will be included.
+
+r_vulkan_validation_filter_out "" (developmentonly)
+	Comma delimited list of stristr filters for excluding validation messages.  Any messages matching filter will be excluded.
 
 r_wait_on_present false (developmentonly defensive)
 	<no description>
@@ -8118,6 +8874,12 @@ ragdoll_vphysics_scale 0.5 (developmentonly gamedll replicated defensive)
 rate 80000 (archive userinfo)
 	Min bytes/sec the host can receive data
 
+rc_default_texture_encode_quality 0 (min: 0, max: 0, developmentonly defensive)
+	Texture compression quality used in tools mode
+
+rc_relaxedcones_cpu false (developmentonly defensive)
+	<no description>
+
 rcon_address "" (dontrecord release server_cannot_query)
 	Address of remote server if sending unconnected rcon commands (format x.x.x.x:p) 
 
@@ -8147,6 +8909,9 @@ report_connection_failure_percentage 0 (developmentonly defensive)
 
 reset_voice_on_input_stallout false (userinfo)
 	If true, resets the input device when there was a long enough hitch between callbacks.
+
+resourcecompiler_log_compile_stats false (developmentonly defensive)
+	<no description>
 
 rope_averagelight true (developmentonly clientdll defensive)
 	Makes ropes use average of cubemap lighting instead of max intensity.
@@ -8199,6 +8964,12 @@ rr_followup_maxdist 1800 (gamedll cheat)
 rr_thenany_score_slop 0 (gamedll archive cheat)
 	When computing respondents for a 'THEN ANY' rule, all rule-matching scores within this much of the best score will be considered.
 
+rtx_allow_blas_compact true (developmentonly defensive)
+	<no description>
+
+rtx_allow_blas_create true (developmentonly defensive)
+	<no description>
+
 rtx_dynamic_blas true (developmentonly defensive)
 	Allow dynamic BLAS creation for geometry going through the compute shader skinning path.
 
@@ -8207,6 +8978,12 @@ rtx_dynamic_blas_caching true (developmentonly defensive)
 
 rtx_force_default_hitgroup false (developmentonly defensive)
 	Forces all ray traced geometry to use default hit shaders instead of specialized ones.
+
+rtx_perf_stats -1 (developmentonly defensive)
+	Report RTX perf stats at N bounces. -1 means no report
+
+rtx_show_bounce -1 (developmentonly defensive)
+	Show only bounce N in path-tracing views. -1 means show all bounces
 
 rtx_texture_resolution 512 (min: 64, max: 2048, developmentonly defensive)
 	Sets the texture resolution the raytracer will mark to stream in
@@ -8508,6 +9285,9 @@ sc_only_render_opaque false (cheat)
 sc_only_render_shadowcasters false (cheat)
 	<no description>
 
+sc_particle_debug_visualizer false (developmentonly cheat menubar_item)
+	SceneSystem/Particles/Debug Visualizer
+
 sc_reject_all_objects false (cheat)
 	<no description>
 
@@ -8616,6 +9396,72 @@ sensitivity_y_scale 1 (min: 0, max: 2, clientdll archive userinfo per_user)
 servercfgfile "server.cfg" (gamedll release)
 	<no description>
 
+sfm_bone_display_center_color [255, 224, 128, 255] (developmentonly defensive)
+	color for the center of the sfm skeleton display
+
+sfm_bone_display_highlight_color [0, 192, 255, 255] (developmentonly defensive)
+	color for highlighting of the sfm skeleton display
+
+sfm_bone_display_left_color [128, 255, 128, 255] (developmentonly defensive)
+	color for the left side of the sfm skeleton display
+
+sfm_bone_display_misc_color [192, 96, 192, 255] (developmentonly defensive)
+	color for the misc bones of the sfm skeleton display
+
+sfm_bone_display_radius 2 (developmentonly defensive)
+	radius of the sfm skeleton display
+
+sfm_bone_display_right_color [255, 96, 96, 255] (developmentonly defensive)
+	color for the right side of the sfm skeleton display
+
+sfm_bone_display_selection_color [255, 255, 255, 255] (developmentonly defensive)
+	color for selection of the sfm skeleton display
+
+sfm_debug_draw false (developmentonly defensive)
+	draw debugging geometry
+
+sfm_draw_model_bone_axes false (developmentonly defensive)
+	draw bone axes for models
+
+sfm_draw_model_bounds false (developmentonly defensive)
+	draw bounding boxes for models
+
+sfm_draw_model_wireframe false (developmentonly defensive)
+	draw wireframe for models
+
+sfm_draw_sound_waveform true (developmentonly defensive)
+	draw sound waveforms in the SFM
+
+sfm_ensurefilmcliponframe true (developmentonly defensive)
+	Ensure that interactive film clip operations always stay on frame
+
+sfm_only_opaque_objects_cast_shadows true (developmentonly defensive)
+	<no description>
+
+sfm_orbitspeed 0.333 (archive)
+	Camera orbit scale.
+
+sfm_panspeed 0.1 (archive)
+	Camera pan speed
+
+sfm_print_sound_debug_messages false (developmentonly defensive)
+	<no description>
+
+sfm_record_sound_events true (developmentonly defensive)
+	<no description>
+
+sfm_render_half_float false (developmentonly defensive)
+	<no description>
+
+sfm_show_ao_proxies false (developmentonly defensive)
+	<no description>
+
+sfm_sound_event_picker_delay 200 (developmentonly defensive)
+	<no description>
+
+sfm_vis_mode 0 (developmentonly defensive)
+	<no description>
+
 shake_show false (developmentonly clientdll defensive)
 	Displays a list of the active screen shakes.
 
@@ -8693,6 +9539,9 @@ slope_drop_max_offset 16 (developmentonly gamedll clientdll replicated defensive
 
 slope_drop_off_ground_blend_speed 160 (developmentonly gamedll clientdll replicated defensive)
 	The speed with which the slope drop is blended out when the entity leaves the ground
+
+smartprop_print_timings false (developmentonly defensive)
+	<no description>
 
 smoke_grenade_ct_color [75, 127, 155] (developmentonly gamedll cheat)
 	<no description>
@@ -8836,6 +9685,15 @@ snd_eq_spectator -1 (developmentonly clientdll archive)
 	<no description>
 
 snd_eq_warmup -1 (developmentonly clientdll archive)
+	<no description>
+
+snd_event_browser_default_stack "core_valve_default" (developmentonly)
+	<no description>
+
+snd_event_browser_default_vsnd_field "public.vsnd_files" (developmentonly)
+	<no description>
+
+snd_event_browser_focus_events false (developmentonly archive)
 	<no description>
 
 snd_event_cone_debug false (developmentonly gamedll clientdll replicated cheat)
@@ -9291,6 +10149,75 @@ snd_soundmixer_version 2 (developmentonly defensive)
 snd_spatialize_lerp 0 (archive release)
 	<no description>
 
+snd_steamaudio_active_hrtf 0 (developmentonly)
+	Index of active HRTF.
+
+snd_steamaudio_ambisonics_correction_type 1 (developmentonly defensive)
+	0: Use order-truncated Ambisonics HRTF without correction. 1: Use diffuse field equalization to correct order-truncated Ambisonics HRTFs.
+
+snd_steamaudio_baked_dimensions_probelookup_usealternate false (developmentonly defensive)
+	Use alternate probe lookup algorithm to query dimensions for listener position based on kd-tree of probe points.
+
+snd_steamaudio_baked_occlusion_air_absorption_coefficient 0 (developmentonly defensive)
+	Air absorption coefficient sued for baked occlusion calculation.
+
+snd_steamaudio_baked_occlusion_mode 0 (cheat)
+	0: distance ratio only. 1: deviation only (1/r). 2: deviation only (linear). 3: Mode 0 and Mode 1, 4: Mode 0 and Mode 2
+
+snd_steamaudio_baked_occlusion_pathing_deviation_slope 0.1 (cheat)
+	Adjust how much occlusion goes does with deviation angle.
+
+snd_steamaudio_baked_occlusion_pathing_exponent 0.1 (cheat)
+	Adjust scaling of pathing energy by exponentiall scaling with pathing delta.
+
+snd_steamaudio_baked_occlusion_probelookup_usealternate false (developmentonly defensive)
+	Use alternate probe lookup algorithm to query occlusion for source and listener position based on kd-tree of probe points.
+
+snd_steamaudio_baked_occlusion_reflection_factor 1 (cheat)
+	Adjust scaling for reflection energy when combining it to calculate occlusion value.
+
+snd_steamaudio_baked_occlusion_reflection_regularization 0 (cheat)
+	Ambient noise energy to serve as a floor for reflection energy.
+
+snd_steamaudio_baked_occlusion_spatialfilter_mode 0 (developmentonly defensive)
+	0: No spatial filtering. 1: bidirectional spatial filter.
+
+snd_steamaudio_baked_occlusion_spatialfilter_radius_factor 2 (developmentonly defensive)
+	Radius factor to multiply the distance between probes with to get the radius withing which probes are averaged.
+
+snd_steamaudio_custombake_dimensions_outsidefield_bake_enabled true (developmentonly defensive)
+	Enable baking outside field for probes baking custom dimensions data.
+
+snd_steamaudio_custombake_dimensions_size_and_inout_bake_enabled true (developmentonly defensive)
+	Enable baking size and inout data for probes when baking custom dimensions data.
+
+snd_steamaudio_custombake_dimensions_smallsizefield_bake_enabled true (developmentonly defensive)
+	Enable baking insize size field for probes when baking custom dimensions data.
+
+snd_steamaudio_custombake_occlusion_bidirectional false (developmentonly defensive)
+	Run simulation from both source and listner and average the results. Potential way to reduce noise.
+
+snd_steamaudio_custombake_occlusion_numsimulations 1 (developmentonly defensive)
+	Number of reflection simulations to run when baking occlusion. Potential way to reduce noise.
+
+snd_steamaudio_debug_cover_navmesh_probe_size_scale 1 (developmentonly defensive)
+	Debug option to generate clustered probes of a scaled size for debug visualization.
+
+snd_steamaudio_default_hrtf_volume_gain 0 (developmentonly)
+	Adjust overall volume of the default HRTF by the specified gain (dB).
+
+snd_steamaudio_diagnostic_baked_occlusion_single_probe -1 (developmentonly defensive)
+	Bake occlusion for a single source probe with the given probe id.
+
+snd_steamaudio_dimensions_grid_height_max 100 (developmentonly defensive)
+	The maximum height (from the ground) we allow probes to be added above the initial layer. (meters)
+
+snd_steamaudio_dimensions_grid_height_spacing 0 (developmentonly defensive)
+	0 is disabled - adds another layer of probes above the grid interval of the height spacing (meters)
+
+snd_steamaudio_dimensions_max_ray_length 0 (developmentonly defensive)
+	0 is disabled, but otherwise sets a limit the maximum ray size in the dimension size calculation. Used to model the enclosure algorithm. Game units
+
 snd_steamaudio_display_dimension_data_inside true (developmentonly defensive)
 	When visualizing dimensions data at runtime, draw the inside direction.
 
@@ -9303,8 +10230,119 @@ snd_steamaudio_display_dimension_data_size true (developmentonly defensive)
 snd_steamaudio_dynamicpathing_max_samples 16 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
+snd_steamaudio_enabe_append_probes_to_cover_navmesh true (developmentonly defensive)
+	Flag to choose whether to append probes to cover nav mesh.
+
+snd_steamaudio_enable_compressed_reverb_lookup true (developmentonly)
+	Use compressed reverb data if available.
+
+snd_steamaudio_enable_custom_hrtf false (developmentonly defensive)
+	Enable custom HRTF loading.
+
+snd_steamaudio_enable_editor_profiling false (developmentonly)
+	Enables tracy profiling when baking steam audio data in Hammer.
+
+snd_steamaudio_enable_occlusion_caching true (developmentonly defensive)
+	Continue using previous occlusion if probe lookup for occlusion fails.
+
+snd_steamaudio_enable_ordertruncated_ambisonics_hrtf false (developmentonly defensive)
+	Enable order-truncated Ambisonics HRTF loading.
+
+snd_steamaudio_enable_pathing false (cheat)
+	This variable is checked by soundstack to globally enabling pathing for audio processing.
+
+snd_steamaudio_enable_perspective_correction false (archive release)
+	Enable perspective correction for 3D audio.
+
+snd_steamaudio_enable_probeneighborhood_caching true (developmentonly defensive)
+	Enable caching listener probe neighborhood for pathing.
+
 snd_steamaudio_enable_reverb 0 (release)
 	Enable Steam Audio Reverb processor.
+
+snd_steamaudio_enable_reverb_caching true (developmentonly defensive)
+	Continue using previous reverb if probe lookup for reverb fails.
+
+snd_steamaudio_hammer_probes_always_render true (archive)
+	Render Steam Audio Probes even when probes are unselected.
+
+snd_steamaudio_hybrid_reverb_overlap 0.25 (developmentonly defensive)
+	Set the overlap fraction (0 to 1) for hybrid reverb.
+
+snd_steamaudio_hybrid_reverb_transition_time 1 (developmentonly defensive)
+	Set the transition time (in seconds) between convolution and parametric reverb.
+
+snd_steamaudio_invalid_path_length 0 (developmentonly defensive)
+	Path length of invalid path in inches. Set this to .0 to use direct distance as path length.
+
+snd_steamaudio_ir_duration 2 (cheat)
+	The time delay between a sound being emitted and the last audible reflection in Steam Audio.
+
+snd_steamaudio_irradiancemindistance_reverb 1 (developmentonly defensive)
+	Minimum distance (in meters) of a source from a surface for the purposes of energy calculations.
+
+snd_steamaudio_load_dimensions_data true (developmentonly defensive)
+	If set, baked dimensions data is loaded.
+
+snd_steamaudio_load_materials_data true (developmentonly defensive)
+	If set, baked materials data is loaded.
+
+snd_steamaudio_load_occlusion_data true (developmentonly defensive)
+	If set, baked occlusion data is loaded.
+
+snd_steamaudio_load_pathing_data true (developmentonly defensive)
+	If set, baked pathing data is loaded. Steam Audio Hammer entities can successfully use pathing in this case.
+
+snd_steamaudio_load_reverb_data true (developmentonly defensive)
+	If set, baked reverb data is loaded. Reset it to zero during an format changes of baked data until all data is updated.
+
+snd_steamaudio_max_ambisonics_order 3 (developmentonly defensive)
+	Maximum order for Ambisonics binaural rendering and Ambisonics panning.
+
+snd_steamaudio_max_convolution_sources 4 (cheat)
+	The maximum number of simultaneous sources that can be modeled by Steam Audio.
+
+snd_steamaudio_max_hrtf_normalization_gain_db 6 (developmentonly defensive)
+	Maximum gain any HRTF could have during volume normalization.
+
+snd_steamaudio_max_occlusion_samples 64 (cheat)
+	The maximum number of rays that can be traced for volumetric occlusion by Steam Audio.
+
+snd_steamaudio_max_probes_customdata 4294967295 (developmentonly defensive)
+	Maximum number of probes to create when baking custom data (occlusion).
+
+snd_steamaudio_max_probes_customdata_dimensions 4294967295 (developmentonly defensive)
+	Maximum number of probes to create when baking custom data (dimensions).
+
+snd_steamaudio_max_probes_customdata_materials 4294967295 (developmentonly defensive)
+	Maximum number of probes to create when baking custom data (occlusion).
+
+snd_steamaudio_max_probes_pathing 4294967295 (developmentonly defensive)
+	Maximum number of probes to create when baking paths.
+
+snd_steamaudio_max_probes_reverb 4294967295 (developmentonly defensive)
+	Maximum number of probes to create when baking reverb.
+
+snd_steamaudio_normalize_default_hrtf_volume false (developmentonly)
+	Normalize volume of default HRTF dataset across all directions.
+
+snd_steamaudio_num_bounces 128 (cheat)
+	The maximum number of times any ray can bounce when using Steam Audio.
+
+snd_steamaudio_num_diffuse_samples 2048 (cheat)
+	The number of directions considered for ray bounce by Steam Audio.
+
+snd_steamaudio_num_rays 65536 (cheat)
+	The number of rays to trace for reflection modeling by Steam Audio.
+
+snd_steamaudio_num_threads 2 (cheat)
+	Sets the number of threads used for realtime reflection by Steam Audio.
+
+snd_steamaudio_occlusionvisualization_sampleheight 1.5 (developmentonly defensive)
+	Height to place samples to query occlusion for visualization.
+
+snd_steamaudio_occlusionvisualization_sampleradius 4 (developmentonly defensive)
+	Query radius to find probes to interpolate occlusion for visualization.
 
 snd_steamaudio_pathing_caching_threshold 5 (developmentonly gamedll clientdll replicated defensive)
 	<no description>
@@ -9312,11 +10350,32 @@ snd_steamaudio_pathing_caching_threshold 5 (developmentonly gamedll clientdll re
 snd_steamaudio_pathing_enable_caching true (developmentonly gamedll clientdll replicated defensive)
 	<no description>
 
+snd_steamaudio_pathing_enable_source_probe_interp false (developmentonly defensive)
+	If set, all the probes near a source withing probe range are used to find paths instead of nearest probe.
+
+snd_steamaudio_pathing_order 1 (cheat)
+	The amount of directional detail in the simulated by Steam Audio.
+
+snd_steamaudio_pathing_order_rendering 1 (cheat)
+	The amount of directional detail in the rendered audio by Steam Audio.
+
+snd_steamaudio_perspective_correction_factor 1 (developmentonly defensive)
+	Perspective correction factor, ratio of screen size and view depth from screen, for 3D audio.
+
 snd_steamaudio_perspective_correction_front_only true (developmentonly)
 	Use perspective correction for 3D audio only in the frontal directions.
 
 snd_steamaudio_reverb_level_db -3 (release)
 	Adjust overall volume (dB) of the output from Steam Audio Reverb processor.
+
+snd_steamaudio_reverb_order 1 (developmentonly defensive)
+	Ambisonics order to use for simulating reverb.
+
+snd_steamaudio_reverb_order_rendering 1 (developmentonly defensive)
+	Ambisonics order to use for convolution reverb. 0th order = 1 channel, 1st order = 4 channels.
+
+snd_steamaudio_reverb_update_rate 30 (developmentonly defensive)
+	Set the maximum update rate (in Hz) for reverb.
 
 snd_steamaudio_source_pathing_debug false (archive)
 	Enable path visualization for steam_audio_source operator.
@@ -9326,6 +10385,9 @@ snd_steamaudio_source_pathing_debug_duration 0.01 (developmentonly defensive)
 
 snd_steamaudio_source_pathing_enable_validation false (developmentonly defensive)
 	Enable real-time pathing validation against dynamic geometry.
+
+snd_steamaudio_use_soundblocking_shapes_only false (developmentonly defensive)
+	If set, OBJ export and Hammer visualization only shows sound blocking geometry used for baking simulation and runtime queries.
 
 snd_surf_volume_inair 0.5 (clientdll archive release)
 	The volume of the wind when surfing.
@@ -9656,6 +10718,9 @@ stats_highlight_interval 10 (developmentonly clientdll defensive)
 
 steam_controller_haptics true (clientdll release)
 	<no description>
+
+steamaudio_customdata_dimensions_numrays 32768 (developmentonly defensive)
+	Number of rays to trace for estimating inside outside status of a probe.
 
 steamworks_sessionid_client "0" (clientdll hidden userinfo)
 	The client session ID for the new steamworks gamestats.
@@ -10227,6 +11292,9 @@ sv_lightquery_debug false (gamedll cheat)
 sv_limit_buyrandom_per_life true (gamedll release)
 	Enable to limit buyrandom command to only run once per player life
 
+sv_listen_directudp true (release)
+	Server will listen for direct UDP connections on the configured port.  This can be turned off to only listen for P2P/SDR connections.
+
 sv_log_http_record_before_any_listeners false (gamedll release)
 	<no description>
 
@@ -10355,6 +11423,12 @@ sv_mover_pogofrequency 10 (developmentonly gamedll clientdll notify replicated d
 
 sv_mute_players_with_social_penalties true (developmentonly gamedll defensive)
 	<no description>
+
+sv_net_client_message_process_time_ms_drop 200 (developmentonly defensive)
+	If processing messages from a client takes more than N ms, drop them
+
+sv_net_client_message_process_time_ms_warn 50 (developmentonly defensive)
+	If processing messages from a client takes more than N ms, warn
 
 sv_netprof_delta_sharing_temp false (release)
 	Temp counter for measuring performance impact of some network changes. To be removed by the end of Sept 2026
@@ -11037,8 +12111,17 @@ toast_manager_override_duration -1 (developmentonly clientdll)
 tool_spawned_model_scales [1, 1, 1] (developmentonly gamedll replicated)
 	<no description>
 
+toolhud_enable true (developmentonly defensive)
+	<no description>
+
+tools_renderscenes true (developmentonly defensive)
+	<no description>
+
 tools_stall_monitor_break_on_unknown_cause false (developmentonly)
 	Break on unknown stall cause
+
+toolscene_gizmo_algorithm 1 (developmentonly defensive)
+	<no description>
 
 trigger_fan_debug false (developmentonly gamedll clientdll replicated)
 	<no description>
@@ -11538,8 +12621,23 @@ update_all_keyframed_in_spatial_partition_update true (developmentonly gamedll c
 update_voices_low_priority false (developmentonly defensive)
 	<no description>
 
+v8_jitless true (developmentonly)
+	Disable runtime allocation of executable memory for V8.
+
+v8_maximum_heap_size_mb 512 (developmentonly)
+	Hard limit for the v8 heap size (in mBytes)
+
+v8_stack_size 384 (developmentonly)
+	Default size of stack region v8 is allowed to use (in kBytes)
+
 vconsole_rcon_server_details "" (dontrecord release server_cannot_query)
 	when non-empty allows for easy vconsole connection to the dedicated server.
+
+vdata_fgd_debug_path "" (developmentonly)
+	<no description>
+
+vdata_fgd_debug_verbose false (developmentonly)
+	<no description>
 
 vehicle_debug_impact_damage false (developmentonly gamedll)
 	<no description>
@@ -11750,6 +12848,27 @@ vprof_think_limit false (developmentonly gamedll defensive)
 
 vt_sim_streaming_delay_ms 500 (developmentonly defensive)
 	<no description>
+
+vulkan_batch_size 500 (developmentonly defensive)
+	<no description>
+
+vulkan_batch_submits true (developmentonly defensive)
+	<no description>
+
+vulkan_dedicated_allocation_threshold 512 (developmentonly defensive)
+	Size (in KBs) above which textures should be allocated in dedicated memory (NV-only).
+
+vulkan_link_time_optimize_libraries true (release)
+	<no description>
+
+vulkan_pipeline_compile_spew false (developmentonly defensive)
+	<no description>
+
+vulkan_pipeline_compile_throttle_ms 0 (developmentonly defensive)
+	<no description>
+
+vulkan_unpause_workers_after_each_texture_deallocation false (developmentonly)
+	If true, the main thread pauses and unpauses the Vulkan worker threads around each texture deallocation, which allows the workers to make a little bit of progress but results in main thread stalls. If false, we keep the workers paused until all deallocations are done, allowing the deallocations to complete significantly faster.
 
 weapon_accuracy_forcespread 0 (gamedll clientdll replicated release)
 	Force spread to the specified value.

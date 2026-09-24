@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,7 +35,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (568 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float4 vPositionPs;
@@ -88,8 +87,12 @@ PS
 	Texture2D g_tTex < Attribute("DebugTexture"); SrgbRead(true); >;
 	
 	
+	// Variant parameters
+	Texture2D g_tTex < Attribute("DebugTexture"); SrgbRead(false); >;
+	Texture2D g_tTex < Attribute("DebugTexture"); SrgbRead(true); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (788 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tTex : register(t30, space1);
 	SamplerState Filter_MinMagMipPoint : register(s14, space1);
@@ -109,11 +112,11 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tTex.Sample(Filter_MinMagMipPoint, input_0.xy);
+	    float4 _3300 = g_tTex.Sample(Filter_MinMagMipPoint, input_0.xy);
 	    float4 _18900 = 1.0f.xxxx;
-	    _18900.x = _3401.x;
-	    _18900.y = _3401.y;
-	    _18900.z = _3401.z;
+	    _18900.x = _3300.x;
+	    _18900.y = _3300.y;
+	    _18900.z = _3300.z;
 	    output_0 = _18900;
 	}
 	

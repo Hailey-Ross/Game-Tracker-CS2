@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,11 +38,10 @@ VS
 {
 	StaticCombo( S_LIGHTING_ONLY, F_LIGHTING_ONLY );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float4x4 g_matSkyWsToOs < Attribute("SkyWsToOs"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1684 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -104,9 +102,8 @@ PS
 	DynamicCombo( D_RENDER_TO_CUBE_MAP, 0..1 );
 	DynamicCombo( D_FOG_TYPE, 0..2 );
 	DynamicCombo( D_MIN_ANGULAR_FOG, 0..1 );
-	DynamicComboRule( Requires( D_MIN_ANGULAR_FOG, D_FOG_TYPE=2 ) );
+	DynamicComboRule( Requires( D_MIN_ANGULAR_FOG, D_FOG_TYPE==2 ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flFogMaxDotEnd < Attribute("FogMaxEnd"); UiType(Slider); >;
 	float g_flFogMaxDotStart < Attribute("FogMaxStart"); UiType(Slider); >;
 	float g_flFogMinDotEnd < Attribute("FogMinEnd"); UiType(Slider); >;
@@ -144,13 +141,17 @@ PS
 		TextureCube g_tSkyTexture < Channel(RGBA, RGBM(SkyTexture), Srgb); OutputFormat(RGBA8888); SrgbRead(true); >;
 	#endif
 	
+	// Variant parameters
+	CreateInputTexture2D(SkyTexture, Linear, 8, "ConvertToYCoCg", "", "Texture", Default4(0, 0, 0, 1));
+	CreateInputTexture2D(SkyTexture, Srgb, 8, "", "", "Texture", Default4(1, 1, 1, 0));
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 2 (name: g_vTint) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2340 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -180,11 +181,11 @@ PS
 	
 	void main()
 	{
-	    vec4 _3401 = texture(samplerCube(g_tSkyTexture, DefaultSamplerState_0), normalize(input_0.xyz).xyz);
+	    vec4 _3300 = texture(samplerCube(g_tSkyTexture, DefaultSamplerState_0), normalize(input_0.xyz).xyz);
 	    vec4 _18900;
-	    _18900.x = _3401.x;
-	    _18900.y = _3401.y;
-	    _18900.z = _3401.z;
+	    _18900.x = _3300.x;
+	    _18900.y = _3300.y;
+	    _18900.z = _3300.z;
 	    vec3 _11003 = _18900.xyz * _Globals_.g_flBrightnessExposureBias;
 	    vec4 _8673;
 	    _8673.x = _11003.x;

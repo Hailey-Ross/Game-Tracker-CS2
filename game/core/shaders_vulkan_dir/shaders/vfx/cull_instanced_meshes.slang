@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -32,6 +31,7 @@ CS
 	StaticCombo( S_REVERSE_DEPTH_BUFFER, 0..1 );
 	DynamicCombo( D_OCCLUSION_CULLING, 0..1 );
 	DynamicCombo( D_VOLUME_CULLER, 0..1 );
+	DynamicCombo( D_CULL_BOXES, 0..1 );
 	DynamicCombo( D_HAS_ROOT_VIEW, 0..1 );
 	DynamicCombo( D_VIS_CULLING, 0..1 );
 	DynamicCombo( D_VISUALIZE_SCENEOBJECTS, 0..1 );
@@ -39,8 +39,6 @@ CS
 	DynamicCombo( D_SUPPORTS_FADE, 0..1 );
 	DynamicCombo( D_DEBUG_OUTPUT_STATS, 0..1 );
 	
-	cbuffer GpuVolumeCullerPlanes_t < Attribute("GpuVolumeCullerPlanes_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	StructuredBuffer g_CullRequests < Attribute("CullRequests"); >;
 	RWStructuredBuffer g_CullStats < Attribute("CullStats"); >;
 	ByteAddressBuffer g_InstanceData < Attribute("InstanceData"); >;
@@ -55,12 +53,13 @@ CS
 	bool g_bEnableFrustumCulling < Attribute("g_bEnableFrustumCulling"); UiType(CheckBox); >;
 	bool g_bEnableSizeCulling < Attribute("g_bEnableSizeCulling"); UiType(CheckBox); >;
 	bool g_bRootViewOrthographic < Attribute("RootViewIsOrthographic"); UiType(CheckBox); >;
+	float g_fCullViewOrthoInvWidth < Attribute("CullViewOrthoInvWidth"); UiType(Slider); >;
 	float g_fCullViewSizeThreshold < Attribute("CullViewSizeThreshold"); UiType(Slider); >;
 	float g_fCullViewTanHalfFov < Attribute("CullViewTanHalfFov"); UiType(Slider); >;
 	float g_fRootViewOrthoInvWidth < Attribute("RootViewOrthoInvWidth"); UiType(Slider); >;
 	float g_fRootViewSizeThreshold < Attribute("RootViewSizeThreshold"); UiType(Slider); >;
 	float g_fRootViewTanHalfFov < Attribute("RootViewTanHalfFov"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
 	float4x4 g_mDepthPyramidProjFromWorld < Attribute("DepthPyramidProjFromWorld"); >;
 	int g_nCullRequests < Attribute("NumCullRequests"); UiType(Slider); >;
 	int g_nDepthPyramidHeight < Attribute("DepthPyramidHeight"); UiType(Slider); >;
@@ -70,7 +69,7 @@ CS
 	int g_nTreeTraversalSeed < Attribute("VisTreeTraversalSeed"); UiType(Slider); >;
 	int g_nVisInternalTreeExtent < Attribute("VisInternalTreeExtent"); UiType(Slider); >;
 	int g_nVisualizeSceneObjectsMode < Attribute("VisualizeSceneObjectsMode"); UiType(Slider); >;
-	StructuredBuffer g_prevFrameTransformBuffer < Attribute("PrevFrameTransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_prevFrameTransformBuffer < Attribute("PrevFrameTransformBuffer"); >;
 	Texture2D g_tDepthPyramid < Attribute("DepthPyramid"); SrgbRead(false); >;
 	float3 g_vCullViewOrigin < Attribute("CullViewOrigin"); UiType(VectorText); >;
 	float3 g_vDepthPyramidCameraOffset < Attribute("DepthPyramidCameraOffset"); UiType(VectorText); >;
@@ -90,7 +89,7 @@ CS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (13372 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_scalar_block_layout : require
@@ -108,12 +107,12 @@ CS
 	#endif
 	layout(local_size_x = 192, local_size_y = 1, local_size_z = 1) in;
 	
-	struct _2523
+	struct _2517
 	{
 	    uint _m0[8];
 	};
 	
-	struct _2176
+	struct _2116
 	{
 	    uint _m0;
 	    uint _m1;
@@ -123,7 +122,7 @@ CS
 	    int _m5;
 	    uint _m6;
 	    uint _m7;
-	    _2523 _m8;
+	    _2517 _m8;
 	};
 	
 	struct _71
@@ -136,12 +135,12 @@ CS
 	    uvec4 _m0[2];
 	};
 	
-	struct _2035
+	struct _1947
 	{
-	    _2523 _m0[8];
+	    _2517 _m0[8];
 	};
 	
-	struct _1967
+	struct _481
 	{
 	    vec3 _m0;
 	    uint _m1;
@@ -154,10 +153,10 @@ CS
 	    float _m8;
 	    float _m9;
 	    float _m10;
-	    _2523 _m11;
+	    _2517 _m11;
 	    uint _m12;
 	    float _m13;
-	    _2035 _m14;
+	    _1947 _m14;
 	};
 	
 	struct _1119
@@ -177,7 +176,7 @@ CS
 	    float _m7;
 	};
 	
-	struct _2251
+	struct _2252
 	{
 	    vec4 g_vFrustumPlane0;
 	    vec4 g_vFrustumPlane1;
@@ -190,23 +189,23 @@ CS
 	    int g_bEnableFrustumCulling;
 	    int g_bEnableSizeCulling;
 	    int g_bEnableDensityCulling;
-	    float g_fRootViewOrthoInvWidth;
 	    int g_bCullViewOrthographic;
+	    float g_fCullViewOrthoInvWidth;
 	    vec3 g_vCullViewOrigin;
 	    float g_fCullViewTanHalfFov;
 	    float g_fCullViewSizeThreshold;
 	};
 	
-	layout(set = 0) uniform _2251 _Globals_;
+	layout(set = 0) uniform _2252 _Globals_;
 	
 	layout(set = 0, binding = 36, std430) readonly buffer g_CullRequests
 	{
-	    _2176 _m0[];
+	    _2116 _m0[];
 	} g_CullRequests_1;
 	
 	layout(set = 0, binding = 35, scalar) readonly buffer g_MeshData
 	{
-	    _1967 _m0[];
+	    _481 _m0[];
 	} g_MeshData_1;
 	
 	layout(set = 0, binding = 37, std430) readonly buffer g_InstanceData
@@ -248,7 +247,7 @@ CS
 	            _25111 = uint(g_CullRequests_1._m0[_13724]._m5) + gl_LocalInvocationID.x;
 	        }
 	        bool _12888;
-	        if (gl_LocalInvocationID.x < (_6493 & 1073741823u))
+	        if (gl_LocalInvocationID.x < (_6493 & 536870911u))
 	        {
 	            float _10932;
 	            mat3x4 _15345;
@@ -344,7 +343,7 @@ CS
 	                            {
 	                                if (_Globals_.g_bCullViewOrthographic != 0)
 	                                {
-	                                    _20091 = (2.0 * _10825) * _Globals_.g_fRootViewOrthoInvWidth;
+	                                    _20091 = (2.0 * _10825) * _Globals_.g_fCullViewOrthoInvWidth;
 	                                    break;
 	                                }
 	                                else
@@ -357,7 +356,7 @@ CS
 	                                    }
 	                                    else
 	                                    {
-	                                        _20091 = clamp(_10825 / (_23997 * _Globals_.g_fCullViewTanHalfFov), 0.0, 1.0);
+	                                        _20091 = saturate(_10825 / (_23997 * _Globals_.g_fCullViewTanHalfFov));
 	                                        break;
 	                                    }
 	                                    break; // unreachable workaround
@@ -397,7 +396,7 @@ CS
 	                                {
 	                                    if (_Globals_.g_bCullViewOrthographic != 0)
 	                                    {
-	                                        _20092 = (2.0 * _10825) * _Globals_.g_fRootViewOrthoInvWidth;
+	                                        _20092 = (2.0 * _10825) * _Globals_.g_fCullViewOrthoInvWidth;
 	                                        break;
 	                                    }
 	                                    else
@@ -410,7 +409,7 @@ CS
 	                                        }
 	                                        else
 	                                        {
-	                                            _20092 = clamp(_10825 / (_23998 * _Globals_.g_fCullViewTanHalfFov), 0.0, 1.0);
+	                                            _20092 = saturate(_10825 / (_23998 * _Globals_.g_fCullViewTanHalfFov));
 	                                            break;
 	                                        }
 	                                        break; // unreachable workaround

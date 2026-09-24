@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -42,12 +41,11 @@ VS
 	DynamicCombo( D_COMPRESSED_NORMALS_AND_TANGENTS, 0..1 );
 	DynamicCombo( D_BAKE_GRASS, 0..2 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2728 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -62,23 +60,6 @@ VS
 	};
 	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -119,40 +100,19 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(nInstanceIdx * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(nInstanceIdx * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(nInstanceIdx * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(nInstanceIdx * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(nInstanceIdx * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(nInstanceIdx * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(nInstanceIdx * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _24007._m0;
-	    _19924._m1 = _24007._m1;
-	    _19924._m2 = _24007._m2;
-	    _19924._m3 = _24007._m3;
-	    _19924._m4 = _24007._m4;
-	    _19924._m5 = _24007._m5;
-	    _19924._m6 = _24007._m6;
-	    _19924._m7 = _24007._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _20228;
-	    _20228._m0 = _8152._m0;
+	    float3x4 _8524 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
 	    float3 _19648;
-	    if (((_19924._m5 >> uint(16)) & 15u) > 0u)
+	    if (((g_instanceBuffer.Load(nInstanceIdx * 32 + 20) >> uint(16)) & 15u) > 0u)
 	    {
-	        _19648 = _20228._m0[0].z.xxx;
+	        _19648 = _8524[0].z.xxx;
 	    }
 	    else
 	    {
 	        _19648 = 1.0f.xxx;
 	    }
-	    float3 _12151 = mul(_20228._m0, float4(vPositionOs.xyz * _19648.xyz, 1.0f));
+	    float3 _12151 = mul(_8524, float4(vPositionOs.xyz * _19648.xyz, 1.0f));
 	    float4 _17914 = mul(PerViewConstantBuffer_t_1_m0, (float4(_12151.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
-	    output_0 = normalize(mul(_20228._m0, float4(vNormalOs.xyz, 0.0f)));
+	    output_0 = normalize(mul(_8524, float4(vNormalOs.xyz, 0.0f)));
 	    output_1 = vTexCoord;
 	    output_2 = _12151;
 	    _17914.y = -_17914.y;
@@ -201,7 +161,7 @@ PS
 	float g_flGrassHeightMax < Default(55); Range(1, 256); UiType(Slider); UiGroup("GrassSize/30"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1016 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -211,12 +171,12 @@ PS
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState Filter_MinMagMipPoint : register(s14, space1);
 	
-	static float2 input_0;
+	static float2 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float2 input_0 : TEXCOORD1;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -226,13 +186,13 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tColor.Sample(Filter_MinMagMipPoint, input_0.xy);
-	    output_0 = float4(_3401.xyz * _Globals_1_g_vColorTint.xyz, _3401.w);
+	    float4 _3300 = g_tColor.Sample(Filter_MinMagMipPoint, input_1.xy);
+	    output_0 = float4(_3300.xyz * _Globals_1_g_vColorTint.xyz, _3300.w);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

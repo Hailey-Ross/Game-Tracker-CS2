@@ -402,7 +402,6 @@ $prefix_element$
 (5jP
 (BZq
 (D4D
-(Dev command - regenerate the asset sort indicies)
 (NONE)
 (Placeholder for unrecognized tag)
 (U1h
@@ -1921,8 +1920,6 @@ Basis Type: %s\n
 BayerGreenSplit
 BcT`
 Bd]U
-Before triggering a resource recompile, wait for input dependencies to stop being written
-Before triggering a resource reload, wait for input dependencies to stop being written
 BestQualityScale
 Bh;+j
 Big Number part of OpenSSL 1.0.2j  26 Sep 2016
@@ -3103,7 +3100,6 @@ EhQ,[3
 EjNG
 Element uses unknown element type %s\n
 Email address mismatch
-Enable to print detailed info every time an assetfingerprint is calculated
 Encipher Only
 Encountered an element array attribute '%s' while reading the prefix element
 Encountered an element attribute '%s' while reading the prefix element
@@ -3235,7 +3231,6 @@ FillOrder
 FillRecursiveFingerprintBuffer_R( %s, 0x%X )\n
 Filtering asset files according to whitelist '%s'\n
 Filtering asset files finished in %.2f\n
-Find the number of assets registered with the asset system
 FindAttrNode
 Fingers
 Fingers_L
@@ -3472,7 +3467,6 @@ ImplicitDependingOnMe
 Inappropriate photometric interpretation %d for SGILog compression; %s
 Incorrect keyframe parameters.
 Independent
-Information about the current assetsystem database.
 Inherit Velocity
 Inherit all
 Inhibit Policy Mapping
@@ -3699,8 +3693,6 @@ MatrixWorldToCamera
 MatrixWorldToScreen
 Matteing
 Max Velocity
-Max amount of time to wait (in ms) for input dependencies to stop being written before abandoning the compile
-Max length of strings to dump in assetsystem_dump_table
 MaxSampleValue
 Mc]T=
 Merging CCITT Fax 3 codec-specific tags failed
@@ -3877,7 +3869,6 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -4211,7 +4202,6 @@ Particle Configuration File
 Paths excluded from your client: %d\n
 Paths included (regardless of exclude) in your client: %d\n
 Peer haven't sent GOST certificate, required for selected ciphersuite
-Perform a detailed check of an asset's compile state
 Permanent Identifier
 Permitted
 Photometric tag is missing, assuming data is YCbCr
@@ -4249,9 +4239,6 @@ Premature end-of-partition0 encountered.
 Preset File
 PrimaryChromaticities
 Prime:
-Print assets in the specified dir.
-Print assetsystem dir tree.
-Print internal assetsystem data.
 Private Key
 Private-Key
 Private-Key: (%d bit)\n
@@ -4701,7 +4688,6 @@ Sequence Two Random
 Serialize: File encoding %s is undefined!\n
 Serialize: File encoding '%s' is undefined!\n
 Serialize: Format %s expects to be written to a binary format, but the buffer is a text-format buffer\n
-Set to true to revert to old behavior
 SetConsoleMode
 SetGrowSize
 Setting up field info failed
@@ -4715,7 +4701,6 @@ Skipping reload of in-memory compiled resource '%s' without a compiled replaceme
 Sn^G
 Software
 Source file not present.
-Spew info for assets that match the specified substring
 Sr89[
 Stack part of OpenSSL 1.0.2j  26 Sep 2016
 StereoFlip
@@ -4881,7 +4866,6 @@ TileDepth
 TileLength
 TileOffsets
 TileWidth
-Time (sec) to pause assetsystem reload behavior if a requeue is requested
 Time Stamp signing
 Time Stamping
 TongueCurl
@@ -4981,7 +4965,6 @@ Updating asset dependency information...
 Updating dependencies: %d%% (%s/%s) - %s
 Usage: "assetsystem_dump_table <table_name>" where table_name is either * (for all) or one of:\n
 Usage: assetsystem_check_compile_state <asset_name>\n
-Use old behavior of calling ProcessFileChanges() immediately after recompiling a resource
 Using rule file '%s'\n
 Ut]<E
 Uv1t
@@ -5138,8 +5121,6 @@ Warning (problem that doesn't prevent forward progress)
 Wcr"
 We_A0
 WfMD{
-When an asset is being recompiled the dependents will be recompiled only as needed, otherwise the original recompile mode will be passed on.
-Whether to explicitly reload child resources of a QueueReloadIfLoaded
 WhiteLevel
 WhitePoint
 WipeRedo '%s'\n
@@ -5726,28 +5707,9 @@ assetsTheSoundEventDependsOn.Count() == 1
 assetsTheSoundEventDependsOn[0] == pNullSoundAsset
 assetsystem
 assetsystem.dll
-assetsystem_check_compile_state
 assetsystem_check_compile_state could not find asset: %s\n
-assetsystem_count
-assetsystem_debug_substring
-assetsystem_dump_all_dirs
-assetsystem_dump_one_dir
 assetsystem_dump_one_dir expected 1 argument: <dir>\n
 assetsystem_dump_one_dir unknown dir '%s'\n
-assetsystem_dump_string_threshold
-assetsystem_dump_table
-assetsystem_fail_compile_on_dependants
-assetsystem_legacy_explicit_reload_child_resources
-assetsystem_legacy_process_file_changes_after_compile
-assetsystem_old_loop_algorithm
-assetsystem_quiet_inputs_before_recompile
-assetsystem_quiet_inputs_before_recompile_max_pause
-assetsystem_quiet_inputs_before_reload
-assetsystem_recompile_dependents_as_needed
-assetsystem_reload_queue_requeue_pause
-assetsystem_stats
-assetsystem_test_resort
-assetsystem_verbose_fingerprints
 assettypes
 assettypes_common.txt
 assettypes_internal.txt

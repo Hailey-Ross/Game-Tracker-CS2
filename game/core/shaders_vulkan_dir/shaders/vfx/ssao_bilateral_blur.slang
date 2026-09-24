@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (432 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -78,9 +77,9 @@ PS
 	float2 g_vAxis < UiType(VectorText); Expression(axis); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2208 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static const float _487[5] = { 0.15317000448703765869140625f, 0.14489300549030303955078125f, 0.12264899909496307373046875f, 0.092901997268199920654296875f, 0.06296999752521514892578125f };
+	static const float _482[5] = { 0.15317000448703765869140625f, 0.14489300549030303955078125f, 0.12264899909496307373046875f, 0.092901997268199920654296875f, 0.06296999752521514892578125f };
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -124,9 +123,9 @@ PS
 	        }
 	        if (_17017 != 0)
 	        {
-	            float4 _3401 = g_tRawSSAO.Load(int3(int3(int2(float2(_10251) + (_Globals_1_g_vAxis * float(_17017 * 2))), 0).xy, 0));
-	            float _3716 = (0.300000011920928955078125f + _487[abs(_17017)]) * max(0.0f, 1.0f - (2000.0f * abs(_3401.y - _15233)));
-	            _10913 = _13136 + (_3401.x * _3716);
+	            float4 _3300 = g_tRawSSAO.Load(int3(int3(int2(float2(_10251) + (_Globals_1_g_vAxis * float(_17017 * 2))), 0).xy, 0));
+	            float _3716 = (0.300000011920928955078125f + _482[abs(_17017)]) * max(0.0f, 1.0f - (2000.0f * abs(_3300.y - _15233)));
+	            _10913 = _13136 + (_3300.x * _3716);
 	            _17551 = _16324 + _3716;
 	        }
 	        else

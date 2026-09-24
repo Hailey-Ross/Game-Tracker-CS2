@@ -61,7 +61,7 @@ class CAnimGraphDoc_TwoBoneIKNode : public CAnimGraphDoc_Node
 	// MPropertyGroupName = "End Effector"
 	// MPropertyFriendlyName = "Attachment"
 	// MPropertyAttributeChoiceName = "Attachment"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_endEffectorAttachmentName;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Target Type"
@@ -70,19 +70,19 @@ class CAnimGraphDoc_TwoBoneIKNode : public CAnimGraphDoc_Node
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Attachment"
 	// MPropertyAttributeChoiceName = "Attachment"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_attachmentName;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Bone"
 	// MPropertyAttributeChoiceName = "Bone"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_targetBoneName;
 	// MPropertySuppressField
 	CUtlString m_targetParamName;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Position Parameter"
 	// MPropertyAttributeChoiceName = "VectorParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_targetParam;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Match Target Orientation"
@@ -93,14 +93,14 @@ class CAnimGraphDoc_TwoBoneIKNode : public CAnimGraphDoc_Node
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Rotation Parameter"
 	// MPropertyAttributeChoiceName = "QuaternionParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_rotationParam;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Constrain Twist"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bConstrainTwist;
 	// MPropertyGroupName = "Target"
 	// MPropertyFriendlyName = "Max Twist"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flMaxTwist;
 };

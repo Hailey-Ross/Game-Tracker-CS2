@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -49,9 +48,8 @@ VS
 	DynamicCombo( D_BLEND_WEIGHT_COUNT, 0..4 );
 	DynamicComboRule( Allow0( D_BLEND_WEIGHT_COUNT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Depth Bias Amount
 	float g_DepthBiasAmount < Default(0.025); UiType(Slider); UiGroup("Depth Bias Amount"); >;
@@ -69,23 +67,11 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4324 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
 	struct _1125
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1126
 	{
 	    uint _m0;
 	    uint _m1;
@@ -102,14 +88,9 @@ VS
 	    mat3x4 _m0;
 	};
 	
-	struct _1120
-	{
-	    mat3x4 _m0;
-	};
-	
 	layout(set = 0, binding = 32, std430) readonly buffer g_instanceBuffer
 	{
-	    _1126 _m0[];
+	    _1125 _m0[];
 	} g_instanceBuffer_1;
 	
 	struct _1100
@@ -124,7 +105,7 @@ VS
 	
 	layout(set = 0, binding = 30, std430) readonly buffer g_transformBuffer
 	{
-	    _1120 _m0[];
+	    _1119 _m0[];
 	} g_transformBuffer_1;
 	
 	struct _1224
@@ -135,8 +116,8 @@ VS
 	
 	layout(set = 0) uniform _1224 PerViewConstantBuffer_t;
 	
-	layout(location = 1) in uint vPositionOs;
-	layout(location = 0) in vec3 nInstanceIdx;
+	layout(location = 1) in uint nInstanceIdx;
+	layout(location = 0) in vec3 vPositionOs;
 	layout(location = 0) out vec3 output_0;
 	layout(location = 1) out vec3 output_1;
 	layout(location = 2) out vec4 output_2;
@@ -145,16 +126,7 @@ VS
 	
 	void main()
 	{
-	    _1125 _22470;
-	    _22470._m0 = g_instanceBuffer_1._m0[vPositionOs]._m0;
-	    _22470._m1 = g_instanceBuffer_1._m0[vPositionOs]._m1;
-	    _22470._m2 = g_instanceBuffer_1._m0[vPositionOs]._m2;
-	    _22470._m3 = g_instanceBuffer_1._m0[vPositionOs]._m3;
-	    _22470._m4 = g_instanceBuffer_1._m0[vPositionOs]._m4;
-	    _22470._m5 = g_instanceBuffer_1._m0[vPositionOs]._m5;
-	    _22470._m6 = g_instanceBuffer_1._m0[vPositionOs]._m6;
-	    _22470._m7 = g_instanceBuffer_1._m0[vPositionOs]._m7;
-	    vec4 _23812 = vec4(uvec4(_22470._m0 & 255u, (_22470._m0 & 65280u) >> uint(8), (_22470._m0 & 16711680u) >> uint(16), (_22470._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _23812 = vec4(uvec4(g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 255u, (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 65280u) >> uint(8), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 16711680u) >> uint(16), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	    vec3 _6253 = _23812.xyz;
 	    vec3 _17828 = _6253 * vec3(0.077399380505084991455078125);
 	    vec3 _7676 = pow((_6253 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
@@ -186,9 +158,7 @@ VS
 	        _19302 = _7676.z;
 	    }
 	    float _25150 = _23812.w;
-	    _1119 _19848;
-	    _19848._m0 = g_transformBuffer_1._m0[_22470._m1]._m0;
-	    vec3 _19956 = vec4(nInstanceIdx.xyz, 1.0) * _19848._m0;
+	    vec3 _19956 = vec4(vPositionOs.xyz, 1.0) * g_transformBuffer_1._m0[g_instanceBuffer_1._m0[nInstanceIdx]._m1]._m0;
 	    vec4 _18275 = (vec4(_19956.xyz, 1.0) + (PerViewConstantBuffer_t._m1 * 1.0)).xyzw * PerViewConstantBuffer_t._m0;
 	    float _13048 = _18275.z;
 	    float _11452 = _18275.w;
@@ -219,19 +189,18 @@ PS
 	StaticComboRule( Allow1( S_MODE_FORWARD, S_MODE_TOOLS_WIREFRAME, S_MODE_DEPTH ) );
 	StaticComboRule( Allow1( S_TRIANGLE_EDGES, S_WIREFRAME ) );
 	
-	RenderState(BlendEnable, F_TRANSLUCENT ? True : False);
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
+	RenderState(BlendEnable, F_TRANSLUCENT ? true : false);
 	RenderState(StencilRef, 1);
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (288 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static float4 input_0;
+	static float4 input_2;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_0 : TEXCOORD2;
+	    float4 input_2 : TEXCOORD2;
 	};
 	
 	struct PS_OUTPUT
@@ -241,12 +210,12 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = input_0;
+	    output_0 = input_2;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_2 = stage_input.input_2;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

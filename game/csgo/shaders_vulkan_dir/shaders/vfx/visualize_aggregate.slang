@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,15 +34,14 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	int g_nInstanceBufferIndex < Attribute("InstanceID"); UiType(Slider); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2916 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -58,23 +56,6 @@ VS
 	};
 	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -114,29 +95,8 @@ VS
 	{
 	    uint _21116 = (nInstanceIdx + 1u) * 2654435769u;
 	    uint _3320 = _21116 & 4294901759u;
-	    _1126 _13775;
-	    _13775._m0 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 0);
-	    _13775._m1 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 4);
-	    _13775._m2 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 8);
-	    _13775._m3 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 12);
-	    _13775._m4 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 16);
-	    _13775._m5 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 20);
-	    _13775._m6 = g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 24);
-	    _13775._m7 = asfloat(g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _13775._m0;
-	    _19924._m1 = _13775._m1;
-	    _19924._m2 = _13775._m2;
-	    _19924._m3 = _13775._m3;
-	    _19924._m4 = _13775._m4;
-	    _19924._m5 = _13775._m5;
-	    _19924._m6 = _13775._m6;
-	    _19924._m7 = _13775._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _20190;
-	    _20190._m0 = _8152._m0;
-	    float4 _20422 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_20190._m0, float4(vPositionOs.xyz, 1.0f)).xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
+	    float3x4 _6463 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(uint(_Globals_1_g_nInstanceBufferIndex) * 32 + 4) * 48 + 32)));
+	    float4 _20422 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_6463, float4(vPositionOs.xyz, 1.0f)).xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
 	    float3 _23610 = float3(float((_3320 >> uint(16)) & 255u) * 0.0039215688593685626983642578125f, float((_3320 >> uint(8)) & 255u) * 0.0039215688593685626983642578125f, float(_21116 & 255u) * 0.0039215688593685626983642578125f).xyz;
 	    float3 _12245 = _23610 * _23610;
 	    float3 _23482;
@@ -175,11 +135,11 @@ PS
 	DynamicCombo( D_OVERWRITE_DEPTH, 0..1 );
 	
 	float g_fDepth < Attribute("DepthValue"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (628 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static bool gl_FrontFacing;
 	static float3 input_0;

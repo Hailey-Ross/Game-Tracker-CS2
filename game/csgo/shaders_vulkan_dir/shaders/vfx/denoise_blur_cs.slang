@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -34,14 +33,13 @@ CS
 	DynamicCombo( D_MSAA_DEPTH_BUFFER, 0..1 );
 	
 	RWTexture2D<float4> OutputTexture < Attribute("OutputTexture"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flBlurZThresh < Default(0.002); UiType(Slider); >;
 	Texture2D g_tGBufferDepth < Attribute("GBufferDepth"); SrgbRead(false); >;
 	Texture2D g_tRawInput0 < Attribute("RawInput0"); SrgbRead(false); >;
 	float4 g_vDepthBufferSize < Attribute("GBufferDepthSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (828 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tRawInput0 : register(t30, space0);
 	RWTexture2D<unorm float4> _3407 : register(u158, space0);

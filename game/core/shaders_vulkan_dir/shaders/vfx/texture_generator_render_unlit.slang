@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -41,12 +40,11 @@ VS
 	DynamicCombo( D_BLEND_WEIGHT_COUNT, 0..4 );
 	DynamicComboRule( Allow0( D_BLEND_WEIGHT_COUNT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2324 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -62,23 +60,6 @@ VS
 	
 	struct _1119
 	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
-	{
 	    row_major float3x4 _m0;
 	};
 	
@@ -93,8 +74,8 @@ VS
 	
 	static float4 gl_Position;
 	static float3 vPositionOs;
-	static float3 vTexCoord;
-	static float2 vNormalOs;
+	static float3 vNormalOs;
+	static float2 vTexCoord;
 	static uint nInstanceIdx;
 	static float3 output_0;
 	static float2 output_1;
@@ -102,8 +83,8 @@ VS
 	struct VS_INPUT
 	{
 	    float3 vPositionOs : TEXCOORD0;
-	    float3 vTexCoord : TEXCOORD1;
-	    float2 vNormalOs : TEXCOORD2;
+	    float3 vNormalOs : TEXCOORD1;
+	    float2 vTexCoord : TEXCOORD2;
 	    uint nInstanceIdx : TEXCOORD3;
 	};
 	
@@ -116,31 +97,10 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(nInstanceIdx * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(nInstanceIdx * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(nInstanceIdx * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(nInstanceIdx * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(nInstanceIdx * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(nInstanceIdx * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(nInstanceIdx * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _24007._m0;
-	    _19924._m1 = _24007._m1;
-	    _19924._m2 = _24007._m2;
-	    _19924._m3 = _24007._m3;
-	    _19924._m4 = _24007._m4;
-	    _19924._m5 = _24007._m5;
-	    _19924._m6 = _24007._m6;
-	    _19924._m7 = _24007._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _8152._m0;
-	    float4 _17895 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_19848._m0, float4(vPositionOs.xyz, 1.0f)).xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
-	    output_0 = normalize(mul(_19848._m0, float4(vTexCoord.xyz, 0.0f)));
-	    output_1 = vNormalOs;
+	    float3x4 _9558 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	    float4 _17895 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_9558, float4(vPositionOs.xyz, 1.0f)).xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
+	    output_0 = normalize(mul(_9558, float4(vNormalOs.xyz, 0.0f)));
+	    output_1 = vTexCoord;
 	    _17895.y = -_17895.y;
 	    gl_Position = _17895;
 	}
@@ -148,8 +108,8 @@ VS
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
 	    vPositionOs = stage_input.vPositionOs;
-	    vTexCoord = stage_input.vTexCoord;
 	    vNormalOs = stage_input.vNormalOs;
+	    vTexCoord = stage_input.vTexCoord;
 	    nInstanceIdx = stage_input.nInstanceIdx;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
@@ -175,17 +135,17 @@ PS
 	float g_flOpacityScale < Default(1); UiType(Slider); UiGroup("Translucent"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (716 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState Filter_MinMagMipLinear : register(s14, space1);
 	
-	static float2 input_0;
+	static float2 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float2 input_0 : TEXCOORD1;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -195,12 +155,12 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = float4(g_tColor.Sample(Filter_MinMagMipLinear, input_0.xy).xyz, 1.0f);
+	    output_0 = float4(g_tColor.Sample(Filter_MinMagMipLinear, input_1.xy).xyz, 1.0f);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

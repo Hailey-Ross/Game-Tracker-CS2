@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -30,7 +29,7 @@ CS
 {
 	DynamicCombo( D_PASS, 0..4 );
 	DynamicCombo( D_16_BIT_KEYS, 0..1 );
-	DynamicComboRule( Requires( D_16_BIT_KEYS, D_PASS=1 ) );
+	DynamicComboRule( Requires( D_16_BIT_KEYS, D_PASS==1 ) );
 	
 	RWStructuredBuffer b_alt < Attribute("AltSortBuffer"); >;
 	RWStructuredBuffer b_altPayload < Attribute("AltPayloadBuffer"); >;
@@ -40,8 +39,6 @@ CS
 	RWStructuredBuffer b_sort < Attribute("SortBuffer"); >;
 	RWStructuredBuffer b_sortPayload < Attribute("PayloadBuffer"); >;
 	StructuredBuffer g_constantBuffer < Attribute("DispatchArgBuffer"); >;
-	cbuffer g_consts < Source(ExternalDescSet); Attribute("g_consts"); >;
-	cbuffer g_consts < Source(ExternalDescSet); Attribute("g_consts"); >;
 	RWStructuredBuffer g_dispatchBuffer < Attribute("DispatchArgBuffer"); >;
 	int g_nFixedKeyCount < Attribute("FixedKeyCount"); UiType(Slider); >;
 	int g_nKeyCountBufferOffset < Attribute("NumKeysIndex"); UiType(Slider); >;
@@ -50,8 +47,10 @@ CS
 	RWStructuredBuffer g_numKeysBuffer < Attribute("NumKeysBuffer"); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2064 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _990
 	{
@@ -59,15 +58,9 @@ CS
 	    uint _m1;
 	};
 	
-	struct _991
+	struct _2511
 	{
-	    uint _m0;
-	    uint _m1;
-	};
-	
-	struct _1464
-	{
-	    _991 _m0[4];
+	    _990 _m0[4];
 	};
 	
 	struct _1002
@@ -77,15 +70,15 @@ CS
 	    uint _m2;
 	};
 	
-	struct _2304
+	struct _316
 	{
 	    _1002 _m0[4];
 	};
 	
-	struct _1742
+	struct _883
 	{
-	    _1464 _m0;
-	    _2304 _m1;
+	    _2511 _m0;
+	    _316 _m1;
 	};
 	
 	ByteAddressBuffer g_constantBuffer : register(t30, space0);
@@ -106,18 +99,12 @@ CS
 	
 	void MainCs_inner()
 	{
-	    _991 _8162;
-	    _8162._m0 = g_constantBuffer.Load(_4645_m0 * 8 + 0);
-	    _8162._m1 = g_constantBuffer.Load(_4645_m0 * 8 + 4);
-	    _990 _21197;
-	    _21197._m0 = _8162._m0;
-	    _21197._m1 = _8162._m1;
-	    uint _17622 = _21197._m1 * 1024u;
+	    uint _20090 = g_constantBuffer.Load(_4645_m0 * 8 + 4) * 1024u;
 	    uint _4283;
 	    uint _13039 = gl_GlobalInvocationID.x;
 	    for (;;)
 	    {
-	        if (!(_13039 < _17622))
+	        if (!(_13039 < _20090))
 	        {
 	            break;
 	        }

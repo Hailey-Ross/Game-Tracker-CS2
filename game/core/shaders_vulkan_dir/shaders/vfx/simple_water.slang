@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -34,10 +33,10 @@ COMMON
 
 struct VS_INPUT
 {
-	uint4  nPackedFrame               : NORMAL0    < Semantic( CompressedTangentFrame ); >;        // D_BLEND_WEIGHT_COUNT=1
-	float4 vNormalOs                  : NORMAL0    < Semantic( Normal ); >;                        // D_BLEND_WEIGHT_COUNT=0
+	uint4  nPackedFrame               : NORMAL0    < Semantic( CompressedTangentFrame ); >;        // D_COMPRESSED_NORMALS_AND_TANGENTS=1
+	float4 vNormalOs                  : NORMAL0    < Semantic( Normal ); >;                        // D_COMPRESSED_NORMALS_AND_TANGENTS=0
 	float3 vPositionOs                : POSITION0  < Semantic( PosXyz ); >;                       
-	float4 vTangentUOs_flTangentVSign : TANGENT0   < Semantic( TangentU_SignV ); >;                // D_BLEND_WEIGHT_COUNT=0
+	float4 vTangentUOs_flTangentVSign : TANGENT0   < Semantic( TangentU_SignV ); >;                // D_COMPRESSED_NORMALS_AND_TANGENTS=0
 	float2 nInstanceIdx               : TEXCOORD13 < Semantic( InstanceTransformUv ); >;          
 };
 
@@ -48,10 +47,9 @@ VS
 	DynamicCombo( D_COMPRESSED_NORMALS_AND_TANGENTS, 0..1 );
 	DynamicComboRule( Allow0( D_BLEND_WEIGHT_COUNT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
 	ExternalDescriptorSet g_lightBinnerCpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerCpuSet"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Texture Scrolling
 	float g_flNormalTexCoordRotation0 < Range(0, 6.29); UiType(Slider); UiGroup("Texture Scrolling"); >;
@@ -72,7 +70,7 @@ VS
 	float g_flNormalTexCoordScrollSpeedY3 < Range(-100, 100); UiType(Slider); UiGroup("Texture Scrolling"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (6376 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -87,23 +85,6 @@ VS
 	};
 	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -174,32 +155,11 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(nInstanceIdx * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(nInstanceIdx * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(nInstanceIdx * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(nInstanceIdx * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(nInstanceIdx * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(nInstanceIdx * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(nInstanceIdx * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _24007._m0;
-	    _19924._m1 = _24007._m1;
-	    _19924._m2 = _24007._m2;
-	    _19924._m3 = _24007._m3;
-	    _19924._m4 = _24007._m4;
-	    _19924._m5 = _24007._m5;
-	    _19924._m6 = _24007._m6;
-	    _19924._m7 = _24007._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _8152._m0;
-	    float3 _14293 = normalize(mul(_19848._m0, float4(vNormalOs.xyz, 0.0f)));
-	    float3 _12861 = mul(_19848._m0, float4(vTangentUOs_flTangentVSign.xyz, 0.0f)).xyz;
+	    float3x4 _9216 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	    float3 _14293 = normalize(mul(_9216, float4(vNormalOs.xyz, 0.0f)));
+	    float3 _12861 = mul(_9216, float4(vTangentUOs_flTangentVSign.xyz, 0.0f)).xyz;
 	    float3 _24912 = _14293.xyz;
-	    float3 _19938 = mul(_19848._m0, float4(vPositionOs.xyz, 1.0f));
+	    float3 _19938 = mul(_9216, float4(vPositionOs.xyz, 1.0f));
 	    float4 _18256 = mul(PerViewConstantBuffer_t_1_m0, (float4(_19938.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m3 * 1.0f)).xyzw);
 	    float2 _5599 = _19938.xy * 0.004999999888241291046142578125f;
 	    float2 _16550 = _5599.xy;
@@ -270,8 +230,6 @@ PS
 	DynamicCombo( D_ALPHATINT, 0..1 );
 	DynamicComboRule( Allow1( S_MODE_TOOLS_WIREFRAME, D_SUN_SHADOW_CASCADE_SIZE ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer ReflectionMapDescriptor_t < Attribute("ReflectionMapDescriptor_t"); >;
 	RenderState(StencilRef, 1);
 	Texture2D g_tColor < Channel(RGB, Box(TextureColor), Srgb); OutputFormat(DXT1); SrgbRead(true); >;
 	Texture2D g_tNormal < Channel(AG, MipNormal(TextureNormal), Linear); OutputFormat(DXT5); SrgbRead(false); >;
@@ -288,7 +246,7 @@ PS
 	float g_flNormalMapStrength < Default(1); Range(0.001, 100); UiType(Slider); UiGroup("Reflection"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5720 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float3 _2;
 	static float4 _3;
@@ -323,7 +281,7 @@ PS
 	SamplerState AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear : register(s14, space1);
 	
 	static float3 input_0;
-	static float4 input_1;
+	static float4 input_5;
 	static float4 input_2;
 	static float4 input_3;
 	static float3 input_4;
@@ -335,7 +293,7 @@ PS
 	    float4 input_2 : TEXCOORD2;
 	    float4 input_3 : TEXCOORD3;
 	    float3 input_4 : TEXCOORD4;
-	    float4 input_1 : TEXCOORD5;
+	    float4 input_5 : TEXCOORD5;
 	};
 	
 	struct PS_OUTPUT
@@ -351,22 +309,22 @@ PS
 	    _22101.x = _9481;
 	    float _21775 = _7707.y;
 	    _22101.y = _21775;
-	    float3 _19529 = float3(_9481, _21775, sqrt(clamp(1.0f - dot(_22101.xy, _22101.xy), 0.0f, 1.0f))).xyz;
+	    float3 _19529 = float3(_9481, _21775, sqrt(saturate(1.0f - dot(_22101.xy, _22101.xy)))).xyz;
 	    _19529.y = -_21775;
 	    float3 _24157 = _19529.xyz;
 	    float2 _11003 = _19529.xy * _Globals_1_g_flBumpStrength;
 	    _24157.x = _11003.x;
 	    _24157.y = _11003.y;
 	    float3 _23712 = normalize(_24157.xyz);
-	    float3 _6606 = normalize((((float3(input_1.xyz).xyz * _23712.x).xyz + ((cross(normalize(input_0.xyz).xyz, input_1.xyz) * input_1.w).xyz * _23712.y)).xyz + (input_0.xyz * _23712.z)).xyz).xyz;
+	    float3 _6606 = normalize((((float3(input_5.xyz).xyz * _23712.x).xyz + ((cross(normalize(input_0.xyz).xyz, input_5.xyz) * input_5.w).xyz * _23712.y)).xyz + (input_0.xyz * _23712.z)).xyz).xyz;
 	    float4 _19975 = mul(ReflectionMapDescriptor_t_1_m0, float4((input_4.xyz + ((_6606 - (_6606 * dot(ReflectionMapDescriptor_t_1_m1.xyz, _6606))) * _Globals_1_g_flNormalMapStrength)).xyz, 1.0f));
 	    float2 _22180 = _19975.xy * (1.0f / _19975.w);
-	    float4 _19391 = g_tReflection.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear, float2((clamp((_22180.x - (-1.0f)) * 0.5f, 0.0f, 1.0f) * (ReflectionMapDescriptor_t_1_m2.z - ReflectionMapDescriptor_t_1_m2.x)) + ReflectionMapDescriptor_t_1_m2.x, (clamp((_22180.y - 1.0f) * (-0.5f), 0.0f, 1.0f) * (ReflectionMapDescriptor_t_1_m2.w - ReflectionMapDescriptor_t_1_m2.y)) + ReflectionMapDescriptor_t_1_m2.y).xy);
+	    float4 _19391 = g_tReflection.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear, float2((saturate((_22180.x - (-1.0f)) * 0.5f) * (ReflectionMapDescriptor_t_1_m2.z - ReflectionMapDescriptor_t_1_m2.x)) + ReflectionMapDescriptor_t_1_m2.x, (saturate((_22180.y - 1.0f) * (-0.5f)) * (ReflectionMapDescriptor_t_1_m2.w - ReflectionMapDescriptor_t_1_m2.y)) + ReflectionMapDescriptor_t_1_m2.y).xy);
 	    float4 _18900;
 	    _18900.x = _19391.x;
 	    _18900.y = _19391.y;
 	    _18900.z = _19391.z;
-	    float3 _19800 = lerp(_18900.xyz, PerViewConstantBuffer_t_1_m2.xyz, clamp(min(PerViewConstantBuffer_t_1_m5, pow(clamp((distance(input_4.xyz, PerViewConstantBuffer_t_1_m1.xyz) * PerViewConstantBuffer_t_1_m4) + PerViewConstantBuffer_t_1_m3, 0.0f, 1.0f), PerViewConstantBuffer_t_1_m6)), 0.0f, 1.0f).xxx);
+	    float3 _19800 = lerp(_18900.xyz, PerViewConstantBuffer_t_1_m2.xyz, saturate(min(PerViewConstantBuffer_t_1_m5, pow(saturate((distance(input_4.xyz, PerViewConstantBuffer_t_1_m1.xyz) * PerViewConstantBuffer_t_1_m4) + PerViewConstantBuffer_t_1_m3), PerViewConstantBuffer_t_1_m6))).xxx);
 	    float4 _17842;
 	    _17842.x = _19800.x;
 	    _17842.y = _19800.y;
@@ -377,7 +335,7 @@ PS
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
 	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
+	    input_5 = stage_input.input_5;
 	    input_2 = stage_input.input_2;
 	    input_3 = stage_input.input_3;
 	    input_4 = stage_input.input_4;

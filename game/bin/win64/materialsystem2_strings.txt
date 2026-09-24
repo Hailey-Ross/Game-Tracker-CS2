@@ -470,7 +470,6 @@ More than 8 active color correction lookup textures!\n
 MotionVectorsMaxDistance
 MoveToEx
 Must run with -shaderstats to use mat_shading_complexity!\n
-NORMAL
 NOTE: Each static combo creates multiple shader programs based on the dynamic combos available.\n\n
 NULL shader pointer!\n
 N\tV_exp2f

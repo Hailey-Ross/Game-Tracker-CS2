@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,7 +35,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (432 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -78,15 +77,14 @@ PS
 	DynamicCombo( D_READ_NORMAL_FROM_TEXTURE, 0..1 );
 	DynamicCombo( D_2X2_BOX_FILTER, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	float g_flAngleBias < UiType(Slider); Expression(exists(ATTRIBUTE[4b1b4926]) ? ATTRIBUTE[4b1b4926] : 0); >;
+	float g_flAngleBias < UiType(Slider); Expression(exists(anglebias) ? anglebias : 0); >;
 	float g_flBias < UiType(Slider); Expression(bias); >;
-	float g_flStrength < UiType(Slider); Expression(ATTRIBUTE[b9cd6f23]); >;
+	float g_flStrength < UiType(Slider); Expression(strength); >;
 	Texture2D g_tCameraDepth < Attribute("CameraDepth"); SrgbRead(false); >;
 	Texture2D g_tGBufferNormalWs < Attribute("GBufferNormal"); SrgbRead(false); >;
 	float2 g_vCameraDepthDimensions < Attribute("CameraDepthDimensions"); UiType(VectorText); >;
-	float4 g_vProjInfo < UiType(VectorText); Expression(float4(-2/(ATTRIBUTE[4ed80682]*ATTRIBUTE[099e76bd]),-2/(ATTRIBUTE[5e4faddd]*ATTRIBUTE[22ac1eb2]),(1-ATTRIBUTE[bfa44c78])/ATTRIBUTE[099e76bd],(1+ATTRIBUTE[680934b8])/ATTRIBUTE[22ac1eb2])); >;
-	float4 g_vRadiusConsts < UiType(VectorText); Expression(float4(radius,radius*radius,ATTRIBUTE[b9cd6f23]/pow(radius,6),ATTRIBUTE[a636c23a]*radius)); >;
+	float4 g_vProjInfo < UiType(VectorText); Expression(float4(-2/(screenwidth*p_00),-2/(screenheight*p_11),(1-p_02)/p_00,(1+p_12)/p_11)); >;
+	float4 g_vRadiusConsts < UiType(VectorText); Expression(float4(radius,radius*radius,strength/pow(radius,6),projscale*radius)); >;
 	float4 g_vRadiusConsts2 < UiType(VectorText); Expression(1/pow(radius,2.4)); >;
 	
 	// SPIR-V reflection failed for backend HLSL:
@@ -95,7 +93,7 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3668 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_samplerless_texture_functions : require
@@ -157,7 +155,7 @@ PS
 	        _16208 = _4288;
 	        continue;
 	    }
-	    output_0 = vec4(pow(clamp(1.0 - ((_Globals_.g_flStrength * _13155) / (11.0 * _Globals_.g_vRadiusConsts.x)), 0.0, 1.0), 1.39999997615814208984375), clamp(abs(_15275) * 0.00019999999494757503271102905273438, 0.0, 1.0), 0.0, 1.0);
+	    output_0 = vec4(pow(saturate(1.0 - ((_Globals_.g_flStrength * _13155) / (11.0 * _Globals_.g_vRadiusConsts.x))), 1.39999997615814208984375), saturate(abs(_15275) * 0.00019999999494757503271102905273438), 0.0, 1.0);
 	}
 	
 	

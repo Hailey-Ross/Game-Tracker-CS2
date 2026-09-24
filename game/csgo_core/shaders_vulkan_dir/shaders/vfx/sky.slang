@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 5;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -41,13 +40,12 @@ VS
 {
 	StaticCombo( S_LIGHTING_ONLY, F_LIGHTING_ONLY );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	float4x4 g_matSkyWsToOs < Attribute("SkyWsToOs"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1732 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -114,17 +112,16 @@ PS
 	DynamicCombo( D_FOG_TYPE, 0..2 );
 	DynamicCombo( D_MIN_ANGULAR_FOG, 0..1 );
 	DynamicCombo( D_QUAD_OVERDRAW, 0..1 );
-	DynamicComboRule( Requires( D_MIN_ANGULAR_FOG, D_FOG_TYPE=2 ) );
+	DynamicComboRule( Requires( D_MIN_ANGULAR_FOG, D_FOG_TYPE==2 ) );
 	DynamicComboRule( Allow1( S_MODE_TOOLS_SHADING_COMPLEXITY, D_FOG_TYPE ) );
 	DynamicComboRule( Requires( D_QUAD_OVERDRAW, S_MODE_TOOLS_SHADING_COMPLEXITY ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flFogMaxDotEnd < Attribute("FogMaxEnd"); UiType(Slider); >;
 	float g_flFogMaxDotStart < Attribute("FogMaxStart"); UiType(Slider); >;
 	float g_flFogMinDotEnd < Attribute("FogMinEnd"); UiType(Slider); >;
 	float g_flFogMinDotStart < Attribute("FogMinStart"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	RWTexture2D<float4> g_tQuadOverdrawMutexUAV < Attribute("QuadOverdrawMutexUAV"); >;
 	RWTexture2D<float4> g_tQuadOverdrawUAV < Attribute("QuadOverdrawUAV"); >;
 	TextureCube g_tSkyTexture < Channel(RGB, Box(SkyTexture), Linear); OutputFormat(RGBA16161616F); SrgbRead(false); >;
@@ -141,11 +138,24 @@ PS
 	CreateInputTexture2D(SkyTexture, Linear, 8, "ConvertToYCoCg", "", "Texture", Default4(0, 0, 0, 1));
 	CreateInputTexture2D(SkyTexture, Srgb, 8, "", "", "Texture", Default4(1, 1, 1, 0));
 	float g_flBrightnessExposureBias < Range(-10, 10); UiType(Slider); UiGroup("Texture"); Expression(pow(2,this)); >;
+	float g_flHorizonOffset < Range(-0.2, 0.2); UiType(Slider); UiGroup("Texture"); >;
 	float g_flRenderOnlyExposureBias < Range(-10, 10); UiType(Slider); UiGroup("Texture"); Expression(pow(2,this)); >;
+	float g_flRotation < UiType(Slider); UiGroup("Texture"); >;
 	
+	
+	// Variant parameters
+	CreateInputTexture2D(SkyTexture, Linear, 8, "ConvertToYCoCg", "", "Texture", Default4(0, 0, 0, 1));
+	CreateInputTexture2D(SkyTexture, Srgb, 8, "", "", "Texture", Default4(1, 1, 1, 0));
+	TextureCube g_tSkyTexture < Channel(RGB, Box(SkyTexture), Linear); OutputFormat(RGBA16161616F); SrgbRead(false); >;
+	TextureCube g_tSkyTexture < Channel(RGB, Box(SkyTexture), Linear); OutputFormat(BC6H); SrgbRead(false); >;
+	TextureCube g_tSkyTexture < Channel(RGB, Box(SkyTexture), Srgb); OutputFormat(RGBA8888); SrgbRead(true); >;
+	TextureCube g_tSkyTexture < Channel(RGBA, RGBM(SkyTexture), Srgb); OutputFormat(RGBA8888); SrgbRead(true); >;
+	TextureCube g_tSkyTexture < Channel(RGB, Box(SkyTexture), Srgb); OutputFormat(DXT1); SrgbRead(true); >;
+	TextureCube g_tSkyTexture < Channel(RGBA, Box(SkyTexture), Srgb); OutputFormat(DXT5); SrgbRead(true); >;
+	TextureCube g_tSkyTexture < Channel(RGBA, RGBM(SkyTexture), Srgb); OutputFormat(BC7); SrgbRead(true); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1828 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _2;
 	
@@ -154,9 +164,11 @@ PS
 	    float _Globals_1_g_flBrightnessExposureBias : packoffset(c4.z);
 	    float _Globals_1_g_flRenderOnlyExposureBias : packoffset(c4.w);
 	    float3 _Globals_1_g_vTint : packoffset(c5);
+	    float _Globals_1_g_flHorizonOffset : packoffset(c5.w);
+	    float _Globals_1_g_flRotation : packoffset(c6);
 	};
 	
-	TextureCube<float4> g_tSkyTexture : register(t52, space1);
+	TextureCube<float4> g_tSkyTexture : register(t50, space1);
 	SamplerState DefaultSamplerState_0 : register(s25, space1);
 	
 	static float3 input_0;
@@ -174,11 +186,17 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tSkyTexture.Sample(DefaultSamplerState_0, normalize(input_0.xyz).xyz);
+	    float3 _6235 = normalize(input_0.xyz);
+	    float _9925 = _Globals_1_g_flRotation * 6.283185482025146484375f;
+	    float _21499 = sin(_9925);
+	    float _10511 = cos(_9925);
+	    float _9794 = _6235.x;
+	    float _6498 = _6235.y;
+	    float4 _3300 = g_tSkyTexture.Sample(DefaultSamplerState_0, normalize(float3((_9794 * _10511) - (_6498 * _21499), (_9794 * _21499) + (_6498 * _10511), _6235.z + _Globals_1_g_flHorizonOffset)).xyz);
 	    float4 _18900;
-	    _18900.x = _3401.x;
-	    _18900.y = _3401.y;
-	    _18900.z = _3401.z;
+	    _18900.x = _3300.x;
+	    _18900.y = _3300.y;
+	    _18900.z = _3300.z;
 	    float3 _11003 = _18900.xyz * _Globals_1_g_flBrightnessExposureBias;
 	    float4 _8673;
 	    _8673.x = _11003.x;

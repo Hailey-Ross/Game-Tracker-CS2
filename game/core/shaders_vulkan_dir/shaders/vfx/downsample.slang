@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -77,15 +76,20 @@ PS
 	DynamicCombo( D_SRGB, 0..1 );
 	DynamicCombo( D_CLAMPTEXTURECOORDS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(false); >;
 	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(true); >;
 	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInput) UiType(VectorText); >;
 	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInput) UiType(VectorText); >;
 	
 	
+	// Variant parameters
+	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(false); >;
+	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(true); >;
+	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInput) UiType(VectorText); >;
+	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInput) UiType(VectorText); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (940 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

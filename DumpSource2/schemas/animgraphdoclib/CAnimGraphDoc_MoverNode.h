@@ -68,7 +68,7 @@ class CAnimGraphDoc_MoverNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Movement Velocity Parameter"
 	// MPropertyGroupName = "Generate Movement"
 	// MPropertyAttributeChoiceName = "VectorParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_moveVectorParam;
 	// MPropertyFriendlyName = "Orient Movement"
 	// MPropertyGroupName = "Orient Movement"
@@ -79,7 +79,7 @@ class CAnimGraphDoc_MoverNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Movement Heading Parameter"
 	// MPropertyGroupName = "Orient Movement"
 	// MPropertyAttributeChoiceName = "FloatParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_moveHeadingParam;
 	// MPropertyFriendlyName = "Additive"
 	bool m_bAdditive;
@@ -90,32 +90,32 @@ class CAnimGraphDoc_MoverNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Face Direction"
 	// MPropertyGroupName = "Turn to Face"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_facingTarget;
 	// MPropertySuppressField
 	CUtlString m_paramName;
 	// MPropertyFriendlyName = "Facing Parameter"
 	// MPropertyGroupName = "Turn to Face"
 	// MPropertyAttributeChoiceName = "FloatParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_param;
 	// MPropertyFriendlyName = "Turn Limit Only"
 	// MPropertyGroupName = "Turn to Face"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	// MPropertyAutoRebuildOnChange
 	bool m_bLimitOnly;
 	// MPropertyFriendlyName = "Turn to Face Offset"
 	// MPropertyAttributeRange = "-180 180"
 	// MPropertyGroupName = "Turn to Face"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTurnToFaceOffset;
 	// MPropertyFriendlyName = "Turn to Face Limit"
 	// MPropertyAttributeRange = "0 180"
 	// MPropertyGroupName = "Turn to Face"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTurnToFaceLimit;
 	// MPropertyFriendlyName = "Damping"
 	// MPropertyGroupName = "Turn to Face"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CAnimInputDamping m_damping;
 };

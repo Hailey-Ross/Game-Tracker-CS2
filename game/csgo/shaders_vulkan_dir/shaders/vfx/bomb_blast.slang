@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,12 +34,11 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1292 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space0)
 	{
@@ -94,10 +92,8 @@ VS
 PS
 {
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	Texture2D g_tFramebufferColor < Attribute("FramebufferInputColor"); SrgbRead(true); >;
 	Texture2D g_tFramebufferDepth < Attribute("FramebufferInputDepth"); SrgbRead(false); >;
@@ -105,7 +101,7 @@ PS
 	float4 g_vBlastPosWSAndTime < Attribute("BlastPosWS"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5612 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _3;
 	
@@ -159,7 +155,7 @@ PS
 	    int2 _17364 = int2(gl_FragCoord.xy);
 	    int2 _11700 = int3(_17364, 0).xy;
 	    float3 _12686 = (-normalize(input_0.xyz)).xyz;
-	    float3 _13517 = (PerViewConstantBuffer_t_1_m7.xyz + (_12686 * (1.0f / (((clamp((g_tFramebufferDepth.Load(int3(_11700, 0)).x - PerViewConstantBuffer_t_1_m5) / (PerViewConstantBuffer_t_1_m6 - PerViewConstantBuffer_t_1_m5), 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m8.xyz, _12686))))).xyz;
+	    float3 _13517 = (PerViewConstantBuffer_t_1_m7.xyz + (_12686 * (1.0f / (((saturate((g_tFramebufferDepth.Load(int3(_11700, 0)).x - PerViewConstantBuffer_t_1_m5) / (PerViewConstantBuffer_t_1_m6 - PerViewConstantBuffer_t_1_m5)) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m8.xyz, _12686))))).xyz;
 	    float _23870 = distance(PerViewConstantBuffer_t_1_m7, _13517);
 	    float _12116 = _6552 * 3000.0f;
 	    float _19346 = distance(_Globals_1_g_vBlastPosWSAndTime.xyz, _13517);
@@ -167,7 +163,7 @@ PS
 	    float2 _4328 = ((gl_FragCoord.xy - PerViewConstantBuffer_t_1_m3.xy).xy * PerViewConstantBuffer_t_1_m4.xy).xy * PerViewConstantBuffer_t_1_m2;
 	    float2 _5763 = (_Globals_1_g_vBlastPosSS.xy * PerViewConstantBuffer_t_1_m2) - _4328.xy;
 	    float2 _18815 = normalize(_5763);
-	    float _21107 = (_3109 * 0.02999999932944774627685546875f) * ((clamp(clamp(length(_5763), 0.0f, 1.0f) * 2.0f, 0.0f, 1.0f) * 0.99989998340606689453125f) + 9.9999997473787516355514526367188e-05f);
+	    float _21107 = (_3109 * 0.02999999932944774627685546875f) * ((saturate(saturate(length(_5763)) * 2.0f) * 0.99989998340606689453125f) + 9.9999997473787516355514526367188e-05f);
 	    float _6835 = frac(PerViewConstantBuffer_t_1_m1 + g_tBlueNoise.Load(int3(int3(_17364 & PerViewConstantBufferCsgo_t_1_m0, 0).xy, 0)).y) - 0.5f;
 	    float4 _13155;
 	    _13155 = 0.0f.xxxx;

@@ -37,7 +37,7 @@ class CAnimGraphDoc_DirectionalBlendNode : public CAnimGraphDoc_Node
 	CUtlString m_animNamePrefix;
 	// MPropertyFriendlyName = "Blend Source"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_blendValueSource;
 	// MPropertySuppressField
 	CUtlString m_paramName;

@@ -10,6 +10,6 @@ class CAnimGraphDoc_Blend2DItem
 	bool m_bUseCustomDuration;
 	// MPropertyGroupName = "+Duration Override"
 	// MPropertyFriendlyName = "Custom Duration"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flCustomDuration;
 };

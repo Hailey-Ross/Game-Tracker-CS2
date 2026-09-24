@@ -1484,7 +1484,6 @@ suggestions
 suppressed_field
 surface
 surface 
-surface_properties
 surfaceproperties/surfaceproperties.vsurf
 swing_limit
 t-rex

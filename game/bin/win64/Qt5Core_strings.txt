@@ -10765,7 +10765,6 @@ CookIslands
 CopticScript
 CopyAction
 CopySid
-Corner
 Cornish
 Corsican
 CosineCurve
@@ -11014,7 +11013,6 @@ EJ}o!p~o"p
 EKFK
 EKZ1b0
 EL1I
-ELEMENT
 EMPTY
 ENTITIES
 ENxp]NR
@@ -14599,7 +14597,6 @@ Start tag expected.
 StartDocument
 StartElement
 Starting
-State
 StateMachineSignal
 StateMachineWrapped
 StatusTip

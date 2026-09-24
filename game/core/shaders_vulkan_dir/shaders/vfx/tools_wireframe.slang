@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: gs, ps, vs
 }
@@ -42,7 +41,7 @@ struct VS_INPUT
 	float4 vColor              : COLOR0         < Semantic( Color ); >;                           
 	float4 vNormalOs           : NORMAL0        < Semantic( Normal ); >;                          
 	float3 vPositionOs         : POSITION0      < Semantic( PosXyz ); >;                          
-	float2 vFirstLineVertPosWs : TEXCOORD0      < Semantic( uvw ); >;                              // D_THICK_LINES=0, D_FREEFORM_DEFORMATION=1
+	float2 vFirstLineVertPosWs : TEXCOORD0      < Semantic( uvw ); >;                              // D_THICK_LINES=0, D_SNAP_TO_SCREEN_PIXELS=1
 	float2 nInstanceIdx        : TEXCOORD13     < Semantic( InstanceTransformUv ); >;             
 };
 
@@ -56,12 +55,10 @@ VS
 	DynamicCombo( D_FREEFORM_DEFORMATION, 0..1 );
 	DynamicComboRule( Allow1( D_THICK_LINES, D_SNAP_TO_SCREEN_PIXELS ) );
 	
-	cbuffer FFDTransforms_t < Attribute("FFDTransforms_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	bool g_bIgnoreTintAlpha < Attribute("IgnoreTintAlpha"); UiType(CheckBox); >;
 	float g_flDynamicLineThickness < Default(1); Attribute("DynamicLineThickness"); UiType(Slider); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Depth Bias Amount
 	float g_DepthBiasAmount < Default(0.005); UiType(Slider); UiGroup("Depth Bias Amount"); >;
@@ -74,7 +71,7 @@ VS
 	float4 g_vOverrideColor < Default(0); UiType(Color); UiGroup("Override Color"); Expression(SrgbGammaToLinear(this)); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5476 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -89,23 +86,6 @@ VS
 	};
 	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -128,10 +108,10 @@ VS
 	
 	static float4 gl_Position;
 	static float3 vPositionOs;
-	static float3 vColor;
 	static float3 vNormalOs;
-	static float4 nInstanceIdx;
-	static uint vFirstLineVertPosWs;
+	static float3 vFirstLineVertPosWs;
+	static float4 vColor;
+	static uint nInstanceIdx;
 	static float3 output_0;
 	static float4 output_1;
 	static float4 output_2;
@@ -141,10 +121,10 @@ VS
 	struct VS_INPUT
 	{
 	    float3 vPositionOs : TEXCOORD0;
-	    float3 vColor : TEXCOORD1;
-	    float3 vNormalOs : TEXCOORD2;
-	    float4 nInstanceIdx : TEXCOORD3;
-	    uint vFirstLineVertPosWs : TEXCOORD4;
+	    float3 vNormalOs : TEXCOORD1;
+	    float3 vFirstLineVertPosWs : TEXCOORD2;
+	    float4 vColor : TEXCOORD3;
+	    uint nInstanceIdx : TEXCOORD4;
 	};
 	
 	struct PS_INPUT
@@ -159,35 +139,14 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(vFirstLineVertPosWs * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _24007._m0;
-	    _19924._m1 = _24007._m1;
-	    _19924._m2 = _24007._m2;
-	    _19924._m3 = _24007._m3;
-	    _19924._m4 = _24007._m4;
-	    _19924._m5 = _24007._m5;
-	    _19924._m6 = _24007._m6;
-	    _19924._m7 = _24007._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _8152._m0;
-	    float3 _23070 = mul(_19848._m0, float4(vPositionOs.xyz, 1.0f));
+	    float3x4 _9558 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	    float3 _23070 = mul(_9558, float4(vPositionOs.xyz, 1.0f));
 	    float4 _21447 = PerViewConstantBuffer_t_1_m1 * 1.0f;
 	    float4 _18237 = mul(PerViewConstantBuffer_t_1_m0, (float4(_23070.xyz, 1.0f) + _21447).xyzw);
-	    float3 _24030 = nInstanceIdx.xyz * 0.077399380505084991455078125f.xxx;
-	    float3 _7676 = pow((nInstanceIdx.xyz * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
+	    float3 _24030 = vColor.xyz * 0.077399380505084991455078125f.xxx;
+	    float3 _7676 = pow((vColor.xyz * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
 	    float _21354;
-	    if (nInstanceIdx.x <= 0.040449999272823333740234375f)
+	    if (vColor.x <= 0.040449999272823333740234375f)
 	    {
 	        _21354 = _24030.x;
 	    }
@@ -196,7 +155,7 @@ VS
 	        _21354 = _7676.x;
 	    }
 	    float _21355;
-	    if (nInstanceIdx.y <= 0.040449999272823333740234375f)
+	    if (vColor.y <= 0.040449999272823333740234375f)
 	    {
 	        _21355 = _24030.y;
 	    }
@@ -205,7 +164,7 @@ VS
 	        _21355 = _7676.y;
 	    }
 	    float _19302;
-	    if (nInstanceIdx.z <= 0.040449999272823333740234375f)
+	    if (vColor.z <= 0.040449999272823333740234375f)
 	    {
 	        _19302 = _24030.z;
 	    }
@@ -213,8 +172,8 @@ VS
 	    {
 	        _19302 = _7676.z;
 	    }
-	    float4 _23482 = float4(_21354, _21355, _19302, nInstanceIdx.w);
-	    float4 _23812 = float4(uint4(_19924._m0 & 255u, (_19924._m0 & 65280u) >> uint(8), (_19924._m0 & 16711680u) >> uint(16), (_19924._m0 & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
+	    float4 _23628 = float4(_21354, _21355, _19302, vColor.w);
+	    float4 _23812 = float4(uint4(g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 255u, (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 65280u) >> uint(8), (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 16711680u) >> uint(16), (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
 	    float3 _6253 = _23812.xyz;
 	    float3 _17828 = _6253 * 0.077399380505084991455078125f.xxx;
 	    float3 _7677 = pow((_6253 * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
@@ -251,8 +210,8 @@ VS
 	    float4 _21709;
 	    if (_Globals_1_g_bIgnoreTintAlpha != 0)
 	    {
-	        float3 _15408 = _23482.xyz * abs(_23812.xyz);
-	        float4 _23714 = _23482;
+	        float3 _15408 = _23628.xyz * abs(_23812.xyz);
+	        float4 _23714 = _23628;
 	        _23714.x = _15408.x;
 	        _23714.y = _15408.y;
 	        _23714.z = _15408.z;
@@ -260,11 +219,11 @@ VS
 	    }
 	    else
 	    {
-	        _21709 = _23482 * abs(_23812);
+	        _21709 = _23628 * abs(_23812);
 	    }
-	    output_0 = normalize(mul(_19848._m0, float4(vColor.xyz, 0.0f)).xyz);
+	    output_0 = normalize(mul(_9558, float4(vNormalOs.xyz, 0.0f)).xyz);
 	    output_1 = lerp(_21709, _Globals_1_g_vOverrideColor, _Globals_1_g_OverrideColorFactor.xxxx);
-	    output_2 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_19848._m0, float4(vNormalOs, 1.0f)).xyz, 1.0f) + _21447).xyzw);
+	    output_2 = mul(PerViewConstantBuffer_t_1_m0, (float4(mul(_9558, float4(vFirstLineVertPosWs, 1.0f)).xyz, 1.0f) + _21447).xyzw);
 	    output_3 = _18237;
 	    output_4 = _23070;
 	    _18237.y = -_18237.y;
@@ -274,10 +233,10 @@ VS
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
 	    vPositionOs = stage_input.vPositionOs;
-	    vColor = stage_input.vColor;
 	    vNormalOs = stage_input.vNormalOs;
-	    nInstanceIdx = stage_input.nInstanceIdx;
 	    vFirstLineVertPosWs = stage_input.vFirstLineVertPosWs;
+	    vColor = stage_input.vColor;
+	    nInstanceIdx = stage_input.nInstanceIdx;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -300,7 +259,6 @@ GS
 	DynamicCombo( D_THICK_LINES, 0..1 );
 	DynamicCombo( D_DEPTH_BIAS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	
 	// Depth Bias Amount
 	float g_DepthBiasAmount < Default(0.005); UiType(Slider); UiGroup("Depth Bias Amount"); >;
@@ -311,7 +269,7 @@ GS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3532 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	// Dynamic combos: D_THICK_LINES
 	
 	#version 460
@@ -421,10 +379,9 @@ PS
 	DynamicComboRule( Allow1( S_MODE_DEPTH, D_SHADED ) );
 	
 	RenderState(CullMode, None);
-	RenderState(CullMode, (((None ? Back : F_WIREFRAME) ? Back : F_NO_CULLING) ? Back : None) ? None : Back);
-	RenderState(CullMode, (((None ? Back : F_WIREFRAME) ? Back : F_NO_CULLING) ? Back : Back) ? None : Back);
+	RenderState(CullMode, ((0 || F_WIREFRAME || F_NO_CULLING) ? 1 : 0) ? None : Back);
+	RenderState(CullMode, (0 || F_WIREFRAME || F_NO_CULLING || 1) ? None : Back);
 	RenderState(FillMode, F_WIREFRAME ? Wireframe : Solid);
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flAlphaTestReference < Default(0.3); Range(0.01, 0.99); UiType(Slider); >;
 	float g_flPatternType < Attribute("PatternType"); UiType(Slider); >;
 	
@@ -432,8 +389,12 @@ PS
 		RenderState(CullMode, None);
 	#endif
 	
+	// Variant parameters
+	RenderState(CullMode, ((0 || F_WIREFRAME || F_NO_CULLING) ? 1 : 0) ? None : Back);
+	RenderState(CullMode, (0 || F_WIREFRAME || F_NO_CULLING || 1) ? None : Back);
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1712 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -446,16 +407,16 @@ PS
 	};
 	
 	
-	static float4 input_0;
 	static float4 input_1;
 	static float4 input_2;
+	static float4 input_3;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_0 : TEXCOORD1;
-	    float4 input_1 : TEXCOORD2;
-	    float4 input_2 : TEXCOORD3;
+	    float4 input_1 : TEXCOORD1;
+	    float4 input_2 : TEXCOORD2;
+	    float4 input_3 : TEXCOORD3;
 	};
 	
 	struct PS_OUTPUT
@@ -479,7 +440,7 @@ PS
 	        }
 	        if (_19321 != 0.0f)
 	        {
-	            _12885 = fmod(length(float2((input_2.x / input_2.w) / PerViewConstantBuffer_t_1_m0.x, (input_2.y / input_2.w) / PerViewConstantBuffer_t_1_m0.y) - float2((input_1.x / input_1.w) / PerViewConstantBuffer_t_1_m0.x, (input_1.y / input_1.w) / PerViewConstantBuffer_t_1_m0.y)), _19321 * 2.0f) > _19321;
+	            _12885 = fmod(length(float2((input_3.x / input_3.w) / PerViewConstantBuffer_t_1_m0.x, (input_3.y / input_3.w) / PerViewConstantBuffer_t_1_m0.y) - float2((input_2.x / input_2.w) / PerViewConstantBuffer_t_1_m0.x, (input_2.y / input_2.w) / PerViewConstantBuffer_t_1_m0.y)), _19321 * 2.0f) > _19321;
 	            break;
 	        }
 	        _12885 = false;
@@ -489,14 +450,14 @@ PS
 	    {
 	        discard;
 	    }
-	    output_0 = input_0;
+	    output_0 = input_1;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
 	    input_2 = stage_input.input_2;
+	    input_3 = stage_input.input_3;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

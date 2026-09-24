@@ -132,12 +132,12 @@
 // MVDataOverlayType = 1
 // MVDataPreviewWidget = "csgo_inv_image_preview"
 // MVDataHideNodeClass
-// MVDataOutlinerLeafNameFn (UNKNOWN FOR PARSER)
-// MVDataOutlinerLeafColorFn (UNKNOWN FOR PARSER)
-// MVDataOutlinerLeafDetailFn (UNKNOWN FOR PARSER)
-// MVDataVirtualNodeFactoryFn (UNKNOWN FOR PARSER)
-// MVDataPreLoadFixupFn (UNKNOWN FOR PARSER)
-// MVDataPostSaveFixupFn (UNKNOWN FOR PARSER)
+// MVDataOutlinerLeafNameFn
+// MVDataOutlinerLeafColorFn
+// MVDataOutlinerLeafDetailFn
+// MVDataVirtualNodeFactoryFn
+// MVDataPreLoadFixupFn
+// MVDataPostSaveFixupFn
 class CInventoryImageData
 {
 	// MPropertySuppressField

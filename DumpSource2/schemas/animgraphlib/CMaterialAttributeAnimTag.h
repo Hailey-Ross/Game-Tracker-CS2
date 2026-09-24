@@ -27,9 +27,9 @@ class CMaterialAttributeAnimTag : public CAnimTagBase
 	// MPropertyAutoRebuildOnChange
 	MatterialAttributeTagType_t m_AttributeType;
 	// MPropertyFriendlyName = "Value"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flValue;
 	// MPropertyFriendlyName = "Color"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	Color m_Color;
 };

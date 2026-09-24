@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 4;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -27,10 +26,10 @@ FEATURES
 	Feature( F_PUFFY_PAINT, 0..1, "Pattern" );
 	Feature( F_TINT_ID, 0..1, "Tint" );
 	Feature( F_OUTPUT_MODE, 0..4 (0="Albedo", 1="Normal", 2="Metalness", 3="Ambient Occlusion", 4="Roughness"), "" );
-	FeatureRule( Requires( F_PATTERN_PAINT, F_PATTERN, F_BACKWARDS_COMPATIBILITY=1 ), "Pattern mode requires Source2 Height Blending and Pattern" );
-	FeatureRule( Requires( F_PUFFY_PAINT, F_PATTERN_PAINT, F_BACKWARDS_COMPATIBILITY=1 ), "Pattern mode requires Source2 Height Blending and Pattern Paint" );
+	FeatureRule( Requires( F_PATTERN_PAINT, F_PATTERN, F_BACKWARDS_COMPATIBILITY==1 ), "Pattern mode requires Source2 Height Blending and Pattern" );
+	FeatureRule( Requires( F_PUFFY_PAINT, F_PATTERN_PAINT, F_BACKWARDS_COMPATIBILITY==1 ), "Pattern mode requires Source2 Height Blending and Pattern Paint" );
 	FeatureRule( Requires( F_TINT_ID, F_BACKWARDS_COMPATIBILITY ), "Tint ID requires Source2 Height Blending" );
-	FeatureRule( Requires( F_OUTPUT_MODE=4, F_BACKWARDS_COMPATIBILITY, F_ANISOTROPIC_GLOSS ), "Roughness texture is only output separately when Anisotropic Gloss is enabled, otherwise roughness outputs with the normal." );
+	FeatureRule( Requires( F_OUTPUT_MODE==4, F_BACKWARDS_COMPATIBILITY, F_ANISOTROPIC_GLOSS ), "Roughness texture is only output separately when Anisotropic Gloss is enabled, otherwise roughness outputs with the normal." );
 }
 
 COMMON
@@ -60,32 +59,32 @@ VS
 	bool g_bFlipFixup < UiType(CheckBox); UiGroup("Composite Inputs/Off-Hand/58"); >;
 	float2 g_vPatternTexCoordOffset < Range2(-1, -1, 1, 1); UiType(VectorText); UiGroup("Composite Inputs/Pattern/58"); UiVisibility(F_PATTERN); >;
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
-	float4 g_vDamageTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_fDamageTexCoordRotation*3.1415927)/180;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	float4 g_vDamageTexCoordXform0 < UiType(VectorText); Expression(v0 = g_fDamageTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1,-v2,0,((.5+g_vDamageTexCoordOffset.x)+(v2*.5))-(v1*.5))); >;
-	float4 g_vDamageTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_fDamageTexCoordRotation*3.1415927)/180;
+		float4(v1,-v2,0,.5+g_vDamageTexCoordOffset.x+v2*.5-v1*.5)); >;
+	float4 g_vDamageTexCoordXform1 < UiType(VectorText); Expression(v0 = g_fDamageTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2,v1,0,(.5+g_vDamageTexCoordOffset.y)-((v2*.5)+(v1*.5)))); >;
-	float4 g_vGrimeTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_fGrimeTexCoordRotation*3.1415927)/180;
+		float4(v2,v1,0,.5+g_vDamageTexCoordOffset.y-(v2*.5+v1*.5))); >;
+	float4 g_vGrimeTexCoordXform0 < UiType(VectorText); Expression(v0 = g_fGrimeTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1,-v2,0,((.5+g_vGrimeTexCoordOffset.x)+(v2*.5))-(v1*.5))); >;
-	float4 g_vGrimeTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_fGrimeTexCoordRotation*3.1415927)/180;
+		float4(v1,-v2,0,.5+g_vGrimeTexCoordOffset.x+v2*.5-v1*.5)); >;
+	float4 g_vGrimeTexCoordXform1 < UiType(VectorText); Expression(v0 = g_fGrimeTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2,v1,0,(.5+g_vGrimeTexCoordOffset.y)-((v2*.5)+(v1*.5)))); >;
-	float4 g_vPatternTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_fPatternTexCoordRotation*3.1415927)/180;
+		float4(v2,v1,0,.5+g_vGrimeTexCoordOffset.y-(v2*.5+v1*.5))); >;
+	float4 g_vPatternTexCoordXform0 < UiType(VectorText); Expression(v0 = g_fPatternTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v1*g_vPatternTexCoordScale.x,-v2*g_vPatternTexCoordScale.y,0,((g_vPatternTexCoordCenter.x+g_vPatternTexCoordOffset.x)+(v2*g_vPatternTexCoordCenter.y))-(v1*g_vPatternTexCoordCenter.x))); >;
-	float4 g_vPatternTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_fPatternTexCoordRotation*3.1415927)/180;
+		float4(v1*g_vPatternTexCoordScale.x,-v2*g_vPatternTexCoordScale.y,0,g_vPatternTexCoordCenter.x+g_vPatternTexCoordOffset.x+v2*g_vPatternTexCoordCenter.y-v1*g_vPatternTexCoordCenter.x)); >;
+	float4 g_vPatternTexCoordXform1 < UiType(VectorText); Expression(v0 = g_fPatternTexCoordRotation*3.1415927/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
-		float4(v2*g_vPatternTexCoordScale.x,v1*g_vPatternTexCoordScale.y,0,(g_vPatternTexCoordCenter.y+g_vPatternTexCoordOffset.y)-((v2*g_vPatternTexCoordCenter.x)+(v1*g_vPatternTexCoordCenter.y)))); >;
+		float4(v2*g_vPatternTexCoordScale.x,v1*g_vPatternTexCoordScale.y,0,g_vPatternTexCoordCenter.y+g_vPatternTexCoordOffset.y-(v2*g_vPatternTexCoordCenter.x+v1*g_vPatternTexCoordCenter.y))); >;
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Material1
@@ -105,7 +104,7 @@ VS
 	float2 g_vUvOffset4 < Range2(-1, -1, 1, 1); UiType(VectorText); UiGroup("Material4/Texcoord Transform/1"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (976 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -170,7 +169,7 @@ PS
 	StaticCombo( S_TINT_ID, F_TINT_ID );
 	StaticComboRule( Requires( S_TINT_ID, S_BACKWARDS_COMPATIBILITY ) );
 	
-	bool g_bPattern < UiType(CheckBox); Expression(F_PATTERN || 0); >;
+	bool g_bPattern < UiType(CheckBox); Expression(F_PATTERN ? 1 : 0); >;
 	bool g_bPatternPaintEmboss < UiType(CheckBox); Expression(F_PUFFY_PAINT); >;
 	bool g_bPatternPaintLayer < UiType(CheckBox); Expression(F_PATTERN_PAINT); >;
 	float g_fDetailBlackPointCompensation1 < UiType(Slider); Expression(1-g_fDetailBlackPoint1); >;
@@ -179,8 +178,8 @@ PS
 	float g_fDetailBlackPointCompensation4 < UiType(Slider); Expression(1-g_fDetailBlackPoint4); >;
 	float g_fFlipFixup < UiType(Slider); Expression(g_bFlipFixup ? -1 : 1); >;
 	float g_fPaintShadowPower < UiType(Slider); Expression(max(.01,g_fPaintThickness*.15)); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	float4x4 g_mDamageColorAdjust1 < Expression(MatrixMultiply(MatrixColorTint2(g_vDamageBevelColorTint1,1),MatrixColorCorrect2(float3(g_fDamageBevelColorContrast1,g_fDamageBevelColorSaturation1,g_fDamageBevelColorBrightness1),TextureAverageColor(g_tSurface1)))); >;
 	float4x4 g_mDamageColorAdjust2 < Expression(MatrixMultiply(MatrixColorTint2(g_vDamageBevelColorTint2,1),MatrixColorCorrect2(float3(g_fDamageBevelColorContrast2,g_fDamageBevelColorSaturation2,g_fDamageBevelColorBrightness2),TextureAverageColor(g_tSurface2)))); >;
 	float4x4 g_mDamageColorAdjust3 < Expression(MatrixMultiply(MatrixColorTint2(g_vDamageBevelColorTint3,1),MatrixColorCorrect2(float3(g_fDamageBevelColorContrast3,g_fDamageBevelColorSaturation3,g_fDamageBevelColorBrightness3),TextureAverageColor(g_tSurface3)))); >;
@@ -261,87 +260,87 @@ PS
 	Texture2D g_tSurfaceProperties3 < Channel(R, Box3(TextureSurfaceAmbientOcclusion3), Linear); Channel(G, Box(TextureSurfaceMetalness3), Linear); Channel(B, Box(TextureSurfaceClothMask3), Linear); Channel(A, Box(TextureSurfaceHeight3), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tSurfaceProperties4 < Channel(R, Box3(TextureSurfaceAmbientOcclusion4), Linear); Channel(G, Box(TextureSurfaceMetalness4), Linear); Channel(B, Box(TextureSurfaceClothMask4), Linear); Channel(A, Box(TextureSurfaceHeight4), Linear); OutputFormat(BC7); SrgbRead(false); >;
 	Texture2D g_tTintId < Channel(RGB, None(TextureObjectTintId), Linear); OutputFormat(I8); SrgbRead(false); >;
-	float4 g_vGrungeTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_fGrungeTexCoordRotation*3.14159)/180;
+	float4 g_vGrungeTexCoordXform0 < UiType(VectorText); Expression(v0 = g_fGrungeTexCoordRotation*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_fGrungeTexCoordScale;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v1*v3,-v2*v3,0,(((v3*v1)*v7)+((v3*-v2)*v8))+(g_fGrungeTexCoordOffset.x-.5))); >;
-	float4 g_vGrungeTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_fGrungeTexCoordRotation*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v1*v3,-v2*v3,0,v3*v1*v7+v3*-v2*v8+(g_fGrungeTexCoordOffset.x-.5))); >;
+	float4 g_vGrungeTexCoordXform1 < UiType(VectorText); Expression(v0 = g_fGrungeTexCoordRotation*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_fGrungeTexCoordScale;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v2*v3,v1*v3,0,(((v3*v2)*v7)+((v3*v1)*v8))+(g_fGrungeTexCoordOffset.y-.5))); >;
-	float4 g_vGrungeTexRotationXform0 < UiType(VectorText); Expression(v0 = (-g_fGrungeTexCoordRotation*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v2*v3,v1*v3,0,v3*v2*v7+v3*v1*v8+(g_fGrungeTexCoordOffset.y-.5))); >;
+	float4 g_vGrungeTexRotationXform0 < UiType(VectorText); Expression(v0 = -g_fGrungeTexCoordRotation*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = 1;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v1*v3,-v2*v3,0,(((v3*v1)*v7)+((v3*-v2)*v8))+(0-.5))); >;
-	float4 g_vGrungeTexRotationXform1 < UiType(VectorText); Expression(v0 = (-g_fGrungeTexCoordRotation*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v1*v3,-v2*v3,0,v3*v1*v7+v3*-v2*v8+(0-.5))); >;
+	float4 g_vGrungeTexRotationXform1 < UiType(VectorText); Expression(v0 = -g_fGrungeTexCoordRotation*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = 1;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v2*v3,v1*v3,0,(((v3*v2)*v7)+((v3*v1)*v8))+(0-.5))); >;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v2*v3,v1*v3,0,v3*v2*v7+v3*v1*v8+(0-.5))); >;
 	float3 g_vMetallicTextileAlbedoLevels < UiType(VectorText); Expression(float3(-float3(-.08,.6,1.08).x,-1.4427*log(max(.0001,1-float3(-.08,.6,1.08).y)),2-float3(-.08,.6,1.08).z)); >;
-	float4 g_vPatternTexCoordXform0 < UiType(VectorText); Expression(v0 = ((g_bFlipFixup ? -g_fPatternTexCoordRotation : g_fPatternTexCoordRotation)*3.14159)/180;
+	float4 g_vPatternTexCoordXform0 < UiType(VectorText); Expression(v0 = (g_bFlipFixup ? -g_fPatternTexCoordRotation : g_fPatternTexCoordRotation)*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_fPatternTexCoordScale;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v1*v3,-v2*v3,0,(((v3*v1)*v7)+((v3*-v2)*v8))+(g_fPatternTexCoordOffset.x-.5))); >;
-	float4 g_vPatternTexCoordXform1 < UiType(VectorText); Expression(v0 = ((g_bFlipFixup ? -g_fPatternTexCoordRotation : g_fPatternTexCoordRotation)*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v1*v3,-v2*v3,0,v3*v1*v7+v3*-v2*v8+(g_fPatternTexCoordOffset.x-.5))); >;
+	float4 g_vPatternTexCoordXform1 < UiType(VectorText); Expression(v0 = (g_bFlipFixup ? -g_fPatternTexCoordRotation : g_fPatternTexCoordRotation)*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = g_fPatternTexCoordScale;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v2*v3,v1*v3,0,(((v3*v2)*v7)+((v3*v1)*v8))+(g_fPatternTexCoordOffset.y-.5))); >;
-	float4 g_vPatternTexRotationXform0 < UiType(VectorText); Expression(v0 = ((g_bFlipFixup ? g_fPatternTexCoordRotation : -g_fPatternTexCoordRotation)*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v2*v3,v1*v3,0,v3*v2*v7+v3*v1*v8+(g_fPatternTexCoordOffset.y-.5))); >;
+	float4 g_vPatternTexRotationXform0 < UiType(VectorText); Expression(v0 = (g_bFlipFixup ? g_fPatternTexCoordRotation : -g_fPatternTexCoordRotation)*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = 1;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v1*v3,-v2*v3,0,(((v3*v1)*v7)+((v3*-v2)*v8))+(0-.5))); >;
-	float4 g_vPatternTexRotationXform1 < UiType(VectorText); Expression(v0 = ((g_bFlipFixup ? g_fPatternTexCoordRotation : -g_fPatternTexCoordRotation)*3.14159)/180;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v1*v3,-v2*v3,0,v3*v1*v7+v3*-v2*v8+(0-.5))); >;
+	float4 g_vPatternTexRotationXform1 < UiType(VectorText); Expression(v0 = (g_bFlipFixup ? g_fPatternTexCoordRotation : -g_fPatternTexCoordRotation)*3.14159/180;
 		v1 = cos(v0);
 		v2 = sin(v0);
 		v3 = 1;
 		v4 = .5/((v3!=0) ? v3 : 1);
 		v5 = cos(-v0);
 		v6 = sin(-v0);
-		v7 = (v4*v5)-(v4*v6);
-		v8 = (v7*v6)+(v4*v5);
-		float4(v2*v3,v1*v3,0,(((v3*v2)*v7)+((v3*v1)*v8))+(0-.5))); >;
+		v7 = v4*v5-v4*v6;
+		v8 = v7*v6+v4*v5;
+		float4(v2*v3,v1*v3,0,v3*v2*v7+v3*v1*v8+(0-.5))); >;
 	float3 g_vTextileAlbedoLevels < UiType(VectorText); Expression(float3(-float3(-.045,.6,1).x,-1.4427*log(max(.0001,1-float3(-.045,.6,1).y)),2-float3(-.045,.6,1).z)); >;
 	
 	// Material1
@@ -767,9 +766,9 @@ PS
 	float g_fPuffyPaintNormalSoftness < Range(0, 10); UiType(Slider); UiGroup("Composite Inputs/Pattern/31"); UiVisibility(F_PUFFY_PAINT); >;
 	float g_fWearExponent < Default(1); UiType(Slider); UiGroup("Composite Inputs/49"); >;
 	float g_fWearProgress < UiType(Slider); UiGroup("Composite Inputs/50"); Expression(pow(this,g_fWearExponent)); >;
-	float2 g_vPatternRoughnessContrastBrightness < Default(1); Range2(0, -0.5, 2, 0.5); UiType(VectorText); UiGroup("Composite Inputs/Pattern/84"); UiVisibility(F_PATTERN && (F_PATTERN_PAINT==0)); >;
+	float2 g_vPatternRoughnessContrastBrightness < Default(1); Range2(0, -0.5, 2, 0.5); UiType(VectorText); UiGroup("Composite Inputs/Pattern/84"); UiVisibility(F_PATTERN && F_PATTERN_PAINT==0); >;
 	CreateInputTexture2D(TexturePatternRoughness, Linear, 8, "", "_rough", "Composite Inputs/Pattern/85", Default4(0.5, 0.5, 0.5, 1));
-	float g_fPatternCloth < UiType(Slider); UiGroup("Composite Inputs/Pattern/88"); UiVisibility(F_PATTERN && (F_PATTERN_PAINT==1)); >;
+	float g_fPatternCloth < UiType(Slider); UiGroup("Composite Inputs/Pattern/88"); UiVisibility(F_PATTERN && F_PATTERN_PAINT==1); >;
 	float g_fSubstratePatternMipBias < Range(0, 8); UiType(Slider); UiGroup("Composite Inputs/Pattern/88"); UiVisibility(F_PATTERN && !F_PATTERN_PAINT); >;
 	bool g_bId1Pattern < Default(1); UiType(CheckBox); UiGroup("Composite Inputs/Pattern/101"); UiVisibility(F_PATTERN && F_TINT_ID); >;
 	bool g_bId2Pattern < Default(1); UiType(CheckBox); UiGroup("Composite Inputs/Pattern/102"); UiVisibility(F_PATTERN && F_TINT_ID); >;
@@ -791,13 +790,18 @@ PS
 		float g_fWearProgress < UiType(Slider); UiGroup("Composite Inputs/Wear/0"); Expression(SrgbLinearToGamma(this)); >;
 	#endif
 	
+	// Variant parameters
+	float g_fWearProgress < UiType(Slider); UiGroup("Composite Inputs/50"); Expression(pow(this,g_fWearExponent)); >;
+	Texture2D g_tNormal < Channel(RG, HemiOctIsoRoughness_RG_B(TextureNormal), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
+	Texture2D g_tPattern < Channel(RGBA, Box(TexturePattern), Linear); OutputFormat(BC7); SrgbRead(false); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 3 (name: g_vTextileAlbedoLevels) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (45156 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#if defined(GL_EXT_control_flow_attributes)
@@ -1049,7 +1053,7 @@ PS
 	    vec2 _23217 = vec2(dot(_22248.xy, _Globals_.g_vPatternTexCoordXform0.xy) + _Globals_.g_vPatternTexCoordXform0.w, dot(_22248.xy, _Globals_.g_vPatternTexCoordXform1.xy) + _Globals_.g_vPatternTexCoordXform1.w) + vec2((((_10579 * 2.0) - 1.0) * 0.0009765625) * _Globals_.g_fPatternDetailInfluence);
 	    _23217.x = _23217.x * ((input_0.x < 0.0) ? (-1.0) : 1.0);
 	    float _21717 = 1.0 - _6543.w;
-	    float _7730 = clamp(((mix(mix(mix(_Globals_.g_fDetailRoughnessContrast1, _Globals_.g_fDetailRoughnessContrast2, _13915), _Globals_.g_fDetailRoughnessContrast3, _21941), _Globals_.g_fDetailRoughnessContrast4, _24699) * (((_21717 * _21717) * 0.85000002384185791015625) + (-0.3499999940395355224609375))) + 0.5) * mix(mix(mix(_Globals_.g_fDetailRoughnessBrightness1, _Globals_.g_fDetailRoughnessBrightness2, _13915), _Globals_.g_fDetailRoughnessBrightness3, _21941), _Globals_.g_fDetailRoughnessBrightness4, _24699), 0.0, 1.0);
+	    float _7730 = saturate(((mix(mix(mix(_Globals_.g_fDetailRoughnessContrast1, _Globals_.g_fDetailRoughnessContrast2, _13915), _Globals_.g_fDetailRoughnessContrast3, _21941), _Globals_.g_fDetailRoughnessContrast4, _24699) * (((_21717 * _21717) * 0.85000002384185791015625) + (-0.3499999940395355224609375))) + 0.5) * mix(mix(mix(_Globals_.g_fDetailRoughnessBrightness1, _Globals_.g_fDetailRoughnessBrightness2, _13915), _Globals_.g_fDetailRoughnessBrightness3, _21941), _Globals_.g_fDetailRoughnessBrightness4, _24699));
 	    float _17411 = 1.0 - _10152;
 	    vec2 _15902 = vec2(dot(_13810, _Globals_.g_vGrungeTexCoordXform0.xy) + _Globals_.g_vGrungeTexCoordXform0.w, dot(_13810, _Globals_.g_vGrungeTexCoordXform1.xy) + _Globals_.g_vGrungeTexCoordXform1.w).xy;
 	    vec4 _19338 = texture(sampler2D(g_tGrunge1, g_sTrilinearWrap), _15902);
@@ -1175,7 +1179,7 @@ PS
 	            {
 	                _10776 = 1.0;
 	            }
-	            float _16230 = (saturate(_9865) * _19287) * clamp(_Globals_.g_fPaintThickness - (_14189 * pow(_Globals_.g_fWearProgress, 4.0)), 0.0, 1.0);
+	            float _16230 = (saturate(_9865) * _19287) * saturate(_Globals_.g_fPaintThickness - (_14189 * pow(_Globals_.g_fWearProgress, 4.0)));
 	            float _21772 = _16230 * min(1.0, _Globals_.g_fPaintThickness);
 	            _13136 = _22201 - (_21772 * _Globals_.g_fPaintDurability);
 	            _16305 = mix(_10579, 0.5, _16230);
@@ -1280,12 +1284,12 @@ PS
 	    }
 	    float _11428 = _14997 * _16306;
 	    float _20765 = mix(mix(mix(_Globals_.g_fCurvatureWearBoost1, _Globals_.g_fCurvatureWearBoost2, _13915), _Globals_.g_fCurvatureWearBoost3, _21941), _Globals_.g_fCurvatureWearBoost4, _24699) * _14997;
-	    float _12034 = clamp((_11428 * _19739.w) + _20765, 0.0, 1.0);
+	    float _12034 = saturate((_11428 * _19739.w) + _20765);
 	    float _22935 = _7502.x;
 	    float _11001 = _7502.y;
 	    float _19034 = smoothstep(_22935, _11001, _12034 * _Globals_.g_fWearProgress);
 	    float _9410 = 1.0 - _19034;
-	    float _17292 = clamp(_19034 + ((clamp(smoothstep(_22935, _11001, _12034 * (_Globals_.g_fWearProgress * 4.0)), 0.0, 1.0) * _9410) * _14189), 0.0, 1.0);
+	    float _17292 = saturate(_19034 + ((saturate(smoothstep(_22935, _11001, _12034 * (_Globals_.g_fWearProgress * 4.0))) * _9410) * _14189));
 	    vec3 _20940;
 	    SPIRV_CROSS_BRANCH
 	    if (_14874)
@@ -1311,10 +1315,10 @@ PS
 	    float _17067 = dFdx(_22514);
 	    float _22105 = dFdy(_22514);
 	    vec3 _18056 = max(_20940, _20940 * (1.0 + (_14997 * 0.5)));
-	    float _19227 = min(1.0, mix(_17117, _10152, _17292) + ((mix(((1.0 - abs(_11013)) * (1.0 - abs(_11026))) * clamp(abs(_14908) + abs(_23784), 0.0, 1.0), ((1.0 - abs(_15058)) * (1.0 - abs(_11027))) * clamp(abs(_14909) + abs(_23785), 0.0, 1.0), _19034) * (1.0 - clamp(abs(_17067), 0.0, 1.0))) * (1.0 - clamp(abs(_22105), 0.0, 1.0))));
+	    float _19227 = min(1.0, mix(_17117, _10152, _17292) + ((mix(((1.0 - abs(_11013)) * (1.0 - abs(_11026))) * saturate(abs(_14908) + abs(_23784)), ((1.0 - abs(_15058)) * (1.0 - abs(_11027))) * saturate(abs(_14909) + abs(_23785)), _19034) * (1.0 - saturate(abs(_17067)))) * (1.0 - saturate(abs(_22105)))));
 	    float _9287 = dot(vec4(_19227).xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125));
 	    vec3 _9577 = normalize(max(_18056.xyz, vec3(0.001000000047497451305389404296875)));
-	    vec3 _10951 = clamp((_9577 * min(_9287 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _9287) * max(_18056.x, max(_18056.y, _18056.z)))).xyz, vec3(0.0), vec3(1.0));
+	    vec3 _10951 = saturate((_9577 * min(_9287 / dot(_9577.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)), (3.0 * _9287) * max(_18056.x, max(_18056.y, _18056.z)))).xyz);
 	    float _15624 = mix(((_Globals_.g_fWearProgress * _24805) * mix(mix(mix(_Globals_.g_fWearBleaching1, _Globals_.g_fWearBleaching2, _13915), _Globals_.g_fWearBleaching3, _21941), _Globals_.g_fWearBleaching4, _24699)) * mix(_14189, 0.0, saturate(_17120 - 1.0)), mix(mix(mix(_Globals_.g_fDamageBleaching1, _Globals_.g_fDamageBleaching2, _13915), _Globals_.g_fDamageBleaching3, _21941), _Globals_.g_fDamageBleaching4, _24699), _19034);
 	    vec3 _10558;
 	    do
@@ -1322,9 +1326,9 @@ PS
 	        if (_22177 > 0.0)
 	        {
 	            vec3 _22572 = normalize(_12690 * _17907).xyz - vec3(0.57700002193450927734375);
-	            vec3 _7057 = clamp((normalize(_22572) * 2.0) + vec3(1.0), vec3(0.0), vec3(1.0)).xyz;
+	            vec3 _7057 = saturate((normalize(_22572) * 2.0) + vec3(1.0)).xyz;
 	            vec3 _15712 = _7057 * vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125);
-	            _10558 = mix(_12690, _7057 * (_17907 / ((_15712.x + _15712.y) + _15712.z)), vec3(clamp(_22177 * pow(abs(dot(_22572, vec3(0.57700002193450927734375))), 0.20000000298023223876953125), 0.0, 1.0)));
+	            _10558 = mix(_12690, _7057 * (_17907 / ((_15712.x + _15712.y) + _15712.z)), vec3(saturate(_22177 * pow(abs(dot(_22572, vec3(0.57700002193450927734375))), 0.20000000298023223876953125))));
 	            break;
 	        }
 	        else
@@ -1343,9 +1347,9 @@ PS
 	        if (_22168 > 0.0)
 	        {
 	            vec3 _22573 = normalize(_20940.xyz * dot(_20940.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125))).xyz - vec3(0.57700002193450927734375);
-	            vec3 _7058 = clamp((normalize(_22573) * 2.0) + vec3(1.0), vec3(0.0), vec3(1.0)).xyz;
+	            vec3 _7058 = saturate((normalize(_22573) * 2.0) + vec3(1.0)).xyz;
 	            vec3 _15713 = _7058 * vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125);
-	            _10559 = mix(_9452, _7058 * (dot(_9452, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)) / ((_15713.x + _15713.y) + _15713.z)), vec3(clamp(_22168 * pow(abs(dot(_22573, vec3(0.57700002193450927734375))), 0.20000000298023223876953125), 0.0, 1.0)));
+	            _10559 = mix(_9452, _7058 * (dot(_9452, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)) / ((_15713.x + _15713.y) + _15713.z)), vec3(saturate(_22168 * pow(abs(dot(_22573, vec3(0.57700002193450927734375))), 0.20000000298023223876953125))));
 	            break;
 	        }
 	        else
@@ -1414,9 +1418,9 @@ PS
 	        if (_21112)
 	        {
 	            vec3 _22574 = normalize(_12555.xyz * dot(_12555.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125))).xyz - vec3(0.57700002193450927734375);
-	            vec3 _7059 = clamp((normalize(_22574) * 2.0) + vec3(1.0), vec3(0.0), vec3(1.0)).xyz;
+	            vec3 _7059 = saturate((normalize(_22574) * 2.0) + vec3(1.0)).xyz;
 	            vec3 _15714 = _7059 * vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125);
-	            _11286 = mix(_7286, _7059 * (_15036 / ((_15714.x + _15714.y) + _15714.z)), vec3(clamp(_6982 * pow(abs(dot(_22574, vec3(0.57700002193450927734375))), 0.20000000298023223876953125), 0.0, 1.0)));
+	            _11286 = mix(_7286, _7059 * (_15036 / ((_15714.x + _15714.y) + _15714.z)), vec3(saturate(_6982 * pow(abs(dot(_22574, vec3(0.57700002193450927734375))), 0.20000000298023223876953125))));
 	            break;
 	        }
 	        else
@@ -1432,9 +1436,9 @@ PS
 	        if (_21112)
 	        {
 	            vec3 _22575 = normalize(_10970.xyz * dot(_10970.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125))).xyz - vec3(0.57700002193450927734375);
-	            vec3 _7060 = clamp((normalize(_22575) * 2.0) + vec3(1.0), vec3(0.0), vec3(1.0)).xyz;
+	            vec3 _7060 = saturate((normalize(_22575) * 2.0) + vec3(1.0)).xyz;
 	            vec3 _15715 = _7060 * vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125);
-	            _16611 = mix(_7286, _7060 * (_15036 / ((_15715.x + _15715.y) + _15715.z)), vec3(clamp(_6982 * pow(abs(dot(_22575, vec3(0.57700002193450927734375))), 0.20000000298023223876953125), 0.0, 1.0)));
+	            _16611 = mix(_7286, _7060 * (_15036 / ((_15715.x + _15715.y) + _15715.z)), vec3(saturate(_6982 * pow(abs(dot(_22575, vec3(0.57700002193450927734375))), 0.20000000298023223876953125))));
 	            break;
 	        }
 	        else
@@ -1444,7 +1448,7 @@ PS
 	        }
 	        break; // unreachable workaround
 	    } while(false);
-	    vec3 _17278 = clamp(mix(mix(_11286, _16611, vec3(saturate(_22476 * _22452.x))), _12529, vec3(clamp(_22452.z * (0.5 + (_22476 * 0.5)), 0.0, 1.0))), vec3(0.0), vec3(1.0));
+	    vec3 _17278 = saturate(mix(mix(_11286, _16611, vec3(saturate(_22476 * _22452.x))), _12529, vec3(saturate(_22452.z * (0.5 + (_22476 * 0.5))))));
 	    vec2 _13138;
 	    float _16324;
 	    _13138 = vec2(0.0);
@@ -1460,7 +1464,7 @@ PS
 	            break;
 	        }
 	        vec2 _10548 = (_15902 + (((_592[_17017] * 0.0009765625) * _22171) * (1.0 + _17120))).xy;
-	        float _24694 = _19034 - smoothstep(_22935, _11001, clamp((mix(mix(mix(texture(sampler2D(g_tGrunge1, g_sTrilinearWrap), _10548).w, texture(sampler2D(g_tGrunge2, g_sTrilinearWrap), _10548).w, _13915), texture(sampler2D(g_tGrunge3, g_sTrilinearWrap), _10548).w, _21941), texture(sampler2D(g_tGrunge4, g_sTrilinearWrap), _10548).w, _24699) * _11428) + _20765, 0.0, 1.0) * _Globals_.g_fWearProgress);
+	        float _24694 = _19034 - smoothstep(_22935, _11001, saturate((mix(mix(mix(texture(sampler2D(g_tGrunge1, g_sTrilinearWrap), _10548).w, texture(sampler2D(g_tGrunge2, g_sTrilinearWrap), _10548).w, _13915), texture(sampler2D(g_tGrunge3, g_sTrilinearWrap), _10548).w, _21941), texture(sampler2D(g_tGrunge4, g_sTrilinearWrap), _10548).w, _24699) * _11428) + _20765) * _Globals_.g_fWearProgress);
 	        _10648 = _13138.xy - (_592[_17017] * _24694);
 	        _14733 = _16324 + abs(_24694);
 	        _18386 = _17017 + 1;
@@ -1526,7 +1530,7 @@ PS
 	    vec3 _10041 = normalize(vec3(((_17934.xy + _8673.xy) - vec2(-dot(_11392, _Globals_.g_vGrungeTexRotationXform0.xy), dot(_11392, _Globals_.g_vGrungeTexRotationXform1.xy)).xy) + _23775.xy, _17934.z));
 	    float _19526 = mix(mix(_13137, mix(mix(mix(_Globals_.g_fDamageMetalness1, _Globals_.g_fDamageMetalness2, _13915), _Globals_.g_fDamageMetalness3, _21941), _Globals_.g_fDamageMetalness4, _24699), _19034), mix(mix(mix(_Globals_.g_fDamageEdgeMetalness1, _Globals_.g_fDamageEdgeMetalness2, _13915), _Globals_.g_fDamageEdgeMetalness3, _21941), _Globals_.g_fDamageEdgeMetalness4, _24699), _7827);
 	    float _11543 = mix(mix(mix(mix(_Globals_.g_fDetailCloth1, _Globals_.g_fDetailCloth2, _13915), _Globals_.g_fDetailCloth3, _21941), _Globals_.g_fDetailCloth4, _24699), mix(mix(mix(_Globals_.g_fDamageCloth1, _Globals_.g_fDamageCloth2, _13915), _Globals_.g_fDamageCloth3, _21941), _Globals_.g_fDamageCloth4, _24699), max(_17292, _7827)) * (1.0 - _19526);
-	    vec2 _22792 = mix(mix(vec2(1.0) * mix(min(1.0, _23554), (1.0 - _17907) + mix(mix(mix(_Globals_.g_fGrungeRoughnessBrightness1, _Globals_.g_fGrungeRoughnessBrightness2, _13915), _Globals_.g_fGrungeRoughnessBrightness3, _21941), _Globals_.g_fGrungeRoughnessBrightness4, _24699), _15624), vec2(clamp(((mix(mix(mix(_Globals_.g_fDamageRoughnessContrast1, _Globals_.g_fDamageRoughnessContrast2, _13915), _Globals_.g_fDamageRoughnessContrast3, _21941), _Globals_.g_fDamageRoughnessContrast4, _24699) * (((_17411 * _17411) * 0.85000002384185791015625) + (-0.3499999940395355224609375))) + 0.5) * mix(mix(mix(_Globals_.g_fDamageRoughnessBrightness1, _Globals_.g_fDamageRoughnessBrightness2, _13915), _Globals_.g_fDamageRoughnessBrightness3, _21941), _Globals_.g_fDamageRoughnessBrightness4, _24699), 0.0, 1.0)), vec2(_19034)).xy, vec2(mix(mix(mix(_Globals_.g_fDamageEdgeRoughness1, _Globals_.g_fDamageEdgeRoughness2, _13915), _Globals_.g_fDamageEdgeRoughness3, _21941), _Globals_.g_fDamageEdgeRoughness4, _24699)), vec2(_7827));
+	    vec2 _22792 = mix(mix(vec2(1.0) * mix(min(1.0, _23554), (1.0 - _17907) + mix(mix(mix(_Globals_.g_fGrungeRoughnessBrightness1, _Globals_.g_fGrungeRoughnessBrightness2, _13915), _Globals_.g_fGrungeRoughnessBrightness3, _21941), _Globals_.g_fGrungeRoughnessBrightness4, _24699), _15624), vec2(saturate(((mix(mix(mix(_Globals_.g_fDamageRoughnessContrast1, _Globals_.g_fDamageRoughnessContrast2, _13915), _Globals_.g_fDamageRoughnessContrast3, _21941), _Globals_.g_fDamageRoughnessContrast4, _24699) * (((_17411 * _17411) * 0.85000002384185791015625) + (-0.3499999940395355224609375))) + 0.5) * mix(mix(mix(_Globals_.g_fDamageRoughnessBrightness1, _Globals_.g_fDamageRoughnessBrightness2, _13915), _Globals_.g_fDamageRoughnessBrightness3, _21941), _Globals_.g_fDamageRoughnessBrightness4, _24699))), vec2(_19034)).xy, vec2(mix(mix(mix(_Globals_.g_fDamageEdgeRoughness1, _Globals_.g_fDamageEdgeRoughness2, _13915), _Globals_.g_fDamageEdgeRoughness3, _21941), _Globals_.g_fDamageEdgeRoughness4, _24699)), vec2(_7827));
 	    vec3 _7958 = normalize(max(vec3(0.0003000000142492353916168212890625), _17278.xyz));
 	    vec3 _23898 = mix(_Globals_.g_vTextileAlbedoLevels.xyz, _Globals_.g_vMetallicTextileAlbedoLevels.xyz, vec3(_19526));
 	    float _22205 = ((_20235 * pow(_24364.z, 0.20000000298023223876953125)) * (1.0 - (_16324 * 0.0500000007450580596923828125))) * mix(_17121, 1.0, _19034);
@@ -1537,7 +1541,7 @@ PS
 	    SPIRV_CROSS_BRANCH
 	    if (_Globals_.g_nOutputMode == 0)
 	    {
-	        _23727 = vec4(mix(_17278.xyz, ((_7958.xyz * mix(min(_23898.x, dot(mix(_10951, _23869, vec3(_22174)).xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125))), _23898.z, clamp(pow(max(_17278.x, max(_17278.y, _17278.z)), _23898.y), 0.0, 1.0))) / vec3(max(_7958.x, max(_7958.y, _7958.z)))).xyz, vec3(_Globals_.g_fWearProgress)).xyz, 1.0);
+	        _23727 = vec4(mix(_17278.xyz, ((_7958.xyz * mix(min(_23898.x, dot(mix(_10951, _23869, vec3(_22174)).xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125))), _23898.z, saturate(pow(max(_17278.x, max(_17278.y, _17278.z)), _23898.y)))) / vec3(max(_7958.x, max(_7958.y, _7958.z)))).xyz, vec3(_Globals_.g_fWearProgress)).xyz, 1.0);
 	    }
 	    else
 	    {

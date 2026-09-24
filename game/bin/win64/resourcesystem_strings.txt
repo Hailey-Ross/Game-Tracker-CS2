@@ -300,7 +300,6 @@ vpost
 vptest
 vrman
 vsgraph
-vsmart
 vsndevts
 vsndstckvseq
 vsurf

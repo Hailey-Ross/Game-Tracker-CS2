@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -34,28 +33,26 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer AoProxyConstantBuffer_t < Attribute("AoProxyConstantBuffer_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2820 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	struct _2817
+	struct _2775
 	{
 	    float4 _m0[20];
 	};
 	
-	struct _2697
+	struct _2661
 	{
 	    int4 _m0[20];
 	};
 	
 	cbuffer AoProxyConstantBuffer_t : register(b1, space0)
 	{
-	    _2817 AoProxyConstantBuffer_t_1_m0 : packoffset(c5);
-	    _2817 AoProxyConstantBuffer_t_1_m1 : packoffset(c25);
-	    _2817 AoProxyConstantBuffer_t_1_m2 : packoffset(c45);
-	    _2697 AoProxyConstantBuffer_t_1_m3 : packoffset(c65);
+	    _2775 AoProxyConstantBuffer_t_1_m0 : packoffset(c5);
+	    _2775 AoProxyConstantBuffer_t_1_m1 : packoffset(c25);
+	    _2775 AoProxyConstantBuffer_t_1_m2 : packoffset(c45);
+	    _2661 AoProxyConstantBuffer_t_1_m3 : packoffset(c65);
 	};
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space0)
@@ -138,8 +135,6 @@ PS
 {
 	StaticCombo( S_REVERSE_DEPTH_BUFFER, 0..1 );
 	
-	cbuffer AoProxyConstantBuffer_t < Attribute("AoProxyConstantBuffer_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	Texture2D g_tSceneDepth < Attribute("SceneDepth"); SrgbRead(false); >;
 	Texture3D g_tTextureAoConeLUT < Channel(R, None(TextureAoConeLUT), Linear); OutputFormat(ATI1N); SrgbRead(false); >;
 	
@@ -147,19 +142,19 @@ PS
 	CreateInputTexture2D(TextureAoConeLUT, Linear, 8, "", "_lut_z000", "LUT", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (8780 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _2704
 	{
 	    float4 _m0[4];
 	};
 	
-	struct _1413
+	struct _1257
 	{
 	    column_major float4x3 _m0[106];
 	};
 	
-	struct _2520
+	struct _2478
 	{
 	    float4 _m0[106];
 	};
@@ -177,8 +172,8 @@ PS
 	{
 	    _2704 AoProxyConstantBuffer_t_1_m0 : packoffset(c0);
 	    float4 AoProxyConstantBuffer_t_1_m1 : packoffset(c4);
-	    _1413 AoProxyConstantBuffer_t_1_m2 : packoffset(c85);
-	    _2520 AoProxyConstantBuffer_t_1_m3 : packoffset(c403);
+	    _1257 AoProxyConstantBuffer_t_1_m2 : packoffset(c85);
+	    _2478 AoProxyConstantBuffer_t_1_m3 : packoffset(c403);
 	};
 	
 	Texture2D<float4> g_tSceneDepth : register(t31, space1);
@@ -186,20 +181,20 @@ PS
 	SamplerState AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagLinearMipPoint : register(s14, space1);
 	
 	static float4 gl_FragCoord;
-	static uint3 input_0;
-	static float3 input_1;
+	static uint3 input_4;
 	static float3 input_2;
-	static float4 input_3;
-	static float input_4;
+	static float3 input_1;
+	static float4 input_0;
+	static float input_3;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_3 : TEXCOORD0;
-	    float3 input_2 : TEXCOORD1;
-	    float3 input_1 : TEXCOORD2;
-	    float input_4 : TEXCOORD3;
-	    nointerpolation uint3 input_0 : TEXCOORD4;
+	    float4 input_0 : TEXCOORD0;
+	    float3 input_1 : TEXCOORD1;
+	    float3 input_2 : TEXCOORD2;
+	    float input_3 : TEXCOORD3;
+	    nointerpolation uint3 input_4 : TEXCOORD4;
 	    float4 gl_FragCoord : SV_Position;
 	};
 	
@@ -210,16 +205,16 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float3 _10889 = (PerViewConstantBuffer_t_1_m3.xyz + (input_1.xyz * (1.0f / (((clamp((g_tSceneDepth.Load(int3(int3(int2(gl_FragCoord.xy).xy, 0).xy, 0)).x - PerViewConstantBuffer_t_1_m1) / (PerViewConstantBuffer_t_1_m2 - PerViewConstantBuffer_t_1_m1), 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, input_1.xyz))))).xyz;
-	    float3 _11842 = mad(_10889, input_2.xyz, input_3.xyz);
+	    float3 _10889 = (PerViewConstantBuffer_t_1_m3.xyz + (input_2.xyz * (1.0f / (((saturate((g_tSceneDepth.Load(int3(int3(int2(gl_FragCoord.xy).xy, 0).xy, 0)).x - PerViewConstantBuffer_t_1_m1) / (PerViewConstantBuffer_t_1_m2 - PerViewConstantBuffer_t_1_m1)) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, input_2.xyz))))).xyz;
+	    float3 _11842 = mad(_10889, input_1.xyz, input_0.xyz);
 	    float3 _3852 = 1.0f.xxx - abs(_11842);
-	    float _4208 = clamp(3.0f * min(_3852.x, min(_3852.y, _3852.z)), 0.0f, 1.0f) * clamp(2.7999999523162841796875f - (2.0f * length(_11842)), 0.0f, 1.0f);
+	    float _4208 = saturate(3.0f * min(_3852.x, min(_3852.y, _3852.z))) * saturate(2.7999999523162841796875f - (2.0f * length(_11842)));
 	    if ((_4208 - 0.00999999977648258209228515625f) < 0.0f)
 	    {
 	        discard;
 	    }
-	    int _16648 = int(input_0.x);
-	    int _12017 = int(input_0.y);
+	    int _16648 = int(input_4.x);
+	    int _12017 = int(input_4.y);
 	    float4 _13155;
 	    _13155 = 1.0f.xxxx;
 	    float4 _16164;
@@ -241,7 +236,7 @@ PS
 	        _16208 = _21531;
 	        continue;
 	    }
-	    int _23852 = int(input_0.z);
+	    int _23852 = int(input_4.z);
 	    float4 _13156;
 	    _13156 = _13155.xyzw;
 	    float4 _16165;
@@ -264,18 +259,18 @@ PS
 	        _16209 = _21532;
 	        continue;
 	    }
-	    output_0 = lerp(1.0f.xxxx, _13156.xyzw, ((_4208 * input_3.w) * input_4).xxxx);
+	    output_0 = lerp(1.0f.xxxx, _13156.xyzw, ((_4208 * input_0.w) * input_3).xxxx);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
 	    gl_FragCoord = stage_input.gl_FragCoord;
 	    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
-	    input_2 = stage_input.input_2;
-	    input_3 = stage_input.input_3;
 	    input_4 = stage_input.input_4;
+	    input_2 = stage_input.input_2;
+	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
+	    input_3 = stage_input.input_3;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

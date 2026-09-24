@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,7 +35,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (584 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -83,7 +82,6 @@ PS
 {
 	DynamicCombo( D_MSAA_TEXTURE, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flCameraDuration < Attribute("CameraDuration"); UiType(Slider); >;
 	float g_flJumpThrow < Attribute("JumpThrow"); UiType(Slider); >;
 	int g_nTextureHeight < Attribute("TextureHeight"); UiType(Slider); >;
@@ -95,7 +93,7 @@ PS
 	CreateInputTexture2D(TextureJumpThrowIcon, Srgb, 8, "", "", "Icons", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3660 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{
@@ -174,8 +172,8 @@ PS
 	    {
 	        float2 _22640 = float2(0.100000001490116119384765625f, (-0.300000011920928955078125f) + (fmod(PerViewConstantBuffer_t_1_m0, 0.5f) * 0.100000001490116119384765625f)) + (input_0.xy * 4.0f);
 	        _22640.y = _22640.y * _3458;
-	        float4 _3401 = g_tJumpThrowIcon.Sample(g_sBilinearClamp, _22640);
-	        _11275 = lerp(_10289.xyz, _3401.xyz, (_3401.w * _Globals_1_g_flJumpThrow).xxx);
+	        float4 _3300 = g_tJumpThrowIcon.Sample(g_sBilinearClamp, _22640);
+	        _11275 = lerp(_10289.xyz, _3300.xyz, (_3300.w * _Globals_1_g_flJumpThrow).xxx);
 	    }
 	    else
 	    {

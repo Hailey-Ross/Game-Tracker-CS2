@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,11 +36,10 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float4 g_vlowResTexelSize < Attribute("LowResTexelSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1948 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -130,7 +128,6 @@ PS
 	DynamicComboRule( Requires( D_MBOIT_4_MOMENTS, D_HI_LOW, D_LOW_HI ) );
 	DynamicComboRule( Requires( D_KEEP_FULL_RES, D_LOW_HI, D_LOW_HI_OUTPUT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	bool g_bDiscardSmokeBehind < Attribute("bDiscardSmokeBehind"); UiType(CheckBox); >;
 	bool g_bIgnoreSmokeDepth < Attribute("bIgnoreSmokeDepth"); UiType(CheckBox); >;
 	Texture2D g_tMboitOptimDepthHalfTexture < Attribute("SmokeOptimDepthHalfTex"); SrgbRead(false); >;
@@ -146,8 +143,10 @@ PS
 	float4 g_vlowResTexelSize < Attribute("LowResTexelSize"); UiType(VectorText); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1264 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{

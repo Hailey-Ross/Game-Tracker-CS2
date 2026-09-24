@@ -31,7 +31,7 @@ class CompositeMaterialEditorPoint_t
 	bool m_bEnableChildModel;
 	// MPropertyGroupName = "Preview Model"
 	// MPropertyFriendlyName = "Child Model"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CResourceNameTyped< CWeakHandle< InfoForResourceTypeCModel > > m_ChildModelName;
 	// MPropertyGroupName = "Composite Material Assembly"
 	// MPropertyFriendlyName = "Composite Material Assembly Procedures"

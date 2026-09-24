@@ -5602,7 +5602,6 @@ Child %d
 Child Asset(s)
 Child particle system
 Child%d
-Children
 ChromaBlurRadius
 Clamp Float
 Clamp Int
@@ -5642,7 +5641,6 @@ CollectionFloatInput
 CollectionRendererFloatInput
 CollectionRendererVecInput
 CollectionVecInput
-Color Gradient
 Color Picker
 Color:
 ColorDialogFinished
@@ -6489,7 +6487,6 @@ Has Any Flags
 Held Weapon Behavior
 Help
 HelperLoadFbmByFileExtension(3544): Error! Unknown file type for %s\n
-Helper_PlayVOLine
 Hero ID %d %s missing from %s!\n
 HeroID
 HeroViewer
@@ -7182,7 +7179,6 @@ Noise Type:
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
 Noop
-Normalize Vector
 Normalize Vector a
 Not Equal !=
 Not R%d <- !R%d
@@ -7528,7 +7524,6 @@ Optional target attachment name for IK and look-ats
 Optional. Type 'Any'. An associated value, e.g. the Entity Handle which is responsible for this Cursor. The Tag is defined by the unique combination of Name and Value.
 Or R%d <- R%d || R%d
 Ordered
-Origin
 OriginalRawFileData
 OriginalRawFileName
 Other Tools
@@ -8213,7 +8208,6 @@ Set Animgraph Param '%s'
 Set Child
 Set Control Point Configuration Name '%s'
 Set Detail Level
-Set Variable
 Set an animgraph parameter on a prop_dynamic entity.
 Set the number of elements in the array.
 Set:
@@ -9585,8 +9579,6 @@ end GetAllNamedValueInfo()\n
 end_as_info
 end_group
 entityTag
-entity_fgd_print_api_mismatch
-entity_fgd_require_api_declaration
 entity_key
 entity_model
 entitygroup
@@ -9895,7 +9887,6 @@ gameitemclass
 gameunitclass
 geometry
 getRelativeTransform
-gizmo_rot_max_dist
 global
 gloves
 gloves_persona_1
@@ -9914,12 +9905,6 @@ h\v?event@QTabWidget@@MEAA_NPEAVQEvent@@@Z
 h^>zV
 ha?window@QPalette@@QEBAAEBVQBrush@@XZ
 halfgridsnap
-hammer_gizmo_2dscale
-hammer_gizmo_axis_length
-hammer_gizmo_axis_scale
-hammer_gizmo_compute_matrix
-hammer_gizmo_line_thickness
-hammer_gizmo_rot_inflate
 has_cursor_interrupt_priority
 hbox
 hcenter
@@ -10458,12 +10443,7 @@ pathnode
 pathnodeclass
 persona_selector
 pet.dll
-pet_disable_test_mode
 pet_effigy
-pet_named_value_cache_debug
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 pickedColor
 pixelAspectRatio
 point
@@ -10490,7 +10470,6 @@ propattr_flatten_into_parent_row
 propattr_flatten_stretch_factor
 propattr_force_readonly
 propdataname
-proped_attr_logging
 property_editor_settings
 propertyeditor
 pseudo-
@@ -10498,7 +10477,6 @@ public.vsnd_files
 pulse_bindings
 pulse_editor
 pulse_editor_map_entities
-pulse_fgd_debug_path
 pulse_node_custom_attributes
 pulse_open_graph_id %u %u
 pulse_runtime_lib
@@ -10617,9 +10595,6 @@ snapshot
 snapshot_local_bone
 snapshot_max_verts
 snapshot_original
-snd_event_browser_default_stack
-snd_event_browser_default_vsnd_field
-snd_event_browser_focus_events
 solid
 solidclass
 sort_priority
@@ -10665,7 +10640,6 @@ summon
 summon_persona_1
 suppress_expression
 suppressed_field
-surface_properties
 system_state
 t\n?beginEditBlock@QTextCursor@@QEAAXXZ
 t\n?connect@QObject@@SA?AVConnection@QMetaObject@@PEBV1@AEBVQMetaMethod@@01W4ConnectionType@Qt@@@Z
@@ -10713,7 +10687,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools code
 tools.reference_notrace
 tools/colors/shared_colors.txt
@@ -10768,8 +10741,6 @@ tools/keybindings/shared_tool_key_bindings.txt
 toolsMaterial
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
-toolscene_gizmo_algorithm
 toolscenenodes
 toolscenevismodes.txt
 tormentor

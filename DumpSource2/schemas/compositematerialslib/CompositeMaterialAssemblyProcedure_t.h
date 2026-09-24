@@ -12,7 +12,7 @@
 //	[
 //	]
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompositeMaterialAssemblyProcedure_t
 {
 	// MPropertyFriendlyName = "Includes"

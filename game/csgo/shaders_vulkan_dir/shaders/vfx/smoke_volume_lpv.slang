@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -29,21 +28,17 @@ COMMON
 CS
 {
 	
-	cbuffer LightProbeVolumeData_t < Attribute("LightProbeVolumeData_t"); >;
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightProbeVolumeConstantBuffer_t < Attribute("PerViewLightProbeVolumeConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
-	cbuffer SmokeConstantBuffer_t < Attribute("SmokeConstantBuffer_t"); >;
-	StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
+	[[layer_constant]] StructuredBuffer g_BarnLights < Attribute("BarnLights"); >;
 	RWTexture3D<float4> g_SmokeVolumeLPV < Attribute("SmokeVolumeLPV"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture3D g_tLPV_Irradiance < Attribute("LPV_Irradiance"); SrgbRead(false); >;
 	Texture3D g_tLPV_Shadows < Attribute("LPV_DirectShadows"); SrgbRead(false); >;
 	Texture3D g_tLightCookieTexture < Attribute("LightCookieTexture"); SrgbRead(true); >;
 	Texture2D g_tShadowDepthBufferDepth < Attribute("ShadowDepthBuffer"); SrgbRead(false); >;
 	
+	
+	// Variant parameters
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 4372 (name: LightProbeVolumeData_t), member index 1 (name: _m1) cannot be expressed with either HLSL packing layout or packoffset.
@@ -51,7 +46,7 @@ CS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (22348 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#if defined(GL_EXT_control_flow_attributes)
@@ -68,36 +63,23 @@ CS
 	#endif
 	layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 	
-	struct _1612
+	struct _1570
 	{
 	    vec4 _m0[16];
 	};
 	
-	struct _1484
+	struct _1430
 	{
 	    vec4 _m0;
 	    vec4 _m1;
 	    mat4x3 _m2;
-	    uint _m3;
-	    int _m4;
-	    uint _m5;
-	    int _m6;
+	    int _m3;
+	    uint _m4;
 	};
 	
-	struct _1485
+	struct _1439
 	{
-	    vec4 _m0;
-	    vec4 _m1;
-	    mat4x3 _m2;
-	    uint _m3;
-	    int _m4;
-	    uint _m5;
-	    int _m6;
-	};
-	
-	struct _1169
-	{
-	    _1485 _m0[64];
+	    _1430 _m0[64];
 	};
 	
 	struct _1556
@@ -110,7 +92,7 @@ CS
 	    vec3 _m5;
 	};
 	
-	struct _1414
+	struct _1329
 	{
 	    _1556 _m0[400];
 	};
@@ -145,27 +127,27 @@ CS
 	
 	vec4 _3;
 	
-	struct _1172
+	struct _1088
 	{
-	    _1612 _m0;
+	    _1570 _m0;
 	};
 	
-	layout(set = 0) uniform _1172 SmokeConstantBuffer_t;
+	layout(set = 0) uniform _1088 SmokeConstantBuffer_t;
 	
-	struct _1477
+	struct _2287
 	{
 	    uvec4 _m0;
-	    _1169 _m1;
+	    _1439 _m1;
 	};
 	
-	layout(set = 0) uniform _1477 LightProbeVolumeData_t;
+	layout(set = 0) uniform _2287 LightProbeVolumeData_t;
 	
-	struct _776
+	struct _606
 	{
-	    _1414 _m0;
+	    _1329 _m0;
 	};
 	
-	layout(set = 0) uniform _776 PerViewLightProbeVolumeConstantBuffer_t;
+	layout(set = 0) uniform _606 PerViewLightProbeVolumeConstantBuffer_t;
 	
 	struct _1007
 	{
@@ -201,12 +183,12 @@ CS
 	
 	layout(set = 0, binding = 42) uniform texture3D g_tLPV_Irradiance;
 	layout(set = 0, binding = 15) uniform sampler g_sBilinearClamp;
-	layout(set = 0, binding = 34) uniform texture3D g_tLightCookieTexture;
 	layout(set = 0, binding = 16) uniform sampler g_sTrilinearWrap;
+	layout(set = 0, binding = 34) uniform texture3D g_tLightCookieTexture;
 	layout(set = 0, binding = 22) uniform sampler g_sCookieSampler;
 	layout(set = 0, binding = 23) uniform samplerShadow g_tShadowDepthBufferCmpSampler;
 	layout(set = 0, binding = 36) uniform texture2D g_tShadowDepthBufferDepth;
-	layout(set = 0, binding = 48) uniform texture3D g_tLPV_Shadows;
+	layout(set = 0, binding = 46) uniform texture3D g_tLPV_Shadows;
 	layout(set = 0, binding = 158) uniform writeonly image3D _4931;
 	
 	void main()
@@ -249,17 +231,9 @@ CS
 	                    break;
 	                }
 	                uint _15059 = (_18909 * 32u) + uint(_17017);
-	                _1484 _20228;
-	                _20228._m0 = LightProbeVolumeData_t._m1._m0[_15059]._m0;
-	                _20228._m1 = LightProbeVolumeData_t._m1._m0[_15059]._m1;
-	                _20228._m2 = LightProbeVolumeData_t._m1._m0[_15059]._m2;
-	                _20228._m3 = LightProbeVolumeData_t._m1._m0[_15059]._m3;
-	                _20228._m4 = LightProbeVolumeData_t._m1._m0[_15059]._m4;
-	                _20228._m5 = LightProbeVolumeData_t._m1._m0[_15059]._m5;
-	                _20228._m6 = LightProbeVolumeData_t._m1._m0[_15059]._m6;
-	                vec3 _7678 = _20228._m2 * vec4(_18075.xyz, 1.0);
-	                vec3 _17147 = _20228._m0.xyz - _7678;
-	                vec3 _7179 = _7678 - _20228._m1.xyz;
+	                vec3 _7678 = LightProbeVolumeData_t._m1._m0[_15059]._m2 * vec4(_18075.xyz, 1.0);
+	                vec3 _17147 = LightProbeVolumeData_t._m1._m0[_15059]._m0.xyz - _7678;
+	                vec3 _7179 = _7678 - LightProbeVolumeData_t._m1._m0[_15059]._m1.xyz;
 	                vec3 _11965 = vec3(max(_17147.x, 0.0), max(_17147.y, 0.0), max(_17147.z, 0.0)) + vec3(max(_7179.x, 0.0), max(_7179.y, 0.0), max(_7179.z, 0.0));
 	                float _14811 = sqrt(dot(_11965, _11965));
 	                bool _8325 = _14811 == 0.0;
@@ -269,7 +243,7 @@ CS
 	                    bool _12885;
 	                    if (_8325)
 	                    {
-	                        _12885 = _20228._m4 != _16305;
+	                        _12885 = LightProbeVolumeData_t._m1._m0[_15059]._m3 != _16305;
 	                    }
 	                    else
 	                    {
@@ -277,7 +251,7 @@ CS
 	                    }
 	                    if (_12885)
 	                    {
-	                        if (_20228._m4 < _16305)
+	                        if (LightProbeVolumeData_t._m1._m0[_15059]._m3 < _16305)
 	                        {
 	                            _13137 = _13136;
 	                            _16306 = _16305;
@@ -299,9 +273,9 @@ CS
 	                    }
 	                    if (!_8325)
 	                    {
-	                        vec3 _21857 = _20228._m2 * vec4(_23211.xyz, 1.0);
-	                        vec3 _15862 = _20228._m0.xyz - _21857;
-	                        vec3 _7180 = _21857 - _20228._m1.xyz;
+	                        vec3 _21857 = LightProbeVolumeData_t._m1._m0[_15059]._m2 * vec4(_23211.xyz, 1.0);
+	                        vec3 _15862 = LightProbeVolumeData_t._m1._m0[_15059]._m0.xyz - _21857;
+	                        vec3 _7180 = _21857 - LightProbeVolumeData_t._m1._m0[_15059]._m1.xyz;
 	                        vec3 _11966 = vec3(max(_15862.x, 0.0), max(_15862.y, 0.0), max(_15862.z, 0.0)) + vec3(max(_7180.x, 0.0), max(_7180.y, 0.0), max(_7180.z, 0.0));
 	                        if (_8285 < sqrt(dot(_11966, _11966)))
 	                        {
@@ -325,9 +299,9 @@ CS
 	                    }
 	                }
 	                _13137 = _20890;
-	                _16306 = _20228._m4;
+	                _16306 = LightProbeVolumeData_t._m1._m0[_15059]._m3;
 	                _14891 = _8325;
-	                _18360 = int(_20228._m5);
+	                _18360 = int(LightProbeVolumeData_t._m1._m0[_15059]._m4);
 	                break;
 	            } while(false);
 	            if (_7956_ladder_break)
@@ -459,7 +433,7 @@ CS
 	                        break; // unreachable workaround
 	                    } while(false);
 	                    _11179 = _10017 / vec3(_17647);
-	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_14247]._m2.w / max(_18345, g_BarnLights_1._m0[_14247]._m2.w))) * smoothstep(0.0, 1.0, g_BarnLights_1._m0[_14247]._m3.x + (g_BarnLights_1._m0[_14247]._m3.y * _17647))) * clamp(g_BarnLights_1._m0[_14247]._m6.x + (g_BarnLights_1._m0[_14247]._m6.y * dot(vec3((1.0 - (_23570 * g_BarnLights_1._m0[_14247]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_14247]._m5.z) - (_17331 * g_BarnLights_1._m0[_14247]._m5.y)), normalize(_10210))), 0.0, 1.0);
+	                    _11633 = ((_19667 * (g_BarnLights_1._m0[_14247]._m2.w / max(_18345, g_BarnLights_1._m0[_14247]._m2.w))) * smoothstep(0.0, 1.0, g_BarnLights_1._m0[_14247]._m3.x + (g_BarnLights_1._m0[_14247]._m3.y * _17647))) * saturate(g_BarnLights_1._m0[_14247]._m6.x + (g_BarnLights_1._m0[_14247]._m6.y * dot(vec3((1.0 - (_23570 * g_BarnLights_1._m0[_14247]._m5.y)) - _18492, _9058 + _19825, (_14805 * g_BarnLights_1._m0[_14247]._m5.z) - (_17331 * g_BarnLights_1._m0[_14247]._m5.y)), normalize(_10210))));
 	                }
 	                else
 	                {
@@ -603,7 +577,7 @@ CS
 	                _20617 = vec3(max(0.0, dot(_9087.xyz, _11179.xyz))).xyz * _19630.xyz;
 	                break;
 	            } while(false);
-	            _5974 = _13155 + (_20617.xyz * mix(1.0, 0.100000001490116119384765625, clamp((sqrt(dot(g_BarnLights_1._m0[_16208]._m4.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)) * g_BarnLights_1._m0[_16208]._m2.w) - 80.0) * 0.00999999977648258209228515625, 0.0, 1.0))).xyz;
+	            _5974 = _13155 + (_20617.xyz * mix(1.0, 0.100000001490116119384765625, saturate((sqrt(dot(g_BarnLights_1._m0[_16208]._m4.xyz, vec3(0.2125000059604644775390625, 0.7153999805450439453125, 0.07209999859333038330078125)) * g_BarnLights_1._m0[_16208]._m2.w) - 80.0) * 0.00999999977648258209228515625))).xyz;
 	            _4283 = _16208 + 1u;
 	            _13155 = _5974;
 	            _16208 = _4283;

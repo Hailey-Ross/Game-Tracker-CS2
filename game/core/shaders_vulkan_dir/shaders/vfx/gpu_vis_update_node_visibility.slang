@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -33,14 +32,9 @@ CS
 	StructuredBuffer g_VisRegions < Attribute("VisRegions"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1640 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _981
-	{
-	    uint _m0;
-	};
-	
-	struct _982
 	{
 	    uint _m0;
 	};
@@ -69,14 +63,10 @@ CS
 	        {
 	            break;
 	        }
-	        _982 _10769;
-	        _10769._m0 = g_VisRegions.Load(_13155 * 4 + 0);
-	        _981 _22470;
-	        _22470._m0 = _10769._m0;
-	        uint _22552 = _22470._m0 & 4095u;
-	        if ((_3898[int(_22552 / 32u)].xxxx.x & (1u << (_22552 % 32u))) != 0u)
+	        uint _25020 = g_VisRegions.Load(_13155 * 4 + 0) & 4095u;
+	        if ((_3898[int(_25020 / 32u)].xxxx.x & (1u << (_25020 % 32u))) != 0u)
 	        {
-	            uint _13532 = _22470._m0 >> uint(12);
+	            uint _13532 = g_VisRegions.Load(_13155 * 4 + 0) >> uint(12);
 	            uint _6313;
 	            InterlockedOr(_3898[_13532 / 32u], 1u << (_13532 % 32u), _6313);
 	        }

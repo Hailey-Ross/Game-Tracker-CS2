@@ -10,7 +10,7 @@
 //	"m_strAttrNameForVar": "",
 //	"m_bExposeExternally": false
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompositeMaterialInputContainer_t
 {
 	// MPropertyAutoRebuildOnChange
@@ -18,24 +18,24 @@ class CompositeMaterialInputContainer_t
 	bool m_bEnabled;
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Input Container Source"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CompositeMaterialInputContainerSourceType_t m_nCompositeMaterialInputContainerSourceType;
 	// MPropertyFriendlyName = "Specific Material"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CResourceNameTyped< CWeakHandle< InfoForResourceTypeIMaterial2 > > m_strSpecificContainerMaterial;
 	// MPropertyFriendlyName = "Attribute Name"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strAttrName;
 	// MPropertyFriendlyName = "Alias"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strAlias;
 	// MPropertyFriendlyName = "Variables"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CompositeMaterialInputLooseVariable_t > m_vecLooseVariables;
 	// MPropertyFriendlyName = "Attribute Name"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strAttrNameForVar;
 	// MPropertyFriendlyName = "Expose Externally"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bExposeExternally;
 };

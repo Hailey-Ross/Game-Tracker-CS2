@@ -31,7 +31,6 @@ C:\buildworker\csgo_rel_win64\build\src\vconcomm\vconcomm.cpp
 CTSQueue<struct VConCommMessage_t *,0>::Push
 CVConComm::Init
 Cannot recover from failed socket shutdown. (error %d)
-Clear buffered logging
 Clearing %d buffered messages of %d bytes\n
 Clients %d of %d:\n
 Connection in progress...\n
@@ -43,7 +42,6 @@ GetWindowInfo
 GetWindowTextA
 Invalid connection type.
 IsWindowVisible
-List connections
 LogProcessesWithOpenLocalPort(%d) - Failed to find GetExtendedTcpTable\n
 LogProcessesWithOpenLocalPort(%d) - Failed to load iphlpapi.dll\n
 LogProcessesWithOpenLocalPort(%d) - Unexpected initial retcode %d\n
@@ -92,8 +90,6 @@ m_szValue
 m_vecDetails
 m_vecEnum
 vc_exit %s
-vcon_clear_buffered_log
-vcon_clients
 vconcomm.dll
 vconsole2.exe
 win32

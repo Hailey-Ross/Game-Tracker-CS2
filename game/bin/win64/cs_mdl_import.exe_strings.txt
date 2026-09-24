@@ -7696,7 +7696,6 @@ Angle Streams In Radians
 Angle Threshold
 AngleA
 AngleB
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -9400,7 +9399,6 @@ Decay Time
 Default (No Name)
 Default (No RGB Tint)
 Default Gravity Scale
-Default Material Group
 Default Root Bone Name
 Default offset for cp1 relative to cp0 if cp1 not set
 Default to old body ordering for now
@@ -9454,7 +9452,6 @@ Different Indices On Mesh vs Bind Pose For "%s" Added Anchor Bone
 Different Indices On Mesh vs Bind Pose For "%s" Bone
 Diffuse lighting amount
 Dilate pixels at UV island edges.
-Dimensions
 Direction Matching Strength
 Disable Compression
 Disable Continuous Collision Detection
@@ -9944,7 +9941,6 @@ Failed to save document kv3 data: %s\n
 Failed to serialize document state to kv3 data.
 Failed to transfer deltas from '%s'
 Failed to write file: %s\n
-Falloff
 Far Field Only
 Fast Drag
 Fast Sweep
@@ -11180,7 +11176,6 @@ Normal Modify Offset Random
 Normal of the removed island needs to be ~ this close to the supporting faces behind them
 Normal texture scroll rate
 Normalize Output
-Normalize Vector
 Normalize Vector a
 NoseV
 NostrilFlare
@@ -11251,7 +11246,6 @@ Orient Parent Only
 Orient Rotation to 2D Direction
 Orient toward child bone.
 Orient toward parent bone.
-Origin
 Original Bone Name
 Original bone name cannot be empty
 Original name of the bone
@@ -12147,7 +12141,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection [%d nodes]
 Selection was empty; no mesh components deleted.
@@ -12453,7 +12446,6 @@ Suppress warnings regarding the joint weight count per vertex exceeding allowabl
 Suppress warnings when bodygroups specify meshes that do not exist. This is useful if the bodygroup definition is in a shared prefab and missing warnings are expected or benign.
 Suppressed Shapes
 Surface Bias
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 SurfaceStretch
@@ -14001,8 +13993,6 @@ endmatch
 ent_dota_lightinfo
 entityTag
 entity_class
-entity_fgd_print_api_mismatch
-entity_fgd_require_api_declaration
 entity_properties
 entitygroup
 entries will be ordered first, unspecified entries will be added after ordered entries in an unspecified order.
@@ -15866,7 +15856,6 @@ suppressed_field
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 suspender
 swap_left_and_right_bones

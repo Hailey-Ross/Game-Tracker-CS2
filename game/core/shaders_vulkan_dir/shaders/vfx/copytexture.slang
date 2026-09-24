@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -47,7 +46,7 @@ VS
 	StaticCombo( S_USE_TEXCOORDS, F_USE_TEXCOORDS );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -103,7 +102,6 @@ PS
 	DynamicComboRule( Requires( D_BORDER_CLAMP, S_USE_TEXCOORDS ) );
 	DynamicComboRule( Allow1( S_USE_EXPLICIT_LOAD, D_VOLUME_TEXTURE ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flChannelChoice < Attribute("ChannelChoice"); UiType(Slider); >;
 	float g_flDesaturation < Attribute("DesaturationAmount"); UiType(Slider); >;
 	float g_flExposure < Attribute("Exposure"); UiType(Slider); >;
@@ -125,13 +123,17 @@ PS
 		Texture2D g_tCopyColor < Attribute("CustomTexture1"); SrgbRead(true); >;
 	#endif
 	
+	// Variant parameters
+	Texture3D g_tCopyColor < Attribute("CustomTexture1"); SrgbRead(false); >;
+	Texture3D g_tCopyColor < Attribute("CustomTexture1"); SrgbRead(true); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 0 (name: g_vScaleAndBias) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (484 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	

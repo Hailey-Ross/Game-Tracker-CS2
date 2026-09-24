@@ -29,7 +29,7 @@ class CAnimGraphDoc_SingleFrameNode : public CAnimGraphDoc_Node
 	// MPropertyAutoRebuildOnChange
 	SingleFrameSelection m_eFrameSelection;
 	// MPropertyFriendlyName = "Frame Index"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	int32 m_nFrameIndex;
 	CUtlVector< CSmartPtr< CAnimGraphDoc_Action > > m_actions;
 };

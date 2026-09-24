@@ -3735,7 +3735,6 @@ Check if any yielded cursors on the graph already have the given tag.
 Check if the cursor already has the given tag.
 CheckState
 CheckmarkPossible
-Children
 ChromaBlurRadius
 Ck(E! eY
 Clamp Float
@@ -4657,7 +4656,6 @@ NodeID %d port '%s' called from C%d:I%d
 None\n
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
-Normalize Vector
 Normalize Vector a
 Normals
 Not R%d <- !R%d
@@ -4924,7 +4922,6 @@ Options:
 Oqj\n
 Oqpx
 Or R%d <- R%d || R%d
-Origin
 Original Path: %s\n
 OriginalRawFileData
 OriginalRawFileName
@@ -7030,9 +7027,6 @@ pd7@
 pd8@
 pe7@
 peH@
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 pf7@
 pfH@
 pgA@
@@ -7237,7 +7231,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools.reference_notrace
 tools/colors/shared_colors.txt
 tools/images/pulse_editor/cursor_kill.png
@@ -7249,7 +7242,6 @@ tools/stylesheets/qtabbedstyle_colors.vsc
 tools/vconsole_subtools.txt
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
 toolscene
 toolscenenodes
 toolscenevismodes.txt

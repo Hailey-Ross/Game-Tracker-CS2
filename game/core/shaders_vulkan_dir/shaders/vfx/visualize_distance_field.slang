@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,17 +35,17 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (548 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 vTexCoord;
 	static float2 vPositionPs;
+	static float2 vTexCoord;
 	static float2 output_0;
 	
 	struct VS_INPUT
 	{
-	    float2 vTexCoord : TEXCOORD0;
-	    float2 vPositionPs : TEXCOORD1;
+	    float2 vPositionPs : TEXCOORD0;
+	    float2 vTexCoord : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -57,16 +56,16 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _14456 = float4(vTexCoord, 0.0f, 1.0f);
-	    output_0 = vPositionPs;
-	    _14456.y = -vTexCoord.y;
+	    float4 _14456 = float4(vPositionPs, 0.0f, 1.0f);
+	    output_0 = vTexCoord;
+	    _14456.y = -vPositionPs.y;
 	    gl_Position = _14456;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vTexCoord = stage_input.vTexCoord;
 	    vPositionPs = stage_input.vPositionPs;
+	    vTexCoord = stage_input.vTexCoord;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -87,7 +86,7 @@ PS
 	float2 g_vViewportRatio < Attribute("ViewportRatio"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (972 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -112,8 +111,8 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _3401 = g_tVisualizeDistanceField.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, float3(input_0 * _Globals_1_g_vViewportRatio, 0.0f));
-	    float _17666 = _3401.x;
+	    float4 _3300 = g_tVisualizeDistanceField.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, float3(input_0 * _Globals_1_g_vViewportRatio, 0.0f));
+	    float _17666 = _3300.x;
 	    output_0 = float4(_17666, _17666, _17666, (_17666 > 0.0500000007450580596923828125f) ? 0.5f : 0.0f);
 	}
 	

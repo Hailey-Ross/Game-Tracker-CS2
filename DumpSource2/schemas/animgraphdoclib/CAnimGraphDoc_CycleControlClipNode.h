@@ -34,7 +34,7 @@ class CAnimGraphDoc_CycleControlClipNode : public CAnimGraphDoc_Node
 	CUtlString m_sequenceName;
 	// MPropertyFriendlyName = "Blend Source"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_valueSource;
 	// MPropertySuppressField
 	CUtlString m_paramName;

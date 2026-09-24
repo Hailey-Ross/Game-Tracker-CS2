@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,24 +35,24 @@ struct VS_INPUT
 VS
 {
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (728 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
-	static float3 vCameraToEyeRayWs;
 	static float3 vCameraToNearPlaneWs;
+	static float3 vCameraToEyeRayWs;
 	static float3 output_0;
 	static float3 output_1;
 	
 	struct VS_INPUT
 	{
 	    float2 vPositionPs : TEXCOORD0;
-	    float3 vCameraToNearPlaneWs : TEXCOORD1;
-	    float3 vCameraToEyeRayWs : TEXCOORD2;
+	    float3 vCameraToEyeRayWs : TEXCOORD1;
+	    float3 vCameraToNearPlaneWs : TEXCOORD2;
 	};
 	
 	struct PS_INPUT
@@ -68,15 +67,15 @@ VS
 	    float4 _14437 = float4(vPositionPs, 0.0f, 1.0f);
 	    _14437.y = -vPositionPs.y;
 	    gl_Position = _14437;
-	    output_0 = vCameraToEyeRayWs;
-	    output_1 = normalize(vCameraToNearPlaneWs);
+	    output_0 = vCameraToNearPlaneWs;
+	    output_1 = normalize(vCameraToEyeRayWs);
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
 	    vPositionPs = stage_input.vPositionPs;
-	    vCameraToEyeRayWs = stage_input.vCameraToEyeRayWs;
 	    vCameraToNearPlaneWs = stage_input.vCameraToNearPlaneWs;
+	    vCameraToEyeRayWs = stage_input.vCameraToEyeRayWs;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -94,21 +93,19 @@ PS
 {
 	DynamicCombo( D_SMOKE_NEW_VISUALS, 0..1 );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
-	cbuffer SmokeConstantBuffer_t < Attribute("SmokeConstantBuffer_t"); >;
 	bool g_bAnimateEdge < Attribute("bAnimateEdge"); UiType(CheckBox); >;
 	float g_flDepthBias < Attribute("flDepthBias"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
-	Texture3D g_tSmokeNoiseTex < Channel(AGGB, None(TextureNoise), Linear); OutputFormat(RGBA8888); SrgbRead(false); >;
+	Texture3D g_tSmokeNoiseTex < Channel(ARGB, None(TextureNoise), Linear); OutputFormat(RGBA8888); SrgbRead(false); >;
 	Texture3D g_tSmokeVolumeTexA_Atlas < Attribute("SmokeVolumeTexA_Atlas"); SrgbRead(false); >;
 	
 	// Noise
 	CreateInputTexture2D(TextureNoise, Srgb, 8, "", "_z0000", "Noise", Default4(1, 1, 1, 1));
 	
+	
+	// Variant parameters
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 4023 (name: SmokeConstantBuffer_t), member index 7 (name: _m7) cannot be expressed with either HLSL packing layout or packoffset.
@@ -116,7 +113,7 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (13660 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#if defined(GL_EXT_control_flow_attributes)
@@ -133,37 +130,37 @@ PS
 	#endif
 	#extension GL_EXT_samplerless_texture_functions : require
 	
-	struct _1570
+	struct _1528
 	{
 	    vec4 _m0[16];
 	};
 	
-	struct _1696
+	struct _1654
 	{
 	    vec4 _m0[5];
 	};
 	
-	struct _1822
+	struct _1780
 	{
 	    vec4 _m0[2];
 	};
 	
 	float _4;
 	
-	struct _1196
+	struct _2989
 	{
-	    _1570 _m0;
-	    _1570 _m1;
-	    _1570 _m2;
-	    _1570 _m3;
+	    _1528 _m0;
+	    _1528 _m1;
+	    _1528 _m2;
+	    _1528 _m3;
 	    vec4 _m4;
-	    _1696 _m5;
-	    _1822 _m6;
+	    _1654 _m5;
+	    _1780 _m6;
 	    float _m7;
 	    uint _m8;
 	};
 	
-	layout(set = 1) uniform _1196 SmokeConstantBuffer_t;
+	layout(set = 1) uniform _2989 SmokeConstantBuffer_t;
 	
 	struct _1340
 	{
@@ -316,7 +313,7 @@ PS
 	                            vec4 _11488 = textureLod(sampler3D(g_tSmokeVolumeTexA_Atlas, g_sTrilinearClamp), _8236.xyz, 0.0);
 	                            vec2 _6350 = mix(_11488.xz, _11488.yw, _20693);
 	                            vec3 _14830 = _18040 + ((vec3(0.300000011920928955078125, -0.4000000059604644775390625, -0.5) * PerViewConstantBuffer_t._m1) * 1.440000057220458984375);
-	                            _9828 = _13138 + ((max(_6350.x, _6350.y) * 2.0) * clamp(abs(((sin(_14830.x * 1.2200000286102294921875) * 0.88999998569488525390625) + (sin(_14830.y * 1.16999995708465576171875) * 0.430000007152557373046875)) + (sin(_14830.z * 3.0) * 0.20000000298023223876953125)), 0.0, 1.0));
+	                            _9828 = _13138 + ((max(_6350.x, _6350.y) * 2.0) * saturate(abs(((sin(_14830.x * 1.2200000286102294921875) * 0.88999998569488525390625) + (sin(_14830.y * 1.16999995708465576171875) * 0.430000007152557373046875)) + (sin(_14830.z * 3.0) * 0.20000000298023223876953125))));
 	                            _14722 = _17019 + 1;
 	                            _13138 = _9828;
 	                            _16325 = _18040;
@@ -351,7 +348,7 @@ PS
 	            float _16479;
 	            if (_23381 > 0.0)
 	            {
-	                float _3914 = (_23381 + 0.300000011920928955078125) * clamp(SmokeConstantBuffer_t._m3._m0[_17017].z + (_3259 ? 0.5 : 0.0), 0.0, 1.0);
+	                float _3914 = (_23381 + 0.300000011920928955078125) * saturate(SmokeConstantBuffer_t._m3._m0[_17017].z + (_3259 ? 0.5 : 0.0));
 	                uint _10837;
 	                vec3 _16210;
 	                if (_17133 == 0u)
@@ -461,7 +458,7 @@ PS
 	                    {
 	                        float _24666 = SmokeConstantBuffer_t._m4.w * 3000.0;
 	                        float _19000 = distance(_24878, SmokeConstantBuffer_t._m4.xyz);
-	                        _12501 = mix(_9716 * 0.0199999995529651641845703125, _9716, max(1.0 - (smoothstep(_24666, _24666 - 50.0, _19000) * smoothstep(_24666 - 20000.0, _24666 - 4000.0, _19000)), clamp((48.0 - distance(_16210, input_0 + (input_1 * _15132))) * 0.02083333395421504974365234375, 0.0, 1.0)));
+	                        _12501 = mix(_9716 * 0.0199999995529651641845703125, _9716, max(1.0 - (smoothstep(_24666, _24666 - 50.0, _19000) * smoothstep(_24666 - 20000.0, _24666 - 4000.0, _19000)), saturate((48.0 - distance(_16210, input_0 + (input_1 * _15132))) * 0.02083333395421504974365234375)));
 	                    }
 	                    else
 	                    {
@@ -473,7 +470,7 @@ PS
 	                {
 	                    _11659 = _9716;
 	                }
-	                float _5523 = _13136 + mix(_11659, clamp((_11659 - 0.699999988079071044921875) * 10.0, 0.0, 1.0), SmokeConstantBuffer_t._m3._m0[_17017].z);
+	                float _5523 = _13136 + mix(_11659, saturate((_11659 - 0.699999988079071044921875) * 10.0), SmokeConstantBuffer_t._m3._m0[_17017].z);
 	                if (_5523 > 1.0)
 	                {
 	                    _13143 = saturate(_5523);

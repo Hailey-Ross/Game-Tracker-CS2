@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,7 +35,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (552 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -83,14 +82,12 @@ PS
 {
 	DynamicCombo( D_MSAA_DEPTH_BUFFER, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer SunLightShaderParamsCB_t < Attribute("SunLightShaderParamsCB_t"); >;
 	Texture2D g_tGBufferDepth < Attribute("GBufferDepth"); SrgbRead(false); >;
 	Texture2D g_tShadowDepthMapAtlas < Attribute("ShadowDepthMapAtlas"); SrgbRead(false); >;
 	float4 g_vDepthBufferSize < Attribute("GBufferDepthSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (8776 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _209
 	{
@@ -154,7 +151,7 @@ PS
 	void MainPs_inner()
 	{
 	    int3 _17020 = int3(uint3(uint2(clamp(((gl_FragCoord.xy * PerViewConstantBuffer_t_1_m1.xy).xy * _Globals_1_g_vDepthBufferSize.xy).xy, 0.0f.xx, _Globals_1_g_vDepthBufferSize.xy - 1.0f.xx)), 0u));
-	    float3 _9855 = (PerViewConstantBuffer_t_1_m4.xyz + (input_0.xyz * (1.0f / (((clamp((g_tGBufferDepth.Load(int3(_17020.xy, _17020.z)).x - PerViewConstantBuffer_t_1_m2) / (PerViewConstantBuffer_t_1_m3 - PerViewConstantBuffer_t_1_m2), 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m5.xyz, input_0.xyz))))).xyz;
+	    float3 _9855 = (PerViewConstantBuffer_t_1_m4.xyz + (input_0.xyz * (1.0f / (((saturate((g_tGBufferDepth.Load(int3(_17020.xy, _17020.z)).x - PerViewConstantBuffer_t_1_m2) / (PerViewConstantBuffer_t_1_m3 - PerViewConstantBuffer_t_1_m2)) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m5.xyz, input_0.xyz))))).xyz;
 	    float _6559;
 	    if (SunLightShaderParamsCB_t_1_m8 == 1)
 	    {
@@ -237,7 +234,7 @@ PS
 	                    {
 	                        _8523 = 1.0f;
 	                    }
-	                    _12501 = lerp(_13726, _8523, clamp(_7849, 0.0f, 1.0f));
+	                    _12501 = lerp(_13726, _8523, saturate(_7849));
 	                }
 	                else
 	                {
@@ -260,7 +257,7 @@ PS
 	    float _19133;
 	    if (SunLightShaderParamsCB_t_1_m8 > 0)
 	    {
-	        _19133 = lerp(_6559, 1.0f, clamp((distance(_9855, PerViewConstantBuffer_t_1_m4) - SunLightShaderParamsCB_t_1_m4) * SunLightShaderParamsCB_t_1_m5, 0.0f, 1.0f));
+	        _19133 = lerp(_6559, 1.0f, saturate((distance(_9855, PerViewConstantBuffer_t_1_m4) - SunLightShaderParamsCB_t_1_m4) * SunLightShaderParamsCB_t_1_m5));
 	    }
 	    else
 	    {

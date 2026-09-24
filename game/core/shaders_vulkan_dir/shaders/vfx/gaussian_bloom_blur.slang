@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (432 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -82,11 +81,10 @@ PS
 	DynamicCombo( D_TENT_FILTER, 0..1 );
 	DynamicCombo( D_TONEMAP_BLEND, 0..1 );
 	DynamicComboRule( Requires( D_VIGNETTE, D_FIRST_MIP ) );
-	DynamicComboRule( Requires( D_4X_DOWNSAMPLE, D_BLUR_PASS=0 ) );
+	DynamicComboRule( Requires( D_4X_DOWNSAMPLE, D_BLUR_PASS==0 ) );
 	DynamicComboRule( Requires( D_TONEMAP_BLEND, D_4X_DOWNSAMPLE ) );
-	DynamicComboRule( Requires( D_TENT_FILTER, D_BLUR_PASS=3 ) );
+	DynamicComboRule( Requires( D_TENT_FILTER, D_BLUR_PASS==3 ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flBloomScale < Attribute("bloomScale"); UiType(Slider); >;
 	float g_flTentFilterRadius < Attribute("bloomTentFilterRadius"); UiType(Slider); >;
 	Texture2D g_tQuarterResEffectsColor < Attribute("QuarterResEffectsBloomInputTexture"); SrgbRead(false); >;
@@ -95,16 +93,22 @@ PS
 	Texture2D g_tSource2 < Attribute("SourceTexture2"); SrgbRead(false); >;
 	Texture2D g_tSource2 < Attribute("SourceTexture2"); SrgbRead(true); >;
 	Texture2D g_tSourceMsaa < Attribute("SourceTextureMSAA"); SrgbRead(false); >;
-	float4 g_vCombineUVScaleAndClamp < UiType(VectorText); Expression(ATTRIBUTE[bda8932f]); >;
-	float4 g_vCombineUVScaleAndClamp2 < UiType(VectorText); Expression(ATTRIBUTE[e69b2da4]); >;
-	float3 g_vCurrMipBlurTint < UiType(VectorText); Expression(ATTRIBUTE[c374e2c2]); >;
-	float3 g_vPrevMipBlurTint < UiType(VectorText); Expression(ATTRIBUTE[413d4db2]); >;
-	float4 g_vTexelSize < UiType(VectorText); Expression(ATTRIBUTE[d30883e9]); >;
-	float3 g_vThresholdParams < UiType(VectorText); Expression(float3(-ATTRIBUTE[ba98a9b0]/ATTRIBUTE[2ae72b37],1/ATTRIBUTE[2ae72b37],ATTRIBUTE[1313a424])); >;
+	float4 g_vCombineUVScaleAndClamp < UiType(VectorText); Expression(uvscaleclamp); >;
+	float4 g_vCombineUVScaleAndClamp2 < UiType(VectorText); Expression(uvscaleclamp2); >;
+	float3 g_vCurrMipBlurTint < UiType(VectorText); Expression(currmipblurtint); >;
+	float3 g_vPrevMipBlurTint < UiType(VectorText); Expression(prevmipblurtint); >;
+	float4 g_vTexelSize < UiType(VectorText); Expression(texelsize); >;
+	float3 g_vThresholdParams < UiType(VectorText); Expression(float3(-bloomthreshold/bloomthresholdwidth,1/bloomthresholdwidth,skyboxbloomstrength)); >;
 	
+	
+	// Variant parameters
+	Texture2D g_tSource < Attribute("SourceTexture"); SrgbRead(false); >;
+	Texture2D g_tSource < Attribute("SourceTexture"); SrgbRead(true); >;
+	Texture2D g_tSource2 < Attribute("SourceTexture2"); SrgbRead(false); >;
+	Texture2D g_tSource2 < Attribute("SourceTexture2"); SrgbRead(true); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1228 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

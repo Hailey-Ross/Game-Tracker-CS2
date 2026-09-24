@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -30,10 +29,10 @@ CS
 {
 	DynamicCombo( D_USE_PREV_FRAME, 0..1 );
 	
-	cbuffer WindControllerConstantBuffer_t < Attribute("WindControllerConstantBuffer_t"); >;
 	RWTexture3D<float4> g_WindOut < Attribute("WindOut"); >;
 	Texture3D g_WindPrev < Attribute("WindPrevFrame"); SrgbRead(false); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	StructuredBuffer g_WindVolumes < Attribute("WindVolumes"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 3246 (name: WindControllerConstantBuffer_t), member index 0 (name: _m0) cannot be expressed with either HLSL packing layout or packoffset.
@@ -41,57 +40,96 @@ CS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (19868 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 	
-	struct _226
+	struct _1318
 	{
 	    vec4 _m0[4];
 	};
 	
-	struct _1716
+	struct _1981
 	{
 	    vec4 _m0;
-	    _226 _m1;
+	    _1318 _m1;
 	    float _m2;
 	    float _m3;
 	};
 	
-	vec4 _4;
-	
-	struct _1679
+	struct _1255
 	{
-	    _1716 _m0;
+	    vec3 _m0;
 	    float _m1;
+	    vec3 _m2;
+	    float _m3;
+	    int _m4;
+	    float _m5;
+	    float _m6;
+	    float _m7;
+	};
+	
+	struct _1009
+	{
+	    _1255 _m0[6];
+	};
+	
+	struct _1407
+	{
+	    mat3x4 _m0;
+	    vec3 _m1;
+	    int _m2;
+	    vec3 _m3;
+	    int _m4;
+	    vec3 _m5;
+	    int _m6;
+	    _1009 _m7;
+	};
+	
+	bool _4;
+	vec4 _5;
+	
+	struct _2261
+	{
+	    _1981 _m0;
+	    uint _m1;
 	    float _m2;
 	    float _m3;
 	    float _m4;
 	    float _m5;
-	    uint _m6;
-	    float _m7;
+	    float _m6;
+	    uint _m7;
 	    float _m8;
 	    float _m9;
+	    float _m10;
 	};
 	
-	layout(set = 0) uniform _1679 WindControllerConstantBuffer_t;
+	layout(set = 0) uniform _2261 WindControllerConstantBuffer_t;
+	
+	layout(set = 0, binding = 30, std430) readonly buffer g_WindVolumes
+	{
+	    _1407 _m0[];
+	} g_WindVolumes_1;
 	
 	layout(set = 0, binding = 158) uniform writeonly image3D _4903;
 	
 	void main()
 	{
-	    uint _9810 = gl_WorkGroupID.z * WindControllerConstantBuffer_t._m6;
+	    uint _9810 = gl_WorkGroupID.z * WindControllerConstantBuffer_t._m7;
 	    uint _4300;
-	    uint _13039 = 0u;
+	    bool _13136;
+	    uint _13155 = 0u;
+	    bool _16208;
 	    for (;;)
 	    {
-	        if (!(_13039 < WindControllerConstantBuffer_t._m6))
+	        if (!(_13155 < WindControllerConstantBuffer_t._m7))
 	        {
 	            break;
 	        }
-	        vec3 _21069 = (mix(-WindControllerConstantBuffer_t._m0._m1._m0[gl_WorkGroupID.z].xyz, WindControllerConstantBuffer_t._m0._m1._m0[gl_WorkGroupID.z].xyz, vec3((vec2(gl_GlobalInvocationID.xy) + vec2(0.5)) * vec2(WindControllerConstantBuffer_t._m7), float(_13039) * WindControllerConstantBuffer_t._m8)) + WindControllerConstantBuffer_t._m0._m0.xyz).xyz * vec3(WindControllerConstantBuffer_t._m5, WindControllerConstantBuffer_t._m5, WindControllerConstantBuffer_t._m5 * 0.25);
-	        vec4 _11494 = vec4(_21069, WindControllerConstantBuffer_t._m9);
+	        vec3 _5578 = mix(-WindControllerConstantBuffer_t._m0._m1._m0[gl_WorkGroupID.z].xyz, WindControllerConstantBuffer_t._m0._m1._m0[gl_WorkGroupID.z].xyz, vec3((vec2(gl_GlobalInvocationID.xy) + vec2(0.5)) * vec2(WindControllerConstantBuffer_t._m8), float(_13155) * WindControllerConstantBuffer_t._m9)) + WindControllerConstantBuffer_t._m0._m0.xyz;
+	        vec3 _21069 = _5578.xyz * vec3(WindControllerConstantBuffer_t._m6, WindControllerConstantBuffer_t._m6, WindControllerConstantBuffer_t._m6 * 0.25);
+	        vec4 _11494 = vec4(_21069, WindControllerConstantBuffer_t._m10);
 	        vec4 _24815 = floor(_11494 + vec4(dot(_11494, vec4(0.309017002582550048828125))));
 	        vec4 _23013 = (_11494 - _24815) + vec4(dot(_24815, vec4(0.13819660246372222900390625)));
 	        vec3 _13533 = step(_23013.yzw, _23013.xxx);
@@ -106,8 +144,8 @@ CS
 	        _25137.z = _20656.x + _13950;
 	        _25137.w = _20656.y + (1.0 - _13950);
 	        vec4 _22019 = saturate(_25137);
-	        vec4 _20715 = clamp(_25137 - vec4(1.0), vec4(0.0), vec4(1.0));
-	        vec4 _22895 = clamp(_25137 - vec4(2.0), vec4(0.0), vec4(1.0));
+	        vec4 _20715 = saturate(_25137 - vec4(1.0));
+	        vec4 _22895 = saturate(_25137 - vec4(2.0));
 	        vec4 _7527 = (_23013 - _22895) + vec4(0.13819660246372222900390625);
 	        vec4 _20958 = (_23013 - _20715) + vec4(0.2763932049274444580078125);
 	        vec4 _21551 = (_23013 - _22019) + vec4(0.4145897924900054931640625);
@@ -202,7 +240,7 @@ CS
 	        vec2 _12203 = max(vec2(0.569999992847442626953125) - vec2(dot(_21551, _21551), dot(_18951, _18951)), vec2(0.0));
 	        vec3 _18799 = _9893 * _9893;
 	        vec2 _8086 = _12203 * _12203;
-	        vec4 _9162 = vec4(_21069, WindControllerConstantBuffer_t._m9 + 167.0);
+	        vec4 _9162 = vec4(_21069, WindControllerConstantBuffer_t._m10 + 167.0);
 	        vec4 _24816 = floor(_9162 + vec4(dot(_9162, vec4(0.309017002582550048828125))));
 	        vec4 _23014 = (_9162 - _24816) + vec4(dot(_24816, vec4(0.13819660246372222900390625)));
 	        vec3 _13534 = step(_23014.yzw, _23014.xxx);
@@ -217,8 +255,8 @@ CS
 	        _25138.z = _20657.x + _13951;
 	        _25138.w = _20657.y + (1.0 - _13951);
 	        vec4 _22020 = saturate(_25138);
-	        vec4 _20716 = clamp(_25138 - vec4(1.0), vec4(0.0), vec4(1.0));
-	        vec4 _22896 = clamp(_25138 - vec4(2.0), vec4(0.0), vec4(1.0));
+	        vec4 _20716 = saturate(_25138 - vec4(1.0));
+	        vec4 _22896 = saturate(_25138 - vec4(2.0));
 	        vec4 _7528 = (_23014 - _22896) + vec4(0.13819660246372222900390625);
 	        vec4 _20959 = (_23014 - _20716) + vec4(0.2763932049274444580078125);
 	        vec4 _21552 = (_23014 - _22020) + vec4(0.4145897924900054931640625);
@@ -313,11 +351,245 @@ CS
 	        vec2 _12204 = max(vec2(0.569999992847442626953125) - vec2(dot(_21552, _21552), dot(_18952, _18952)), vec2(0.0));
 	        vec3 _18800 = _9894 * _9894;
 	        vec2 _8088 = _12204 * _12204;
-	        float _5769 = WindControllerConstantBuffer_t._m1 + ((60.09999847412109375 * (dot(_18799 * _18799, vec3(dot(_20488 * _6425.x, _23013), dot(_20489 * _6425.y, _7527), dot(_20490 * _6425.z, _20958))) + dot(_8086 * _8086, vec2(dot(_20491 * _6425.w, _21551), dot(_20492 * (1.792842864990234375 - (0.8537347316741943359375 * dot(_20492, _20492))), _18951))))) * WindControllerConstantBuffer_t._m2);
-	        float _22021 = ((WindControllerConstantBuffer_t._m3 + ((60.09999847412109375 * (dot(_18800 * _18800, vec3(dot(_19158 * _6426.x, _23014), dot(_20494 * _6426.y, _7528), dot(_20495 * _6426.z, _20959))) + dot(_8088 * _8088, vec2(dot(_20496 * _6426.w, _21552), dot(_20497 * (1.792842864990234375 - (0.8537347316741943359375 * dot(_20497, _20497))), _18952))))) * WindControllerConstantBuffer_t._m4)) - WindControllerConstantBuffer_t._m0._m2) / ((WindControllerConstantBuffer_t._m0._m2 + WindControllerConstantBuffer_t._m0._m3) - WindControllerConstantBuffer_t._m0._m2);
-	        imageStore(_4903, ivec3(uvec3(gl_GlobalInvocationID.xy, _9810 + _13039)), vec4((vec2(cos(_5769), sin(_5769)) * 0.5) + vec2(0.5), _22021, _22021));
-	        _4300 = _13039 + 1u;
-	        _13039 = _4300;
+	        float _5769 = WindControllerConstantBuffer_t._m2 + ((60.09999847412109375 * (dot(_18799 * _18799, vec3(dot(_20488 * _6425.x, _23013), dot(_20489 * _6425.y, _7527), dot(_20490 * _6425.z, _20958))) + dot(_8086 * _8086, vec2(dot(_20491 * _6425.w, _21551), dot(_20492 * (1.792842864990234375 - (0.8537347316741943359375 * dot(_20492, _20492))), _18951))))) * WindControllerConstantBuffer_t._m3);
+	        vec3 _16305;
+	        float _17133;
+	        _13136 = _16208;
+	        _16305 = vec3(cos(_5769), sin(_5769), 0.0);
+	        _17133 = WindControllerConstantBuffer_t._m4 + ((60.09999847412109375 * (dot(_18800 * _18800, vec3(dot(_19158 * _6426.x, _23014), dot(_20494 * _6426.y, _7528), dot(_20495 * _6426.z, _20959))) + dot(_8088 * _8088, vec2(dot(_20496 * _6426.w, _21552), dot(_20497 * (1.792842864990234375 - (0.8537347316741943359375 * dot(_20497, _20497))), _18952))))) * WindControllerConstantBuffer_t._m5);
+	        uint _4283;
+	        float _10913;
+	        bool _16863;
+	        vec3 _17551;
+	        uint _17017 = 0u;
+	        for (;;)
+	        {
+	            if (!(_17017 < WindControllerConstantBuffer_t._m1))
+	            {
+	                break;
+	            }
+	            float _13139;
+	            float _16307;
+	            vec3 _17152;
+	            do
+	            {
+	                bool _12885;
+	                if (any(lessThan(_5578, g_WindVolumes_1._m0[_17017]._m1)))
+	                {
+	                    _12885 = true;
+	                }
+	                else
+	                {
+	                    _12885 = any(greaterThan(_5578, g_WindVolumes_1._m0[_17017]._m3));
+	                }
+	                if (_12885)
+	                {
+	                    _13139 = 0.0;
+	                    _16307 = 0.0;
+	                    _17152 = vec3(0.0);
+	                    _16863 = false;
+	                    break;
+	                }
+	                vec3 _18068 = vec4(_5578, 1.0) * g_WindVolumes_1._m0[_17017]._m0;
+	                vec3 _13630 = _18068.xyz;
+	                bool _13174;
+	                bool _16054;
+	                switch (g_WindVolumes_1._m0[_17017]._m6)
+	                {
+	                    case 1:
+	                    {
+	                        if (dot(_13630, _13630) > (g_WindVolumes_1._m0[_17017]._m5.x * g_WindVolumes_1._m0[_17017]._m5.x))
+	                        {
+	                            _13174 = false;
+	                            _16054 = true;
+	                            break;
+	                        }
+	                        _13174 = _13136;
+	                        _16054 = false;
+	                        break;
+	                    }
+	                    case 2:
+	                    {
+	                        vec3 _20258 = vec3(clamp(_18068.x, 0.0, g_WindVolumes_1._m0[_17017]._m5.x), 0.0, 0.0) - _13630;
+	                        if (dot(_20258, _20258) > (g_WindVolumes_1._m0[_17017]._m5.y * g_WindVolumes_1._m0[_17017]._m5.y))
+	                        {
+	                            _13174 = false;
+	                            _16054 = true;
+	                            break;
+	                        }
+	                        _13174 = _13136;
+	                        _16054 = false;
+	                        break;
+	                    }
+	                    case 3:
+	                    {
+	                        float _12714 = _18068.x;
+	                        if ((_12714 / length(_13630)) < g_WindVolumes_1._m0[_17017]._m5.z)
+	                        {
+	                            _13174 = false;
+	                            _16054 = true;
+	                            break;
+	                        }
+	                        if (_12714 > g_WindVolumes_1._m0[_17017]._m5.x)
+	                        {
+	                            _13174 = false;
+	                            _16054 = true;
+	                            break;
+	                        }
+	                        _13174 = _13136;
+	                        _16054 = false;
+	                        break;
+	                    }
+	                    case 4:
+	                    {
+	                        if (any(greaterThan(abs(_13630), g_WindVolumes_1._m0[_17017]._m5)))
+	                        {
+	                            _13174 = false;
+	                            _16054 = true;
+	                            break;
+	                        }
+	                        _13174 = _13136;
+	                        _16054 = false;
+	                        break;
+	                    }
+	                    default:
+	                    {
+	                        _13174 = _13136;
+	                        _16054 = false;
+	                        break;
+	                    }
+	                }
+	                if (_16054)
+	                {
+	                    _13139 = 0.0;
+	                    _16307 = 0.0;
+	                    _17152 = vec3(0.0);
+	                    _16863 = _13174;
+	                    break;
+	                }
+	                vec3 _13137;
+	                float _16306;
+	                float _17134;
+	                _13137 = vec3(0.0);
+	                _16306 = 0.0;
+	                _17134 = 0.0;
+	                int _8896;
+	                vec3 _13138;
+	                float _14082;
+	                float _18360;
+	                int _17018 = 0;
+	                for (;;)
+	                {
+	                    bool _7956_ladder_break = false;
+	                    do
+	                    {
+	                        if (!(_17018 < g_WindVolumes_1._m0[_17017]._m2))
+	                        {
+	                            _7956_ladder_break = true;
+	                            break;
+	                        }
+	                        vec3 _23098 = _5578 - g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m0;
+	                        float _18510 = length(_23098);
+	                        float _9054;
+	                        if (g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m6 > 0.0)
+	                        {
+	                            if (_18510 > g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m6)
+	                            {
+	                                _13138 = _13137;
+	                                _14082 = _16306;
+	                                _18360 = _17134;
+	                                break;
+	                            }
+	                            float _14432 = _18510 / g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m6;
+	                            _9054 = saturate(1.0 - (_14432 * _14432));
+	                        }
+	                        else
+	                        {
+	                            _9054 = 1.0;
+	                        }
+	                        vec3 _23794;
+	                        switch (g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m4)
+	                        {
+	                            case 0:
+	                            {
+	                                _23794 = g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m2;
+	                                break;
+	                            }
+	                            case 1:
+	                            case 2:
+	                            {
+	                                _23794 = (_23098 / vec3(_18510)) * ((g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m4 == 1) ? 1.0 : (-1.0));
+	                                break;
+	                            }
+	                            case 3:
+	                            {
+	                                vec3 _6859 = normalize(_23098 - (g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m2 * dot(_23098, g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m2)));
+	                                float _15426 = g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m1 * 1.5707950592041015625;
+	                                float _17282 = g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m3 * 1.5707950592041015625;
+	                                _23794 = (((cross(_6859, g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m2) * cos(_15426)) - (_6859 * sin(_15426))) * cos(_17282)) + (g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m2 * sin(_17282));
+	                                break;
+	                            }
+	                            default:
+	                            {
+	                                _23794 = vec3(0.0);
+	                                break;
+	                            }
+	                        }
+	                        _13138 = normalize(mix(_13137, _23794, vec3(_9054)));
+	                        _14082 = mix(_16306, g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m5, _9054);
+	                        _18360 = max(_17134, _9054 * g_WindVolumes_1._m0[_17017]._m7._m0[_17018]._m7);
+	                        break;
+	                    } while(false);
+	                    if (_7956_ladder_break)
+	                    {
+	                        break;
+	                    }
+	                    _8896 = _17018 + 1;
+	                    _13137 = _13138;
+	                    _16306 = _14082;
+	                    _17134 = _18360;
+	                    _17018 = _8896;
+	                    continue;
+	                }
+	                _13139 = _16306;
+	                _16307 = _17134;
+	                _17152 = _13137;
+	                _16863 = true;
+	                break;
+	            } while(false);
+	            if (_16863)
+	            {
+	                vec3 _8606 = mix(_16305, _17152, vec3(_16307));
+	                float _8187 = length(_8606);
+	                vec3 _7934;
+	                if (_8187 > 0.0)
+	                {
+	                    _7934 = _8606 / vec3(_8187);
+	                }
+	                else
+	                {
+	                    _7934 = _8606;
+	                }
+	                _10913 = mix(_17133, _13139, _16307);
+	                _17551 = _7934;
+	            }
+	            else
+	            {
+	                _10913 = _17133;
+	                _17551 = _16305;
+	            }
+	            _4283 = _17017 + 1u;
+	            _13136 = _16863;
+	            _16305 = _17551;
+	            _17133 = _10913;
+	            _17017 = _4283;
+	            continue;
+	        }
+	        float _22021 = (_17133 - WindControllerConstantBuffer_t._m0._m2) / ((WindControllerConstantBuffer_t._m0._m2 + WindControllerConstantBuffer_t._m0._m3) - WindControllerConstantBuffer_t._m0._m2);
+	        imageStore(_4903, ivec3(uvec3(gl_GlobalInvocationID.xy, _9810 + _13155)), vec4(((_16305 * _22021) * 0.5) + vec3(0.5), _22021));
+	        _4300 = _13155 + 1u;
+	        _13155 = _4300;
+	        _16208 = _13136;
 	        continue;
 	    }
 	}

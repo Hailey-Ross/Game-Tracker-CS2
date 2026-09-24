@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -40,7 +39,7 @@ VS
 	float g_flNormalOffset < Attribute("NormalBias"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1276 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -49,15 +48,15 @@ VS
 	
 	
 	static float4 gl_Position;
-	static float2 vPosition;
-	static float3 vTexCoord;
+	static float2 vTexCoord;
+	static float3 vPosition;
 	static float3 vNormalOs;
 	static float3 output_0;
 	
 	struct VS_INPUT
 	{
-	    float3 vTexCoord : TEXCOORD0;
-	    float2 vPosition : TEXCOORD1;
+	    float3 vPosition : TEXCOORD0;
+	    float2 vTexCoord : TEXCOORD1;
 	    float3 vNormalOs : TEXCOORD2;
 	};
 	
@@ -69,16 +68,16 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float2 _7080 = (float2(vPosition.x, 1.0f - vPosition.y) - 0.5f.xx) * 2.0f;
+	    float2 _7080 = (float2(vTexCoord.x, 1.0f - vTexCoord.y) - 0.5f.xx) * 2.0f;
 	    float4 _14779 = float4(_7080, 1.0f, 1.0f);
 	    float3 _23482;
 	    if (_Globals_1_g_flNormalOffset != 0.0f)
 	    {
-	        _23482 = vTexCoord.xyz + (normalize(vNormalOs.xyz) * _Globals_1_g_flNormalOffset);
+	        _23482 = vPosition.xyz + (normalize(vNormalOs.xyz) * _Globals_1_g_flNormalOffset);
 	    }
 	    else
 	    {
-	        _23482 = vTexCoord.xyz;
+	        _23482 = vPosition.xyz;
 	    }
 	    output_0 = _23482;
 	    _14779.y = -_7080.y;
@@ -87,8 +86,8 @@ VS
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vPosition = stage_input.vPosition;
 	    vTexCoord = stage_input.vTexCoord;
+	    vPosition = stage_input.vPosition;
 	    vNormalOs = stage_input.vNormalOs;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
@@ -110,7 +109,7 @@ PS
 	float3 g_vBoundsOffset < Attribute("BoundsOffset"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (768 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

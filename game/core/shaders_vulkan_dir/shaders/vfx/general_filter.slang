@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -36,17 +35,17 @@ VS
 	StaticCombo( S_VERTEXTINT, F_VERTEXTINT );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (536 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 input_0;
-	static float3 input_1;
+	static float2 input_TEXCOORD0;
+	static float3 input_POSITION0;
 	static float2 output_0;
 	
 	struct VS_INPUT
 	{
-	    float3 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float3 input_POSITION0 : TEXCOORD0;
+	    float2 input_TEXCOORD0 : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -57,16 +56,16 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _10551 = float4(input_1, 1.0f);
-	    output_0 = input_0;
-	    _10551.y = -input_1.y;
+	    float4 _10551 = float4(input_POSITION0, 1.0f);
+	    output_0 = input_TEXCOORD0;
+	    _10551.y = -input_POSITION0.y;
 	    gl_Position = _10551;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
+	    input_TEXCOORD0 = stage_input.input_TEXCOORD0;
+	    input_POSITION0 = stage_input.input_POSITION0;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -87,10 +86,8 @@ PS
 	DynamicCombo( D_SRGBREADINPUT, 0..1 );
 	DynamicCombo( D_CLAMPTEXTURECOORDS, 0..1 );
 	
-	RenderState(BlendEnable, F_ADDITIVE_BLENDING ? True : False);
+	RenderState(BlendEnable, F_ADDITIVE_BLENDING ? true : false);
 	RenderState(DstBlend, F_ADDITIVE_BLENDING ? One : Zero);
-	cbuffer FilterTaps_t < Attribute("FilterTaps_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	RenderState(SrcBlend, One);
 	Texture2D g_tInputTexture < Attribute("inputTexture"); SrgbRead(false); >;
 	Texture2D g_tInputTexture < Attribute("inputTexture"); SrgbRead(true); >;
@@ -98,10 +95,16 @@ PS
 	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInputTexture) UiType(VectorText); >;
 	
 	
-	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1632 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// Variant parameters
+	Texture2D g_tInputTexture < Attribute("inputTexture"); SrgbRead(false); >;
+	Texture2D g_tInputTexture < Attribute("inputTexture"); SrgbRead(true); >;
+	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInputTexture) UiType(VectorText); >;
+	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInputTexture) UiType(VectorText); >;
 	
-	struct _268
+	// Source 2 Viewer - https://valveresourceformat.github.io
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
+	
+	struct _226
 	{
 	    float4 _m0[32];
 	};
@@ -110,7 +113,7 @@ PS
 	{
 	    float4 FilterTaps_t_1_m0 : packoffset(c0);
 	    column_major float4x4 FilterTaps_t_1_m1 : packoffset(c2);
-	    _268 FilterTaps_t_1_m2 : packoffset(c6);
+	    _226 FilterTaps_t_1_m2 : packoffset(c6);
 	};
 	
 	Texture2D<float4> g_tInputTexture : register(t30, space1);

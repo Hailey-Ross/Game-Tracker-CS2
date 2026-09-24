@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (452 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionPs;
@@ -81,16 +80,16 @@ PS
 	DynamicCombo( D_COLOR_CORRECTION_LUT, 0..1 );
 	DynamicComboRule( Requires( D_COLOR_CORRECTION_LUT, D_OUTPUT_PANO ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PostProcessingConstantBuffer_t < Attribute("PostProcessingConstantBuffer_t"); >;
 	float g_flBloomScale < Attribute("bloomScale"); UiType(Slider); >;
 	float g_flColorCorrectionDefaultWeight < Attribute("ColorCorrectionDefaultWeight"); UiType(Slider); >;
 	Texture3D g_tColorCorrection < Attribute("ColorCorrectionTex"); SrgbRead(false); >;
 	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(false); >;
 	Texture2D g_tQuarterResEffectsColor < Attribute("QuarterResEffectsBloomInputTexture"); SrgbRead(false); >;
 	float4 g_vInvTexDim < Source(InvTextureDim); SourceArg(g_tInput) UiType(VectorText); >;
-	float3 g_vThresholdParams < UiType(VectorText); Expression(float3(-ATTRIBUTE[ba98a9b0]/ATTRIBUTE[2ae72b37],1/ATTRIBUTE[2ae72b37],ATTRIBUTE[1313a424])); >;
+	float3 g_vThresholdParams < UiType(VectorText); Expression(float3(-bloomthreshold/bloomthresholdwidth,1/bloomthresholdwidth,skyboxbloomstrength)); >;
 	
+	
+	// Variant parameters
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 2 (name: g_vInvTexDim) cannot be expressed with either HLSL packing layout or packoffset.
@@ -98,7 +97,7 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2604 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_samplerless_texture_functions : require
@@ -131,7 +130,7 @@ PS
 	{
 	    vec2 _22165 = (gl_FragCoord.xy * (_Globals_.g_vInvTexDim.xy * 4.0)).xy;
 	    vec4 _20428 = (((textureLodOffset(sampler2D(g_tInput, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), _22165, 0.0, ivec2(-1)) + textureLodOffset(sampler2D(g_tInput, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), _22165, 0.0, ivec2(-1, 1))) + textureLodOffset(sampler2D(g_tInput, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), _22165, 0.0, ivec2(1))) + textureLodOffset(sampler2D(g_tInput, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), _22165, 0.0, ivec2(1, -1))) * 0.25;
-	    vec3 _15742 = ((_20428 * clamp(((PerViewConstantBuffer_t._m0 * dot(_20428.xyz, vec3(0.300000011920928955078125, 0.589999973773956298828125, 0.10999999940395355224609375))) * _Globals_.g_vThresholdParams.y) + _Globals_.g_vThresholdParams.x, 0.0, 1.0)) * _Globals_.g_flBloomScale).xyz + texelFetch(g_tQuarterResEffectsColor, ivec3(ivec2(gl_FragCoord.xy), 0).xy, 0).xyz;
+	    vec3 _15742 = ((_20428 * saturate(((PerViewConstantBuffer_t._m0 * dot(_20428.xyz, vec3(0.300000011920928955078125, 0.589999973773956298828125, 0.10999999940395355224609375))) * _Globals_.g_vThresholdParams.y) + _Globals_.g_vThresholdParams.x)) * _Globals_.g_flBloomScale).xyz + texelFetch(g_tQuarterResEffectsColor, ivec3(ivec2(gl_FragCoord.xy), 0).xy, 0).xyz;
 	    vec4 _20488;
 	    _20488.x = _15742.x;
 	    _20488.y = _15742.y;

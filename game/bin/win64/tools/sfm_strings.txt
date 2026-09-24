@@ -8317,8 +8317,6 @@ C`?translate@QPainter@@QEAAXNN@Z
 CalibrationIlluminant1
 CalibrationIlluminant2
 Call C%d:I%d (%s)
-Camera orbit scale.
-Camera pan speed
 CameraCalibration1
 CameraCalibration2
 CameraLookAtSelection
@@ -8412,7 +8410,6 @@ CheckState
 Checkout file from Perforce?
 Checkout...
 CheekH
-Children
 Choose Action
 Choose Animations Sets without changing existing timeframe...
 Choose Character
@@ -8638,7 +8635,6 @@ Create Shot For Every Character
 Create Spline Rig
 Create Track
 Create Track Group
-Create an animationset for every character
 Create bookmarks at phoneme start times
 CreateAnimationSet
 CreateAnimationSetForCamera
@@ -8824,7 +8820,6 @@ Disabled engine frame syncing\n
 Disconnect
 DisconnectSelectedChannels
 Display
-Display memory used by the SFM, add shots to break down on per-shot basis
 Display sequence attributes in sortable columns
 DisplayGrid
 Distance Between Control Points Scale
@@ -9244,7 +9239,6 @@ Engine Synced to Fixed FPS
 EngineSyncedToFixedFPS
 Ensure Info Attribute
 Ensure Info Data
-Ensure that interactive film clip operations always stay on frame
 EnsureCapacity
 Enter
 Enter Game Mode
@@ -9571,7 +9565,6 @@ Floating point "Predictor" not supported with %d data format
 Floor - round float down to nearest integer
 Floor Float
 Flow Node ID
-Flushes sfm clip preview sample cache.
 Fly [Toggle: %s]
 Foc:N 
 Foc:Y 
@@ -10580,7 +10573,6 @@ Non-fatal Error Exporting Animations
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
 Normalize
-Normalize Vector
 Normalize Vector a
 Normalize curve display
 NoseV
@@ -11001,7 +10993,6 @@ Or R%d <- R%d || R%d
 Orient
 Orient Constrain
 Orient Rotation to 2D Direction
-Origin
 OriginalRawFileData
 OriginalRawFileName
 Original|ApplicationNativeFile
@@ -13883,12 +13874,6 @@ cmdLine
 cmyk document with non 8 bit channels
 collapsed
 collisionmesh
-color for highlighting of the sfm skeleton display
-color for selection of the sfm skeleton display
-color for the center of the sfm skeleton display
-color for the left side of the sfm skeleton display
-color for the misc bones of the sfm skeleton display
-color for the right side of the sfm skeleton display
 color log
 color$%d
 color$0
@@ -14088,14 +14073,7 @@ done
 doneTextColor
 dota_
 dota_show_data_driven_camera
-dota_teammate_max_invis
-dota_use_heightmap
 dqe-KO{/3
-draw bone axes for models
-draw bounding boxes for models
-draw debugging geometry
-draw sound waveforms in the SFM
-draw wireframe for models
 drawBones
 drawExtents
 drawGameRenderablesMask
@@ -15326,9 +15304,6 @@ path_trajectory
 pattern
 per-camera settings
 permitresponses
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 phoneme
 phonemeextractors/%s
 phonemeextractors/*.dll
@@ -15391,7 +15366,6 @@ presetLineEdit
 presetRemap
 preview
 previous_value
-print_video_card_config
 procedural
 procedural model '%s' is named differently than '%s' stored in session, and '%s' probably won't be drawn\n
 proceduralPresets
@@ -15427,7 +15401,6 @@ rQ?lineTo@QPainterPath@@QEAAXNN@Z
 r\fpl
 r_dota_wind_min_high_freq_strength
 rad2deg
-radius of the sfm skeleton display
 radiusScale
 radius_random
 radius_scale
@@ -15612,36 +15585,14 @@ settings
 sfm.dll
 sfm_accumulate_alpha_layer
 sfm_accumulate_color_layer
-sfm_bone_display_center_color
-sfm_bone_display_highlight_color
-sfm_bone_display_left_color
-sfm_bone_display_misc_color
-sfm_bone_display_radius
-sfm_bone_display_right_color
-sfm_bone_display_selection_color
 sfm_clear_layer
 sfm_clear_view
 sfm_clip_fade_layer
-sfm_create_every_character
-sfm_debug_draw
-sfm_draw_model_bone_axes
-sfm_draw_model_bounds
-sfm_draw_model_wireframe
-sfm_draw_sound_waveform
 sfm_effects_view
-sfm_ensurefilmcliponframe
-sfm_flushsfmsoundsamplecache
 sfm_geometry
 sfm_highlight_layer
 sfm_hsl_grain_layer
 sfm_light_volumetrics
-sfm_memory
-sfm_only_opaque_objects_cast_shadows
-sfm_orbitspeed
-sfm_panspeed
-sfm_print_sound_debug_messages
-sfm_record_sound_events
-sfm_render_half_float
 sfm_rt_accumulation_%dx%d
 sfm_rt_output_depth_%dx%d
 sfm_rt_refined_%dx%d
@@ -15652,8 +15603,6 @@ sfm_selection_layer
 sfm_session
 sfm_settings
 sfm_shadow_depth_texture_array[%d]
-sfm_show_ao_proxies
-sfm_sound_event_picker_delay
 sfm_texture_overlay
 sfm_texture_overlay_layer
 sfm_texture_plane
@@ -15669,7 +15618,6 @@ sfm_v6
 sfm_v7
 sfm_v9
 sfm_viewport_target
-sfm_vis_mode
 sfmlightfrustum
 sfmvolumetrics
 shadowDepthBias
@@ -15933,7 +15881,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools.reference_notrace
 tools.toolsmaterial
 tools/colors/shared_colors.txt
@@ -15944,7 +15891,6 @@ tools/keybindings/global_key_bindings.txt
 tools/keybindings/shared_tool_key_bindings.txt
 toolsVisModeIndex
 tools_preview
-tools_renderscenes
 toolscenevismodes.txt
 topLeft
 totadisconls\n

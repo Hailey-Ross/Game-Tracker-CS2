@@ -18,19 +18,19 @@ class CAnimGraphDoc_DistanceRemainingMetric : public CAnimGraphDoc_MotionMetric
 	// MPropertyAutoRebuildOnChange
 	bool m_bFilterFixedMinDistance;
 	// MPropertyFriendlyName = "Min Distance"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flMinDistance;
 	// MPropertyFriendlyName = "Filter By Goal Distance"
 	// MPropertyAutoRebuildOnChange
 	bool m_bFilterGoalDistance;
 	// MPropertyFriendlyName = "Goal Filter Start Distance"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flStartGoalFilterDistance;
 	// MPropertyFriendlyName = "Filter By Goal Overshoot"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bFilterGoalOvershoot;
 	// MPropertyFriendlyName = "Max Goal Overshoot Scale"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flMaxGoalOvershootScale;
 };

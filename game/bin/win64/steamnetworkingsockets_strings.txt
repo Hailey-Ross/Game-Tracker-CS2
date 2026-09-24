@@ -3764,7 +3764,6 @@ O/lc\r=<1\r-,!@
 O44h\
 O:t\vg
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object

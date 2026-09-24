@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,11 +36,10 @@ struct VS_INPUT
 VS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float4 g_vlowResTexelSize < Attribute("LowResTexelSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2056 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -126,14 +124,13 @@ PS
 {
 	DynamicCombo( D_MIXED_RESOLUTION_COLOR_SLICES, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	int g_nMixedResolutionIndex < Attribute("MixedResolutionIndex"); UiType(Slider); >;
 	Texture2D g_tInputDepthHiRes < Attribute("InputDepthHiRes"); SrgbRead(false); >;
 	Texture2D g_tInputTexture < Attribute("InputTexture"); SrgbRead(true); >;
 	float4 g_vlowResTexelSize < Attribute("LowResTexelSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3080 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -152,19 +149,19 @@ PS
 	
 	static float4 gl_FragCoord;
 	static float2 input_0;
-	static float2 input_1;
 	static float2 input_2;
 	static float2 input_3;
 	static float2 input_4;
+	static float2 input_5;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
 	    float2 input_0 : TEXCOORD0;
-	    float2 input_1 : TEXCOORD2;
-	    float2 input_2 : TEXCOORD3;
-	    float2 input_3 : TEXCOORD4;
-	    float2 input_4 : TEXCOORD5;
+	    float2 input_2 : TEXCOORD2;
+	    float2 input_3 : TEXCOORD3;
+	    float2 input_4 : TEXCOORD4;
+	    float2 input_5 : TEXCOORD5;
 	    float4 gl_FragCoord : SV_Position;
 	};
 	
@@ -175,9 +172,9 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float _20238 = clamp((g_tInputDepthHiRes.Load(int3(int3(int2(gl_FragCoord.xy), 0).xy, 0)).x - PerViewConstantBuffer_t_1_m0) / (PerViewConstantBuffer_t_1_m1 - PerViewConstantBuffer_t_1_m0), 0.0f, 1.0f);
+	    float _20238 = saturate((g_tInputDepthHiRes.Load(int3(int3(int2(gl_FragCoord.xy), 0).xy, 0)).x - PerViewConstantBuffer_t_1_m0) / (PerViewConstantBuffer_t_1_m1 - PerViewConstantBuffer_t_1_m0));
 	    float2 _19565 = frac((input_0 * _Globals_1_g_vlowResTexelSize.zw) + 0.5f.xx);
-	    float _24300 = lerp(0.000899999984540045261383056640625f, 5.9999998484272509813308715820312e-05f, clamp((_20238 - 0.89999997615814208984375f) * 9.9999980926513671875f, 0.0f, 1.0f));
+	    float _24300 = lerp(0.000899999984540045261383056640625f, 5.9999998484272509813308715820312e-05f, saturate((_20238 - 0.89999997615814208984375f) * 9.9999980926513671875f));
 	    float _23980 = exp((-(_20238 * _20238)) / ((2.0f * _24300) * _24300));
 	    float _6969 = _19565.x;
 	    float _9518 = _23980 * (1.0f - _6969);
@@ -197,7 +194,7 @@ PS
 	            _6805 = g_tInputTexture.SampleLevel(g_sPointClamp, input_0, 0.0f);
 	            break;
 	        }
-	        _6805 = ((((g_tInputTexture.SampleLevel(g_sPointClamp, input_3, 0.0f) * _20716) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_4, 0.0f) * _23920)) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_2, 0.0f) * _24495)) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_1, 0.0f) * _19631)) / _14529.xxxx;
+	        _6805 = ((((g_tInputTexture.SampleLevel(g_sPointClamp, input_4, 0.0f) * _20716) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_5, 0.0f) * _23920)) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_3, 0.0f) * _24495)) + (g_tInputTexture.SampleLevel(g_sPointClamp, input_2, 0.0f) * _19631)) / _14529.xxxx;
 	        break;
 	    } while(false);
 	    output_0 = _6805;
@@ -208,10 +205,10 @@ PS
 	    gl_FragCoord = stage_input.gl_FragCoord;
 	    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
 	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
 	    input_2 = stage_input.input_2;
 	    input_3 = stage_input.input_3;
 	    input_4 = stage_input.input_4;
+	    input_5 = stage_input.input_5;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

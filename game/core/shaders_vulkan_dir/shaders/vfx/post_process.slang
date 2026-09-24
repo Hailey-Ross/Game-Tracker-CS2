@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -38,10 +37,9 @@ VS
 {
 	DynamicCombo( D_FXAA, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (548 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -97,14 +95,13 @@ PS
 	DynamicComboRule( Requires( D_VIGNETTE, S_VIGNETTE ) );
 	DynamicComboRule( Requires( D_FILM_GRAIN, S_FILM_GRAIN ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flColorCorrectionDefaultWeight < Attribute("ColorCorrectionDefaultWeight"); UiType(Slider); >;
 	float g_flFadeMode < Attribute("ScreenFadeMode"); UiType(Slider); >;
 	Texture2D g_tBloom < Attribute("BlurBuffer"); SrgbRead(true); >;
 	Texture2D g_tColorBuffer < Attribute("ColorBuffer"); SrgbRead(true); >;
 	Texture3D g_tColorCorrection < Attribute("ColorCorrectionTex"); SrgbRead(false); >;
 	Texture2D g_tNoise < Channel(RGB, None(TextureNoise), Linear); OutputFormat(DXT1); SrgbRead(false); >;
-	float4 g_vBloomUvScaleClamp < UiType(VectorText); Expression(ATTRIBUTE[59e7f3ee]); >;
+	float4 g_vBloomUvScaleClamp < UiType(VectorText); Expression(bloombufferscaleclamp); >;
 	float4 g_vInvTextureDim < Source(InvTextureDim); SourceArg(g_tColorBuffer) UiType(VectorText); >;
 	float4 g_vViewFadeColor < Attribute("ScreenFadeColor"); UiType(VectorText); >;
 	
@@ -134,13 +131,15 @@ PS
 	float g_flVignetteVerticalFade < Default(1); UiType(Slider); UiGroup("Vignette"); >;
 	
 	
+	// Variant parameters
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 0 (name: g_vViewFadeColor) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1316 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -160,9 +159,9 @@ PS
 	
 	void main()
 	{
-	    vec4 _3401 = textureLod(sampler2D(g_tColorBuffer, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), input_0.xy, 0.0);
-	    vec3 _13989 = _3401.xyz;
-	    output_0 = vec4(mix(_13989, mix(_Globals_.g_vViewFadeColor.xyz, _Globals_.g_vViewFadeColor.xyz * _13989, vec3(_Globals_.g_flFadeMode)).xyz, vec3(_Globals_.g_vViewFadeColor.w)), _3401.w);
+	    vec4 _3300 = textureLod(sampler2D(g_tColorBuffer, AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint), input_0.xy, 0.0);
+	    vec3 _13989 = _3300.xyz;
+	    output_0 = vec4(mix(_13989, mix(_Globals_.g_vViewFadeColor.xyz, _Globals_.g_vViewFadeColor.xyz * _13989, vec3(_Globals_.g_flFadeMode)).xyz, vec3(_Globals_.g_vViewFadeColor.w)), _3300.w);
 	}
 	
 	

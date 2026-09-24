@@ -15699,7 +15699,6 @@ Angle Streams In Radians
 Angle Threshold
 AngleA
 AngleB
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -16109,9 +16108,6 @@ BeenSimplified
 Begin testing a condition composed of Observable values. Continues checking until canceled.
 Begin testing a condition composed of Observable variable references. Continues checking until true.
 BeginDrag
-Bend Angle
-Bend Point
-Bend Radius
 Bend Stiffness
 Bend-and-Stretch Springs
 Bend-only Springs
@@ -17431,7 +17427,6 @@ Capsule: %s
 CapsuleReplacements
 Capture Region
 Capture RenderDoc
-Cast Shadows
 Catmul-Rom
 Catmull-Rom
 Catmull-Rom (Norm X)
@@ -17476,7 +17471,6 @@ Child of a prefab must be a clone of a source node
 ChildDocument
 ChildDocumentList
 ChildDocumentViewer
-Children
 Choice #%d
 Choice #0 (default)
 Choice A
@@ -17971,15 +17965,12 @@ De-Select '
 Deactivate %s
 Deactivate all instances
 Debug Draw Color
-Debug option to generate clustered probes of a scaled size for debug visualization.
 DebugVisGeometry
 DecompressTextureBits
 Default (No Name)
 Default (No RGB Tint)
 Default (no scale)
 Default Gravity Scale
-Default Material
-Default Material Group
 Default Root Bone Name
 Default to old body ordering for now
 Default: %s
@@ -18074,7 +18065,6 @@ Different Indices On Mesh vs Bind Pose For "%s" Bone
 DiffuseColor
 Dilate pixels at UV island edges.
 Dimension
-Dimensions
 Dimensions InOut Fraction
 Dimensions Probe
 Dimensions Size
@@ -18327,7 +18317,6 @@ Draw grid points
 Draw ray segments X
 Draw ray segments Y
 Draw ray segments Z
-Draw ray tracing environment debug visualization in Hammer
 Draw wireframe
 DrawInstanceOverlay
 DrawMaterialSamplePoints: no ToolsVis mode for shader?\n
@@ -18970,7 +18959,6 @@ Failed to unserialize document data from kv3 data:\n%s
 Failed to write file: %s\n
 Fallback
 Fallback hinge
-Falloff
 Far Field Only
 Fast Drag
 Fast Sweep
@@ -19052,7 +19040,6 @@ Fixup deleted asset references.
 Fixup entity names
 Fixup replace asset references.
 Flag sets do not have long names
-Flag to choose whether to append probes to cover nav mesh.
 Flag to choose whether to render influence radius of the probe.
 Flag to choose whether to render the clustered probes.
 Flat
@@ -19124,7 +19111,6 @@ Force Dynamic
 Force Facing
 Force Hidden
 Force Motion Disabled
-Force Static
 Force World Collision On All Nodes
 Force a single world-space bone transform
 Force a single world-space bone transform over a specified frame range
@@ -19377,7 +19363,6 @@ Heel Offset
 Height Target
 Height Tolerance
 Height of the primitive to project normals from.
-Height to place samples to query occlusion for visualization.
 Helper for previewing how a model may attach to the given attachment. Does NOT affect the compiled model.
 HelperLoadFbmByFileExtension(3544): Error! Unknown file type for %s\n
 Hemisphere
@@ -20752,7 +20737,6 @@ Normal Attribute Simplification Weight
 Normal of the removed island needs to be ~ this close to the supporting faces behind them
 NormalBlendOverride
 NormalIntensity
-Normalize Vector
 Normalize Vector a
 NoseV
 NostrilFlare
@@ -20895,7 +20879,6 @@ Orient To Surface
 Orient toward child bone.
 Orient toward parent bone.
 OrientPrimitives
-Origin
 Original
 Original Bone Name
 Original Foot 
@@ -21401,7 +21384,6 @@ Quantized Data Results\n
 QuarterSizeAttrWithBoxFilter
 Quaternion
 QuaternionStorage
-Query radius to find probes to interpolate occlusion for visualization.
 Quick scan or full scan:
 Quickhull got into an impossible state and failed
 Quintic
@@ -21629,7 +21611,6 @@ Render Mode
 Render Order
 Render Probe Radius
 Render Properties
-Render Steam Audio Probes even when probes are unselected.
 Render To Cubemaps
 Render With Dynamic
 Render internally at this size for effective super-sampling.
@@ -21939,7 +21920,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection Weight
 Selection [%d nodes]
@@ -22317,7 +22297,6 @@ Start Target
 Start a timer with the specified duration, fire the OnInterval output 
 Start frame :: %d > End frame :: %d, will result in an empty animation
 StartDisabled
-State
 State Action
 State Machine Component
 State Machine has more than one start state
@@ -22416,7 +22395,6 @@ Suppressed Shapes
 Suppressing entity [%s:%s]: %s
 Suppressing entity from the compiled map due to the above issue with key %s\n
 Surface Bias
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 Suspender Spring
@@ -25701,42 +25679,8 @@ hammer
 hammerClipboard
 hammerMeshDataBuffer
 hammerUniqueId
-hammer_analytic_grid
-hammer_analytic_grid_transparent
-hammer_bevel_leave_edges
-hammer_dota_path_falloff
-hammer_dota_path_fixup
-hammer_dota_path_opacity
-hammer_dota_path_sharpness
-hammer_dota_path_use_material_settings
-hammer_dota_path_width
-hammer_draw_bounds
-hammer_draw_dirty_bounds
-hammer_draw_model_raytrace_data
-hammer_draw_model_skeleton
-hammer_draw_overlay_triangles_in_box
 hammer_embedded_properties
-hammer_face_debug_info
-hammer_gridnav_always_update
-hammer_gridnav_preview_radius
-hammer_gridnav_show_creature_blocking
-hammer_gridnav_show_hero_blocking
-hammer_gridnav_show_impassable
-hammer_gridnav_show_obstructions
-hammer_gridnav_show_ward_blocking
-hammer_isosurface_merge_tolerance
-hammer_isosurface_remove_interior
-hammer_isosurface_sample_offset
-hammer_overlay_draw_projection_triangles
 hammer_preview_lighting
-hammer_raytrace_debug_draw
-hammer_render_model_bounding_spheres
-hammer_show_light_truncation_error
-hammer_tile_border_size
-hammer_use_minimum_element_count_for_loop
-hammer_vis_opacity
-hammer_world_trace_multisample
-hammer_world_trace_pack_rays
 handshake
 handshakeTypes
 hard_lock
@@ -26221,7 +26165,6 @@ m_Keys
 m_LegacyDefaultStr
 m_LocalToWorld
 m_LocatorConfig
-m_LocatorName
 m_LongName
 m_MaterialOverrideTables
 m_MaterialTintTables
@@ -26798,7 +26741,6 @@ nav_link_movement_reverse
 nav_link_preview
 nav_link_preview_reverse
 nav_unmark; nav_mark ladder %d; nav_warp_to_mark\n
-nav_validate
 navclip
 navlink
 navlink_type
@@ -27709,18 +27651,6 @@ snapshotOverride
 snapshot_file
 snapshot_mesh
 snd_event_box_helper
-snd_steamaudio_baked_occlusion_mode
-snd_steamaudio_baked_occlusion_pathing_deviation_slope
-snd_steamaudio_baked_occlusion_pathing_exponent
-snd_steamaudio_baked_occlusion_reflection_factor
-snd_steamaudio_baked_occlusion_reflection_regularization
-snd_steamaudio_baked_occlusion_spatialfilter_mode
-snd_steamaudio_baked_occlusion_spatialfilter_radius_factor
-snd_steamaudio_debug_cover_navmesh_probe_size_scale
-snd_steamaudio_enabe_append_probes_to_cover_navmesh
-snd_steamaudio_hammer_probes_always_render
-snd_steamaudio_occlusionvisualization_sampleheight
-snd_steamaudio_occlusionvisualization_sampleradius
 soft_hinge_link
 soft_x
 soft_y
@@ -27869,7 +27799,6 @@ surfacePropertyOverride
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 surface_property_override
 suspender
@@ -28616,7 +28545,6 @@ vs_5_0
 vs_6_0
 vscale
 vsky
-vsmart
 vsubgrph
 vsutils_py
 vtex

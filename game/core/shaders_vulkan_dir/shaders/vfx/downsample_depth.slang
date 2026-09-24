@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -81,14 +80,14 @@ PS
 	DynamicCombo( D_MSAA_SAMPLES, 0..4 );
 	DynamicCombo( D_WRITE_COLOR, 0..1 );
 	DynamicComboRule( Allow1( D_MINMAX_CHECKER_2X2, D_MAX, D_MIN ) );
-	DynamicComboRule( Requires( D_NON_MSAA_DEPTH, D_MSAA_SAMPLES=0 ) );
+	DynamicComboRule( Requires( D_NON_MSAA_DEPTH, D_MSAA_SAMPLES==0 ) );
 	
-	int g_nDownsampleRatioH < UiType(Slider); Expression(exists(ATTRIBUTE[779e702b]) ? ATTRIBUTE[779e702b] : ATTRIBUTE[a759351d]); >;
-	int g_nDownsampleRatioW < UiType(Slider); Expression(exists(ATTRIBUTE[779e702b]) ? ATTRIBUTE[779e702b] : ATTRIBUTE[e274b90f]); >;
+	int g_nDownsampleRatioH < UiType(Slider); Expression(exists(g_ndownsampleratio) ? g_ndownsampleratio : g_ndownsampleratioy); >;
+	int g_nDownsampleRatioW < UiType(Slider); Expression(exists(g_ndownsampleratio) ? g_ndownsampleratio : g_ndownsampleratiox); >;
 	Texture2D g_tDepth < Attribute("DepthBuffer"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (924 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

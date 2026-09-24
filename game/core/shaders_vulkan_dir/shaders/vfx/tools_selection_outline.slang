@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -77,7 +76,6 @@ PS
 	DynamicCombo( D_MSAA_MODE, 0..2 );
 	DynamicComboRule( Requires( D_MSAA_MODE, D_DEPTH_OUTLINE ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	Texture2D g_tDepth < Attribute("DepthBuffer"); SrgbRead(false); >;
 	Texture2D g_tInput < Attribute("InputTexture"); SrgbRead(false); >;
 	float4 g_vOccludedColorA < Default4(1, 1, 1, 0.25); Attribute("OccludedColorA"); UiType(VectorText); >;
@@ -86,7 +84,7 @@ PS
 	float4 g_vOutlineColorB < Default4(1, 1, 1, 1); Attribute("OutlineColorB"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3228 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{

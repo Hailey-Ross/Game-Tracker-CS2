@@ -273,7 +273,6 @@ Failed to allocate an instance of class '%s' (type '%s')
 Failed to call CBaseIntrospectedToKV3TypeManager::Init
 Failed to load distance field KV3 data.\n
 FoliageAnimation
-Force a reload of a vmdl resource
 ForceZPrepass
 Found translucent and opaque grooms in the same groom group. This is not allowed.\n
 G8R8_G8B8_UNORM
@@ -290,7 +289,6 @@ LoadModelSyncNoExtrefs - AsyncProcessData failed\n
 LoadModelSyncNoExtrefs - Load & compile failed.\n
 LoadModelSyncNoExtrefs - Load failed.\n
 LoadModelSyncNoExtrefs - Model is incompatible version\n
-Logs information about memory consumption by TraceDataForDraw_t/ToolsTraceData
 MATERIAL_ATTRIBUTE:
 MAlternateSemanticName
 MAtomicTransfersAsPlainString
@@ -347,7 +345,6 @@ Physics
 PivotPaint
 PooledLayout
 PosXyz
-Prints the bind pose of the specified model. Optionally limits to a particular bone and its parent chain, otherwise prints the entire skeleton.
 ProjectedSceneObjectDesc
 PropWorldOrigin
 QAngle
@@ -441,7 +438,6 @@ VertexPaintTintColor
 WARNING: Failed to convert introspected block for file: %s\n
 WARNING: Invalid resource version (%d): %s\n
 WARNING: Unrecognized bone "%s"\n
-Whether to support legacy (pre-modeldoc) models
 X24_TYPELESS_G8_UINT
 X32_TYPELESS_G8X24_UINT
 [idx=%d] "%s"
@@ -510,7 +506,6 @@ intchoices
 interactive
 intmap
 keyframeclass
-legacy_models_supported
 local
 local_point
 localaxis
@@ -581,7 +576,6 @@ matrix3x4_t
 matrix3x4a_t
 medium
 mesh_index
-mesh_trace_data_memory_report
 meshsystem.dll
 model_attachment
 model_bodygroup
@@ -634,11 +628,9 @@ pointclass
 pointentityclass
 polymorphic_class
 posxyz
-print_model_bind_pose
 projectedDecal
 propdataname
 r\vp4
-reload_model
 remove_key
 resourcesystem
 root
@@ -655,7 +647,6 @@ struct
 subclass_choice
 suggestions
 suppressed_field
-surface_properties
 tBVsInputSignature_t
 tag_list
 tag_list_dynamic

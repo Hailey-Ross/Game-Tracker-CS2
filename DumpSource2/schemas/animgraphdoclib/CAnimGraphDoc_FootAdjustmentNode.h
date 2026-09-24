@@ -57,27 +57,27 @@ class CAnimGraphDoc_FootAdjustmentNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Base Anim Clips"
 	// MPropertyGroupName = "Anim Driven Settings"
 	// MPropertyAttributeChoiceName = "Sequence"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_baseClipName;
 	// MPropertyFriendlyName = "Clips"
 	// MPropertyGroupName = "Anim Driven Settings"
 	// MPropertyAttributeChoiceName = "Sequence"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlVector< CUtlString > m_clips;
 	// MPropertyFriendlyName = "Turn Time Min"
 	// MPropertyGroupName = "Procedural Settings"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTurnTimeMin;
 	// MPropertyFriendlyName = "Turn Time Max"
 	// MPropertyGroupName = "Procedural Settings"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTurnTimeMax;
 	// MPropertyFriendlyName = "Step Height Max"
 	// MPropertyGroupName = "Procedural Settings"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flStepHeightMax;
 	// MPropertyFriendlyName = "Step Height Max Angle"
 	// MPropertyGroupName = "Procedural Settings"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flStepHeightMaxAngle;
 };

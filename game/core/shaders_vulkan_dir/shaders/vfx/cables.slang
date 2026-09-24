@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,19 +34,13 @@ VS
 	DynamicCombo( D_BLEND_WEIGHT_COUNT, 0..4 );
 	DynamicComboRule( Allow0( D_BLEND_WEIGHT_COUNT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	float4 g_vColorMapParams < Attribute("ColorMapParams"); UiType(VectorText); >;
 	float4 g_vNormalMapParams < Attribute("NormalMapParams"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (12340 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
-	
-	struct _1119
-	{
-	    float3x4 _m0;
-	};
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -61,19 +54,7 @@ VS
 	    float _m7;
 	};
 	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
+	struct _1119
 	{
 	    row_major float3x4 _m0;
 	};
@@ -98,8 +79,8 @@ VS
 	
 	static float4 gl_Position;
 	static float gl_ClipDistance[1];
-	static uint input_0;
-	static float4 input_1;
+	static uint input_TEXCOORD13;
+	static float4 input_TEXCOORD0;
 	static float4 output_0;
 	static float4 output_1;
 	static float3 output_2;
@@ -108,8 +89,8 @@ VS
 	
 	struct VS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    uint input_0 : TEXCOORD1;
+	    float4 input_TEXCOORD0 : TEXCOORD0;
+	    uint input_TEXCOORD13 : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -125,25 +106,7 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(input_0 * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(input_0 * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(input_0 * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(input_0 * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(input_0 * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(input_0 * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(input_0 * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(input_0 * 32 + 28));
-	    _1125 _20228;
-	    _20228._m0 = _24007._m0;
-	    _20228._m1 = _24007._m1;
-	    _20228._m2 = _24007._m2;
-	    _20228._m3 = _24007._m3;
-	    _20228._m4 = _24007._m4;
-	    _20228._m5 = _24007._m5;
-	    _20228._m6 = _24007._m6;
-	    _20228._m7 = _24007._m7;
-	    float4 _23812 = float4(uint4(_20228._m0 & 255u, (_20228._m0 & 65280u) >> uint(8), (_20228._m0 & 16711680u) >> uint(16), (_20228._m0 & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
+	    float4 _23812 = float4(uint4(g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 0) & 255u, (g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 0) & 65280u) >> uint(8), (g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 0) & 16711680u) >> uint(16), (g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 0) & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
 	    float3 _6253 = _23812.xyz;
 	    float3 _17828 = _6253 * 0.077399380505084991455078125f.xxx;
 	    float3 _7676 = pow((_6253 * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
@@ -178,42 +141,13 @@ VS
 	    _16668.x = _21354;
 	    _16668.y = _21355;
 	    _16668.z = _19167;
-	    _1120 _18614;
-	    _18614._m0 = asfloat(uint3x4(g_transformBuffer.Load4((_20228._m4 - 1u) * 48 + 0), g_transformBuffer.Load4((_20228._m4 - 1u) * 48 + 16), g_transformBuffer.Load4((_20228._m4 - 1u) * 48 + 32)));
-	    _1119 _19924;
-	    _19924._m0 = _18614._m0;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_20228._m4 * 48 + 0), g_transformBuffer.Load4(_20228._m4 * 48 + 16), g_transformBuffer.Load4(_20228._m4 * 48 + 32)));
-	    _1119 _21121;
-	    _21121._m0 = _8152._m0;
-	    _1120 _17001;
-	    _17001._m0 = asfloat(uint3x4(g_transformBuffer.Load4((_20228._m4 + 1u) * 48 + 0), g_transformBuffer.Load4((_20228._m4 + 1u) * 48 + 16), g_transformBuffer.Load4((_20228._m4 + 1u) * 48 + 32)));
-	    _1119 _21122;
-	    _21122._m0 = _17001._m0;
-	    _1120 _17002;
-	    _17002._m0 = asfloat(uint3x4(g_transformBuffer.Load4((_20228._m4 + 2u) * 48 + 0), g_transformBuffer.Load4((_20228._m4 + 2u) * 48 + 16), g_transformBuffer.Load4((_20228._m4 + 2u) * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _17002._m0;
-	    float _23034 = float(_20228._m3);
-	    _1126 _17003;
-	    _17003._m0 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 0);
-	    _17003._m1 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 4);
-	    _17003._m2 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 8);
-	    _17003._m3 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 12);
-	    _17003._m4 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 16);
-	    _17003._m5 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 20);
-	    _17003._m6 = g_instanceBuffer.Load((input_0 + 1u) * 32 + 24);
-	    _17003._m7 = asfloat(g_instanceBuffer.Load((input_0 + 1u) * 32 + 28));
-	    _1125 _22470;
-	    _22470._m0 = _17003._m0;
-	    _22470._m1 = _17003._m1;
-	    _22470._m2 = _17003._m2;
-	    _22470._m3 = _17003._m3;
-	    _22470._m4 = _17003._m4;
-	    _22470._m5 = _17003._m5;
-	    _22470._m6 = _17003._m6;
-	    _22470._m7 = _17003._m7;
-	    float4 _23813 = float4(uint4(_22470._m0 & 255u, (_22470._m0 & 65280u) >> uint(8), (_22470._m0 & 16711680u) >> uint(16), (_22470._m0 & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
+	    float3x4 _8600 = asfloat(uint3x4(g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) - 1u) * 48 + 0), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) - 1u) * 48 + 16), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) - 1u) * 48 + 32)));
+	    float3x4 _16772 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) * 48 + 32)));
+	    float3x4 _16773 = asfloat(uint3x4(g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 1u) * 48 + 0), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 1u) * 48 + 16), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 1u) * 48 + 32)));
+	    float3x4 _9292 = asfloat(uint3x4(g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 2u) * 48 + 0), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 2u) * 48 + 16), g_transformBuffer.Load4((g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 16) + 2u) * 48 + 32)));
+	    float _23034 = float(g_instanceBuffer.Load(input_TEXCOORD13 * 32 + 12));
+	    uint _21048 = input_TEXCOORD13 + 1u;
+	    float4 _23813 = float4(uint4(g_instanceBuffer.Load(_21048 * 32 + 0) & 255u, (g_instanceBuffer.Load(_21048 * 32 + 0) & 65280u) >> uint(8), (g_instanceBuffer.Load(_21048 * 32 + 0) & 16711680u) >> uint(16), (g_instanceBuffer.Load(_21048 * 32 + 0) & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
 	    float3 _6254 = _23813.xyz;
 	    float3 _17829 = _6254 * 0.077399380505084991455078125f.xxx;
 	    float3 _7677 = pow((_6254 * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
@@ -248,77 +182,77 @@ VS
 	    _16669.x = _21356;
 	    _16669.y = _21357;
 	    _16669.z = _19168;
-	    float _13095 = input_1.z * input_1.z;
-	    float _22215 = input_1.z * (_13095 * 0.5f);
-	    float _22379 = input_1.z * 0.5f;
+	    float _13095 = input_TEXCOORD0.z * input_TEXCOORD0.z;
+	    float _22215 = input_TEXCOORD0.z * (_13095 * 0.5f);
+	    float _22379 = input_TEXCOORD0.z * 0.5f;
 	    float _23270 = -_22215;
 	    float _9058 = _22215 * 3.0f;
 	    float _9059 = _22215 * (-3.0f);
 	    float _22330 = _13095 * (-2.5f);
 	    float _22334 = _13095 * 2.0f;
 	    float _22338 = _13095 * (-0.5f);
-	    float _7486 = input_1.z * (-0.5f);
-	    float3 _17546 = float3(_21121._m0[0].x + ((_21122._m0[0].x * _22379) + ((_19924._m0[0].x * _7486) + ((_19848._m0[0].x * _22338) + ((_21122._m0[0].x * _22334) + ((_21121._m0[0].x * _22330) + ((_19924._m0[0].x * _13095) + ((_19848._m0[0].x * _22215) + ((_21122._m0[0].x * _9059) + ((_21121._m0[0].x * _9058) + (_19924._m0[0].x * _23270)))))))))), _21121._m0[0].y + ((_21122._m0[0].y * _22379) + ((_19924._m0[0].y * _7486) + ((_19848._m0[0].y * _22338) + ((_21122._m0[0].y * _22334) + ((_21121._m0[0].y * _22330) + ((_19924._m0[0].y * _13095) + ((_19848._m0[0].y * _22215) + ((_21122._m0[0].y * _9059) + ((_21121._m0[0].y * _9058) + (_19924._m0[0].y * _23270)))))))))), _21121._m0[0].z + ((_21122._m0[0].z * _22379) + ((_19924._m0[0].z * _7486) + ((_19848._m0[0].z * _22338) + ((_21122._m0[0].z * _22334) + ((_21121._m0[0].z * _22330) + ((_19924._m0[0].z * _13095) + ((_19848._m0[0].z * _22215) + ((_21122._m0[0].z * _9059) + ((_21121._m0[0].z * _9058) + (_19924._m0[0].z * _23270)))))))))));
-	    float _22343 = (3.0f * input_1.z) * input_1.z;
+	    float _7486 = input_TEXCOORD0.z * (-0.5f);
+	    float3 _17546 = float3(_16772[0].x + ((_16773[0].x * _22379) + ((_8600[0].x * _7486) + ((_9292[0].x * _22338) + ((_16773[0].x * _22334) + ((_16772[0].x * _22330) + ((_8600[0].x * _13095) + ((_9292[0].x * _22215) + ((_16773[0].x * _9059) + ((_16772[0].x * _9058) + (_8600[0].x * _23270)))))))))), _16772[0].y + ((_16773[0].y * _22379) + ((_8600[0].y * _7486) + ((_9292[0].y * _22338) + ((_16773[0].y * _22334) + ((_16772[0].y * _22330) + ((_8600[0].y * _13095) + ((_9292[0].y * _22215) + ((_16773[0].y * _9059) + ((_16772[0].y * _9058) + (_8600[0].y * _23270)))))))))), _16772[0].z + ((_16773[0].z * _22379) + ((_8600[0].z * _7486) + ((_9292[0].z * _22338) + ((_16773[0].z * _22334) + ((_16772[0].z * _22330) + ((_8600[0].z * _13095) + ((_9292[0].z * _22215) + ((_16773[0].z * _9059) + ((_16772[0].z * _9058) + (_8600[0].z * _23270)))))))))));
+	    float _22343 = (3.0f * input_TEXCOORD0.z) * input_TEXCOORD0.z;
 	    float _22344 = _22343 * 0.5f;
 	    float _22345 = _22343 * (-0.5f);
 	    float _22349 = _22343 * 1.5f;
 	    float _22353 = _22343 * (-1.5f);
-	    float _7487 = input_1.z * 2.0f;
-	    float _22360 = input_1.z * (-5.0f);
-	    float _22364 = input_1.z * 4.0f;
-	    float _14274 = -input_1.z;
+	    float _7487 = input_TEXCOORD0.z * 2.0f;
+	    float _22360 = input_TEXCOORD0.z * (-5.0f);
+	    float _22364 = input_TEXCOORD0.z * 4.0f;
+	    float _14274 = -input_TEXCOORD0.z;
 	    float3 _9326;
 	    float _13136;
 	    float3 _15070;
-	    if (input_1.z == 0.0f)
+	    if (input_TEXCOORD0.z == 0.0f)
 	    {
-	        _13136 = _21121._m0[0].w;
-	        _15070 = _21121._m0[0].xyz;
-	        _9326 = _21122._m0[0].xyz - _19924._m0[0].xyz;
+	        _13136 = _16772[0].w;
+	        _15070 = _16772[0].xyz;
+	        _9326 = _16773[0].xyz - _8600[0].xyz;
 	    }
 	    else
 	    {
-	        bool _17899 = input_1.z == 1.0f;
+	        bool _17899 = input_TEXCOORD0.z == 1.0f;
 	        float3 _23151;
 	        if (_17899)
 	        {
-	            _23151 = _19848._m0[0].xyz - _21121._m0[0].xyz;
+	            _23151 = _9292[0].xyz - _16772[0].xyz;
 	        }
 	        else
 	        {
-	            _23151 = float3((_21122._m0[0].x * 0.5f) + ((_19924._m0[0].x * (-0.5f)) + ((_19848._m0[0].x * _14274) + ((_21122._m0[0].x * _22364) + ((_21121._m0[0].x * _22360) + ((_19924._m0[0].x * _7487) + ((_19848._m0[0].x * _22344) + ((_21122._m0[0].x * _22353) + ((_21121._m0[0].x * _22349) + (_19924._m0[0].x * _22345))))))))), (_21122._m0[0].y * 0.5f) + ((_19924._m0[0].y * (-0.5f)) + ((_19848._m0[0].y * _14274) + ((_21122._m0[0].y * _22364) + ((_21121._m0[0].y * _22360) + ((_19924._m0[0].y * _7487) + ((_19848._m0[0].y * _22344) + ((_21122._m0[0].y * _22353) + ((_21121._m0[0].y * _22349) + (_19924._m0[0].y * _22345))))))))), (_21122._m0[0].z * 0.5f) + ((_19924._m0[0].z * (-0.5f)) + ((_19848._m0[0].z * _14274) + ((_21122._m0[0].z * _22364) + ((_21121._m0[0].z * _22360) + ((_19924._m0[0].z * _7487) + ((_19848._m0[0].z * _22344) + ((_21122._m0[0].z * _22353) + ((_21121._m0[0].z * _22349) + (_19924._m0[0].z * _22345))))))))));
+	            _23151 = float3((_16773[0].x * 0.5f) + ((_8600[0].x * (-0.5f)) + ((_9292[0].x * _14274) + ((_16773[0].x * _22364) + ((_16772[0].x * _22360) + ((_8600[0].x * _7487) + ((_9292[0].x * _22344) + ((_16773[0].x * _22353) + ((_16772[0].x * _22349) + (_8600[0].x * _22345))))))))), (_16773[0].y * 0.5f) + ((_8600[0].y * (-0.5f)) + ((_9292[0].y * _14274) + ((_16773[0].y * _22364) + ((_16772[0].y * _22360) + ((_8600[0].y * _7487) + ((_9292[0].y * _22344) + ((_16773[0].y * _22353) + ((_16772[0].y * _22349) + (_8600[0].y * _22345))))))))), (_16773[0].z * 0.5f) + ((_8600[0].z * (-0.5f)) + ((_9292[0].z * _14274) + ((_16773[0].z * _22364) + ((_16772[0].z * _22360) + ((_8600[0].z * _7487) + ((_9292[0].z * _22344) + ((_16773[0].z * _22353) + ((_16772[0].z * _22349) + (_8600[0].z * _22345))))))))));
 	        }
 	        bool3 _10724 = _17899.xxx;
-	        _13136 = _17899 ? _21122._m0[0].w : (0.5f * ((((2.0f * _21121._m0[0].w) + ((_21122._m0[0].w - _19924._m0[0].w) * input_1.z)) + (((((2.0f * _19924._m0[0].w) - (5.0f * _21121._m0[0].w)) + (4.0f * _21122._m0[0].w)) - _19848._m0[0].w) * _13095)) + (((((3.0f * _21121._m0[0].w) - _19924._m0[0].w) - (3.0f * _21122._m0[0].w)) + _19848._m0[0].w) * (_13095 * input_1.z))));
-	        _15070 = float3(_10724.x ? _21122._m0[0].xyz.x : _17546.x, _10724.y ? _21122._m0[0].xyz.y : _17546.y, _10724.z ? _21122._m0[0].xyz.z : _17546.z);
+	        _13136 = _17899 ? _16773[0].w : (0.5f * ((((2.0f * _16772[0].w) + ((_16773[0].w - _8600[0].w) * input_TEXCOORD0.z)) + (((((2.0f * _8600[0].w) - (5.0f * _16772[0].w)) + (4.0f * _16773[0].w)) - _9292[0].w) * _13095)) + (((((3.0f * _16772[0].w) - _8600[0].w) - (3.0f * _16773[0].w)) + _9292[0].w) * (_13095 * input_TEXCOORD0.z))));
+	        _15070 = float3(_10724.x ? _16773[0].xyz.x : _17546.x, _10724.y ? _16773[0].xyz.y : _17546.y, _10724.z ? _16773[0].xyz.z : _17546.z);
 	        _9326 = _23151;
 	    }
 	    float3 _17352;
-	    if (input_1.z == 1.0f)
+	    if (input_TEXCOORD0.z == 1.0f)
 	    {
-	        _17352 = _21122._m0[1].xyz;
+	        _17352 = _16773[1].xyz;
 	    }
 	    else
 	    {
-	        _17352 = _21121._m0[1].xyz;
+	        _17352 = _16772[1].xyz;
 	    }
 	    float3 _15988 = normalize(cross(_17352, _9326));
-	    float3 _7048 = (_15988 * input_1.x) + (normalize(cross(_9326, _15988)) * input_1.y);
+	    float3 _7048 = (_15988 * input_TEXCOORD0.x) + (normalize(cross(_9326, _15988)) * input_TEXCOORD0.y);
 	    float3 _10252 = _15070 + (_7048 * _13136);
 	    float3 _23727;
-	    if (_19924._m0[0].w < 0.0f)
+	    if (_8600[0].w < 0.0f)
 	    {
-	        _23727 = normalize(_10252 - _19924._m0[0].xyz);
+	        _23727 = normalize(_10252 - _8600[0].xyz);
 	    }
 	    else
 	    {
 	        _23727 = _7048;
 	    }
 	    float3 _19321;
-	    if (_19848._m0[0].w < 0.0f)
+	    if (_9292[0].w < 0.0f)
 	    {
-	        _19321 = normalize(_10252 - _19848._m0[0].xyz);
+	        _19321 = normalize(_10252 - _9292[0].xyz);
 	    }
 	    else
 	    {
@@ -384,8 +318,8 @@ VS
 	    }
 	    float4 _18024 = float4(_10252.xyz, 1.0f);
 	    float4 _18237 = mul(PerViewConstantBuffer_t_1_m0, (_18024 + (PerViewConstantBuffer_t_1_m2 * 1.0f)).xyzw);
-	    output_0 = float4(_Globals_1_g_vColorMapParams.x + (_Globals_1_g_vColorMapParams.z * input_1.w), (_Globals_1_g_vColorMapParams.y + (_Globals_1_g_vColorMapParams.w * _23034)) + (_Globals_1_g_vColorMapParams.w * input_1.z), _Globals_1_g_vNormalMapParams.x + (_Globals_1_g_vNormalMapParams.z * input_1.w), (_Globals_1_g_vNormalMapParams.y + (_Globals_1_g_vNormalMapParams.w * _23034)) + (_Globals_1_g_vNormalMapParams.w * input_1.z));
-	    output_1 = lerp(float4(_23035, _23036, _19302, _23812.w), float4(_23037, _23038, _19303, _23813.w), input_1.z.xxxx);
+	    output_0 = float4(_Globals_1_g_vColorMapParams.x + (_Globals_1_g_vColorMapParams.z * input_TEXCOORD0.w), (_Globals_1_g_vColorMapParams.y + (_Globals_1_g_vColorMapParams.w * _23034)) + (_Globals_1_g_vColorMapParams.w * input_TEXCOORD0.z), _Globals_1_g_vNormalMapParams.x + (_Globals_1_g_vNormalMapParams.z * input_TEXCOORD0.w), (_Globals_1_g_vNormalMapParams.y + (_Globals_1_g_vNormalMapParams.w * _23034)) + (_Globals_1_g_vNormalMapParams.w * input_TEXCOORD0.z));
+	    output_1 = lerp(float4(_23035, _23036, _19302, _23812.w), float4(_23037, _23038, _19303, _23813.w), input_TEXCOORD0.z.xxxx);
 	    output_2 = _10252;
 	    output_3 = _19321;
 	    output_4 = float4(cross(_9326, _7048), 1.0f).xyz;
@@ -396,8 +330,8 @@ VS
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
+	    input_TEXCOORD13 = stage_input.input_TEXCOORD13;
+	    input_TEXCOORD0 = stage_input.input_TEXCOORD0;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -421,9 +355,6 @@ PS
 	StaticCombo( S_MODE_DEPTH, 0..1 );
 	StaticCombo( S_NORMAL_MAP, F_NORMAL_MAP );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer RoughnessLightingGlobalsCB_t < Attribute("RoughnessLightingGlobalsCB_t"); >;
-	cbuffer SunLightShaderParamsCB_t < Attribute("SunLightShaderParamsCB_t"); >;
 	Texture2D g_tColor < Channel(RGB, Box(TextureColor), Srgb); OutputFormat(DXT1); SrgbRead(true); >;
 	Texture2D g_tNormal < Channel(AG, MipNormal(TextureNormal), Linear); OutputFormat(DXT5); SrgbRead(false); >;
 	
@@ -442,7 +373,7 @@ PS
 	float g_flSelfIllumAmount < Range(0, 5); UiType(Slider); UiGroup("Lighting"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4824 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _2;
 	
@@ -480,16 +411,16 @@ PS
 	
 	static float4 input_0;
 	static float4 input_1;
-	static float3 input_2;
 	static float3 input_3;
+	static float3 input_2;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
 	    float4 input_0 : TEXCOORD0;
 	    float4 input_1 : TEXCOORD1;
-	    float3 input_3 : TEXCOORD2;
-	    float3 input_2 : TEXCOORD3;
+	    float3 input_2 : TEXCOORD2;
+	    float3 input_3 : TEXCOORD3;
 	};
 	
 	struct PS_OUTPUT
@@ -499,19 +430,19 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float3 _14744 = normalize(input_2.xyz).xyz;
+	    float3 _14744 = normalize(input_3.xyz).xyz;
 	    float3 _23378 = clamp(_14744, 0.0f.xxx, 1.0f.xxx);
 	    float3 _23904 = clamp(-_14744, 0.0f.xxx, 1.0f.xxx);
 	    float _7644 = 1.0f - _Globals_1_g_flRoughness;
 	    float _8478 = _7644 * 0.800000011920928955078125f;
 	    float _23619 = exp2(_7644 * 10.0f);
-	    float _14805 = pow(clamp(dot(_14744, SunLightShaderParamsCB_t_1_m1.xyz), 0.0f, 1.0f), _8478 + 0.60000002384185791015625f) * ((_8478 + 1.60000002384185791015625f) * 0.5f);
-	    float3 _9146 = ((SunLightShaderParamsCB_t_1_m0.xyz * (((pow(clamp(dot(_14744, normalize(SunLightShaderParamsCB_t_1_m1.xyz + (-normalize(input_3.xyz - PerViewConstantBuffer_t_1_m1.xyz)).xyz).xyz), 0.0f, 1.0f), _23619) * _14805) * (((_23619 + 2.0f) * (_23619 + 4.0f)) / (8.0f * (exp2(_23619 * (-0.5f)) + _23619)))) * (1.0f - clamp(_Globals_1_g_flRoughness * 0.5f, 0.0f, 1.0f)))) * 1.0f).xyz + ((g_tColor.Sample(DefaultSamplerState_0, input_0.xy).xyz * input_1.xyz) * ((((RoughnessLightingGlobalsCB_t_1_m0.xyz * (dot(float3(0.60000002384185791015625f, 0.4000000059604644775390625f, 1.0f), _23378 * _23378) + dot(float3(0.60000002384185791015625f, 0.4000000059604644775390625f, 0.20000000298023223876953125f), _23904 * _23904))).xyz + ((SunLightShaderParamsCB_t_1_m0.xyz * _14805) * 1.0f)).xyz * _Globals_1_g_flDiffuseAmount) + _Globals_1_g_flSelfIllumAmount.xxx));
+	    float _14805 = pow(saturate(dot(_14744, SunLightShaderParamsCB_t_1_m1.xyz)), _8478 + 0.60000002384185791015625f) * ((_8478 + 1.60000002384185791015625f) * 0.5f);
+	    float3 _9146 = ((SunLightShaderParamsCB_t_1_m0.xyz * (((pow(saturate(dot(_14744, normalize(SunLightShaderParamsCB_t_1_m1.xyz + (-normalize(input_2.xyz - PerViewConstantBuffer_t_1_m1.xyz)).xyz).xyz)), _23619) * _14805) * (((_23619 + 2.0f) * (_23619 + 4.0f)) / (8.0f * (exp2(_23619 * (-0.5f)) + _23619)))) * (1.0f - saturate(_Globals_1_g_flRoughness * 0.5f)))) * 1.0f).xyz + ((g_tColor.Sample(DefaultSamplerState_0, input_0.xy).xyz * input_1.xyz) * ((((RoughnessLightingGlobalsCB_t_1_m0.xyz * (dot(float3(0.60000002384185791015625f, 0.4000000059604644775390625f, 1.0f), _23378 * _23378) + dot(float3(0.60000002384185791015625f, 0.4000000059604644775390625f, 0.20000000298023223876953125f), _23904 * _23904))).xyz + ((SunLightShaderParamsCB_t_1_m0.xyz * _14805) * 1.0f)).xyz * _Globals_1_g_flDiffuseAmount) + _Globals_1_g_flSelfIllumAmount.xxx));
 	    float4 _20488;
 	    _20488.x = _9146.x;
 	    _20488.y = _9146.y;
 	    _20488.z = _9146.z;
-	    float3 _19800 = lerp(_20488.xyz, PerViewConstantBuffer_t_1_m2.xyz, clamp(min(PerViewConstantBuffer_t_1_m5, pow(clamp((distance(input_3.xyz, PerViewConstantBuffer_t_1_m1.xyz) * PerViewConstantBuffer_t_1_m4) + PerViewConstantBuffer_t_1_m3, 0.0f, 1.0f), PerViewConstantBuffer_t_1_m6)), 0.0f, 1.0f).xxx);
+	    float3 _19800 = lerp(_20488.xyz, PerViewConstantBuffer_t_1_m2.xyz, saturate(min(PerViewConstantBuffer_t_1_m5, pow(saturate((distance(input_2.xyz, PerViewConstantBuffer_t_1_m1.xyz) * PerViewConstantBuffer_t_1_m4) + PerViewConstantBuffer_t_1_m3), PerViewConstantBuffer_t_1_m6))).xxx);
 	    float4 _17842;
 	    _17842.x = _19800.x;
 	    _17842.y = _19800.y;
@@ -523,8 +454,8 @@ PS
 	{
 	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
-	    input_2 = stage_input.input_2;
 	    input_3 = stage_input.input_3;
+	    input_2 = stage_input.input_2;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

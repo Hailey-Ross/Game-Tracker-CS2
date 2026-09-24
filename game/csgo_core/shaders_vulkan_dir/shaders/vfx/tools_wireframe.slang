@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: gs, ps, vs
 }
@@ -37,11 +36,11 @@ COMMON
 
 struct VS_INPUT
 {
-	float4 vBlendIndices       : BLENDINDICES0  < Semantic( BlendIndices ); >;                    
+	float4 vBlendIndices       : BLENDINDICES0  < Semantic( BlendIndices ); >;                     // D_CS_VERTEX_ANIMATION=0
 	float4 vColor              : COLOR0         < Semantic( Color ); >;                           
-	float4 vNormalOs           : NORMAL0        < Semantic( Normal ); >;                          
-	float3 vPositionOs         : POSITION0      < Semantic( PosXyz ); >;                          
-	float2 vFirstLineVertPosWs : TEXCOORD0      < Semantic( uvw ); >;                             
+	float4 vNormalOs           : NORMAL0        < Semantic( Normal ); >;                           // D_CS_VERTEX_ANIMATION=0
+	float3 vPositionOs         : POSITION0      < Semantic( PosXyz ); >;                           // D_CS_VERTEX_ANIMATION=0
+	float2 vFirstLineVertPosWs : TEXCOORD0      < Semantic( uvw ); >;                              // D_THICK_LINES=0, D_SNAP_TO_SCREEN_PIXELS=1
 	float2 nInstanceIdx        : TEXCOORD13     < Semantic( InstanceTransformUv ); >;             
 };
 
@@ -55,15 +54,13 @@ VS
 	DynamicCombo( D_FREEFORM_DEFORMATION, 0..1 );
 	DynamicComboRule( Allow1( D_THICK_LINES, D_SNAP_TO_SCREEN_PIXELS ) );
 	
-	cbuffer FFDTransforms_t < Attribute("FFDTransforms_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	ByteAddressBuffer g_animatedVertexCache < Attribute("AnimatedVertexCache"); >;
 	bool g_bIgnoreTintAlpha < Attribute("IgnoreTintAlpha"); UiType(CheckBox); >;
 	float g_flDynamicLineThickness < Default(1); Attribute("DynamicLineThickness"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Depth Bias Amount
 	float g_DepthBiasAmount < Default(0.005); UiType(Slider); UiGroup("Depth Bias Amount"); >;
@@ -81,7 +78,7 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5764 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -102,31 +99,14 @@ VS
 	    mat3x4 _m0;
 	};
 	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
-	{
-	    mat3x4 _m0;
-	};
-	
 	layout(set = 4, binding = 32, std430) readonly buffer g_instanceBuffer
 	{
-	    _1126 _m0[];
+	    _1125 _m0[];
 	} g_instanceBuffer_1;
 	
 	layout(set = 4, binding = 30, std430) readonly buffer g_transformBuffer
 	{
-	    _1120 _m0[];
+	    _1119 _m0[];
 	} g_transformBuffer_1;
 	
 	struct _1224
@@ -146,12 +126,12 @@ VS
 	
 	layout(set = 0) uniform _1048 _Globals_;
 	
-	layout(location = 5) in uint vPositionOs;
-	layout(location = 4) in uvec4 vColor;
-	layout(location = 0) in vec3 vNormalOs;
-	layout(location = 2) in vec3 vBlendIndices;
-	layout(location = 1) in vec3 nInstanceIdx;
-	layout(location = 3) in vec4 vFirstLineVertPosWs;
+	layout(location = 5) in uint nInstanceIdx;
+	layout(location = 4) in uvec4 vBlendIndices;
+	layout(location = 0) in vec3 vPositionOs;
+	layout(location = 2) in vec3 vFirstLineVertPosWs;
+	layout(location = 1) in vec3 vNormalOs;
+	layout(location = 3) in vec4 vColor;
 	layout(location = 0) out vec3 output_0;
 	layout(location = 1) out vec4 output_1;
 	layout(location = 2) out vec4 output_2;
@@ -160,33 +140,22 @@ VS
 	
 	void main()
 	{
-	    _1125 _20228;
-	    _20228._m0 = g_instanceBuffer_1._m0[vPositionOs]._m0;
-	    _20228._m1 = g_instanceBuffer_1._m0[vPositionOs]._m1;
-	    _20228._m2 = g_instanceBuffer_1._m0[vPositionOs]._m2;
-	    _20228._m3 = g_instanceBuffer_1._m0[vPositionOs]._m3;
-	    _20228._m4 = g_instanceBuffer_1._m0[vPositionOs]._m4;
-	    _20228._m5 = g_instanceBuffer_1._m0[vPositionOs]._m5;
-	    _20228._m6 = g_instanceBuffer_1._m0[vPositionOs]._m6;
-	    _20228._m7 = g_instanceBuffer_1._m0[vPositionOs]._m7;
-	    uint _21709;
-	    if (((_20228._m5 >> uint(16)) & 15u) == 1u)
+	    uint _21785;
+	    if (((g_instanceBuffer_1._m0[nInstanceIdx]._m5 >> uint(16)) & 15u) == 1u)
 	    {
-	        _21709 = _20228._m1 + (2u + vColor.x);
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1 + (2u + vBlendIndices.x);
 	    }
 	    else
 	    {
-	        _21709 = _20228._m1;
+	        _21785 = g_instanceBuffer_1._m0[nInstanceIdx]._m1;
 	    }
-	    _1119 _19848;
-	    _19848._m0 = g_transformBuffer_1._m0[_21709]._m0;
-	    vec3 _23070 = vec4(vNormalOs.xyz, 1.0) * _19848._m0;
+	    vec3 _23070 = vec4(vPositionOs.xyz, 1.0) * g_transformBuffer_1._m0[_21785]._m0;
 	    vec4 _21447 = PerViewConstantBuffer_t._m1 * 1.0;
 	    vec4 _18237 = (vec4(_23070.xyz, 1.0) + _21447).xyzw * PerViewConstantBuffer_t._m0;
-	    vec3 _24030 = vFirstLineVertPosWs.xyz * vec3(0.077399380505084991455078125);
-	    vec3 _7676 = pow((vFirstLineVertPosWs.xyz * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
+	    vec3 _24030 = vColor.xyz * vec3(0.077399380505084991455078125);
+	    vec3 _7676 = pow((vColor.xyz * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
 	    float _21354;
-	    if (vFirstLineVertPosWs.x <= 0.040449999272823333740234375)
+	    if (vColor.x <= 0.040449999272823333740234375)
 	    {
 	        _21354 = _24030.x;
 	    }
@@ -195,7 +164,7 @@ VS
 	        _21354 = _7676.x;
 	    }
 	    float _21355;
-	    if (vFirstLineVertPosWs.y <= 0.040449999272823333740234375)
+	    if (vColor.y <= 0.040449999272823333740234375)
 	    {
 	        _21355 = _24030.y;
 	    }
@@ -204,7 +173,7 @@ VS
 	        _21355 = _7676.y;
 	    }
 	    float _19302;
-	    if (vFirstLineVertPosWs.z <= 0.040449999272823333740234375)
+	    if (vColor.z <= 0.040449999272823333740234375)
 	    {
 	        _19302 = _24030.z;
 	    }
@@ -212,8 +181,8 @@ VS
 	    {
 	        _19302 = _7676.z;
 	    }
-	    vec4 _23482 = vec4(_21354, _21355, _19302, vFirstLineVertPosWs.w);
-	    vec4 _23812 = vec4(uvec4(_20228._m0 & 255u, (_20228._m0 & 65280u) >> uint(8), (_20228._m0 & 16711680u) >> uint(16), (_20228._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
+	    vec4 _23628 = vec4(_21354, _21355, _19302, vColor.w);
+	    vec4 _23812 = vec4(uvec4(g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 255u, (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 65280u) >> uint(8), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 16711680u) >> uint(16), (g_instanceBuffer_1._m0[nInstanceIdx]._m0 & 4278190080u) >> uint(24))) * vec4(0.0039215688593685626983642578125);
 	    vec3 _6253 = _23812.xyz;
 	    vec3 _17828 = _6253 * vec3(0.077399380505084991455078125);
 	    vec3 _7677 = pow((_6253 * vec3(0.947867333889007568359375)) + vec3(0.052132703363895416259765625), vec3(2.400000095367431640625));
@@ -247,23 +216,23 @@ VS
 	    _23812.x = _21356;
 	    _23812.y = _21357;
 	    _23812.z = _19167;
-	    vec4 _21710;
+	    vec4 _21709;
 	    if (_Globals_.g_bIgnoreTintAlpha != 0)
 	    {
-	        vec3 _15408 = _23482.xyz * abs(_23812.xyz);
-	        vec4 _23714 = _23482;
+	        vec3 _15408 = _23628.xyz * abs(_23812.xyz);
+	        vec4 _23714 = _23628;
 	        _23714.x = _15408.x;
 	        _23714.y = _15408.y;
 	        _23714.z = _15408.z;
-	        _21710 = _23714;
+	        _21709 = _23714;
 	    }
 	    else
 	    {
-	        _21710 = _23482 * abs(_23812);
+	        _21709 = _23628 * abs(_23812);
 	    }
-	    output_0 = normalize(vec4(nInstanceIdx.xyz, 0.0) * _19848._m0);
-	    output_1 = mix(_21710, _Globals_.g_vOverrideColor, vec4(_Globals_.g_OverrideColorFactor));
-	    output_2 = (vec4((vec4(vBlendIndices, 1.0) * _19848._m0).xyz, 1.0) + _21447).xyzw * PerViewConstantBuffer_t._m0;
+	    output_0 = normalize(vec4(vNormalOs.xyz, 0.0) * g_transformBuffer_1._m0[_21785]._m0);
+	    output_1 = mix(_21709, _Globals_.g_vOverrideColor, vec4(_Globals_.g_OverrideColorFactor));
+	    output_2 = (vec4((vec4(vFirstLineVertPosWs, 1.0) * g_transformBuffer_1._m0[_21785]._m0).xyz, 1.0) + _21447).xyzw * PerViewConstantBuffer_t._m0;
 	    output_3 = _18237;
 	    output_4 = _23070;
 	    _18237.y = -_18237.y;
@@ -282,9 +251,8 @@ GS
 	DynamicCombo( D_THICK_LINES, 0..1 );
 	DynamicCombo( D_DEPTH_BIAS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Depth Bias Amount
 	float g_DepthBiasAmount < Default(0.005); UiType(Slider); UiGroup("Depth Bias Amount"); >;
@@ -295,7 +263,7 @@ GS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3532 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	// Dynamic combos: D_THICK_LINES
 	
 	#version 460
@@ -405,21 +373,24 @@ PS
 	DynamicComboRule( Allow1( S_MODE_DEPTH, D_SHADED ) );
 	
 	RenderState(CullMode, None);
-	RenderState(CullMode, (((None ? Back : F_WIREFRAME) ? Back : F_NO_CULLING) ? Back : None) ? None : Back);
-	RenderState(CullMode, (((None ? Back : F_WIREFRAME) ? Back : F_NO_CULLING) ? Back : Back) ? None : Back);
+	RenderState(CullMode, ((0 || F_WIREFRAME || F_NO_CULLING) ? 1 : 0) ? None : Back);
+	RenderState(CullMode, (0 || F_WIREFRAME || F_NO_CULLING || 1) ? None : Back);
 	RenderState(FillMode, F_WIREFRAME ? Wireframe : Solid);
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flAlphaTestReference < Default(0.3); Range(0.01, 0.99); UiType(Slider); >;
 	float g_flPatternType < Attribute("PatternType"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	#if (S_ALPHA_TEST == 1)
 		RenderState(CullMode, None);
 	#endif
 	
+	// Variant parameters
+	RenderState(CullMode, ((0 || F_WIREFRAME || F_NO_CULLING) ? 1 : 0) ? None : Back);
+	RenderState(CullMode, (0 || F_WIREFRAME || F_NO_CULLING || 1) ? None : Back);
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1712 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -432,16 +403,16 @@ PS
 	};
 	
 	
-	static float4 input_0;
 	static float4 input_1;
 	static float4 input_2;
+	static float4 input_3;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_0 : TEXCOORD1;
-	    float4 input_1 : TEXCOORD2;
-	    float4 input_2 : TEXCOORD3;
+	    float4 input_1 : TEXCOORD1;
+	    float4 input_2 : TEXCOORD2;
+	    float4 input_3 : TEXCOORD3;
 	};
 	
 	struct PS_OUTPUT
@@ -465,7 +436,7 @@ PS
 	        }
 	        if (_19321 != 0.0f)
 	        {
-	            _12885 = fmod(length(float2((input_2.x / input_2.w) / PerViewConstantBuffer_t_1_m0.x, (input_2.y / input_2.w) / PerViewConstantBuffer_t_1_m0.y) - float2((input_1.x / input_1.w) / PerViewConstantBuffer_t_1_m0.x, (input_1.y / input_1.w) / PerViewConstantBuffer_t_1_m0.y)), _19321 * 2.0f) > _19321;
+	            _12885 = fmod(length(float2((input_3.x / input_3.w) / PerViewConstantBuffer_t_1_m0.x, (input_3.y / input_3.w) / PerViewConstantBuffer_t_1_m0.y) - float2((input_2.x / input_2.w) / PerViewConstantBuffer_t_1_m0.x, (input_2.y / input_2.w) / PerViewConstantBuffer_t_1_m0.y)), _19321 * 2.0f) > _19321;
 	            break;
 	        }
 	        _12885 = false;
@@ -475,14 +446,14 @@ PS
 	    {
 	        discard;
 	    }
-	    output_0 = input_0;
+	    output_0 = input_1;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
 	    input_2 = stage_input.input_2;
+	    input_3 = stage_input.input_3;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

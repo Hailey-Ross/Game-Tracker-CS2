@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -36,9 +35,9 @@ CS
 	int g_nNumFragments < Attribute("NumFragments"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3976 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	struct _1206
+	struct _1245
 	{
 	    uint _m0;
 	    uint _m1;
@@ -51,6 +50,7 @@ CS
 	    uint _m8;
 	    uint _m9;
 	    uint _m10;
+	    uint _m11;
 	};
 	
 	cbuffer _Globals_ : register(b0, space0)
@@ -82,6 +82,7 @@ CS
 	    uint _17118;
 	    uint _17119;
 	    uint _17120;
+	    uint _17121;
 	    uint _17133;
 	    _13136 = 0u;
 	    _16305 = 0u;
@@ -92,17 +93,19 @@ CS
 	    _17118 = 0u;
 	    _17119 = 0u;
 	    _17120 = 0u;
+	    _17121 = 0u;
 	    _17133 = 0u;
 	    uint _3985;
 	    uint _13137;
 	    uint _14891;
 	    uint _16306;
-	    uint _17121;
 	    uint _17122;
 	    uint _17123;
 	    uint _17124;
 	    uint _17125;
 	    uint _17126;
+	    uint _17127;
+	    uint _17128;
 	    uint _18360;
 	    uint _17017 = 0u;
 	    for (;;)
@@ -115,61 +118,66 @@ CS
 	        if (_5211 < _Globals_1_g_nNumFragments)
 	        {
 	            uint _18241 = (undetermined_unexpectedTypeId408_1045.Load(int(_5211 / 4u)).x >> ((_5211 % 4u) * 8u)) & 255u;
-	            uint _17277 = undetermined.Load(_5211 * 44 + 0);
-	            uint _7045 = undetermined.Load(_5211 * 44 + 8);
-	            uint _7046 = undetermined.Load(_5211 * 44 + 4);
-	            uint _7047 = undetermined.Load(_5211 * 44 + 12);
-	            uint _7048 = undetermined.Load(_5211 * 44 + 16);
-	            uint _7049 = undetermined.Load(_5211 * 44 + 20);
-	            uint _7050 = undetermined.Load(_5211 * 44 + 32);
-	            uint _7051 = undetermined.Load(_5211 * 44 + 36);
-	            uint _6540 = undetermined.Load(_5211 * 44 + 24);
-	            uint _6483 = undetermined.Load(_5211 * 44 + 28);
-	            undetermined.Store(_5211 * 44 + 0, 0u);
-	            undetermined.Store(_5211 * 44 + 4, 0u);
-	            undetermined.Store(_5211 * 44 + 8, 0u);
-	            undetermined.Store(_5211 * 44 + 12, 0u);
-	            undetermined.Store(_5211 * 44 + 16, 0u);
-	            undetermined.Store(_5211 * 44 + 20, 0u);
-	            undetermined.Store(_5211 * 44 + 24, 0u);
-	            undetermined.Store(_5211 * 44 + 28, 0u);
-	            undetermined.Store(_5211 * 44 + 32, 0u);
-	            undetermined.Store(_5211 * 44 + 36, 0u);
-	            undetermined.Store(_5211 * 44 + 40, 0u);
+	            uint _17277 = undetermined.Load(_5211 * 48 + 0);
+	            uint _7045 = undetermined.Load(_5211 * 48 + 8);
+	            uint _7046 = undetermined.Load(_5211 * 48 + 4);
+	            uint _7047 = undetermined.Load(_5211 * 48 + 12);
+	            uint _7048 = undetermined.Load(_5211 * 48 + 16);
+	            uint _7049 = undetermined.Load(_5211 * 48 + 20);
+	            uint _7050 = undetermined.Load(_5211 * 48 + 24);
+	            uint _7051 = undetermined.Load(_5211 * 48 + 36);
+	            uint _7052 = undetermined.Load(_5211 * 48 + 40);
+	            uint _6540 = undetermined.Load(_5211 * 48 + 28);
+	            uint _6483 = undetermined.Load(_5211 * 48 + 32);
+	            undetermined.Store(_5211 * 48 + 0, 0u);
+	            undetermined.Store(_5211 * 48 + 4, 0u);
+	            undetermined.Store(_5211 * 48 + 8, 0u);
+	            undetermined.Store(_5211 * 48 + 12, 0u);
+	            undetermined.Store(_5211 * 48 + 16, 0u);
+	            undetermined.Store(_5211 * 48 + 20, 0u);
+	            undetermined.Store(_5211 * 48 + 24, 0u);
+	            undetermined.Store(_5211 * 48 + 28, 0u);
+	            undetermined.Store(_5211 * 48 + 32, 0u);
+	            undetermined.Store(_5211 * 48 + 36, 0u);
+	            undetermined.Store(_5211 * 48 + 40, 0u);
+	            undetermined.Store(_5211 * 48 + 44, 0u);
 	            _13137 = _13136 + (_17277 * _18241);
 	            _16306 = _16305 + (_7046 * _18241);
-	            _17121 = _17114 + (_7045 * _18241);
-	            _17122 = _17115 + (_7047 * _18241);
-	            _17123 = _17116 + (_7048 * _18241);
-	            _17124 = _17117 + (_7049 * _18241);
-	            _17125 = _17118 + _6540;
-	            _17126 = _17119 + _6483;
-	            _14891 = _17120 + (_7050 * _18241);
-	            _18360 = _17133 + (_7051 * _18241);
+	            _17122 = _17114 + (_7045 * _18241);
+	            _17123 = _17115 + (_7047 * _18241);
+	            _17124 = _17116 + (_7048 * _18241);
+	            _17125 = _17117 + (_7049 * _18241);
+	            _17126 = _17118 + (_7050 * _18241);
+	            _17127 = _17119 + _6540;
+	            _17128 = _17120 + _6483;
+	            _14891 = _17121 + (_7051 * _18241);
+	            _18360 = _17133 + (_7052 * _18241);
 	        }
 	        else
 	        {
 	            _13137 = _13136;
 	            _16306 = _16305;
-	            _17121 = _17114;
-	            _17122 = _17115;
-	            _17123 = _17116;
-	            _17124 = _17117;
-	            _17125 = _17118;
-	            _17126 = _17119;
-	            _14891 = _17120;
+	            _17122 = _17114;
+	            _17123 = _17115;
+	            _17124 = _17116;
+	            _17125 = _17117;
+	            _17126 = _17118;
+	            _17127 = _17119;
+	            _17128 = _17120;
+	            _14891 = _17121;
 	            _18360 = _17133;
 	        }
 	        _3985 = _17017 + 1u;
 	        _13136 = _13137;
 	        _16305 = _16306;
-	        _17114 = _17121;
-	        _17115 = _17122;
-	        _17116 = _17123;
-	        _17117 = _17124;
-	        _17118 = _17125;
-	        _17119 = _17126;
-	        _17120 = _14891;
+	        _17114 = _17122;
+	        _17115 = _17123;
+	        _17116 = _17124;
+	        _17117 = _17125;
+	        _17118 = _17126;
+	        _17119 = _17127;
+	        _17120 = _17128;
+	        _17121 = _14891;
 	        _17133 = _18360;
 	        _17017 = _3985;
 	        continue;
@@ -192,8 +200,10 @@ CS
 	    undetermined_1.InterlockedAdd(28, _17119, _16069);
 	    uint _16070;
 	    undetermined_1.InterlockedAdd(32, _17120, _16070);
+	    uint _16071;
+	    undetermined_1.InterlockedAdd(36, _17121, _16071);
 	    uint _21947;
-	    undetermined_1.InterlockedAdd(36, _17133, _21947);
+	    undetermined_1.InterlockedAdd(40, _17133, _21947);
 	}
 	
 	[numthreads(64, 1, 1)]

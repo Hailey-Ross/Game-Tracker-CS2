@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -42,7 +41,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2008 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -136,19 +135,19 @@ PS
 	Texture2D g_tColor < Attribute("Texture"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (772 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState DefaultSamplerState_0 : register(s14, space1);
 	
-	static float2 input_0;
-	static float4 input_1;
+	static float2 input_1;
+	static float4 input_0;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float4 input_0 : TEXCOORD0;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -158,13 +157,13 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = input_1.xyzw * g_tColor.Sample(DefaultSamplerState_0, input_0.xy).xyzw;
+	    output_0 = input_0.xyzw * g_tColor.Sample(DefaultSamplerState_0, input_1.xy).xyzw;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

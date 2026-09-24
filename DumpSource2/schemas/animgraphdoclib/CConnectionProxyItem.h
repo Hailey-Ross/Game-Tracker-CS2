@@ -17,7 +17,7 @@
 //	}
 //}
 // MPropertyFriendlyName = "Input Item"
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CConnectionProxyItem
 {
 	// MPropertyFriendlyName = "Name"

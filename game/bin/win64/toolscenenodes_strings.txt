@@ -5511,7 +5511,6 @@ AnalogBalance
 And R%d <- R%d && R%d
 AngleA
 AngleB
-Angles
 AnimatableSceneObjectDesc
 Animation 2
 Animation Bone Flags
@@ -5823,9 +5822,6 @@ Bd]U
 Begin mouse capture [%i]: %s\n
 Begin testing a condition composed of Observable values. Continues checking until canceled.
 Begin testing a condition composed of Observable variable references. Continues checking until true.
-Bend Angle
-Bend Point
-Bend Radius
 BestQualityScale
 Between the attribute label and editor
 Bh;+j
@@ -6767,7 +6763,6 @@ Cannot unserialize a prefix element here (type "$prefix_element$")
 Cannot write directory, out of space
 CapToggle
 Caps
-Cast Shadows
 Cast of %s loses value information (returning %s) in %s on %s:%u\n
 Catmul-Rom
 Catmull-Rom
@@ -6811,7 +6806,6 @@ Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
 CheekH
-Children
 Choice A
 Choice B
 Choice C
@@ -7266,7 +7260,6 @@ Deactivate %s
 Deactivate all instances
 Debug Focus Widget
 Debug Widget Under Mouse
-Debug option to generate clustered probes of a scaled size for debug visualization.
 DebugTreeHover
 DebugTreeSelected
 DebugVisGeometry
@@ -7278,7 +7271,6 @@ Debugger break with widget: 0x%p\n
 Decipher Only
 DecompressTextureBits
 Default (no scale)
-Default Material
 DefaultCropOrigin
 DefaultCropSize
 DefaultGrassMaterial
@@ -7516,7 +7508,6 @@ Draw grid points
 Draw ray segments X
 Draw ray segments Y
 Draw ray segments Z
-Draw ray tracing environment debug visualization in Hammer
 Draw wireframe
 DrawInstanceOverlay
 DrawMaterialSamplePoints: no ToolsVis mode for shader?\n
@@ -8181,7 +8172,6 @@ FixedArrayEnums
 Fixup Entity Names By Default
 Fixup entity names
 Flag sets do not have long names
-Flag to choose whether to append probes to cover nav mesh.
 Flag to choose whether to render influence radius of the probe.
 Flag to choose whether to render the clustered probes.
 Flat
@@ -8226,7 +8216,6 @@ Follow user preference
 Fop]
 Force Dynamic
 Force Hidden
-Force Static
 ForceStaticPropsForModelDrags
 Format Duration String From Seconds
 Format encountered } without matching { at column %d
@@ -8466,7 +8455,6 @@ Heap32First
 Heap32ListFirst
 Heap32ListNext
 Heap32Next
-Height to place samples to query occlusion for visualization.
 HelperLoadFbmByFileExtension(3544): Error! Unknown file type for %s\n
 Hg>?S
 Hhr+g
@@ -9345,7 +9333,6 @@ Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
 NormalBlendOverride
 NormalIntensity
-Normalize Vector
 Normalize Vector a
 NoseV
 NostrilFlare
@@ -9397,7 +9384,6 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -9562,7 +9548,6 @@ Order:
 Orient Rotation to 2D Direction
 Orient To Surface
 OrientPrimitives
-Origin
 OriginalRawFileData
 OriginalRawFileName
 OrqK
@@ -10037,7 +10022,6 @@ Qt5Widgets.dll
 QtJ\f?
 Quad Size
 QuarterSizeAttrWithBoxFilter
-Query radius to find probes to interpolate occlusion for visualization.
 Q{qk
 R Sqrt
 R channel not found!\n
@@ -10307,7 +10291,6 @@ RemoveVertex
 Render Order
 Render Probe Radius
 Render Properties
-Render Steam Audio Probes even when probes are unselected.
 Render To Cubemaps
 Render With Dynamic
 Render this object with other dynamic objects
@@ -14049,45 +14032,8 @@ hammer
 hammerClipboard
 hammerMeshDataBuffer
 hammerUniqueId
-hammer_analytic_grid
-hammer_analytic_grid_transparent
-hammer_bevel_leave_edges
-hammer_dota_path_falloff
-hammer_dota_path_fixup
-hammer_dota_path_opacity
-hammer_dota_path_sharpness
-hammer_dota_path_use_material_settings
-hammer_dota_path_width
-hammer_draw_bounds
-hammer_draw_dirty_bounds
-hammer_draw_model_raytrace_data
-hammer_draw_model_skeleton
-hammer_draw_overlay_triangles_in_box
 hammer_embedded_properties
-hammer_face_debug_info
-hammer_gridnav_always_update
-hammer_gridnav_preview_radius
-hammer_gridnav_show_creature_blocking
-hammer_gridnav_show_hero_blocking
-hammer_gridnav_show_impassable
-hammer_gridnav_show_obstructions
-hammer_gridnav_show_ward_blocking
-hammer_isosurface_merge_tolerance
-hammer_isosurface_remove_interior
-hammer_isosurface_sample_offset
-hammer_isosurface_subtract
-hammer_overlay_draw_projection_triangles
 hammer_preview_lighting
-hammer_raytrace_debug_draw
-hammer_render_model_bounding_spheres
-hammer_show_light_truncation_error
-hammer_spawn_area_base_alpha
-hammer_spawn_area_outline_alpha
-hammer_tile_border_size
-hammer_use_minimum_element_count_for_loop
-hammer_vis_opacity
-hammer_world_trace_multisample
-hammer_world_trace_pack_rays
 handshake
 hasLimits
 has_static_mesh
@@ -15012,7 +14958,6 @@ m_InputMacros
 m_Keys
 m_LocalToWorld
 m_LocatorConfig
-m_LocatorName
 m_MaterialOverrideTables
 m_MaterialTintTables
 m_MeshResourceName
@@ -15446,7 +15391,6 @@ nav_link_movement_reverse
 nav_link_preview
 nav_link_preview_reverse
 nav_unmark; nav_mark ladder %d; nav_warp_to_mark\n
-nav_validate
 navclip
 navlink
 navlink_type
@@ -15955,9 +15899,6 @@ permittedSubtrees
 personalSignature
 personalTitle
 pervertexlighting
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 phonememap
 photo
 phrase is too short, needs to be at least %d chars\n
@@ -16921,18 +16862,6 @@ snapshotOverride
 snapshot_file
 snapshot_mesh
 snd_event_box_helper
-snd_steamaudio_baked_occlusion_mode
-snd_steamaudio_baked_occlusion_pathing_deviation_slope
-snd_steamaudio_baked_occlusion_pathing_exponent
-snd_steamaudio_baked_occlusion_reflection_factor
-snd_steamaudio_baked_occlusion_reflection_regularization
-snd_steamaudio_baked_occlusion_spatialfilter_mode
-snd_steamaudio_baked_occlusion_spatialfilter_radius_factor
-snd_steamaudio_debug_cover_navmesh_probe_size_scale
-snd_steamaudio_enabe_append_probes_to_cover_navmesh
-snd_steamaudio_hammer_probes_always_render
-snd_steamaudio_occlusionvisualization_sampleheight
-snd_steamaudio_occlusionvisualization_sampleradius
 snmpv2
 so=H*m
 socket
@@ -17189,7 +17118,6 @@ supports_loop
 suppressed
 suppressed_field
 surfacePropertyOverride
-surface_properties
 surface_property_override
 surname
 syncEngineFramerate
@@ -17402,7 +17330,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools code
 tools.reference_notrace
 tools/images/pulse_editor/cursor_kill.png
@@ -17813,7 +17740,6 @@ vsDmxIO houdiniSceneIO
 vsUtils.py
 vscale
 vsky
-vsmart
 vsutils_py
 vtex
 vv == NULL

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -55,13 +54,12 @@ VS
 	DynamicCombo( D_MORPH, 0..1 );
 	DynamicComboRule( Requires( D_MORPH, S_MORPH_SUPPORTED ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
 	Texture2D g_tCompositeMorphTextureAtlas < Attribute("CompositeMorphTextureAtlas"); SrgbRead(false); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3660 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -75,24 +73,7 @@ VS
 	    float _m7;
 	};
 	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -109,15 +90,15 @@ VS
 	
 	static float4 gl_Position;
 	static float gl_ClipDistance[1];
-	static uint vPositionOs;
-	static float3 nInstanceIdx;
+	static uint nInstanceIdx;
+	static float3 vPositionOs;
 	static float3 output_0;
 	static float4 output_1;
 	
 	struct VS_INPUT
 	{
-	    float3 nInstanceIdx : TEXCOORD0;
-	    uint vPositionOs : TEXCOORD4;
+	    float3 vPositionOs : TEXCOORD0;
+	    uint nInstanceIdx : TEXCOORD4;
 	};
 	
 	struct PS_INPUT
@@ -130,25 +111,7 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(vPositionOs * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(vPositionOs * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(vPositionOs * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(vPositionOs * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(vPositionOs * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(vPositionOs * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(vPositionOs * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(vPositionOs * 32 + 28));
-	    _1125 _22470;
-	    _22470._m0 = _24007._m0;
-	    _22470._m1 = _24007._m1;
-	    _22470._m2 = _24007._m2;
-	    _22470._m3 = _24007._m3;
-	    _22470._m4 = _24007._m4;
-	    _22470._m5 = _24007._m5;
-	    _22470._m6 = _24007._m6;
-	    _22470._m7 = _24007._m7;
-	    float4 _23812 = float4(uint4(_22470._m0 & 255u, (_22470._m0 & 65280u) >> uint(8), (_22470._m0 & 16711680u) >> uint(16), (_22470._m0 & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
+	    float4 _23812 = float4(uint4(g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 255u, (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 65280u) >> uint(8), (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 16711680u) >> uint(16), (g_instanceBuffer.Load(nInstanceIdx * 32 + 0) & 4278190080u) >> uint(24))) * 0.0039215688593685626983642578125f.xxxx;
 	    float3 _6253 = _23812.xyz;
 	    float3 _17828 = _6253 * 0.077399380505084991455078125f.xxx;
 	    float3 _7676 = pow((_6253 * 0.947867333889007568359375f.xxx) + 0.052132703363895416259765625f.xxx, 2.400000095367431640625f.xxx);
@@ -179,11 +142,8 @@ VS
 	    {
 	        _19302 = _7676.z;
 	    }
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_22470._m1 * 48 + 0), g_transformBuffer.Load4(_22470._m1 * 48 + 16), g_transformBuffer.Load4(_22470._m1 * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _8152._m0;
-	    float3 _19937 = mul(_19848._m0, float4(nInstanceIdx.xyz, 1.0f));
+	    float3x4 _9558 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	    float3 _19937 = mul(_9558, float4(vPositionOs.xyz, 1.0f));
 	    float4 _18256 = mul(PerViewConstantBuffer_t_1_m0, (float4(_19937.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m2 * 1.0f)).xyzw);
 	    output_0 = _19937;
 	    output_1 = float4(_21354, _21355, _19302, _23812.w);
@@ -194,8 +154,8 @@ VS
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vPositionOs = stage_input.vPositionOs;
 	    nInstanceIdx = stage_input.nInstanceIdx;
+	    vPositionOs = stage_input.vPositionOs;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -215,23 +175,22 @@ PS
 	StaticCombo( S_MODE_TOOLS_WIREFRAME, 0..1 );
 	StaticCombo( S_PREMULTIPLY_BY_ALPHA_AND_ACCUMULATE_ONE_MINUS_ALPHA, F_PREMULTIPLY_BY_ALPHA_AND_ACCUMULATE_ONE_MINUS_ALPHA );
 	
-	RenderState(BlendEnable, True);
-	RenderState(ColorWriteEnable0, F_WRITE_TO_DESTALPHA ? All : 7);
+	RenderState(BlendEnable, true);
+	RenderState(ColorWriteEnable0, F_WRITE_TO_DESTALPHA ? All : R|G|B);
 	RenderState(DepthFunc, F_IGNOREZ ? Always : LessEqual);
-	RenderState(DepthWriteEnable, F_DISABLE_Z_WRITE ? False : True);
+	RenderState(DepthWriteEnable, F_DISABLE_Z_WRITE ? false : true);
 	RenderState(DstBlend, One);
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	RenderState(SrcBlend, One);
 	RenderState(SrcBlendAlpha, Zero);
-	RenderState(StencilEnable, F_DISABLE_STENCIL_WRITE ? 0 : 1);
-	RenderState(StencilPassOp, 2);
+	RenderState(StencilEnable, F_DISABLE_STENCIL_WRITE ? false : true);
+	RenderState(StencilPassOp, Replace);
 	RenderState(StencilRef, 1);
 	
 	// Color
 	float3 g_vColorTint < Default3(1, 1, 1); UiType(Color); UiGroup("Color"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1064 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _1;
 	
@@ -246,12 +205,12 @@ PS
 	};
 	
 	
-	static float4 input_0;
+	static float4 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_0 : TEXCOORD1;
+	    float4 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -261,17 +220,17 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float3 _13043 = _Globals_1_g_vColorTint.xyz * input_0.xyz;
+	    float3 _13043 = _Globals_1_g_vColorTint.xyz * input_1.xyz;
 	    float4 _13888;
 	    _13888.x = _13043.x;
 	    _13888.y = _13043.y;
 	    _13888.z = _13043.z;
-	    output_0 = float4(_13888.xyz * PerViewConstantBuffer_t_1_m0, input_0.w);
+	    output_0 = float4(_13888.xyz * PerViewConstantBuffer_t_1_m0, input_1.w);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

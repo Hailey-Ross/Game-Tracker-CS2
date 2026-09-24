@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: cs
 }
@@ -31,7 +30,7 @@ CS
 	DynamicCombo( D_VARIANT, 0..6 );
 	
 	RWStructuredBuffer g_compactTexUsageBuf < Attribute("CompactTexUsageBuffer"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
 	int g_nPageTablePatchCount < Attribute("PageTablePatchCount"); UiType(Slider); >;
 	RWBuffer<float4> g_outputPageTable < Attribute("VirtualPageTableBuffer"); >;
 	RWByteAddressBuffer g_outputTexInfoBuffer < Attribute("VirtualTexInfoBuffer"); >;
@@ -43,7 +42,7 @@ CS
 	RWStructuredBuffer g_vtAuxBuf < Attribute("VirtualTextureAuxBuffer"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (724 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	RWTexture2DArray<uint4> _5248 : register(u158, space0);
 	

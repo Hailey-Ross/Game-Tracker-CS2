@@ -70,15 +70,15 @@ class CAnimGraphDoc_MotionMatchingNode : public CAnimGraphDoc_Node
 	bool m_bSearchEveryTick;
 	// MPropertyFriendlyName = "Search Interval"
 	// MPropertyGroupName = "Search Frequency"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flSearchInterval;
 	// MPropertyFriendlyName = "Search when motion ends"
 	// MPropertyGroupName = "Search Frequency"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bSearchWhenMotionEnds;
 	// MPropertyFriendlyName = "Search when goal changes"
 	// MPropertyGroupName = "Search Frequency"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bSearchWhenGoalChanges;
 	// MPropertyFriendlyName = "Blend Time"
 	float32 m_flBlendTime;
@@ -96,11 +96,11 @@ class CAnimGraphDoc_MotionMatchingNode : public CAnimGraphDoc_Node
 	bool m_bGoalAssist;
 	// MPropertyFriendlyName = "Goal Assist Distance"
 	// MPropertyGroupName = "Goal Assist"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flGoalAssistDistance;
 	// MPropertyFriendlyName = "Goal Assist Tolerance"
 	// MPropertyGroupName = "Goal Assist"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flGoalAssistTolerance;
 	// MPropertyFriendlyName = "Enable Distance Scaling"
 	// MPropertyGroupName = "Distance Scaling"
@@ -108,22 +108,22 @@ class CAnimGraphDoc_MotionMatchingNode : public CAnimGraphDoc_Node
 	bool m_bEnableDistanceScaling;
 	// MPropertyFriendlyName = "Outer Stopping Radius"
 	// MPropertyGroupName = "Distance Scaling"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flDistanceScale_OuterRadius;
 	// MPropertyFriendlyName = "Inner Stopping Radius"
 	// MPropertyGroupName = "Distance Scaling"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flDistanceScale_InnerRadius;
 	// MPropertyFriendlyName = "Maximum Speed Scale"
 	// MPropertyGroupName = "Distance Scaling"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flDistanceScale_MaxScale;
 	// MPropertyFriendlyName = "Minimum Speed Scale"
 	// MPropertyGroupName = "Distance Scaling"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flDistanceScale_MinScale;
 	// MPropertyFriendlyName = "Damping"
 	// MPropertyGroupName = "Distance Scaling"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CAnimInputDamping m_distanceScale_Damping;
 };

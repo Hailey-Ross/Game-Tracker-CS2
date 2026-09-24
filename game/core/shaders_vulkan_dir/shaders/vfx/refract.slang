@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -54,16 +53,15 @@ VS
 	DynamicCombo( D_BLEND_WEIGHT_COUNT, 0..4 );
 	DynamicCombo( D_COMPRESSED_NORMALS_AND_TANGENTS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
-	StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_instanceBuffer < Attribute("InstanceBuffer"); >;
+	[[layer_constant]] StructuredBuffer g_transformBuffer < Attribute("TransformBuffer"); >;
 	
 	// Texture Transform
 	float2 g_vSecondaryTexCoordScale < Default2(1, 1); Range2(0, 0, 8, 8); UiType(VectorText); UiGroup("Texture Transform"); >;
 	float2 g_vTexCoordScale < Default2(1, 1); Range2(0, 0, 8, 8); UiType(VectorText); UiGroup("Texture Transform"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3160 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1125
 	{
@@ -78,23 +76,6 @@ VS
 	};
 	
 	struct _1119
-	{
-	    float3x4 _m0;
-	};
-	
-	struct _1126
-	{
-	    uint _m0;
-	    uint _m1;
-	    uint _m2;
-	    uint _m3;
-	    uint _m4;
-	    uint _m5;
-	    uint _m6;
-	    float _m7;
-	};
-	
-	struct _1120
 	{
 	    row_major float3x4 _m0;
 	};
@@ -144,32 +125,11 @@ VS
 	
 	void MainVs_inner()
 	{
-	    _1126 _24007;
-	    _24007._m0 = g_instanceBuffer.Load(nInstanceIdx * 32 + 0);
-	    _24007._m1 = g_instanceBuffer.Load(nInstanceIdx * 32 + 4);
-	    _24007._m2 = g_instanceBuffer.Load(nInstanceIdx * 32 + 8);
-	    _24007._m3 = g_instanceBuffer.Load(nInstanceIdx * 32 + 12);
-	    _24007._m4 = g_instanceBuffer.Load(nInstanceIdx * 32 + 16);
-	    _24007._m5 = g_instanceBuffer.Load(nInstanceIdx * 32 + 20);
-	    _24007._m6 = g_instanceBuffer.Load(nInstanceIdx * 32 + 24);
-	    _24007._m7 = asfloat(g_instanceBuffer.Load(nInstanceIdx * 32 + 28));
-	    _1125 _19924;
-	    _19924._m0 = _24007._m0;
-	    _19924._m1 = _24007._m1;
-	    _19924._m2 = _24007._m2;
-	    _19924._m3 = _24007._m3;
-	    _19924._m4 = _24007._m4;
-	    _19924._m5 = _24007._m5;
-	    _19924._m6 = _24007._m6;
-	    _19924._m7 = _24007._m7;
-	    _1120 _8152;
-	    _8152._m0 = asfloat(uint3x4(g_transformBuffer.Load4(_19924._m1 * 48 + 0), g_transformBuffer.Load4(_19924._m1 * 48 + 16), g_transformBuffer.Load4(_19924._m1 * 48 + 32)));
-	    _1119 _19848;
-	    _19848._m0 = _8152._m0;
-	    float3 _14293 = normalize(mul(_19848._m0, float4(vNormalOs.xyz, 0.0f)));
-	    float3 _12861 = mul(_19848._m0, float4(vTangentUOs_flTangentVSign.xyz, 0.0f)).xyz;
+	    float3x4 _9216 = asfloat(uint3x4(g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 0), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 16), g_transformBuffer.Load4(g_instanceBuffer.Load(nInstanceIdx * 32 + 4) * 48 + 32)));
+	    float3 _14293 = normalize(mul(_9216, float4(vNormalOs.xyz, 0.0f)));
+	    float3 _12861 = mul(_9216, float4(vTangentUOs_flTangentVSign.xyz, 0.0f)).xyz;
 	    float3 _24912 = _14293.xyz;
-	    float3 _19956 = mul(_19848._m0, float4(vPositionOs.xyz, 1.0f));
+	    float3 _19956 = mul(_9216, float4(vPositionOs.xyz, 1.0f));
 	    float4 _17895 = mul(PerViewConstantBuffer_t_1_m0, (float4(_19956.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
 	    float4 _12868 = float4(vTexCoord, 0.0f, 1.0f);
 	    output_0 = _14293;
@@ -211,7 +171,6 @@ PS
 	StaticCombo( S_USE_REFRACTED_ALPHA, F_USE_REFRACTED_ALPHA );
 	StaticComboRule( Allow1( S_BLUR, S_USE_REFRACTED_ALPHA ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	Texture2D g_tFrameBufferCopyTexture < Attribute("FrameBufferCopyTexture"); SrgbRead(true); >;
 	Texture2D g_tNormal < Channel(RGBA, MipNormal(TextureNormal), Linear); OutputFormat(DXT5); SrgbRead(false); >;
 	Texture2D g_tNormal2 < Channel(RGBA, MipNormal(TextureNormal2), Linear); OutputFormat(DXT5); SrgbRead(false); >;
@@ -233,7 +192,7 @@ PS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3692 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -268,13 +227,13 @@ PS
 	layout(set = 1, binding = 30) uniform texture2D g_tFrameBufferCopyTexture;
 	layout(set = 1, binding = 14) uniform sampler Filter_MinMagMipLinear;
 	
-	layout(location = 1) in vec2 input_0;
-	layout(location = 2) in vec3 input_1;
+	layout(location = 1) in vec2 input_1;
+	layout(location = 2) in vec3 input_2;
 	layout(location = 0) out vec4 output_0;
 	
 	void main()
 	{
-	    vec4 _20877 = texture(sampler2D(g_tNormal, DefaultSamplerState_0), input_0.xy);
+	    vec4 _20877 = texture(sampler2D(g_tNormal, DefaultSamplerState_0), input_1.xy);
 	    vec3 _7707 = (_20877.xyz * 2.0) - vec3(1.0);
 	    vec4 _22101;
 	    _22101.x = _7707.x;
@@ -282,7 +241,7 @@ PS
 	    float _10894 = _20877.w;
 	    vec2 _12200 = (_22101.xy * (_10894 * _Globals_.g_flRefractScale)) + ((gl_FragCoord.xy - PerViewConstantBuffer_t._m1.xy).xy * PerViewConstantBuffer_t._m2.xy).xy;
 	    vec4 _14779 = vec4(texture(sampler2D(g_tFrameBufferCopyTexture, Filter_MinMagMipLinear), vec2(mix(_Globals_.g_vFBCopyTextureRect.x, _Globals_.g_vFBCopyTextureRect.z, _12200.x), mix(_Globals_.g_vFBCopyTextureRect.y, _Globals_.g_vFBCopyTextureRect.w, _12200.y)).xy).xyz * _Globals_.g_vColorTint, _10894);
-	    vec3 _19800 = mix(_14779.xyz, PerViewConstantBuffer_t._m4.xyz, vec3(clamp(min(PerViewConstantBuffer_t._m7, pow(clamp((distance(input_1.xyz, PerViewConstantBuffer_t._m3.xyz) * PerViewConstantBuffer_t._m6) + PerViewConstantBuffer_t._m5, 0.0, 1.0), PerViewConstantBuffer_t._m8)), 0.0, 1.0)));
+	    vec3 _19800 = mix(_14779.xyz, PerViewConstantBuffer_t._m4.xyz, vec3(saturate(min(PerViewConstantBuffer_t._m7, pow(saturate((distance(input_2.xyz, PerViewConstantBuffer_t._m3.xyz) * PerViewConstantBuffer_t._m6) + PerViewConstantBuffer_t._m5), PerViewConstantBuffer_t._m8)))));
 	    vec4 _17842 = _14779;
 	    _17842.x = _19800.x;
 	    _17842.y = _19800.y;

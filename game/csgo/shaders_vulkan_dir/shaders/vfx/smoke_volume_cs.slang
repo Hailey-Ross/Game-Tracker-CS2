@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 2;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -45,13 +44,9 @@ CS
 	DynamicComboRule( Requires( D_SMOKE_NEW_VISUALS, D_MBOIT_PASS1, D_MBOIT_PASS2 ) );
 	DynamicComboRule( Requires( D_SMOKE_PERF_TEST, D_MBOIT_PASS1, D_MBOIT_PASS2 ) );
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PerViewLightingConstantBufferGpu_t < Attribute("PerViewLightingConstantBufferGpu_t"); >;
-	cbuffer SmokeConstantBuffer_t < Attribute("SmokeConstantBuffer_t"); >;
 	int g_MixedResolutionScale < Attribute("MIXED_RESOLUTION_SCALE"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	RWTexture2D<float4> g_tColorOutput < Attribute("ColorOutput"); >;
 	Texture2D g_tDepthNoCharacters < Attribute("DepthNoCharacters"); SrgbRead(false); >;
@@ -67,7 +62,7 @@ CS
 	RWTexture2D<float4> g_tMomentsOutput < Attribute("MomentsOutput"); >;
 	Texture2D g_tParticleShadowBuffer < Attribute("ParticleShadowBuffer"); SrgbRead(false); >;
 	Texture2D g_tShadowDepthBufferDepth < Attribute("ShadowDepthBuffer"); SrgbRead(false); >;
-	Texture3D g_tSmokeNoiseTex < Channel(AGGB, None(TextureNoise), Linear); OutputFormat(RGBA8888); SrgbRead(false); >;
+	Texture3D g_tSmokeNoiseTex < Channel(ARGB, None(TextureNoise), Linear); OutputFormat(RGBA8888); SrgbRead(false); >;
 	Texture3D g_tSmokeVolumeLPV_Atlas < Attribute("SmokeVolumeLPV_Atlas"); SrgbRead(false); >;
 	Texture3D g_tSmokeVolumeTexA_Atlas < Attribute("SmokeVolumeTexA_Atlas"); SrgbRead(false); >;
 	RWTexture2D<float4> g_tZerothOutput < Attribute("ZerothOutput"); >;
@@ -107,8 +102,14 @@ CS
 	float3 g_vSmokeColor < Default3(1, 1, 1); UiType(Color); UiGroup("Settings"); Expression(SrgbGammaToLinear(this)); >;
 	
 	
+	// Variant parameters
+	RWTexture2D<float4> g_tMboitOptimColorTexture < Attribute("SmokeOptimColorTex"); >;
+	Texture2D g_tMboitOptimColorTexture < Attribute("SmokeOptimColorTex"); SrgbRead(true); >;
+	RWTexture2D<float4> g_tMboitOptimDepthTexture < Attribute("SmokeOptimDepthTex"); >;
+	Texture2D g_tMboitOptimDepthTexture < Attribute("SmokeOptimDepthTex"); SrgbRead(true); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (164 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	void MainCs_inner()
 	{

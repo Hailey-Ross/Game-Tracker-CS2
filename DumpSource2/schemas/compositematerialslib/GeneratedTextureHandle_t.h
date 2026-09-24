@@ -1,4 +1,4 @@
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class GeneratedTextureHandle_t
 {
 	// MPropertyFriendlyName = "Generated Texture"

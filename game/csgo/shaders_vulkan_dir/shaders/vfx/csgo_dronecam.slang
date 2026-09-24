@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (532 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionSs;
@@ -84,7 +83,7 @@ PS
 {
 	DynamicCombo( D_MSAA_DEPTH_BUFFER, 0..1 );
 	
-	float4 g_Const0 < UiType(VectorText); Expression(ATTRIBUTE[8f071f44]); >;
+	float4 g_Const0 < UiType(VectorText); Expression(const0); >;
 	Texture2D g_tFrameBuffer < Attribute("FrameBuffer"); SrgbRead(false); >;
 	Texture2D g_tNoise < Channel(RGBA, None(TextureNoise), Linear); OutputFormat(BC7); SrgbRead(true); >;
 	
@@ -92,7 +91,7 @@ PS
 	CreateInputTexture2D(TextureNoise, Srgb, 8, "", "", "Color", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2992 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -128,9 +127,9 @@ PS
 	    float _9668 = _17855 - fmod(_17855, _14384);
 	    float4 _19372 = g_tNoise.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, float2(_10920 + _Globals_1_g_Const0.y, _9668 + _Globals_1_g_Const0.z).xy);
 	    float _5582 = _19372.x * _Globals_1_g_Const0.x;
-	    float4 _3401 = g_tFrameBuffer.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, (float2(_10920, _9668) + (_5582 * 0.00999999977648258209228515625f).xx).xy);
+	    float4 _3300 = g_tFrameBuffer.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, (float2(_10920, _9668) + (_5582 * 0.00999999977648258209228515625f).xx).xy);
 	    float3 _8371 = _5582.xxx;
-	    float3 _21602 = lerp(_3401.xyz + _8371, _8371, _Globals_1_g_Const0.x.xxx);
+	    float3 _21602 = lerp(_3300.xyz + _8371, _8371, _Globals_1_g_Const0.x.xxx);
 	    float3 _6979 = lerp(_21602, dot(_21602, float3(0.300000011920928955078125f, 0.589999973773956298828125f, 0.10999999940395355224609375f)).xxx, 0.60000002384185791015625f.xxx) * (abs(sin(_17855 * 900.0f) * 0.300000011920928955078125f) + 0.800000011920928955078125f);
 	    float _15630 = _6979.x;
 	    float _10921 = _15630 - fmod(_15630, 0.02999999932944774627685546875f);

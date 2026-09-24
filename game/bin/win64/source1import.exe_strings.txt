@@ -3817,7 +3817,6 @@ AnalogBalance
 And R%d <- R%d && R%d
 AngleA
 AngleB
-Angles
 AnimatableSceneObjectDesc
 Animation 2
 Animation Bone Flags
@@ -3997,9 +3996,6 @@ BayerGreenSplit
 Begin VBSP:\n\n
 Begin testing a condition composed of Observable values. Continues checking until canceled.
 Begin testing a condition composed of Observable variable references. Continues checking until true.
-Bend Angle
-Bend Point
-Bend Radius
 BestQualityScale
 Between the attribute label and editor
 Binary (deterministic sequential ids)
@@ -4714,7 +4710,6 @@ Cannot remove %s from disk, path must be absolute.\n
 Cannot remove %s from perforce, path must be absolute.\n
 Cannot unserialize a prefix element here (type "$prefix_element$")
 Cannot write directory, out of space
-Cast Shadows
 Catmul-Rom
 Catmull-Rom
 Catmull-Rom (Norm X)
@@ -5006,7 +5001,6 @@ Data_Branch2yz
 DateTime
 Deactivate %s
 Deactivate all instances
-Debug option to generate clustered probes of a scaled size for debug visualization.
 DebugVisGeometry
 DecalColor
 DecalModulate
@@ -5014,7 +5008,6 @@ DecalTranslucency
 Decay Time
 DecompressTextureBits
 Default (no scale)
-Default Material
 Default offset for cp1 relative to cp0 if cp1 not set
 DefaultCropOrigin
 DefaultCropSize
@@ -5283,7 +5276,6 @@ Draw grid points
 Draw ray segments X
 Draw ray segments Y
 Draw ray segments Z
-Draw ray tracing environment debug visualization in Hammer
 Draw wireframe
 DrawInstanceOverlay
 DrawMaterialSamplePoints: no ToolsVis mode for shader?\n
@@ -5758,7 +5750,6 @@ FixedArrayEnums
 Fixup Entity Names By Default
 Fixup entity names
 Flag sets do not have long names
-Flag to choose whether to append probes to cover nav mesh.
 Flag to choose whether to render influence radius of the probe.
 Flag to choose whether to render the clustered probes.
 Flat
@@ -5791,7 +5782,6 @@ FoliageAnimation
 Follow user preference
 Force Dynamic
 Force Hidden
-Force Static
 Force Triangulate
 Force at Max distance
 Force at Min distance
@@ -5961,7 +5951,6 @@ Hardware
 Has All Flags
 Has Any Flags
 Height and width must be equal for cubemaps!\n
-Height to place samples to query occlusion for visualization.
 HeightFogAdjustment
 HeightFogDrawScale1
 HeightFogDrawScale2
@@ -6790,7 +6779,6 @@ Normal texture scroll rate
 NormalBlendOverride
 NormalIntensity
 Normalize Output
-Normalize Vector
 Normalize Vector a
 NoseV
 NostrilFlare
@@ -6860,7 +6848,6 @@ Or R%d <- R%d || R%d
 Orient Rotation to 2D Direction
 Orient To Surface
 OrientPrimitives
-Origin
 OriginalRawFileData
 OriginalRawFileName
 Orthographic zoom for this 2D view (higher is more zoomed in). Applied when looking through or jumping to the camera. Shown only for 2D cameras.
@@ -7223,7 +7210,6 @@ Pzh@
 QAngle
 Quad Size
 QuarterSizeAttrWithBoxFilter
-Query radius to find probes to interpolate occlusion for visualization.
 R Sqrt
 R channel not found!\n
 R10G10B10A2_TYPELESS
@@ -7427,7 +7413,6 @@ Render Properties
 Render Screen Shake
 Render Sound
 Render Status Effect
-Render Steam Audio Probes even when probes are unselected.
 Render To Cubemaps
 Render With Dynamic
 Render models
@@ -9929,8 +9914,6 @@ ent_dota_tree
 entityKeys
 entitySpawnFlags
 entityTag
-entity_fgd_print_api_mismatch
-entity_fgd_require_api_declaration
 entity_model
 entity_name_fixup_persist
 entity_properties
@@ -10481,42 +10464,8 @@ hammer
 hammerClipboard
 hammerMeshDataBuffer
 hammerUniqueId
-hammer_analytic_grid
-hammer_analytic_grid_transparent
-hammer_bevel_leave_edges
-hammer_dota_path_falloff
-hammer_dota_path_fixup
-hammer_dota_path_opacity
-hammer_dota_path_sharpness
-hammer_dota_path_use_material_settings
-hammer_dota_path_width
-hammer_draw_bounds
-hammer_draw_dirty_bounds
-hammer_draw_model_raytrace_data
-hammer_draw_model_skeleton
-hammer_draw_overlay_triangles_in_box
 hammer_embedded_properties
-hammer_face_debug_info
-hammer_gridnav_always_update
-hammer_gridnav_preview_radius
-hammer_gridnav_show_creature_blocking
-hammer_gridnav_show_hero_blocking
-hammer_gridnav_show_obstructions
-hammer_gridnav_show_ward_blocking
-hammer_isosurface_merge_tolerance
-hammer_isosurface_remove_interior
-hammer_isosurface_sample_offset
-hammer_isosurface_subtract
-hammer_overlay_draw_projection_triangles
 hammer_preview_lighting
-hammer_raytrace_debug_draw
-hammer_render_model_bounding_spheres
-hammer_show_light_truncation_error
-hammer_tile_border_size
-hammer_use_minimum_element_count_for_loop
-hammer_vis_opacity
-hammer_world_trace_multisample
-hammer_world_trace_pack_rays
 handshake
 hardVelocityThreshold
 hardstopspeakevent
@@ -10916,7 +10865,6 @@ m_Keys
 m_LegacyDefaultStr
 m_LocalToWorld
 m_LocatorConfig
-m_LocatorName
 m_LongName
 m_MaterialOverrideTables
 m_MaterialTintTables
@@ -11370,7 +11318,6 @@ nav_link_movement_reverse
 nav_link_preview
 nav_link_preview_reverse
 nav_unmark; nav_mark ladder %d; nav_warp_to_mark\n
-nav_validate
 navclip
 navlink
 navlink_type
@@ -12299,18 +12246,6 @@ snapshot_file
 snapshot_mesh
 snd_*
 snd_event_box_helper
-snd_steamaudio_baked_occlusion_mode
-snd_steamaudio_baked_occlusion_pathing_deviation_slope
-snd_steamaudio_baked_occlusion_pathing_exponent
-snd_steamaudio_baked_occlusion_reflection_factor
-snd_steamaudio_baked_occlusion_reflection_regularization
-snd_steamaudio_baked_occlusion_spatialfilter_mode
-snd_steamaudio_baked_occlusion_spatialfilter_radius_factor
-snd_steamaudio_debug_cover_navmesh_probe_size_scale
-snd_steamaudio_enabe_append_probes_to_cover_navmesh
-snd_steamaudio_hammer_probes_always_render
-snd_steamaudio_occlusionvisualization_sampleheight
-snd_steamaudio_occlusionvisualization_sampleradius
 soft_x
 soft_y
 solid
@@ -12498,7 +12433,6 @@ supports_loop
 suppressed
 suppressed_field
 surfacePropertyOverride
-surface_properties
 surface_property_override
 surfaceproperties.vsurf
 surfaceproperties_footsteps.txt
@@ -12896,7 +12830,6 @@ vsDmxIO houdiniSceneIO
 vsUtils.py
 vscale
 vsky
-vsmart
 vsnd%i
 vsnd_files
 vsutils_py

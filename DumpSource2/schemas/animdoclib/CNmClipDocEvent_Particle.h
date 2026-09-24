@@ -30,18 +30,18 @@ class CNmClipDocEvent_Particle : public CNmClipDocEvent
 	bool m_bStopImmediately;
 	bool m_bPlayEndCap;
 	// MPropertyStartGroup = "+Attachment"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_attachmentPoint0;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	ParticleAttachment_t m_attachmentType0;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_attachmentPoint1;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	ParticleAttachment_t m_attachmentType1;
 	// MPropertyStartGroup = "+Config"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_config;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_effectForConfig;
 	// MPropertyStartGroup = "+Metadata"
 	CUtlString m_tags;

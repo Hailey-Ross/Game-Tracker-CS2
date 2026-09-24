@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 2;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,11 +34,11 @@ struct VS_INPUT
 VS
 {
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (552 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -86,13 +85,12 @@ PS
 {
 	DynamicCombo( D_METHOD, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tSceneDepth < Attribute("ResolvedDepth"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5300 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space1)
 	{
@@ -135,26 +133,26 @@ PS
 	    float3 _14924 = ddx(input_0);
 	    float3 _11557 = ddy(input_0);
 	    float _10955 = PerViewConstantBuffer_t_1_m2 - PerViewConstantBuffer_t_1_m1;
-	    float3 _16581 = (PerViewConstantBuffer_t_1_m3.xyz + (input_0.xyz * (1.0f / (((clamp((_7480 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, input_0.xyz))))).xyz;
+	    float3 _16581 = (PerViewConstantBuffer_t_1_m3.xyz + (input_0.xyz * (1.0f / (((saturate((_7480 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, input_0.xyz))))).xyz;
 	    float3 _10970;
 	    float3 _14790;
 	    if (abs(_7480 - _7481) < abs(_7480 - _7482))
 	    {
 	        float3 _18362 = (input_0 - _14924).xyz;
-	        float3 _16582 = (PerViewConstantBuffer_t_1_m3.xyz + (_18362 * (1.0f / (((clamp((_7481 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18362))))).xyz;
+	        float3 _16582 = (PerViewConstantBuffer_t_1_m3.xyz + (_18362 * (1.0f / (((saturate((_7481 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18362))))).xyz;
 	        float3 _13212;
 	        float3 _15670;
 	        if (abs(_7480 - _7483) < abs(_7480 - _14919))
 	        {
 	            float3 _18363 = (input_0 - _11557).xyz;
-	            _13212 = (PerViewConstantBuffer_t_1_m3.xyz + (_18363 * (1.0f / (((clamp((_7483 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18363))))).xyz;
+	            _13212 = (PerViewConstantBuffer_t_1_m3.xyz + (_18363 * (1.0f / (((saturate((_7483 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18363))))).xyz;
 	            _15670 = _16582;
 	        }
 	        else
 	        {
 	            float3 _18364 = (input_0 + _11557).xyz;
 	            _13212 = _16582;
-	            _15670 = (PerViewConstantBuffer_t_1_m3.xyz + (_18364 * (1.0f / (((clamp((_14919 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18364))))).xyz;
+	            _15670 = (PerViewConstantBuffer_t_1_m3.xyz + (_18364 * (1.0f / (((saturate((_14919 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18364))))).xyz;
 	        }
 	        _10970 = _13212;
 	        _14790 = _15670;
@@ -162,19 +160,19 @@ PS
 	    else
 	    {
 	        float3 _18365 = (input_0 + _14924).xyz;
-	        float3 _16583 = (PerViewConstantBuffer_t_1_m3.xyz + (_18365 * (1.0f / (((clamp((_7482 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18365))))).xyz;
+	        float3 _16583 = (PerViewConstantBuffer_t_1_m3.xyz + (_18365 * (1.0f / (((saturate((_7482 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18365))))).xyz;
 	        float3 _13213;
 	        float3 _15671;
 	        if (abs(_7480 - _7483) < abs(_7480 - _14919))
 	        {
 	            float3 _18366 = (input_0 - _11557).xyz;
 	            _13213 = _16583;
-	            _15671 = (PerViewConstantBuffer_t_1_m3.xyz + (_18366 * (1.0f / (((clamp((_7483 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18366))))).xyz;
+	            _15671 = (PerViewConstantBuffer_t_1_m3.xyz + (_18366 * (1.0f / (((saturate((_7483 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18366))))).xyz;
 	        }
 	        else
 	        {
 	            float3 _18367 = (input_0 + _11557).xyz;
-	            _13213 = (PerViewConstantBuffer_t_1_m3.xyz + (_18367 * (1.0f / (((clamp((_14919 - PerViewConstantBuffer_t_1_m1) / _10955, 0.0f, 1.0f) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18367))))).xyz;
+	            _13213 = (PerViewConstantBuffer_t_1_m3.xyz + (_18367 * (1.0f / (((saturate((_14919 - PerViewConstantBuffer_t_1_m1) / _10955) * PerViewConstantBuffer_t_1_m0.z) + PerViewConstantBuffer_t_1_m0.w) * dot(PerViewConstantBuffer_t_1_m4.xyz, _18367))))).xyz;
 	            _15671 = _16583;
 	        }
 	        _10970 = _13213;

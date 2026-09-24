@@ -1,4 +1,4 @@
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 // MGetKV3ClassDefaults = {
 //	"m_Name": "Duplicate And Mirror Attachment Options",
 //	"m_eMirrorSpace": "MIRROR_SPACE_MODEL_RELATIVE",

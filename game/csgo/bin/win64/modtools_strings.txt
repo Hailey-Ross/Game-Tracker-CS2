@@ -9380,7 +9380,6 @@ Angle Offset (Deg)
 Angle Streams In Radians
 Angle Threshold
 Angle Vertical
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -10681,7 +10680,6 @@ Default (No RGB Tint)
 Default Gravity Scale
 Default ID
 Default Mask
-Default Material Group
 Default Root Bone Name
 Default to old body ordering for now
 Default: %.2f
@@ -10731,7 +10729,6 @@ Didn't expect '=' for non-flags non-choices variable %s
 Different Indices On Mesh vs Bind Pose For "%s" Added Anchor Bone
 Different Indices On Mesh vs Bind Pose For "%s" Bone
 Dilate pixels at UV island edges.
-Dimensions
 Direction (Character)
 Disable Compression
 Disable Continuous Collision Detection
@@ -11242,7 +11239,6 @@ Failed to read attribute.\n
 Failed to select a valid option!
 Failed to transfer deltas from '%s'
 Fallback
-Falloff
 False Value
 False: %.3f
 False: %s
@@ -12411,7 +12407,6 @@ Orient toward parent bone.
 Orientation Score Weight
 Orientation Warp failed since there is not enough time left to warp or we're past the warp event!
 Orientation warp failed since there wasnt a valid target direction set!
-Origin
 Original Bone Name
 Original bone name cannot be empty
 Original name of the bone
@@ -13061,7 +13056,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection [%d nodes]
 Selection was empty; no mesh components deleted.
@@ -13244,7 +13238,6 @@ Start Time
 Start Value
 Start Value: %.2fs
 Start frame :: %d > End frame :: %d, will result in an empty animation
-State
 State Completed
 State Completed Conditions are only allowed to be connected to a single transition
 State Events
@@ -13302,7 +13295,6 @@ Suppress warnings regarding the joint weight count per vertex exceeding allowabl
 Suppress warnings when bodygroups specify meshes that do not exist. This is useful if the bodygroup definition is in a shared prefab and missing warnings are expected or benign.
 Suppressed Shapes
 Surface Bias
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 Suspender Spring
@@ -15573,7 +15565,6 @@ suppressed_field
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 suspender
 swap_left_and_right_bones

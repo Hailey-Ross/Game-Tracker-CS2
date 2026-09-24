@@ -797,7 +797,6 @@ panorama_rt_
 pixelAspectRatio
 png/jpg
 pseudo-
-r_renderdoc_capture_window_vulkan
 read past end of file (truncated/corrupt)
 renderdoc
 renderdoc.json

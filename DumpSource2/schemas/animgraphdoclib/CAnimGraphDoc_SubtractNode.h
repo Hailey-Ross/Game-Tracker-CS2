@@ -55,7 +55,7 @@ class CAnimGraphDoc_SubtractNode : public CAnimGraphDoc_Node
 	BinaryNodeTiming m_timingBehavior;
 	// MPropertyFriendlyName = "Timing Blend"
 	// MPropertyAttributeRange = "0 1"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flTimingBlend;
 	// MPropertyFriendlyName = "Foot Motion Timing"
 	BinaryNodeChildOption m_footMotionTiming;

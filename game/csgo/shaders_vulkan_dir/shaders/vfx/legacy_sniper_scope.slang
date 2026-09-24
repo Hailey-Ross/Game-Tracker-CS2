@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -74,7 +73,6 @@ VS
 PS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flSniperScopeInaccuracy < Attribute("LegacySniperScopeInaccuracy"); UiType(Slider); >;
 	int g_nSniperScopeLineWidth < Default(1); Attribute("LegacySniperScopeLineWidth"); UiType(Slider); >;
 	int g_nSpreadGap < Attribute("LegacySniperScopeSpreadGap"); UiType(Slider); >;
@@ -82,7 +80,7 @@ PS
 	float2 g_vSniperScopeBob < Attribute("LegacySniperScopeBob"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (5988 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _3;
 	
@@ -126,7 +124,7 @@ PS
 	    float2 _6516 = _23227 - ((_Globals_1_g_vSniperScopeBob * PerViewConstantBuffer_t_1_m3.y) * (-1.2000000476837158203125f));
 	    float2 _21645 = normalize(_6516);
 	    float _13515 = length(_6516);
-	    float _20294 = clamp(_Globals_1_g_flSniperScopeInaccuracy * 2.0f, 0.0f, 1.0f);
+	    float _20294 = saturate(_Globals_1_g_flSniperScopeInaccuracy * 2.0f);
 	    float _22510 = lerp(0.425000011920928955078125f, 0.37999999523162841796875f, _20294);
 	    float _24850 = smoothstep(_22510, _22510 - 0.02999999932944774627685546875f, _13515);
 	    float2 _11926 = _20667 + (_21645 * pow(_13515, 6.0f));
@@ -185,7 +183,7 @@ PS
 	        _19755 = length(gl_FragCoord.xy - (_9827 + (_19538 * (_11854 / _23232))));
 	        break;
 	    } while(false);
-	    float _15651 = clamp(smoothstep(_17142, _17319, _9054) * smoothstep(_17142, _17319, _19755), 0.0f, 1.0f);
+	    float _15651 = saturate(smoothstep(_17142, _17319, _9054) * smoothstep(_17142, _17319, _19755));
 	    float _11689;
 	    if (_Globals_1_g_nSpreadGap > 0)
 	    {
@@ -201,14 +199,14 @@ PS
 	        }
 	        float _4637 = float(_Globals_1_g_nSpreadGap);
 	        float _25218 = smoothstep(_4637 + 0.5f, _4637, distance(gl_FragCoord.xy, _15043));
-	        _11689 = lerp(clamp(_15651 + (_25218 * 0.5f), 0.0f, 1.0f) + (_25218 * 0.02999999932944774627685546875f), _15651, smoothstep(0.0f, 0.0199999995529651641845703125f, _20294));
+	        _11689 = lerp(saturate(_15651 + (_25218 * 0.5f)) + (_25218 * 0.02999999932944774627685546875f), _15651, smoothstep(0.0f, 0.0199999995529651641845703125f, _20294));
 	    }
 	    else
 	    {
 	        _11689 = _15651;
 	    }
 	    float3 _15449 = float4(float3(_20531.x, _20532.y, _19353.z) * smoothstep(0.550000011920928955078125f, 0.20000000298023223876953125f, _13515), _24850).xyz;
-	    float3 _14959 = lerp(_15449, _15449 * _11689, clamp(lerp(1.0f, 0.300000011920928955078125f, pow(_20294, 0.300000011920928955078125f)), 0.0f, 1.0f).xxx);
+	    float3 _14959 = lerp(_15449, _15449 * _11689, saturate(lerp(1.0f, 0.300000011920928955078125f, pow(_20294, 0.300000011920928955078125f))).xxx);
 	    float4 _17842;
 	    _17842.x = _14959.x;
 	    _17842.y = _14959.y;

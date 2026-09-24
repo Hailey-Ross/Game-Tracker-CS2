@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: gs, ps, vs
 }
@@ -51,11 +50,10 @@ VS
 	StaticCombo( S_WORLD_SPACE_SIZE, F_WORLD_SPACE_SIZE );
 	StaticComboRule( Allow1( S_CULL_LARGER_THAN_BOX, S_WORLD_SPACE_SIZE ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flUniformPointSize < Default(3); Range(0, 64); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1688 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -145,7 +143,6 @@ GS
 	StaticCombo( S_CULL_LARGER_THAN_BOX, F_CULL_LARGER_THAN_BOX );
 	StaticComboRule( Allow1( S_CULL_LARGER_THAN_BOX, S_WORLD_SPACE_SIZE ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	
 	// SPIR-V reflection failed for backend HLSL:
 	// Unsupported shader stage.
@@ -153,7 +150,7 @@ GS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3172 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(points) in;
@@ -268,7 +265,7 @@ PS
 	CreateInputTexture2D(TextureTranslucency, Linear, 8, "", "_trans", "Translucent", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (364 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 input_0;
 	static float4 output_0;

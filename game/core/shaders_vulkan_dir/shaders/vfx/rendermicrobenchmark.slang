@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	StaticCombo( S_VARIANT, F_VARIANT );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (708 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -97,7 +96,7 @@ PS
 	StaticCombo( S_VARIANT, F_VARIANT );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (404 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 input_0;
 	static float4 output_0;

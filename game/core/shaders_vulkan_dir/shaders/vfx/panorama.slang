@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -40,7 +39,7 @@ VS
 	float2 g_vTexture4Scale < Default2(1, 1); Attribute("Texture4Scale"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (576 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float4 vPositionSs;
@@ -99,12 +98,11 @@ PS
 	DynamicCombo( D_FAST_BLUR_SAMPLES, 0..8 );
 	DynamicCombo( D_RESOLVE_DESTINATION, 0..2 );
 	DynamicCombo( D_MSAA_SAMPLES, 0..3 );
-	DynamicComboRule( Requires( D_FAST_BLUR_SAMPLES, D_TEXTURETYPE=6 ) );
-	DynamicComboRule( Requires( D_MSAA_SAMPLES, D_RESOLVE_DESTINATION=2 ) );
+	DynamicComboRule( Requires( D_FAST_BLUR_SAMPLES, D_TEXTURETYPE==6 ) );
+	DynamicComboRule( Requires( D_MSAA_SAMPLES, D_RESOLVE_DESTINATION==2 ) );
 	DynamicComboRule( Allow1( D_RESOLVE_DESTINATION, D_TEXTURETYPE ) );
 	DynamicComboRule( Allow1( D_RESOLVE_DESTINATION, D_DSTCOLOR_BLENDMODE ) );
 	
-	cbuffer FastBlurFilterParams_t < Attribute("FastBlurFilterParams_t"); >;
 	float g_flBlurSigma < Attribute("BlurSigma"); UiType(Slider); >;
 	Texture2D g_tTexture0 < Attribute("Texture0"); SrgbRead(false); >;
 	Texture2D g_tTexture0 < Attribute("Texture0"); SrgbRead(true); >;
@@ -115,15 +113,19 @@ PS
 	float2 g_vBlurMultiplyVec < Default(0); Attribute("BlurMultiplyVec"); UiType(VectorText); >;
 	
 	
-	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (288 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// Variant parameters
+	Texture2D g_tTexture0 < Attribute("Texture0"); SrgbRead(false); >;
+	Texture2D g_tTexture0 < Attribute("Texture0"); SrgbRead(true); >;
 	
-	static float4 input_0;
+	// Source 2 Viewer - https://valveresourceformat.github.io
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
+	
+	static float4 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_0 : TEXCOORD1;
+	    float4 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -133,12 +135,12 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = input_0;
+	    output_0 = input_1;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

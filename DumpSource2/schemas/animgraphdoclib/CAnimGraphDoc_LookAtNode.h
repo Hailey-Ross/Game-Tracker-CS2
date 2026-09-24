@@ -66,10 +66,10 @@ class CAnimGraphDoc_LookAtNode : public CAnimGraphDoc_Node
 	CUtlString m_paramName;
 	// MPropertyFriendlyName = "Target Parameter"
 	// MPropertyAttributeChoiceName = "VectorParameter"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_param;
 	// MPropertyFriendlyName = "Parameter is a Position"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bIsPosition;
 	// MPropertySuppressField
 	CUtlString m_weightParamName;
@@ -89,7 +89,7 @@ class CAnimGraphDoc_LookAtNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Yaw Limit"
 	// MPropertyAttributeRange = "0 180"
 	// MPropertyGroupName = "Rotation Limits"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flYawLimit;
 	// MPropertyFriendlyName = "Pitch Limit"
 	// MPropertyAttributeRange = "0 90"

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -57,7 +56,7 @@ CS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (17084 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
@@ -80,23 +79,11 @@ CS
 	    uint _m1;
 	};
 	
-	struct _1023
-	{
-	    vec3 _m0;
-	    float _m1;
-	};
-	
-	struct _992
-	{
-	    uint _m0;
-	    uint _m1;
-	};
-	
 	uint _4;
 	
 	layout(set = 0, binding = 31, std430) readonly buffer g_DispatchBuffer
 	{
-	    _991 _m0[];
+	    _990 _m0[];
 	} g_DispatchBuffer_1;
 	
 	struct _1529
@@ -117,7 +104,7 @@ CS
 	
 	layout(set = 0, binding = 32, std430) readonly buffer g_Particles
 	{
-	    _1023 _m0[];
+	    _1022 _m0[];
 	} g_Particles_1;
 	
 	layout(set = 0, binding = 159, std430) buffer undetermined
@@ -136,18 +123,16 @@ CS
 	shared uint _5696;
 	shared uint _5501;
 	shared float _3739[64][2];
-	shared _992 _3560[49];
+	shared _991 _3560[49];
 	shared uint _4676[49];
 	
 	void main()
 	{
-	    _990 _20228;
-	    _20228._m0 = g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m0;
-	    _20228._m1 = g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m1;
-	    uint _15978 = _20228._m1 >> uint(16);
-	    uint _9584 = _20228._m1 & 65535u;
+	    uint _21607 = g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m1;
+	    uint _15978 = _21607 >> uint(16);
+	    uint _9584 = _21607 & 65535u;
 	    uint _5563 = (gl_LocalInvocationID.y * 8u) + gl_LocalInvocationID.x;
-	    vec3 _22446 = _Globals_.g_vSystemOrigin + (_Globals_.g_vSystemStepSize * vec3(uvec3((_20228._m0 & 1023u) * 7u, ((_20228._m0 >> uint(10)) & 1023u) * 7u, ((_20228._m0 >> uint(20)) & 4095u) * 4u)));
+	    vec3 _22446 = _Globals_.g_vSystemOrigin + (_Globals_.g_vSystemStepSize * vec3(uvec3((g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m0 & 1023u) * 7u, ((g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m0 >> uint(10)) & 1023u) * 7u, ((g_DispatchBuffer_1._m0[gl_WorkGroupID.x]._m0 >> uint(20)) & 4095u) * 4u)));
 	    vec3 _6302 = _22446 + vec3(_Globals_.g_vSystemStepSize.xy * vec2(gl_LocalInvocationID.xy), 0.0);
 	    bool _8412 = all(equal(gl_LocalInvocationID.xy, uvec2(0u)));
 	    if (_8412)
@@ -166,22 +151,19 @@ CS
 	        {
 	            break;
 	        }
-	        _1022 _20229;
-	        _20229._m0 = g_Particles_1._m0[_16208]._m0;
-	        _20229._m1 = g_Particles_1._m0[_16208]._m1;
-	        vec3 _20252 = _6302 - _20229._m0;
-	        float _21558 = dot(_20252, _20252);
+	        vec3 _12928 = _6302 - g_Particles_1._m0[_16208]._m0;
+	        float _18342 = dot(_12928, _12928);
 	        float _11237;
-	        if (_21558 <= _Globals_.g_vBlobulatorConstants.x)
+	        if (_18342 <= _Globals_.g_vBlobulatorConstants.x)
 	        {
-	            float _19902 = _21558 * _Globals_.g_vBlobulatorConstants.y;
+	            float _19902 = _18342 * _Globals_.g_vBlobulatorConstants.y;
 	            _11237 = (0.25 + (_19902 * _19902)) - _19902;
 	        }
 	        else
 	        {
 	            _11237 = 0.0;
 	        }
-	        _20258 = _13155 + (_11237 * _20229._m1);
+	        _20258 = _13155 + (_11237 * g_Particles_1._m0[_16208]._m1);
 	        _14722 = _16208 + 1u;
 	        _13155 = _20258;
 	        _16208 = _14722;
@@ -211,10 +193,7 @@ CS
 	            bool _12885;
 	            if (_13039 < _9584)
 	            {
-	                _1022 _20230;
-	                _20230._m0 = g_Particles_1._m0[_13039]._m0;
-	                _20230._m1 = g_Particles_1._m0[_13039]._m1;
-	                _12885 = (_20230._m0.z + _Globals_.g_vBlobulatorConstants.w) < _16305.z;
+	                _12885 = (g_Particles_1._m0[_13039]._m0.z + _Globals_.g_vBlobulatorConstants.w) < _16305.z;
 	            }
 	            else
 	            {
@@ -243,22 +222,19 @@ CS
 	            {
 	                break;
 	            }
-	            _1022 _20231;
-	            _20231._m0 = g_Particles_1._m0[_16209]._m0;
-	            _20231._m1 = g_Particles_1._m0[_16209]._m1;
-	            vec3 _20253 = _19764 - _20231._m0;
-	            float _21559 = dot(_20253, _20253);
+	            vec3 _12929 = _19764 - g_Particles_1._m0[_16209]._m0;
+	            float _18343 = dot(_12929, _12929);
 	            float _11238;
-	            if (_21559 <= _Globals_.g_vBlobulatorConstants.x)
+	            if (_18343 <= _Globals_.g_vBlobulatorConstants.x)
 	            {
-	                float _19903 = _21559 * _Globals_.g_vBlobulatorConstants.y;
+	                float _19903 = _18343 * _Globals_.g_vBlobulatorConstants.y;
 	                _11238 = (0.25 + (_19903 * _19903)) - _19903;
 	            }
 	            else
 	            {
 	                _11238 = 0.0;
 	            }
-	            _20259 = _13156 + (_11238 * _20231._m1);
+	            _20259 = _13156 + (_11238 * g_Particles_1._m0[_16209]._m1);
 	            _14723 = _16209 + 1u;
 	            _13156 = _20259;
 	            _16209 = _14723;
@@ -423,22 +399,19 @@ CS
 	                    {
 	                        break;
 	                    }
-	                    _1022 _20232;
-	                    _20232._m0 = g_Particles_1._m0[_16210]._m0;
-	                    _20232._m1 = g_Particles_1._m0[_16210]._m1;
-	                    vec3 _20254 = _12090 - _20232._m0;
-	                    float _21560 = dot(_20254, _20254);
+	                    vec3 _12930 = _12090 - g_Particles_1._m0[_16210]._m0;
+	                    float _18344 = dot(_12930, _12930);
 	                    float _11484;
-	                    if (_21560 <= _Globals_.g_vBlobulatorConstants.x)
+	                    if (_18344 <= _Globals_.g_vBlobulatorConstants.x)
 	                    {
-	                        float _19904 = _21560 * _Globals_.g_vBlobulatorConstants.y;
+	                        float _19904 = _18344 * _Globals_.g_vBlobulatorConstants.y;
 	                        _11484 = (0.25 + (_19904 * _19904)) - _19904;
 	                    }
 	                    else
 	                    {
 	                        _11484 = 0.0;
 	                    }
-	                    _23944 = _13157 + (_20254 * (_11484 * _20232._m1));
+	                    _23944 = _13157 + (_12930 * (_11484 * g_Particles_1._m0[_16210]._m1));
 	                    _18752 = _16210 + 1u;
 	                    _13157 = _23944;
 	                    _16210 = _18752;
@@ -464,8 +437,8 @@ CS
 	            }
 	            if (_3354 < ((_3560[_4009]._m0 >> uint(8)) & 15u))
 	            {
-	                uvec4 _3401 = texelFetch(undetermined_unexpectedTypeId408_1045, int((_Globals_.g_nTriangleDataOffset + (_4688 * 5u)) + _3354));
-	                uint _16038 = _3401.x;
+	                uvec4 _3300 = texelFetch(undetermined_unexpectedTypeId408_1045, int((_Globals_.g_nTriangleDataOffset + (_4688 * 5u)) + _3354));
+	                uint _16038 = _3300.x;
 	                uint _16517 = _16038 >> uint(24);
 	                uint _5913 = _16517 & 3u;
 	                uint _16518 = _16038 >> uint(26);

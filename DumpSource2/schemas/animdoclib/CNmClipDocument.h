@@ -46,19 +46,19 @@ class CNmClipDocument : public CNmAnimDocument
 	// MPropertyGroupName = "+Additive"
 	// MPropertyAttributeEditor = "AssetBrowse( dmx, fbx, *requiredoubleclick )"
 	// MPropertyDescription = "The source file to use as the base of the additive"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_additiveBaseFilename;
 	// MPropertyGroupName = "+Additive"
 	// MPropertyDescription = "The frame to use when generating an additive, if you are generating relative to another animation and this is set to -1, we will extract each frame from it's corresponding frame in the base anim"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CNmClipDocument::AdditiveBaseFrame_t m_additiveBaseFrame;
 	// MPropertyGroupName = "+Additive"
 	// MPropertyDescription = "The frame to use when generating an additive, only valid for 'RelativeToFrame' and 'RelativeToAnimationFrame' "
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	int32 m_nAdditiveBaseFrameIdx;
 	// MPropertyGroupName = "+Additive"
 	// MPropertyDescription = "Should we calculate the additives for the secondary weapons from their reference pose or try to look up a pose in the specified animation"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bUseReferencePoseForSecondaryAnimAdditives;
 	// MPropertyGroupName = "Advanced"
 	// MPropertyAutoExpandSelf

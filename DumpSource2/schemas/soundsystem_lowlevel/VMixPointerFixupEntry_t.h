@@ -1,5 +1,5 @@
 // MGetKV3ClassDefaults = {
-//	"m_nIndex": 0,
+//	"m_nIndex": 2887312592,
 //	"m_offset":
 //	{
 //		"category": "NULL_POINTER",

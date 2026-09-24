@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,7 +34,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -74,7 +73,6 @@ VS
 PS
 {
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flAmount < Attribute("HealthBoostEffectAmount"); UiType(Slider); >;
 	Texture2D g_tFramebuffer < Attribute("FramebufferInput"); SrgbRead(true); >;
 	Texture2D g_tHealthBoost < Channel(RGBA, None(HealthBoostTexture), Linear); OutputFormat(DXT1); SrgbRead(false); >;
@@ -83,7 +81,7 @@ PS
 	CreateInputTexture2D(HealthBoostTexture, Srgb, 8, "", "", "Color", Default4(1, 1, 1, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2864 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{

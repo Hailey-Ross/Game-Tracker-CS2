@@ -1682,7 +1682,6 @@ struct
 subclass_choice
 suggestions
 suppressed_field
-surface_properties
 t\n?beginEditBlock@QTextCursor@@QEAAXXZ
 t\t?addFile@QIcon@@QEAAXAEBVQString@@AEBVQSize@@W4Mode@1@W4State@1@@Z
 t`?type@QTransform@@QEBA?AW4TransformationType@1@XZ

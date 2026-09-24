@@ -292,7 +292,6 @@ Hide unless error/warning occurs
 IslandRemoval
 IslandRemoval - unable to find a poly near navlink location %g %g %g\n
 LadderConnect
-Level of validation for nav system.  Higher will be slower.
 LightmapUV
 LightmapUVW
 LimitMaxPolyEdgeLen
@@ -358,7 +357,6 @@ RemovePolysMarkedNoNav
 RemoveSmallAreasOnEdge
 RemoveStrayVerticalPolys
 Should have already been loaded via CVDataTypeManager::RegisterExtRefs
-Show areas that are potentially visible from the current nav area
 Show regardless of user setting
 Simplified Contours
 Space - CalcBlocks
@@ -460,12 +458,8 @@ mergeHoles: Failed to find merge points for %p and %p.
 mergeHoles: Failed to merge contours %p and %p.
 mergeRegionHoles: Failed to allocated diags %d.
 monitor_pid
-nav_corner_adjust_adjacent
 nav_id
 nav_ids
-nav_max_vis_delta_list_length
-nav_show_potentially_visible
-nav_validate
 navsystem
 navsystem.dll
 node_index
@@ -474,7 +468,6 @@ optionallycompressedtangentframe
 posxyz
 quiet
 rSpaceInfo generating with %0.1f hull size\n
-radius used to raise/lower corners in nearby areas when raising/lowering corners.
 rcBuildCompactHeightfield: Heightfield has too many layers %d (max: %d)
 rcBuildCompactHeightfield: Out of memory 'chf.areas' (%d)
 rcBuildCompactHeightfield: Out of memory 'chf.cells' (%d)

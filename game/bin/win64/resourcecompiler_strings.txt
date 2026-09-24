@@ -22427,7 +22427,6 @@ Angle Threshold
 Angle Vertical
 AngleA
 AngleB
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -23130,9 +23129,6 @@ Begin Sequence
 Begin testing a condition composed of Observable values. Continues checking until canceled.
 Begin testing a condition composed of Observable variable references. Continues checking until true.
 BeginSequence
-Bend Angle
-Bend Point
-Bend Radius
 Bend Stiffness
 Bend-and-Stretch Springs
 Bend-only Springs
@@ -25340,7 +25336,6 @@ Case: %s
 Cases
 Cast
 Cast Result
-Cast Shadows
 Cast of %s loses value information (returning %s) in %s on %s:%u\n
 Cast to %s
 CastValueNode
@@ -25420,7 +25415,6 @@ ChildDocument
 ChildDocumentList
 ChildDocumentViewer
 ChildOf
-Children
 Choice #%d
 Choice #0 (default)
 Choice A
@@ -26421,7 +26415,6 @@ Debug Draw Color
 Debug Geo Data\n
 Debug Log
 Debug log message
-Debug option to generate clustered probes of a scaled size for debug visualization.
 DebugVisGeometry
 DecalAttributes
 Decipher Only
@@ -26435,8 +26428,6 @@ Default Gravity Scale
 Default ID
 Default In
 Default Mask
-Default Material
-Default Material Group
 Default Out
 Default Output
 Default Root Bone Name
@@ -26554,7 +26545,6 @@ Diffusion
 Digital Signature
 Dilate pixels at UV island edges.
 DilateColorInTransparentPixels
-Dimensions
 Dimensions InOut Fraction
 Dimensions Probe
 Dimensions Size
@@ -28554,7 +28544,6 @@ Failure: No compiler '%s' found for file "%s".\n
 Fallback
 Fallback hinge
 Falling back on full proxy scan. It's slow and may be wrong, joint-driven proxy<->render mesh matching will be turned off\n
-Falloff
 False Value
 False: %.3f
 False: %s
@@ -28690,7 +28679,6 @@ Fixing T-junction Edge Cracks
 Fixup Entity Names By Default
 Fixup entity names
 Flag sets do not have long names
-Flag to choose whether to append probes to cover nav mesh.
 Flag to choose whether to render influence radius of the probe.
 Flag to choose whether to render the clustered probes.
 Flat
@@ -28836,7 +28824,6 @@ Force Dynamic
 Force Facing
 Force Hidden
 Force Motion Disabled
-Force Static
 Force World Collision On All Nodes
 Force a single world-space bone transform
 Force a single world-space bone transform over a specified frame range
@@ -29358,13 +29345,11 @@ Heel Offset
 Height Target
 Height Tolerance
 Height of the primitive to project normals from.
-Height to place samples to query occlusion for visualization.
 HeightCombine
 HeightToNormal
 Held Weapon Behavior
 Helper for previewing how a model may attach to the given attachment. Does NOT affect the compiled model.
 HelperLoadFbmByFileExtension(3544): Error! Unknown file type for %s\n
-Helper_PlayVOLine
 HemiOctAnisoRoughness
 HemiOctAnisoRoughness_RG_BA
 HemiOctIsoRoughnessAdjustable_RG_BA
@@ -31739,7 +31724,6 @@ Normal Attribute Simplification Weight
 Normal of the removed island needs to be ~ this close to the supporting faces behind them
 NormalBlendOverride
 NormalIntensity
-Normalize Vector
 Normalize Vector a
 Normalize3ComponentVectorInAttributes
 NormalizeNormals
@@ -31797,7 +31781,6 @@ O1NzNfj'fGv
 O7v%
 O?#7n
 OBJ lib
-OBJECT
 OBJECT DESCRIPTOR
 OBJ_NAME_new_index
 OBJ_add_object
@@ -32013,7 +31996,6 @@ OrientPrimitives
 Orientation Score Weight
 Orientation Warp failed since there is not enough time left to warp or we're past the warp event!
 Orientation warp failed since there wasnt a valid target direction set!
-Origin
 Original
 Original Bone Name
 Original Foot 
@@ -32963,7 +32945,6 @@ Quantized Data Results\n
 QuarterSizeAttrWithBoxFilter
 Quaternion
 QuaternionStorage
-Query radius to find probes to interpolate occlusion for visualization.
 Quickhull got into an impossible state and failed
 Quintic
 Q{qk
@@ -33389,7 +33370,6 @@ Render Mode
 Render Order
 Render Probe Radius
 Render Properties
-Render Steam Audio Probes even when probes are unselected.
 Render To Cubemaps
 Render With Dynamic
 Render internally at this size for effective super-sampling.
@@ -33785,7 +33765,6 @@ SNMPv2
 SNtu
 SO~c
 SPEAK
-SPHERE
 SPostProcessing
 SQ8_d`\
 SRTP_AES128_CM_SHA1_32
@@ -34088,7 +34067,6 @@ Selection Grow or Shrink
 Selection Index
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection Name
 Selection Weight
@@ -34164,7 +34142,6 @@ Set Parameter Action cannot use parameter that is not Graph-Writable %s
 Set Parameter Action does not have a valid parameter
 Set Playback Speed
 Set Position
-Set Variable
 Set Volume %d
 Set an animgraph parameter on a prop_dynamic entity.
 Set bone position to selection center
@@ -34629,7 +34606,6 @@ Start playing the referenced scene.
 Start-end tags mismatch
 StartDisabled
 StartTime
-State
 State Action
 State Completed
 State Completed Conditions are only allowed to be connected to a single transition
@@ -34811,7 +34787,6 @@ Suppressing entity [%s:%s]: %s
 Suppressing entity from the compiled map due to the above issue with key %s\n
 Surface Bias
 Surface Properties Compiler Version
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 SurfaceProperties missing name\n
@@ -35113,7 +35088,6 @@ Texture Handle
 Texture Map
 Texture Orientation
 Texture Scale
-Texture compression quality used in tools mode
 Texture offset along path
 Texture offset around circumference
 Texture repeats around circumference
@@ -40169,8 +40143,6 @@ entitySpawnFlags
 entityTag
 entityUInfo
 entity_class
-entity_fgd_print_api_mismatch
-entity_fgd_require_api_declaration
 entity_key
 entity_lump_params
 entity_name_fixup_persist
@@ -40943,46 +40915,9 @@ hammer
 hammerClipboard
 hammerMeshDataBuffer
 hammerUniqueId
-hammer_analytic_grid
-hammer_analytic_grid_transparent
-hammer_bevel_leave_edges
-hammer_dota_path_falloff
-hammer_dota_path_fixup
-hammer_dota_path_opacity
-hammer_dota_path_sharpness
-hammer_dota_path_use_material_settings
-hammer_dota_path_width
-hammer_draw_bounds
-hammer_draw_dirty_bounds
-hammer_draw_model_raytrace_data
-hammer_draw_model_skeleton
-hammer_draw_overlay_triangles_in_box
 hammer_embedded_properties
-hammer_face_debug_info
-hammer_gridnav_always_update
-hammer_gridnav_preview_radius
-hammer_gridnav_show_creature_blocking
-hammer_gridnav_show_hero_blocking
-hammer_gridnav_show_impassable
-hammer_gridnav_show_obstructions
-hammer_gridnav_show_ward_blocking
-hammer_isosurface_merge_tolerance
-hammer_isosurface_remove_interior
-hammer_isosurface_sample_offset
-hammer_isosurface_subtract
 hammer_mesh_%i
-hammer_overlay_draw_projection_triangles
 hammer_preview_lighting
-hammer_raytrace_debug_draw
-hammer_render_model_bounding_spheres
-hammer_show_light_truncation_error
-hammer_spawn_area_base_alpha
-hammer_spawn_area_outline_alpha
-hammer_tile_border_size
-hammer_use_minimum_element_count_for_loop
-hammer_vis_opacity
-hammer_world_trace_multisample
-hammer_world_trace_pack_rays
 handshake
 handshakeTypes
 handshake_enum
@@ -42370,7 +42305,6 @@ m_LegacyDefaultStr
 m_LiteralValueTypeWhenSaved
 m_LocalToWorld
 m_LocatorConfig
-m_LocatorName
 m_LongName
 m_LoopHeader
 m_Luminaire
@@ -43466,7 +43400,6 @@ nav_link_preview
 nav_link_preview_reverse
 nav_mesh
 nav_unmark; nav_mark ladder %d; nav_warp_to_mark\n
-nav_validate
 navclip
 navdbg
 navgen_on_ref_ent
@@ -44601,7 +44534,6 @@ pulse_domain
 pulse_domain_subtype
 pulse_editor
 pulse_editor_map_entities
-pulse_fgd_debug_path
 pulse_fingerprints
 pulse_node_custom_attributes
 pulse_open_graph_id %u %u
@@ -44709,8 +44641,6 @@ rc5-cbc
 rc5-cfb
 rc5-ecb
 rc5-ofb
-rc_default_texture_encode_quality
-rc_relaxedcones_cpu
 read bio not set
 read key
 read past end of file (truncated/corrupt)
@@ -44894,7 +44824,6 @@ resourcecompiler: Tried to add related file "%s" to Perforce but it doesn't exis
 resourcecompiler: Unable to read file "%s"!\n
 resourcecompiler: Unexpected key value type for: "%s"\n
 resourcecompiler_generate_reference_fbx
-resourcecompiler_log_compile_stats
 resourcecompilerwarnings_lastrun.txt
 resourcecompilerwarnings_log.txt
 resourcesystem
@@ -45731,7 +45660,6 @@ small
 smartPropConfigurationHelper
 smartPropFilename
 smartPropPartSet
-smartprops
 smime text error
 smime.p7m
 smime.p7z
@@ -45760,19 +45688,6 @@ snapshot_mesh
 snd_event_box_helper
 snd_opvar_set_point
 snd_reverb_movable
-snd_steamaudio_baked_occlusion_mode
-snd_steamaudio_baked_occlusion_pathing_deviation_slope
-snd_steamaudio_baked_occlusion_pathing_exponent
-snd_steamaudio_baked_occlusion_reflection_factor
-snd_steamaudio_baked_occlusion_reflection_regularization
-snd_steamaudio_baked_occlusion_spatialfilter_mode
-snd_steamaudio_baked_occlusion_spatialfilter_radius_factor
-snd_steamaudio_debug_cover_navmesh_probe_size_scale
-snd_steamaudio_dimensions_grid_height_spacing
-snd_steamaudio_enabe_append_probes_to_cover_navmesh
-snd_steamaudio_hammer_probes_always_render
-snd_steamaudio_occlusionvisualization_sampleheight
-snd_steamaudio_occlusionvisualization_sampleradius
 snippet
 snippets
 snmpv2
@@ -46145,7 +46060,6 @@ surfacePropertyOverride
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 surface_property_override
 surname
@@ -47222,8 +47136,6 @@ vdata_choice
 vdata_classes
 vdata_editor
 vdata_editor/fgd
-vdata_fgd_debug_path
-vdata_fgd_debug_verbose
 vdata_outliner_asset_name_expr
 vdata_outliner_default_expanded
 vdata_outliner_details_expr
@@ -47380,7 +47292,6 @@ vs_5_0
 vs_6_0
 vscale
 vsky
-vsmart
 vsnd.Input
 vsnd:0
 vsnd:1

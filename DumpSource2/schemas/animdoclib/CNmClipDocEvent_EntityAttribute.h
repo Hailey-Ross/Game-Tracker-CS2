@@ -33,8 +33,8 @@ class CNmClipDocEvent_EntityAttribute : public CNmClipDocEvent
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Type"
 	CNmClipDocEvent_EntityAttribute_Type_t m_nValueType;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	int32 m_nIntValue;
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CPiecewiseCurve m_FloatValue;
 };

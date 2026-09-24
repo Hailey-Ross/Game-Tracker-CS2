@@ -4863,7 +4863,6 @@ Checkout Failed
 Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
-Children
 Choose Team
 Circular visibility dependency '%s' found in '%s'.\n
 Class
@@ -8174,7 +8173,6 @@ propattr_flatten_into_parent_row
 propattr_flatten_stretch_factor
 propattr_force_readonly
 propdataname
-proped_attr_logging
 propername
 property_editor_settings
 propertyeditor
@@ -8508,7 +8506,6 @@ suggestions
 supplemental_data
 supply_crate
 suppressed_field
-surface_properties
 survival
 svalue
 system

@@ -1567,7 +1567,6 @@ Cannot tabify dock - sibling QDockWidget not found (%s)
 CapToggle
 Caps
 CheckState
-Children
 Class
 ClassName
 Clear History

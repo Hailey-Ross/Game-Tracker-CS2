@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ VS
 	DynamicCombo( D_WRITE_COC, 0..1 );
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (576 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -86,8 +85,6 @@ PS
 	DynamicCombo( D_COC_TEXTURE, 0..1 );
 	DynamicComboRule( Allow1( D_WRITE_COC, D_COC_TEXTURE ) );
 	
-	cbuffer Dof2CBParams_t < Attribute("Dof2CBParams_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float4x4 g_invViewProjMatrix < Attribute("InvViewProjMatrix"); >;
 	Texture2D g_tInputCocNormalized < Attribute("InputCocNormalized"); SrgbRead(false); >;
 	Texture2D g_tInputColor_CoC < Attribute("InputColor_CoC"); SrgbRead(false); >;
@@ -95,10 +92,12 @@ PS
 	float4 g_vLensPlane < Attribute("LensPlane"); UiType(VectorText); >;
 	
 	
-	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2540 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// Variant parameters
 	
-	struct _239
+	// Source 2 Viewer - https://valveresourceformat.github.io
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
+	
+	struct _113
 	{
 	    float4 _m0[256];
 	};
@@ -106,7 +105,7 @@ PS
 	cbuffer Dof2CBParams_t : register(b1, space1)
 	{
 	    float Dof2CBParams_t_1_m0 : packoffset(c1.y);
-	    _239 Dof2CBParams_t_1_m1 : packoffset(c3);
+	    _113 Dof2CBParams_t_1_m1 : packoffset(c3);
 	    int Dof2CBParams_t_1_m2 : packoffset(c259);
 	};
 	
@@ -145,7 +144,7 @@ PS
 	            break;
 	        }
 	        float2 _20779 = (input_0.xy + Dof2CBParams_t_1_m1._m0[_17017].xy).xy;
-	        float4 _3401 = g_tInputColor_CoC.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, _20779);
+	        float4 _3300 = g_tInputColor_CoC.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, _20779);
 	        float4 _21367 = g_tInputColor_CoC.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagLinearMipPoint, _20779);
 	        float _19148 = _21367.w;
 	        float _21709;
@@ -157,7 +156,7 @@ PS
 	        {
 	            _21709 = _19148;
 	        }
-	        _5949 = _16324 + lerp(_16324 / _13136.xxx, _3401.xyz, smoothstep(Dof2CBParams_t_1_m1._m0[_17017].z, Dof2CBParams_t_1_m1._m0[_17017].w, _21709 * Dof2CBParams_t_1_m0).xxx);
+	        _5949 = _16324 + lerp(_16324 / _13136.xxx, _3300.xyz, smoothstep(Dof2CBParams_t_1_m1._m0[_17017].z, Dof2CBParams_t_1_m1._m0[_17017].w, _21709 * Dof2CBParams_t_1_m0).xxx);
 	        _5778 = _13136 + 1.0f;
 	        _4293 = _17017 + 1;
 	        _13136 = _5778;

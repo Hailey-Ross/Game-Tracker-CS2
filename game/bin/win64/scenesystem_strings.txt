@@ -1996,7 +1996,6 @@ Compact
 Completion
 Completion, History, Edit Callbacks
 Compressed texture bits for mip %i are corrupt, decompression error!
-Compute
 Compute Skinning Stats
 Compute Smooth Normals Pass 1
 Compute Smooth Normals Pass 2
@@ -2216,7 +2215,6 @@ Destroyed
 Detail Depth
 Details
 Developed by Omar Cornut and all Dear ImGui contributors.
-Diamond
 Dieresissmall
 Digital Plots
 Digital plots do not respond to Y drag and zoom, so that
@@ -2537,7 +2535,6 @@ Feature is currently in Beta. Please read comments in imgui.h
 Features:
 File1_a.wav
 File1_b.wav
-Fill
 Fill %s
 Fill Button
 FillAlpha
@@ -3226,7 +3223,6 @@ Invalid input layout field format %d for joint indices\n
 Invalid sizing arguments!
 Invalid subsurface profile index (or duplicate): %i %s\n
 Invalid width/height for ScratchTarget, Size=%i, Width=%i/Height=%i
-Invert
 Io%a
 IsBaseFont
 IsBatchable
@@ -4266,7 +4262,6 @@ ReflectionTemplate
 Refraction Render View
 RegisterClassExW
 Registry
-Regular
 ReleaseCapture
 Releases
 Reloaded %s into textureset\n
@@ -4393,7 +4388,6 @@ SLANT
 SLSnSzS
 SMALL_CAP_SIZE
 SPACING
-SPHERE
 SRSd
 SSAOManifest
 SSTCopyDepthQuadLayout

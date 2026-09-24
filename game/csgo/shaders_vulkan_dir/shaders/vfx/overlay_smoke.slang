@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,20 +36,20 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (664 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 vColor;
 	static float2 vPositionPs;
-	static float4 vTexCoord;
+	static float2 vTexCoord;
+	static float4 vColor;
 	static float2 output_0;
 	static float4 output_1;
 	
 	struct VS_INPUT
 	{
-	    float2 vColor : TEXCOORD0;
-	    float2 vPositionPs : TEXCOORD1;
-	    float4 vTexCoord : TEXCOORD2;
+	    float2 vPositionPs : TEXCOORD0;
+	    float2 vTexCoord : TEXCOORD1;
+	    float4 vColor : TEXCOORD2;
 	};
 	
 	struct PS_INPUT
@@ -62,18 +61,18 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _14437 = float4(vColor, 0.0f, 1.0f);
-	    output_0 = vPositionPs;
-	    output_1 = vTexCoord;
-	    _14437.y = -vColor.y;
+	    float4 _14437 = float4(vPositionPs, 0.0f, 1.0f);
+	    output_0 = vTexCoord;
+	    output_1 = vColor;
+	    _14437.y = -vPositionPs.y;
 	    gl_Position = _14437;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    vColor = stage_input.vColor;
 	    vPositionPs = stage_input.vPositionPs;
 	    vTexCoord = stage_input.vTexCoord;
+	    vColor = stage_input.vColor;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -92,7 +91,6 @@ PS
 	DynamicCombo( D_ACCUM_PASS, 0..1 );
 	DynamicCombo( D_VIEWMODEL_PASS, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_DeltaTime < Attribute("DeltaTime"); UiType(Slider); >;
 	bool g_bHEGrenExplosion < Attribute("bHEGrenExplosion"); UiType(CheckBox); >;
 	Texture2D g_tSmokeAccum < Attribute("SmokeAccum"); SrgbRead(true); >;
@@ -100,8 +98,10 @@ PS
 	Texture2D g_tSmokeDepth < Attribute("SmokeDepth"); SrgbRead(true); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1656 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{

@@ -1945,7 +1945,6 @@ Checkout Failed
 Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
-Children
 Class
 ClassName
 Clear History

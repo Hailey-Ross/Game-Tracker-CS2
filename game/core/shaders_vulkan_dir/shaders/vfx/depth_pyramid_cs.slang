@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -31,7 +30,6 @@ CS
 	StaticCombo( S_SUBGROUP_WAVE_OPS, 0..1 );
 	DynamicCombo( D_REVERSE_DEPTH, 0..1 );
 	
-	cbuffer DownsamplePushConstants_t < Source(ExternalDescSet); Attribute("DownsamplePushConstants_t"); >;
 	ExternalDescriptorSet g_downsampleDescSet < Source(ExternalDescSet); Attribute("g_downsampleDescSet"); >;
 	RWStructuredBuffer g_spdGlobalAtomic < Source(ExternalDescSet); >;
 	RWTexture2D<float4> g_tImgDst < Attribute("Dummy"); >;
@@ -39,7 +37,7 @@ CS
 	Texture2D g_tInputDepth < Attribute("Dummy"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (19340 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _981
 	{

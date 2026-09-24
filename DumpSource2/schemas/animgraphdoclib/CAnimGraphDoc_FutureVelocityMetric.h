@@ -19,9 +19,9 @@ class CAnimGraphDoc_FutureVelocityMetric : public CAnimGraphDoc_MotionMetric
 	VelocityMetricMode m_eMode;
 	// MPropertyFriendlyName = "Auto-Calculate target speed"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	bool m_bAutoTargetSpeed;
 	// MPropertyFriendlyName = "Target Speed"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	float32 m_flManualTargetSpeed;
 };

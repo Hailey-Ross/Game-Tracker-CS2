@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 2;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -34,11 +33,11 @@ struct VS_INPUT
 VS
 {
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (436 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float3 vPositionSs;
@@ -77,18 +76,16 @@ VS
 PS
 {
 	
-	cbuffer PerViewConstantBufferCsgo_t < Attribute("PerViewConstantBufferCsgo_t"); >;
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	bool g_bForceMixedResolution < Attribute("ForcedMixedResolution"); UiType(CheckBox); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tBlueNoise < Attribute("BlueNoise"); SrgbRead(false); >;
 	Texture2D g_tSmokeDepthHalf < Attribute("SmokeHalfDepth"); SrgbRead(false); >;
 	Texture2D g_tSmokeDepthQuarter < Attribute("SmokeQuarterDepth"); SrgbRead(false); >;
 	Texture2D g_tZeroth_Moment < Attribute("zeroth_moment"); SrgbRead(true); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3736 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -144,7 +141,7 @@ PS
 	            if (_16170 != 2.0f)
 	            {
 	                float _17238 = log(PerViewConstantBuffer_t_1_m3);
-	                _12501 = (clamp(((PerViewConstantBuffer_t_1_m7.x / mul(PerViewConstantBuffer_t_1_m0, float4((PerViewConstantBuffer_t_1_m5 + (PerViewConstantBuffer_t_1_m6 * ((exp((((_16170 + 1.0f) * 0.5f) * (log(PerViewConstantBuffer_t_1_m4) - _17238)) + _17238) * 1.03999996185302734375f) + 70.0f))).xyz, 1.0f).xyzw).z) - PerViewConstantBuffer_t_1_m7.z) / PerViewConstantBuffer_t_1_m7.y, 0.0f, 1.0f) * (PerViewConstantBuffer_t_1_m2 - PerViewConstantBuffer_t_1_m1)) + PerViewConstantBuffer_t_1_m1;
+	                _12501 = (saturate(((PerViewConstantBuffer_t_1_m7.x / mul(PerViewConstantBuffer_t_1_m0, float4((PerViewConstantBuffer_t_1_m5 + (PerViewConstantBuffer_t_1_m6 * ((exp((((_16170 + 1.0f) * 0.5f) * (log(PerViewConstantBuffer_t_1_m4) - _17238)) + _17238) * 1.03999996185302734375f) + 70.0f))).xyz, 1.0f).xyzw).z) - PerViewConstantBuffer_t_1_m7.z) / PerViewConstantBuffer_t_1_m7.y) * (PerViewConstantBuffer_t_1_m2 - PerViewConstantBuffer_t_1_m1)) + PerViewConstantBuffer_t_1_m1;
 	            }
 	            else
 	            {

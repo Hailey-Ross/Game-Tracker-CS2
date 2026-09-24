@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1856 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -127,15 +126,14 @@ PS
 {
 	StaticCombo( S_TOOLS_ENABLED, 0, Sys( 1 ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	float g_flGrainSize < UiType(Slider); Expression(ATTRIBUTE[971cfd77]); >;
-	float g_flHueNoiseScale < UiType(Slider); Expression(ATTRIBUTE[ccb59b0b]); >;
-	float g_flSatNoiseScale < UiType(Slider); Expression(ATTRIBUTE[ab0d4fac]); >;
-	float g_flTimeOffset < UiType(Slider); Expression(ATTRIBUTE[eedf1361]); >;
-	float g_flValNoiseScale < UiType(Slider); Expression(ATTRIBUTE[3b4fcd0c]); >;
+	float g_flGrainSize < UiType(Slider); Expression(grainsize); >;
+	float g_flHueNoiseScale < UiType(Slider); Expression(huenoisescale); >;
+	float g_flSatNoiseScale < UiType(Slider); Expression(satnoisescale); >;
+	float g_flTimeOffset < UiType(Slider); Expression(timeoffset); >;
+	float g_flValNoiseScale < UiType(Slider); Expression(valnoisescale); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4160 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b1, space1)
 	{

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 1;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -38,7 +37,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (924 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -106,7 +105,7 @@ PS
 	CreateInputTexture2D(TextureB, Linear, 8, "", "", "Options", Default4(0, 0, 0, 0));
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1252 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -137,8 +136,8 @@ PS
 	    float4 _6805;
 	    if (_Globals_1_g_flAlphaBlend > 0.0f)
 	    {
-	        float4 _3401 = g_tTextureB.Sample(DefaultSamplerState_0_1, input_0.xy);
-	        _6805 = lerp(_21760, _3401, (_3401.w * _Globals_1_g_flAlphaBlend).xxxx);
+	        float4 _3300 = g_tTextureB.Sample(DefaultSamplerState_0_1, input_0.xy);
+	        _6805 = lerp(_21760, _3300, (_3300.w * _Globals_1_g_flAlphaBlend).xxxx);
 	    }
 	    else
 	    {

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -38,7 +37,7 @@ CS
 	float2 g_vImageSize < Attribute("ImageSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (40284 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer _Globals_ : register(b0, space0)
 	{
@@ -287,7 +286,7 @@ CS
 	                        {
 	                            break;
 	                        }
-	                        int _23276 = int((clamp(dot(_6603[_17020] - _13138, _15667) / _7122, 0.0f, 1.0f) * 15.0f) + 0.5f);
+	                        int _23276 = int((saturate(dot(_6603[_17020] - _13138, _15667) / _7122) * 15.0f) + 0.5f);
 	                        if (_23276 == 0)
 	                        {
 	                            _13140 = _13139;
@@ -361,7 +360,7 @@ CS
 	                        break;
 	                    }
 	                    _9504 = _13157;
-	                    _9504.x = _13157.x | (uint((15.0f * clamp(dot(_6603[_16210], _18308) - _17055, 0.0f, 1.0f)) + 0.5f) << uint(_16210 * 4));
+	                    _9504.x = _13157.x | (uint((15.0f * saturate(dot(_6603[_16210], _18308) - _17055)) + 0.5f) << uint(_16210 * 4));
 	                    _8515 = _16210 + 1;
 	                    _13157 = _9504;
 	                    _16210 = _8515;
@@ -379,7 +378,7 @@ CS
 	                        break;
 	                    }
 	                    _9505 = _13158;
-	                    _9505.y = _13158.y | (uint((15.0f * clamp(dot(_6603[8 + _16211], _18308) - _17055, 0.0f, 1.0f)) + 0.5f) << uint(_16211 * 4));
+	                    _9505.y = _13158.y | (uint((15.0f * saturate(dot(_6603[8 + _16211], _18308) - _17055)) + 0.5f) << uint(_16211 * 4));
 	                    _8516 = _16211 + 1;
 	                    _13158 = _9505;
 	                    _16211 = _8516;
@@ -1681,7 +1680,7 @@ CS
 	                    {
 	                        break;
 	                    }
-	                    int _23277 = int((clamp(dot(_6603[_17034] - _13152, _15668) / _7123, 0.0f, 1.0f) * 15.0f) + 0.5f);
+	                    int _23277 = int((saturate(dot(_6603[_17034] - _13152, _15668) / _7123) * 15.0f) + 0.5f);
 	                    if (_23277 == 0)
 	                    {
 	                        _13154 = _13153;
@@ -1755,7 +1754,7 @@ CS
 	                    break;
 	                }
 	                _9506 = _13160;
-	                _9506.x = _13160.x | (uint((15.0f * clamp(dot(_6603[_16219], _18309) - _17056, 0.0f, 1.0f)) + 0.5f) << uint(_16219 * 4));
+	                _9506.x = _13160.x | (uint((15.0f * saturate(dot(_6603[_16219], _18309) - _17056)) + 0.5f) << uint(_16219 * 4));
 	                _8517 = _16219 + 1;
 	                _13160 = _9506;
 	                _16219 = _8517;
@@ -1773,7 +1772,7 @@ CS
 	                    break;
 	                }
 	                _9507 = _13161;
-	                _9507.y = _13161.y | (uint((15.0f * clamp(dot(_6603[8 + _16220], _18309) - _17056, 0.0f, 1.0f)) + 0.5f) << uint(_16220 * 4));
+	                _9507.y = _13161.y | (uint((15.0f * saturate(dot(_6603[8 + _16220], _18309) - _17056)) + 0.5f) << uint(_16220 * 4));
 	                _8518 = _16220 + 1;
 	                _13161 = _9507;
 	                _16220 = _8518;

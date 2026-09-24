@@ -15,7 +15,7 @@
 //	"m_flMaxRotationRight": 90.000000
 //}
 // MPropertyFriendlyName = "Item"
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CFootPinningItem
 {
 	// MPropertyFriendlyName = "Foot"

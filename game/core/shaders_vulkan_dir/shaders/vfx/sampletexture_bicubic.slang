@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -35,17 +34,17 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (536 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
-	static float2 input_0;
-	static float3 input_1;
+	static float2 input_TEXCOORD0;
+	static float3 input_POSITION0;
 	static float2 output_0;
 	
 	struct VS_INPUT
 	{
-	    float3 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float3 input_POSITION0 : TEXCOORD0;
+	    float2 input_TEXCOORD0 : TEXCOORD1;
 	};
 	
 	struct PS_INPUT
@@ -56,16 +55,16 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _10551 = float4(input_1, 1.0f);
-	    output_0 = input_0;
-	    _10551.y = -input_1.y;
+	    float4 _10551 = float4(input_POSITION0, 1.0f);
+	    output_0 = input_TEXCOORD0;
+	    _10551.y = -input_POSITION0.y;
 	    gl_Position = _10551;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
+	    input_TEXCOORD0 = stage_input.input_TEXCOORD0;
+	    input_POSITION0 = stage_input.input_POSITION0;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -86,8 +85,8 @@ PS
 	DynamicCombo( D_CLAMPTEXTURECOORDS, 0..1 );
 	DynamicCombo( D_DISABLE_ALPHA_WRITE, 0..1 );
 	
-	RenderState(BlendEnable, (F_ADDITIVE_BLENDING ? True : F_ALPHA_BLEND) ? True : False);
-	RenderState(ColorWriteEnable0, 7);
+	RenderState(BlendEnable, (F_ADDITIVE_BLENDING || F_ALPHA_BLEND) ? true : false);
+	RenderState(ColorWriteEnable0, R|G|B);
 	RenderState(DstBlend, F_ADDITIVE_BLENDING ? One : Zero);
 	RenderState(DstBlend, F_INVERT_ALPHA ? SrcAlpha : InvSrcAlpha);
 	RenderState(SrcBlend, One);
@@ -104,8 +103,11 @@ PS
 		RenderState(DstBlend, F_INVERT_ALPHA ? SrcAlpha : InvSrcAlpha);
 	#endif
 	
+	// Variant parameters
+	RenderState(DstBlend, F_ADDITIVE_BLENDING ? One : Zero);
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (2692 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tInputTexture : register(t30, space1);
 	SamplerState Filter_MinMagLinearMipPoint : register(s14, space1);

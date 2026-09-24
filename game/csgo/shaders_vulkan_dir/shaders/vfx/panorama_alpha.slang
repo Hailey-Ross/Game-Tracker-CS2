@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,7 +36,7 @@ VS
 {
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (676 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	
@@ -98,9 +97,9 @@ PS
 	float3 g_vTexelSize < Attribute("TexelSize"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3440 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static const float2 _1374[8] = { (-1.0f).xx, float2(-1.0f, 0.0f), float2(-1.0f, 1.0f), float2(0.0f, 1.0f), 1.0f.xx, float2(1.0f, 0.0f), float2(1.0f, -1.0f), float2(0.0f, -1.0f) };
+	static const float2 _1363[8] = { (-1.0f).xx, float2(-1.0f, 0.0f), float2(-1.0f, 1.0f), float2(0.0f, 1.0f), 1.0f.xx, float2(1.0f, 0.0f), float2(1.0f, -1.0f), float2(0.0f, -1.0f) };
 	
 	cbuffer _Globals_ : register(b0, space1)
 	{
@@ -113,12 +112,12 @@ PS
 	Texture2D<float4> g_tSceneDepth : register(t31, space1);
 	SamplerState AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint_1 : register(s15, space1);
 	
-	static float2 input_0;
+	static float2 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float2 input_0 : TEXCOORD1;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -128,8 +127,8 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _22452 = g_tSceneColor.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, input_0.xy);
-	    float4 _19372 = g_tSceneDepth.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint_1, input_0.xy);
+	    float4 _22452 = g_tSceneColor.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, input_1.xy);
+	    float4 _19372 = g_tSceneDepth.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint_1, input_1.xy);
 	    bool _12885;
 	    if (_22452.x < 0.004999999888241291046142578125f)
 	    {
@@ -175,9 +174,9 @@ PS
 	            {
 	                break;
 	            }
-	            float2 _12974 = (input_0.xy + (_1374[_16208] * _Globals_1_g_vTexelSize.xy)).xy;
+	            float2 _12974 = (input_1.xy + (_1363[_16208] * _Globals_1_g_vTexelSize.xy)).xy;
 	            float4 _22453 = g_tSceneColor.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint, _12974);
-	            float4 _3401 = g_tSceneDepth.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint_1, _12974);
+	            float4 _3300 = g_tSceneDepth.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipPoint_1, _12974);
 	            bool _12888;
 	            if (_22453.x >= 0.004999999888241291046142578125f)
 	            {
@@ -203,7 +202,7 @@ PS
 	            }
 	            else
 	            {
-	                _12890 = _3401.x < (_Globals_1_g_flMaxDepth - 0.00999999977648258209228515625f);
+	                _12890 = _3300.x < (_Globals_1_g_flMaxDepth - 0.00999999977648258209228515625f);
 	            }
 	            if (_12890)
 	            {
@@ -226,7 +225,7 @@ PS
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

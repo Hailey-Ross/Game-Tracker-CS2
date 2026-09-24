@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1972 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -138,21 +137,21 @@ PS
 	Texture2D g_tMapTexture < Attribute("MapTexture"); SrgbRead(false); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1392 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<float4> g_tMapTexture : register(t30, space1);
 	SamplerState AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear : register(s14, space1);
 	Texture2D<float4> g_tFowTexture : register(t31, space1);
 	SamplerState AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear_1 : register(s15, space1);
 	
-	static float2 input_0;
-	static float4 input_1;
+	static float2 input_1;
+	static float4 input_0;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float4 input_1 : TEXCOORD0;
-	    float2 input_0 : TEXCOORD1;
+	    float4 input_0 : TEXCOORD0;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -162,14 +161,14 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _22452 = g_tMapTexture.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear, input_0.xy);
-	    float4 _3401 = g_tFowTexture.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear_1, input_0.xy);
+	    float4 _22452 = g_tMapTexture.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear, input_1.xy);
+	    float4 _3300 = g_tFowTexture.Sample(AddressU_Clamp_AddressV_Clamp_Filter_MinMagMipLinear_1, input_1.xy);
 	    float _23223 = _22452.w;
-	    float _13220 = _3401.w;
+	    float _13220 = _3300.w;
 	    bool _12885;
 	    if (_13220 < 0.60000002384185791015625f)
 	    {
-	        _12885 = _3401.x < 0.100000001490116119384765625f;
+	        _12885 = _3300.x < 0.100000001490116119384765625f;
 	    }
 	    else
 	    {
@@ -182,15 +181,15 @@ PS
 	    }
 	    else
 	    {
-	        _6805 = float4(input_1.xyz, _23223 * _13220);
+	        _6805 = float4(input_0.xyz, _23223 * _13220);
 	    }
 	    output_0 = _6805;
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
 	    input_1 = stage_input.input_1;
+	    input_0 = stage_input.input_0;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

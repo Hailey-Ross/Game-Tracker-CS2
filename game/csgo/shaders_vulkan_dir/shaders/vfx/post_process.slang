@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -37,11 +36,11 @@ struct VS_INPUT
 VS
 {
 	
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (548 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 gl_Position;
 	static float2 vPositionPs;
@@ -97,11 +96,8 @@ PS
 	DynamicCombo( D_OUTPUT_LINEAR, 0..1 );
 	DynamicCombo( D_COLORBUFFER_TONEMAPSPACE, 0..2 );
 	DynamicComboRule( Requires( D_FILM_GRAIN, S_FILM_GRAIN ) );
-	DynamicComboRule( Requires( D_BLOOM_MODE, D_BLOOM=1, S_BLOOM_LENS_DIRT=0, D_COLORBUFFER_TONEMAPSPACE=2 ) );
+	DynamicComboRule( Requires( D_BLOOM_MODE, D_BLOOM==1, S_BLOOM_LENS_DIRT==0, D_COLORBUFFER_TONEMAPSPACE==2 ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer PostProcessingConstantBuffer_t < Attribute("PostProcessingConstantBuffer_t"); >;
-	cbuffer VignetteConstantBuffer_t < Attribute("VignetteConstantBuffer_t"); >;
 	float g_flBloomViewportScaleX < Attribute("BloomViewportScaleX"); UiType(Slider); >;
 	float g_flBloomViewportScaleY < Attribute("BloomViewportScaleY"); UiType(Slider); >;
 	float g_flColorCorrectionDefaultWeight < Attribute("ColorCorrectionDefaultWeight"); UiType(Slider); >;
@@ -112,19 +108,19 @@ PS
 	float g_flLocalContrastStrength < Attribute("localContrastStrength"); UiType(Slider); >;
 	float g_flLocalContrastVignetteEnd < Attribute("localContrastVignetteEnd"); UiType(Slider); >;
 	float g_flLocalContrastVignetteStart < Attribute("localContrastVignetteStart"); UiType(Slider); >;
-	ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
-	ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_globalLateBoundBindlessSet < Source(ExternalDescSet); Attribute("g_globalLateBoundBindlessSet"); >;
+	[[layer_constant]] ExternalDescriptorSet g_lightBinnerGpuSet < Source(ExternalDescSet); Attribute("g_lightBinnerGpuSet"); >;
 	Texture2D g_tBloom < Attribute("BlurBuffer"); SrgbRead(false); >;
 	Texture2D g_tColorBuffer < Attribute("ColorBuffer"); SrgbRead(false); >;
 	Texture3D g_tColorCorrection < Attribute("ColorCorrectionTex"); SrgbRead(false); >;
 	Texture2D g_tDirt < Channel(RGB, None(TextureDirt), Linear); OutputFormat(DXT1); SrgbRead(false); >;
 	Texture2D g_tNoise < Channel(RGB, None(TextureNoise), Linear); OutputFormat(DXT1); SrgbRead(false); >;
 	Texture2D g_tQuarterResUnthresholdedBlur < Attribute("QuarterResUnthresholdedBlurredTexture"); SrgbRead(false); >;
-	float4 g_vBloomUvScaleClamp < UiType(VectorText); Expression(ATTRIBUTE[59e7f3ee]); >;
-	float3 g_vNormalizedBloomStrengths < UiType(VectorText); Expression(float3(ATTRIBUTE[2eaafbf0],ATTRIBUTE[4fb93f9f],ATTRIBUTE[ce6d8f12])); >;
-	float2 g_vNormalizedUvToColorBufferUv < UiType(VectorText); Expression(ATTRIBUTE[366091eb]); >;
-	float4 g_vQuarterResBlurredUnthresholdedScaleClamp < UiType(VectorText); Expression(ATTRIBUTE[f0158634]); >;
-	float3 g_vUnNormalizedBloomStrengths < UiType(VectorText); Expression(float3(ATTRIBUTE[cf3c766c],ATTRIBUTE[6d6e10d6],ATTRIBUTE[d3a6b457])); >;
+	float4 g_vBloomUvScaleClamp < UiType(VectorText); Expression(bloombufferscaleclamp); >;
+	float3 g_vNormalizedBloomStrengths < UiType(VectorText); Expression(float3(normalizedadditivebloomstrength,normalizedscreenbloomstrength,normalizedblurbloomstrength)); >;
+	float2 g_vNormalizedUvToColorBufferUv < UiType(VectorText); Expression(normalizeduvtocolorbufferuv); >;
+	float4 g_vQuarterResBlurredUnthresholdedScaleClamp < UiType(VectorText); Expression(quarterresunthresholdedblurredscaleclamp); >;
+	float3 g_vUnNormalizedBloomStrengths < UiType(VectorText); Expression(float3(additivebloomstrength,screenbloomstrength,blurbloomstrength)); >;
 	float4 g_vViewFadeColor < Attribute("ScreenFadeColor"); UiType(VectorText); >;
 	
 	// Lens Dirt
@@ -137,13 +133,15 @@ PS
 	float g_flFilmGrainRange < Default(0.2); Range(0, 0.5); UiType(Slider); UiGroup("Film Grain"); >;
 	
 	
+	// Variant parameters
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 1 (name: g_vViewFadeColor) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4476 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
@@ -182,15 +180,15 @@ PS
 	
 	layout(set = 1) uniform _1245 PostProcessingConstantBuffer_t;
 	
-	layout(set = 1, binding = 52) uniform texture2D g_tColorBuffer;
+	layout(set = 1, binding = 50) uniform texture2D g_tColorBuffer;
 	layout(set = 1, binding = 25) uniform sampler Filter_MinMagLinearMipPoint;
 	
 	layout(location = 0) out vec4 output_0;
 	
 	void main()
 	{
-	    vec4 _3401 = textureLod(sampler2D(g_tColorBuffer, Filter_MinMagLinearMipPoint), ((gl_FragCoord.xy * PerViewConstantBuffer_t._m1.xy).xy * _Globals_.g_vNormalizedUvToColorBufferUv.xy).xy, 0.0);
-	    vec3 _9407 = _3401.xyz * (PerViewConstantBuffer_t._m0 * PostProcessingConstantBuffer_t._m0);
+	    vec4 _3300 = textureLod(sampler2D(g_tColorBuffer, Filter_MinMagLinearMipPoint), ((gl_FragCoord.xy * PerViewConstantBuffer_t._m1.xy).xy * _Globals_.g_vNormalizedUvToColorBufferUv.xy).xy, 0.0);
+	    vec3 _9407 = _3300.xyz * (PerViewConstantBuffer_t._m0 * PostProcessingConstantBuffer_t._m0);
 	    vec4 _8673;
 	    _8673.x = _9407.x;
 	    _8673.y = _9407.y;
@@ -232,7 +230,7 @@ PS
 	    _16668.x = _21354;
 	    _16668.y = _21355;
 	    _16668.z = _19167;
-	    vec4 _11399 = vec4(mix(_16668.xyz, mix(_Globals_.g_vViewFadeColor.xyz, _Globals_.g_vViewFadeColor.xyz * _16668.xyz, vec3(_Globals_.g_flFadeMode)).xyz, vec3(_Globals_.g_vViewFadeColor.w)), _3401.w);
+	    vec4 _11399 = vec4(mix(_16668.xyz, mix(_Globals_.g_vViewFadeColor.xyz, _Globals_.g_vViewFadeColor.xyz * _16668.xyz, vec3(_Globals_.g_flFadeMode)).xyz, vec3(_Globals_.g_vViewFadeColor.w)), _3300.w);
 	    vec3 _25220 = pow(_11399.xyz, vec3(_Globals_.g_flFullScreenGamma * 0.454545438289642333984375));
 	    vec4 _16669 = _11399;
 	    _16669.x = _25220.x;

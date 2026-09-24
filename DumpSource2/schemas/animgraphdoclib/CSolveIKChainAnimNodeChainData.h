@@ -35,7 +35,7 @@
 //		0.000000
 //	]
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CSolveIKChainAnimNodeChainData
 {
 	// MPropertyFriendlyName = "IK Chain"
@@ -46,14 +46,14 @@ class CSolveIKChainAnimNodeChainData
 	SolveIKChainAnimNodeSettingSource m_SolverSettingSource;
 	// MPropertyFriendlyName = "Override Solver Settings"
 	// MPropertyAutoExpandSelf
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	IKSolverSettings_t m_OverrideSolverSettings;
 	// MPropertyFriendlyName = "Target Setting Source"
 	// MPropertyAutoRebuildOnChange
 	SolveIKChainAnimNodeSettingSource m_TargetSettingSource;
 	// MPropertyFriendlyName = "Override Target Settings"
 	// MPropertyAutoExpandSelf
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	IKTargetSettings_t m_OverrideTargetSettings;
 	// MPropertyFriendlyName = "Debug Setting"
 	// MPropertyGroupName = "Debug"

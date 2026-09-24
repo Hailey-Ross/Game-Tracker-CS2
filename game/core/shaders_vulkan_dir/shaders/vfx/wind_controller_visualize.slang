@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -31,8 +30,6 @@ VS
 	DynamicCombo( D_BLEND_WEIGHT_COUNT, 0..4 );
 	DynamicComboRule( Allow0( D_BLEND_WEIGHT_COUNT ) );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer WindControllerConstantBuffer_t < Attribute("WindControllerConstantBuffer_t"); >;
 	int g_nClipmap < Attribute("Clipmap"); UiType(Slider); >;
 	int g_nSampleCount < Attribute("SampleCount"); UiType(Slider); >;
 	Texture3D g_tWind < Attribute("Wind"); SrgbRead(false); >;
@@ -43,18 +40,18 @@ VS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4744 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	
-	struct _365
+	struct _281
 	{
 	    vec4 _m0[4];
 	};
 	
-	struct _1689
+	struct _1521
 	{
-	    _365 _m0;
+	    _281 _m0;
 	};
 	
 	struct _995
@@ -65,13 +62,13 @@ VS
 	
 	layout(set = 0) uniform _995 _Globals_;
 	
-	struct _1341
+	struct _1005
 	{
-	    _1689 _m0;
+	    _1521 _m0;
 	    float _m1;
 	};
 	
-	layout(set = 0) uniform _1341 WindControllerConstantBuffer_t;
+	layout(set = 0) uniform _1005 WindControllerConstantBuffer_t;
 	
 	struct _1288
 	{
@@ -95,7 +92,7 @@ VS
 	    uint _16090 = uint(_Globals_.g_nSampleCount);
 	    float _20009 = float(_Globals_.g_nSampleCount);
 	    vec2 _4498 = vec2((float(int(_21425 % _16090)) + 0.5) / _20009, (float(int(_21425 / _16090)) + 0.5) / _20009);
-	    vec4 _3401 = textureLod(sampler3D(g_tWind, AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagLinearMipPoint), vec3(_4498, 0.5), 0.0);
+	    vec4 _3300 = textureLod(sampler3D(g_tWind, AddressU_Clamp_AddressV_Clamp_AddressW_Clamp_Filter_MinMagLinearMipPoint), vec3(_4498, 0.5), 0.0);
 	    vec3 _24854 = vec3(mix(-WindControllerConstantBuffer_t._m0._m0._m0[_Globals_.g_nClipmap].xy, WindControllerConstantBuffer_t._m0._m0._m0[_Globals_.g_nClipmap].xy, _4498), 0.0);
 	    bool _12885;
 	    if (_Globals_.g_nClipmap > 0)
@@ -116,7 +113,7 @@ VS
 	        vec3 _19363;
 	        if ((_12652 & 1u) != 0u)
 	        {
-	            vec2 _13062 = _24854.xy + ((((_3401.xy * 2.0) - vec2(1.0)) * (WindControllerConstantBuffer_t._m0._m0._m0[_Globals_.g_nClipmap].x * WindControllerConstantBuffer_t._m1)) * (2.0 + (_3401.z * 3.0)));
+	            vec2 _13062 = _24854.xy + ((((_3300.xy * 2.0) - vec2(1.0)) * (WindControllerConstantBuffer_t._m0._m0._m0[_Globals_.g_nClipmap].x * WindControllerConstantBuffer_t._m1)) * (2.0 + (_3300.z * 3.0)));
 	            vec3 _20488 = _24854;
 	            _20488.x = _13062.x;
 	            _20488.y = _13062.y;
@@ -128,7 +125,7 @@ VS
 	        }
 	        _18053 = (vec4(((_19363.xyz + PerViewConstantBuffer_t._m2.xyz) - vec3(0.0, 0.0, 1000.0)).xyz, 1.0) + (PerViewConstantBuffer_t._m1 * 1.0)).xyzw * PerViewConstantBuffer_t._m0;
 	    }
-	    float _21177 = saturate(_3401.z);
+	    float _21177 = saturate(_3300.z);
 	    float _9436 = _21177 * _21177;
 	    float _20291 = _9436 * _21177;
 	    vec4 _14651 = vec4(1.0, _21177, _9436, _20291);
@@ -149,18 +146,18 @@ VS
 PS
 {
 	
-	RenderState(DepthEnable, exists(DepthEnable) ? DepthEnable : True);
+	RenderState(DepthEnable, exists(DepthEnable) ? DepthEnable : true);
 	RenderState(DepthFunc, GreaterEqual);
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (340 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
-	static float3 input_0;
+	static float3 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float3 input_0 : TEXCOORD1;
+	    float3 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -170,12 +167,12 @@ PS
 	
 	void MainPs_inner()
 	{
-	    output_0 = float4(input_0, 0.0f);
+	    output_0 = float4(input_1, 0.0f);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

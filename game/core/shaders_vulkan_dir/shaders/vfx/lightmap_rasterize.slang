@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: gs, ps, vs
 }
@@ -39,7 +38,7 @@ VS
 	float4 g_vWindow < Attribute("g_vWindow"); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3016 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -50,9 +49,9 @@ VS
 	
 	
 	static float4 gl_Position;
-	static float3 nPackedFrame;
-	static float2 vPositionWs;
-	static uint vLightmapUv;
+	static float3 vPositionWs;
+	static float2 vLightmapUv;
+	static uint nPackedFrame;
 	static float3 output_0;
 	static float3 output_1;
 	static float3 output_2;
@@ -62,9 +61,9 @@ VS
 	
 	struct VS_INPUT
 	{
-	    float3 nPackedFrame : TEXCOORD0;
-	    float2 vPositionWs : TEXCOORD1;
-	    uint vLightmapUv : TEXCOORD2;
+	    float3 vPositionWs : TEXCOORD0;
+	    float2 vLightmapUv : TEXCOORD1;
+	    uint nPackedFrame : TEXCOORD2;
 	};
 	
 	struct PS_INPUT
@@ -80,11 +79,11 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float _22483 = (float((vLightmapUv >> 12u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
-	    float _7589 = (float((vLightmapUv >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
+	    float _22483 = (float((nPackedFrame >> 12u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
+	    float _7589 = (float((nPackedFrame >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
 	    float _23404 = (1.0f - abs(_22483)) - abs(_7589);
 	    float3 _8254 = float3(_22483, _7589, _23404);
-	    float _24228 = clamp(-_23404, 0.0f, 1.0f);
+	    float _24228 = saturate(-_23404);
 	    float2 _7335 = float2(_22483, _7589);
 	    bool2 _10803 = bool2(_7335.x >= 0.0f.xx.x, _7335.y >= 0.0f.xx.y);
 	    float2 _14501 = (-_24228).xx;
@@ -98,23 +97,23 @@ VS
 	    float _16417 = (-1.0f) / (_8220 + _6384);
 	    float _14755 = _21001.x;
 	    float3 _23176 = float3(1.0f + (((_8220 * _14755) * _14755) * _16417), _8220 * ((_14755 * _21001.y) * _16417), (-_8220) * _14755);
-	    float _23966 = float((vLightmapUv >> uint(1)) & 2047u) * 0.003069460391998291015625f;
-	    float4 _15436 = float4((((vPositionWs.x - _Globals_1_g_vWindow.x) / (_Globals_1_g_vWindow.z - _Globals_1_g_vWindow.x)) * 2.0f) + (-1.0f), _3, 0.0f, 1.0f);
-	    output_0 = nPackedFrame;
+	    float _23966 = float((nPackedFrame >> uint(1)) & 2047u) * 0.003069460391998291015625f;
+	    float4 _15436 = float4((((vLightmapUv.x - _Globals_1_g_vWindow.x) / (_Globals_1_g_vWindow.z - _Globals_1_g_vWindow.x)) * 2.0f) + (-1.0f), _3, 0.0f, 1.0f);
+	    output_0 = vPositionWs;
 	    output_1 = _21001;
 	    output_2 = 0.0f.xxx;
-	    output_3 = float4((_23176 * cos(_23966)) + (cross(_21001, _23176) * sin(_23966)), ((vLightmapUv & 1u) == 0u) ? (-1.0f) : 1.0f);
-	    output_4 = vPositionWs;
+	    output_3 = float4((_23176 * cos(_23966)) + (cross(_21001, _23176) * sin(_23966)), ((nPackedFrame & 1u) == 0u) ? (-1.0f) : 1.0f);
+	    output_4 = vLightmapUv;
 	    output_5 = 4294967295u;
-	    _15436.y = 1.0f - (((vPositionWs.y - _Globals_1_g_vWindow.y) / (_Globals_1_g_vWindow.w - _Globals_1_g_vWindow.y)) * 2.0f);
+	    _15436.y = 1.0f - (((vLightmapUv.y - _Globals_1_g_vWindow.y) / (_Globals_1_g_vWindow.w - _Globals_1_g_vWindow.y)) * 2.0f);
 	    gl_Position = _15436;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    nPackedFrame = stage_input.nPackedFrame;
 	    vPositionWs = stage_input.vPositionWs;
 	    vLightmapUv = stage_input.vLightmapUv;
+	    nPackedFrame = stage_input.nPackedFrame;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -143,7 +142,7 @@ GS
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3404 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	layout(triangles) in;
@@ -156,8 +155,8 @@ GS
 	
 	layout(location = 0) in vec3 input_0[3];
 	layout(location = 1) in vec3 input_1[3];
-	layout(location = 3) in vec4 input_2[3];
-	layout(location = 4) in vec2 input_3[3];
+	layout(location = 3) in vec4 input_3[3];
+	layout(location = 4) in vec2 input_4[3];
 	layout(location = 0) out vec3 output_0;
 	layout(location = 1) out vec3 output_1;
 	layout(location = 2) out vec3 output_2;
@@ -197,8 +196,8 @@ GS
 	    output_0 = input_0[0];
 	    output_1 = input_1[0];
 	    output_2 = _7777;
-	    output_3 = input_2[0];
-	    output_4 = input_3[0];
+	    output_3 = input_3[0];
+	    output_4 = input_4[0];
 	    output_5 = g_ChartIDs_1._m0[_11093];
 	    _12875.y = -_9829.y;
 	    gl_Position = _12875;
@@ -209,8 +208,8 @@ GS
 	    output_0 = input_0[1];
 	    output_1 = input_1[1];
 	    output_2 = _7777;
-	    output_3 = input_2[1];
-	    output_4 = input_3[1];
+	    output_3 = input_3[1];
+	    output_4 = input_4[1];
 	    output_5 = g_ChartIDs_1._m0[_11093];
 	    _12876.y = -_9830.y;
 	    gl_Position = _12876;
@@ -221,8 +220,8 @@ GS
 	    output_0 = input_0[2];
 	    output_1 = input_1[2];
 	    output_2 = _7777;
-	    output_3 = input_2[2];
-	    output_4 = input_3[2];
+	    output_3 = input_3[2];
+	    output_4 = input_4[2];
 	    output_5 = g_ChartIDs_1._m0[_11093];
 	    _12877.y = -_9831.y;
 	    gl_Position = _12877;
@@ -240,7 +239,7 @@ PS
 {
 	DynamicCombo( D_PASS, 0..1 );
 	DynamicCombo( D_REVERSE_DEPTH, 0..1 );
-	DynamicComboRule( Requires( D_REVERSE_DEPTH, D_PASS=0 ) );
+	DynamicComboRule( Requires( D_REVERSE_DEPTH, D_PASS==0 ) );
 	
 	StructuredBuffer g_ChartInfo < Attribute("g_ChartInfo"); >;
 	RWStructuredBuffer g_LightmapSamples < Attribute("g_LightmapSamples"); >;
@@ -248,17 +247,17 @@ PS
 	int g_nSampleStride < Attribute("g_nSampleStride"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (768 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	Texture2D<uint4> g_LuxelChartIDs : register(t30, space1);
 	
 	static float4 gl_FragCoord;
-	static uint input_0;
+	static uint input_5;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    nointerpolation uint input_0 : TEXCOORD5;
+	    nointerpolation uint input_5 : TEXCOORD5;
 	    float4 gl_FragCoord : SV_Position;
 	};
 	
@@ -269,7 +268,7 @@ PS
 	
 	void MainPs_inner()
 	{
-	    if (input_0 != g_LuxelChartIDs.Load(int3(uint2(gl_FragCoord.xy), 0)).x)
+	    if (input_5 != g_LuxelChartIDs.Load(int3(uint2(gl_FragCoord.xy), 0)).x)
 	    {
 	        discard;
 	    }
@@ -281,7 +280,7 @@ PS
 	{
 	    gl_FragCoord = stage_input.gl_FragCoord;
 	    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
-	    input_0 = stage_input.input_0;
+	    input_5 = stage_input.input_5;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

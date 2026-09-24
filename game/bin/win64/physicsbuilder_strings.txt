@@ -7289,7 +7289,6 @@ Anchor Origin
 Angle Limit
 Angle Streams In Radians
 Angle Threshold
-Angles
 Angular Damping
 Angular Damping Ratio
 Angular Dot Product
@@ -8591,7 +8590,6 @@ Debug Draw Color
 Default (No Name)
 Default (No RGB Tint)
 Default Gravity Scale
-Default Material Group
 Default Root Bone Name
 Default to old body ordering for now
 Default: %s
@@ -8634,7 +8632,6 @@ Didn't expect '=' for non-flags non-choices variable %s
 Different Indices On Mesh vs Bind Pose For "%s" Added Anchor Bone
 Different Indices On Mesh vs Bind Pose For "%s" Bone
 Dilate pixels at UV island edges.
-Dimensions
 Disable Compression
 Disable Continuous Collision Detection
 Disable Morph
@@ -9069,7 +9066,6 @@ Failed to merge additional anim file: %s
 Failed to parse channel info.\n
 Failed to read attribute.\n
 Failed to transfer deltas from '%s'
-Falloff
 Far Field Only
 Fast Drag
 Fast Sweep
@@ -10104,7 +10100,6 @@ Orient Parent Only
 Orient Rotation to 2D Direction
 Orient toward child bone.
 Orient toward parent bone.
-Origin
 Original Bone Name
 Original bone name cannot be empty
 Original name of the bone
@@ -10727,7 +10722,6 @@ Selection Convert
 Selection Grow or Shrink
 Selection Invert
 Selection Invert (
-Selection Mode
 Selection Modification
 Selection [%d nodes]
 Selection was empty; no mesh components deleted.
@@ -10948,7 +10942,6 @@ Suppress warnings regarding the joint weight count per vertex exceeding allowabl
 Suppress warnings when bodygroups specify meshes that do not exist. This is useful if the bodygroup definition is in a shared prefab and missing warnings are expected or benign.
 Suppressed Shapes
 Surface Bias
-Surface Property
 Surface Property Override
 SurfacePropPicker()
 Suspender Spring
@@ -13742,7 +13735,6 @@ suppressed_field
 surface_bias
 surface_offset
 surface_prop_override
-surface_properties
 surface_property
 surface_property_override
 suspender

@@ -3198,7 +3198,6 @@ Checkout Failed
 Checkout Failed.
 Checkout was NOT successful! To save you must select a different file.
 Checkout?
-Children
 ChromaBlurRadius
 Clamp Float
 Clamp Int
@@ -3993,7 +3992,6 @@ No: Do not checkout.
 NodeID %d port '%s' called from C%d:I%d
 Nonstandard tile length %d, convert file
 Nonstandard tile width %d, convert file
-Normalize Vector
 Normalize Vector a
 Not R%d <- !R%d
 Not a TIFF file, bad magic number %d (0x%x)
@@ -4130,7 +4128,6 @@ OpenMutexA
 OpenVConsole
 Optional. Type 'Any'. An associated value, e.g. the Entity Handle which is responsible for this Cursor. The Tag is defined by the unique combination of Name and Value.
 Or R%d <- R%d || R%d
-Origin
 OriginalRawFileData
 OriginalRawFileName
 Other Tools
@@ -5687,9 +5684,6 @@ p\v?event@QWidget@@MEAA_NPEAVQEvent@@@Z
 p`?type@QStandardItem@@UEBAHXZ
 parent
 parent_cursor_id
-pet_preview_gravity
-pet_preview_underwater
-pet_preview_wind
 pickedColor
 pixelAspectRatio
 polymorphic_arg
@@ -5810,7 +5804,6 @@ tool_request_args
 tool_request_text
 tool_request_tool
 toolbarArea
-toolhud_enable
 tools.reference_notrace
 tools/colors/shared_colors.txt
 tools/images/pulse_editor/cursor_kill.png

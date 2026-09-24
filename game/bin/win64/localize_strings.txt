@@ -225,8 +225,6 @@ LOC_Ordinal_Prefix_%u
 LOC_Ordinal_Prefix_Default
 LOC_Ordinal_Suffix_%u
 LOC_Ordinal_Suffix_Default
-List all loaded localization files
-List information on the given token
 Loaded localization files:\n
 Loc token '%s' not found\n
 Loc token '%s': index %d\n
@@ -272,8 +270,6 @@ WARNING: Duplicate string token '%s' found in %s (original in %s) - new value '%
 \tV_powd
 \{s:foo} {s:bar}
 \{s:foo} {} {,:} {s:} {s:bar} extra
-dump_loc_token
-dump_localization_files
 duplicate selector case
 ends_with_000
 english]

@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -33,10 +32,9 @@ VS
 {
 	StaticCombo( S_TOOLS_ENABLED, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1592 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	cbuffer PerViewConstantBuffer_t : register(b0, space0)
 	{
@@ -48,10 +46,10 @@ VS
 	
 	
 	static float4 gl_Position;
-	static float3 input_0;
-	static float input_1;
-	static float input_2;
-	static float input_3;
+	static float3 input_POSITION0;
+	static float input_TEXCOORD0;
+	static float input_TEXCOORD1;
+	static float input_TEXCOORD2;
 	static float4 output_0;
 	static float output_1;
 	static float output_2;
@@ -59,10 +57,10 @@ VS
 	
 	struct VS_INPUT
 	{
-	    float3 input_0 : TEXCOORD0;
-	    float input_1 : TEXCOORD1;
-	    float input_2 : TEXCOORD2;
-	    float input_3 : TEXCOORD3;
+	    float3 input_POSITION0 : TEXCOORD0;
+	    float input_TEXCOORD0 : TEXCOORD1;
+	    float input_TEXCOORD1 : TEXCOORD2;
+	    float input_TEXCOORD2 : TEXCOORD3;
 	};
 	
 	struct PS_INPUT
@@ -76,21 +74,21 @@ VS
 	
 	void MainVs_inner()
 	{
-	    float4 _17895 = mul(PerViewConstantBuffer_t_1_m0, (float4(input_0.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
+	    float4 _17895 = mul(PerViewConstantBuffer_t_1_m0, (float4(input_POSITION0.xyz, 1.0f) + (PerViewConstantBuffer_t_1_m1 * 1.0f)).xyzw);
 	    _17895.y = -_17895.y;
 	    gl_Position = _17895;
-	    output_0 = float4(input_0, dot(PerViewConstantBuffer_t_1_m3, input_0.xyz - PerViewConstantBuffer_t_1_m2.xyz));
-	    output_1 = input_1;
-	    output_2 = input_2;
-	    output_3 = input_3;
+	    output_0 = float4(input_POSITION0, dot(PerViewConstantBuffer_t_1_m3, input_POSITION0.xyz - PerViewConstantBuffer_t_1_m2.xyz));
+	    output_1 = input_TEXCOORD0;
+	    output_2 = input_TEXCOORD1;
+	    output_3 = input_TEXCOORD2;
 	}
 	
 	PS_INPUT MainVs(VS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
-	    input_1 = stage_input.input_1;
-	    input_2 = stage_input.input_2;
-	    input_3 = stage_input.input_3;
+	    input_POSITION0 = stage_input.input_POSITION0;
+	    input_TEXCOORD0 = stage_input.input_TEXCOORD0;
+	    input_TEXCOORD1 = stage_input.input_TEXCOORD1;
+	    input_TEXCOORD2 = stage_input.input_TEXCOORD2;
 	    MainVs_inner();
 	    PS_INPUT stage_output;
 	    stage_output.gl_Position = gl_Position;
@@ -112,16 +110,16 @@ PS
 	DynamicCombo( D_SFM_SCENE_DEPTH_MSAA, 0..1 );
 	DynamicCombo( D_LINEAR_DEPTH_BUFFER, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
-	cbuffer SFMLightsConstantBuffer_t < Attribute("SFMLightsConstantBuffer_t"); >;
 	Texture2DArray g_tSFMCookieTextureArray < Attribute("SFMLightCookieTexture"); SrgbRead(false); >;
 	Texture2DArray g_tSFMShadowDepthTexture < Attribute("SFMShadowDepthTexture"); SrgbRead(false); >;
 	Texture2D g_tSceneDepth < Attribute("SFMSceneDepth"); SrgbRead(false); >;
 	Texture2D g_tSceneDepthMS < Attribute("SFMSceneDepth"); SrgbRead(false); >;
 	
 	
+	// Variant parameters
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (280 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 output_0;
 	

@@ -7,7 +7,6 @@ HEADER
 	DevShader = false;
 	Version = 3;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: ps, vs
 }
@@ -42,7 +41,7 @@ VS
 	float4 g_vViewport < Source(Viewport); UiType(VectorText); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (1972 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _3;
 	
@@ -181,8 +180,11 @@ PS
 		Texture2D g_tAmbientOcclusion < Channel(RGBA, None(TextureAmbientOcclusion1), Srgb); OutputFormat(BC7); SrgbRead(true); >;
 	#endif
 	
+	// Variant parameters
+	Texture2D g_tMetalness < Channel(R, BoxInverse(TextureRoughness1), Linear); Channel(G, Box(TextureMetalness1), Linear); OutputFormat(ATI2N); SrgbRead(false); >;
+	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (3540 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float4 _2;
 	
@@ -205,12 +207,12 @@ PS
 	Texture2D<float4> g_tColor : register(t30, space1);
 	SamplerState AddressU_Clamp_AddressV_Clamp_4 : register(s14, space1);
 	
-	static float2 input_0;
+	static float2 input_1;
 	static float4 output_0;
 	
 	struct PS_INPUT
 	{
-	    float2 input_0 : TEXCOORD1;
+	    float2 input_1 : TEXCOORD1;
 	};
 	
 	struct PS_OUTPUT
@@ -220,10 +222,10 @@ PS
 	
 	void MainPs_inner()
 	{
-	    float4 _22452 = g_tAmbientOcclusion.Sample(DefaultSamplerState_0, input_0.xy);
-	    float4 _22455 = g_tPosition.Sample(AddressU_Clamp_AddressV_Clamp_2, input_0.xy);
+	    float4 _22452 = g_tAmbientOcclusion.Sample(DefaultSamplerState_0, input_1.xy);
+	    float4 _22455 = g_tPosition.Sample(AddressU_Clamp_AddressV_Clamp_2, input_1.xy);
 	    float _4384 = _Globals_1_g_flUvScale1 * _Globals_1_g_flWeaponLength1;
-	    float3 _10929 = lerp(float4(g_tSurface.Sample(AddressU_Clamp_AddressV_Clamp_1, input_0.xy).z.xxx, 1.0f).xyz, pow(g_tMasks.Sample(AddressU_Clamp_AddressV_Clamp, input_0.xy).xyz, 2.2000000476837158203125f.xxx), (0.3300000131130218505859375f * (1.0f - _22452.w)).xxx);
+	    float3 _10929 = lerp(float4(g_tSurface.Sample(AddressU_Clamp_AddressV_Clamp_1, input_1.xy).z.xxx, 1.0f).xyz, pow(g_tMasks.Sample(AddressU_Clamp_AddressV_Clamp, input_1.xy).xyz, 2.2000000476837158203125f.xxx), (0.3300000131130218505859375f * (1.0f - _22452.w)).xxx);
 	    float4 _17842;
 	    _17842.x = _10929.x;
 	    _17842.y = _10929.y;
@@ -238,13 +240,13 @@ PS
 	    _8673.x = _12546.x;
 	    _8673.y = _12546.y;
 	    _8673.z = _12546.z;
-	    float4 _15488 = float4(_8673.xyz * min(1.0f.xxx, g_tColor.Sample(AddressU_Clamp_AddressV_Clamp_4, input_0.xy).xyz * 10.0f).xyz, g_tMetalness.Sample(AddressU_Clamp_AddressV_Clamp_3, input_0.xy).w);
+	    float4 _15488 = float4(_8673.xyz * min(1.0f.xxx, g_tColor.Sample(AddressU_Clamp_AddressV_Clamp_4, input_1.xy).xyz * 10.0f).xyz, g_tMetalness.Sample(AddressU_Clamp_AddressV_Clamp_3, input_1.xy).w);
 	    output_0 = lerp(_15488, _15488, 9.9999997473787516355514526367188e-06f.xxxx);
 	}
 	
 	PS_OUTPUT MainPs(PS_INPUT stage_input)
 	{
-	    input_0 = stage_input.input_0;
+	    input_1 = stage_input.input_1;
 	    MainPs_inner();
 	    PS_OUTPUT stage_output;
 	    stage_output.output_0 = output_0;

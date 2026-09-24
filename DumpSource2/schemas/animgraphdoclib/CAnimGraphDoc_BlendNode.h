@@ -43,7 +43,7 @@ class CAnimGraphDoc_BlendNode : public CAnimGraphDoc_Node
 	// MPropertyAutoExpandSelf
 	CUtlVector< CBlendNodeChild > m_children;
 	// MPropertyFriendlyName = "Blend Source"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_blendValueSource;
 	// MPropertySuppressField
 	CUtlString m_paramName;

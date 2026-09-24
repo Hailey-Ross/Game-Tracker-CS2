@@ -38,7 +38,7 @@ class CAnimGraphDoc_CycleControlNode : public CAnimGraphDoc_Node
 	CAnimGraphDoc_NodeConnection m_inputConnection;
 	// MPropertyFriendlyName = "Blend Source"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimValueSource m_valueSource;
 	// MPropertySuppressField
 	CUtlString m_paramName;

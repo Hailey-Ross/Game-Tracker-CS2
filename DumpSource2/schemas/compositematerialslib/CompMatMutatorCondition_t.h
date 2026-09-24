@@ -5,20 +5,20 @@
 //	"m_strMutatorConditionContainerVarValue": "",
 //	"m_bPassWhenTrue": true
 //}
-// MPropertyElementNameFn (UNKNOWN FOR PARSER)
+// MPropertyElementNameFn
 class CompMatMutatorCondition_t
 {
 	// MPropertyAutoRebuildOnChange
 	// MPropertyFriendlyName = "Condition"
 	CompMatPropertyMutatorConditionType_t m_nMutatorCondition;
 	// MPropertyFriendlyName = "Container Name"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strMutatorConditionContainerName;
 	// MPropertyFriendlyName = "Variable Name"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strMutatorConditionContainerVarName;
 	// MPropertyFriendlyName = "Variable Value"
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	CUtlString m_strMutatorConditionContainerVarValue;
 	// MPropertyFriendlyName = "Pass when True"
 	bool m_bPassWhenTrue;

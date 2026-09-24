@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_50
 	// Programs: cs
 }
@@ -33,7 +32,6 @@ CS
 	DynamicCombo( D_MODE, 0..2 );
 	DynamicCombo( D_FORCE_MR, 0..1 );
 	
-	cbuffer PerViewConstantBuffer_t < Attribute("PerViewConstantBuffer_t"); >;
 	float g_flDepthThreshold < Attribute("DepthThreshold"); UiType(Slider); >;
 	float g_flJoinedSigma < Attribute("JoinedSigma"); UiType(Slider); >;
 	RWTexture2D<float4> g_tColorFull < Attribute("ColorFull"); >;
@@ -66,13 +64,27 @@ CS
 	float4 g_vOutputDim < Attribute("OutputDim"); UiType(VectorText); >;
 	
 	
+	// Variant parameters
+	RWTexture2D<float4> g_tExtraFull < Attribute("ExtraFull"); >;
+	Texture2D g_tExtraFull < Attribute("ExtraFull"); SrgbRead(false); >;
+	RWTexture2D<float4> g_tExtraHalf < Attribute("ExtraHalf"); >;
+	Texture2D g_tExtraHalf < Attribute("ExtraHalf"); SrgbRead(false); >;
+	RWTexture2D<float4> g_tExtraQuarter < Attribute("ExtraQuarter"); >;
+	Texture2D g_tExtraQuarter < Attribute("ExtraQuarter"); SrgbRead(false); >;
+	RWTexture2D<float4> g_tZerothFull < Attribute("ZerothFull"); >;
+	Texture2D g_tZerothFull < Attribute("ZerothFull"); SrgbRead(false); >;
+	RWTexture2D<float4> g_tZerothHalf < Attribute("ZerothHalf"); >;
+	Texture2D g_tZerothHalf < Attribute("ZerothHalf"); SrgbRead(false); >;
+	RWTexture2D<float4> g_tZerothQuarter < Attribute("ZerothQuarter"); >;
+	Texture2D g_tZerothQuarter < Attribute("ZerothQuarter"); SrgbRead(false); >;
+	
 	// SPIR-V reflection failed for backend HLSL:
 	// cbuffer ID 5618 (name: _Globals_), member index 0 (name: g_vOutputDim) cannot be expressed with either HLSL packing layout or packoffset.
 	//
 	// Re-attempting reflection with the GLSL backend.
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (16008 bytes), GLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, GLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	#version 460
 	#extension GL_EXT_samplerless_texture_functions : require
@@ -395,10 +407,10 @@ CS
 	                break;
 	            } while(false);
 	            vec4 _15540 = imageLoad(_3327, _11480);
-	            vec4 _3401 = imageLoad(_5667, _11480);
+	            vec4 _3300 = imageLoad(_5667, _11480);
 	            imageStore(_4494, ivec2(_3849), vec4(imageLoad(_4494, _11480).x + ((((_5504[_4275] * _23104.x) + (_5504[_13651] * _23104.y)) + (_5504[_13652] * _23104.z)) + (_5504[_13653] * _23104.w))));
 	            imageStore(_3327, ivec2(_3849), vec4(_15540.xy + ((((_3430[_4275] * _23104.x) + (_3430[_13651] * _23104.y)) + (_3430[_13652] * _23104.z)) + (_3430[_13653] * _23104.w)), 0.0, 0.0));
-	            imageStore(_5667, ivec2(_3849), _3401 + ((((_4077[_4275] * _23104.x) + (_4077[_13651] * _23104.y)) + (_4077[_13652] * _23104.z)) + (_4077[_13653] * _23104.w)));
+	            imageStore(_5667, ivec2(_3849), _3300 + ((((_4077[_4275] * _23104.x) + (_4077[_13651] * _23104.y)) + (_4077[_13652] * _23104.z)) + (_4077[_13653] * _23104.w)));
 	        }
 	        break;
 	    } while(false);

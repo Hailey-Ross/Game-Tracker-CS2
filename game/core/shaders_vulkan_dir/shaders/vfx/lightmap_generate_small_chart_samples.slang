@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: cs
 }
@@ -47,7 +46,7 @@ CS
 	int g_nVertexStride < Attribute("g_nVertexStride"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (18644 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1531
 	{
@@ -59,12 +58,6 @@ CS
 	    float2 _m5;
 	    int _m6;
 	    uint _m7;
-	};
-	
-	struct _990
-	{
-	    uint _m0;
-	    uint _m1;
 	};
 	
 	struct _1532
@@ -79,7 +72,7 @@ CS
 	    uint _m7;
 	};
 	
-	struct _991
+	struct _990
 	{
 	    uint _m0;
 	    uint _m1;
@@ -303,7 +296,7 @@ CS
 	                float _7589 = (float((g_Vertices_1.Load(_19813 * 4 + 0) >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
 	                float _23404 = (1.0f - abs(_22483)) - abs(_7589);
 	                float3 _8254 = float3(_22483, _7589, _23404);
-	                float _24228 = clamp(-_23404, 0.0f, 1.0f);
+	                float _24228 = saturate(-_23404);
 	                float2 _7335 = float2(_22483, _7589);
 	                bool2 _10803 = bool2(_7335.x >= 0.0f.xx.x, _7335.y >= 0.0f.xx.y);
 	                float2 _14501 = (-_24228).xx;
@@ -327,7 +320,7 @@ CS
 	                float _7590 = (float((g_Vertices_1.Load(_19815 * 4 + 0) >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
 	                float _23405 = (1.0f - abs(_22484)) - abs(_7590);
 	                float3 _8255 = float3(_22484, _7590, _23405);
-	                float _24229 = clamp(-_23405, 0.0f, 1.0f);
+	                float _24229 = saturate(-_23405);
 	                float2 _7336 = float2(_22484, _7590);
 	                bool2 _10804 = bool2(_7336.x >= 0.0f.xx.x, _7336.y >= 0.0f.xx.y);
 	                float2 _14502 = (-_24229).xx;
@@ -351,7 +344,7 @@ CS
 	                float _7593 = (float((g_Vertices_1.Load(_19817 * 4 + 0) >> 22u) & 1023u) * 0.00195503421127796173095703125f) - 1.0f;
 	                float _23406 = (1.0f - abs(_22485)) - abs(_7593);
 	                float3 _8256 = float3(_22485, _7593, _23406);
-	                float _24230 = clamp(-_23406, 0.0f, 1.0f);
+	                float _24230 = saturate(-_23406);
 	                float2 _7337 = float2(_22485, _7593);
 	                bool2 _10805 = bool2(_7337.x >= 0.0f.xx.x, _7337.y >= 0.0f.xx.y);
 	                float2 _14503 = (-_24230).xx;
@@ -604,8 +597,8 @@ CS
 	            _17017 = _13142;
 	            continue;
 	        }
-	        uint4 _3401 = g_LuxelChartIDs.Load(int3(gl_GlobalInvocationID.xy, 0));
-	        uint _17171 = _3401.x;
+	        uint4 _3300 = g_LuxelChartIDs.Load(int3(gl_GlobalInvocationID.xy, 0));
+	        uint _17171 = _3300.x;
 	        bool _12885;
 	        if (_17119.w != 0.0f)
 	        {
@@ -629,12 +622,7 @@ CS
 	            _13639.x = _24205;
 	            _13639.y = _21816;
 	            _13639.z = _21832;
-	            _991 _10574;
-	            _10574._m0 = g_ChartInfo.Load(_17171 * 8 + 0);
-	            _10574._m1 = g_ChartInfo.Load(_17171 * 8 + 4);
-	            _990 _19867;
-	            _19867._m0 = _10574._m0;
-	            _19867._m1 = _10574._m1;
+	            uint _9062 = g_ChartInfo.Load(_17171 * 8 + 4);
 	            undetermined.Store4(_5963 * 96 + 0, asuint(_17119));
 	            undetermined.Store4(_5963 * 96 + 16, asuint(_13639));
 	            undetermined.Store4(_5963 * 96 + 32, asuint(_16887));
@@ -642,7 +630,7 @@ CS
 	            undetermined.Store4(_5963 * 96 + 64, asuint(float4(normalize(_17116.xyz), float(int(sign(_17116.w))))));
 	            undetermined.Store2(_5963 * 96 + 80, asuint(_17114));
 	            undetermined.Store(_5963 * 96 + 88, uint(_17115));
-	            undetermined.Store(_5963 * 96 + 92, _19867._m1);
+	            undetermined.Store(_5963 * 96 + 92, _9062);
 	        }
 	        break;
 	    } while(false);

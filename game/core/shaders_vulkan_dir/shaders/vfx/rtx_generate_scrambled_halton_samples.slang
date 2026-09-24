@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: cs
 }
@@ -29,12 +28,11 @@ COMMON
 CS
 {
 	
-	cbuffer PushConstants_t < Source(ExternalDescSet); Attribute("PushConstants_t"); >;
 	RWTexture3D<float4> g_RandomSamples < Attribute("g_RandomSamples"); >;
 	StructuredBuffer g_ScrambledHaltonPermutations < Attribute("g_ScrambledHaltonPermutations"); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (590876 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	static float _2;
 	

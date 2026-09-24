@@ -82,19 +82,19 @@ class CAnimGraphDoc_SelectorNode : public CAnimGraphDoc_Node
 	// MPropertyFriendlyName = "Bool Parameter"
 	// MPropertyAttributeChoiceName = "BoolParameter"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_boolParamID;
 	// MPropertySuppressField
 	CUtlString m_enumParamName;
 	// MPropertyFriendlyName = "Enum Parameter"
 	// MPropertyAttributeChoiceName = "EnumParameter"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimParamID m_enumParamID;
 	// MPropertyFriendlyName = "Tag Parameter"
 	// MPropertyAttributeChoiceName = "Tag"
 	// MPropertyAutoRebuildOnChange
-	// MPropertyAttrStateCallback (UNKNOWN FOR PARSER)
+	// MPropertyAttrStateCallback
 	AnimTagID m_tagID;
 	// MPropertyFriendlyName = "Blend Duration"
 	CFloatAnimValue m_blendDuration;

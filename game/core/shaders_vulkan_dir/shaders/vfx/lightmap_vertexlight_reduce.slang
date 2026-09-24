@@ -7,7 +7,6 @@ HEADER
 	DevShader = true;
 	Version = 0;
 	
-	// VcsVersion: 71
 	// Platform: VULKAN_SM_60
 	// Programs: cs
 }
@@ -37,14 +36,9 @@ CS
 	int g_nVertexCount < Attribute("g_nVertexCount"); UiType(Slider); >;
 	
 	// Source 2 Viewer - https://valveresourceformat.github.io
-	// SPIR-V source (4192 bytes), HLSL reflection with SPIRV-Cross by KhronosGroup
+	// SPIR-V source, HLSL reflection with SPIRV-Cross by KhronosGroup
 	
 	struct _1017
-	{
-	    float4 _m0;
-	};
-	
-	struct _1018
 	{
 	    float4 _m0;
 	};
@@ -100,11 +94,7 @@ CS
 	                    break;
 	                }
 	                uint2 _6349 = (_9668.xy * uint2(4u, 4u)) + uint2(_16209, _16208);
-	                _1018 _17001;
-	                _17001._m0 = asfloat(g_VertexLightSamples.Load4(((_6349.y * _16799) + _6349.x) * 16 + 0));
-	                _1017 _20190;
-	                _20190._m0 = _17001._m0;
-	                _3273 = _13156 + _20190._m0.xyz;
+	                _3273 = _13156 + asfloat(g_VertexLightSamples.Load4(((_6349.y * _16799) + _6349.x) * 16 + 0)).xyz;
 	                _9913 = _16209 + 1u;
 	                _13156 = _3273;
 	                _16209 = _9913;
@@ -142,13 +132,9 @@ CS
 	                        break;
 	                    }
 	                    uint2 _5745 = (_9668.xy * uint2(4u, 4u)) + uint2(_16211, _16210);
-	                    _1018 _17002;
-	                    _17002._m0 = asfloat(g_VertexLightSamples.Load4(((_5745.y * _16799) + _5745.x) * 16 + 0));
-	                    _1017 _20191;
-	                    _20191._m0 = _17002._m0;
-	                    float3 _23379 = max(0.0f.xxx, _20191._m0.xyz);
+	                    float3 _20166 = max(0.0f.xxx, asfloat(g_VertexLightSamples.Load4(((_5745.y * _16799) + _5745.x) * 16 + 0)).xyz);
 	                    float3 _9380 = _13088 * 8.0f;
-	                    if (any(bool3(_23379.x > _9380.x, _23379.y > _9380.y, _23379.z > _9380.z)))
+	                    if (any(bool3(_20166.x > _9380.x, _20166.y > _9380.y, _20166.z > _9380.z)))
 	                    {
 	                        _14382 = _13158;
 	                        break;
@@ -157,7 +143,7 @@ CS
 	                    float _17497 = sqrt(_21157.x);
 	                    float _15049 = _21157.y;
 	                    float3 _10701 = float3(1.0f - _17497, _17497 * (1.0f - _15049), _17497 * _15049);
-	                    _14382 = _13158 + (float4(_23379, 1.0f) * _10701[_23446]);
+	                    _14382 = _13158 + (float4(_20166, 1.0f) * _10701[_23446]);
 	                    break;
 	                } while(false);
 	                if (_7956_ladder_break)
