@@ -5292,7 +5292,7 @@ mp_hostages_takedamage false (gamedll clientdll replicated release)
 mp_humanteam "any" (gamedll replicated release workshop_whitelisted)
 	Restricts human players to a single team {any, CT, T}
 
-mp_ignore_round_win_conditions false (gamedll replicated release workshop_whitelisted)
+mp_ignore_round_win_conditions false (gamedll replicated release commandline_enforced workshop_whitelisted)
 	Ignore conditions which would end the current round
 
 mp_items_prohibited "" (gamedll clientdll replicated release commandline_enforced workshop_whitelisted)
@@ -5481,7 +5481,7 @@ mp_solid_enemies 1 (gamedll clientdll replicated release commandline_enforced wo
 mp_solid_teammates 1 (gamedll clientdll replicated release commandline_enforced workshop_whitelisted)
 	How solid are teammates: 0 = transparent; 1 = fully solid; 2 = can stand on top of heads
 
-mp_spawnprotectiontime 5 (gamedll replicated release workshop_whitelisted)
+mp_spawnprotectiontime 5 (gamedll release commandline_enforced workshop_whitelisted)
 	Kick players who team-kill within this many seconds of a round restart.
 
 mp_spectators_max 2 (min: 0, gamedll clientdll replicated release workshop_whitelisted)
@@ -5514,13 +5514,13 @@ mp_tagging_scale 1 (gamedll clientdll replicated release commandline_enforced wo
 mp_taser_recharge_time 30 (gamedll clientdll replicated release commandline_enforced workshop_whitelisted)
 	Determines recharge time for taser. -1 = disabled.
 
-mp_td_dmgtokick 300 (gamedll replicated release)
+mp_td_dmgtokick 300 (gamedll release commandline_enforced)
 	The damage threshhold players have to exceed in a match to get kicked.
 
-mp_td_dmgtowarn 200 (gamedll replicated release)
+mp_td_dmgtowarn 200 (gamedll release commandline_enforced)
 	The damage threshhold players have to exceed in a match to get warned that they are about to be kicked.
 
-mp_td_spawndmgthreshold 50 (gamedll replicated release)
+mp_td_spawndmgthreshold 50 (gamedll release commandline_enforced)
 	The damage threshold players have to exceed at the start of the round to be warned/kick.
 
 mp_team_intro_time 6.5 (min: 0, gamedll notify replicated release commandline_enforced workshop_whitelisted)

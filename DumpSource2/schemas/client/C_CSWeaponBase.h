@@ -30,6 +30,7 @@ class C_CSWeaponBase : public C_BasePlayerWeapon
 	bool m_bStealthy;
 	bool m_bInSilentReloadSection;
 	GameTime_t m_flStealthHoldStartTime;
+	bool m_bReloadHeldSinceStart;
 	float32 m_flWeaponActionPlaybackRate;
 	int32 m_iOriginalTeamNumber;
 	int32 m_iMostRecentTeamNumber;

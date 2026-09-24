@@ -142,8 +142,7 @@ var MainMenuStore;
                 elStickerLink = $.CreatePanel('Panel', elParent, 'id-store-home-section-major-store-btn');
                 elStickerLink.BLoadLayoutSnippet('TournamentStickers');
                 elStickerLink.SetPanelEvent('onactivate', () => {
-                    UiToolkitAPI.ShowCustomLayoutPopup('id-popup-major-store', 'file://{resources}/layout/popups/popup_major_store.xml');
-                    $.DispatchEvent("CSGOPlaySoundEffect", "UIPanorama.tab_mainmenu_shop", "MOUSE");
+                    OpenMajorHub();
                 });
             }
             const defidxStickerItem = InventoryAPI.GetItemDefinitionIndexFromDefinitionName('sticker');
@@ -171,6 +170,14 @@ var MainMenuStore;
             }
             UpdateItem(elTile, sSectionName, i);
         }
+    }
+    function OpenMajorHub() {
+        UiToolkitAPI.ShowCustomLayoutPopupParameters('id-popup-major-hub', 'file://{resources}/layout/popups/popup_major_hub.xml', 'eventid=' + (g_ActiveTournamentInfo.eventid));
+        $.DispatchEvent("CSGOPlaySoundEffect", "UIPanorama.tab_mainmenu_shop", "MOUSE");
+    }
+    function OpenMajorStore() {
+        UiToolkitAPI.ShowCustomLayoutPopup('id-popup-major-store', 'file://{resources}/layout/popups/popup_major_store.xml');
+        $.DispatchEvent("CSGOPlaySoundEffect", "UIPanorama.tab_mainmenu_shop", "MOUSE");
     }
     function MakeTabsBtnsFromStoreData() {
         let elParent = _m_cp.FindChildInLayoutFile('id-store-lister-tabs');

@@ -18,8 +18,6 @@
   version used : %u.%u\n
  !"#$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
  %dms faster than direct ping of %dms
- (08@HPXb 
- (0X`hpz 
  - keeping around as cacheable shared connection
  [+add recip %d]
  [COMPLEX]
@@ -178,6 +176,11 @@
 - total: in %.1f, out %.1f MB\n\n
 --- %s has duplicate fields\n
 -FLT_MAX
+.?AU?$NetFlow_t@UNetFrameIn_t@CNetChan@@@CNetChan@@
+.?AU?$NetFlow_t@UNetFrameOut_t@CNetChan@@@CNetChan@@
+.?AUNetFlowBase_t@CNetChan@@
+.?AUNetFlowIn_t@CNetChan@@
+.?AUNetFlowOut_t@CNetChan@@
 .?AV<lambda_1>@?N@??OnShowPermutations@CFlattenedSerializers@@AEAAXAEBVCCommandContext@@AEBVCCommand@@@Z@
 .?AV?$CBaseAppSystem@VINetworkSystem@@@@
 .?AV?$CConCommandMemberAccessor@VCFlattenedSerializers@@@@
@@ -255,13 +258,10 @@
 0 bit issue, spot 2
 0 bit issue, spot 3
 0 bit issue, spot 4
-08@J 
 7;eZ
-8Bp$
 ::Storage_t
-@08N(
-@HPX`hv`
-@HVp
+@08N8
+@HPX`hvp
 @ht0
 Accepting Steam Net connection %s\n
 AckSeqNum
@@ -638,9 +638,9 @@ Obtained direct RTT measurements to relays in %d POPs.  Closest %d are:\n
 Opened Steam Net Connection on socket '%s' to %s, connection %s\n
 Order,'From','To',Bits\n
 OutSeqNumAck
-P08@J 
 P08J
-P08N(
+P08N8
+P60# 
 PACKET_STATUS_DROPPED
 PACKET_STATUS_INVALID
 PACKET_STATUS_NORMAL
@@ -824,8 +824,9 @@ Writing %d bits for path %s of serializer %s entity %d, this will fail to parse\
 \t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t
 \vInSeqNum
 \vMsgTick
+`20t
 `ht0
-aBv(
+aBv8
 activated
 added
 aggegated
@@ -903,7 +904,6 @@ g_pSteamNetworkingUtils
 groupindex
 groupnames
 has_network_encoding_data
-hpz 
 huge
 identified %d entity related c++ field shadowing issues:\n
 include
@@ -960,8 +960,7 @@ out-of-order
 outgoing_data_bytespersecond
 outgoing_sequence
 outgoing_sequence_start
-p08@H^(
-p2p$
+p08@H^8
 p\rP\f0!h
 packet_status
 parallel

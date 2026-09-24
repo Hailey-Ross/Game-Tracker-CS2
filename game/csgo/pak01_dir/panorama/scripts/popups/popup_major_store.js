@@ -61,6 +61,11 @@ var PopupMajorStore;
         Bookmarks.toggle = toggle;
     })(Bookmarks || (Bookmarks = {}));
     const NAV_TAB_NONE = '';
+    const VIEW_HOME = 'id-major-store-banners';
+    const VIEW_CONTENT = 'id-major-store-content';
+    const VIEW_CHARMS = 'id-major-store-keychains';
+    const VIEW_TEAM = 'id-major-store-team-view';
+    const VIEW_SINGLE = 'id-major-store-single-view';
     const NO_SERIES_FILTER = '';
     const SORT_OPTIONS = {
         'price-high-low': { field: 'price', direction: 'desc' },
@@ -171,7 +176,7 @@ var PopupMajorStore;
         Home: (cp) => {
             _OnActivateClearAll(cp);
             _SetActiveSeriesFilter(cp, NO_SERIES_FILTER);
-            _ShowMainPanel(cp, 'id-major-store-banners');
+            _ShowMainPanel(cp, VIEW_HOME);
         },
         Major: (cp) => _ShowCategoryList(cp, 'id-major-store-filter-major', VIEW_SORTS.Event),
         Ranked: (cp) => _ShowCategoryList(cp, 'id-major-store-filter-ranked', VIEW_SORTS.Ranked),
@@ -181,13 +186,13 @@ var PopupMajorStore;
             _SetActiveSeriesFilter(cp, NO_SERIES_FILTER);
             _ApplyViewSort(cp, VIEW_SORTS.Favorites);
             State(cp).useBookMarkList = true;
-            _ShowContentList(cp);
+            _ShowMainPanel(cp, VIEW_CONTENT);
         },
         Charms: (cp) => {
             _OnActivateClearAll(cp);
             _SetActiveSeriesFilter(cp, NO_SERIES_FILTER);
             _ApplyViewSort(cp, VIEW_SORTS.AllItems);
-            _ShowMainPanel(cp, 'id-major-store-keychains');
+            _ShowMainPanel(cp, VIEW_CHARMS);
         },
     };
     const STORE_CAROUSELS = [
@@ -236,6 +241,36 @@ var PopupMajorStore;
                 elLabel.SetDialogVariableInt('count', nCount);
                 return $.Localize(nCount > 0 ? '#major_store_nav_tab_bookmarked_count' : '#major_store_nav_tab_bookmarked', elLabel);
             },
+        },
+    ];
+    const STORE_VIEWS = [
+        {
+            id: VIEW_HOME,
+            navTabKey: 'home',
+            onShow: (cp) => _RefreshHome(cp),
+            onRefresh: (cp) => _RefreshHome(cp),
+        },
+        {
+            id: VIEW_CONTENT,
+            rebuildIfActive: true,
+            onShow: (cp) => { if (!_UpdateFavoritesEmptyState(cp))
+                _MakeDelayedLoadList(cp); },
+            onRefresh: (cp, bDisableScroll) => _UpdateItemsList({ cp, bDisableScroll }),
+        },
+        {
+            id: VIEW_CHARMS,
+            navTabKey: 'charms',
+            onShow: (cp) => _SetUpKeyChainsPage(cp),
+            onRefresh: (cp) => _SetUpKeyChainsPage(cp),
+        },
+        {
+            id: VIEW_TEAM,
+            onRefresh: (cp) => _RefreshTeamView(cp),
+        },
+        {
+            id: VIEW_SINGLE,
+            onRefresh: (cp) => _RefreshSingleView(cp),
+            backTarget: VIEW_TEAM,
         },
     ];
     PopupMajorStore.UpdateAnimationTimer = 5;
@@ -349,12 +384,11 @@ var PopupMajorStore;
         _SetUpTitleBar(cp, eventId);
         _SetUpTeamsBanner(cp);
         _SetUpOrgBanners(cp);
-        _RefreshCarousels(cp);
         _VariousButtonActionsAndEvents(cp);
         _SetUpCarouselSeeAllButtons(cp);
         _SetUpStoreNavTabs(cp);
         _SetUpFilterPanel(cp);
-        _ShowMainPanel(cp, 'id-major-store-banners');
+        _ShowMainPanel(cp, VIEW_HOME);
         _UpdateBalance(cp);
         ShoppingCart.cart.subscribeToUpdates(cp, 'cart-counter', () => {
             const numItems = ShoppingCart.cart.getTotalItems();
@@ -400,28 +434,7 @@ var PopupMajorStore;
         }
     }
     function _UpdateVisiblePanel(cp, bDisableScroll = false) {
-        if (m_activeMain?.id === 'id-major-store-single-view') {
-            const elPanel = cp.FindChildInLayoutFile('id-major-store-single-view');
-            if (elPanel.Data().SingleViewDisplayedStickers) {
-                _SetUpSingleView(cp, elPanel.Data().SingleViewDisplayedStickers);
-            }
-        }
-        else if (m_activeMain?.id === 'id-major-store-team-view') {
-            const elPanel = cp.FindChildInLayoutFile('id-major-store-team-view');
-            if (elPanel.Data().DisplayedTeam) {
-                _SetUpTeamView(cp, elPanel.Data().DisplayedTeam);
-            }
-        }
-        else if (m_activeMain?.id === 'id-major-store-keychains') {
-            _SetUpKeyChainsPage(cp);
-        }
-        else if (m_activeMain?.id === 'id-major-store-banners') {
-            _RefreshCarousels(cp);
-            _UpdateStoreNavTabs(cp);
-        }
-        else if (m_activeMain?.id === 'id-major-store-content') {
-            _UpdateItemsList({ cp, bDisableScroll });
-        }
+        _ActiveView()?.onRefresh?.(cp, bDisableScroll);
     }
     function GetNewMarketPrice(itemId) {
         const item = State($.GetContextPanel()).aFlatStickersData.find(i => i.itemId === itemId);
@@ -653,10 +666,7 @@ var PopupMajorStore;
             }
             _UpdateItemsList({ cp });
         });
-        cp.FindChildInLayoutFile('id-popup-major-store-back-btn').SetPanelEvent('onactivate', () => {
-            _OnActivateClearAll(cp);
-            _ShowMainPanel(cp, 'id-major-store-banners');
-        });
+        cp.FindChildInLayoutFile('id-popup-major-store-back-btn').SetPanelEvent('onactivate', () => _GoBack(cp));
         cp.FindChildInLayoutFile('id-major-store-balance').SetPanelEvent('onmouseover', () => {
             cp.FindChildInLayoutFile('id-major-store-balance').SetDialogVariable('local-price', StoreAPI.GetStoreItemTokensBundlePrice('' + g_ActiveTournamentInfo.itemid_charge, 100, ''));
             const tooltip = $.Localize('#major_store_balance_tooltip', cp.FindChildInLayoutFile('id-major-store-balance'));
@@ -701,7 +711,7 @@ var PopupMajorStore;
             _OnActivateClearAll(cp);
             _SetActiveSeriesFilter(cp, NO_SERIES_FILTER);
             _ApplyViewSort(cp, VIEW_SORTS.AllItems);
-            _ShowContentList(cp);
+            _ShowMainPanel(cp, VIEW_CONTENT);
             _SetActiveNavTab(cp, NAV_TAB_NONE);
         });
         cp.FindChildInLayoutFile('id-major-store-filters-panel').SetPanelEvent('onactivate', () => {
@@ -783,7 +793,7 @@ var PopupMajorStore;
             elPanel.style.backgroundPosition = Math.floor(Math.random() * 100) + '% 50%';
             elPanel.SetPanelEvent('onactivate', () => {
                 _SetUpTeamView(cp, team);
-                _ShowMainPanel(cp, 'id-major-store-team-view');
+                _ShowMainPanel(cp, VIEW_TEAM);
                 $.DispatchEvent('CSGOPlaySoundEffect', 'UIPanorama.submenu_leveloptions_select', 'MOUSE');
             });
         });
@@ -887,12 +897,9 @@ var PopupMajorStore;
     }
     function _UpdateBookmarkSetting(cp, reusePanel, defidx) {
         Bookmarks.toggle(defidx);
-        if (m_activeMain?.id === 'id-major-store-banners') {
-            _RefreshCarousels(cp);
-        }
         _UpdateStoreNavTabs(cp);
-        if (State(cp).useBookMarkList) {
-            _UpdateItemsList({ cp, bDisableScroll: true });
+        if (_IsHomeActive() || State(cp).useBookMarkList) {
+            _UpdateVisiblePanel(cp, true);
         }
     }
     function _SetUpOrgBanners(cp) {
@@ -1009,7 +1016,7 @@ var PopupMajorStore;
         }
     }
     function _SetUpTeamView(cp, team) {
-        const elPanel = cp.FindChildInLayoutFile('id-major-store-team-view');
+        const elPanel = cp.FindChildInLayoutFile(VIEW_TEAM);
         elPanel.Data().DisplayedTeam = team;
         const teamName = $.Localize('#CSGO_TeamID_' + team.teamid);
         elPanel.SetDialogVariable('team-name', teamName);
@@ -1055,21 +1062,21 @@ var PopupMajorStore;
             elPackTile.SetDialogVariableInt('low-price', Math.min(...prices));
             elPackTile.SetDialogVariableInt('high-price', Math.max(...prices));
             elPackTile.SetPanelEvent('onactivate', () => {
-                _ShowMainPanel(cp, 'id-major-store-single-view');
+                _ShowMainPanel(cp, VIEW_SINGLE);
                 _SetUpSingleView(cp, stickers);
                 $.DispatchEvent('CSGOPlaySoundEffect', 'UIPanorama.submenu_leveloptions_select', 'MOUSE');
             });
         }
     }
     function _SetUpSingleView(cp, aStickers) {
-        const elPanel = cp.FindChildInLayoutFile('id-major-store-single-view');
+        const elPanel = cp.FindChildInLayoutFile(VIEW_SINGLE);
         elPanel.SetDialogVariable('team-name', aStickers[0].isPlayer ? aStickers[0].playerCode : $.Localize('#CSGO_TeamID_' + aStickers[0].teamId));
         const numTiles = aStickers.length;
         const elParent = elPanel.FindChildInLayoutFile('id-major-store-single-tiles');
         for (let i = 0; i < numTiles; i++) {
             let elPackTile = elParent.FindChildInLayoutFile('sticker-single-' + i);
             if (!elPackTile) {
-                elPackTile = $.CreatePanel('ItemImage', elParent, 'sticker-single-' + i);
+                elPackTile = $.CreatePanel('Panel', elParent, 'sticker-single-' + i);
                 elPackTile.BLoadLayoutSnippet('store-tile');
             }
             _UpdateTile(cp, elPackTile, aStickers, i);
@@ -1078,6 +1085,18 @@ var PopupMajorStore;
             sticker.DeleteAsync(0);
         } });
         elPanel.Data().SingleViewDisplayedStickers = aStickers;
+    }
+    function _RefreshTeamView(cp) {
+        const team = cp.FindChildInLayoutFile(VIEW_TEAM).Data().DisplayedTeam;
+        if (team) {
+            _SetUpTeamView(cp, team);
+        }
+    }
+    function _RefreshSingleView(cp) {
+        const aStickers = cp.FindChildInLayoutFile(VIEW_SINGLE).Data().SingleViewDisplayedStickers;
+        if (aStickers) {
+            _SetUpSingleView(cp, aStickers);
+        }
     }
     function _UpdateBalance(cp) {
         const idxLookup = InventoryAPI.GetCacheTypeElementIndexByKey('SeasonalOperations', g_ActiveTournamentInfo.credits_id);
@@ -1216,12 +1235,7 @@ var PopupMajorStore;
         elActiveFilterBtn.SetPanelEvent('onactivate', () => {
             selectedFilterBtn.checked = false;
             if (elActiveFilterBtn.id === 'id-filter-active-k-only') {
-                const elFilterPanel = cp.FindChildInLayoutFile('id-major-store-filters-panel');
-                elFilterPanel.FindChildrenWithClassTraverse('major-filter-panel__toggle').forEach(btn => {
-                    btn.enabled = true;
-                });
-                const elDropDown = _SortDropDown(cp);
-                _ApplyViewSort(cp, State(cp).activeSort);
+                _EnableDisableFilterPanelBtns(cp, false);
             }
             _UpdateItemsList({ cp });
             elActiveFilterBtn.DeleteAsync(0);
@@ -1242,7 +1256,7 @@ var PopupMajorStore;
         elSearchBox.text = '';
     }
     function _SetUpKeyChainsPage(cp) {
-        const elParent = cp.FindChildInLayoutFile('id-major-store-keychains');
+        const elParent = cp.FindChildInLayoutFile(VIEW_CHARMS);
         const numStages = g_ActiveTournamentHighlights.length;
         for (let i = numStages - 1; i >= 0; --i) {
             const stage = g_ActiveTournamentHighlights[i];
@@ -1474,7 +1488,7 @@ var PopupMajorStore;
     function _OpenFullscreenInspect(cp, itemData) {
         function _Callback() {
             Bookmarks.invalidate();
-            _UpdateVisiblePanel(cp);
+            _UpdateVisiblePanel(cp, true);
         }
         ;
         const callback = _TrackJSCallback(cp, UiToolkitAPI.RegisterJSCallback(_Callback));
@@ -1554,9 +1568,6 @@ var PopupMajorStore;
                 elTeam.Data().team = g_ActiveTournamentTeams[i].team;
                 elTeam.Data().teamid = g_ActiveTournamentTeams[i].teamid;
                 elTeam.SetAttributeString('filter-button', 'true');
-                elTeam.SetPanelEvent('onactivate', () => {
-                    _UpdateItemsList({ cp });
-                });
                 elTeam.FindChildInLayoutFile('id-filter-icon').SetImage('file://{images}/tournaments/teams/' + g_ActiveTournamentTeams[i].team + '.svg');
                 elTeam.FindChildInLayoutFile('id-filter-icon-blur').SetImage('file://{images}/tournaments/teams/' + g_ActiveTournamentTeams[i].team + '.svg');
             }
@@ -1569,26 +1580,11 @@ var PopupMajorStore;
                 rarityBtn.FindChildInLayoutFile('id-filter-icon').SetImage('file://{images}/icons/ui/sticker_rarity_' + r + '.svg');
                 rarityBtn.FindChildInLayoutFile('id-filter-icon-blur').SetImage('file://{images}/icons/ui/sticker_rarity_' + r + '.svg');
                 rarityBtn.Data().rarity = r;
-                rarityBtn.SetPanelEvent('onactivate', () => {
-                    _UpdateItemsList({ cp });
-                });
             }
         });
-        elFilterPanel.FindChildInLayoutFile('id-major-store-filter-team').SetPanelEvent('onactivate', () => {
-            _UpdateItemsList({ cp });
-        });
-        elFilterPanel.FindChildInLayoutFile('id-major-store-filter-player').SetPanelEvent('onactivate', () => {
-            _UpdateItemsList({ cp });
-        });
-        elFilterPanel.FindChildInLayoutFile('id-major-store-filter-ranked').SetPanelEvent('onactivate', () => {
-            _UpdateItemsList({ cp });
-        });
-        elFilterPanel.FindChildInLayoutFile('id-major-store-filter-champions').SetPanelEvent('onactivate', () => {
-            _UpdateItemsList({ cp });
-        });
-        elFilterPanel.FindChildInLayoutFile('id-major-store-filter-major').SetPanelEvent('onactivate', () => {
-            _UpdateItemsList({ cp });
-        });
+        const fnRefilter = () => _UpdateItemsList({ cp });
+        elFilterPanel.FindChildrenWithAttributeTraverse('filter-button').forEach(btn => btn.SetPanelEvent('onactivate', fnRefilter));
+        SERIES_FILTERS.forEach(series => elFilterPanel.FindChildInLayoutFile(series.toggleId).SetPanelEvent('onactivate', fnRefilter));
         const btnKeyChainsOnly = elFilterPanel.FindChildInLayoutFile('id-major-store-filter-keychains').FindChildInLayoutFile('id-slider-btn');
         btnKeyChainsOnly.SetDialogVariable('slide_toggle_text', $.Localize('#major_store_filter_info_keychains'));
         btnKeyChainsOnly.SetPanelEvent('onactivate', () => {
@@ -1618,7 +1614,6 @@ var PopupMajorStore;
         cp.FindChildrenWithClassTraverse('major-filter-panel__toggle').forEach(btn => {
             btn.enabled = !btnKeyChainsOnly;
         });
-        const elDropDown = _SortDropDown(cp);
         _ApplyViewSort(cp, State(cp).activeSort);
     }
     function _Debounce(cp, handleName, delay, fnAction) {
@@ -1754,7 +1749,7 @@ var PopupMajorStore;
             _EnableDisableFilterPanelBtns(cp, bIsKeychains);
             _SetActiveSeriesFilter(cp, NO_SERIES_FILTER);
             _ApplyViewSort(cp, VIEW_SORTS.Search);
-            _ShowContentList(cp);
+            _ShowMainPanel(cp, VIEW_CONTENT);
             _SetActiveNavTab(cp, NAV_TAB_NONE);
         });
     }
@@ -1781,7 +1776,7 @@ var PopupMajorStore;
         _OnActivateClearAll(cp);
         _SetActiveSeriesFilter(cp, filterToggleId);
         _ApplyViewSort(cp, sort);
-        _ShowContentList(cp);
+        _ShowMainPanel(cp, VIEW_CONTENT);
     }
     function _IsFavoritesEmpty(cp) {
         return State(cp).useBookMarkList && _GetBookmarkedItemsList(cp).length < 1;
@@ -1795,17 +1790,6 @@ var PopupMajorStore;
             elLister.visible = !bEmpty;
         return bEmpty;
     }
-    function _ShowContentList(cp) {
-        _CloseSortDropDown(cp);
-        _UpdateFavoritesEmptyState(cp);
-        if (m_activeMain?.id === 'id-major-store-content') {
-            _UpdateItemsList({ cp });
-            cp.FindChildInLayoutFile('id-major-store-content').TriggerClass('panel-reveal');
-        }
-        else {
-            _ShowMainPanel(cp, 'id-major-store-content');
-        }
-    }
     function _RefreshCarousels(cp) {
         STORE_CAROUSELS.forEach(carousel => {
             const elBanner = cp.FindChildInLayoutFile(carousel.bannerId);
@@ -1813,6 +1797,10 @@ var PopupMajorStore;
                 elBanner.SetHasClass('hidden', !carousel.hasItems(cp));
             carousel.refresh(cp);
         });
+    }
+    function _RefreshHome(cp) {
+        _RefreshCarousels(cp);
+        _UpdateStoreNavTabs(cp);
     }
     function _SetUpCarouselSeeAllButtons(cp) {
         STORE_CAROUSELS.forEach(carousel => {
@@ -1886,41 +1874,55 @@ var PopupMajorStore;
         if (!bMatched && key !== NAV_TAB_NONE) {
         }
     }
-    function _ShowMainPanel(cp, panelId) {
+    function _FindView(viewId) {
+        return STORE_VIEWS.find(view => view.id === viewId);
+    }
+    function _ActiveView() {
+        return (m_activeMain && m_activeMain.IsValid()) ? _FindView(m_activeMain.id) : undefined;
+    }
+    function _IsHomeActive() {
+        return _ActiveView()?.id === VIEW_HOME;
+    }
+    function _ShowMainPanel(cp, viewId) {
         _CloseSortDropDown(cp);
-        let nextPanel = cp.FindChildInLayoutFile(panelId);
-        if (!nextPanel || nextPanel === m_activeMain)
+        const view = _FindView(viewId);
+        const elNext = cp.FindChildInLayoutFile(viewId);
+        if (!view || !elNext) {
             return;
-        if (panelId === 'id-major-store-banners')
-            _SetActiveNavTab(cp, 'home');
+        }
+        if (elNext === m_activeMain) {
+            if (view.rebuildIfActive) {
+                view.onShow?.(cp);
+                elNext.TriggerClass('panel-reveal');
+            }
+            return;
+        }
+        if (view.navTabKey) {
+            _SetActiveNavTab(cp, view.navTabKey);
+        }
+        view.onShow?.(cp);
         if (m_activeMain && m_activeMain.IsValid()) {
-            if (m_activeMain.id === 'id-major-store-single-view' && panelId !== 'id-major-store-content') {
-                nextPanel = cp.FindChildInLayoutFile('id-major-store-team-view');
-                nextPanel.RemoveClass('hidden');
-                m_activeMain = nextPanel;
-            }
-            if (panelId == 'id-major-store-banners') {
-                _RefreshCarousels(cp);
-                _UpdateStoreNavTabs(cp);
-            }
-            if (panelId == 'id-major-store-content' && !_IsFavoritesEmpty(cp)) {
-                _MakeDelayedLoadList(cp);
-            }
-            if (panelId == 'id-major-store-keychains') {
-                _SetUpKeyChainsPage(cp);
-            }
             m_activeMain.AddClass('hidden');
         }
-        nextPanel.RemoveClass('hidden');
-        nextPanel.TriggerClass('panel-reveal');
-        m_activeMain = nextPanel;
-        cp.FindChildInLayoutFile('id-popup-major-store-close-btn').visible = m_activeMain.id == 'id-major-store-banners';
-        _UpdateBackButton(cp);
+        elNext.RemoveClass('hidden');
+        elNext.TriggerClass('panel-reveal');
+        m_activeMain = elNext;
+        _UpdateFooterButtons(cp);
         $.DispatchEvent('CSGOPlaySoundEffect', 'inventory_inspect_close', 'MOUSE');
     }
-    function _UpdateBackButton(cp) {
-        const btn = cp.FindChildInLayoutFile('id-popup-major-store-back-btn');
-        btn.visible = !('id-major-store-banners' === m_activeMain?.id);
+    function _GoBack(cp) {
+        const szBackTarget = _ActiveView()?.backTarget;
+        if (szBackTarget) {
+            _ShowMainPanel(cp, szBackTarget);
+        }
+        else {
+            StoreNavActions.Home(cp);
+        }
+    }
+    function _UpdateFooterButtons(cp) {
+        const bHome = _IsHomeActive();
+        cp.FindChildInLayoutFile('id-popup-major-store-close-btn').visible = bHome;
+        cp.FindChildInLayoutFile('id-popup-major-store-back-btn').visible = !bHome;
     }
     function _PushOverlay(cp, panelId) {
         const overlay = $.GetContextPanel().FindChildTraverse(panelId);
@@ -1946,8 +1948,8 @@ var PopupMajorStore;
             $.GetContextPanel().FindChildTraverse(topOverlay.id).AddClass('hidden');
             return true;
         }
-        if (m_activeMain?.IsValid() && m_activeMain && m_activeMain.id !== 'id-major-store-banners') {
-            StoreNavActions.Home($.GetContextPanel());
+        if (_ActiveView() && !_IsHomeActive()) {
+            _GoBack($.GetContextPanel());
             return true;
         }
         ClosePopup();

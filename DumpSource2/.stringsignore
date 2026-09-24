@@ -23751,6 +23751,7 @@ m_bRefractSolid
 m_bRelativePosition
 m_bRelativePositioning
 m_bReleaseRagdoll
+m_bReloadHeldSinceStart
 m_bReloading
 m_bReloadsSingleShells
 m_bRemovableForAmmoBalancing

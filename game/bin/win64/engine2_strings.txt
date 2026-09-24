@@ -109,6 +109,7 @@
   Misdelivered lifetime : %u (%.2f%%)
   Misdelivery rate. . . : P50:%.1f%%
   Missed. . . . . . . . : %u (%.1f%%)
+  Msgs per frame. . . . : P50:%u
   Msgs queued on entry. : P50:%u
   Not hidden by buffering.
   Not hidden by interpolation.
@@ -121,6 +122,7 @@
   Size. . . . . . . . . : Avg:%u
   Specify nocodecprompt to use the default raw output.
   Ss=%d, Se=%d, Ah=%d, Al=%d
+  Uncompressed size . . : P50:%u
   addons : %s\n
   cl_ticktiming <N>   [summary|detail]   Print stats periodically, every N ticks.\n
   cl_ticktiming print [summary|detail]   Print stats now.  Default detail level is 'detail'\n
@@ -159,9 +161,11 @@
  %i refs\n
  (08@HPX`hpx
  (08@HPX`j
- (08@HPXb@
+ (08@HPXb0
  (08@HPZ
- (0X`hpz@
+ (08@HR0
+ (08@J0
+ (0X`hpz0
  (Start: 
  (default = .tga + .wav file)\n
  (fallback, started with 
@@ -2657,7 +2661,7 @@ $tI(knN
 0123456789abcdefghijklmnopqrstuvwxyz
 08@HP
 08@HR
-08@J@
+08@J0
 08\fj
 0: run all send jobs on main thread; 1: send jobs run asynchronously (except on dedicated server); 2: send jobs asynchronously; 3: send jobs run in parallel but block to not overlap the next tick; 4: main server clients' send jobs run in parallel, then HLTV server jobs; this approximately matches pre-async profile for a single HLTV server configuration
 0:<\n\fdelta_ignore
@@ -2670,6 +2674,7 @@ $tI(knN
 0X8b?~
 0\n\vserializers
 0\ng_VProfCurrentProfile
+0d*C
 0iN>/
 0x%x,
 0|t?L
@@ -2723,6 +2728,7 @@ $tI(knN
 2\r%2t
 2\r.PrefetchType"h\n
 2\rU2t
+2\vp0
 2i0/
 3$EE\f
 3'F^7
@@ -2766,6 +2772,7 @@ $tI(knN
 6GQ^h~
 6KT3c7
 6NK>
+6V\fH
 6\fXO>\ntA
 6\n\fmessage_type
 6\r56t
@@ -3251,11 +3258,11 @@ $tI(knN
 @GetProfile_ultrafast
 @HPX
 @HPX&I
-@HPX`hvP
-@HV0
+@HPX`hv@
 @\nvtune
 @\tV_atofloat32
 @^8U)zj
+@ht C
 @i-kuX
 A command with the specified name already exists. Cannot create an alias with the same name.\n
 A dB floor of when to stop transmitting packets, the volume between this and voice_threshold will still transmit packets to allow for volume ramping.
@@ -3266,6 +3273,7 @@ A!;I2
 A2r>
 A7/s
 A>pP&
+AA:0
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
 ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_
@@ -3444,7 +3452,6 @@ Av8I5
 Avestan
 AwaitAsyncJobs
 A{v8
-B0t%
 B2Bk
 B5@S
 B86!
@@ -3462,7 +3469,6 @@ BGRA8888_LINEAR
 BGRX8888
 BGRX8888_LINEAR
 BKbhTb~XBK!;
-BPdY
 BROADCAST
 BSR_ANYCRLF)
 BSR_UNICODE)
@@ -5764,8 +5770,6 @@ G|u0J\n
 H$6t
 H*0"ZOW
 H.FM
-H1E`
-H1G`
 HD?0
 HGR9\f
 HH:mm:ss
@@ -5780,8 +5784,8 @@ HLTV send full frame %d: %d bytes\n
 HLTV:  SetSignonState( %s )\n
 HLTV:maxplayers set to %i\n
 HLTVServerAsync
+HQW`
 HSR_GAME_REMOTE_CHANGELEVEL_RECONNECT
-HaD`
 HammerMapLoader001
 Handle Return Values
 Hangul
@@ -5790,6 +5794,7 @@ HardCancel
 HasField
 HasLegacyGameUI
 HasModAppSystems
+HeX`
 Hebrew
 Hello world!
 HelpSystem_001
@@ -6718,8 +6723,8 @@ OverrideQuantizedFloatEncoderAlias
 Overrides the SourceTV master root address.
 Overrides the max players reported to prospective clients
 Overriding minidump handler with Engine2MinidumpFunction\n
-P08@J@
-P08JP
+P08@J0
+P08J@
 P08N
 P4File
 P:S;A
@@ -6838,6 +6843,7 @@ Paused: %s
 Pauses demo playback.
 Pauses instant replay.
 Pauses when the 'render time' reaches the specified tick.
+Pd*C
 Pe6^
 Peak commit charge: %.2f MiB\n
 Peak resident memory:    %s\n
@@ -7183,8 +7189,9 @@ RP_PAUSE
 RP_TOGGLEPAUSE
 RSDS
 RST%d
+R\fp0
 R\tV_fdopen
-R\vpt
+R\vpd*C
 RaiseException
 Random Float
 Random Integer
@@ -8856,9 +8863,7 @@ You are trying to unmount addon '%s', but SetAllowAddonChanges is false which pr
 You have been kicked and banned %s by the server.\n
 Your current chat group is "%s"\n
 YpU_Z
-YvF`
 Z-google.golang.org/protobuf/types/descriptorpb
-Z0t%
 Z48wN39
 Z6y\r?
 Z?SHX?
@@ -8969,6 +8974,7 @@ Zq",9\fB
 \n--- EVENT PROFILE ---------------------------------------------------\n
 \n----------Benchmark run on %s------\n
 \n-CSource2Metrics_MatchPerfSummary_Notification
+\n4oC
 \n6fM
 \nBegin mem_test\n
 \nClientServerEngineLoop\n{\n
@@ -8976,11 +8982,11 @@ Zq",9\fB
 \nConsole History (reversed)\n\n
 \nCrash\n
 \nDLL load denials: %u, last '%s'\n
-\nDdC
 \nEnd mem_test\n
 \nGame: "%s"\nMap: "%s"\nPlayers: %i (%i bots) / %i humans\nBuild: %u (revision %s)\nServer Number: %i\n\n
 \nIHDRPLTEIDATIENDtRNScHRMgAMAiCCPsBITsRGBtEXtzTXtiTXtbKGDhISTpHYssPLTtIMEoFFseXIf
 \nParsing attempt:  
+\nPd*C
 \nProcess Memory:\nWorking set: %.2f MiB\nPeak working set: %.2f MiB\n
 \nRegistered comments:\n
 \nScene information:\n
@@ -9365,6 +9371,7 @@ Zq",9\fB
 \vm\vm\vm\vH\vm\vm\v
 \vm\vm\vm\vm\vH\v
 \vnJH
+\vpd*C
 \vxYT
 ] is an invalid data character in JavaScript compatibility mode
 ]\n,NETWORK_DISCONNECT_REJECT_INVALIDRESERVATION
@@ -9448,6 +9455,7 @@ _temp_mapcycle.txt
 `generic-method-parameter-
 `generic-type-
 `hp\nU
+`ht C
 `hyz
 `local static destructor helper'
 `local static guard'
@@ -10460,13 +10468,12 @@ hostname
 hostname : %s\n
 hostname_in_client_status
 hostport
-hpz@
+hpz0
 hscript
 hscript_lightbinding
 http Send %.3f ms ave, %.3f ms max\n
 http://localhost:8080
 hu_HU
-huc^
 hungarian
 i3V.
 i91k
@@ -11011,10 +11018,18 @@ netchan timeout: %.2fs since recv
 netframe_jitter_p50
 netframe_jitter_p99
 netframes_dropped
+netframes_msgs_max
+netframes_msgs_p50
+netframes_msgs_p95
+netframes_msgs_p99
 netframes_outoforder
 netframes_size_exceeds_mtu
 netframes_size_p95
 netframes_size_p99
+netframes_size_uncompressed_max
+netframes_size_uncompressed_p50
+netframes_size_uncompressed_p95
+netframes_size_uncompressed_p99
 netframes_total
 netmessages.proto
 netspike.txt
@@ -11239,6 +11254,7 @@ path
 pause
 paused
 pc64
+pd*C
 peer
 pending
 pending_full_frame
@@ -11368,8 +11384,9 @@ r?dar?\n
 rA?7
 rEy5
 rFg7
-r\fpt
+r\fpd*C
 r\tVr.>T
+r\vp0
 r_always_render_all_windows
 r_aspectratio
 r_camerapos
@@ -12413,8 +12430,6 @@ yM+7
 yields
 yiq-
 yslf`ZTMGA;5.
-z0t%
-z> zY
 z?Mbz?H5z?
 z\n8NETWORK_DISCONNECT_LOCALPROBLEM_HOSTEDSERVERPRIMARYRELAY
 z\nB\fz

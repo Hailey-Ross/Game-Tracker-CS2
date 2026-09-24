@@ -33,6 +33,7 @@ class CCSWeaponBase : public CBasePlayerWeapon
 	bool m_bInSilentReloadSection;
 	bool m_bSilentReloadStatCounted;
 	GameTime_t m_flStealthHoldStartTime;
+	bool m_bReloadHeldSinceStart;
 	float32 m_flWeaponActionPlaybackRate;
 	int32 m_iOriginalTeamNumber;
 	int32 m_iMostRecentTeamNumber;

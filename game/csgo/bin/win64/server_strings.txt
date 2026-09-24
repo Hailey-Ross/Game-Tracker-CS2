@@ -103,9 +103,9 @@
  %s%lu (%s0x%lx)\n
  ' ) - 3 G M Q _ c e i w } 
  (%ld unused bits)\n
- (08@HPXb
- (08@HR
- (0X`hpz
+ (08@HPXb o
+ (08@HR o
+ (0X`hpz o
  (Dirty Animation)
  (Disabled on Server)
  (INVALID PSS PARAMETERS)\n
@@ -595,7 +595,6 @@
 #GAMEUI_Stat_MAC10Shots
 #GAMEUI_Stat_MAG7Hits
 #GAMEUI_Stat_MAG7Kills
-#GAMEUI_Stat_MAG7Shots
 #GAMEUI_Stat_MP5NavyHits
 #GAMEUI_Stat_MP5NavyKills
 #GAMEUI_Stat_MP5NavyShots
@@ -4903,6 +4902,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRagdollEnabled@CBaseAnimGraph@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRedraw@CBaseCSGrenade@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRedraw@CWeaponBaseItem@@@@
+.?AV?$CNetworkVarBase@_NVNetworkVar_m_bReloadHeldSinceStart@CCSWeaponBase@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRenderBackface@CPointClientUIWorldPanel@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRenderDiffuse@CLightComponent@@@@
 .?AV?$CNetworkVarBase@_NVNetworkVar_m_bRenderShadows@CFuncMonitor@@@@
@@ -8975,7 +8975,7 @@ $tH@T\tI
 /5dJ
 /CTc\t
 /CVc
-/Espawnpoint
+/E#GAMEUI_Stat_MAG7Shots
 /RIv
 /\*<>{}[]() 
 /\n*k_EGCMsgGetGamePersonalDataEntriesResponse
@@ -9002,18 +9002,18 @@ $tH@T\tI
 0123456789
 02V8[
 05=k
-08@J
+08@J o
 08bX
 09,h
 0;Q5[
-0<8k
-0<Yk
 0<cz
 0@NX^b!/@P\b
 0AOY_c"2CQ[c
-0D_k
+0LIk
+0Ljk
 0M2~@p
 0Mc\t\n
+0Tpk
 0W/5
 0Z@q
 0\n+k_EGCItemCustomizationNotification_NameItem
@@ -9122,9 +9122,8 @@ $tH@T\tI
 2\n.eRollType
 2\n\nline_items
 2\rlhp
-2\vp<Yk
-2\vpD_k
-2\vpl
+2\vpLjk
+2\vpTpk
 2^pV
 2a"l
 2bT~
@@ -9253,10 +9252,13 @@ $tH@T\tI
 6%vi
 6,2K
 6-zeZ
+60%q
+60)q
+60\tq
 62$|S)6f
 64CK\vH
 666666666666666666666666666666666666666666666666\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\ssl\s3_enc.c
-6666666666666666Specifies the item whitelist file to use.
+6666666666666666IEconItemInterface
 67-s
 6H,N
 6O|T%
@@ -9331,6 +9333,7 @@ $tH@T\tI
 8??SetInternalFieldCount@ObjectTemplate@v8@@QEAAXH@Z
 8?PerformMicrotaskCheckpoint@Isolate@v8@@QEAAXXZ
 8A6j
+8F \vq
 8GZS
 8SIffK5W
 8TZvrv<
@@ -9412,6 +9415,7 @@ $tH@T\tI
 :eaI
 :gN(dq
 :mIR
+:m_force
 :parsed on tick %d of %d got %d new commands through command number %d [%s]\n
 :w4v
 ;!;#;-;9;E;S;Y;_;q;{;
@@ -9524,6 +9528,7 @@ $tH@T\tI
 >\v?\r?7?;?=?A?Y?_?e?g?y?}?
 >fN46R^
 >l\rur
+>m_iDeaths
 >p00<
 >yhP
 >ztq
@@ -9543,7 +9548,6 @@ $tH@T\tI
 ?ACT_IDLE
 ?BooleanValue@Value@v8@@QEBA_NPEAVIsolate@2@@Z
 ?CEntityIOOutput
-?CSimTimer
 ?Call@Function@v8@@QEAA?AV?$MaybeLocal@VValue@v8@@@2@V?$Local@VContext@v8@@@2@V?$Local@VValue@v8@@@2@HQEAV52@@Z
 ?CompileModule@ScriptCompiler@v8@@SA?AV?$MaybeLocal@VModule@v8@@@2@PEAVIsolate@2@PEAVSource@12@W4CompileOptions@12@W4NoCacheReason@12@@Z
 ?CreateHandle@HandleScope@v8@@KAPEA_KPEAVIsolate@internal@2@_K@Z
@@ -9555,6 +9559,7 @@ $tH@T\tI
 ?Exception@TryCatch@v8@@QEBA?AV?$Local@VValue@v8@@@2@XZ
 ?Exit@Context@v8@@QEAAXXZ
 ?Exit@Isolate@v8@@QEAAXXZ
+?ExternalAnimGraphHandle_t
 ?Get@Object@v8@@QEAA?AV?$MaybeLocal@VValue@v8@@@2@V?$Local@VContext@v8@@@2@I@Z
 ?Get@Object@v8@@QEAA?AV?$MaybeLocal@VValue@v8@@@2@V?$Local@VContext@v8@@@2@V?$Local@VValue@v8@@@2@@Z
 ?GetCurrent@Isolate@v8@@SAPEAV12@XZ
@@ -9578,14 +9583,13 @@ $tH@T\tI
 ?HasCaught@TryCatch@v8@@QEBA_NXZ
 ?NmFrameSnapEventMode_t
 ?No data
-?PHYS_SAVE_RESTORE_VERSION
+?Using model "%s"\n
 ?VBH;
 ?\n:k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse
 ?\n:k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions
 ?\n;GAME_PARTICLE_MANAGER_EVENT_CHANGE_CONTROL_POINT_ATTACHMENT
 ?\n;GAME_PARTICLE_MANAGER_EVENT_SET_SCENE_OBJECT_TINT_AND_DESAT
 ?\nnexttoken
-?citadel
 ?d86L
 ?dt]X
 ?expf
@@ -9594,6 +9598,8 @@ $tH@T\tI
 ?gwL
 ?jOb
 ?m_Stops
+?m_iKills
+?m_sRequiredAddons
 ?srJO
 ?tya
 ?uWS
@@ -9608,11 +9614,13 @@ $tH@T\tI
 @Aff
 @BH]f
 @BoneSetup
+@CCitadelSoundOpvarSetOBB_API
+@Determines whether a player can early-out of the deathcam.
+@HPX`hv`
 @MfKZ
 @Pgl
 @Pu\rm
 @Release
-@The number of seconds before radio command tokens refresh.
 @WE]X
 @X!pf
 @Zs3
@@ -9623,11 +9631,9 @@ $tH@T\tI
 @\n\vserver_type
 @dKb]
 @fff>fff>fff>fff>
-@heavy
 @i1V
 @n2w
 @player_start_teleport_destination
-@scripted_scene
 @workshop
 A CT bot doesn't know what to do while the bomb is planted!\n
 A Hiding Spot is off of the Nav Mesh at setpos %.0f %.0f %.0f\n
@@ -9646,7 +9652,7 @@ A<fP
 A>x8
 A@d0I
 AA Compromise
-AA:`c
+AA:pt
 AABB
 AACompromise
 AC2,h
@@ -9997,7 +10003,7 @@ Already in the goal area
 Alternate icon '%s' > '%s' must define '%s'
 Alternate icon definition index %d must be greater than or equal to zero
 Alternate icon definition index '%s' (%llu) must be greater than zero
-Am_iEnemy5Ks
+Am_iMoneySaved
 AmmoCount/%s
 AmmoCount/current
 An RR_Concept couldn't find its string in the symbol table!\n
@@ -10199,7 +10205,7 @@ BAsyncSend
 BAsyncSendProto
 BC (default)
 BCBtActionMoveTo
-BCPulseCell_ApplyDynamicAttributeInt
+BCPulseCell_ApplyEntityFlags
 BEOS_BIND_FUNC
 BEOS_BIND_VAR
 BEOS_LOAD
@@ -10406,6 +10412,7 @@ BaseTextureOverride
 Basic OCSP Response
 Basis Type: %s\n
 BcT`
+Bcash_stack
 Bd]U
 BeforeGraphStart
 Begin Async Server Work
@@ -10497,7 +10504,6 @@ Breakable.MatWood
 Breakable.Metal
 Breaks in the debugger
 Bs'n
-BspawnCashStack
 Bu 5
 Buffer too small
 BuildCacheSubscribed(CEconAccountSeasonalOperationGS)
@@ -11370,7 +11376,6 @@ CChoreoEvent_SPEAK
 CChoreoEvent_STOPPOINT
 CChoreoObjectBase
 CChoreoScene
-CCitadelSoundOpvarSetOBB_API
 CClientHeaderOverwatchEvidence
 CClientMsg_ClientUIEvent
 CClientMsg_ClientUIEvent_t
@@ -14438,7 +14443,7 @@ Close the group automatically when the associated parent process exits (good for
 CloseCaptionNoAttenuate
 CloseToolhelp32Snapshot
 ClosestPointInternal
-Cnav_bfs_debug
+Cnav_smooth_draw_arrival_calc
 Co-dependent physics tasks detected!
 Coaches/%u
 Code Signing
@@ -18673,12 +18678,12 @@ P-224
 P-256
 P-384
 P-521
-P08@J
+P08@J o
 P08J
 P1\t98"
+P2 o
 P5[1
-P<8k
-P<Yk
+P6 %q
 PAGN_4
 PANIC
 PARALYZE
@@ -18741,6 +18746,7 @@ PEvent
 PGr]
 PHAG2
 PHYSGUN
+PHYS_SAVE_RESTORE_VERSION
 PHhn}Y
 PISTOL
 PKCS #7 SIGNED DATA
@@ -18861,6 +18867,7 @@ PLANT_BOMB
 PLASMA
 PLAYERHUD
 PLAYERS
+PLIk
 PLUG_TYPE_INPUT
 PLUG_TYPE_OUTPUT
 PLUG_TYPE_RELAY_OMNIDIRECTIONAL_LEGACY
@@ -18868,6 +18875,7 @@ PLUG_TYPE_RELAY_PREFAB_INBOUND
 PLUG_TYPE_RELAY_PREFAB_LOCAL
 PLUG_TYPE_RELAY_PREFAB_OUTBOUND
 PLUG_TYPE_UNKNOWN
+PLjk
 POISON
 POISONED 
 POLICYINFO
@@ -19476,11 +19484,10 @@ RSA_verify_ASN1_OCTET_STRING
 RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
 RTime32
-R\fpD_k
+R\fpTpk
 R\r1>Vp
 R\vp!y
-R\vp<Yk
-R\vpl
+R\vpLjk
 R]Di
 Rad2 Deg
 Radial using: %s\n
@@ -21891,7 +21898,6 @@ UserCommands
 UserIDToControllerHScript
 Using Ref Pos: no
 Using Ref Pos: yes
-Using model "%s"\n
 Using spawn points configuration 0x%08X\n
 Ut]<E
 Uv1t
@@ -22763,7 +22769,10 @@ Z~wl
 \f]ne3
 \fdhWTh
 \fiaR
-\fp<Yk
+\fpLjk
+\fp\v`LIk
+\fp\v`Ljk
+\fp\v`Tpk
 \ful2
 \fy&3Gl
 \l:ArR
@@ -23442,6 +23451,8 @@ Z~wl
 \ri1I
 \rjwB\t
 \roKK
+\rp\f`\v0Ljk
+\rp\f`\vPLjk
 \rrCj
 \rusercmd.proto"\\n
 \sG7tPD
@@ -23467,7 +23478,7 @@ Z~wl
 \tJm_9
 \tLa0+
 \tNone\n
-\tP<8k
+\tPLIk
 \tPrivate script scope:
 \tPublic script scope:
 \tRead %s\t%s%s%s,\tOffs 0x%04x\n
@@ -23505,14 +23516,15 @@ Z~wl
 \vGt5
 \vHCK/
 \vNCE\v
-\vP<8k
+\vPLIk
 \vUY6[E
 \v\n\tRemoveFan
 \v\vTSG
+\v`LIk
 \vj0k
 \vjC7
-\vp<Yk
-\vpD_k
+\vpLjk
+\vpTpk
 ] Done (%.2f seconds)
 ]1h=bfz
 ]FhSD}
@@ -23581,13 +23593,18 @@ _var
 _xU`u
 _}eOk
 `28)fk
+`2pt
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
+`6P q
 `:zQF
 `D$daM-l
 `DZG
 `F?ToLocalEmpty@api_internal@v8@@YAXXZ
 `H(hqA1p
 `ITS
+`LIk
+`Ljk
+`Tpk
 `VX:H
 `\n\rvector_values
 `fPw.\vM
@@ -26725,6 +26742,7 @@ healthratio_old
 heartbeat request already pending
 heat_delay
 heat_effect
+heavy
 heavy0
 heavy1
 heavy2
@@ -26827,6 +26845,7 @@ hostage_stops_following
 hostname_changed
 hours
 houseIdentifier
+hpz o
 hr_H
 http request
 http$
@@ -28487,6 +28506,7 @@ nMaxElements
 nMeshGroupMask
 nMode
 nNumBuffersChecked < NmCachedPoseID_t::s_nMaxNumberOfCachedPoses
+nP\vq
 nPitch
 nPriority != NETWORK_FIELD_CHANGE_DEFAULT_PRIORITY
 nReason
@@ -28983,18 +29003,18 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
+p2 o
 p250
 p2{l
 p4Z3
 p5Z3
 p5\nL,
 p618
-p<8k
-p<Yk
 p>?Set@Template@v8@@QEAAXV?$Local@VName@v8@@@2@V?$Local@VData@v8@@@2@W4PropertyAttribute@2@@Z
 p@0pqE5tsO?|1
 pActivator
 pAnimgraphEntity
+pApproachAreaCost
 pAttachment
 pAttachmentName
 pAttachmentName1
@@ -29012,7 +29032,6 @@ pCommand
 pConfigEntityName
 pConfigName
 pD4t
-pD_k
 pData->GetDataDescMap() == pTemplateDataMap
 pDefault
 pDescription
@@ -29021,6 +29040,8 @@ pFilter
 pG_*h
 pIp 
 pJointName
+pLIk
+pLjk
 pLocationEntity
 pMaterialGroup
 pMeshGroupName
@@ -29057,10 +29078,12 @@ pTarget2
 pTargetAttachmentName
 pTaskSystem->IsValidCachedPose( pExternalPoseNode->m_externalPoseBufferID )
 pText
+pTpk
 pU>\AL
 pUpdateData->m_updateType == updateType
 pValue
 p\rP\f0!h
+p\r`\fPLjk
 p^i9
 pa end %f
 pa start %f
@@ -29712,7 +29735,7 @@ rX&O0
 rZ1VwGf5
 rZPM
 r\vDi
-r\vpD_k
+r\vpTpk
 rad2deg
 radio.go
 radio.letsgo
