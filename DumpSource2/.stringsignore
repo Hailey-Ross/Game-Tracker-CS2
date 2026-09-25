@@ -11923,6 +11923,7 @@ Recalculate Or Offset Warped Root Motion
 Recalculate Warped Root Motion
 RecalculateOrOffset
 Recalculation Rate
+Recompute smoke volume LPV caches
 Reconnecting
 Reconnects the SourceTV relay proxy.
 Record a demo incrementally.
@@ -13477,6 +13478,7 @@ Show or launch the specified engine tool
 Show packet jitter and netframe loss/reordering in the HUD.  0=never, 1=only in poor conditions, 2=always
 Show percentage of user commands & server snapshots that are missed due to network conditions.  0=never, 1=only in poor conditions, 2=always
 Show ping in the HUD.  0=never, 1=only in poor conditions, 2=always
+Show players' clan tags in their names.
 Show precache info (client).
 Show precipitation volumes
 Show prediction errors, 2 for above plus detailed field deltas, 3 to filter out serverside known prediction errors, -entindex for specific entity.
@@ -23934,6 +23936,7 @@ m_bShowPreview
 m_bShuffle
 m_bSilencerOn
 m_bSilentReloadStatCounted
+m_bSilentReloadStatPending
 m_bSimulate
 m_bSimulationTimeChanged
 m_bSingleLerpObject
@@ -29799,6 +29802,7 @@ m_nSlimeTouch
 m_nSlot
 m_nSlotType
 m_nSmokeEffectTickBegin
+m_nSmokeLightProbeRegen
 m_nSmoothDir
 m_nSnapShotIncrement
 m_nSnapShotStartPoint
@@ -36290,6 +36294,7 @@ sv_chat_proximity
 sv_cheats
 sv_clanid
 sv_clanserver_gms
+sv_clantags_enabled
 sv_client_max_interp_ratio
 sv_client_min_interp_ratio
 sv_clientrates
@@ -36597,6 +36602,7 @@ sv_skel_constraints_enable
 sv_skip_update_animations
 sv_skirmish_id
 sv_skyname
+sv_smoke_lighting_changed
 sv_smoke_volume_blind_start
 sv_snapshot_unlimited
 sv_sniper_tracer_innacuracy

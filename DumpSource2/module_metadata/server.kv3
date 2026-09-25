@@ -129361,7 +129361,7 @@
 			name = "smokegrenade_projectile_server"
 			group = "GameSessionManifest_server"
 			source_file = "src/game/shared/cstrike15/smokegrenade_projectile.cpp"
-			source_line = 208
+			source_line = 217
 			resources = 
 			[
 				resource_name:"smokegrenade_projectile.ventr",

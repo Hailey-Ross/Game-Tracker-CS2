@@ -8,6 +8,7 @@ class C_SmokeGrenadeProjectile : public C_BaseCSGrenadeProjectile
 	C_NetworkUtlVectorBase< uint8 > m_VoxelFrameData;
 	int32 m_nVoxelFrameDataSize;
 	int32 m_nVoxelUpdate;
+	uint8 m_nSmokeLightProbeRegen;
 	bool m_bSmokeVolumeDataReceived;
 	bool m_bSmokeEffectSpawned;
 };

@@ -103,9 +103,7 @@
  %s%lu (%s0x%lx)\n
  ' ) - 3 G M Q _ c e i w } 
  (%ld unused bits)\n
- (08@HPXb o
- (08@HR o
- (0X`hpz o
+ (08@HPXb {
  (Dirty Animation)
  (Disabled on Server)
  (INVALID PSS PARAMETERS)\n
@@ -595,6 +593,7 @@
 #GAMEUI_Stat_MAC10Shots
 #GAMEUI_Stat_MAG7Hits
 #GAMEUI_Stat_MAG7Kills
+#GAMEUI_Stat_MAG7Shots
 #GAMEUI_Stat_MP5NavyHits
 #GAMEUI_Stat_MP5NavyKills
 #GAMEUI_Stat_MP5NavyShots
@@ -3676,6 +3675,7 @@ $tH@T\tI
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nRoundEndCount@CCSGameRules@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nRoundStartCount@CCSGameRules@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nSegments@CRopeKeyframe@@@@
+.?AV?$CNetworkVarBase@EVNetworkVar_m_nSmokeLightProbeRegen@CSmokeGrenadeProjectile@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nTargetDetailLayer@VPhysicsCollisionAttribute_t@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nVersion@CPlayerSprayDecal@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_triggerBloat@CCollisionProperty@@@@
@@ -8636,6 +8636,7 @@ $tH@T\tI
 .OperationalVarValue
 .P6AXAEBUSoundOpvarManagerSettableData_t@@PEAVCSoundOpvarSetPointStackCollection@@@Z
 .P6A_NAEBUCharacterDefn_t@CCStrike15ItemSchema@@@Z
+.P6q
 .PARTICLE_MESSAGE
 .PEAVCBodyComponent@@
 .PEAVCCSGameModeRules@@
@@ -8975,7 +8976,7 @@ $tH@T\tI
 /5dJ
 /CTc\t
 /CVc
-/E#GAMEUI_Stat_MAG7Shots
+/Etotal_kills_sawedoff
 /RIv
 /\*<>{}[]() 
 /\n*k_EGCMsgGetGamePersonalDataEntriesResponse
@@ -9002,18 +9003,17 @@ $tH@T\tI
 0123456789
 02V8[
 05=k
-08@J o
 08bX
 09,h
 0;Q5[
 0<cz
 0@NX^b!/@P\b
 0AOY_c"2CQ[c
-0LIk
-0Ljk
+0LUk
+0Lvk
 0M2~@p
 0Mc\t\n
-0Tpk
+0T|k
 0W/5
 0Z@q
 0\n+k_EGCItemCustomizationNotification_NameItem
@@ -9122,8 +9122,8 @@ $tH@T\tI
 2\n.eRollType
 2\n\nline_items
 2\rlhp
-2\vpLjk
-2\vpTpk
+2\vpLvk
+2\vpT|k
 2^pV
 2a"l
 2bT~
@@ -9186,6 +9186,7 @@ $tH@T\tI
 4@AA
 4Ch;
 4F0I
+4F\v0
 4Mv8
 4Zis
 4\fPl
@@ -9252,9 +9253,9 @@ $tH@T\tI
 6%vi
 6,2K
 6-zeZ
-60%q
-60)q
-60\tq
+60'q
+601q
+605q
 62$|S)6f
 64CK\vH
 666666666666666666666666666666666666666666666666\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\.\ssl\s3_enc.c
@@ -9262,6 +9263,7 @@ $tH@T\tI
 67-s
 6H,N
 6O|T%
+6P#q
 6Qd=
 6\n1k_EGCItemCustomizationNotification_CasketContents
 6\n1k_EGCItemCustomizationNotification_ExtractSticker
@@ -9285,6 +9287,7 @@ $tH@T\tI
 6l13
 6lkc
 6myY;
+6p\nq
 6qo~
 6r-m_v
 6r1ij
@@ -9333,7 +9336,6 @@ $tH@T\tI
 8??SetInternalFieldCount@ObjectTemplate@v8@@QEAAXH@Z
 8?PerformMicrotaskCheckpoint@Isolate@v8@@QEAAXXZ
 8A6j
-8F \vq
 8GZS
 8SIffK5W
 8TZvrv<
@@ -9528,7 +9530,6 @@ $tH@T\tI
 >\v?\r?7?;?=?A?Y?_?e?g?y?}?
 >fN46R^
 >l\rur
->m_iDeaths
 >p00<
 >yhP
 >ztq
@@ -9555,6 +9556,7 @@ $tH@T\tI
 ?DisposeGlobal@api_internal@v8@@YAXPEA_K@Z
 ?Enter@Context@v8@@QEAAXXZ
 ?Enter@Isolate@v8@@QEAAXXZ
+?EntityPairs
 ?Evaluate@Module@v8@@QEAA?AV?$MaybeLocal@VValue@v8@@@2@V?$Local@VContext@v8@@@2@@Z
 ?Exception@TryCatch@v8@@QEBA?AV?$Local@VValue@v8@@@2@XZ
 ?Exit@Context@v8@@QEAAXXZ
@@ -9583,7 +9585,6 @@ $tH@T\tI
 ?HasCaught@TryCatch@v8@@QEBA_NXZ
 ?NmFrameSnapEventMode_t
 ?No data
-?Using model "%s"\n
 ?VBH;
 ?\n:k_EMsgGCCStrike15_v2_Client2GCEconPreviewDataBlockResponse
 ?\n:k_EMsgGCCStrike15_v2_MatchListRequestTournamentPredictions
@@ -9598,8 +9599,7 @@ $tH@T\tI
 ?gwL
 ?jOb
 ?m_Stops
-?m_iKills
-?m_sRequiredAddons
+?particle_cluster_use_collision_hulls
 ?srJO
 ?tya
 ?uWS
@@ -9609,13 +9609,14 @@ $tH@T\tI
 @333
 @333?
 @33s@
+@60)q
+@6p(q
 @?SlowGetAlignedPointerFromInternalField@Object@v8@@AEAAPEAXH@Z
 @@CNmFloatCurveEvent
 @Aff
 @BH]f
 @BoneSetup
 @CCitadelSoundOpvarSetOBB_API
-@Determines whether a player can early-out of the deathcam.
 @HPX`hv`
 @MfKZ
 @Pgl
@@ -9630,6 +9631,7 @@ $tH@T\tI
 @\n\tPlacement
 @\n\vserver_type
 @dKb]
+@de_anubis
 @fff>fff>fff>fff>
 @i1V
 @n2w
@@ -9652,7 +9654,7 @@ A<fP
 A>x8
 A@d0I
 AA Compromise
-AA:pt
+AA:p
 AABB
 AACompromise
 AC2,h
@@ -9772,6 +9774,7 @@ AMMO_TYPE_HEGRENADE
 AMMO_TYPE_MOLOTOV
 AMMO_TYPE_SMOKEGRENADE
 AMMO_TYPE_TASERCHARGE
+AMoveMountingAmount_t
 ANSI X9.62
 ANY PRIVATE KEY
 APPEND_EXP
@@ -10003,7 +10006,6 @@ Already in the goal area
 Alternate icon '%s' > '%s' must define '%s'
 Alternate icon definition index %d must be greater than or equal to zero
 Alternate icon definition index '%s' (%llu) must be greater than zero
-Am_iMoneySaved
 AmmoCount/%s
 AmmoCount/current
 An RR_Concept couldn't find its string in the symbol table!\n
@@ -10205,7 +10207,7 @@ BAsyncSend
 BAsyncSendProto
 BC (default)
 BCBtActionMoveTo
-BCPulseCell_ApplyEntityFlags
+BCPulseCell_ApplyEntityFlags::CursorState_t
 BEOS_BIND_FUNC
 BEOS_BIND_VAR
 BEOS_LOAD
@@ -14443,7 +14445,7 @@ Close the group automatically when the associated parent process exits (good for
 CloseCaptionNoAttenuate
 CloseToolhelp32Snapshot
 ClosestPointInternal
-Cnav_smooth_draw_arrival_calc
+Cnav_smooth_draw_speed
 Co-dependent physics tasks detected!
 Coaches/%u
 Code Signing
@@ -15770,7 +15772,6 @@ EntityKey
 EntityName
 EntityNames
 EntityOutput{ entity_key='hEntity' }
-EntityPairs
 EntitySkeleton
 EntitySpawnKeyWarning( entity "%s" class "%s" field "%s" ): %s\n
 EntitySubclassGameSystem
@@ -18678,12 +18679,11 @@ P-224
 P-256
 P-384
 P-521
-P08@J o
+P08@J {
 P08J
 P1\t98"
-P2 o
 P5[1
-P6 %q
+P6 1q
 PAGN_4
 PANIC
 PARALYZE
@@ -18867,7 +18867,6 @@ PLANT_BOMB
 PLASMA
 PLAYERHUD
 PLAYERS
-PLIk
 PLUG_TYPE_INPUT
 PLUG_TYPE_OUTPUT
 PLUG_TYPE_RELAY_OMNIDIRECTIONAL_LEGACY
@@ -18875,7 +18874,8 @@ PLUG_TYPE_RELAY_PREFAB_INBOUND
 PLUG_TYPE_RELAY_PREFAB_LOCAL
 PLUG_TYPE_RELAY_PREFAB_OUTBOUND
 PLUG_TYPE_UNKNOWN
-PLjk
+PLUk
+PLvk
 POISON
 POISONED 
 POLICYINFO
@@ -19484,10 +19484,10 @@ RSA_verify_ASN1_OCTET_STRING
 RSA_verify_PKCS1_PSS
 RSA_verify_PKCS1_PSS_mgf1
 RTime32
-R\fpTpk
+R\fpT|k
 R\r1>Vp
 R\vp!y
-R\vpLjk
+R\vpLvk
 R]Di
 Rad2 Deg
 Radial using: %s\n
@@ -21898,6 +21898,7 @@ UserCommands
 UserIDToControllerHScript
 Using Ref Pos: no
 Using Ref Pos: yes
+Using model "%s"\n
 Using spawn points configuration 0x%08X\n
 Ut]<E
 Uv1t
@@ -22769,10 +22770,9 @@ Z~wl
 \f]ne3
 \fdhWTh
 \fiaR
-\fpLjk
-\fp\v`LIk
-\fp\v`Ljk
-\fp\v`Tpk
+\fpLvk
+\fp\v`LUk
+\fp\v`Lvk
 \ful2
 \fy&3Gl
 \l:ArR
@@ -23451,8 +23451,8 @@ Z~wl
 \ri1I
 \rjwB\t
 \roKK
-\rp\f`\v0Ljk
-\rp\f`\vPLjk
+\rp\f`\v0Lvk
+\rp\f`\vPLvk
 \rrCj
 \rusercmd.proto"\\n
 \sG7tPD
@@ -23478,7 +23478,7 @@ Z~wl
 \tJm_9
 \tLa0+
 \tNone\n
-\tPLIk
+\tPLUk
 \tPrivate script scope:
 \tPublic script scope:
 \tRead %s\t%s%s%s,\tOffs 0x%04x\n
@@ -23516,15 +23516,15 @@ Z~wl
 \vGt5
 \vHCK/
 \vNCE\v
-\vPLIk
+\vPLUk
 \vUY6[E
 \v\n\tRemoveFan
 \v\vTSG
-\v`LIk
+\v`LUk
 \vj0k
 \vjC7
-\vpLjk
-\vpTpk
+\vpLvk
+\vpT|k
 ] Done (%.2f seconds)
 ]1h=bfz
 ]FhSD}
@@ -23593,18 +23593,17 @@ _var
 _xU`u
 _}eOk
 `28)fk
-`2pt
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
-`6P q
+`60*q
+`6P,q
 `:zQF
 `D$daM-l
 `DZG
 `F?ToLocalEmpty@api_internal@v8@@YAXXZ
 `H(hqA1p
 `ITS
-`LIk
-`Ljk
-`Tpk
+`LUk
+`Lvk
 `VX:H
 `\n\rvector_values
 `fPw.\vM
@@ -25300,7 +25299,6 @@ de_abbey
 de_ali
 de_ancient
 de_ancient_night
-de_anubis
 de_assembly
 de_austria
 de_aztec
@@ -26845,7 +26843,7 @@ hostage_stops_following
 hostname_changed
 hours
 houseIdentifier
-hpz o
+hpz {
 hr_H
 http request
 http$
@@ -28506,7 +28504,6 @@ nMaxElements
 nMeshGroupMask
 nMode
 nNumBuffersChecked < NmCachedPoseID_t::s_nMaxNumberOfCachedPoses
-nP\vq
 nPitch
 nPriority != NETWORK_FIELD_CHANGE_DEFAULT_PRIORITY
 nReason
@@ -29003,7 +29000,6 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
-p2 o
 p250
 p2{l
 p4Z3
@@ -29040,9 +29036,9 @@ pFilter
 pG_*h
 pIp 
 pJointName
-pLIk
-pLjk
+pLUk
 pLocationEntity
+pLvk
 pMaterialGroup
 pMeshGroupName
 pModelName
@@ -29078,12 +29074,12 @@ pTarget2
 pTargetAttachmentName
 pTaskSystem->IsValidCachedPose( pExternalPoseNode->m_externalPoseBufferID )
 pText
-pTpk
+pT|k
 pU>\AL
 pUpdateData->m_updateType == updateType
 pValue
 p\rP\f0!h
-p\r`\fPLjk
+p\r`\fPLvk
 p^i9
 pa end %f
 pa start %f
@@ -29735,7 +29731,7 @@ rX&O0
 rZ1VwGf5
 rZPM
 r\vDi
-r\vpTpk
+r\vpT|k
 rad2deg
 radio.go
 radio.letsgo
@@ -30949,7 +30945,6 @@ status too old
 status_effect_cp
 statusid
 stay
-stealth
 steamID
 steam_launcher
 steam_universe
@@ -31428,7 +31423,6 @@ total_kills_nova
 total_kills_p228
 total_kills_p250
 total_kills_p90
-total_kills_sawedoff
 total_kills_scar17
 total_kills_scar20
 total_kills_scout
@@ -32448,6 +32442,7 @@ z(ov
 z/B,9d
 z<d2
 z>Hz
+z>pJ
 zF):O4
 zG2m8
 zRXU 

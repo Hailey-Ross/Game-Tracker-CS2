@@ -38997,9 +38997,10 @@
 			name = ""
 			group = "GameStartup"
 			source_file = "src/game/client/cstrike15/effects/c_chicken.cpp"
-			source_line = 35
+			source_line = 36
 			resources = 
 			[
+				resource_name:"models/nest/nest.vmdl",
 				resource_name:"models/chicken_feed/chicken_feed.vmdl",
 			]
 		},

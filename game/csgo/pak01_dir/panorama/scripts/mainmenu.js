@@ -11,6 +11,7 @@
 /// <reference path="vanity_pet_info.ts" />
 /// <reference path="particle_controls.ts" />
 /// <reference path="video_setting_recommendations.ts" />
+/// <reference path="generated/items_event_current_generated_store.d.ts" />
 $.LogChannel('p.mainmenu', "LV_OFF");
 var MainMenu;
 (function (MainMenu) {
@@ -25,6 +26,8 @@ var MainMenu;
     let _m_notificationSchedule = false;
     let _m_bVanityAnimationAlreadyStarted = false;
     let _m_bHasPopupNotification = false;
+    let _m_popupNotificationCallbackHandle = -1;
+    let _m_bMajorStoreBalanceChecked = false;
     let _m_tLastSeenDisconnectedFromGC = 0;
     const _m_NotificationBarColorClasses = [
         "NotificationRed", "NotificationYellow", "NotificationGreen", "NotificationLoggingOn"
@@ -216,17 +219,12 @@ var MainMenu;
         }
     }
     function _HidePetEntities(elPanel) {
-        elPanel.FireEntityInput('nest', 'Disable');
         _m_nPetUpgradeLevel = null;
         UpdatePetInfoPanel(elPanel, '0');
     }
     function _ShowPetEntities(elPanel, petItemId) {
-        elPanel.FireEntityInput('nest', 'Disable');
         _m_nPetUpgradeLevel = Number(InventoryAPI.GetItemAttributeValue(petItemId, '{uint32}upgrade level'));
         UpdatePetInfoPanel(elPanel, petItemId);
-        const bPetCanWalkAround = (_m_nPetUpgradeLevel && (_m_nPetUpgradeLevel > 0));
-        if (!bPetCanWalkAround)
-            elPanel.FireEntityInput('nest', 'Enable');
     }
     function UpdatePetInfoPanel(elMapPanel, petItemId) {
         let elParent = $.GetContextPanel().FindChildInLayoutFile('MainMenuVanityInfo');
@@ -387,7 +385,7 @@ var MainMenu;
         _m_elContentPanel.AddClass('mainmenu-content--offscreen');
         _CancelNotificationSchedule();
         _UnregisterShowEvents();
-        UiToolkitAPI.CloseAllVisiblePopups();
+        _CloseAllVisiblePopups();
         _StopFetchingTournamentData();
         if (vanityPanel) {
             _SetPetInteractionEnabled(vanityPanel, false);
@@ -1077,6 +1075,24 @@ var MainMenu;
         _UpdateInventoryBtnAlert();
         _UpdateStoreAlert();
     }
+    function _RegisterPopupNotificationCallback(fnOnClose) {
+        const handle = UiToolkitAPI.RegisterJSCallback(() => {
+            UiToolkitAPI.UnregisterJSCallback(handle);
+            if (_m_popupNotificationCallbackHandle === handle)
+                _m_popupNotificationCallbackHandle = -1;
+            fnOnClose();
+        });
+        _m_popupNotificationCallbackHandle = handle;
+        return handle;
+    }
+    function _CloseAllVisiblePopups() {
+        UiToolkitAPI.CloseAllVisiblePopups();
+        if (_m_popupNotificationCallbackHandle !== -1) {
+            UiToolkitAPI.UnregisterJSCallback(_m_popupNotificationCallbackHandle);
+            _m_popupNotificationCallbackHandle = -1;
+        }
+        _m_bHasPopupNotification = false;
+    }
     function _CheckRankUpRedemptionStore() {
         if (_m_bHasPopupNotification)
             return;
@@ -1094,10 +1110,33 @@ var MainMenu;
         const prevClientGenTime = Number(GameInterfaceAPI.GetSettingString("cl_redemption_reset_timestamp"));
         if (prevClientGenTime != genTime && balance > 0) {
             _m_bHasPopupNotification = true;
-            const RankUpRedemptionStoreClosedCallbackHandle = UiToolkitAPI.RegisterJSCallback(_OnRankUpRedemptionStoreClosed);
+            const RankUpRedemptionStoreClosedCallbackHandle = _RegisterPopupNotificationCallback(_OnRankUpRedemptionStoreClosed);
             let elPopupPanel = UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_rankup_redemption_store.xml', 'callback=' + RankUpRedemptionStoreClosedCallbackHandle);
             elPopupPanel.Data().elMainMenu = $.GetContextPanel();
         }
+    }
+    function _CheckMajorStoreBalance() {
+        if (_m_bMajorStoreBalanceChecked || _m_bHasPopupNotification)
+            return;
+        if (GameStateAPI.IsLocalPlayerPlayingMatch())
+            return;
+        if (!$('#MainMenuNavBarHome').checked)
+            return;
+        const elPopups = $('#PopupManager');
+        if (elPopups && elPopups.BHasClass('HaveActivePopups'))
+            return;
+        if (!MyPersonaAPI.IsConnectedToGC() || !MyPersonaAPI.IsInventoryValid())
+            return;
+        _m_bMajorStoreBalanceChecked = true;
+        const idxLookup = InventoryAPI.GetCacheTypeElementIndexByKey('SeasonalOperations', g_ActiveTournamentInfo.credits_id);
+        if (g_ActiveTournamentInfo.credits_id != InventoryAPI.GetCacheTypeElementFieldByIndex('SeasonalOperations', idxLookup, 'season_value'))
+            return;
+        const nBalance = InventoryAPI.GetCacheTypeElementFieldByIndex('SeasonalOperations', idxLookup, 'redeemable_balance') ?? 0;
+        if (nBalance < 99)
+            return;
+        _m_bHasPopupNotification = true;
+        const closedCallbackHandle = _RegisterPopupNotificationCallback(() => { _m_bHasPopupNotification = false; });
+        UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_major_store_balance.xml', 'balance=' + nBalance + '&callback=' + closedCallbackHandle);
     }
     function _OnRankUpRedemptionStoreClosed() {
         _m_bHasPopupNotification = false;
@@ -1166,7 +1205,7 @@ var MainMenu;
     }
     function _WeaponPreviewRequest(id, bWorkshopItemPreview = false) {
         const workshopPreview = bWorkshopItemPreview ? 'true' : 'false';
-        UiToolkitAPI.CloseAllVisiblePopups();
+        _CloseAllVisiblePopups();
         const elPanel = UiToolkitAPI.ShowCustomLayoutPopup('popup-weapon-preview-inspect-' + id, 'file://{resources}/layout/popups/popup_inventory_inspect.xml');
         let oSettings = {
             item_id: id,
@@ -1177,7 +1216,7 @@ var MainMenu;
         elPanel.Data().oSettings = oSettings;
     }
     function _SelectItemForWorkshopPreviewCapability(capability, itemid, itemid2) {
-        UiToolkitAPI.CloseAllVisiblePopups();
+        _CloseAllVisiblePopups();
         _OpenInventory();
         $.DispatchEvent('ShowSelectItemForWorkshopPreviewCapability', capability, itemid, itemid2);
     }
@@ -1363,7 +1402,7 @@ var MainMenu;
             const popupNotification = _GetPopupNotification();
             if (popupNotification != null) {
                 if (popupNotification.rental_id) {
-                    const OnCloseRentalExpireNotification = UiToolkitAPI.RegisterJSCallback(popupNotification.callback);
+                    const OnCloseRentalExpireNotification = _RegisterPopupNotificationCallback(popupNotification.callback);
                     UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_container_open_confirm.xml', 'action-type=expire'
                         + '&' + 'case=' + popupNotification.rental_id
                         + '&' + 'msg_override=' + popupNotification.msg
@@ -1371,6 +1410,12 @@ var MainMenu;
                 }
                 else {
                     const elPopup = UiToolkitAPI.ShowGenericPopupOneOption(popupNotification.title, popupNotification.msg, popupNotification.color_class, '#SFUI_MainMenu_ConfirmBan', popupNotification.callback);
+                    if (elPopup) {
+                        elPopup.SetPanelEvent('oncancel', () => {
+                            $.DispatchEvent('UIPopupButtonClicked', elPopup, '');
+                            popupNotification.callback();
+                        });
+                    }
                     if (popupNotification.html)
                         elPopup.EnableHTML();
                 }
@@ -1381,7 +1426,7 @@ var MainMenu;
     function PopUpPetNotification(popupNotification) {
         if (popupNotification != null && popupNotification.pet_id) {
             _m_bHasPopupNotification = true;
-            const OnClosePetEventNotification = UiToolkitAPI.RegisterJSCallback(popupNotification.callback);
+            const OnClosePetEventNotification = _RegisterPopupNotificationCallback(popupNotification.callback);
             let Panel = UiToolkitAPI.ShowCustomLayoutPopupParameters('', 'file://{resources}/layout/popups/popup_pet_event.xml', 'action-type=expire'
                 + '&' + 'title=' + popupNotification.title
                 + '&' + 'msg=' + popupNotification.msg
@@ -1573,6 +1618,7 @@ var MainMenu;
         if (REDEMPTION_ENABLED) {
             _CheckRankUpRedemptionStore();
         }
+        _CheckMajorStoreBalance();
         _UpdatePetNotification();
         _m_notificationSchedule = $.Schedule(1, _LoopUpdateNotifications);
     }

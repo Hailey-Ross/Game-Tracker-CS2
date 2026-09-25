@@ -157,7 +157,7 @@ annotation_create (clientdll release)
 annotation_delete_previous_node_set (clientdll release)
 	Delete the last node set created
 
-annotation_load (clientdll release workshop_whitelisted)
+annotation_load (clientdll release)
 	Load annotation to a file after first clearing existing annotations
 
 annotation_reload (clientdll release)
@@ -245,13 +245,13 @@ bindtoggle (developmentonly defensive)
 blink (developmentonly dontrecord defensive)
 	Blink specified convar value between two values at the specified duration.
 
-bot_add (gamedll release workshop_whitelisted)
+bot_add (gamedll release)
 	bot_add <t|ct> <type> <difficulty> <name> - Adds a bot matching the given criteria.
 
-bot_add_ct (gamedll release workshop_whitelisted)
+bot_add_ct (gamedll release)
 	bot_add_ct <type> <difficulty> <name> - Adds a Counter-Terrorist bot matching the given criteria.
 
-bot_add_t (gamedll release workshop_whitelisted)
+bot_add_t (gamedll release)
 	bot_add_t <type> <difficulty> <name> - Adds a terrorist bot matching the given criteria.
 
 bot_all_weapons (gamedll release)
@@ -266,13 +266,13 @@ bot_goto_selected (gamedll cheat)
 bot_hurt (gamedll cheat)
 	<no description>
 
-bot_kick (gamedll release workshop_whitelisted)
+bot_kick (gamedll release)
 	bot_kick <all> <t|ct> <type> <difficulty> <name> - Kicks a specific bot, or all bots, matching the given criteria.
 
-bot_kill (gamedll cheat workshop_whitelisted)
+bot_kill (gamedll cheat)
 	bot_kill <all> <t|ct> <type> <difficulty> <name> - Kills a specific bot, or all bots, matching the given criteria.
 
-bot_knives_only (gamedll release workshop_whitelisted)
+bot_knives_only (gamedll release)
 	Restricts the bots to only using knives
 
 bot_path (gamedll cheat)
@@ -321,7 +321,7 @@ buymenu (clientdll server_can_execute)
 buyrandom (gamedll client_can_execute)
 	Buy random primary and secondary. Primarily for deathmatch where cost is not an issue.
 
-callvote (gamedll client_can_execute workshop_whitelisted)
+callvote (gamedll client_can_execute)
 	Start a vote on an issue.
 
 cam_command (clientdll cheat)
@@ -1118,7 +1118,7 @@ differences (release)
 disable_priority_boost (developmentonly defensive)
 	Disable focus based priority boost
 
-disconnect (release workshop_whitelisted)
+disconnect (release)
 	Disconnect from server
 
 dlight_debug (clientdll cheat)
@@ -1191,7 +1191,7 @@ dumpparticlelist (cheat)
 dumpstringtable (developmentonly defensive)
 	Usage:  dumpstringtable <tablename |all> <sv | cl> <verbose | simple> <element>      Print string tables to console, verbose to dump data, simple to show name and count only, can specifiy a single numeric element index to restrict spew.
 
-echo (server_can_execute workshop_whitelisted)
+echo (server_can_execute)
 	Echo text to console.
 
 echoln (release)
@@ -1269,7 +1269,7 @@ ent_characterize (developmentonly gamedll defensive)
 ent_clear_debug_overlays (gamedll cheat)
 	Clears all debug overlays
 
-ent_create (gamedll cheat vconsole_fuzzy_matching workshop_whitelisted)
+ent_create (gamedll cheat vconsole_fuzzy_matching)
 	Creates an entity of the given designer or subclass name where the player is looking.
 
 ent_debug_anim (developmentonly clientdll defensive)
@@ -1286,7 +1286,7 @@ ent_find_index (gamedll cheat)
 	Display data for entity matching specified index.
 	Format: find_ent_index <index>
 
-ent_fire (gamedll cheat vconsole_fuzzy_matching workshop_whitelisted)
+ent_fire (gamedll cheat vconsole_fuzzy_matching)
 	Usage:
 	   ent_fire <target> [action] [value0] [value1] ... [valueN]
 
@@ -1294,7 +1294,7 @@ ent_fire_delay (gamedll cheat vconsole_fuzzy_matching)
 	Usage:
 	   ent_fire_delay <target> [action] [value0] [value1] ... [valueN] [delay]
 
-ent_fire_output (gamedll cheat vconsole_fuzzy_matching workshop_whitelisted)
+ent_fire_output (gamedll cheat vconsole_fuzzy_matching)
 	Usage:
 	   ent_fire_output <target> [output name] [value0] [value1] ... [valueN]
 
@@ -1386,7 +1386,7 @@ ent_select (gamedll cheat)
 ent_setang (gamedll cheat client_can_execute)
 	Set entity angles
 
-ent_setname (gamedll cheat workshop_whitelisted)
+ent_setname (gamedll cheat)
 	Sets the targetname of the given entity(s)
 	Arguments:   	<new entity name> <{entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}>
 
@@ -1488,13 +1488,13 @@ error_message_explain_vac (clientdll hidden clientcmd_can_execute)
 escape (release clientcmd_can_execute)
 	Escape key pressed.
 
-exec (dontrecord release execute_immediately workshop_whitelisted)
+exec (dontrecord release execute_immediately)
 	Execute a cfg file
 
 exec_async (cheat dontrecord)
 	Execute a cfg file over time
 
-execifexists (dontrecord release execute_immediately workshop_whitelisted)
+execifexists (dontrecord release execute_immediately)
 	Execute a cfg file if file exists
 
 explode (gamedll cheat client_can_execute)
@@ -1554,7 +1554,7 @@ func_mover_enable_debug_all (gamedll cheat)
 func_mover_step_movement (gamedll cheat)
 	<no description>
 
-game_alias (release workshop_whitelisted)
+game_alias (release)
 	Set the configuration of game type and mode based on game alias like "deathmatch".
 
 game_particle_manager_dump_requeue (developmentonly clientdll)
@@ -1710,7 +1710,7 @@ gfx_load_skin_diffusion_profile_sum_of_gaussians (developmentonly defensive)
 gfx_make_gpu_scrambled_halton_code (developmentonly defensive)
 	Make some code for me
 
-give (gamedll vconsole_fuzzy_matching client_can_execute workshop_whitelisted)
+give (gamedll vconsole_fuzzy_matching client_can_execute)
 	Give item to player.
 	Arguments: <item_name>
 
@@ -1724,7 +1724,7 @@ givecurrentammo (gamedll cheat)
 global_set (gamedll cheat)
 	global_set <globalname> <state>: Sets the state of the given env_global (0 = OFF, 1 = ON, 2 = DEAD).
 
-god (gamedll cheat client_can_execute workshop_whitelisted)
+god (gamedll cheat client_can_execute)
 	Toggle by default, or 0 to disable and 1 to enable. Player becomes invulnerable.
 
 graphcontroller_dumpparams (developmentonly gamedll)
@@ -1804,7 +1804,7 @@ host_workshop_map (gamedll release)
 host_writeconfig (release)
 	Saves out the user config values.
 
-host_writeconfig_with_prompt (clientdll release server_can_execute workshop_whitelisted)
+host_writeconfig_with_prompt (clientdll release server_can_execute)
 	Write settings if user agrees
 
 hud_reloadscheme (developmentonly clientdll defensive)
@@ -1988,19 +1988,19 @@ localization_quest_item_string_printout (developmentonly clientdll defensive)
 log (release)
 	Enables logging to file, console, and udp < on | off >.
 
-log_color (dontrecord release workshop_whitelisted)
+log_color (dontrecord release)
 	Set the color of a logging channel.
 
 log_dumpchannels (dontrecord release)
 	Dumps information about all logging channels.
 
-log_flags (dontrecord release workshop_whitelisted)
+log_flags (dontrecord release)
 	Set the flags on a logging channel.
 
 log_level (dontrecord release)
 	Set the spew level of a logging channel.
 
-log_verbosity (dontrecord release workshop_whitelisted)
+log_verbosity (dontrecord release)
 	Set the verbosity of a logging channel.
 
 logaddress_add_http (gamedll unlogged release)
@@ -2051,7 +2051,7 @@ map_showbombradius (gamedll cheat)
 map_showspawnpoints (developmentonly gamedll defensive)
 	Shows player spawn points (red=invalid). Optionally pass in the duration.
 
-map_workshop (clientdll release vconsole_fuzzy_matching vconsole_set_focus workshop_whitelisted)
+map_workshop (clientdll release vconsole_fuzzy_matching vconsole_set_focus)
 	Launch a workshop map
 
 mapgroup (gamedll dontrecord release)
@@ -2189,7 +2189,7 @@ mp_backup_restore_list_files (gamedll release)
 mp_backup_restore_load_file (gamedll release)
 	Loads player cash, KDA, scores and team scores; resets to the next round after the backup
 
-mp_bot_ai_bt_clear_cache (gamedll release workshop_whitelisted)
+mp_bot_ai_bt_clear_cache (gamedll release)
 	Clears the cache for behavior tree files.
 
 mp_debug_timeouts (developmentonly gamedll defensive)
@@ -2216,7 +2216,7 @@ mp_swapteams (gamedll release)
 mp_unpause_match (gamedll release)
 	Resume the match
 
-mp_warmup_end (gamedll release workshop_whitelisted)
+mp_warmup_end (gamedll release)
 	End warmup immediately.
 
 mp_warmup_start (gamedll release)
@@ -2417,7 +2417,7 @@ net_why_field_excluded (developmentonly)
 nextdemo (release)
 	Play next demo in sequence.
 
-noclip (gamedll cheat client_can_execute workshop_whitelisted)
+noclip (gamedll cheat client_can_execute)
 	Toggle. Player becomes non-solid and flies.  Optional argument of 0 or 1 to force enable/disable
 
 notarget (gamedll cheat client_can_execute)
@@ -2578,7 +2578,7 @@ playcast (release)
 playdemo (release)
 	Play a recorded demo file (.dem ).
 
-player_ping (gamedll client_can_execute workshop_whitelisted)
+player_ping (gamedll client_can_execute)
 	Creates a ping notification where the player is looking.
 
 playsound (developmentonly defensive)
@@ -2685,16 +2685,16 @@ r_toggleviewportsize (developmentonly defensive)
 r_viewport (developmentonly defensive)
 	Slams viewport size to a specified value.
 
-radio (clientdll release workshop_whitelisted)
+radio (clientdll release)
 	Opens a radio menu
 
-radio1 (clientdll release workshop_whitelisted)
+radio1 (clientdll release)
 	Opens a radio menu
 
-radio2 (clientdll release workshop_whitelisted)
+radio2 (clientdll release)
 	Opens a radio menu
 
-radio3 (clientdll release workshop_whitelisted)
+radio3 (clientdll release)
 	Opens a radio menu
 
 ragdoll_cleanup_all (linked_concommand gamedll clientdll cheat)
@@ -2724,7 +2724,7 @@ redirectend (hidden release)
 redirectstart (hidden release)
 	Redirect server console output
 
-regenerate_weapon_skins (clientdll cheat workshop_whitelisted)
+regenerate_weapon_skins (clientdll cheat)
 	<no description>
 
 reload_model (developmentonly defensive)
@@ -2794,7 +2794,7 @@ resource_reset_allocate_timing (developmentonly defensive)
 respawn_player (gamedll cheat)
 	Respawns the player from death!
 
-restart (cheat vconsole_set_focus workshop_whitelisted)
+restart (cheat vconsole_set_focus)
 	Poor man's restart: reload the current map from disk.
 
 restart_in_insecure (clientdll hidden clientcmd_can_execute)
@@ -2856,10 +2856,10 @@ save_watchclass (developmentonly gamedll defensive)
 save_watchentity (developmentonly gamedll defensive)
 	Restrict spew to entity index
 
-say (gamedll client_can_execute workshop_whitelisted)
+say (gamedll client_can_execute)
 	Display player message
 
-say_team (gamedll client_can_execute workshop_whitelisted)
+say_team (gamedll client_can_execute)
 	Display player message to team
 
 sc_dumpworld (cheat)
@@ -3003,7 +3003,7 @@ servervoice_dump (developmentonly clientdll defensive)
 set_server_cvar (developmentonly clientdll)
 	Change a server convar if allowed
 
-setang (gamedll cheat client_can_execute workshop_whitelisted)
+setang (gamedll cheat client_can_execute)
 	Snap player eyes to specified pitch yaw <roll:optional> (must have sv_cheats).
 
 setang_exact (gamedll cheat client_can_execute)
@@ -3018,7 +3018,7 @@ setmodel (gamedll cheat)
 setpause (release)
 	Set the pause state of the server.
 
-setpos (gamedll cheat client_can_execute workshop_whitelisted)
+setpos (gamedll cheat client_can_execute)
 	Move player to specified origin (must have sv_cheats).
 
 setpos_exact (gamedll cheat client_can_execute)
@@ -3076,7 +3076,7 @@ showtriggers_toggle (gamedll cheat)
 slot0 (clientdll server_can_execute)
 	<no description>
 
-slot1 (clientdll server_can_execute workshop_whitelisted)
+slot1 (clientdll server_can_execute)
 	<no description>
 
 slot10 (clientdll server_can_execute)
@@ -3091,28 +3091,28 @@ slot12 (clientdll server_can_execute)
 slot13 (clientdll server_can_execute)
 	<no description>
 
-slot2 (clientdll server_can_execute workshop_whitelisted)
+slot2 (clientdll server_can_execute)
 	<no description>
 
-slot3 (clientdll server_can_execute workshop_whitelisted)
+slot3 (clientdll server_can_execute)
 	<no description>
 
-slot4 (clientdll server_can_execute workshop_whitelisted)
+slot4 (clientdll server_can_execute)
 	<no description>
 
-slot5 (clientdll server_can_execute workshop_whitelisted)
+slot5 (clientdll server_can_execute)
 	<no description>
 
-slot6 (clientdll server_can_execute workshop_whitelisted)
+slot6 (clientdll server_can_execute)
 	<no description>
 
-slot7 (clientdll server_can_execute workshop_whitelisted)
+slot7 (clientdll server_can_execute)
 	<no description>
 
-slot8 (clientdll server_can_execute workshop_whitelisted)
+slot8 (clientdll server_can_execute)
 	<no description>
 
-slot9 (clientdll server_can_execute workshop_whitelisted)
+slot9 (clientdll server_can_execute)
 	<no description>
 
 snapto (developmentonly clientdll defensive)
@@ -3506,7 +3506,7 @@ subclass_change (gamedll cheat vconsole_fuzzy_matching)
 	Changes the subclass of the given entity.
 	Arguments:   	<new_subclass> {entity_name} / {class_name} / {entity_index} / {no argument = pick what player is looking at}
 
-subclass_create (gamedll cheat vconsole_fuzzy_matching workshop_whitelisted)
+subclass_create (gamedll cheat vconsole_fuzzy_matching)
 	Creates an entity of the given subclass where the player is looking.
 
 surfaceprop (gamedll cheat)
@@ -3572,6 +3572,9 @@ sv_showtags (developmentonly defensive)
 
 sv_shutdown (release)
 	Sets the server to shutdown when all games have completed
+
+sv_smoke_lighting_changed (gamedll release)
+	Recompute smoke volume LPV caches
 
 sv_soundscape_printdebuginfo (gamedll cheat)
 	print soundscapes

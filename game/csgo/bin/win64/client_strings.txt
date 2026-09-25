@@ -126,9 +126,8 @@
  (%lu = 0x%lx)\n
  (%u = 0x%x)\n
  (+%d more due to usercommand delivery)
- (08@HPXb
- (08@HR
- (0X`hpz
+ (08@HPXb`"(
+ (0X`hpz`"(
  (DEFAULT)
  (Dirty Animation)
  (INVALID PSS PARAMETERS)\n
@@ -2693,7 +2692,6 @@ $taser_charge
 (.CPlayer_SetPerFriendPreferences_Request
 (0'yX
 (0x%08X)'??'
-(40~O
 (5Me
 (5jP
 (ACTIVE)
@@ -3020,9 +3018,9 @@ $taser_charge
 )\n%k_UnlockStyle_Failed_CantAffordAttrib
 )\nNx*\nCh+\n'
 )\nOx*\nDh+\n(
-)binary_zstd
 )fuG
 )haI
+)parallel_perform_invalidate_physics
 * Matchmaking '%s' -vs- '%s' in '%s' '%s'
 *%*/*O*U*_*e*k*m*s*
 *%\n\tEGCPetMsg
@@ -3177,7 +3175,9 @@ $taser_charge
 ,\n\nsv_interp0
 ,\n\nsv_interp1
 ,\n\vvictim_slot
+,]p30
 ,ar_monastery
+,d;4H
 ,fQM(
 ,h11]
 ,hmQ#
@@ -3185,7 +3185,7 @@ $taser_charge
 ,kj8\te
 ,name:
 ,oYR
-,sK3pe
+,sK3
 ,section=
 ,value:
 - "%s" = "%.2f"\n
@@ -5099,6 +5099,7 @@ $taser_charge
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nRoundEndCount@C_CSGameRules@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nRoundStartCount@C_CSGameRules@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nSegments@C_RopeKeyframe@@@@
+.?AV?$CNetworkVarBase@EVNetworkVar_m_nSmokeLightProbeRegen@C_SmokeGrenadeProjectile@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nTargetDetailLayer@VPhysicsCollisionAttribute_t@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_nVersion@C_PlayerSprayDecal@@@@
 .?AV?$CNetworkVarBase@EVNetworkVar_m_triggerBloat@CCollisionProperty@@@@
@@ -11200,7 +11201,6 @@ $taser_charge
 0123456789ABCDEF#
 02V8[
 05=k
-08@J
 08bX
 09,h
 0;Q5[
@@ -11500,7 +11500,8 @@ $taser_charge
 2\n\nline_items
 2\n\vpreferences
 2\rlhp
-2\vpd[
+2\vp4{
+2\vph
 2^pV
 2a"l
 2bT~
@@ -11511,8 +11512,8 @@ $taser_charge
 2nIg
 2ndry
 2p"6
+2p8#
 2prB
-2pw'
 2|2;#GameUI_Retake_Card_TakeFive,0,0,weapon_fiveseven|2;#GameUI_Retake_Card_BlindFire,1,0,weapon_p250,grenade0|2;#GameUI_Retake_Card_OnlyTakesOne,0,0,weapon_deagle|2;#GameUI_Retake_Card_SneakyBeakyLike,0,0,weapon_p250,grenade1
 3%3+3/353A3G3[3_3g3k3s3y3
 3(Optional) Preview filename for the published file." \n
@@ -11591,7 +11592,6 @@ $taser_charge
 4tpD
 4zj@1;IJ
 4|2;#GameUI_Retake_Card_LightEmUp,1,1,rifle1,grenade0|2;#GameUI_Retake_Card_Kobe,1,1,rifle1,grenade2|1;#GameUI_Retake_Card_1g,1,1,rifle1,grenade3|1;#GameUI_Retake_Card_DisappearingAct,1,1,rifle1,grenade1|1;#GameUI_Retake_Card_EyesOnTarget,1,1,weapon_aug
-4~3 f
 5'0v2ZP
 5(EWorkshopFileType) Type of Workshop file to publish.
 5(Optional) The number of results, per page to return.
@@ -11722,13 +11722,11 @@ $taser_charge
 8192
 8285-YOAZ-6049
 82\n:XPH
-830e
 851Pe
 8835-KLXV-0292
 8<pl
 8= zp
 8A6j
-8B3Pe
 8C:\buildworker\csgo_rel_win64\build\src\panorama\layout\stylepropertyfactory.cpp
 8Client ID for which to count the number of issued tokens"
 8GZS
@@ -11830,7 +11828,7 @@ $taser_charge
 ;5jNf
 ;83\v\nHBJ7
 ;<}\v<}\v<}\v<}\vC_TonemapController2
-;I48i
+;I4x
 ;LGEW
 ;Qo0
 ;Subtitles and Captions
@@ -12027,8 +12025,9 @@ $taser_charge
 ?uWS
 ?x29
 @!@%@+@1@?@C@E@]@a@g@m@
+@08Nt
 @0pp
-@6pB
+@6pa
 @?SlowGetInternalField@Object@v8@@AEAA?AV?$Local@VData@v8@@@2@H@Z
 @@CNmFloatCurveEvent
 @BH]f
@@ -12054,6 +12053,7 @@ $taser_charge
 @dKb]
 @fff>fff>fff>fff>
 @ffffff
+@ht0
 @i1V
 @icon_camera
 @icon_character
@@ -12077,6 +12077,7 @@ A9ur
 A<fP
 A>x8
 AA Compromise
+AA:P
 AAAA-
 AAAA-%.*s
 AABB
@@ -12089,12 +12090,12 @@ AC2,h
 ACCESS_DESCRIPTION
 ACID
 ACPT_STATE
+ACSGOFrameUpdate
 ACTION_COMPLETED
 ACTIVATE_TYPE_DATAUPDATE_CREATION
 ACTIVATE_TYPE_INITIAL_CREATION
 ACTIVATE_TYPE_ONRESTORE
 ACTOR
-ACoopScoreReceived
 AD Time Stamping
 ADD_CERT_DIR
 ADH-AES128-GCM-SHA256
@@ -12190,6 +12191,7 @@ AMMO_TYPE_HEGRENADE
 AMMO_TYPE_MOLOTOV
 AMMO_TYPE_SMOKEGRENADE
 AMMO_TYPE_TASERCHARGE
+AMoveMountingAmount_t
 ANC[%d]
 ANNOTATION: Distance -- %s -- %f\n
 ANNOTATIONS: hiding node "%s"\n
@@ -12484,7 +12486,6 @@ Alternate icon definition index %d must be greater than or equal to zero
 Alternate icon definition index '%s' (%llu) must be greater than zero
 AltitudeMax
 AltitudeMin
-Am_nVariant
 Ambient %s:Unknown command %s\n
 Ambient Occlusion Proxies
 Ambient Occlusion Proxies Downsample Depth
@@ -12820,6 +12821,7 @@ BAsyncSendProto
 BC (default)
 BCanSeeInParentScroll
 BCanvasReady
+BEHudPanelClassStatus_t
 BEOS_BIND_FUNC
 BEOS_BIND_VAR
 BEOS_LOAD
@@ -12890,6 +12892,7 @@ BLOOM Down
 BLoadLayout
 BLoadLayoutSnippet
 BMPSTRING
+BMute players reported for abuse automatically.
 BN lib
 BNRAND
 BN_BLINDING_convert_ex
@@ -13062,7 +13065,6 @@ BelowPlayer
 BestQualityScale
 Beta
 BetaUniverse
-Bfrag_grenade_blip_frequency
 BgColor
 Bh;+j
 Big Number part of OpenSSL 1.0.2j  26 Sep 2016
@@ -15320,7 +15322,6 @@ CSGOEndOfMatchSkillgroupPanel
 CSGOEndOfMatchVotingPanel
 CSGOEndOfMatchXpPanel
 CSGOFrameTimeSlider
-CSGOFrameUpdate
 CSGOGSyncHelpLinkActivated
 CSGOGameTimeLabel
 CSGOGenericButtonClicked
@@ -16837,6 +16838,7 @@ Converted rgb '%s'->'%s'.\n
 Converting '%s'\n
 CooldownIsPermanent
 CooldownNames
+CoopScoreReceived
 Copied %d frames.
 Copy
 Copy 'element' to the end of 'a', increasing its count by one.
@@ -17034,7 +17036,6 @@ D2I_RSA_NET_2
 D2I_X509
 D2I_X509_CINF
 D2Lb!
-D4(i
 D4tp
 D514p
 D@D/lcO+hcK
@@ -17314,6 +17315,7 @@ Data_Branch1zBranch2x
 Data_Branch2yz
 Date Cell
 DateTime
+DbgTestEndOfMatch
 DcO/lcK+hSK
 Dd g4X3
 Death
@@ -18221,7 +18223,6 @@ EndAttachment
 EndOfMatch
 EndOfMatchChat
 EndOfMatchManifest
-EndOfMatch_Latch
 EndOfMatch_Show
 EndOfMatch_Shutdown
 EndOfMatch_SkillGroupUpdated
@@ -18429,7 +18430,6 @@ F+Zb
 F,mZq
 F/o4
 F2M+
-F3`e
 F6tr
 F7!z
 F9q'
@@ -18985,6 +18985,7 @@ GPUDeviceID
 GPUDriverVersion
 GPUDrv
 GPUVendor
+GPuS
 GRAPHICSTRING
 GRENADES
 GSync
@@ -21377,6 +21378,7 @@ LocalTime
 LocalVector
 LocalWeaponExclusive
 LocalizationChanged
+LocalizeDateCoarsely
 LocalizeRentalDate
 LocalizedCameraModel
 LocationLabel
@@ -21439,7 +21441,6 @@ Lunacy
 M'Ezb
 M-laO
 M0 E
-M4Hi
 MASK:
 MATCH-
 MATCHSTATS\t%s, round %d, value %d\n
@@ -22478,6 +22479,7 @@ OnShowTimeScaleContextMenu
 OnSimulate
 OnSimulationChanged
 OnSimulationTimeChanged
+OnSmokeLightProbeRegenChanged
 OnSource1Source1LegacyGameEvent: Early event sv %d / cl %d. Total in queue %d.\n
 OnSpriteScaleChanged
 OnStartForcedNewUserTraining
@@ -22617,13 +22619,11 @@ P-224
 P-256
 P-384
 P-521
-P08@J
-P08J 
+P08J
+P08Nt
 P1\t98"
 P2P ping to "%s". Timed out after %.2fms\n
 P5[1
-P60"
-P6p<
 PAGN_4
 PANORAMA_LAYOUTFILE
 PARALYZE
@@ -23180,7 +23180,7 @@ PersonalStore
 Pet definition %s: missing "name"
 Pet definition %s: name must be a positive integer
 PetHasAchievement
-Pfp)
+Pf@I
 Phoenix Compound
 Photometric tag is missing, assuming data is YCbCr
 Photometric tag value assumed incorrect, assuming data is YCbCr instead of RGB
@@ -23348,7 +23348,7 @@ Playsoundscape %s:Unknown command %s\n
 Please specify 0 or 1 with the -stream Parameter\n
 Pm8A?
 PmR"H?
-Pnp*
+Pn@J
 Point entity.
 PointsAnim
 Policy Qualifier CPS
@@ -23822,10 +23822,11 @@ RT %dx%d %s %s : %d Bytes\n
 RT_txt
 RTime32
 RULESHERE
+R\fph
 R\n\rincludekvtags
 R\r1>Vp
 R\vp!y
-R\vpd[
+R\vp4{
 R]Di
 R_T5Y
 Rad2 Deg
@@ -27149,7 +27150,6 @@ W'6S`
 W2Q=
 W3fp
 W3i+,
-W4hi
 W>peSp>9
 WAITING FOR VSCRIPT DEBUGGER CONNECTION -- '-vscriptdebug' was provided on the command line.\n
 WARNING: Attempted to send a steamworks gamestats row when the steamworks interface was not available!
@@ -27731,7 +27731,6 @@ Z~wl
 [-1] -> empty
 [-1] -> gsn(empty)
 [-1] -> gsn(null)
-[4xi
 [Additional text in debugoverlay_dashboard]
 [BREAK]
 [CC Log %s]: d: %f, ls: %f, %s\n
@@ -27767,6 +27766,7 @@ Z~wl
 [f7@7F
 [fo@e
 [h] %8llx (%-30.30s) <%3.3s> [loc] %-33.33s [abs] %-33.33s [ang] %-33.33s [s] %5.3f
+[header]
 [img
 [in %5.2f] interp  : frac %.6f%s
 [none]
@@ -27928,7 +27928,6 @@ Z~wl
 \n2CMsgGCCStrike15_v2_MatchmakingGC2ClientSearchStats
 \n3CMsgGCCStrike15_v2_ServerNotificationForUserPenalty
 \n3CPlayer_GetMutualFriendsForIncomingInvites_Response
-\n3hd
 \n5a=Z
 \n7CMsgGCCStrike15_v2_MatchmakingServerReservationResponse
 \n:82H
@@ -28768,7 +28767,6 @@ Z~wl
 \ttqE5
 \t}BzJ88
 \v#\v)\v-\v?\vG\vQ\vW\v]\ve\vo\v{\v
-\v50l
 \vBCeA
 \vGt5
 \vHCK/
@@ -28801,6 +28799,7 @@ _DateOnly
 _Ek6b]
 _GMT
 _Lx6
+_MonthOnly
 _OPENSSL_isservice
 _TIFFMergeFieldInfo
 _TIFFSetupFieldInfo
@@ -28885,7 +28884,7 @@ _xU`u
 _}eOk
 `28)fk
 `3?New@Array@v8@@SA?AV?$Local@VArray@v8@@@2@PEAVIsolate@2@H@Z
-`43 e
+`6pb
 `:zQF
 `D$daM-l
 `DZG
@@ -28898,7 +28897,6 @@ _}eOk
 `anonymous-namespace'::DynamicLockHelper<struct `anonymous namespace'::SmokeLightProbeVolumeData_t>::Lock
 `fPw.\vM
 `h9T~
-`ht0~O
 `o_je
 `yNT
 a null shared library handle was used
@@ -28918,6 +28916,7 @@ a:typeparam
 a;Tg
 a@XZ
 aA0k
+aBvt
 aD/x
 aDSS
 aECDH
@@ -34738,7 +34737,7 @@ lC57
 lDcW
 lM2p
 l\n\fexcludedtags
-l`w4
+l`w48
 label_token
 ladder
 ladder_angle_yaw
@@ -35029,7 +35028,7 @@ lowercase
 lowervalue
 lowprecisionuv
 lowprecisionuv1
-lvR4Xi
+lvR4
 m&9W
 m*Zu
 m249
@@ -35998,6 +35997,7 @@ models/inventory_items/trophy_cs2/%s.vcompmat
 models/models/weapons/shared/shell_50cal_hr.vmdl
 models/models/weapons/shared/shell_762_hr.vmdl
 models/models/weapons/shared/shell_9mm_hr.vmdl
+models/nest/nest.vmdl
 models/player
 models/props/crates/
 models/props/de_overpass/balloon.vmdl
@@ -36030,6 +36030,7 @@ money__has-explorebonus
 money__in-buy-zone
 monitor_pid
 monkey
+month
 monthlong
 monthshort
 mood
@@ -36224,6 +36225,7 @@ negev
 neighbor_distances
 neighbor_indices
 nervous
+nest
 nested asn1 error
 nested asn1 string
 nesw-resize
@@ -36813,6 +36815,8 @@ p.other
 p.ppBasis
 p.prime
 p.tpBasis
+p08@H^t
+p0jp
 p250
 p2p_ping could not convert "%s" to a CPeerToPeerAddress\n
 p2p_ping could not ping "%s" because they are an unknown peer\n
@@ -36830,9 +36834,10 @@ pCachedPoseBuffer->m_ID.IsValid()
 pCheckpointName
 pD4t
 pData->GetDataDescMap() == pTemplateDataMap
-pDbgTestEndOfMatch
 pDescription
 pDest
+pEndOfMatch_Latch
+pF0M
 pFilter
 pG_*h
 pIp 
@@ -37812,6 +37817,7 @@ rZPM
 r\n\vstart_index
 r\vDi
 r\vp!K
+r\vph
 r_2PassBuildDraw 0
 r_2PassBuildDraw 1
 r_csm_fast_path 0
@@ -38226,6 +38232,7 @@ roundtime_elapsed
 roundtime_remaining
 row-resize
 royalblue
+rp8#
 rpt_abusivemodels
 rpt_inventoryabuse
 rpt_listingabuse
@@ -39372,7 +39379,6 @@ status not yet valid
 status too old
 status_effect_cp
 statusid
-stealth
 steam
 steam://open/servers
 steam://run/
@@ -39572,7 +39578,6 @@ supportedAlgorithms
 supportedApplicationContext
 suppress_creation_on_death
 suppress_on_restore
-suppressed
 suppressed_field
 suppresslipsync
 surface

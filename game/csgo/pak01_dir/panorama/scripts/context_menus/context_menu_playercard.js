@@ -364,14 +364,7 @@ var ContextmenuPlayerCard;
             .filter(strCloudKey => strLivePrefix === '' || !strCloudKey.startsWith(strLivePrefix));
     }
     function _LivePetBookLabel(elPanel) {
-        const strPetId = InventoryAPI.GetPetItemID();
-        const strName = InventoryAPI.HasCustomName(strPetId) ? InventoryAPI.GetItemName(strPetId)
-            : InventoryAPI.GetItemNameUncustomized(strPetId);
-        if (strName === '') {
-            return $.Localize('#pet_book_menu_current_unnamed');
-        }
-        elPanel.SetDialogVariable('pet_name', strName);
-        return $.Localize('#pet_book_menu_current', elPanel);
+        return $.Localize('#pet_book_menu_current_unnamed', elPanel);
     }
     function _ShowPetBookMenu() {
         const elPanel = $.GetContextPanel();
@@ -379,12 +372,27 @@ var ContextmenuPlayerCard;
         if (_HatchedPetItemID() !== '') {
             items.push({ label: _LivePetBookLabel(elPanel), jsCallback: _OpenLivePetBook });
         }
+        function MakeRetiredPetName(pet_id, locPanel) {
+            const strName = InventoryAPI.HasCustomName(pet_id) ? InventoryAPI.GetItemName(pet_id)
+                : InventoryAPI.GetItemNameUncustomized(pet_id);
+            if (!strName)
+                return '';
+            locPanel.SetDialogVariable('pet_name', strName);
+            const value = Number(InventoryAPI.GetItemAttributeValue(pet_id, '{uint32}deployment date'));
+            if (!value)
+                return '';
+            locPanel.SetDialogVariable('hatch_date', InventoryAPI.LocalizeDateCoarsely(value, 'month'));
+            return $.Localize('#pet_book_menu_retired', locPanel);
+        }
         _RetiredPetBookKeys().forEach((strCloudKey, nIndex) => {
-            elPanel.SetDialogVariableInt('book_number', nIndex + 1);
-            items.push({
-                label: $.Localize(nIndex === 0 ? '#pet_book_menu_recent' : '#pet_book_menu_numbered', elPanel),
-                jsCallback: _OpenPetBook.bind(undefined, strCloudKey),
-            });
+            const oldPetItemID = GameInterfaceAPI.UnpackPetBookCloudFile('[header]' + strCloudKey);
+            const strPetMenuEntry = MakeRetiredPetName(oldPetItemID, elPanel);
+            if (strPetMenuEntry) {
+                items.push({
+                    label: strPetMenuEntry,
+                    jsCallback: _OpenPetBook.bind(undefined, strCloudKey),
+                });
+            }
         });
         if (items.length > 0) {
             UiToolkitAPI.ShowSimpleContextMenu('petbook', 'PetBookContextMenu', items);

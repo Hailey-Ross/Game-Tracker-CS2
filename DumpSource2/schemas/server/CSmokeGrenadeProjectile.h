@@ -8,6 +8,7 @@ class CSmokeGrenadeProjectile : public CBaseCSGrenadeProjectile
 	CNetworkUtlVectorBase< uint8 > m_VoxelFrameData;
 	int32 m_nVoxelFrameDataSize;
 	int32 m_nVoxelUpdate;
+	uint8 m_nSmokeLightProbeRegen;
 	GameTime_t m_flLastBounce;
 	GameTime_t m_fllastSimulationTime;
 	bool m_bExplodeFromInferno;
