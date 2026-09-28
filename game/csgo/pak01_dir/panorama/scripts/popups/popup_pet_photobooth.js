@@ -1053,8 +1053,26 @@ var PopupPetPhotoBooth;
         }
         _m_cp.FindChildInLayoutFile('id-photo-wallpapers-section').SetHasClass('show', bisStage);
     }
+    const EFFECT_SOUNDS = {
+        explosion: 'Photobooth.FX.Explosion',
+        lightning: 'Photobooth.FX.Lightning',
+        fire: 'Photobooth.FX.FireCircle',
+        beam: 'Photobooth.FX.Beam',
+        lasers: 'Photobooth.FX.Laser',
+        sparks: 'Photobooth.FX.FireWorks',
+        confetti: 'Photobooth.FX.Confetti',
+        bubbles: 'Photobooth.FX.Bubbles',
+        feathers: 'Photobooth.FX.Feathers',
+    };
+    const EFFECT_REACTION_DELAY = 0.5;
     function PlayEffect(effect) {
         UiToolkitAPI.PlaySoundEvent('Chicken.Camera.FX');
+        const strEffectSound = EFFECT_SOUNDS[effect];
+        if (strEffectSound) {
+            UiToolkitAPI.PlaySoundEvent(strEffectSound);
+        }
+        const strReaction = 'Chicken.Idle.' + _Growth().soundStage + '.PhotoBooth';
+        $.Schedule(EFFECT_REACTION_DELAY, () => { UiToolkitAPI.PlaySoundEvent(strReaction); });
         effect = _PoseShot(_m_currentPose).effectPrefix + effect;
         _m_elItemModelImagePanel.FindChildInLayoutFile('id-pet-picture-panel').FireEntityInput(effect, 'Start');
         $.Schedule(1, () => { _m_elItemModelImagePanel.FindChildInLayoutFile('id-pet-picture-panel').FireEntityInput(effect, 'Stop'); });

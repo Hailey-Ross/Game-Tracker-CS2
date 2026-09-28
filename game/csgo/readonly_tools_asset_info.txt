@@ -134608,3 +134608,12 @@ sounds/ambient/common/animal/chicken_scratch_10.vsnd
 sounds/ambient/common/animal/chicken_scratch_11.vsnd
 panorama/layout/popups/popup_major_store_balance.vxml
 panorama/styles/popups/popup_major_store_balance.vcss
+sounds/ui/chickens/photobooth_fx_beam_01.vsnd
+sounds/ui/chickens/photobooth_fx_bubbles_01.vsnd
+sounds/ui/chickens/photobooth_fx_confetti_01.vsnd
+sounds/ui/chickens/photobooth_fx_explo_01.vsnd
+sounds/ui/chickens/photobooth_fx_feathers_01.vsnd
+sounds/ui/chickens/photobooth_fx_firecircle_01.vsnd
+sounds/ui/chickens/photobooth_fx_fireworks_01.vsnd
+sounds/ui/chickens/photobooth_fx_laser_01.vsnd
+sounds/ui/chickens/photobooth_fx_lightning_01.vsnd
